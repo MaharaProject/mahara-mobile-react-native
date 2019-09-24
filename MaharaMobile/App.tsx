@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import Getuser from './components/Getuser.js';
-import Login from './components/Login.js';
 
 export default function App() {
   return (
@@ -11,7 +10,6 @@ export default function App() {
         <Text style={{fontSize: 20, color: 'white', padding: 20}}>Mahara Mobile</Text>
       </View>
       <View style={{flex: 1, backgroundColor: 'skyblue', alignItems: 'center', justifyContent: 'flex-start'}}>
-        <Login />
         <Getuser />
       </View>
     </View>
