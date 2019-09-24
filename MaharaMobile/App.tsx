@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Bananas from './components/Example.js';
+import Getuser from './components/Getuser.js';
 import Login from './components/Login.js';
 
 export default function App() {
@@ -12,6 +12,7 @@ export default function App() {
       </View>
       <View style={{flex: 1, backgroundColor: 'skyblue', alignItems: 'center', justifyContent: 'flex-start'}}>
         <Login />
+        <Getuser />
       </View>
     </View>
   );

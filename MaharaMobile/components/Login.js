@@ -9,11 +9,19 @@ export default class Login extends Component {
       text: '',
       stuff: '',
       loading: true,
+      token: 'ab6f3b68f8b0b976cf6b51eac2cd54da',
       dataSource: []
     };
 
     updateState =(json) => {
-      fetch("https://master.dev.mahara.org/module/mobileapi/json/info.php")
+      const token = 'ab6f3b68f8b0b976cf6b51eac2cd54da';
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-type': 'applications/json' },
+        body: JSON.stringify({token})
+      };
+
+      fetch("https://master.dev.mahara.org/module/mobileapi/json/info.php", requestOptions)
         .then(response => response.json())
         .then((responseJson)=> receiveRequest(responseJson))
         .catch(error=>errorHandle(error)) //catch the errors if any
