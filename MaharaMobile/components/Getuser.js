@@ -16,8 +16,6 @@ export default class Getuser extends Component {
     this.setState({
       token: token
     })
-
-    console.log(this.state.token);
   }
 
   render() {

@@ -8,7 +8,7 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      stuff: '',
+      message: '',
       url: 'http://google.com',
       loading: true,
       token: ''
@@ -50,7 +50,7 @@ export default class App extends Component {
   receiveRequest = (json) => {
     this.setState({
      loading: false,
-     stuff: 'Hi ' + json.userprofile.myname + '!'
+     message: 'Hi ' + json.userprofile.myname + '!'
     });
   }
 
@@ -62,20 +62,20 @@ export default class App extends Component {
   }
 
   handler = (value) => {
-    console.log('hit');  
     this.setState({
       token: value
     })
-    console.log(this.state.token);
     this.updateState();
   }
 
   render() {
+    let message = this.state.message;
+
     return (
       <View style={styles.container}>
         <View style={{height: 180, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'flex-end'}}>
           <Text style={{fontSize: 20, color: 'white'}}>Mahara Mobile</Text>
-          <Text style={{padding: 20}}>{this.state.stuff}</Text>
+          <View>{this.state.message ? <Text style={{padding: 20}}>{this.state.message}</Text> : null}</View>
         </View>
         <View style={{flex: 1, backgroundColor: 'skyblue', alignItems: 'center', justifyContent: 'flex-start'}}>
           <Getuser handler={this.handler} />
