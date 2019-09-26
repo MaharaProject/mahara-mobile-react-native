@@ -11,7 +11,7 @@ export default class Getuser extends Component {
   };
 
   updateToken = async (input) => {
-    // let token = input.trim();
+    let token = input.trim();
 
     // this.setState({
     //   token: token

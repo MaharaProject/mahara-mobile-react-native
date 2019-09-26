@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
 import Getuser from './components/Getuser.js';
 import Uploadfile from './components/Uploadfile.js';
+import Profile from './components/Profile.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ export default class App extends Component {
     };
   }
 
-  updateState = async (json) => {
+  login = async (json) => {
     const url = 'https://master.dev.mahara.org/';
     const serverUrl = url + 'webservice/rest/server.php?alt=json';
     const api = 'module_mobileapi_sync';
@@ -69,21 +70,22 @@ export default class App extends Component {
       console.log("Error retrieving data" + error);
     }
 
-    this.updateState();
+    this.login();
   }
 
   render() {
     let message = this.state.message;
 
     return (
-      <View style={styles.container}>
-        <View style={{height: 120, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'flex-end'}}>
-          <Text style={{fontSize: 20, color: 'white'}}>Mahara Mobile</Text>
-          <View>{this.state.message ? <Text style={{padding: 10}}>{this.state.message}</Text> : null}</View>
+      <View style={styles.app}>
+        <View style={styles.view}>
+          <Text style={styles.title}>Mahara Mobile</Text>
+          <View>{this.state.message ? <Text style={styles.message}>{this.state.message}</Text> : null}</View>
         </View>
-        <View style={{flex: 1, backgroundColor: 'skyblue', alignItems: 'center', justifyContent: 'flex-start'}}>
+        <View style={styles.container}>
           <Getuser handler={this.handler} />
           {this.state.token ? <Uploadfile style={{paddingTop: 20}} /> : null }
+          {this.state.token ? <Profile style={{paddingTop: 20}} token={this.state.token} /> : null }
         </View>
       </View>
     );
@@ -91,8 +93,27 @@ export default class App extends Component {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  app: {
     flex: 1,
     backgroundColor: '#fff'
   },
+  view: {
+    height: 120,
+    backgroundColor: 'grey',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
+  },
+  title: {
+    fontSize: 20,
+    color: 'white'
+  },
+  message: {
+    paddingBottom: 10
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'skyblue',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  }
 });
