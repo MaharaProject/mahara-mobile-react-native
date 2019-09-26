@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button, AsyncStorage } from 'react-native';
 
 export default class Getuser extends Component {
   constructor(props) {
@@ -10,12 +10,19 @@ export default class Getuser extends Component {
     };
   };
 
-  updateToken = (input) => {
-    let token = input.trim();
+  updateToken = async (input) => {
+    // let token = input.trim();
 
-    this.setState({
-      token: token
-    })
+    // this.setState({
+    //   token: token
+    // })
+
+    try {
+      await AsyncStorage.setItem('@MySuperStore:token', input);
+    } catch (error) {
+      // Error saving data
+      console.log('error saving data', error);
+    }
   }
 
   render() {

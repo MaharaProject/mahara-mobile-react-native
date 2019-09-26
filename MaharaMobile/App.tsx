@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
 import Getuser from './components/Getuser.js';
+import Uploadfile from './components/Uploadfile.js';
 
 export default class App extends Component {
   constructor(props) {
@@ -9,7 +10,6 @@ export default class App extends Component {
 
     this.state = {
       message: '',
-      url: 'http://google.com',
       loading: true,
       token: ''
     };
@@ -61,10 +61,14 @@ export default class App extends Component {
     console.log('errorr', error);
   }
 
-  handler = (value) => {
-    this.setState({
-      token: value
-    })
+  handler = async (value) => {
+    try {
+      const value = await AsyncStorage.getItem('@MySuperStore:token');
+      this.setState({token: value});
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+
     this.updateState();
   }
 
@@ -73,12 +77,13 @@ export default class App extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={{height: 180, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'flex-end'}}>
+        <View style={{height: 120, backgroundColor: 'grey', alignItems: 'center', justifyContent: 'flex-end'}}>
           <Text style={{fontSize: 20, color: 'white'}}>Mahara Mobile</Text>
-          <View>{this.state.message ? <Text style={{padding: 20}}>{this.state.message}</Text> : null}</View>
+          <View>{this.state.message ? <Text style={{padding: 10}}>{this.state.message}</Text> : null}</View>
         </View>
         <View style={{flex: 1, backgroundColor: 'skyblue', alignItems: 'center', justifyContent: 'flex-start'}}>
           <Getuser handler={this.handler} />
+          {this.state.token ? <Uploadfile style={{paddingTop: 20}} /> : null }
         </View>
       </View>
     );
