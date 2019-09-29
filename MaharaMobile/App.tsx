@@ -1,114 +1,119 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import Getuser from './components/Getuser.tsx';
+import Uploadfile from './components/Uploadfile.tsx';
+import Profile from './components/Profile.tsx';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default class App extends Component {
+  constructor(props) {
+    super(props);
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+    this.state = {
+      message: '',
+      loading: true,
+      token: ''
+    };
+  }
+
+  login = async (json) => {
+    const url = 'https://master.dev.mahara.org/';
+    const serverUrl = url + 'webservice/rest/server.php?alt=json';
+    const api = 'module_mobileapi_sync';
+
+    const body = {
+      blogs: {},
+      folders: {},
+      tags: {},
+      userprofile: {},
+      userprofileicon: {},
+      wsfunction: "module_mobileapi_sync",
+      wstoken: this.state.token
+    };
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    };
+
+    try {
+      const response = await fetch(serverUrl, requestOptions);
+      const json = await response.json();
+      this.receiveRequest(json);
+    } catch (error) {
+      this.errorHandle(error);
+    }
+  };
+
+  receiveRequest = (json) => {
+    this.setState({
+     loading: false,
+     message: 'Hi ' + json.userprofile.myname + '!'
+    });
+  }
+
+  errorHandle = (error) => {
+    this.setState({
+      stuff: 'Unable to connect to server'
+    })
+    console.log('errorr', error);
+  }
+
+  handler = async (value) => {
+    try {
+      const value = await AsyncStorage.getItem('@MySuperStore:token');
+      this.setState({token: value});
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+
+    this.login();
+  }
+
+  render() {
+    let message = this.state.message;
+
+    return (
+      <View style={styles.app}>
+        <View style={styles.view}>
+          <Text style={styles.title}>Mahara Mobile</Text>
+          <View>{this.state.message ? <Text style={styles.message}>{this.state.message}</Text> : null}</View>
+        </View>
+        <View style={styles.container}>
+          <Getuser handler={this.handler} />
+          {this.state.token ? <Uploadfile style={{paddingTop: 20}} /> : null }
+          {this.state.token ? <Profile style={{paddingTop: 20}} token={this.state.token} /> : null }
+        </View>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  app: {
+    flex: 1,
+    backgroundColor: '#fff'
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  view: {
+    height: 120,
+    backgroundColor: 'grey',
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   },
-  body: {
-    backgroundColor: Colors.white,
+  title: {
+    fontSize: 20,
+    color: 'white'
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  message: {
+    paddingBottom: 10
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+  container: {
+    flex: 1,
+    backgroundColor: 'skyblue',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  }
 });
-
-export default App;
