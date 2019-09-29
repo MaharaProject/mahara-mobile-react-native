@@ -1,1 +1,0 @@
-{"error":true,"error_number":400,"error_name":"ParameterException","error_class":"ParameterException","error_message":"Missing parameter 'username' and no default supplied","error_rendered":"A required parameter is missing or malformed\n\nMissing parameter 'username' and no default supplied"}
