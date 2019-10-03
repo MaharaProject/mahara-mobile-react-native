@@ -19,20 +19,18 @@ export default class Profile extends Component {
           wstoken = this.props.token,
           serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
 
-    RNFetchBlob.fetch('GET', serverUrl)
+    RNFetchBlob.config({
+      fileCache: true
+    })
+    .fetch('GET', serverUrl)
 
     .then((res) => {
-      let status = res.info().status;
+      console.log('The file saved to ', res.path());
 
-      if(status == 200) {
-        let base64Str = res.base64();
-        this.setState({
-          picloaded: true,
-          pic: `data:'image/jpeg';base64,${base64Str}`
-        });
-      } else {
-        // TODO: handle other status codes
-      }
+      this.setState({
+        picloaded: true,
+        pic: 'file://' + res.path()
+      })
     })
 
     .catch((errorMessage, statusCode) => {
