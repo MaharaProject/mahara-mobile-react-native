@@ -13,22 +13,18 @@ export default class Getuser extends Component {
   updateToken = async (input) => {
     let token = input.trim();
 
-    // this.setState({
-    //   token: token
-    // })
-
     try {
       await AsyncStorage.setItem('@MySuperStore:token', input);
     } catch (error) {
       // Error saving data
-      console.log('error saving data', error);
+      console.log('Error saving data', error);
     }
   }
 
   render() {
 
     return (
-      <View style={{padding: 10, color: 'black'}}>
+      <View style={{padding: 20, color: 'black', flex: 1, justifyContent: 'flex-start'}}>
         <TextInput
           style={styles.textInputStyle}
           defaultValue='ab6f3b68f8b0b976cf6b51eac2cd54da'

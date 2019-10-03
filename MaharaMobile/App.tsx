@@ -10,11 +10,12 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      message: '',
+      name: '',
       loading: true,
       token: ''
     };
   }
+
 
   login = async (json) => {
     const url = 'https://master.dev.mahara.org/';
@@ -51,7 +52,7 @@ export default class App extends Component {
   receiveRequest = (json) => {
     this.setState({
      loading: false,
-     message: 'Hi ' + json.userprofile.myname + '!'
+     name: json.userprofile.username
     });
   }
 
@@ -74,18 +75,16 @@ export default class App extends Component {
   }
 
   render() {
-    let message = this.state.message;
 
     return (
       <View style={styles.app}>
         <View style={styles.view}>
           <Text style={styles.title}>Mahara Mobile</Text>
-          <View>{this.state.message ? <Text style={styles.message}>{this.state.message}</Text> : null}</View>
         </View>
         <View style={styles.container}>
-          <Getuser handler={this.handler} />
+          {this.state.token === '' ? <Getuser handler={this.handler} style={{padding: 20}} /> : null }
           {this.state.token ? <Uploadfile style={{paddingTop: 20}} /> : null }
-          {this.state.token ? <Profile style={{paddingTop: 20}} token={this.state.token} /> : null }
+          {this.state.token ? <Profile style={{paddingTop: 20}} token={this.state.token} name={this.state.name} /> : null }
         </View>
       </View>
     );
@@ -98,10 +97,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   view: {
-    height: 120,
+    height: 100,
     backgroundColor: 'grey',
     alignItems: 'center',
-    justifyContent: 'flex-end'
+    justifyContent: 'center'
   },
   title: {
     fontSize: 20,
@@ -112,8 +111,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'skyblue',
-    alignItems: 'center',
-    justifyContent: 'flex-start'
+    backgroundColor: 'skyblue'
   }
 });

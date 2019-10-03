@@ -6,7 +6,7 @@ export default class Uploadfile extends Component {
   render() {
 
     return (
-      <View>
+      <View style={{padding: 10}}>
         <Text>Upload a file</Text>
       </View>
     )
