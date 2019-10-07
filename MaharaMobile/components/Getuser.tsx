@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class Getuser extends Component {
   constructor(props) {

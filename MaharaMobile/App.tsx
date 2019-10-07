@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Getuser from './components/Getuser.tsx';
 import Uploadfile from './components/Uploadfile.tsx';
@@ -15,7 +16,6 @@ export default class App extends Component {
       token: ''
     };
   }
-
 
   login = async (json) => {
     const url = 'https://master.dev.mahara.org/';
