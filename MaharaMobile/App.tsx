@@ -83,7 +83,7 @@ export default class App extends Component {
         </View>
         <View style={styles.container}>
           {this.state.token === '' ? <Getuser handler={this.handler} style={{padding: 20}} /> : null }
-          {this.state.token ? <Uploadfile style={{paddingTop: 20}} /> : null }
+          {this.state.token ? <Uploadfile style={{paddingTop: 20}} token={this.state.token} /> : null }
           {this.state.token ? <Profile style={{paddingTop: 20}} token={this.state.token} name={this.state.name} /> : null }
         </View>
       </View>
