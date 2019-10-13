@@ -21,7 +21,7 @@ export default class Uploadfile extends Component {
     // iPhone/Android
     DocumentPicker.show(
       {
-        filetype: [DocumentPickerUtil.images()],
+        filetype: [DocumentPickerUtil.allFiles()],
       },
       (error, res) => {
 
@@ -29,29 +29,51 @@ export default class Uploadfile extends Component {
         this.setState({
           pickedFile: res
         });
-
-        // console.log(
-        //   res.uri,
-        //   res.type, // mime type
-        //   res.fileName,
-        //   res.fileSize
-        // );
       }
     );
   }
 
+  setTags = (tags) => {
+    const keys = Object.keys(tags);
+    const tagsarray = [];
+    keys.map(function(key, index) {
+      tagsarray.push(tags[key] + '&tags[' + (index + 1) + ']=');
+    });
+    const tagsString = tagsarray.join('');
+    const string = '&tags[0]=' + tagsString;
+
+    return string;
+  }
+
   uploadDocument = async () => {
+
+    const tags = {
+      'tagkey': 'newktag',
+      'tagkey2' : 'loot',
+      'tagk' : 'another'
+    };
+
+    const tagString = this.setTags(tags);
+
     const webservice = 'module_mobileapi_upload_file';
-    const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json';
+    const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
+
     const token = this.props.token;
-    const image = this.state.pickedFile.uri;
+    const file = this.state.pickedFile;
+    const extension = file.fileName.match(/\.[0-9a-z]+$/i)[0];
 
     const formData = new FormData();
     formData.append('wsfunction', webservice);
     formData.append('wstoken', token);
     formData.append('foldername', 'Mobile uploads');
-    formData.append('title', 'blah');
-    formData.append('filetoupload', image);
+    formData.append('title', 'blah3' + extension);
+    formData.append('filetoupload', {
+      uri: file.uri,
+      type: file.type,
+      name: file.fileName,
+    });
+    formData.append('description', 'blah blah blah');
+
 
     try {
       const response = await fetch(url, {

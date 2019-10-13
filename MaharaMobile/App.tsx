@@ -50,10 +50,14 @@ export default class App extends Component {
   };
 
   receiveRequest = (json) => {
-    this.setState({
-     loading: false,
-     name: json.userprofile.username
-    });
+    if(json) {
+      const username = json.userprofile.myname;
+
+      this.setState({
+        loading: false,
+        name: username
+      });
+    }
   }
 
   errorHandle = (error) => {
