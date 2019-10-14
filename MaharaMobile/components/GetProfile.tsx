@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AsyncStorage from '@react-native-community/async-storage';
 
-export default class Profile extends Component {
+export default class GetProfile extends Component {
   constructor(props) {
     super(props);
 

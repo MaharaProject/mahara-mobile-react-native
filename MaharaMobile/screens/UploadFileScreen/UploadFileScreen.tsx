@@ -6,15 +6,21 @@ import {
   DocumentPickerUtil,
 } from 'react-native-document-picker';
 
-export default class Uploadfile extends Component {
+export default class UploadFileScreen extends Component {
   constructor(props) {
     super(props);
 
+    const { navigation } = this.props;
+
     this.state = {
       pickedFile: '',
-      token: this.props.token
+      token: navigation.getParam('token')
     }
   }
+
+  static navigationOptions = {
+    title: 'Upload a file',
+  };
 
   pickDocument = async () => {
 
@@ -58,7 +64,7 @@ export default class Uploadfile extends Component {
     const webservice = 'module_mobileapi_upload_file';
     const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
 
-    const token = this.props.token;
+    const token = this.state.token;
     const file = this.state.pickedFile;
     const extension = file.fileName.match(/\.[0-9a-z]+$/i)[0];
 
