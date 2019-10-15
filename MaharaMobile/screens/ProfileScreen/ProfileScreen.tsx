@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-
+import { addToken } from '../actions/actions.tsx';
+import { connect } from 'react-redux';
 import GetProfile from '../../components/GetProfile.tsx';
 import UploadFileScreen from '../UploadFileScreen/UploadFileScreen.tsx';
 
-export default class ProfileScreen extends Component {
+class ProfileScreen extends Component {
   constructor(props) {
     super(props);
 
     const { navigation } = this.props;
 
     this.state = {
-      name: navigation.getParam('name'),
-      token: navigation.getParam('token')
+      name: navigation.getParam('name')
     };
   }
 
@@ -34,7 +34,7 @@ export default class ProfileScreen extends Component {
           <Text style={styles.title}>Mahara Mobile</Text>
         </View>
         <View style={styles.container}>
-          <GetProfile style={{paddingTop: 20}} token={this.state.token} name={this.state.name} />
+          <GetProfile style={{paddingTop: 20}} token={this.props.token} name={this.state.name} />
           <Button
             title="Upload a file"
             onPress={this.goToUploadScreen}
@@ -44,6 +44,15 @@ export default class ProfileScreen extends Component {
     );
   }
 };
+
+const mapStateToProps = state => {
+  return {
+    token: state.app.token
+  }
+}
+
+
+export default connect(mapStateToProps)(ProfileScreen);
 
 const styles = StyleSheet.create({
   app: {

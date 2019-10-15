@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import { addToken } from '../../actions/actions.tsx';
 import GetUser from '../../components/GetUser.tsx';
 // import ProfileScreen from '../Home/Home.tsx';
 
-export default class LoginScreen extends Component {
+
+class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -74,6 +76,7 @@ export default class LoginScreen extends Component {
     try {
       const value = await AsyncStorage.getItem('@MySuperStore:token');
       this.setState({token: value});
+      this.props.dispatch(addToken(value));
     } catch (error) {
       console.log("Error retrieving data" + error);
     }
@@ -82,7 +85,7 @@ export default class LoginScreen extends Component {
   }
 
   render() {
-
+    
     return (
       <View style={styles.view}>
         {this.state.token === '' ? <GetUser handler={this.handler} style={{padding: 20}} /> : null }
@@ -90,6 +93,13 @@ export default class LoginScreen extends Component {
     );
   }
 };
+
+const mapStateToProps = state => {
+  return {
+    token: state.app.token
+  }
+}
+export default connect(mapStateToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
   view: {
