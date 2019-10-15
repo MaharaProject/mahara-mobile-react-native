@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
-import { addToken } from '../actions/actions.tsx';
+import { addToken, userName, userFolders, userTags } from '../actions/actions.tsx';
 
 const initialAppState = {
-  token: ''
+  token: '',
+  username: '',
+  userfolders: [],
+  usertags: []
 };
 
 const app = (state = initialAppState, action) => {
@@ -11,6 +14,21 @@ const app = (state = initialAppState, action) => {
       return {
         ...state,
         token: action.token
+      }
+    case 'USER_NAME':
+      return {
+        ...state,
+        username: action.username
+      }
+    case 'USER_FOLDERS':
+      return {
+        ...state,
+        userfolders: action.userfolders
+      }
+    case 'USER_TAGS':
+      return {
+        ...state,
+        usertags: action.usertags
       }
     default:
       return state;

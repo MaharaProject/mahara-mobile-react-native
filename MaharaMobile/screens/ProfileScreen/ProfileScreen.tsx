@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { addToken } from '../actions/actions.tsx';
 import { connect } from 'react-redux';
 import GetProfile from '../../components/GetProfile.tsx';
-import UploadFileScreen from '../UploadFileScreen/UploadFileScreen.tsx';
+
+import RNFetchBlob from 'rn-fetch-blob';
 
 class ProfileScreen extends Component {
   constructor(props) {
@@ -12,18 +12,46 @@ class ProfileScreen extends Component {
     const { navigation } = this.props;
 
     this.state = {
-      name: navigation.getParam('name')
-    };
+      pic: '',
+      picloaded: false
+    }
   }
 
   static navigationOptions = {
-    title: 'Profile',
+    header: null
   };
 
   goToUploadScreen = () => {
-    this.props.navigation.navigate('UploadFile', {
-      token: this.state.token
-    });
+    this.props.navigation.navigate('UploadFile');
+  }
+
+  receiveProfilePic = async (json) => {
+    const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
+          wstoken = this.props.token,
+          serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
+
+    RNFetchBlob.config({
+      fileCache: true
+    })
+    .fetch('GET', serverUrl)
+
+    .then((res) => {
+      console.log('The file saved to ', res.path());
+
+      this.setState({
+        pic: 'file://' + res.path(),
+        picloaded: true
+      })
+    })
+
+    .catch((errorMessage, statusCode) => {
+      // error handling
+      console.log('error', errorMessage, statusCode);
+    })
+  }
+
+  componentDidMount() {
+    this.receiveProfilePic();
   }
 
   render() {
@@ -34,11 +62,17 @@ class ProfileScreen extends Component {
           <Text style={styles.title}>Mahara Mobile</Text>
         </View>
         <View style={styles.container}>
-          <GetProfile style={{paddingTop: 20}} token={this.props.token} name={this.state.name} />
-          <Button
-            title="Upload a file"
-            onPress={this.goToUploadScreen}
-          />
+          {this.state.picloaded ?
+            <GetProfile
+              style={{paddingTop: 20}}
+              token={this.props.token}
+              name={this.props.username}
+              image={this.state.pic}
+            /> : null}
+            <Button
+              title="Upload a file"
+              onPress={this.goToUploadScreen}
+            />
         </View>
       </View>
     );
@@ -47,10 +81,10 @@ class ProfileScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.app.token
+    token: state.app.token,
+    username: state.app.username
   }
 }
-
 
 export default connect(mapStateToProps)(ProfileScreen);
 

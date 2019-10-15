@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button, Image } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
+import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { connect } from 'react-redux';
 import {
   DocumentPicker,
   DocumentPickerUtil,
 } from 'react-native-document-picker';
 
-export default class UploadFileScreen extends Component {
+class UploadFileScreen extends Component {
   constructor(props) {
     super(props);
 
     const { navigation } = this.props;
 
+    console.log(this.props);
+
     this.state = {
-      pickedFile: '',
-      token: navigation.getParam('token')
+      pickedFile: ''
     }
   }
 
@@ -64,7 +65,7 @@ export default class UploadFileScreen extends Component {
     const webservice = 'module_mobileapi_upload_file';
     const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
 
-    const token = this.state.token;
+    const token = this.props.token;
     const file = this.state.pickedFile;
     const extension = file.fileName.match(/\.[0-9a-z]+$/i)[0];
 
@@ -111,3 +112,12 @@ export default class UploadFileScreen extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    token: state.app.token,
+    username: state.app.username
+  }
+}
+
+export default connect(mapStateToProps)(UploadFileScreen);

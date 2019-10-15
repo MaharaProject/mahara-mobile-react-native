@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken } from '../../actions/actions.tsx';
+import { addToken, userName } from '../../actions/actions.tsx';
 import GetUser from '../../components/GetUser.tsx';
 
 class LoginScreen extends Component {
@@ -9,8 +9,7 @@ class LoginScreen extends Component {
     super(props);
 
     this.state = {
-      token: '',
-      name: ''
+      token: ''
     };
   }
 
@@ -54,9 +53,11 @@ class LoginScreen extends Component {
     if(json) {
       const username = json.userprofile.myname;
 
-      this.setState({
-        name: username
-      });
+      this.props.dispatch(userName(username));
+
+      const blogs = json.blogs.blogs;
+      const tags = json.tags.tags;
+      const folders = json.folders.folders;
 
       this.props.navigation.navigate('Profile');
     }
