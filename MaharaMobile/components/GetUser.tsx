@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 
 export default class GetUser extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      token: ''
+      token: '',
     };
   };
 
   updateToken = async (input) => {
     let token = input.trim();
 
-    try {
-      await AsyncStorage.setItem('@MySuperStore:token', input);
-    } catch (error) {
-      // Error saving data
-      console.log('Error saving data', error);
-    }
+    this.setState({
+      token: token
+    });
+  }
+
+  sendToken = () => {
+    // pass token to loginScreen
+    this.props.handler(this.state.token);
   }
 
   render() {
@@ -33,7 +34,7 @@ export default class GetUser extends Component {
         />
         <Button
           title="Verify token"
-          onPress={() => this.props.handler(this.state.token) }
+          onPress={this.sendToken}
           style={styles.button}
          />
       </View>

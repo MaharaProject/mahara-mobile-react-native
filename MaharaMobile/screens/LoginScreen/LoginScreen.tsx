@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import AsyncStorage from '@react-native-community/async-storage';
 import { addToken } from '../../actions/actions.tsx';
 import GetUser from '../../components/GetUser.tsx';
-// import ProfileScreen from '../Home/Home.tsx';
-
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      token: ''
+      token: '',
+      name: ''
     };
   }
 
@@ -61,10 +58,7 @@ class LoginScreen extends Component {
         name: username
       });
 
-      this.props.navigation.navigate('Profile', {
-        name: this.state.name,
-        token: this.state.token
-      });
+      this.props.navigation.navigate('Profile');
     }
   }
 
@@ -72,23 +66,20 @@ class LoginScreen extends Component {
     console.log('error', error);
   }
 
-  handler = async (value) => {
-    try {
-      const value = await AsyncStorage.getItem('@MySuperStore:token');
-      this.setState({token: value});
-      this.props.dispatch(addToken(value));
-    } catch (error) {
-      console.log("Error retrieving data" + error);
-    }
+  handleToken = (value) => {
 
-    this.login();
+    this.setState({token: value}, function() {
+      this.login();
+    });
+
+    this.props.dispatch(addToken(value));
   }
 
   render() {
-    
+
     return (
       <View style={styles.view}>
-        {this.state.token === '' ? <GetUser handler={this.handler} style={{padding: 20}} /> : null }
+        <GetUser handler={this.handleToken} style={{padding: 20}} />
       </View>
     );
   }
@@ -99,6 +90,7 @@ const mapStateToProps = state => {
     token: state.app.token
   }
 }
+
 export default connect(mapStateToProps)(LoginScreen);
 
 const styles = StyleSheet.create({
