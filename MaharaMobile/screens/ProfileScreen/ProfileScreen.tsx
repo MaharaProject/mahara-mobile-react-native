@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
-import GetProfile from '../../components/GetProfile.tsx';
+import GetProfile from '../../components/GetProfile/GetProfile.tsx';
 
 import RNFetchBlob from 'rn-fetch-blob';
 
@@ -67,6 +67,8 @@ class ProfileScreen extends Component {
               style={{paddingTop: 20}}
               token={this.props.token}
               name={this.props.username}
+              tags={this.props.usertags}
+              folders={this.props.userfolders}
               image={this.state.pic}
             /> : null}
             <Button
@@ -82,7 +84,10 @@ class ProfileScreen extends Component {
 const mapStateToProps = state => {
   return {
     token: state.app.token,
-    username: state.app.username
+    username: state.app.username,
+    usertags: state.app.tags,
+    userfolders: state.app.folders,
+    userblogs: state.app.userblogs
   }
 }
 

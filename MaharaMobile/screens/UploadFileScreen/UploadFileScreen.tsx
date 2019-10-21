@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Picker} from 'react-native';
 import { connect } from 'react-redux';
 import {
   DocumentPicker,
@@ -94,12 +94,18 @@ class UploadFileScreen extends Component {
     }
   }
 
-
   render() {
+    const {userfolders} = this.props;
 
     return (
       <View style={{padding: 10}}>
         <Text>Upload a file</Text>
+
+        <Picker style={{height: 100, width: 100, color: 'black'}}>
+          {userfolders.map((value, index) => (
+            <Picker.Item label={value.title} value={value.title} key={index} />
+          ))}
+        </Picker>
         <Button
           title="Pick a file"
           color="#444444"
@@ -116,7 +122,9 @@ class UploadFileScreen extends Component {
 const mapStateToProps = state => {
   return {
     token: state.app.token,
-    username: state.app.username
+    username: state.app.username,
+    usertags: state.app.usertags,
+    userfolders: state.app.userfolders
   }
 }
 

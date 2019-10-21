@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken, userName } from '../../actions/actions.tsx';
+import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.tsx';
 import GetUser from '../../components/GetUser.tsx';
 
 class LoginScreen extends Component {
@@ -52,12 +52,14 @@ class LoginScreen extends Component {
   receiveRequest = (json) => {
     if(json) {
       const username = json.userprofile.myname;
+      const usertags = json.tags.tags;
+      const userblogs = json.blogs.blogs;
+      const userfolders = json.folders.folders;
 
       this.props.dispatch(userName(username));
-
-      const blogs = json.blogs.blogs;
-      const tags = json.tags.tags;
-      const folders = json.folders.folders;
+      this.props.dispatch(userTags(usertags));
+      this.props.dispatch(userBlogs(userblogs));
+      this.props.dispatch(userFolders(userfolders));
 
       this.props.navigation.navigate('Profile');
     }
@@ -88,7 +90,11 @@ class LoginScreen extends Component {
 
 const mapStateToProps = state => {
   return {
-    token: state.app.token
+    token: state.app.token,
+    username: state.app.username,
+    usertags: state.app.tags,
+    userblogs: state.app.userblogs,
+    userfolders: state.app.userfolders
   }
 }
 
