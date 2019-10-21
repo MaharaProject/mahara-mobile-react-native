@@ -1,6 +1,10 @@
 module.exports = {
-  preset: 'react-native',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  preset: "react-native",
+  transformIgnorePatterns: [
+  'node_modules/(?!react-native|react-navigation|react-native-gesture-handler|react-native-animatable|react-native-vector-icons)/',
+  '<rootDir>/lib/'
+  ],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
 };
 const {Response, Request, Headers, fetch} = require('whatwg-fetch');
 global.Response = Response;

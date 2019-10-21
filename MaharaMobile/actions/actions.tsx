@@ -2,6 +2,7 @@ export const ADD_TOKEN = 'ADD_TOKEN';
 export const USER_NAME = 'USER_NAME';
 export const USER_FOLDERS = 'USER_FOLDERS';
 export const USER_TAGS = 'USER_TAGS';
+export const USER_BLOGS = 'USER_BLOGS';
 
 export function addToken(token) {
   return { type: ADD_TOKEN, token }
@@ -17,4 +18,8 @@ export function userFolders(userfolders) {
 
 export function userTags(usertags) {
   return { type: USER_TAGS, usertags }
+}
+
+export function userBlogs(userblogs) {
+  return { type: USER_BLOGS, userblogs }
 }

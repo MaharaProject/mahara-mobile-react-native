@@ -21,7 +21,8 @@
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "rn-fetch-blob": "^0.11.2"
+    "rn-fetch-blob": "^0.11.2",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "@babel/core": "7.6.2",
@@ -38,6 +39,9 @@
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-navigation|react-navigation-redux-helpers|@react-navigation/.*)"
+    ]
   }
 }
