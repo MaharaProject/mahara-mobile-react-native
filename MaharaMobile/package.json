@@ -36,12 +36,25 @@
     "eslint": "6.4.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.51.1",
+    "react-native-testing-library": "^1.11.1",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "modulePaths": [
+      "<rootDir>"
+    ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation|react-navigation-redux-helpers|@react-navigation/.*)"
+      "/node_modules/(?!react-native|native-base-shoutem-theme|react-navigation-stack|@react-navigation|react-navigation-fluid-transitions)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]
   }
 }

@@ -42,6 +42,11 @@ export default class GetUser extends Component {
   }
 }
 
+
+type Props = {
+    styles?: StyleSheet.Styles;
+};
+
 const styles = StyleSheet.create({
   textInputStyle: {
     color: 'green',

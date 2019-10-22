@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.tsx';
 import GetUser from '../../components/GetUser.tsx';
 
-class LoginScreen extends Component {
+export class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
