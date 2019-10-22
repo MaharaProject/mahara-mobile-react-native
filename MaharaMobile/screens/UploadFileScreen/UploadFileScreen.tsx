@@ -6,7 +6,7 @@ import {
   DocumentPickerUtil,
 } from 'react-native-document-picker';
 
-class UploadFileScreen extends Component {
+export class UploadFileScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -127,5 +127,7 @@ const mapStateToProps = state => {
     userfolders: state.app.userfolders
   }
 }
+
+UploadFileScreen.defaultProps = { userfolders: [] };
 
 export default connect(mapStateToProps)(UploadFileScreen);

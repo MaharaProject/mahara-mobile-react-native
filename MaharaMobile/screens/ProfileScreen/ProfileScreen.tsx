@@ -5,7 +5,7 @@ import GetProfile from '../../components/GetProfile/GetProfile.tsx';
 
 import RNFetchBlob from 'rn-fetch-blob';
 
-class ProfileScreen extends Component {
+export class ProfileScreen extends Component {
   constructor(props) {
     super(props);
 
