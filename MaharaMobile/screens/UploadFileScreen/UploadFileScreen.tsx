@@ -128,6 +128,9 @@ const mapStateToProps = state => {
   }
 }
 
-UploadFileScreen.defaultProps = { userfolders: [] };
+UploadFileScreen.defaultProps = {
+  userfolders: [],
+  usertags: {}
+};
 
 export default connect(mapStateToProps)(UploadFileScreen);
