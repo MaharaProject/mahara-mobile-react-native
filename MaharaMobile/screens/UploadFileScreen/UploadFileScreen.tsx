@@ -12,8 +12,6 @@ export class UploadFileScreen extends Component {
 
     const { navigation } = this.props;
 
-    console.log(this.props);
-
     this.state = {
       pickedFile: ''
     }

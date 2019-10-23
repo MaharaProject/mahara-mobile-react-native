@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { connect } from 'react-redux';
+import Header from '../../components/Header/Header.tsx';
 import GetProfile from '../../components/GetProfile/GetProfile.tsx';
 
 import RNFetchBlob from 'rn-fetch-blob';
@@ -58,9 +59,7 @@ export class ProfileScreen extends Component {
 
     return (
       <View style={styles.app}>
-        <View style={styles.view}>
-          <Text style={styles.title}>Mahara Mobile</Text>
-        </View>
+        <Header />
         <View style={styles.container}>
           {this.state.picloaded ?
             <GetProfile

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.tsx';
-import GetUser from '../../components/GetUser.tsx';
+import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.ts';
+import GetUser from '../../components/GetUser/GetUser.tsx';
+import { styles } from '../../assets/styles/variables.ts';
 
 export class LoginScreen extends Component {
   constructor(props) {
@@ -81,8 +82,8 @@ export class LoginScreen extends Component {
   render() {
 
     return (
-      <View style={styles.view}>
-        <GetUser handler={this.handleToken} style={{padding: 20}} />
+      <View style={styling.view}>
+        <GetUser handler={this.handleToken} style={{padding: styles.padding.md}} />
       </View>
     );
   }
@@ -100,8 +101,9 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps)(LoginScreen);
 
-const styles = StyleSheet.create({
+const styling = StyleSheet.create({
   view: {
-    backgroundColor: 'grey'
+    backgroundColor: styles.colors.primary,
+    color: styles.colors.secondary
   }
 });
