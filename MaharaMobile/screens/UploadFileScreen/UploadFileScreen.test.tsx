@@ -5,8 +5,6 @@ import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 it('renders correctly', () => {
-  // const wrapper = renderer.create(<UploadFileScreen />);
-
   const tags = {
     'tagkey': 'newtag',
     'tagkey2' : 'newtag2',
