@@ -5,6 +5,7 @@ import {
   DocumentPicker,
   DocumentPickerUtil,
 } from 'react-native-document-picker';
+import styles from './UploadFileScreen.style.ts';
 
 export class UploadFileScreen extends Component {
   constructor(props) {
@@ -96,10 +97,10 @@ export class UploadFileScreen extends Component {
     const {userfolders} = this.props;
 
     return (
-      <View style={{padding: 10}}>
+      <View style={styles.view}>
         <Text>Upload a file</Text>
 
-        <Picker style={{height: 100, width: 100, color: 'black'}}>
+        <Picker style={styles.picker}>
           {userfolders.map((value, index) => (
             <Picker.Item label={value.title} value={value.title} key={index} />
           ))}
@@ -109,7 +110,7 @@ export class UploadFileScreen extends Component {
           color="#444444"
           onPress={this.pickDocument}
         />
-      {this.state.pickedFile ? <Image source={{uri: this.state.pickedFile.uri}} style={{width: 100, height: 100}} />
+      {this.state.pickedFile ? <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
       : null}
       {this.state.pickedFile ? <Button title="Upload file" color="#000000" onPress={this.uploadDocument} /> : null}
       </View>

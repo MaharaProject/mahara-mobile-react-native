@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import RNFetchBlob from 'rn-fetch-blob';
+
 import Header from '../../components/Header/Header.tsx';
 import GetProfile from '../../components/GetProfile/GetProfile.tsx';
-
-import RNFetchBlob from 'rn-fetch-blob';
+import styles from './ProfileScreen.style.ts';
+import { buttons } from '../../assets/styles/buttons.ts';
 
 export class ProfileScreen extends Component {
   constructor(props) {
@@ -70,10 +72,9 @@ export class ProfileScreen extends Component {
               folders={this.props.userfolders}
               image={this.state.pic}
             /> : null}
-            <Button
-              title="Upload a file"
-              onPress={this.goToUploadScreen}
-            />
+            <TouchableOpacity onPress={this.goToUploadScreen}>
+              <Text style={buttons.large}>Upload a file</Text>
+            </TouchableOpacity>
         </View>
       </View>
     );
@@ -91,27 +92,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(ProfileScreen);
-
-const styles = StyleSheet.create({
-  app: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  view: {
-    height: 100,
-    backgroundColor: 'grey',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 20,
-    color: 'white'
-  },
-  message: {
-    paddingBottom: 10
-  },
-  container: {
-    flex: 1,
-    backgroundColor: 'skyblue'
-  }
-});

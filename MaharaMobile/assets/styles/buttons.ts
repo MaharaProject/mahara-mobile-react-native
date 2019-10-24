@@ -5,7 +5,6 @@ export const buttons = StyleSheet.create({
   large: {
     backgroundColor: styles.colors.secondary,
     color: styles.colors.light,
-    width: 100,
     paddingBottom: styles.padding.md,
     paddingTop: styles.padding.md,
     marginBottom: styles.padding.md,

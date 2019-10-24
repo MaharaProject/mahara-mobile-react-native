@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.ts';
 import GetUser from '../../components/GetUser/GetUser.tsx';
-import { styles } from '../../assets/styles/variables.ts';
+import styles from './LoginScreen.style.ts';
 
 export class LoginScreen extends Component {
   constructor(props) {
@@ -82,8 +82,8 @@ export class LoginScreen extends Component {
   render() {
 
     return (
-      <View style={styling.view}>
-        <GetUser handler={this.handleToken} style={{padding: styles.padding.md}} />
+      <View style={styles.view}>
+        <GetUser handler={this.handleToken} style={styles.component} />
       </View>
     );
   }
@@ -100,10 +100,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(LoginScreen);
-
-const styling = StyleSheet.create({
-  view: {
-    backgroundColor: styles.colors.primary,
-    color: styles.colors.secondary
-  }
-});

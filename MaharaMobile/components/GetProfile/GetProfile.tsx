@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import styles from './GetProfile.style.ts';
 
 export default class GetProfile extends Component {
   constructor(props) {
@@ -14,13 +15,13 @@ export default class GetProfile extends Component {
   render() {
 
     return (
-      <View style={{flex: 1, flexDirection: 'row'}}>
-        <View style={{width: 100, padding: 10}}>
+      <View style={styles.view}>
+        <View style={styles.container}>
           {this.props.image ?
-            <Image source={{uri: this.props.image}}  style={{minWidth: 100, minHeight: 100}} />
+            <Image source={{uri: this.props.image}} style={styles.image} />
           : null }
         </View>
-        <Text style={{padding: 20}}>Hi {this.props.name}</Text>
+        <Text style={styles.name}>Hi {this.props.name}</Text>
       </View>
     )
   }
