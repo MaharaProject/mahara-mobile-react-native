@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import styles from './Header.style.ts';
+import LogoSvg from '../../assets/images/Logo.tsx';
 
 export default class Header extends Component {
 
@@ -8,7 +9,7 @@ export default class Header extends Component {
 
     return (
       <View style={styles.view}>
-        <Image source={{uri: '../../assets/images/logo-big.svg'}} style={{width: 30, height: 40}} />
+        <LogoSvg />
       </View>
     )
   }

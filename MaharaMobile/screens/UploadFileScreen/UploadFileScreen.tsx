@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Picker} from 'react-native';
+import { StyleSheet, Text, View, Button, Picker, Image} from 'react-native';
 import { connect } from 'react-redux';
 import {
   DocumentPicker,

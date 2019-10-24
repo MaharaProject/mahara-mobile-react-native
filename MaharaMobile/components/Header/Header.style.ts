@@ -6,10 +6,11 @@ export default StyleSheet.create({
     height: 100,
     backgroundColor: styles.colors.primary,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'flex-start',
+    padding: styles.padding.md
   },
   title: {
     fontSize: 20,
     color: styles.colors.dark
   }
-})
+});
