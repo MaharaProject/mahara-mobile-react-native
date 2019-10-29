@@ -27,3 +27,6 @@ export function userBlogs(userblogs) {
 export function uploadToMahara(uploadList:Array<any>) { //update later to be Array<File> & import File model
 
 }
+
+export function updateUploadList(uploadList:Array<any>) { //update later to be Array<File> & import File model
+}

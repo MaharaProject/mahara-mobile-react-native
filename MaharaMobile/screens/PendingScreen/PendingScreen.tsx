@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { uploadToMahara } from '../../actions/actions'
-import Card from '../../components/Card/Card'
+import { uploadToMahara, updateUploadList } from '../../actions/actions'
 import Spinner from '../../components/Spinner/Spinner'
 
 type Props =
@@ -20,6 +19,7 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
+    selectedFiles: Array<any> //change to be Array<File>
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -29,7 +29,8 @@ export class PendingScreen extends Component<Props, State> {
     this.state = {
       uploadRequestPending: false,
       uploadRequestReceived: false,
-      successMessage: ''
+      successMessage: '',
+      selectedFiles: []
     }
   }
 
@@ -62,22 +63,55 @@ export class PendingScreen extends Component<Props, State> {
     })
   }
 
+  onDelete() {
+    // clear uploadList of selectedFiles
+    const newUploadList = this.props.uploadList.filter(item => {
+      this.state.selectedFiles.forEach(file => {
+        return item.id !== file.id
+      })
+    })
+
+    // send newUploadList to store
+    this.props.dispatch(updateUploadList(newUploadList))
+  }
+
+  renderFlatlist() {
+    return (
+      <View>
+        <FlatList
+          data={this.props.uploadList}
+          extraData={this.state.selectedFiles}
+          renderItem={({item}) => {
+            const itemSelected = this.state.selectedFiles[item.id]
+            return (
+              <TouchableOpacity
+                // style ={itemSelected && styles.highlighted}
+                onLongPress={() => this.handleLongPress(item)}
+                onPress={() => this.props.navigation.navigate('UploadFileScreen')}
+              />
+            )
+          }}
+        />
+      </View>
+    )
+  }
+
+  handleLongPress(item) {
+    const selectedFiles = { ...this.state.selectedFiles }; // copy and mutate new state
+    selectedFiles[item.id] = !selectedFiles[item.id];
+    this.setState({ selectedFiles });
+  }
+
   render() {
     const { uploadList } = this.props
-    const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state
-
-    let cardDisplay = uploadList.map( card => {
-      <Card
-        title={card.title}
-        description={card.description}
-      />
-    })
+    const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
 
     return (
       <View style={styles.app}>
         <Header />
         <View style={styles.container}>
-          { uploadList.length > 0 ? cardDisplay : <Text>No pending uploads</Text> }
+          { selectedFiles.length > 0 ? <Button title='Delete' onPress={() => {this.onDelete()}}/> : null }
+          { uploadList.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text> }
           { uploadRequestPending ? <Spinner /> : null }
           { !uploadRequestPending && uploadRequestReceived ? successMessage : null}
           <TouchableOpacity onPress={this.onUploadClick}>
@@ -92,7 +126,7 @@ export class PendingScreen extends Component<Props, State> {
 const mapStateToProps = state => {
   return {
     token: state.app.token,
-    uploadList: state.app.uploadList
+    uploadList: state.app.uploadList,
   }
 }
 
