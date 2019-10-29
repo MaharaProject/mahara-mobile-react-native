@@ -23,3 +23,7 @@ export function userTags(usertags) {
 export function userBlogs(userblogs) {
   return { type: USER_BLOGS, userblogs }
 }
+
+export function uploadToMahara(uploadList:Array<any>) { //update later to be Array<File> & import File model
+
+}
