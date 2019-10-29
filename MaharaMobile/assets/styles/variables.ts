@@ -5,10 +5,11 @@ export const styles = {
   colors: {
     primary: '#c4d6a9',
     secondary: '#556d32',
-    tertiary: '#777',
+    tertiary: '#566d31',
     text: '#000',
     light: '#fff',
-    dark: '#000'
+    dark: '#000',
+    darkgrey: '#777'
   },
   padding: {
     xs: 5,

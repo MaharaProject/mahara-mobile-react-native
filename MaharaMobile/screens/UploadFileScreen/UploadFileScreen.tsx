@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, Picker, Image} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Picker, Image, TextInput, Button} from 'react-native';
 import { connect } from 'react-redux';
 import {
   DocumentPicker,
   DocumentPickerUtil,
 } from 'react-native-document-picker';
 import styles from './UploadFileScreen.style.ts';
+import { forms } from '../../assets/styles/forms.ts';
+import { buttons } from '../../assets/styles/buttons.ts';
 
 export class UploadFileScreen extends Component {
   constructor(props) {
     super(props);
 
-    const { navigation } = this.props;
+    const { userfolders, usertags, navigation } = this.props;
 
     this.state = {
-      pickedFile: ''
+      pickedFile: '',
+      uploadFileString: 'Pick a file',
+      pickedFolder: userfolders[0].title //setting to first folder until we set up default folder functionality
     }
   }
 
@@ -23,6 +27,7 @@ export class UploadFileScreen extends Component {
   };
 
   pickDocument = async () => {
+    console.log(this.state.pickedFolder);
 
     // iPhone/Android
     DocumentPicker.show(
@@ -33,7 +38,8 @@ export class UploadFileScreen extends Component {
 
         // Android
         this.setState({
-          pickedFile: res
+          pickedFile: res,
+          uploadFileString: 'Pick a different file'
         });
       }
     );
@@ -49,6 +55,10 @@ export class UploadFileScreen extends Component {
     const string = '&tags[0]=' + tagsString;
 
     return string;
+  }
+
+  handleForm = () => {
+    this.uploadDocument();
   }
 
   uploadDocument = async () => {
@@ -71,7 +81,7 @@ export class UploadFileScreen extends Component {
     const formData = new FormData();
     formData.append('wsfunction', webservice);
     formData.append('wstoken', token);
-    formData.append('foldername', 'Mobile uploads');
+    formData.append('foldername', this.state.pickedFolder);
     formData.append('title', 'blah3' + extension);
     formData.append('filetoupload', {
       uri: file.uri,
@@ -94,25 +104,30 @@ export class UploadFileScreen extends Component {
   }
 
   render() {
-    const {userfolders} = this.props;
 
     return (
       <View style={styles.view}>
-        <Text>Upload a file</Text>
-
-        <Picker style={styles.picker}>
-          {userfolders.map((value, index) => (
-            <Picker.Item label={value.title} value={value.title} key={index} />
-          ))}
-        </Picker>
-        <Button
-          title="Pick a file"
-          color="#444444"
-          onPress={this.pickDocument}
+        {this.state.pickedFile ? <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
+        : null}
+        <View style={forms.pickerWrapper}>
+          <Picker style={forms.picker} onValueChange={(itemValue) => {this.setState({pickedFolder: itemValue})}}>
+            {this.props.userfolders.map((value, index) => (
+              <Picker.Item label={value.title} value={value.title} key={index} />
+            ))}
+          </Picker>
+        </View>
+        <TextInput
+          style={forms.multiLine}
+          value={'Enter a description'}
         />
-      {this.state.pickedFile ? <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
+        <TouchableOpacity onPress={this.pickDocument}>
+          <Text style={[buttons.md, styles.button]}>{this.state.uploadFileString}</Text>
+        </TouchableOpacity>
+      {this.state.pickedFile ?
+        <TouchableOpacity onPress={this.handleForm}>
+          <Text style={buttons.large}>Upload file</Text>
+        </TouchableOpacity>
       : null}
-      {this.state.pickedFile ? <Button title="Upload file" color="#000000" onPress={this.uploadDocument} /> : null}
       </View>
     )
   }

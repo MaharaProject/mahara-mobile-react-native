@@ -6,10 +6,6 @@ import styles from './GetProfile.style.ts';
 export default class GetProfile extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      pic: ''
-    }
   }
 
   render() {

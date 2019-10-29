@@ -10,6 +10,15 @@ export const buttons = StyleSheet.create({
     marginBottom: styles.padding.md,
     fontSize: styles.font.md,
     textAlign:'center',
-    width: "100%"
+    width: '100%'
+  },
+  md: {
+    backgroundColor: styles.colors.tertiary,
+    color: styles.colors.light,
+    paddingBottom: styles.padding.sm,
+    paddingTop: styles.padding.sm,
+    fontSize: styles.font.md,
+    textAlign: 'center',
+    width: '100%'
   }
 });
