@@ -28,6 +28,10 @@ export class ProfileScreen extends Component {
     this.props.navigation.navigate('UploadFile');
   }
 
+  goToPendingScreen = () => {
+    this.props.navigation.navigate('PendingScreen');
+  }
+
   receiveProfilePic = async (json) => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
           wstoken = this.props.token,
@@ -74,6 +78,9 @@ export class ProfileScreen extends Component {
             /> : null}
             <TouchableOpacity onPress={this.goToUploadScreen}>
               <Text style={buttons.large}>Upload a file</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this.goToPendingScreen}>
+              <Text style={buttons.large}>Go to Pending Screen</Text>
             </TouchableOpacity>
         </View>
       </View>

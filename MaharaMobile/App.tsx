@@ -4,14 +4,16 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import configureStore from './store/store.js';
-import LoginScreen from './screens/LoginScreen/LoginScreen.tsx';
-import ProfileScreen from './screens/ProfileScreen/ProfileScreen.tsx';
-import UploadFileScreen from './screens/UploadFileScreen/UploadFileScreen.tsx';
+import LoginScreen from './screens/LoginScreen/LoginScreen';
+import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
+import PendingScreen from './screens/PendingScreen/PendingScreen';
+import UploadFileScreen from './screens/UploadFileScreen/UploadFileScreen';
 
 const AppNavigator = createStackNavigator({
   Home: LoginScreen,
   Profile: ProfileScreen,
-  UploadFile: UploadFileScreen
+  UploadFile: UploadFileScreen,
+  PendingScreen: PendingScreen
 });
 
 const store = configureStore();
