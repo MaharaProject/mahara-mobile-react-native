@@ -6,6 +6,8 @@ export const styles = {
     primary: '#c4d6a9',
     secondary: '#556d32',
     tertiary: '#566d31',
+    quarternary: '#1f6c88',
+    contrast: '#eff4e7',
     text: '#000',
     light: '#fff',
     dark: '#000',
