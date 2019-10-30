@@ -7,12 +7,12 @@ import configureStore from './store/store.js';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
-import UploadFileScreen from './screens/UploadFileScreen/UploadFileScreen';
+import AddScreen from './screens/AddScreen/AddScreen';
 
 const AppNavigator = createStackNavigator({
   Home: LoginScreen,
   Profile: ProfileScreen,
-  UploadFile: UploadFileScreen,
+  Add: AddScreen,
   PendingScreen: PendingScreen
 });
 

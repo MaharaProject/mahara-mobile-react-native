@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker, Image, TextInput, Button, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
-import styles from './UploadFileScreen.style.ts';
+import styles from './AddScreen.style.ts';
 import { forms } from '../../assets/styles/forms.ts';
 import { buttons } from '../../assets/styles/buttons.ts';
 
@@ -25,7 +25,7 @@ type State = {
   showTagInput: boolean
 };
 
-export class UploadFileScreen extends Component {
+export class AddScreen extends Component {
   constructor(props) {
     super(props);
 

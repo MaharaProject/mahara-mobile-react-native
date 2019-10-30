@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import { UploadFileScreen } from './UploadFileScreen.tsx';
+import { AddScreen } from './AddScreen.tsx';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
