@@ -7,12 +7,12 @@ import ShallowRenderer from 'react-test-renderer/shallow';
 it('renders correctly', () => {
   const tags = ['tagkey', 'tagkey2', 'tagkey3'];
 
-  // const wrapper = renderer.create(<UploadFileScreen />);
+  // const wrapper = renderer.create(<AddScreen />);
   const renderer = new ShallowRenderer();
-  renderer.render(<UploadFileScreen />);
+  renderer.render(<AddScreen />);
   // const result = renderer.getRenderOutput();
 
-  // const wrapper = shallow(<UploadFileScreen />);
+  // const wrapper = shallow(<AddScreen />);
   // wrapper.setState({selectedTags: tags});
   // const inst = wrapper.getInstance();
 

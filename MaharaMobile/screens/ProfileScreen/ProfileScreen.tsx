@@ -16,7 +16,7 @@ export class ProfileScreen extends Component {
 
     this.state = {
       pic: '',
-      picloaded: false
+      picLoaded: false
     }
   }
 
@@ -25,7 +25,7 @@ export class ProfileScreen extends Component {
   };
 
   goToUploadScreen = () => {
-    this.props.navigation.navigate('UploadFile');
+    this.props.navigation.navigate('Add');
   }
 
   goToPendingScreen = () => {
@@ -47,7 +47,7 @@ export class ProfileScreen extends Component {
 
       this.setState({
         pic: 'file://' + res.path(),
-        picloaded: true
+        picLoaded: true
       })
     })
 
@@ -67,13 +67,13 @@ export class ProfileScreen extends Component {
       <View style={styles.app}>
         <Header />
         <View style={styles.container}>
-          {this.state.picloaded ?
+          {this.state.picLoaded ?
             <GetProfile
               style={{paddingTop: 20}}
               token={this.props.token}
-              name={this.props.username}
-              tags={this.props.usertags}
-              folders={this.props.userfolders}
+              name={this.props.userName}
+              tags={this.props.userTags}
+              folders={this.props.userFolders}
               image={this.state.pic}
             /> : null}
             <TouchableOpacity onPress={this.goToUploadScreen}>
@@ -91,10 +91,10 @@ export class ProfileScreen extends Component {
 const mapStateToProps = state => {
   return {
     token: state.app.token,
-    username: state.app.username,
-    usertags: state.app.tags,
-    userfolders: state.app.folders,
-    userblogs: state.app.userblogs
+    userName: state.app.userName,
+    userTags: state.app.userTags,
+    userFolders: state.app.userFolders,
+    userBlogs: state.app.userBlogs
   }
 }
 

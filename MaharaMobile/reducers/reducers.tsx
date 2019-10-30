@@ -2,9 +2,9 @@ import { combineReducers } from 'redux';
 
 const initialAppState = {
   token: '',
-  username: '',
-  userfolders: [],
-  usertags: [],
+  userName: '',
+  userFolders: [],
+  userTags: [],
   uploadList: []
 };
 
@@ -18,17 +18,22 @@ const app = (state = initialAppState, action) => {
     case 'USER_NAME':
       return {
         ...state,
-        username: action.username
+        userName: action.userName
       }
     case 'USER_FOLDERS':
       return {
         ...state,
-        userfolders: action.userfolders
+        userFolders: action.userFolders
       }
     case 'USER_TAGS':
       return {
         ...state,
-        usertags: action.usertags
+        userTags: action.userTags
+      }
+    case 'USER_BLOGS':
+      return {
+        ...state,
+        userTags: action.userBlogs
       }
     case 'UPDATE_UPLOAD_LIST':
     return {

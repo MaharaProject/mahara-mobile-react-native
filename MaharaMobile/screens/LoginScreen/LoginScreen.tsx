@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.ts';
+import { addToken, addUserName, addUserTags, addUserFolders, addUserBlogs } from '../../actions/actions.ts';
 import GetUser from '../../components/GetUser/GetUser.tsx';
 import styles from './LoginScreen.style.ts';
 
@@ -52,15 +52,15 @@ export class LoginScreen extends Component {
 
   receiveRequest = (json) => {
     if(json) {
-      const username = json.userprofile.myname;
-      const usertags = json.tags.tags;
-      const userblogs = json.blogs.blogs;
-      const userfolders = json.folders.folders;
+      const userName = json.userprofile.myname;
+      const userTags = json.tags.tags;
+      const userBlogs = json.blogs.blogs;
+      const userFolders = json.folders.folders;
 
-      this.props.dispatch(userName(username));
-      this.props.dispatch(userTags(usertags));
-      this.props.dispatch(userBlogs(userblogs));
-      this.props.dispatch(userFolders(userfolders));
+      this.props.dispatch(addUserName(userName));
+      this.props.dispatch(addUserTags(userTags));
+      this.props.dispatch(addUserBlogs(userBlogs));
+      this.props.dispatch(addUserFolders(userFolders));
 
       this.props.navigation.navigate('Profile');
     }
@@ -90,12 +90,13 @@ export class LoginScreen extends Component {
 };
 
 const mapStateToProps = state => {
+  console.log(state.app);
   return {
     token: state.app.token,
-    username: state.app.username,
-    usertags: state.app.tags,
-    userblogs: state.app.userblogs,
-    userfolders: state.app.userfolders
+    userName: state.app.userName,
+    userTags: state.app.userTags,
+    userBlogs: state.app.userBlogs,
+    userFolders: state.app.userFolders
   }
 }
 

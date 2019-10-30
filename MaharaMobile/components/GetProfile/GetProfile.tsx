@@ -6,6 +6,8 @@ import styles from './GetProfile.style.ts';
 export default class GetProfile extends Component {
   constructor(props) {
     super(props);
+
+    console.log('comp', this.props);
   }
 
   render() {

@@ -9,20 +9,20 @@ export function addToken(token) {
   return { type: ADD_TOKEN, token }
 }
 
-export function userName(username) {
-  return { type: USER_NAME, username }
+export function addUserName(userName) {
+  return { type: USER_NAME, userName }
 }
 
-export function userFolders(userfolders) {
-  return { type: USER_FOLDERS, userfolders }
+export function addUserFolders(userFolders) {
+  return { type: USER_FOLDERS, userFolders }
 }
 
-export function userTags(usertags) {
-  return { type: USER_TAGS, usertags }
+export function addUserTags(userTags) {
+  return { type: USER_TAGS, userTags }
 }
 
-export function userBlogs(userblogs) {
-  return { type: USER_BLOGS, userblogs }
+export function addUserBlogs(userBlogs) {
+  return { type: USER_BLOGS, userBlogs }
 }
 
 export function uploadToMahara(uploadList:Array<any>) { //update later to be Array<File> & import File model

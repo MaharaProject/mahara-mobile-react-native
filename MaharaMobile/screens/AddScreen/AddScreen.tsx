@@ -228,10 +228,10 @@ export class AddScreen extends Component {
 const mapStateToProps = state => {
   return {
     token: state.app.token,
-    username: state.app.username,
-    usertags: state.app.usertags,
-    userfolders: state.app.userfolders
+    userName: state.app.userName,
+    userTags: state.app.userTags,
+    userFolders: state.app.userFolders
   }
 }
 
-export default connect(mapStateToProps)(UploadFileScreen);
+export default connect(mapStateToProps)(AddScreen);
