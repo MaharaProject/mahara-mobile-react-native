@@ -30,7 +30,6 @@ export class AddScreen extends Component {
     super(props);
 
     const { userfolders, usertags, navigation } = this.props;
-    console.log(userfolders);
 
     this.state = {
       pickedFile: '',
@@ -148,7 +147,6 @@ export class AddScreen extends Component {
   }
 
   render() {
-    console.log('render', this.props.userfolders);
 
     return (
       <ScrollView>

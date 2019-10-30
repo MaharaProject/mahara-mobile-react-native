@@ -90,7 +90,7 @@ export class LoginScreen extends Component {
 };
 
 const mapStateToProps = state => {
-  console.log(state.app);
+
   return {
     token: state.app.token,
     userName: state.app.userName,
