@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import { addToken, userName, userFolders, userTags } from '../actions/actions.tsx';
 
 const initialAppState = {
   token: '',
   username: '',
   userfolders: [],
-  usertags: []
+  usertags: [],
+  uploadList: []
 };
 
 const app = (state = initialAppState, action) => {
@@ -30,6 +30,11 @@ const app = (state = initialAppState, action) => {
         ...state,
         usertags: action.usertags
       }
+    case 'UPDATE_UPLOAD_LIST':
+    return {
+      ...state,
+      uploadList: action.uploadList
+    }
     default:
       return state;
   }
