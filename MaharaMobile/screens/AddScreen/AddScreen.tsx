@@ -92,10 +92,10 @@ export class AddScreen extends Component {
     this.addTags(newTag);
   }
 
-  setTags = () => {
+  setTags = (tags: array) => {
     const tagsarray = [];
 
-    this.state.selectedTags.map(function(tag, index) {
+    tags.map(function(tag, index) {
       tagsarray.push(tag + '&tags[' + (index + 1) + ']=');
     });
 
@@ -111,7 +111,7 @@ export class AddScreen extends Component {
 
   uploadDocument = async () => {
     const tags = this.state.selectedTags;
-    const tagString = tags ? this.setTags() : '';
+    const tagString = tags ? this.setTags(tags) : '';
     const token = this.props.token;
     const first = this.props.userFolders[0].title;
     const folder = this.state.pickedFolder ? this.state.pickedFolder : first; //setting to first folder until we set up default folder functionality
