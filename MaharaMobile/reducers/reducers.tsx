@@ -33,7 +33,7 @@ const app = (state = initialAppState, action) => {
     case 'USER_BLOGS':
       return {
         ...state,
-        userTags: action.userBlogs
+        userBlogs: action.userBlogs
       }
     case 'UPDATE_UPLOAD_LIST':
     return {

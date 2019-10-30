@@ -19,7 +19,7 @@ type State = {
   pickedFolder: string,
   description: string,
   title: string,
-  usertagsarray: Array<any>,
+  userTagsArray: Array<any>,
   selectedTags: Array<any>,
   newTag: string,
   showTagInput: boolean
@@ -29,7 +29,7 @@ export class AddScreen extends Component {
   constructor(props) {
     super(props);
 
-    const { userfolders, usertags, navigation } = this.props;
+    const { userFolders, userTags, navigation } = this.props;
 
     this.state = {
       pickedFile: '',
@@ -37,7 +37,7 @@ export class AddScreen extends Component {
       pickedFolder: '',
       description: '',
       title: '',
-      usertagsarray: this.props.usertags,
+      userTagsArray: this.props.userTags,
       selectedTags: [],
       newTag: '',
       showTagInput: false
@@ -93,10 +93,9 @@ export class AddScreen extends Component {
   }
 
   setTags = () => {
-    const tags = this.state.selectedTags;
     const tagsarray = [];
 
-    tags.map(function(tag, index) {
+    this.state.selectedTags.map(function(tag, index) {
       tagsarray.push(tag + '&tags[' + (index + 1) + ']=');
     });
 
@@ -114,7 +113,7 @@ export class AddScreen extends Component {
     const tags = this.state.selectedTags;
     const tagString = tags ? this.setTags() : '';
     const token = this.props.token;
-    const first = this.props.userfolders[0].title;
+    const first = this.props.userFolders[0].title;
     const folder = this.state.pickedFolder ? this.state.pickedFolder : first; //setting to first folder until we set up default folder functionality
     const webservice = 'module_mobileapi_upload_file';
     const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
@@ -151,6 +150,7 @@ export class AddScreen extends Component {
     return (
       <ScrollView>
         <View style={styles.view}>
+
           {this.state.pickedFile ?
             <View style={styles.imageWrap}>
               <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
@@ -159,19 +159,22 @@ export class AddScreen extends Component {
           <TouchableOpacity onPress={this.pickDocument}>
             <Text style={[buttons.md, styles.button]}>{this.state.uploadFileString}</Text>
           </TouchableOpacity>
+
           <TextInput
             style={forms.textInput}
             placeholder={'Enter a title'}
             onChangeText={(text) => this.setState({title: text})}
           />
+
           <TextInput
             style={forms.multiLine}
             placeholder={'Enter a description'}
             onChangeText={(text) => this.setState({description: text})}
           />
+
           <View style={forms.pickerWrapper}>
             <Picker style={forms.picker} onValueChange={(itemValue) => this.setState({pickedFolder: itemValue})}>
-              {this.props.userfolders && this.props.userfolders.map((value, index) => (
+              {this.props.userFolders && this.props.userFolders.map((value, index) => (
                 <Picker.Item label={value.title} value={value.title} key={index} />
               ))}
             </Picker>
@@ -205,7 +208,7 @@ export class AddScreen extends Component {
 
           <View style={forms.pickerWrapper}>
             <Picker style={forms.picker} onValueChange={(itemValue) => {this.addTags(itemValue)}}>
-              {this.state.usertagsarray && this.state.usertagsarray.map((value, index) => (
+              {this.state.userTagsArray && this.state.userTagsArray.map((value, index) => (
                 <Picker.Item label={value.tag} value={value.tag} key={index} />
               ))}
               <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />

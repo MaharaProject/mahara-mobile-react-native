@@ -73,6 +73,7 @@ export class ProfileScreen extends Component {
               token={this.props.token}
               name={this.props.userName}
               tags={this.props.userTags}
+              blogs={this.props.userBlogs}
               folders={this.props.userFolders}
               image={this.state.pic}
             /> : null}
