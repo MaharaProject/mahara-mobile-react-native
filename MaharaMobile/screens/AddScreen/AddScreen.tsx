@@ -2,26 +2,26 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Picker, Image, TextInput, Button, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
+
+import Form from '../../components/Form/Form';
 import styles from './AddScreen.style.ts';
 import { forms } from '../../assets/styles/forms.ts';
 import { buttons } from '../../assets/styles/buttons.ts';
 
 type Props = {
-  userfolders: Array<any>,
-  usertags: any,
+  userfolders: array,
+  usertags: object,
   username: string,
   token: string
 };
 
 type State = {
-  pickedFile: string,
+  pickedFile: any, //needs to be replaced with type file 
   uploadFileString: string,
   pickedFolder: string,
   description: string,
   title: string,
-  userTagsArray: Array<any>,
-  selectedTags: Array<any>,
-  newTag: string,
+  selectedTags: array,
   showTagInput: boolean
 };
 
@@ -37,15 +37,13 @@ export class AddScreen extends Component {
       pickedFolder: '',
       description: '',
       title: '',
-      userTagsArray: this.props.userTags,
       selectedTags: [],
-      newTag: '',
       showTagInput: false
     }
   }
 
   static navigationOptions = {
-    title: 'Upload a file',
+    title: 'Upload to Mahara',
   };
 
   pickDocument = async () => {
@@ -66,7 +64,7 @@ export class AddScreen extends Component {
     );
   }
 
-  addTags = (value) => {
+  addTags = (value: string) => {
 
     if (value == 'Add new tag +') {
       this.setState({ showTagInput: true });
@@ -75,20 +73,21 @@ export class AddScreen extends Component {
     }
   }
 
-  removeTags = (tag) => {
+  removeTags = (tag: string) => {
     const selectedTags = this.state.selectedTags;
     const newTagArray = selectedTags.filter(item => item != tag);
 
     this.setState({ selectedTags: newTagArray });
   }
 
-  addNewTag = () => {
+  addNewTag = (value: string) => {
+
     this.setState({ showTagInput: false });
 
-    if(!this.state.newTag) {
+    if(!value) {
       return
     }
-    const newTag = this.state.newTag;
+    const newTag = value;
     this.addTags(newTag);
   }
 
@@ -105,7 +104,18 @@ export class AddScreen extends Component {
     return string;
   }
 
+  setFormValue = (type: string, value: string) => {
+    // set title etc from value from form component
+
+    this.setState({
+      [type]: value
+    });
+  }
+
   handleForm = () => {
+
+    // upload document temporarily here, needs to be moved to pending
+    // this will then need to be replaced with dispatches
     this.uploadDocument();
   }
 
@@ -150,7 +160,6 @@ export class AddScreen extends Component {
     return (
       <ScrollView>
         <View style={styles.view}>
-
           {this.state.pickedFile ?
             <View style={styles.imageWrap}>
               <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
@@ -160,66 +169,18 @@ export class AddScreen extends Component {
             <Text style={[buttons.md, styles.button]}>{this.state.uploadFileString}</Text>
           </TouchableOpacity>
 
-          <TextInput
-            style={forms.textInput}
-            placeholder={'Enter a title'}
-            onChangeText={(text) => this.setState({title: text})}
+          <Form
+            pickedFile={this.state.pickedFile}
+            handleForm={this.handleForm}
+            setFormValue={this.setFormValue}
+            addTags={this.addTags}
+            removeTags={this.removeTags}
+            addNewTag={this.addNewTag}
+            userFolders={this.props.userFolders}
+            userTags={this.props.userTags}
+            selectedTags={this.state.selectedTags}
+            showTagInput={this.state.showTagInput}
           />
-
-          <TextInput
-            style={forms.multiLine}
-            placeholder={'Enter a description'}
-            onChangeText={(text) => this.setState({description: text})}
-          />
-
-          <View style={forms.pickerWrapper}>
-            <Picker style={forms.picker} onValueChange={(itemValue) => this.setState({pickedFolder: itemValue})}>
-              {this.props.userFolders && this.props.userFolders.map((value, index) => (
-                <Picker.Item label={value.title} value={value.title} key={index} />
-              ))}
-            </Picker>
-          </View>
-
-          <View>
-            <View style={styles.tagsContainer}>
-              <Text style={{marginRight: 10}}>Tags:</Text>
-              {this.state.showTagInput ?
-                <View style={{alignSelf: 'center', alignItems: 'center', flexDirection: 'row', padding: 0, margin: 0}}>
-                  <TextInput
-                  style={[forms.textInput, styles.tagsTextInput]}
-                  placeholder={'New tag...'}
-                  onChangeText={(text) => this.setState({newTag: text})}
-                  />
-                  <TouchableOpacity style={styles.addButton} onPress={this.addNewTag}>
-                    <Text style={styles.addButtonText}>
-                      Add
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              : null}
-              {this.state.selectedTags.map((value, index) => (
-                <TouchableOpacity key={index} onPress={() => this.removeTags(value)}>
-                  <Text style={forms.tag}>{value}
-                </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          <View style={forms.pickerWrapper}>
-            <Picker style={forms.picker} onValueChange={(itemValue) => {this.addTags(itemValue)}}>
-              {this.state.userTagsArray && this.state.userTagsArray.map((value, index) => (
-                <Picker.Item label={value.tag} value={value.tag} key={index} />
-              ))}
-              <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />
-            </Picker>
-          </View>
-
-          {this.state.pickedFile ?
-            <TouchableOpacity onPress={this.handleForm}>
-              <Text style={buttons.large}>Upload file</Text>
-            </TouchableOpacity>
-          : null}
         </View>
       </ScrollView>
     )

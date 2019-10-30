@@ -2,20 +2,26 @@ import { StyleSheet } from 'react-native';
 import { styles } from '../../assets/styles/variables.ts';
 
 export default StyleSheet.create({
-  view: {
-    flex: 1,
-    flexDirection: 'row'
+  tagsContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    alignItems: 'center',
+    flexWrap: 'wrap'
   },
-  container: {
-    width: 100,
-    padding: styles.padding.md
+  tagsTextInput: {
+    width: 200,
+    alignSelf: 'center',
+    marginBottom: 0
   },
-  image: {
-    minWidth: 100,
-    minHeight: 100
+  addButton: {
+    backgroundColor: styles.colors.tertiary,
+    height: 40,
+    paddingLeft: styles.padding.sm,
+    paddingRight: styles.padding.sm,
+    justifyContent: 'center',
+    marginRight: styles.padding.sm
   },
-  name: {
-    padding: styles.padding.md,
-    fontSize: styles.font.md
+  addButtonText: {
+    color: styles.colors.light
   }
 });

@@ -18,4 +18,4 @@ export default StyleSheet.create({
     padding: styles.padding.md,
     fontSize: styles.font.md
   }
-})
+});

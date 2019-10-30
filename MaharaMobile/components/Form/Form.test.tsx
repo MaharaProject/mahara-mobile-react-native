@@ -4,5 +4,6 @@ import renderer from 'react-test-renderer';
 import Form from './Form.tsx';
 
 it('renders correctly', () => {
+
   renderer.create(<Form />);
 });

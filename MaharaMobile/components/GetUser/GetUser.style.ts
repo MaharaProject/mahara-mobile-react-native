@@ -5,4 +5,4 @@ export default StyleSheet.create({
   view: {
     padding: styles.padding.md
   }
-})
+});
