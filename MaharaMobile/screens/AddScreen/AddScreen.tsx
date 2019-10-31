@@ -3,20 +3,22 @@ import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 
-import Form from '../../components/Form/Form';
+import UploadForm from '../../components/UploadForm/UploadForm';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
+import { file, userFolders } from '../../models/models';
 
 type Props = {
-  userFolders: Array<string>;
+  userFolders: Array<userFolders>;
   userTags: object;
   userName: string;
   token: string;
+  dispatch: () => void;
 };
 
 type State = {
-  pickedFile: any; //needs to be replaced with type file
-  uploadFileString: string;
+  pickedFile: file;
+  uploadButtonText: string;
   pickedFolder: string;
   description: string;
   title: string;
@@ -28,11 +30,9 @@ export class AddScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const { userFolders, userTags, navigation } = this.props;
-
     this.state = {
-      pickedFile: '',
-      uploadFileString: 'Pick a file',
+      pickedFile: {uri: '', name: '', type: '', size: 0},
+      uploadButtonText: 'Pick a file',
       pickedFolder: '',
       description: '',
       title: '',
@@ -46,58 +46,61 @@ export class AddScreen extends Component<Props, State> {
   };
 
   pickDocument = async () => {
-
     // iPhone/Android
     DocumentPicker.show(
       {
         filetype: [DocumentPickerUtil.allFiles()],
       },
       (error, res) => {
+        //error
+        console.log(error);
+
+        const pickedFile: file = {
+          name: res.fileName,
+          uri: res.uri,
+          type: res.type,
+          size: Number(res.fileSize)
+        };
 
         // Android
         this.setState({
-          pickedFile: res,
-          uploadFileString: 'Pick a different file'
+          pickedFile: pickedFile,
+          uploadButtonText: 'Pick a different file'
         });
       }
     );
   }
 
-  addTags = (value: string) => {
-
-    if (value == 'Add new tag +') {
+  addTag = (tag: string) => {
+    if (tag == 'Add new tag +') {
       this.setState({ showTagInput: true });
-    } else if (value && !this.state.selectedTags.includes(value)) {
-      this.setState(prevState => ({ selectedTags: [...this.state.selectedTags, value] }));
+    } else if (tag && !this.state.selectedTags.includes(tag)) {
+      const selectedTags = [...this.state.selectedTags, tag];
+      this.setState({ selectedTags });
     }
   }
 
-  removeTags = (tag: string) => {
-    const selectedTags = this.state.selectedTags;
-    const newTagArray = selectedTags.filter(item => item != tag);
-
-    this.setState({ selectedTags: newTagArray });
+  removeTag = (tag: string) => {
+    const selectedTags = this.state.selectedTags.filter(item => item != tag);
+    this.setState({ selectedTags });
   }
 
-  addNewTag = (value: string) => {
-
+  addNewTag = (newTag: string) => {
     this.setState({ showTagInput: false });
-
-    if(!value) {
+    if(!newTag) {
       return
     }
-    const newTag = value;
-    this.addTags(newTag);
+    this.addTag(newTag);
   }
 
-  setTags = (tags: array) => {
-    const tagsarray = [];
+  setTagString = (tags: Array<string>) => {
+    const tagsArray: Array<string> = [];
 
     tags.map(function(tag, index) {
-      tagsarray.push(tag + '&tags[' + (index + 1) + ']=');
+      tagsArray.push(tag + '&tags[' + (index + 1) + ']=');
     });
 
-    const tagsString = tagsarray.join('');
+    const tagsString = tagsArray.join('');
     const string = '&tags[0]=' + tagsString;
 
     return string;
@@ -105,7 +108,6 @@ export class AddScreen extends Component<Props, State> {
 
   setFormValue = (type: string, value: string) => {
     // set title etc from value from form component
-
     this.setState({
       [type]: value
     });
@@ -119,28 +121,31 @@ export class AddScreen extends Component<Props, State> {
   }
 
   uploadDocument = async () => {
-    const tags = this.state.selectedTags;
-    const tagString = tags ? this.setTags(tags) : '';
-    const token = this.props.token;
-    const first = this.props.userFolders[0].title;
-    const folder = this.state.pickedFolder ? this.state.pickedFolder : first; //setting to first folder until we set up default folder functionality
+    const { selectedTags, pickedFile, pickedFolder, title, description } = this.state;
+    const { userFolders, token } = this.props;
+    const tagString = selectedTags ? this.setTagString(selectedTags) : '';
+    const firstFolder = userFolders[0].title;
+    const folder = pickedFolder ? pickedFolder : firstFolder; //setting to first folder until we set up default folder functionality
     const webservice = 'module_mobileapi_upload_file';
     const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
-    const file = this.state.pickedFile;
-    const extension = file.fileName.match(/\.[0-9a-z]+$/i)[0];
-    const filename = this.state.title ? this.state.title + extension : file.fileName;
+    console.log(pickedFile);
+    const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
+    const filename = title ? title + extension : pickedFile.name;
+    const fileData = {
+      uri: pickedFile.uri,
+      type: pickedFile.type,
+      name: pickedFile.name,
+      size: pickedFile.size
+    };
 
     const formData = new FormData();
+
     formData.append('wsfunction', webservice);
     formData.append('wstoken', token);
     formData.append('foldername', folder);
     formData.append('title', filename);
-    formData.append('filetoupload', {
-      uri: file.uri,
-      type: file.type,
-      name: file.fileName,
-    });
-    formData.append('description', this.state.description);
+    formData.append('description', description);
+    formData.append('filetoupload', fileData);
 
     try {
       const response = await fetch(url, {
@@ -155,25 +160,23 @@ export class AddScreen extends Component<Props, State> {
   }
 
   render() {
-
     return (
       <ScrollView>
         <View style={styles.view}>
-          {this.state.pickedFile ?
+          {this.state.pickedFile.name ?
             <View style={styles.imageWrap}>
               <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
             </View>
           : null}
           <TouchableOpacity onPress={this.pickDocument}>
-            <Text style={[buttons.md, styles.button]}>{this.state.uploadFileString}</Text>
+            <Text style={[buttons.md, styles.button]}>{this.state.uploadButtonText}</Text>
           </TouchableOpacity>
-
-          <Form
+          <UploadForm
             pickedFile={this.state.pickedFile}
             handleForm={this.handleForm}
             setFormValue={this.setFormValue}
-            addTags={this.addTags}
-            removeTags={this.removeTags}
+            addTag={this.addTag}
+            removeTag={this.removeTag}
             addNewTag={this.addNewTag}
             userFolders={this.props.userFolders}
             userTags={this.props.userTags}
@@ -189,7 +192,6 @@ export class AddScreen extends Component<Props, State> {
 const mapStateToProps = state => {
   return {
     token: state.app.token,
-    userName: state.app.userName,
     userTags: state.app.userTags,
     userFolders: state.app.userFolders
   }

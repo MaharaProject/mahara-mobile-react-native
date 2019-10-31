@@ -8,10 +8,19 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexWrap: 'wrap'
   },
+  tagsInputContainer: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    margin: 0
+  },
   tagsTextInput: {
     width: 200,
     alignSelf: 'center',
     marginBottom: 0
+  },
+  tagsTitle: {
+    marginRight: styles.padding.sm
   },
   addButton: {
     backgroundColor: styles.colors.tertiary,

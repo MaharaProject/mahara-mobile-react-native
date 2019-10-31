@@ -22,7 +22,8 @@ export const styles = {
     xl: 40
   },
   font: {
-    sm: 14,
+    xs: 14,
+    sm: 16,
     md: 18,
     lg: 20,
     xl: 30

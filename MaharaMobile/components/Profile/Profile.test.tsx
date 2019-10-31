@@ -1,9 +1,8 @@
 import 'react-native';
 import React from "react";
 import renderer from 'react-test-renderer';
-import Form from './Form.tsx';
+import Profile from './Profile.tsx';
 
 it('renders correctly', () => {
-
-  renderer.create(<Form />);
+  renderer.create(<Profile />);
 });

@@ -9,5 +9,5 @@ it('renders correctly', () => {
   const wrapper = renderer.create(<AddScreen />);
   const inst = wrapper.getInstance();
 
-  expect(inst.setTags(tags)).toEqual('&tags[0]=tagkey&tags[1]=tagkey2&tags[2]=tagkey3&tags[3]=');
+  expect(inst.setTagString(tags)).toEqual('&tags[0]=tagkey&tags[1]=tagkey2&tags[2]=tagkey3&tags[3]=');
 });

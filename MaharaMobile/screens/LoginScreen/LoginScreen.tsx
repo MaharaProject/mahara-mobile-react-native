@@ -7,7 +7,7 @@ import styles from './LoginScreen.style';
 
 type Props = {
   dispatch: () => void;
-  navigation: any; // need to double check type for this 
+  navigation: any; // need to double check type for this
 }
 
 type State = {
@@ -17,8 +17,6 @@ type State = {
 export class LoginScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    console.log(props);
 
     this.state = {
       token: ''
