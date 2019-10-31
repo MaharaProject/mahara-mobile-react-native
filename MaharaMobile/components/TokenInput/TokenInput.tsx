@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
 
-import styles from './GetUser.style.ts';
+import styles from './TokenInput.style.ts';
 import { forms } from '../../assets/styles/forms.ts';
 import { buttons } from '../../assets/styles/buttons.ts';
 
-export default class GetUser extends Component {
+export default class TokenInput extends Component {
   constructor(props) {
     super(props);
 

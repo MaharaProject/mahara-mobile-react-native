@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken, addUserName, addUserTags, addUserFolders, addUserBlogs } from '../../actions/actions';
-import GetUser from '../../components/GetUser/GetUser';
+import TokenInput from '../../components/TokenInput/TokenInput';
 import styles from './LoginScreen.style';
 
-export class LoginScreen extends Component {
-  constructor(props: any) {
+type Props = {
+  dispatch: () => void;
+  navigation: any; // need to double check type for this 
+}
+
+type State = {
+  token: string;
+}
+
+export class LoginScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
+
+    console.log(props);
 
     this.state = {
       token: ''
@@ -43,14 +54,14 @@ export class LoginScreen extends Component {
 
     try {
       const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
+      json = await response.json();
       this.receiveRequest(json);
     } catch (error) {
       this.errorHandle(error);
     }
   };
 
-  receiveRequest = (json) => {
+  receiveRequest = (json: any) => {
     if(json) {
       const userName = json.userprofile.myname;
       const userTags = json.tags.tags;
@@ -71,7 +82,6 @@ export class LoginScreen extends Component {
   }
 
   handleToken = (value) => {
-
     this.setState({token: value}, function() {
       this.login();
     });
@@ -80,17 +90,15 @@ export class LoginScreen extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.view}>
-        <GetUser handler={this.handleToken} style={styles.component} />
+        <TokenInput handler={this.handleToken} style={styles.component} />
       </View>
     );
   }
 };
 
 const mapStateToProps = state => {
-
   return {
     token: state.app.token,
     userName: state.app.userName,

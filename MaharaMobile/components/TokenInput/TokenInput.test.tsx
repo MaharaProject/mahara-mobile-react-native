@@ -1,8 +1,8 @@
 import 'react-native';
 import React from "react";
 import renderer from 'react-test-renderer';
-import GetUser from './GetUser.tsx';
+import TokenInput from './TokenInput.tsx';
 
 it('renders correctly', () => {
-  renderer.create(<GetUser />);
+  renderer.create(<TokenInput />);
 });

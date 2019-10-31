@@ -8,11 +8,19 @@ import GetProfile from '../../components/GetProfile/GetProfile.tsx';
 import styles from './ProfileScreen.style.ts';
 import { buttons } from '../../assets/styles/buttons.ts';
 
-export class ProfileScreen extends Component {
-  constructor(props) {
-    super(props);
 
-    const { navigation } = this.props;
+type Props = {
+  navigation: any; // need to double check type for this
+}
+
+type State = {
+  pic: string;
+  picLoaded: boolean;
+}
+
+export class ProfileScreen extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
 
     this.state = {
       pic: '',
@@ -32,7 +40,7 @@ export class ProfileScreen extends Component {
     this.props.navigation.navigate('PendingScreen');
   }
 
-  receiveProfilePic = async (json) => {
+  receiveProfilePic = async (json: any) => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
           wstoken = this.props.token,
           serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
@@ -62,7 +70,6 @@ export class ProfileScreen extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.app}>
         <Header />
