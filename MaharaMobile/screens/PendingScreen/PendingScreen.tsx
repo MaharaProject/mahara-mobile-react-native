@@ -11,7 +11,7 @@ import Spinner from '../../components/Spinner/Spinner'
 type Props =
   {
     uploadList: Array<any>; // TODO change to be Array<File>
-    dispatch: Function;
+    dispatch: () => void;
   }
 
 type State =

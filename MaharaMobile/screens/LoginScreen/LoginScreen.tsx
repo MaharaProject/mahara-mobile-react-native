@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken, addUserName, addUserTags, addUserFolders, addUserBlogs } from '../../actions/actions.ts';
-import GetUser from '../../components/GetUser/GetUser.tsx';
-import styles from './LoginScreen.style.ts';
+import { addToken, addUserName, addUserTags, addUserFolders, addUserBlogs } from '../../actions/actions';
+import GetUser from '../../components/GetUser/GetUser';
+import styles from './LoginScreen.style';
 
 export class LoginScreen extends Component {
-  constructor(props) {
+  constructor(props: any) {
     super(props);
 
     this.state = {
@@ -18,7 +18,7 @@ export class LoginScreen extends Component {
     header: null,
   };
 
-  login = async (json) => {
+  login = async (json: object) => {
     const url = 'https://master.dev.mahara.org/';
     const serverUrl = url + 'webservice/rest/server.php?alt=json';
     const api = 'module_mobileapi_sync';

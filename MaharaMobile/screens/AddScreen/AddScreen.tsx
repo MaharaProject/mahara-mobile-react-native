@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Picker, Image, TextInput, Button, ScrollView} from 'react-native';
+import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 
 import Form from '../../components/Form/Form';
-import styles from './AddScreen.style.ts';
-import { forms } from '../../assets/styles/forms.ts';
-import { buttons } from '../../assets/styles/buttons.ts';
+import styles from './AddScreen.style';
+import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
-  userfolders: array,
-  usertags: object,
-  username: string,
-  token: string
+  userFolders: Array<string>;
+  userTags: object;
+  userName: string;
+  token: string;
 };
 
 type State = {
-  pickedFile: any, //needs to be replaced with type file 
-  uploadFileString: string,
-  pickedFolder: string,
-  description: string,
-  title: string,
-  selectedTags: array,
-  showTagInput: boolean
+  pickedFile: any; //needs to be replaced with type file
+  uploadFileString: string;
+  pickedFolder: string;
+  description: string;
+  title: string;
+  selectedTags: Array<string>;
+  showTagInput: boolean;
 };
 
-export class AddScreen extends Component {
-  constructor(props) {
+export class AddScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     const { userFolders, userTags, navigation } = this.props;
