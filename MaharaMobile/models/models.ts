@@ -7,7 +7,14 @@ export interface file {
 }
 
 export interface userFolders {
-  title: string
+  title: string;
+}
+
+export interface user {
+  userName: string;
+  userFolders: userFolders;
+  userTags: Array<object>;
+  userBlogs: Array<object>;
 }
 
 export interface formData {

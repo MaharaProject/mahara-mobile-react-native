@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
 
-const initialAppState = {
+export interface State {
+  token: string,
+  userName: string,
+  userFolders: Array<object>,
+  userTags: Array<object>,
+  uploadList: Array<object>
+}
+
+const initialAppState:State = {
   token: '',
   userName: '',
   userFolders: [],
@@ -8,31 +16,19 @@ const initialAppState = {
   uploadList: []
 };
 
-const app = (state = initialAppState, action) => {
+const app = (state = initialAppState, action: any) => {
   switch (action.type) {
     case 'ADD_TOKEN':
       return {
         ...state,
         token: action.token
       }
-    case 'USER_NAME':
+    case 'ADD_USER':
       return {
         ...state,
-        userName: action.userName
-      }
-    case 'USER_FOLDERS':
-      return {
-        ...state,
-        userFolders: action.userFolders
-      }
-    case 'USER_TAGS':
-      return {
-        ...state,
-        userTags: action.userTags
-      }
-    case 'USER_BLOGS':
-      return {
-        ...state,
+        userName: action.userName,
+        userFolders: action.userFolder,
+        userTags: action.userTags,
         userBlogs: action.userBlogs
       }
     case 'UPDATE_UPLOAD_LIST':

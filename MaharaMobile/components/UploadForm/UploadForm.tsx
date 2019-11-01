@@ -10,7 +10,6 @@ type Props = {
   setFormValue: Function,
   addTag: Function,
   removeTag: Function,
-  addNewTag: Function,
   userFolders: array,
   userTags: array,
   selectedTags: array,
@@ -32,10 +31,6 @@ export default class UploadForm extends Component {
 
   setFormValue = (type: string, value: string) => {
     this.props.setFormValue(type, value);
-  }
-
-  addNewTag = () => {
-    this.props.addNewTag(this.state.newTag);
   }
 
   render() {
@@ -68,7 +63,7 @@ export default class UploadForm extends Component {
               placeholder={'New tag...'}
               onChangeText={(text) => this.setState({newTag: text})}
               />
-              <TouchableOpacity style={styles.addButton} onPress={this.addNewTag}>
+              <TouchableOpacity style={styles.addButton} onPress={() => this.props.addTag(this.state.newTag) }>
                 <Text style={styles.addButtonText}>
                   Add
                 </Text>

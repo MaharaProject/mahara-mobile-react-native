@@ -1,34 +1,39 @@
+import { user, file } from '../models/models';
+
 export const ADD_TOKEN = 'ADD_TOKEN';
-export const USER_NAME = 'USER_NAME';
-export const USER_FOLDERS = 'USER_FOLDERS';
-export const USER_TAGS = 'USER_TAGS';
-export const USER_BLOGS = 'USER_BLOGS';
+export const ADD_USER = 'ADD_USER';
 export const UPDATE_UPLOAD_LIST = 'UPDATE_UPLOAD_LIST';
 
-export function addToken(token) {
+export function addUser(json: any) {
+  return {
+    type: ADD_USER,
+    userName: json.userprofile.myname,
+    userTags: json.tags.tags,
+    userBlogs: json.blogs.blogs,
+    userFolders: json.folders.folders
+  }
+}
+
+export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function addUserName(userName) {
-  return { type: USER_NAME, userName }
-}
-
-export function addUserFolders(userFolders) {
-  return { type: USER_FOLDERS, userFolders }
-}
-
-export function addUserTags(userTags) {
-  return { type: USER_TAGS, userTags }
-}
-
-export function addUserBlogs(userBlogs) {
-  return { type: USER_BLOGS, userBlogs }
-}
-
-export function uploadToMahara(uploadList:Array<any>) { //update later to be Array<File> & import File model
+export function uploadToMahara(uploadList:Array<file>) {
 
 }
 
-export function updateUploadList(uploadList:Array<any>) { //update later to be Array<File> & import File model
+export function updateUploadList(uploadList:Array<file>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
+}
+
+export function sendTokenLogin(serverUrl: string, requestOptions: any) {
+  return async function(dispatch: any) {
+    try {
+      const response = await fetch(serverUrl, requestOptions);
+      const json = await response.json();
+      dispatch(addUser(json));
+    } catch (error) {
+      // errorHandle(error);
+    }
+  }
 }

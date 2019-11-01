@@ -76,21 +76,13 @@ export class AddScreen extends Component<Props, State> {
       this.setState({ showTagInput: true });
     } else if (tag && !this.state.selectedTags.includes(tag)) {
       const selectedTags = [...this.state.selectedTags, tag];
-      this.setState({ selectedTags });
+      this.setState({ selectedTags, showTagInput: false });
     }
   }
 
   removeTag = (tag: string) => {
     const selectedTags = this.state.selectedTags.filter(item => item != tag);
     this.setState({ selectedTags });
-  }
-
-  addNewTag = (newTag: string) => {
-    this.setState({ showTagInput: false });
-    if(!newTag) {
-      return
-    }
-    this.addTag(newTag);
   }
 
   setTagString = (tags: Array<string>) => {
@@ -113,14 +105,7 @@ export class AddScreen extends Component<Props, State> {
     });
   }
 
-  handleForm = () => {
-
-    // upload document temporarily here, needs to be moved to pending
-    // this will then need to be replaced with dispatches
-    this.uploadDocument();
-  }
-
-  uploadDocument = async () => {
+  handleForm = async () => {
     const { selectedTags, pickedFile, pickedFolder, title, description } = this.state;
     const { userFolders, token } = this.props;
     const tagString = selectedTags ? this.setTagString(selectedTags) : '';
@@ -177,7 +162,6 @@ export class AddScreen extends Component<Props, State> {
             setFormValue={this.setFormValue}
             addTag={this.addTag}
             removeTag={this.removeTag}
-            addNewTag={this.addNewTag}
             userFolders={this.props.userFolders}
             userTags={this.props.userTags}
             selectedTags={this.state.selectedTags}
