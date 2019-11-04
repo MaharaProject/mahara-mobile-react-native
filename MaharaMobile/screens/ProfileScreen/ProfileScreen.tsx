@@ -7,23 +7,21 @@ import Header from '../../components/Header/Header';
 import Profile from '../../components/Profile/Profile';
 import styles from './ProfileScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-
+import { store } from '../../models/models';
 
 type Props = {
   navigation: any; // need to double check type for this
   token: string;
+  userName: string;
 }
 
 type State = {
   pic: string;
-  picLoaded: boolean;
 }
 
 export class ProfileScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
-    const { navigation } = this.props;
 
     this.state = {
       pic: ''
@@ -54,9 +52,9 @@ export class ProfileScreen extends Component<Props, State> {
 
     .then((res) => {
       console.log('The file saved to ', res.path());
-
+      const image = `file://${res.path()}`;
       this.setState({
-        pic: 'file://' + res.path()
+        pic: image
       })
     })
 
@@ -76,12 +74,8 @@ export class ProfileScreen extends Component<Props, State> {
         <Header />
         <View style={styles.container}>
             <Profile
-              token={this.props.token}
               name={this.props.userName}
-              tags={this.props.userTags}
-              blogs={this.props.userBlogs}
-              folders={this.props.userFolders}
-              image={this.state.pic}
+              pic={this.state.pic}
             />
             <TouchableOpacity onPress={this.goToUploadScreen}>
               <Text style={buttons.large}>Upload a file</Text>
@@ -95,7 +89,7 @@ export class ProfileScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: store) => {
   return {
     token: state.app.token,
     userName: state.app.userName

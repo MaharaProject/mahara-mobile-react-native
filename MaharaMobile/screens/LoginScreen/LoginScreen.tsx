@@ -6,8 +6,9 @@ import TokenInput from '../../components/TokenInput/TokenInput';
 import styles from './LoginScreen.style';
 
 type Props = {
-  dispatch: () => void;
+  dispatch: any;
   navigation: any; // need to double check type for this
+  image: string;
 }
 
 type State = {
@@ -53,9 +54,10 @@ export class LoginScreen extends Component<Props, State> {
   };
 
 
-  handleToken = (value) => {
+  handleToken = (value: string) => {
+    const that = this;
     this.setState({token: value}, function() {
-      this.login();
+      that.login();
     });
 
     this.props.dispatch(addToken(value));
@@ -64,10 +66,11 @@ export class LoginScreen extends Component<Props, State> {
   render() {
     return (
       <View style={styles.view}>
-        <TokenInput handler={this.handleToken} style={styles.component} />
+        <TokenInput
+          handler={this.handleToken}
+          style={styles.component}
+        />
       </View>
     );
   }
 };
-
-export default connect()(LoginScreen);

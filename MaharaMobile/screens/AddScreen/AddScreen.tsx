@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
+import { uploadToMahara } from '../../actions/actions';
+
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 
 import UploadForm from '../../components/UploadForm/UploadForm';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { file, userFolders } from '../../models/models';
+import { file, userFolders, store } from '../../models/models';
 
 type Props = {
   userFolders: Array<userFolders>;
-  userTags: object;
+  userTags: any;
   userName: string;
   token: string;
-  dispatch: () => void;
+  dispatch: any;
 };
 
 type State = {
@@ -98,14 +100,16 @@ export class AddScreen extends Component<Props, State> {
     return string;
   }
 
-  setFormValue = (type: string, value: string) => {
-    // set title etc from value from form component
-    this.setState({
-      [type]: value
-    });
+  setFormValue = (fieldName: string, value: string) => {
+    const stateObject = () => {
+      let returnObj: any = {};
+      returnObj[fieldName] = value;
+      return returnObj;
+    }
+    this.setState(stateObject);
   }
 
-  handleForm = async () => {
+  handleForm = () => {
     const { selectedTags, pickedFile, pickedFolder, title, description } = this.state;
     const { userFolders, token } = this.props;
     const tagString = selectedTags ? this.setTagString(selectedTags) : '';
@@ -132,16 +136,7 @@ export class AddScreen extends Component<Props, State> {
     formData.append('description', description);
     formData.append('filetoupload', fileData);
 
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData
-      });
-      const result = await response.json();
-      console.log('Success:', JSON.stringify(result));
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    this.props.dispatch(uploadToMahara(url, formData));
   }
 
   render() {
@@ -173,7 +168,7 @@ export class AddScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: store) => {
   return {
     token: state.app.token,
     userTags: state.app.userTags,

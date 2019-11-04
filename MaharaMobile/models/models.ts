@@ -1,3 +1,15 @@
+export interface store {
+  app: initialState;
+}
+
+export interface initialState {
+  token: string;
+  userName: string;
+  userFolders: Array<userFolders>;
+  userTags: Array<any>;
+  uploadList: Array<file>;
+  image: string;
+}
 
 export interface file {
   uri: string;

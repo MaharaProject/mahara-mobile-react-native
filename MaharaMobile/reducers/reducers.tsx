@@ -1,19 +1,13 @@
 import { combineReducers } from 'redux';
+import { initialState } from '../models/models';
 
-export interface State {
-  token: string,
-  userName: string,
-  userFolders: Array<object>,
-  userTags: Array<object>,
-  uploadList: Array<object>
-}
-
-const initialAppState:State = {
+const initialAppState: initialState = {
   token: '',
   userName: '',
   userFolders: [],
   userTags: [],
-  uploadList: []
+  uploadList: [],
+  image: '../../assets/images/no_userphoto.png'
 };
 
 const app = (state = initialAppState, action: any) => {
@@ -27,7 +21,7 @@ const app = (state = initialAppState, action: any) => {
       return {
         ...state,
         userName: action.userName,
-        userFolders: action.userFolder,
+        userFolders: action.userFolders,
         userTags: action.userTags,
         userBlogs: action.userBlogs
       }

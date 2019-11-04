@@ -1,4 +1,4 @@
-import { user, file } from '../models/models';
+import { file } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -14,12 +14,16 @@ export function addUser(json: any) {
   }
 }
 
+// function for adding tag start
+// export function addTag(tag: string) {
+//   return {
+//     type: ADD_TAG,
+//     tag: tag
+//   }
+// }
+
 export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
-}
-
-export function uploadToMahara(uploadList:Array<file>) {
-
 }
 
 export function updateUploadList(uploadList:Array<file>) {
@@ -34,6 +38,21 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
       dispatch(addUser(json));
     } catch (error) {
       // errorHandle(error);
+    }
+  }
+}
+
+export function uploadToMahara(url: string, formData: any) {
+  return async function() {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      console.log('Success:', JSON.stringify(result));
+    } catch (error) {
+      console.error('Error:', error);
     }
   }
 }
