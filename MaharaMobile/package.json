@@ -11,6 +11,9 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-native-fontawesome": "^0.1.0",
     "@react-native-community/async-storage": "^1.6.2",
     "@types/react-redux": "^7.1.5",
     "@typescript-eslint/parser": "^2.7.0",

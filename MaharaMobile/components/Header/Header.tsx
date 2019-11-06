@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faUser, faPlusCircle, faHistory } from '@fortawesome/free-solid-svg-icons';
 import styles from './Header.style';
 import LogoSvg from '../../assets/images/Logo';
 
@@ -12,20 +14,20 @@ export default class Header extends Component<Props> {
     return (
       <View style={styles.view}>
         <View style={styles.buttonWrap}>
-          <TouchableOpacity onPress={()=> {
+          <TouchableOpacity style={styles.button} onPress={()=> {
               this.props.navigation.navigate('Profile');
           }}>
-            <Text style={styles.button}>Profile</Text>
+           <FontAwesomeIcon style={styles.icon} size={18} icon={ faUser } />
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> {
+          <TouchableOpacity style={styles.button} onPress={()=> {
               this.props.navigation.navigate('Add');
           }}>
-            <Text style={styles.button}>Add stuff</Text>
+           <FontAwesomeIcon style={styles.icon} size={18} icon={ faPlusCircle } />
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=> {
+          <TouchableOpacity style={styles.button} onPress={()=> {
               this.props.navigation.navigate('PendingScreen');
           }}>
-            <Text style={styles.button}>Pending</Text>
+           <FontAwesomeIcon style={styles.icon} size={18} icon={ faHistory } />
           </TouchableOpacity>
         </View>
         <LogoSvg />

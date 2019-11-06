@@ -17,7 +17,11 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   button: {
-    padding: styles.padding.sm,
-    textTransform: 'uppercase'
+    padding: styles.padding.md,
+    backgroundColor: styles.colors.contrast,
+    marginRight: styles.padding.sm
+  },
+  icon: {
+    color: styles.colors.secondary
   }
 });
