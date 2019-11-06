@@ -8,7 +8,6 @@ import styles from './LoginScreen.style';
 type Props = {
   dispatch: any;
   navigation: any; // need to double check type for this
-  image: string;
 }
 
 type State = {
@@ -50,7 +49,7 @@ export class LoginScreen extends Component<Props, State> {
       body: JSON.stringify(body)
     };
 
-    this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() =>       this.props.navigation.navigate('Profile'));
+    this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() =>       this.props.navigation.navigate('Add'));
   };
 
 
@@ -68,9 +67,10 @@ export class LoginScreen extends Component<Props, State> {
       <View style={styles.view}>
         <TokenInput
           handler={this.handleToken}
-          style={styles.component}
         />
       </View>
     );
   }
 };
+
+export default connect()(LoginScreen);

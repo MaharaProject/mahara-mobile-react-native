@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { styles } from '../../assets/styles/variables.ts';
+import { styles } from '../../assets/styles/variables';
 
 export default StyleSheet.create({
   tagsContainer: {

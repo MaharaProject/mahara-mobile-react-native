@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import configureStore from './store/store.js';
+import configureStore from './store/store';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';

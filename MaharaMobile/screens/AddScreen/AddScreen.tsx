@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
 import { connect } from 'react-redux';
 import { uploadToMahara } from '../../actions/actions';
+import Header from '../../components/Header/Header';
 
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 
 import UploadForm from '../../components/UploadForm/UploadForm';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { file, userFolders, store } from '../../models/models';
+import { File, UserFolders, Store } from '../../models/models';
 
 type Props = {
-  userFolders: Array<userFolders>;
+  userFolders: Array<UserFolders>;
   userTags: any;
   userName: string;
   token: string;
   dispatch: any;
+  navigation: any;
 };
 
 type State = {
-  pickedFile: file;
+  pickedFile: File;
   uploadButtonText: string;
   pickedFolder: string;
   description: string;
@@ -44,7 +46,7 @@ export class AddScreen extends Component<Props, State> {
   }
 
   static navigationOptions = {
-    title: 'Upload to Mahara',
+    header: null
   };
 
   pickDocument = async () => {
@@ -57,7 +59,7 @@ export class AddScreen extends Component<Props, State> {
         //error
         console.log(error);
 
-        const pickedFile: file = {
+        const pickedFile: File = {
           name: res.fileName,
           uri: res.uri,
           type: res.type,
@@ -117,10 +119,10 @@ export class AddScreen extends Component<Props, State> {
     const folder = pickedFolder ? pickedFolder : firstFolder; //setting to first folder until we set up default folder functionality
     const webservice = 'module_mobileapi_upload_file';
     const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
-    console.log(pickedFile);
     const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
     const filename = title ? title + extension : pickedFile.name;
-    const fileData = {
+
+    const fileData: File = {
       uri: pickedFile.uri,
       type: pickedFile.type,
       name: pickedFile.name,
@@ -128,7 +130,6 @@ export class AddScreen extends Component<Props, State> {
     };
 
     const formData = new FormData();
-
     formData.append('wsfunction', webservice);
     formData.append('wstoken', token);
     formData.append('foldername', folder);
@@ -142,6 +143,7 @@ export class AddScreen extends Component<Props, State> {
   render() {
     return (
       <ScrollView>
+        <Header navigation={this.props.navigation} />
         <View style={styles.view}>
           {this.state.pickedFile.name ?
             <View style={styles.imageWrap}>
@@ -168,7 +170,7 @@ export class AddScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: store) => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     userTags: state.app.userTags,

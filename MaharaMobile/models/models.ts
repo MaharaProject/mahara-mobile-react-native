@@ -1,35 +1,42 @@
-export interface store {
-  app: initialState;
+export interface Store {
+  app: InitialState;
 }
 
-export interface initialState {
+export interface InitialState {
   token: string;
   userName: string;
-  userFolders: Array<userFolders>;
+  userFolders: Array<UserFolders>;
   userTags: Array<any>;
-  uploadList: Array<file>;
-  image: string;
+  uploadList: Array<File>;
 }
 
-export interface file {
+export interface Blob {
+  readonly uri: any;
+  readonly type: string;
+  readonly name: string;
+  readonly size: number;
+  slice(start?: number, end?: number, contentType?: string): Blob;
+}
+
+export interface File {
   uri: string;
   type: string;
   name: string;
   size: number;
 }
 
-export interface userFolders {
+export interface UserFolders {
   title: string;
 }
 
-export interface user {
+export interface User {
   userName: string;
-  userFolders: userFolders;
+  userFolders: UserFolders;
   userTags: Array<object>;
   userBlogs: Array<object>;
 }
 
-export interface formData {
+export interface FormData {
   webservice: string;
   wstoken: string;
   foldername: string;

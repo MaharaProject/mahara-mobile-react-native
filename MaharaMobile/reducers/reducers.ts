@@ -6,8 +6,7 @@ const initialAppState: initialState = {
   userName: '',
   userFolders: [],
   userTags: [],
-  uploadList: [],
-  image: '../../assets/images/no_userphoto.png'
+  uploadList: []
 };
 
 const app = (state = initialAppState, action: any) => {

@@ -1,4 +1,4 @@
-import { file } from '../models/models';
+import { File } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -26,7 +26,7 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function updateUploadList(uploadList:Array<file>) {
+export function updateUploadList(uploadList:Array<File>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 

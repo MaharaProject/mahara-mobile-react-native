@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
-import { connect } from 'react-redux';
 import styles from './Profile.style';
-import { store } from '../../models/models';
 
 type Props = {
-  image: string;
   name: string;
   pic: string;
 }
 
-export class Profile extends Component<Props> {
+export default class Profile extends Component<Props> {
   constructor(props : Props) {
     super(props);
   }
@@ -28,11 +25,3 @@ export class Profile extends Component<Props> {
     )
   }
 }
-
-const mapStateToProps = (state: store) => {
-  return {
-    image: state.app.image
-  }
-}
-
-export default connect(mapStateToProps)(Profile);

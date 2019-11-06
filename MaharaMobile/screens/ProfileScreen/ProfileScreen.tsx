@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header';
 import Profile from '../../components/Profile/Profile';
 import styles from './ProfileScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { store } from '../../models/models';
+import { Store } from '../../models/models';
 
 type Props = {
   navigation: any; // need to double check type for this
@@ -49,18 +49,17 @@ export class ProfileScreen extends Component<Props, State> {
       fileCache: true
     })
     .fetch('GET', serverUrl)
-
     .then((res) => {
+      console.log('response', res);
       console.log('The file saved to ', res.path());
       const image = `file://${res.path()}`;
       this.setState({
         pic: image
       })
     })
-
-    .catch((errorMessage, statusCode) => {
+    .catch((error) => {
       // error handling
-      console.log('error', errorMessage, statusCode);
+      console.log(error);
     })
   }
 
@@ -71,7 +70,7 @@ export class ProfileScreen extends Component<Props, State> {
   render() {
     return (
       <View style={styles.app}>
-        <Header />
+        <Header navigation={this.props.navigation} />
         <View style={styles.container}>
             <Profile
               name={this.props.userName}
@@ -89,7 +88,7 @@ export class ProfileScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: store) => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     userName: state.app.userName
