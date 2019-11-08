@@ -75,10 +75,17 @@ export class ProfileScreen extends Component<Props, State> {
             userPic={this.state.userPic}
           />
           <TouchableOpacity onPress={this.goToUploadScreen}>
+<<<<<<< HEAD
             <Text style={buttons.lg}>Upload a file</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.goToPendingScreen}>
             <Text style={buttons.lg}>Go to Pending Screen</Text>
+=======
+            <Text style={buttons.large}>Upload a file</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.goToPendingScreen}>
+            <Text style={buttons.large}>Go to Pending Screen</Text>
+>>>>>>> Code tidy up, added models for usertags and userblogs.
           </TouchableOpacity>
         </View>
       </View>
