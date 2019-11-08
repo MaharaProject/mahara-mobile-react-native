@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 
-import styles from './GetUser.style.ts';
-import { forms } from '../../assets/styles/forms.ts';
-import { buttons } from '../../assets/styles/buttons.ts';
+import styles from './TokenInput.style';
+import { forms } from '../../assets/styles/forms';
+import { buttons } from '../../assets/styles/buttons';
 
-export default class GetUser extends Component {
-  constructor(props) {
+type Props = {
+  handler: any;
+}
+
+type State = {
+  token: string;
+}
+
+export default class TokenInput extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -14,7 +22,7 @@ export default class GetUser extends Component {
     };
   };
 
-  updateToken = async (input) => {
+  updateToken = async (input: string) => {
     let token = input.trim();
 
     this.setState({
@@ -28,7 +36,6 @@ export default class GetUser extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.view}>
         <TextInput

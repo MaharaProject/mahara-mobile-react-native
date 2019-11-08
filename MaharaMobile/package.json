@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
+    "@types/react-redux": "^7.1.5",
     "react": "16.9.0",
     "react-native": "0.61.1",
     "react-native-document-picker": "git+https://github.com/Elyx0/react-native-document-picker.git#v2",
@@ -43,7 +44,7 @@
   "jest": {
     "preset": "react-native",
     "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+      "^.+\\.ts$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
     "modulePaths": [
       "<rootDir>"

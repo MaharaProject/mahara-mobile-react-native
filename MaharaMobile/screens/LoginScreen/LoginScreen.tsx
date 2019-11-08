@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken, userName, userTags, userFolders, userBlogs } from '../../actions/actions.ts';
-import GetUser from '../../components/GetUser/GetUser.tsx';
-import styles from './LoginScreen.style.ts';
+import { addToken, sendTokenLogin } from '../../actions/actions';
+import TokenInput from '../../components/TokenInput/TokenInput';
+import styles from './LoginScreen.style';
 
-export class LoginScreen extends Component {
-  constructor(props) {
+type Props = {
+  dispatch: any;
+  navigation: any; // need to double check type for this
+}
+
+type State = {
+  token: string;
+}
+
+export class LoginScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
     this.state = {
@@ -18,10 +27,9 @@ export class LoginScreen extends Component {
     header: null,
   };
 
-  login = async (json) => {
+  login = () => {
     const url = 'https://master.dev.mahara.org/';
     const serverUrl = url + 'webservice/rest/server.php?alt=json';
-    const api = 'module_mobileapi_sync';
 
     const body = {
       blogs: {},
@@ -41,38 +49,12 @@ export class LoginScreen extends Component {
       body: JSON.stringify(body)
     };
 
-    try {
-      const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
-      this.receiveRequest(json);
-    } catch (error) {
-      this.errorHandle(error);
-    }
+    this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() => this.props.navigation.navigate('Add'));
   };
 
-  receiveRequest = (json) => {
-    if(json) {
-      const username = json.userprofile.myname;
-      const usertags = json.tags.tags;
-      const userblogs = json.blogs.blogs;
-      const userfolders = json.folders.folders;
 
-      this.props.dispatch(userName(username));
-      this.props.dispatch(userTags(usertags));
-      this.props.dispatch(userBlogs(userblogs));
-      this.props.dispatch(userFolders(userfolders));
-
-      this.props.navigation.navigate('Profile');
-    }
-  }
-
-  errorHandle = (error) => {
-    console.log('error', error);
-  }
-
-  handleToken = (value) => {
-
-    this.setState({token: value}, function() {
+  handleToken = (value: string) => {
+    this.setState({token: value}, function(this: any) {
       this.login();
     });
 
@@ -80,23 +62,14 @@ export class LoginScreen extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.view}>
-        <GetUser handler={this.handleToken} style={styles.component} />
+        <TokenInput
+          handler={this.handleToken}
+        />
       </View>
     );
   }
 };
 
-const mapStateToProps = state => {
-  return {
-    token: state.app.token,
-    username: state.app.username,
-    usertags: state.app.tags,
-    userblogs: state.app.userblogs,
-    userfolders: state.app.userfolders
-  }
-}
-
-export default connect(mapStateToProps)(LoginScreen);
+export default connect()(LoginScreen);

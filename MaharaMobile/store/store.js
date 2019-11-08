@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import reducers from '../reducers/reducers.tsx';
+import reducers from '../reducers/reducers';
 
 export default function configureStore(preloadedState) {
   const middleware = [ thunk ];

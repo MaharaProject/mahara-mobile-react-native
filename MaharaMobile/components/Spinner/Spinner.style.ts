@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { styles } from '../../assets/styles/variables.ts';
+import { styles } from '../../assets/styles/variables';
 
 export default StyleSheet.create({
   view: {
@@ -18,4 +18,4 @@ export default StyleSheet.create({
     padding: styles.padding.md,
     fontSize: styles.font.md
   }
-})
+});

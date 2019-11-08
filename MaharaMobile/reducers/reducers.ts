@@ -1,34 +1,28 @@
 import { combineReducers } from 'redux';
+import { InitialState } from '../models/models';
 
-const initialAppState = {
+const initialAppState: InitialState = {
   token: '',
-  username: '',
-  userfolders: [],
-  usertags: [],
+  userName: '',
+  userFolders: [],
+  userTags: [],
   uploadList: []
 };
 
-const app = (state = initialAppState, action) => {
+const app = (state = initialAppState, action: any) => {
   switch (action.type) {
     case 'ADD_TOKEN':
       return {
         ...state,
         token: action.token
       }
-    case 'USER_NAME':
+    case 'ADD_USER':
       return {
         ...state,
-        username: action.username
-      }
-    case 'USER_FOLDERS':
-      return {
-        ...state,
-        userfolders: action.userfolders
-      }
-    case 'USER_TAGS':
-      return {
-        ...state,
-        usertags: action.usertags
+        userName: action.userName,
+        userFolders: action.userFolders,
+        userTags: action.userTags,
+        userBlogs: action.userBlogs
       }
     case 'UPDATE_UPLOAD_LIST':
     return {

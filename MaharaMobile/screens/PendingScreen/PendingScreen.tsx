@@ -6,12 +6,14 @@ import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { uploadToMahara, updateUploadList } from '../../actions/actions'
+import { File, Store } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 
 type Props =
   {
-    uploadList: Array<any>; // TODO change to be Array<File>
-    dispatch: Function;
+    uploadList: Array<File>;
+    dispatch: any;
+    navigation: any;
   }
 
 type State =
@@ -19,7 +21,7 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
-    selectedFiles: Array<any> //TODO change to be Array<File>
+    selectedFiles: Array<File>
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -58,7 +60,6 @@ export class PendingScreen extends Component<Props, State> {
     return (
       <View>
         <FlatList
-          style={styles.flatList}
           data={this.DATA}
           extraData={this.state.selectedFiles}
           renderItem={({ item }) => {
@@ -84,7 +85,7 @@ export class PendingScreen extends Component<Props, State> {
     )
   }
 
-  handleLongPress(item) {
+  handleLongPress(item: File) {
     const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
     selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
     this.setState({ selectedFiles: Array.from(selectedFiles) });
@@ -130,12 +131,11 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   render() {
-    const { uploadList } = this.props
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
 
     return (
       <View style={styles.app}>
-        <Header />
+        <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
           { selectedFiles.length > 0 ? <Button title='Delete' onPress={() => {this.onDelete()}}/> : null }
@@ -151,7 +151,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     uploadList: state.app.uploadList,

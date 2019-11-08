@@ -1,34 +1,58 @@
+import { File } from '../models/models';
+
 export const ADD_TOKEN = 'ADD_TOKEN';
-export const USER_NAME = 'USER_NAME';
-export const USER_FOLDERS = 'USER_FOLDERS';
-export const USER_TAGS = 'USER_TAGS';
-export const USER_BLOGS = 'USER_BLOGS';
+export const ADD_USER = 'ADD_USER';
 export const UPDATE_UPLOAD_LIST = 'UPDATE_UPLOAD_LIST';
 
-export function addToken(token) {
+export function addUser(json: any) {
+  return {
+    type: ADD_USER,
+    userName: json.userprofile.myname,
+    userTags: json.tags.tags,
+    userBlogs: json.blogs.blogs,
+    userFolders: json.folders.folders
+  }
+}
+
+// function for adding tag start
+// export function addTag(tag: string) {
+//   return {
+//     type: ADD_TAG,
+//     tag: tag
+//   }
+// }
+
+export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function userName(username) {
-  return { type: USER_NAME, username }
-}
-
-export function userFolders(userfolders) {
-  return { type: USER_FOLDERS, userfolders }
-}
-
-export function userTags(usertags) {
-  return { type: USER_TAGS, usertags }
-}
-
-export function userBlogs(userblogs) {
-  return { type: USER_BLOGS, userblogs }
-}
-
-export function uploadToMahara(uploadList:Array<any>) { //update later to be Array<File> & import File model
-
-}
-
-export function updateUploadList(uploadList:Array<any>) { //update later to be Array<File> & import File model
+export function updateUploadList(uploadList:Array<File>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
+}
+
+export function sendTokenLogin(serverUrl: string, requestOptions: any) {
+  return async function(dispatch: any) {
+    try {
+      const response = await fetch(serverUrl, requestOptions);
+      const json = await response.json();
+      dispatch(addUser(json));
+    } catch (error) {
+      // errorHandle(error);
+    }
+  }
+}
+
+export function uploadToMahara(url: string, formData: any) {
+  return async function() {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      console.log('Success:', JSON.stringify(result));
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
 }

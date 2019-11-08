@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import configureStore from './store/store.js';
+import configureStore from './store/store';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
-import UploadFileScreen from './screens/UploadFileScreen/UploadFileScreen';
+import AddScreen from './screens/AddScreen/AddScreen';
 
 const AppNavigator = createStackNavigator({
   Home: LoginScreen,
   Profile: ProfileScreen,
-  UploadFile: UploadFileScreen,
+  Add: AddScreen,
   PendingScreen: PendingScreen
 });
 

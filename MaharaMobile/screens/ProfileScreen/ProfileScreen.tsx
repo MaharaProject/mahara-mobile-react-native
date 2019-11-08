@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
 
-import Header from '../../components/Header/Header.tsx';
-import GetProfile from '../../components/GetProfile/GetProfile.tsx';
-import styles from './ProfileScreen.style.ts';
-import { buttons } from '../../assets/styles/buttons.ts';
+import Header from '../../components/Header/Header';
+import Profile from '../../components/Profile/Profile';
+import styles from './ProfileScreen.style';
+import { buttons } from '../../assets/styles/buttons';
+import { Store } from '../../models/models';
 
-export class ProfileScreen extends Component {
-  constructor(props) {
+type Props = {
+  navigation: any; // need to double check type for this
+  token: string;
+  userName: string;
+}
+
+type State = {
+  userPic: string;
+}
+
+export class ProfileScreen extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
 
-    const { navigation } = this.props;
-
     this.state = {
-      pic: '',
-      picloaded: false
+      userPic: ''
     }
   }
 
@@ -25,14 +33,14 @@ export class ProfileScreen extends Component {
   };
 
   goToUploadScreen = () => {
-    this.props.navigation.navigate('UploadFile');
+    this.props.navigation.navigate('Add');
   }
 
   goToPendingScreen = () => {
     this.props.navigation.navigate('PendingScreen');
   }
 
-  receiveProfilePic = async (json) => {
+  receiveProfilePic = async () => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
           wstoken = this.props.token,
           serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
@@ -41,19 +49,15 @@ export class ProfileScreen extends Component {
       fileCache: true
     })
     .fetch('GET', serverUrl)
-
     .then((res) => {
-      console.log('The file saved to ', res.path());
-
+      const image = `file://${res.path()}`;
       this.setState({
-        pic: 'file://' + res.path(),
-        picloaded: true
+        userPic: image
       })
     })
-
-    .catch((errorMessage, statusCode) => {
+    .catch((error) => {
       // error handling
-      console.log('error', errorMessage, statusCode);
+      console.log(error);
     })
   }
 
@@ -62,39 +66,30 @@ export class ProfileScreen extends Component {
   }
 
   render() {
-
     return (
       <View style={styles.app}>
-        <Header />
+        <Header navigation={this.props.navigation} />
         <View style={styles.container}>
-          {this.state.picloaded ?
-            <GetProfile
-              style={{paddingTop: 20}}
-              token={this.props.token}
-              name={this.props.username}
-              tags={this.props.usertags}
-              folders={this.props.userfolders}
-              image={this.state.pic}
-            /> : null}
-            <TouchableOpacity onPress={this.goToUploadScreen}>
-              <Text style={buttons.large}>Upload a file</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.goToPendingScreen}>
-              <Text style={buttons.large}>Go to Pending Screen</Text>
-            </TouchableOpacity>
+          <Profile
+            name={this.props.userName}
+            userPic={this.state.userPic}
+          />
+          <TouchableOpacity onPress={this.goToUploadScreen}>
+            <Text style={buttons.large}>Upload a file</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.goToPendingScreen}>
+            <Text style={buttons.large}>Go to Pending Screen</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
   }
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
-    username: state.app.username,
-    usertags: state.app.tags,
-    userfolders: state.app.folders,
-    userblogs: state.app.userblogs
+    userName: state.app.userName
   }
 }
 
