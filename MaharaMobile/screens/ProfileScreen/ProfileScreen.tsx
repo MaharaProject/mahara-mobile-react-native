@@ -16,7 +16,7 @@ type Props = {
 }
 
 type State = {
-  pic: string;
+  userPic: string;
 }
 
 export class ProfileScreen extends Component<Props, State> {
@@ -24,7 +24,7 @@ export class ProfileScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      pic: ''
+      userPic: ''
     }
   }
 
@@ -50,11 +50,9 @@ export class ProfileScreen extends Component<Props, State> {
     })
     .fetch('GET', serverUrl)
     .then((res) => {
-      console.log('response', res);
-      console.log('The file saved to ', res.path());
       const image = `file://${res.path()}`;
       this.setState({
-        pic: image
+        userPic: image
       })
     })
     .catch((error) => {
@@ -72,16 +70,16 @@ export class ProfileScreen extends Component<Props, State> {
       <View style={styles.app}>
         <Header navigation={this.props.navigation} />
         <View style={styles.container}>
-            <Profile
-              name={this.props.userName}
-              pic={this.state.pic}
-            />
-            <TouchableOpacity onPress={this.goToUploadScreen}>
-              <Text style={buttons.large}>Upload a file</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this.goToPendingScreen}>
-              <Text style={buttons.large}>Go to Pending Screen</Text>
-            </TouchableOpacity>
+          <Profile
+            name={this.props.userName}
+            userPic={this.state.userPic}
+          />
+          <TouchableOpacity onPress={this.goToUploadScreen}>
+            <Text style={buttons.large}>Upload a file</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.goToPendingScreen}>
+            <Text style={buttons.large}>Go to Pending Screen</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );

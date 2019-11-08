@@ -3,16 +3,17 @@ import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
-import { UserFolders } from '../../models/models';
+import { UserFolders, File, UserTags, UserBlogs } from '../../models/models';
 
 type Props = {
-  pickedFile: object;
+  pickedFile: File;
   handleForm: Function;
   setFormValue: any;
   addTag: Function;
   removeTag: Function;
   userFolders: Array<UserFolders>;
-  userTags: Array<any>;
+  userTags: Array<UserTags>;
+  userBlogs: Array<UserBlogs>;
   selectedTags: Array<string>;
   showTagInput: boolean;
 }

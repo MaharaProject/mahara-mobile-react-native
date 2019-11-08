@@ -49,14 +49,13 @@ export class LoginScreen extends Component<Props, State> {
       body: JSON.stringify(body)
     };
 
-    this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() =>       this.props.navigation.navigate('Add'));
+    this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() => this.props.navigation.navigate('Add'));
   };
 
 
   handleToken = (value: string) => {
-    const that = this;
-    this.setState({token: value}, function() {
-      that.login();
+    this.setState({token: value}, function(this: any) {
+      this.login();
     });
 
     this.props.dispatch(addToken(value));

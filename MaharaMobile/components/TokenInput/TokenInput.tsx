@@ -36,7 +36,6 @@ export default class TokenInput extends Component<Props, State> {
   }
 
   render() {
-
     return (
       <View style={styles.view}>
         <TextInput

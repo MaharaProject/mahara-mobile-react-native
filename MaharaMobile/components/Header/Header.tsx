@@ -8,19 +8,6 @@ type Props = {
 }
 
 export default class Header extends Component<Props> {
-  constructor(props: Props) {
-    super(props);
-    console.log('header', props);
-  }
-
-  goToUploadScreen = () => {
-    this.props.navigation.navigate('Add');
-  }
-
-  goToPendingScreen = () => {
-    this.props.navigation.navigate('PendingScreen');
-  }
-
   render () {
     return (
       <View style={styles.view}>

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import { initialState } from '../models/models';
+import { InitialState } from '../models/models';
 
-const initialAppState: initialState = {
+const initialAppState: InitialState = {
   token: '',
   userName: '',
   userFolders: [],

@@ -6,8 +6,9 @@ export interface InitialState {
   token: string;
   userName: string;
   userFolders: Array<UserFolders>;
-  userTags: Array<any>;
+  userTags: Array<UserTags>;
   uploadList: Array<File>;
+  userBlogs: Array<any>;
 }
 
 export interface Blob {
@@ -25,15 +26,28 @@ export interface File {
   size: number;
 }
 
+export interface User {
+  userName: string;
+  userFolders: Array<UserFolders>;
+  userTags: Array<UserTags>;
+  userBlogs: Array<UserBlogs>;
+}
+
 export interface UserFolders {
   title: string;
 }
 
-export interface User {
-  userName: string;
-  userFolders: UserFolders;
-  userTags: Array<object>;
-  userBlogs: Array<object>;
+export interface UserTags {
+  tag: string;
+  usage: number;
+}
+
+export interface UserBlogs {
+  description: string;
+  id: number;
+  locked: boolean;
+  numBlogPosts: number;
+  title: string;
 }
 
 export interface FormData {

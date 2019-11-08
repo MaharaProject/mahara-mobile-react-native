@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
+
 import { uploadToMahara } from '../../actions/actions';
 import Header from '../../components/Header/Header';
-
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
-
 import UploadForm from '../../components/UploadForm/UploadForm';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { File, UserFolders, Store } from '../../models/models';
+import { File, UserTags, UserFolders, UserBlogs, Store } from '../../models/models';
 
 type Props = {
   userFolders: Array<UserFolders>;
-  userTags: any;
+  userTags: Array<UserTags>;
+  userBlogs: Array<UserBlogs>;
   userName: string;
   token: string;
   dispatch: any;
@@ -174,7 +174,8 @@ const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     userTags: state.app.userTags,
-    userFolders: state.app.userFolders
+    userFolders: state.app.userFolders,
+    userBlogs: state.app.userBlogs
   }
 }
 
