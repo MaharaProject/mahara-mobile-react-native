@@ -33,7 +33,7 @@ export const forms = StyleSheet.create({
     marginBottom: styles.padding.md
   },
   tag: {
-    backgroundColor: styles.colors.quarternary,
+    backgroundColor: styles.colors.quaternary,
     paddingLeft: styles.padding.sm,
     paddingRight: styles.padding.sm,
     borderRadius: 10,

@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import { uploadToMahara } from '../../actions/actions';
 import Header from '../../components/Header/Header';
 import UploadForm from '../../components/UploadForm/UploadForm';
+import SelectAddType from '../../components/SelectAddType/SelectAddType';
 import styles from './AddScreen.style';
-import { buttons } from '../../assets/styles/buttons';
+// import { buttons } from '../../assets/styles/buttons';
 import { File, UserTags, UserFolders, UserBlogs, Store } from '../../models/models';
 
 type Props = {
@@ -22,12 +23,13 @@ type Props = {
 
 type State = {
   pickedFile: File;
-  uploadButtonText: string;
   pickedFolder: string;
   description: string;
   title: string;
   selectedTags: Array<string>;
   showTagInput: boolean;
+  formType: string;
+  webservice: string;
 };
 
 export class AddScreen extends Component<Props, State> {
@@ -36,18 +38,35 @@ export class AddScreen extends Component<Props, State> {
 
     this.state = {
       pickedFile: {uri: '', name: '', type: '', size: 0},
-      uploadButtonText: 'Pick a file',
       pickedFolder: '',
       description: '',
       title: '',
       selectedTags: [],
-      showTagInput: false
+      showTagInput: false,
+      formType: '',
+      webservice: 'module_mobileapi_upload_file'
     }
   }
 
   static navigationOptions = {
     header: null
   };
+
+  selectAddType = (type: string) => {
+    this.setState({
+      formType: type
+    });
+
+    if(type === 'file') {
+      this.pickDocument();
+    }
+
+    if(type=== 'journal') {
+      this.setState({
+        webservice: 'module_mobileapi_upload_blog_post'
+      })
+    }
+  }
 
   pickDocument = async () => {
     // iPhone/Android
@@ -68,8 +87,7 @@ export class AddScreen extends Component<Props, State> {
 
         // Android
         this.setState({
-          pickedFile: pickedFile,
-          uploadButtonText: 'Pick a different file'
+          pickedFile: pickedFile
         });
       }
     );
@@ -135,6 +153,9 @@ export class AddScreen extends Component<Props, State> {
     formData.append('foldername', folder);
     formData.append('title', filename);
     formData.append('description', description);
+
+    // TODO: Inspect the network paylaod to make sure the data is in expected format
+    // @ts-ignore
     formData.append('filetoupload', fileData);
 
     this.props.dispatch(uploadToMahara(url, formData));
@@ -150,20 +171,25 @@ export class AddScreen extends Component<Props, State> {
               <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
             </View>
           : null}
-          <TouchableOpacity onPress={this.pickDocument}>
-            <Text style={[buttons.md, styles.button]}>{this.state.uploadButtonText}</Text>
-          </TouchableOpacity>
-          <UploadForm
-            pickedFile={this.state.pickedFile}
-            handleForm={this.handleForm}
-            setFormValue={this.setFormValue}
-            addTag={this.addTag}
-            removeTag={this.removeTag}
-            userFolders={this.props.userFolders}
-            userTags={this.props.userTags}
-            selectedTags={this.state.selectedTags}
-            showTagInput={this.state.showTagInput}
+
+          <SelectAddType
+            selectAddType={this.selectAddType}
           />
+
+          {this.state.formType ?
+            <UploadForm
+              pickedFile={this.state.pickedFile}
+              handleForm={this.handleForm}
+              setFormValue={this.setFormValue}
+              addTag={this.addTag}
+              removeTag={this.removeTag}
+              userFolders={this.props.userFolders}
+              userTags={this.props.userTags}
+              selectedTags={this.state.selectedTags}
+              showTagInput={this.state.showTagInput}
+              userBlogs={this.props.userBlogs}
+            />
+          : null}
         </View>
       </ScrollView>
     )
