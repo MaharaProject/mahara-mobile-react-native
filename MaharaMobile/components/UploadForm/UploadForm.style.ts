@@ -32,5 +32,8 @@ export default StyleSheet.create({
   },
   addButtonText: {
     color: styles.colors.light
+  },
+  formTitle: {
+    marginBottom: styles.padding.sm
   }
 });

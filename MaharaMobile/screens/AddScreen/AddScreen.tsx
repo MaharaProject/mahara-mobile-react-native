@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image, ScrollView} from 'react-native';
+import { TouchableOpacity, Text, View, Image, ScrollView} from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
 
-import { uploadToMahara } from '../../actions/actions';
+import { uploadToMahara, uploadJournalToMahara } from '../../actions/actions';
 import Header from '../../components/Header/Header';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import SelectAddType from '../../components/SelectAddType/SelectAddType';
+import { buttons } from '../../assets/styles/buttons';
 import styles from './AddScreen.style';
-// import { buttons } from '../../assets/styles/buttons';
-import { File, UserTags, UserFolders, UserBlogs, Store } from '../../models/models';
+import { File, JournalEntry, UserTags, UserFolders, UserBlogs, Store } from '../../models/models';
 
 type Props = {
   userFolders: Array<UserFolders>;
@@ -30,22 +30,28 @@ type State = {
   showTagInput: boolean;
   formType: string;
   webservice: string;
+  pickedBlog: number;
+  filePickerButtonText: string;
 };
+
+const initialState = {
+  pickedFile: {uri: '', name: '', type: '', size: 0},
+  pickedFolder: '',
+  pickedBlog: 0,
+  description: '',
+  title: '',
+  selectedTags: [],
+  showTagInput: false,
+  formType: '',
+  webservice: 'module_mobileapi_upload_file',
+  filePickerButtonText: 'Pick a file'
+}
 
 export class AddScreen extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.state = {
-      pickedFile: {uri: '', name: '', type: '', size: 0},
-      pickedFolder: '',
-      description: '',
-      title: '',
-      selectedTags: [],
-      showTagInput: false,
-      formType: '',
-      webservice: 'module_mobileapi_upload_file'
-    }
+    this.state = initialState;
   }
 
   static navigationOptions = {
@@ -56,11 +62,12 @@ export class AddScreen extends Component<Props, State> {
     this.setState({
       formType: type
     });
-
     if(type === 'file') {
       this.pickDocument();
+      this.setState({
+        filePickerButtonText: 'Pick a different file'
+      })
     }
-
     if(type=== 'journal') {
       this.setState({
         webservice: 'module_mobileapi_upload_blog_post'
@@ -68,29 +75,8 @@ export class AddScreen extends Component<Props, State> {
     }
   }
 
-  pickDocument = async () => {
-    // iPhone/Android
-    DocumentPicker.show(
-      {
-        filetype: [DocumentPickerUtil.allFiles()],
-      },
-      (error, res) => {
-        //error
-        console.log(error);
-
-        const pickedFile: File = {
-          name: res.fileName,
-          uri: res.uri,
-          type: res.type,
-          size: Number(res.fileSize)
-        };
-
-        // Android
-        this.setState({
-          pickedFile: pickedFile
-        });
-      }
-    );
+  resetForm =() => {
+    this.setState(initialState);
   }
 
   addTag = (tag: string) => {
@@ -120,6 +106,31 @@ export class AddScreen extends Component<Props, State> {
     return string;
   }
 
+  pickDocument = async () => {
+    // iPhone/Android
+    DocumentPicker.show(
+      {
+        filetype: [DocumentPickerUtil.allFiles()],
+      },
+      (error, res) => {
+        //error
+        console.log(error);
+
+        const pickedFile: File = {
+          name: res.fileName,
+          uri: res.uri,
+          type: res.type,
+          size: Number(res.fileSize)
+        };
+
+        // Android
+        this.setState({
+          pickedFile: pickedFile
+        });
+      }
+    );
+  }
+
   setFormValue = (fieldName: string, value: string) => {
     const stateObject = () => {
       let returnObj: any = {};
@@ -127,38 +138,52 @@ export class AddScreen extends Component<Props, State> {
       return returnObj;
     }
     this.setState(stateObject);
+    console.log(this.state.pickedBlog);
   }
 
   handleForm = () => {
     const { selectedTags, pickedFile, pickedFolder, title, description } = this.state;
     const { userFolders, token } = this.props;
-    const tagString = selectedTags ? this.setTagString(selectedTags) : '';
-    const firstFolder = userFolders[0].title;
-    const folder = pickedFolder ? pickedFolder : firstFolder; //setting to first folder until we set up default folder functionality
-    const webservice = 'module_mobileapi_upload_file';
-    const url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
-    const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-    const filename = title ? title + extension : pickedFile.name;
+    let url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json';
 
-    const fileData: File = {
-      uri: pickedFile.uri,
-      type: pickedFile.type,
-      name: pickedFile.name,
-      size: pickedFile.size
-    };
+    if (this.state.formType === 'journal') {
+      const firstBlog = this.props.userBlogs[0].id;
+      const journalEntry: JournalEntry = {
+        blogid: this.state.pickedBlog ? this.state.pickedBlog : firstBlog,
+        wsfunction: 'module_mobileapi_upload_blog_post',
+        wstoken: token,
+        title: title,
+        body: description,
+        isdraft: false,
+        tags: selectedTags
+      }
+      this.props.dispatch(uploadJournalToMahara(url, journalEntry));
+    } else {
+      const tagString = selectedTags ? this.setTagString(selectedTags) : '';
+      let url = 'https://master.dev.mahara.org/webservice/rest/server.php?alt=json' + tagString;
+      const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
+      const filename = title ? title + extension : pickedFile.name;
+      const firstFolder = userFolders[0].title;
+      const folder = pickedFolder ? pickedFolder : firstFolder; //setting to first folder until we set up default folder functionality
+      const webservice = 'module_mobileapi_upload_file';
 
-    const formData = new FormData();
-    formData.append('wsfunction', webservice);
-    formData.append('wstoken', token);
-    formData.append('foldername', folder);
-    formData.append('title', filename);
-    formData.append('description', description);
-
-    // TODO: Inspect the network paylaod to make sure the data is in expected format
-    // @ts-ignore
-    formData.append('filetoupload', fileData);
-
-    this.props.dispatch(uploadToMahara(url, formData));
+      const fileData: File = {
+        uri: pickedFile.uri,
+        type: pickedFile.type,
+        name: pickedFile.name,
+        size: pickedFile.size
+      };
+      const formData = new FormData();
+      formData.append('wsfunction', webservice);
+      formData.append('wstoken', token);
+      formData.append('foldername', folder);
+      formData.append('title', filename);
+      formData.append('description', description);
+      // TODO: Inspect the network paylaod to make sure the data is in expected format
+      // @ts-ignore
+      formData.append('filetoupload', fileData);
+      this.props.dispatch(uploadToMahara(url, formData));
+    }
   }
 
   render() {
@@ -171,24 +196,30 @@ export class AddScreen extends Component<Props, State> {
               <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
             </View>
           : null}
-
           <SelectAddType
             selectAddType={this.selectAddType}
+            formType={this.state.formType}
+            filePickerButtonText={this.state.filePickerButtonText}
           />
-
           {this.state.formType ?
-            <UploadForm
-              pickedFile={this.state.pickedFile}
-              handleForm={this.handleForm}
-              setFormValue={this.setFormValue}
-              addTag={this.addTag}
-              removeTag={this.removeTag}
-              userFolders={this.props.userFolders}
-              userTags={this.props.userTags}
-              selectedTags={this.state.selectedTags}
-              showTagInput={this.state.showTagInput}
-              userBlogs={this.props.userBlogs}
-            />
+            <View>
+              <UploadForm
+                pickedFile={this.state.pickedFile}
+                handleForm={this.handleForm}
+                setFormValue={this.setFormValue}
+                addTag={this.addTag}
+                removeTag={this.removeTag}
+                userFolders={this.props.userFolders}
+                userTags={this.props.userTags}
+                selectedTags={this.state.selectedTags}
+                showTagInput={this.state.showTagInput}
+                userBlogs={this.props.userBlogs}
+                formType={this.state.formType}
+              />
+              <TouchableOpacity onPress={() => this.resetForm()}>
+                <Text style={buttons.sm}>Back</Text>
+              </TouchableOpacity>
+            </View>
           : null}
         </View>
       </ScrollView>

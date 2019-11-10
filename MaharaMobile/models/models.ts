@@ -26,6 +26,16 @@ export interface File {
   size: number;
 }
 
+export interface JournalEntry {
+    blogid: number;
+    wsfunction: string;
+    wstoken: string;
+    title: string;
+    body: string;
+    isdraft: boolean;
+    tags?: Array<string>;
+}
+
 export interface User {
   userName: string;
   userFolders: Array<UserFolders>;
