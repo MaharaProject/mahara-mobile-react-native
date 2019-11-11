@@ -4,6 +4,7 @@ import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import styles from './TokenInput.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
+import { headings } from '../../assets/styles/headings';
 
 type Props = {
   handler: any;
@@ -18,11 +19,11 @@ export default class TokenInput extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: '',
+      token: ''
     };
   };
 
-  updateToken = async (input: string) => {
+  updateToken = (input: string) => {
     let token = input.trim();
 
     this.setState({
@@ -38,6 +39,7 @@ export default class TokenInput extends Component<Props, State> {
   render() {
     return (
       <View style={styles.view}>
+        <Text style={headings.mainHeading}>Login via Token</Text>
         <TextInput
           style={forms.textInput}
           defaultValue='ab6f3b68f8b0b976cf6b51eac2cd54da'

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken, sendTokenLogin } from '../../actions/actions';
+import LoginType from '../../components/LoginType/LoginType';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import styles from './LoginScreen.style';
 
@@ -12,6 +13,8 @@ type Props = {
 
 type State = {
   token: string;
+  url: string;
+  loginType: string;
 }
 
 export class LoginScreen extends Component<Props, State> {
@@ -19,7 +22,9 @@ export class LoginScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: ''
+      token: '',
+      url: '',
+      loginType: ''
     };
   }
 
@@ -52,7 +57,6 @@ export class LoginScreen extends Component<Props, State> {
     this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() => this.props.navigation.navigate('Add'));
   };
 
-
   handleToken = (value: string) => {
     this.setState({token: value}, function(this: any) {
       this.login();
@@ -61,12 +65,24 @@ export class LoginScreen extends Component<Props, State> {
     this.props.dispatch(addToken(value));
   }
 
+  setLoginType = (loginType: string) => {
+    this.setState({
+      loginType: loginType
+    })
+  }
+
   render() {
     return (
       <View style={styles.view}>
-        <TokenInput
-          handler={this.handleToken}
+        <LoginType
+          url={this.state.url}
+          setLoginType={this.setLoginType}
         />
+        {this.state.url ?
+          <TokenInput
+          handler={this.handleToken}
+          />
+        :null}
       </View>
     );
   }
