@@ -3,6 +3,10 @@ export interface Store {
 }
 
 export interface InitialState {
+  url: string;
+  tokenLogin: boolean;
+  ssoLogin: boolean;
+  localLogin: boolean;
   token: string;
   userName: string;
   userFolders: Array<UserFolder>;

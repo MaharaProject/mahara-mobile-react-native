@@ -4,6 +4,10 @@ import { ADD_TOKEN, ADD_USER, UPDATE_UPLOAD_LIST } from '../actions/actions';
 
 const initialAppState: InitialState = {
   token: '',
+  url: '',
+  tokenLogin: false,
+  ssoLogin: false,
+  localLogin: false,
   userName: '',
   userFolders: [],
   userTags: [],

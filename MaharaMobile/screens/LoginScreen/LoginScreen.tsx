@@ -78,7 +78,7 @@ export class LoginScreen extends Component<Props, State> {
           url={this.state.url}
           setLoginType={this.setLoginType}
         />
-        {this.state.url ?
+        {this.state.loginType === 'token' ?
           <TokenInput
           handler={this.handleToken}
           />
