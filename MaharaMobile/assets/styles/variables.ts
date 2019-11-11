@@ -11,6 +11,7 @@ export const styles = {
     text: '#000',
     light: '#fff',
     dark: '#000',
+    dark2: '#2e3a1c',
     darkgrey: '#777'
   },
   padding: {

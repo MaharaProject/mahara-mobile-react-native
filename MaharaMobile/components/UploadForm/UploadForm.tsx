@@ -33,6 +33,8 @@ export default class UploadForm extends Component<Props, State> {
   }
 
   render() {
+    const multiLine = this.props.formType != 'journal' ? forms.multiLine : [forms.multiLine,styles.description];
+    const placeholder = this.props.formType != 'journal' ? 'Enter a description' : 'Enter detail';
 
     return (
       <View>
@@ -42,8 +44,8 @@ export default class UploadForm extends Component<Props, State> {
           onChangeText={(text) => {this.props.setFormValue('title', text)}}
         />
         <TextInput
-          style={forms.multiLine}
-          placeholder={'Enter a description'}
+          style={multiLine}
+          placeholder={placeholder}
           onChangeText={(text) => {this.props.setFormValue('description', text)}}
         />
         {this.props.formType != 'journal' ?
@@ -102,7 +104,7 @@ export default class UploadForm extends Component<Props, State> {
         </View>
         {this.props.pickedFile ?
           <TouchableOpacity onPress={()=>{this.props.handleForm()}}>
-            <Text style={buttons.large}>Upload file</Text>
+            <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
         : null}
       </View>

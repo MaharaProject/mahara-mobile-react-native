@@ -143,7 +143,7 @@ export class PendingScreen extends Component<Props, State> {
           { uploadRequestPending ? <Spinner /> : null }
           { !uploadRequestPending && uploadRequestReceived ? successMessage : null}
           <TouchableOpacity onPress={this.onUploadClick}>
-            <Text style={buttons.large}>Upload to your Mahara</Text>
+            <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
         </View>
       </View>

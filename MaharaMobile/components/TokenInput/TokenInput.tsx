@@ -44,7 +44,7 @@ export default class TokenInput extends Component<Props, State> {
           onChangeText={(token) => this.updateToken(token)}
         />
         <TouchableOpacity onPress={this.sendToken}>
-          <Text style={buttons.large}>Verify Token</Text>
+          <Text style={buttons.lg}>Verify Token</Text>
         </TouchableOpacity>
       </View>
     )

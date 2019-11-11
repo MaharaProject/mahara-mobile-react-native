@@ -58,10 +58,9 @@ export function uploadToMahara(url: string, formData: any) {
   }
 }
 
-
 export function uploadJournalToMahara(url: string, body: JournalEntry) {
   const journalEntry = JSON.stringify(body);
-  
+
   return async function() {
     try {
       const response = await fetch(url, {

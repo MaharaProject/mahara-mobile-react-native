@@ -35,5 +35,8 @@ export default StyleSheet.create({
   },
   formTitle: {
     marginBottom: styles.padding.sm
+  },
+  description: {
+    height: 300
   }
 });

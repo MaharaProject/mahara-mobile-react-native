@@ -22,24 +22,24 @@ type Props = {
 };
 
 type State = {
+  title: string;
+  description: string;
   pickedFile: File;
   pickedFolder: string;
-  description: string;
-  title: string;
+  pickedBlog: number;
   selectedTags: Array<string>;
   showTagInput: boolean;
   formType: string;
   webservice: string;
-  pickedBlog: number;
   filePickerButtonText: string;
 };
 
 const initialState = {
+  title: '',
+  description: '',
   pickedFile: {uri: '', name: '', type: '', size: 0},
   pickedFolder: '',
   pickedBlog: 0,
-  description: '',
-  title: '',
   selectedTags: [],
   showTagInput: false,
   formType: '',
@@ -138,7 +138,6 @@ export class AddScreen extends Component<Props, State> {
       return returnObj;
     }
     this.setState(stateObject);
-    console.log(this.state.pickedBlog);
   }
 
   handleForm = () => {
@@ -179,7 +178,7 @@ export class AddScreen extends Component<Props, State> {
       formData.append('foldername', folder);
       formData.append('title', filename);
       formData.append('description', description);
-      // TODO: Inspect the network paylaod to make sure the data is in expected format
+      // TODO: Inspect the network payload to make sure the data is in expected format
       // @ts-ignore
       formData.append('filetoupload', fileData);
       this.props.dispatch(uploadToMahara(url, formData));

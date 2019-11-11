@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { styles } from './variables';
 
 export const buttons = StyleSheet.create({
-  large: {
+  lg: {
     backgroundColor: styles.colors.secondary,
     color: styles.colors.light,
     paddingBottom: styles.padding.md,
