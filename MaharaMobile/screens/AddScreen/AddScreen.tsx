@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { uploadToMahara, uploadJournalToMahara } from '../../actions/actions';
 import Header from '../../components/Header/Header';
 import UploadForm from '../../components/UploadForm/UploadForm';
-import SelectAddType from '../../components/SelectAddType/SelectAddType';
+import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { File, JournalEntry, UserTag, UserFolder, UserBlog, Store } from '../../models/models';
@@ -32,6 +32,7 @@ type State = {
   formType: string;
   webservice: string;
   filePickerButtonText: string;
+  mediaTypeHeader: string;
 };
 
 const initialState = {
@@ -44,7 +45,8 @@ const initialState = {
   showTagInput: false,
   formType: '',
   webservice: 'module_mobileapi_upload_file',
-  filePickerButtonText: 'Pick a file'
+  filePickerButtonText: 'Pick a file',
+  mediaTypeHeader: ''
 }
 
 export class AddScreen extends Component<Props, State> {
@@ -63,16 +65,29 @@ export class AddScreen extends Component<Props, State> {
       formType: type
     });
 
-    if (type === 'file') {
-      this.pickDocument();
-      this.setState({
-        filePickerButtonText: 'Pick a different file'
-      })
-    }
-    if (type === 'journal') {
-      this.setState({
-        webservice: 'module_mobileapi_upload_blog_post'
-      })
+    switch(type) {
+      case 'file':
+        this.setState({
+          filePickerButtonText: 'Pick a different file',
+          mediaTypeHeader: 'Upload a file'
+        })
+      break;
+      case 'journal':
+        this.setState({
+          webservice: 'module_mobileapi_upload_blog_post',
+          mediaTypeHeader: 'Add a journal entry'
+        })
+      break;
+      case 'photo':
+        this.setState({
+          mediaTypeHeader: 'Upload your photo'
+        })
+      break;
+      case 'audio':
+        this.setState({
+          mediaTypeHeader: 'Upload your recording'
+        })
+      break;
     }
   }
 
@@ -173,8 +188,8 @@ export class AddScreen extends Component<Props, State> {
         name: pickedFile.name,
         size: pickedFile.size
       };
+
       const formData = new FormData();
-      
       formData.append('wsfunction', webservice);
       formData.append('wstoken', token);
       formData.append('foldername', folder);
@@ -183,6 +198,7 @@ export class AddScreen extends Component<Props, State> {
       // TODO: Inspect the network payload to make sure the data is in expected format
       // @ts-ignore
       formData.append('filetoupload', fileData);
+      
       this.props.dispatch(uploadToMahara(url, formData));
     }
   }
@@ -192,12 +208,16 @@ export class AddScreen extends Component<Props, State> {
       <ScrollView>
         <Header navigation={this.props.navigation} />
         <View style={styles.view}>
+        {this.state.mediaTypeHeader ?
+          // TODO: temporary styling, add in header styles from diffent branch
+          <Text style={{fontSize: 24, fontWeight: 'bold', marginBottom: 20}}>{this.state.mediaTypeHeader}</Text>
+        : null}
           {this.state.pickedFile.name ?
             <View style={styles.imageWrap}>
               <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
             </View>
           : null}
-          <SelectAddType
+          <SelectMediaType
             selectAddType={this.selectAddType}
             formType={this.state.formType}
             filePickerButtonText={this.state.filePickerButtonText}

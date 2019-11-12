@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { buttons } from '../../assets/styles/buttons';
-import styles from './SelectAddType.style';
+import styles from './SelectMediaType.style';
 
 type Props = {
   selectAddType: Function;
@@ -9,7 +9,7 @@ type Props = {
   filePickerButtonText: string;
 }
 
-export default class SelectAddTypes extends Component<Props> {
+export default class SelectMediaType extends Component<Props> {
   render() {
     return (
       <View>
@@ -26,7 +26,7 @@ export default class SelectAddTypes extends Component<Props> {
             <TouchableOpacity onPress={() => this.props.selectAddType('journal')}>
               <Text style={[buttons.md, styles.button]}>Add a journal entry</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => this.props.selectAddType('record')}>
+            <TouchableOpacity onPress={() => this.props.selectAddType('audio')}>
               <Text style={[buttons.md, styles.button]}>Record audio</Text>
             </TouchableOpacity>
           </View>
