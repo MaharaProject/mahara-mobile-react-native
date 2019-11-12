@@ -5,8 +5,8 @@ export interface Store {
 export interface InitialState {
   token: string;
   userName: string;
-  userFolders: Array<UserFolders>;
-  userTags: Array<UserTags>;
+  userFolders: Array<UserFolder>;
+  userTags: Array<UserTag>;
   uploadList: Array<File>;
   userBlogs: Array<any>;
 }
@@ -38,21 +38,21 @@ export interface JournalEntry {
 
 export interface User {
   userName: string;
-  userFolders: Array<UserFolders>;
-  userTags: Array<UserTags>;
-  userBlogs: Array<UserBlogs>;
+  userFolders: Array<UserFolder>;
+  userTags: Array<UserTag>;
+  userBlogs: Array<UserBlog>;
 }
 
-export interface UserFolders {
+export interface UserFolder {
   title: string;
 }
 
-export interface UserTags {
+export interface UserTag {
   tag: string;
   usage: number;
 }
 
-export interface UserBlogs {
+export interface UserBlog {
   description: string;
   id: number;
   locked: boolean;

@@ -7,14 +7,14 @@ import { uploadToMahara, uploadJournalToMahara } from '../../actions/actions';
 import Header from '../../components/Header/Header';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import SelectAddType from '../../components/SelectAddType/SelectAddType';
-import { buttons } from '../../assets/styles/buttons';
 import styles from './AddScreen.style';
-import { File, JournalEntry, UserTags, UserFolders, UserBlogs, Store } from '../../models/models';
+import { buttons } from '../../assets/styles/buttons';
+import { File, JournalEntry, UserTag, UserFolder, UserBlog, Store } from '../../models/models';
 
 type Props = {
-  userFolders: Array<UserFolders>;
-  userTags: Array<UserTags>;
-  userBlogs: Array<UserBlogs>;
+  userFolders: Array<UserFolder>;
+  userTags: Array<UserTag>;
+  userBlogs: Array<UserBlog>;
   userName: string;
   token: string;
   dispatch: any;
@@ -62,25 +62,26 @@ export class AddScreen extends Component<Props, State> {
     this.setState({
       formType: type
     });
-    if(type === 'file') {
+
+    if (type === 'file') {
       this.pickDocument();
       this.setState({
         filePickerButtonText: 'Pick a different file'
       })
     }
-    if(type=== 'journal') {
+    if (type === 'journal') {
       this.setState({
         webservice: 'module_mobileapi_upload_blog_post'
       })
     }
   }
 
-  resetForm =() => {
+  resetForm = () => {
     this.setState(initialState);
   }
 
   addTag = (tag: string) => {
-    if (tag == 'Add new tag +') {
+    if (tag === 'Add new tag +') {
       this.setState({ showTagInput: true });
     } else if (tag && !this.state.selectedTags.includes(tag)) {
       const selectedTags = [...this.state.selectedTags, tag];
@@ -173,6 +174,7 @@ export class AddScreen extends Component<Props, State> {
         size: pickedFile.size
       };
       const formData = new FormData();
+      
       formData.append('wsfunction', webservice);
       formData.append('wstoken', token);
       formData.append('foldername', folder);

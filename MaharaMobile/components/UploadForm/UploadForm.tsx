@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
-import { UserFolders, File, UserTags, UserBlogs } from '../../models/models';
+import { UserFolder, File, UserTag, UserBlog } from '../../models/models';
 
 type Props = {
   pickedFile: File;
@@ -11,9 +11,9 @@ type Props = {
   setFormValue: any;
   addTag: Function;
   removeTag: Function;
-  userFolders: Array<UserFolders>;
-  userTags: Array<UserTags>;
-  userBlogs: Array<UserBlogs>;
+  userFolders: Array<UserFolder>;
+  userTags: Array<UserTag>;
+  userBlogs: Array<UserBlog>;
   selectedTags: Array<string>;
   showTagInput: boolean;
   formType: string;
@@ -33,8 +33,8 @@ export default class UploadForm extends Component<Props, State> {
   }
 
   render() {
-    const multiLine = this.props.formType != 'journal' ? forms.multiLine : [forms.multiLine,styles.description];
-    const placeholder = this.props.formType != 'journal' ? 'Enter a description' : 'Enter detail';
+    const multiLine = this.props.formType !== 'journal' ? forms.multiLine : [forms.multiLine,styles.description];
+    const placeholder = this.props.formType !== 'journal' ? 'Enter a description' : 'Enter detail';
 
     return (
       <View>
@@ -48,10 +48,10 @@ export default class UploadForm extends Component<Props, State> {
           placeholder={placeholder}
           onChangeText={(text) => {this.props.setFormValue('description', text)}}
         />
-        {this.props.formType != 'journal' ?
+        {this.props.formType !== 'journal' ?
           <View style={forms.pickerWrapper}>
             <Picker style={forms.picker} onValueChange={(itemValue) => {this.props.setFormValue('pickedFolder', itemValue)}}>
-              {this.props.userFolders && this.props.userFolders.map((folder: any, index: number) => (
+              {this.props.userFolders && this.props.userFolders.map((folder: UserFolder, index: number) => (
                 <Picker.Item label={folder.title} value={folder.title} key={index} />
               ))}
             </Picker>
@@ -62,7 +62,7 @@ export default class UploadForm extends Component<Props, State> {
             <Text style={styles.formTitle}>Blog:</Text>
             <View style={forms.pickerWrapper}>
               <Picker style={forms.picker} onValueChange={(itemValue) => {this.props.setFormValue('pickedBlog', itemValue)}}>
-                {this.props.userBlogs && this.props.userBlogs.map((blog: any, index: number) => (
+                {this.props.userBlogs && this.props.userBlogs.map((blog: UserBlog, index: number) => (
                   <Picker.Item label={blog.title} value={blog.id} key={index} />
                 ))}
               </Picker>
@@ -96,7 +96,7 @@ export default class UploadForm extends Component<Props, State> {
         </View>
         <View style={forms.pickerWrapper}>
           <Picker style={forms.picker} onValueChange={(itemValue) => {this.props.addTag(itemValue)}}>
-            {this.props.userTags && this.props.userTags.map((value: any, index: number) => (
+            {this.props.userTags && this.props.userTags.map((value: UserTag, index: number) => (
               <Picker.Item label={value.tag} value={value.tag} key={index} />
             ))}
             <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />

@@ -13,12 +13,12 @@ export default class SelectAddTypes extends Component<Props> {
   render() {
     return (
       <View>
-        { !this.props.formType || this.props.formType === 'file' ?
+        {!this.props.formType || this.props.formType === 'file' ?
           <TouchableOpacity onPress={() => this.props.selectAddType('file')}>
             <Text style={[buttons.md, styles.button]}>{this.props.filePickerButtonText}</Text>
           </TouchableOpacity>
         : null}
-        { !this.props.formType ?
+        {!this.props.formType ?
           <View>
             <TouchableOpacity onPress={() => this.props.selectAddType('photo')}>
               <Text style={[buttons.md, styles.button]}>Take a photo</Text>
