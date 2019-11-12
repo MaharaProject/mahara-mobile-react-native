@@ -9,6 +9,7 @@ import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
+  url: string;
   setLoginType: Function;
   dispatch: any;
   tokenLogin: boolean;
@@ -18,6 +19,9 @@ type Props = {
 
 type State = {
   url: string;
+  enterUrlWarning: boolean;
+  serverPing: boolean;
+  isInputHidden: boolean;
 }
 
 export class LoginType extends Component<Props, State> {
@@ -25,35 +29,81 @@ export class LoginType extends Component<Props, State> {
     super(props);
 
     this.state = {
-      url: ''
+      url: '',
+      enterUrlWarning: false,
+      serverPing: this.props.url ? true : false,
+      isInputHidden: this.props.url ? true : false
     }
   }
 
-  checkUrl = (input: string) => {
-    let url = input.trim();
-    this.setState({
-      url: url
-    })
+  checkUrl = (url: string) => {
+    let serverUrl = url.trim();
+
+    if(serverUrl.length === 0) {
+      this.setState({
+        enterUrlWarning: true,
+        url: ''
+      });
+      return;
+    } else {
+      this.setState({
+        enterUrlWarning: false
+      })
+    }
+
+    if (serverUrl.slice(-1) !== "/") {
+      serverUrl = serverUrl + "/";
+    }
+    if (!/^https?:\/\//.test(serverUrl)) {
+      serverUrl = "https://" + serverUrl;
+    }
+    this.setState({url: serverUrl});
   }
 
-  checkServer = async () => {
-    let serverUrl = this.state.url;
-    this.props.dispatch(checkLoginTypes(serverUrl));
+  checkServer = () => {
+    const serverUrl = this.state.url;
+
+    if(!serverUrl) {
+      return;
+    }
+
+    this.props.dispatch(checkLoginTypes(serverUrl)).then( () => {
+      if(this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
+        this.setState({
+          serverPing: true,
+          isInputHidden: true
+        });
+      }
+    });
   }
 
   render() {
     return (
       <View style={styles.view}>
-        <Text style={headings.subHeading1}>What is the address of your Mahara?</Text>
-        <TextInput
-          style={forms.textInput}
-          // placeholder={'https://yoursite.edu/'}
-          defaultValue='https://master.dev.mahara.org/'
-          onChangeText={(url) => this.checkUrl(url)}
-        />
-        <TouchableOpacity onPress={()=>this.checkServer()}>
-          <Text style={buttons.large}>Next</Text>
-        </TouchableOpacity>
+        {!this.state.isInputHidden ?
+          <View>
+            <Text style={headings.subHeading1}>What is the address of your Mahara?</Text>
+            <TextInput
+              style={forms.textInput}
+              // placeholder={'https://yoursite.edu/'}
+              defaultValue='https://master.dev.mahara.org/'
+              onChangeText={(url) => this.checkUrl(url)}
+            />
+          </View>
+        :null }
+        {this.state.enterUrlWarning ?
+          <Text>Please enter a URL</Text>
+        : null}
+        {this.state.serverPing && this.state.isInputHidden ?
+          <TouchableOpacity onPress={()=>this.setState({ isInputHidden: false})}>
+            <Text style={[buttons.md, styles.buttons]}>Enter a different URL</Text>
+          </TouchableOpacity>
+        : null}
+        {!this.state.isInputHidden ?
+          <TouchableOpacity onPress={()=>this.checkServer()}>
+            <Text style={[buttons.md, styles.buttons]}>Next</Text>
+          </TouchableOpacity>
+        : null}
         {this.props.tokenLogin ?
           <TouchableOpacity
             onPress={()=>this.props.setLoginType('token')
@@ -82,6 +132,7 @@ export class LoginType extends Component<Props, State> {
 
 const mapStateToProps = (state: Store) => {
   return {
+    url: state.app.url,
     tokenLogin: state.app.tokenLogin,
     ssoLogin: state.app.ssoLogin,
     localLogin: state.app.localLogin
