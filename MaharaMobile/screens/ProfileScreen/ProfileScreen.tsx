@@ -13,6 +13,7 @@ type Props = {
   navigation: any; // need to double check type for this
   token: string;
   userName: string;
+  url: string;
 }
 
 type State = {
@@ -43,7 +44,7 @@ export class ProfileScreen extends Component<Props, State> {
   receiveProfilePic = async () => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
           wstoken = this.props.token,
-          serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
+          serverUrl = this.props.url + 'module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
 
     RNFetchBlob.config({
       fileCache: true
@@ -88,6 +89,7 @@ export class ProfileScreen extends Component<Props, State> {
 
 const mapStateToProps = (state: Store) => {
   return {
+    url: state.app.url,
     token: state.app.token,
     userName: state.app.userName
   }

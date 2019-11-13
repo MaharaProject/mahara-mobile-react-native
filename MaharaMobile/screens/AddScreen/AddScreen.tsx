@@ -19,6 +19,7 @@ type Props = {
   token: string;
   dispatch: any;
   navigation: any;
+  url: string;
 };
 
 type State = {
@@ -251,6 +252,7 @@ export class AddScreen extends Component<Props, State> {
 
 const mapStateToProps = (state: Store) => {
   return {
+    url: state.app.token,
     token: state.app.token,
     userTags: state.app.userTags,
     userFolders: state.app.userFolders,
