@@ -1,7 +1,5 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { connect } from 'react-redux';
-import { Store } from '../../models/models';
 import styles from './LoginType.style';
 import { headings } from '../../assets/styles/headings';
 import { forms } from '../../assets/styles/forms';
@@ -22,7 +20,7 @@ type Props = {
   enterUrlWarning: boolean;
 }
 
-export function LoginType(props: Props) {
+export default function LoginType(props: Props) {
   return (
     <View style={styles.view}>
       {!props.isInputHidden ?
@@ -73,13 +71,3 @@ export function LoginType(props: Props) {
     </View>
   )
 }
-
-const mapStateToProps = (state: Store) => {
-  return {
-    tokenLogin: state.app.tokenLogin,
-    ssoLogin: state.app.ssoLogin,
-    localLogin: state.app.localLogin
-  }
-}
-
-export default connect(mapStateToProps)(LoginType);

@@ -141,6 +141,9 @@ export class LoginScreen extends Component<Props, State> {
           checkServer={this.checkServer}
           checkUrl={this.checkUrl}
           toggleUrlField={this.toggleUrlField}
+          localLogin={this.props.localLogin}
+          ssoLogin={this.props.ssoLogin}
+          tokenLogin={this.props.tokenLogin}
         />
         {this.state.loginType === 'token' ?
           <TokenInput
