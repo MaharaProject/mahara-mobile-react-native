@@ -143,7 +143,7 @@ export class AddScreen extends Component<Props, State> {
         const pickedFile: MaharaFile = {
           name: res.fileName,
           uri: res.uri,
-          type: res.type,
+          mimetype: res.type,
           size: Number(res.fileSize)
         };
 
@@ -195,7 +195,7 @@ export class AddScreen extends Component<Props, State> {
 
       const fileData: MaharaFile = {
         uri: pickedFile.uri,
-        type: pickedFile.type,
+        mimetype: pickedFile.mimetype,
         name: pickedFile.name,
         size: pickedFile.size
       };
