@@ -21,7 +21,7 @@ export interface Blob {
 
 export interface MaharaFile {
   uri: string;
-  mimetype: string;
+  type: string; //mimetype
   name: string;
   size: number;
 }
