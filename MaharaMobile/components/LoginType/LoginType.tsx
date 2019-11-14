@@ -8,10 +8,9 @@ import { buttons } from '../../assets/styles/buttons';
 type Props = {
   url: string;
   setLoginType: Function;
-  toggleUrlField: Function;
+  resetForm: Function;
   checkServer: Function;
   checkUrl: Function;
-  dispatch: any;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
@@ -38,7 +37,7 @@ export default function LoginType(props: Props) {
         <Text>Please enter a URL</Text>
       : null}
       {props.serverPing && props.isInputHidden ?
-        <TouchableOpacity onPress={()=>props.toggleUrlField(false)}>
+        <TouchableOpacity onPress={()=>props.resetForm()}>
           <Text style={[buttons.md, styles.buttons]}>Enter a different URL</Text>
         </TouchableOpacity>
       : null}
