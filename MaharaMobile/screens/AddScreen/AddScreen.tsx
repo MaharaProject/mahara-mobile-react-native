@@ -9,7 +9,7 @@ import UploadForm from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { File, JournalEntry, UserTag, UserFolder, UserBlog, Store } from '../../models/models';
+import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, Store } from '../../models/models';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -24,7 +24,7 @@ type Props = {
 type State = {
   title: string;
   description: string;
-  pickedFile: File;
+  pickedFile: MaharaFile;
   pickedFolder: string;
   pickedBlog: number;
   selectedTags: Array<string>;
@@ -71,6 +71,7 @@ export class AddScreen extends Component<Props, State> {
           filePickerButtonText: 'Pick a different file',
           mediaTypeHeader: 'Upload a file'
         })
+        this.pickDocument()
       break;
       case 'journal':
         this.setState({
@@ -132,7 +133,7 @@ export class AddScreen extends Component<Props, State> {
         //error
         console.log(error);
 
-        const pickedFile: File = {
+        const pickedFile: MaharaFile = {
           name: res.fileName,
           uri: res.uri,
           type: res.type,
@@ -182,7 +183,7 @@ export class AddScreen extends Component<Props, State> {
       const folder = pickedFolder ? pickedFolder : firstFolder; //setting to first folder until we set up default folder functionality
       const webservice = 'module_mobileapi_upload_file';
 
-      const fileData: File = {
+      const fileData: MaharaFile = {
         uri: pickedFile.uri,
         type: pickedFile.type,
         name: pickedFile.name,
@@ -198,7 +199,7 @@ export class AddScreen extends Component<Props, State> {
       // TODO: Inspect the network payload to make sure the data is in expected format
       // @ts-ignore
       formData.append('filetoupload', fileData);
-      
+
       this.props.dispatch(uploadToMahara(url, formData));
     }
   }

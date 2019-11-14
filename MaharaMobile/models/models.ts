@@ -7,7 +7,7 @@ export interface InitialState {
   userName: string;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
-  uploadList: Array<File>;
+  uploadList: Array<MaharaFile>;
   userBlogs: Array<any>;
 }
 
@@ -19,7 +19,7 @@ export interface Blob {
   slice(start?: number, end?: number, contentType?: string): Blob;
 }
 
-export interface File {
+export interface MaharaFile {
   uri: string;
   type: string;
   name: string;

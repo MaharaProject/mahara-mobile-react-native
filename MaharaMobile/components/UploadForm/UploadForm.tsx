@@ -3,10 +3,10 @@ import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
-import { UserFolder, File, UserTag, UserBlog } from '../../models/models';
+import { UserFolder, MaharaFile, UserTag, UserBlog } from '../../models/models';
 
 type Props = {
-  pickedFile: File;
+  pickedFile: MaharaFile;
   handleForm: Function;
   setFormValue: any;
   addTag: Function;
