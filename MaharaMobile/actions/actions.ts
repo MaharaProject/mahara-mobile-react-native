@@ -27,12 +27,12 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function updateUploadList(uploadList:Array<MaharaFile>) {
+export function updateUploadList(uploadList: Array<MaharaFile>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 
 export function sendTokenLogin(serverUrl: string, requestOptions: any) {
-  return async function(dispatch: any) {
+  return async function (dispatch: any) {
     try {
       const response = await fetch(serverUrl, requestOptions);
       const json = await response.json();
@@ -44,8 +44,9 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
 }
 
 export function uploadToMahara(url: string, formData: any) {
-  return async function() {
+  return async function () {
     try {
+      console.log('formData:', formData)
       const response = await fetch(url, {
         method: 'POST',
         body: formData
@@ -61,7 +62,7 @@ export function uploadToMahara(url: string, formData: any) {
 export function uploadJournalToMahara(url: string, body: JournalEntry) {
   const journalEntry = JSON.stringify(body);
 
-  return async function() {
+  return async function () {
     try {
       const response = await fetch(url, {
         method: 'POST',

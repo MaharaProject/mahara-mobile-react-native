@@ -21,7 +21,7 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
-    selectedFiles: Array<File>
+    selectedFiles: Array<MaharaFile>
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -37,20 +37,20 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   //TEMP
-  DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
+  // DATA = [
+  //   {
+  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+  //     title: 'First Item',
+  //   },
+  //   {
+  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+  //     title: 'Second Item',
+  //   },
+  //   {
+  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
+  //     title: 'Third Item',
+  //   },
+  // ];
 
   static navigationOptions = {
     header: null
@@ -60,32 +60,32 @@ export class PendingScreen extends Component<Props, State> {
     return (
       <View>
         <FlatList
-          data={this.DATA}
+          data={this.props.uploadList}
           extraData={this.state.selectedFiles}
           renderItem={({ item }) => {
             let itemSelected
             if (this.state.selectedFiles) {
               this.state.selectedFiles.forEach(file => {
-                return (file.id === item.id) ? itemSelected = true : null
+                return (file.name === item.name) ? itemSelected = true : null
               })
             }
             return (
               <TouchableOpacity
-                style ={itemSelected && styles.highlighted}
+                style={itemSelected && styles.highlighted}
                 onPress={() => this.props.navigation.navigate('UploadFileScreen')}
                 onLongPress={() => this.handleLongPress(item)}
               >
-                <Text>{item.title}</Text>
+                <Text>{item.name}</Text>
               </TouchableOpacity>
             )
           }}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.name + item.size}
         />
       </View>
     )
   }
 
-  handleLongPress(item: File) {
+  handleLongPress(item: MaharaFile) {
     const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
     selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
     this.setState({ selectedFiles: Array.from(selectedFiles) });
@@ -119,7 +119,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onDelete() {
-    const newUploadList = new Set(this.DATA)
+    const newUploadList = new Set(this.props.uploadList)
     this.state.selectedFiles.forEach(file => {
       newUploadList.delete(file)
     })
@@ -138,10 +138,10 @@ export class PendingScreen extends Component<Props, State> {
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
-          { selectedFiles.length > 0 ? <Button title='Delete' onPress={() => {this.onDelete()}}/> : null }
-          { this.DATA.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text> }
-          { uploadRequestPending ? <Spinner /> : null }
-          { !uploadRequestPending && uploadRequestReceived ? successMessage : null}
+          {selectedFiles.length > 0 ? <Button title='Delete' onPress={() => { this.onDelete() }} /> : null}
+          {this.props.uploadList.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text>}
+          {uploadRequestPending ? <Spinner /> : null}
+          {!uploadRequestPending && uploadRequestReceived ? successMessage : null}
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
