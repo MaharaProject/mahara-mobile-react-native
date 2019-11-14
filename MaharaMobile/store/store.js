@@ -5,17 +5,15 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers/reducers';
 
 export default function configureStore(preloadedState) {
-  const middleware = [ thunk ];
+  const middleware = [thunk];
 
   middleware.push(createLogger());
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const composeEnhancers =    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   return createStore(
     reducers,
     preloadedState,
-    composeEnhancers(
-      applyMiddleware(...middleware)
-    )
-  )
+    composeEnhancers(applyMiddleware(...middleware)),
+  );
 }

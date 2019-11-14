@@ -20,7 +20,7 @@ module.exports = {
           "extensions": [".js", "jsx", ".ts", ".tsx"]
        }
     ],
-    "prefer-destructuring": 0,
+    "prefer-destructuring": 1,
     "no-console": 1,
     "no-unused-expressions": ["error", { "allowTernary": true }],
     "no-unused-vars":0,
@@ -32,5 +32,10 @@ module.exports = {
       "ecmaFeatures": {
           "jsx": true
       }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "jasmine": true
   }
 };
