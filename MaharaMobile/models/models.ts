@@ -21,19 +21,19 @@ export interface Blob {
 
 export interface MaharaFile {
   uri: string;
-  type: string;
+  mimetype: string;
   name: string;
   size: number;
 }
 
 export interface JournalEntry {
-    blogid: number;
-    wsfunction: string;
-    wstoken: string;
-    title: string;
-    body: string;
-    isdraft: boolean;
-    tags?: Array<string>;
+  blogid: number;
+  wsfunction: string;
+  wstoken: string;
+  title: string;
+  body: string;
+  isdraft: boolean;
+  tags?: Array<string>;
 }
 
 export interface User {
