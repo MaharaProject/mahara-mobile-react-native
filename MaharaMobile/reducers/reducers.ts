@@ -6,7 +6,7 @@ const initialAppState: InitialState = {
   userName: '',
   userFolders: [],
   userTags: [],
-  uploadList: []
+  uploadList: [{ name: 'name test', size: 10, mimetype: 'image', uri: 'test uri' }]
 };
 
 const app = (state = initialAppState, action: any) => {
@@ -25,10 +25,10 @@ const app = (state = initialAppState, action: any) => {
         userBlogs: action.userBlogs
       }
     case 'UPDATE_UPLOAD_LIST':
-    return {
-      ...state,
-      uploadList: action.uploadList
-    }
+      return {
+        ...state,
+        uploadList: state.uploadList.concat(action.uploadList)
+      }
     default:
       return state;
   }
