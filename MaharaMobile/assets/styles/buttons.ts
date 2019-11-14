@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { styles } from './variables.ts';
+import { styles } from './variables';
 
 export const buttons = StyleSheet.create({
-  large: {
+  lg: {
     backgroundColor: styles.colors.secondary,
     color: styles.colors.light,
     paddingBottom: styles.padding.md,
@@ -20,5 +20,13 @@ export const buttons = StyleSheet.create({
     fontSize: styles.font.md,
     textAlign: 'center',
     width: '100%'
+  },
+  sm: {
+    backgroundColor: styles.colors.quaternary,
+    color: styles.colors.light,
+    padding: styles.padding.sm,
+    fontSize: styles.font.md,
+    textAlign: 'center',
+    alignSelf: 'flex-start'
   }
 });

@@ -1,8 +1,8 @@
 import 'react-native';
 import React from "react";
 import renderer from 'react-test-renderer';
-import Profile from './Profile';
+import SelectMediaType from './SelectMediaType';
 
 it('renders correctly', () => {
-  renderer.create(<Profile />);
+  renderer.create(<SelectMediaType />);
 });

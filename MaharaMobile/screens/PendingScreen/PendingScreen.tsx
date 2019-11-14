@@ -6,12 +6,12 @@ import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { uploadToMahara, updateUploadList } from '../../actions/actions'
-import { File, Store } from '../../models/models';
+import { MaharaFile, Store } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 
 type Props =
   {
-    uploadList: Array<File>;
+    uploadList: Array<MaharaFile>;
     dispatch: any;
     navigation: any;
   }
@@ -143,7 +143,7 @@ export class PendingScreen extends Component<Props, State> {
           { uploadRequestPending ? <Spinner /> : null }
           { !uploadRequestPending && uploadRequestReceived ? successMessage : null}
           <TouchableOpacity onPress={this.onUploadClick}>
-            <Text style={buttons.large}>Upload to your Mahara</Text>
+            <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
         </View>
       </View>

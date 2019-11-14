@@ -1,4 +1,4 @@
-import { File } from '../models/models';
+import { MaharaFile, JournalEntry } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -14,6 +14,7 @@ export function addUser(json: any) {
   }
 }
 
+// TODO: add function for adding tags to loca state
 // function for adding tag start
 // export function addTag(tag: string) {
 //   return {
@@ -26,7 +27,7 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function updateUploadList(uploadList:Array<File>) {
+export function updateUploadList(uploadList:Array<MaharaFile>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 
@@ -48,6 +49,26 @@ export function uploadToMahara(url: string, formData: any) {
       const response = await fetch(url, {
         method: 'POST',
         body: formData
+      });
+      const result = await response.json();
+      console.log('Success:', JSON.stringify(result));
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+}
+
+export function uploadJournalToMahara(url: string, body: JournalEntry) {
+  const journalEntry = JSON.stringify(body);
+
+  return async function() {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: journalEntry
       });
       const result = await response.json();
       console.log('Success:', JSON.stringify(result));

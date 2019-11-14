@@ -5,9 +5,9 @@ export interface Store {
 export interface InitialState {
   token: string;
   userName: string;
-  userFolders: Array<UserFolders>;
-  userTags: Array<UserTags>;
-  uploadList: Array<File>;
+  userFolders: Array<UserFolder>;
+  userTags: Array<UserTag>;
+  uploadList: Array<MaharaFile>;
   userBlogs: Array<any>;
 }
 
@@ -19,30 +19,40 @@ export interface Blob {
   slice(start?: number, end?: number, contentType?: string): Blob;
 }
 
-export interface File {
+export interface MaharaFile {
   uri: string;
   type: string;
   name: string;
   size: number;
 }
 
-export interface User {
-  userName: string;
-  userFolders: Array<UserFolders>;
-  userTags: Array<UserTags>;
-  userBlogs: Array<UserBlogs>;
+export interface JournalEntry {
+    blogid: number;
+    wsfunction: string;
+    wstoken: string;
+    title: string;
+    body: string;
+    isdraft: boolean;
+    tags?: Array<string>;
 }
 
-export interface UserFolders {
+export interface User {
+  userName: string;
+  userFolders: Array<UserFolder>;
+  userTags: Array<UserTag>;
+  userBlogs: Array<UserBlog>;
+}
+
+export interface UserFolder {
   title: string;
 }
 
-export interface UserTags {
+export interface UserTag {
   tag: string;
   usage: number;
 }
 
-export interface UserBlogs {
+export interface UserBlog {
   description: string;
   id: number;
   locked: boolean;
