@@ -7,11 +7,13 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
     "@types/react-redux": "^7.1.5",
+    "@typescript-eslint/parser": "^2.7.0",
     "react": "16.9.0",
     "react-native": "0.61.1",
     "react-native-document-picker": "git+https://github.com/Elyx0/react-native-document-picker.git#v2",
@@ -34,12 +36,24 @@
     "@types/react": "^16.9.3",
     "@types/react-native": "^0.60.16",
     "@types/react-test-renderer": "^16.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.7.0",
     "babel-jest": "24.9.0",
-    "eslint": "6.4.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
     "jest": "24.9.0",
     "metro-react-native-babel-preset": "0.51.1",
+    "prettier": "^1.19.1",
+    "prettier-loader": "^3.3.0",
     "react-native-testing-library": "^1.11.1",
-    "react-test-renderer": "16.9.0"
+    "react-test-renderer": "16.9.0",
+    "tslint": "^5.20.1",
+    "tslint-config-airbnb": "^5.11.2",
+    "typescript": "^3.7.2"
   },
   "jest": {
     "preset": "react-native",
