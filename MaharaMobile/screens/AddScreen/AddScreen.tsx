@@ -39,7 +39,7 @@ type State = {
 const initialState = {
   title: '',
   description: '',
-  pickedFile: { uri: '', name: '', mimetype: '', size: 0 },
+  pickedFile: { uri: '', name: '', type: '', size: 0 },
   pickedFolder: '',
   pickedBlog: 0,
   selectedTags: [],
@@ -143,7 +143,7 @@ export class AddScreen extends Component<Props, State> {
         const pickedFile: MaharaFile = {
           name: res.fileName,
           uri: res.uri,
-          mimetype: res.type,
+          type: res.type,
           size: Number(res.fileSize)
         };
 
@@ -195,7 +195,7 @@ export class AddScreen extends Component<Props, State> {
 
       const fileData: MaharaFile = {
         uri: pickedFile.uri,
-        mimetype: pickedFile.mimetype,
+        type: pickedFile.type,
         name: pickedFile.name,
         size: pickedFile.size
       };
