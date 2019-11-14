@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addToken, sendTokenLogin } from '../../actions/actions';
 import { Store } from '../../models/models';
 import TokenInput from '../../components/TokenInput/TokenInput';
-import styles from './LoginScreen.style';
+import { generic } from '../../assets/styles/generic';
 
 type Props = {
   dispatch: any;
@@ -73,10 +73,10 @@ export class LoginScreen extends Component<Props, State> {
     const loginType = params.loginType;
 
     return (
-      <View style={styles.view}>
+      <View style={generic.view}>
         {loginType === 'token' ?
           <TokenInput
-          handler={this.handleToken}
+            handler={this.handleToken}
           />
         :null}
       </View>
