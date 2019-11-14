@@ -76,7 +76,7 @@ export class LoginScreen extends Component<Props, State> {
       <View style={generic.view}>
         {loginType === 'token' ?
           <TokenInput
-            handler={this.handleToken}
+            handleToken={this.handleToken}
           />
         :null}
       </View>

@@ -7,7 +7,7 @@ import { buttons } from '../../assets/styles/buttons';
 import { headings } from '../../assets/styles/headings';
 
 type Props = {
-  handler: any;
+  handleToken: Function;
 }
 
 type State = {
@@ -29,11 +29,6 @@ export default class TokenInput extends Component<Props, State> {
     this.setState({
       token: token
     });
-  }
-
-  sendToken = () => {
-    // pass token to loginScreen
-    this.props.handler(this.state.token);
   }
 
   render() {

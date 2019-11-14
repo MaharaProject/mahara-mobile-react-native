@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { checkLoginTypes } from '../../actions/actions';
 import { Store } from '../../models/models';
 import LoginType from '../../components/LoginType/LoginType';
+import { generic } from '../../assets/styles/generic';
 
 type Props = {
   dispatch: any;
@@ -36,6 +37,10 @@ export class SiteCheckScreen extends Component<Props, State> {
 
     this.state = initialState;
   }
+
+  static navigationOptions = {
+    header: null,
+  };
 
   setLoginType = (loginType: string) => {
     this.props.navigation.navigate('Login', {
@@ -90,7 +95,7 @@ export class SiteCheckScreen extends Component<Props, State> {
 
   render() {
     return (
-      <View>
+      <View style={generic.view}>
         <LoginType
           url={this.state.url}
           isInputHidden={this.state.isInputHidden}

@@ -15,5 +15,12 @@ export const headings = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: styles.padding.sm,
     marginTop: styles.padding.sm
+  },
+  subHeading2: {
+    fontSize: styles.font.sm,
+    color: styles.colors.dark,
+    fontWeight: 'bold',
+    marginBottom: styles.padding.sm,
+    marginTop: styles.padding.sm
   }
 });

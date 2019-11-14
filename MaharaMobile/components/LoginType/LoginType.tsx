@@ -37,30 +37,36 @@ export default function LoginType(props: Props) {
         <Text>Please enter a URL</Text>
       : null}
       {props.serverPing && props.isInputHidden ?
-        <TouchableOpacity onPress={()=>props.resetForm()}>
-          <Text style={[buttons.md, styles.buttons]}>Enter a different URL</Text>
-        </TouchableOpacity>
+        <View>
+          <Text style={[headings.subHeading2, styles.url]}>{props.url}</Text>
+          <TouchableOpacity onPress={()=>props.resetForm()}>
+            <Text style={[buttons.md, styles.buttons]}>Enter a different URL</Text>
+          </TouchableOpacity>
+        </View>
       : null}
       {!props.isInputHidden ?
         <TouchableOpacity onPress={()=>props.checkServer()}>
           <Text style={[buttons.md, styles.buttons]}>Next</Text>
         </TouchableOpacity>
       : null}
-      {props.tokenLogin ?
+      {props.serverPing ?
+        <Text style={headings.mainHeading}>Select login type</Text>
+      :null}
+      {props.serverPing && props.tokenLogin ?
         <TouchableOpacity
           onPress={()=>props.setLoginType('token')
         }>
           <Text style={[buttons.md, styles.buttons]}>Paste in access token</Text>
         </TouchableOpacity>
       :null }
-      {props.localLogin ?
+      {props.serverPing && props.localLogin ?
         <TouchableOpacity
           onPress={()=>props.setLoginType('basic')
         }>
           <Text style={[buttons.md, styles.buttons]}>Local Login</Text>
         </TouchableOpacity>
       :null }
-      {props.ssoLogin ?
+      {props.serverPing && props.ssoLogin ?
         <TouchableOpacity
           onPress={()=>props.setLoginType('sso')
         }>

@@ -7,5 +7,8 @@ export default StyleSheet.create({
   },
   buttons: {
     marginBottom: styles.padding.md
+  },
+  url: {
+    textAlign: 'center'
   }
 });
