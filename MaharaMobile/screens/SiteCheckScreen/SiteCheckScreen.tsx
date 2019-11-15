@@ -8,7 +8,7 @@ import { generic } from '../../assets/styles/generic';
 
 type Props = {
   dispatch: any;
-  navigation: any; // need to double check type for this
+  navigation: any; // TODO: need to double check type for this
   url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;

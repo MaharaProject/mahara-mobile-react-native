@@ -60,12 +60,18 @@ export class LoginScreen extends Component<Props, State> {
     this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() => this.props.navigation.navigate('Add'));
   };
 
-  handleToken = (value: string) => {
-    this.setState({token: value}, function(this: any) {
-      this.login();
-    });
+  setToken = (input: string) => {
+    let token = input.trim();
 
-    this.props.dispatch(addToken(value));
+    this.setState({
+      token: token
+    });
+  }
+
+  handleToken = () => {
+    const token = this.state.token;
+    this.login();
+    this.props.dispatch(addToken(token));
   }
 
   render() {
@@ -77,6 +83,7 @@ export class LoginScreen extends Component<Props, State> {
         {loginType === 'token' ?
           <TokenInput
             handleToken={this.handleToken}
+            setToken={this.setToken}
           />
         :null}
       </View>

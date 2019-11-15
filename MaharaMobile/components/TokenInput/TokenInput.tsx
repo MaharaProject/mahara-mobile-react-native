@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 
 import styles from './TokenInput.style';
@@ -8,42 +8,22 @@ import { headings } from '../../assets/styles/headings';
 
 type Props = {
   handleToken: Function;
+  setToken: Function;
 }
 
-type State = {
-  token: string;
-}
-
-export default class TokenInput extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      token: ''
-    };
-  };
-
-  updateToken = (input: string) => {
-    let token = input.trim();
-
-    this.setState({
-      token: token
-    });
-  }
-
-  render() {
-    return (
-      <View style={styles.view}>
-        <Text style={headings.mainHeading}>Login via Token</Text>
-        <TextInput
-          style={forms.textInput}
-          defaultValue='ab6f3b68f8b0b976cf6b51eac2cd54da'
-          onChangeText={(token) => this.updateToken(token)}
-        />
-        <TouchableOpacity onPress={this.sendToken}>
-          <Text style={buttons.lg}>Verify Token</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
+export default function TokenInput(props: Props) {
+  return (
+    <View style={styles.view}>
+      <Text style={headings.mainHeading}>Login via Token</Text>
+      <TextInput
+        style={forms.textInput}
+        //TODO: remove default value for go live
+        defaultValue='ab6f3b68f8b0b976cf6b51eac2cd54da'
+        onChangeText={(token) => props.setToken(token)}
+      />
+      <TouchableOpacity onPress={()=>props.handleToken()}>
+        <Text style={buttons.lg}>Verify Token</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }

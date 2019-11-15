@@ -4,6 +4,5 @@ import renderer from 'react-test-renderer';
 import UploadForm from './UploadForm';
 
 it('renders correctly', () => {
-
-  renderer.create(<Form />);
+  renderer.create(<UploadForm />);
 });
