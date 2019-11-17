@@ -8,7 +8,7 @@ export interface InitialState {
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   uploadList: Array<MaharaFile>;
-  userBlogs: Array<any>;
+  userBlogs: Array<UserBlog>;
 }
 
 export interface Blob {

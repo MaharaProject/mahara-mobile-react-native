@@ -16,7 +16,7 @@ type Props = {
 }
 
 type State = {
-  userPic: string;
+  profileIcon: string;
 }
 
 export class ProfileScreen extends Component<Props, State> {
@@ -24,7 +24,7 @@ export class ProfileScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      userPic: ''
+      profileIcon: ''
     }
   }
 
@@ -52,7 +52,7 @@ export class ProfileScreen extends Component<Props, State> {
     .then((res) => {
       const image = `file://${res.path()}`;
       this.setState({
-        userPic: image
+        profileIcon: image
       })
     })
     .catch((error) => {
@@ -72,7 +72,7 @@ export class ProfileScreen extends Component<Props, State> {
         <View style={styles.container}>
           <Profile
             name={this.props.userName}
-            userPic={this.state.userPic}
+            profileIcon={this.state.profileIcon}
           />
           <TouchableOpacity onPress={this.goToUploadScreen}>
             <Text style={buttons.lg}>Upload a file</Text>
