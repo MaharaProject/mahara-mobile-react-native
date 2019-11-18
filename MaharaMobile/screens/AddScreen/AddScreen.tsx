@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-na
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
 
-import { uploadToMahara, uploadJournalToMahara, updateUploadList } from '../../actions/actions';
+import { uploadToMahara, uploadJournalToMahara, updateUploadList, uploadFileToMahara } from '../../actions/actions';
 import Header from '../../components/Header/Header';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
@@ -217,22 +217,23 @@ export class AddScreen extends Component<Props, State> {
 
       console.log('filedata', fileData);
       // add to pending list but let og things happen anyway
-      let newUploadList = [...this.props.uploadList];
-      this.props.dispatch(updateUploadList(newUploadList.concat(pendingFileData)));
-      console.log(this.props.uploadList)
+      let newUploadList = [...this.props.uploadList.concat(pendingFileData)];
+      this.props.dispatch(updateUploadList(newUploadList));
 
-      // const formData = new FormData();
-      // formData.append('wsfunction', webservice);
-      // formData.append('wstoken', token);
-      // formData.append('foldername', folder);
-      // formData.append('title', filename);
-      // formData.append('description', description);
+      const formData = new FormData();
+      formData.append('wsfunction', webservice);
+      formData.append('wstoken', token);
+      formData.append('foldername', folder);
+      formData.append('title', filename);
+      formData.append('description', description);
       // // TODO: Inspect the network payload to make sure the data is in expected format
       // // @ts-ignore
-      // formData.append('filetoupload', fileData);
+      formData.append('filetoupload', fileData);
 
       // Move this uploadToMahara dispatch to actions after pending
-      // this.props.dispatch(uploadToMahara(url, formData));
+      console.log('url', url);
+      console.log('formData', formData)
+      this.props.dispatch(uploadFileToMahara(url, formData));
     }
   };
 

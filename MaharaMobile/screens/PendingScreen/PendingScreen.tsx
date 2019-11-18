@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { uploadToMahara, updateUploadList } from '../../actions/actions'
+import { updateUploadList, uploadFileToMahara } from '../../actions/actions'
 import { MaharaFile, Store, MaharaPendingFile } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 
@@ -92,9 +92,14 @@ export class PendingScreen extends Component<Props, State> {
     this.setState({ selectedFiles: Array.from(selectedFiles) });
   }
 
-  onUploadClick() {
+  onUploadClick = () => {
+    console.log('current uploadList', this.props.uploadList);
+    this.props.uploadList.forEach((uploadFile: MaharaPendingFile) => {
+      console.log('url', uploadFile.tagsUrl)
+      console.dir('formdata', uploadFile.maharaFormData)
+      this.props.dispatch(uploadFileToMahara(uploadFile.tagsUrl, uploadFile.maharaFormData));
+    });
     // send uploadList to API
-    // this.props.dispatch(uploadToMahara(this.props.uploadList))
     this.setState({
       uploadRequestPending: true
     })
@@ -113,10 +118,10 @@ export class PendingScreen extends Component<Props, State> {
       successMessage: 'Your files have been uploaded to Mahara'
     })
 
-    // if receive !200:
-    this.setState({
-      successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
-    })
+    // // if receive !200:
+    // this.setState({
+    //   successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
+    // })
   }
 
   onDelete() {
@@ -136,14 +141,21 @@ export class PendingScreen extends Component<Props, State> {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
 
     return (
-      <View style={styles.app}>
+      <View style={styles.app} >
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
+          {/* if file is selected, show the Delete button */}
           {selectedFiles.length > 0 ? <Button title='Delete' onPress={() => { this.onDelete() }} /> : null}
+
+          {/* if there are no items in uploadList, show text */}
           {this.props.uploadList.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text>}
+
+          {/* If state is uploadRequestPending, show spinner */}
           {uploadRequestPending ? <Spinner /> : null}
-          {!uploadRequestPending && uploadRequestReceived ? successMessage : null}
+
+          {/* If sate is not uploadRequestPending give successm message */}
+          {!uploadRequestPending && uploadRequestReceived ? <Text>{successMessage}</Text> : null}
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { MaharaFile, JournalEntry, MaharaPendingFile } from '../models/models';
+import { MaharaFile, JournalEntry, MaharaPendingFile, MaharaFormData } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -43,13 +43,25 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
   }
 }
 
-export function uploadToMahara(url: string, formData: any) {
+export function uploadFileToMahara(url: string, formData: MaharaFormData) {
+
+  const sendData = new FormData();
+  sendData.append('wsfunction', formData.webservice);
+  sendData.append('wstoken', formData.wstoken);
+  sendData.append('foldername', formData.foldername);
+  sendData.append('title', formData.title);
+  sendData.append('description', formData.title);
+  // // TODO: Inspect the network payload to make sure the data is in expected format
+  // // @ts-ignore
+  sendData.append('filetoupload', formData.filetoupload);
+
+  // Move this uploadToMahara dispatch to actions after pending
   return async function () {
     try {
       console.log('formData:', formData)
       const response = await fetch(url, {
         method: 'POST',
-        body: formData
+        body: sendData
       });
       const result = await response.json();
       console.log('Success:', JSON.stringify(result));
