@@ -7,23 +7,21 @@ export interface InitialState {
   userName: string;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
-  uploadList: Array<MaharaFile>;
+  uploadList: Array<MaharaPendingFile>;
   userBlogs: Array<any>;
-}
-
-export interface Blob {
-  readonly uri: any;
-  readonly type: string;
-  readonly name: string;
-  readonly size: number;
-  slice(start?: number, end?: number, contentType?: string): Blob;
 }
 
 export interface MaharaFile {
   uri: string;
-  type: string; //mimetype
+  type: string; // mimetype
   name: string;
   size: number;
+}
+
+export interface MaharaPendingFile {
+  maharaFormData: MaharaFormData;
+  id: string;
+  tagsUrl: string;
 }
 
 export interface JournalEntry {
@@ -60,7 +58,7 @@ export interface UserBlog {
   title: string;
 }
 
-export interface FormData {
+export interface MaharaFormData {
   webservice: string;
   wstoken: string;
   foldername: string;

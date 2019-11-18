@@ -6,12 +6,12 @@ import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { uploadToMahara, updateUploadList } from '../../actions/actions'
-import { MaharaFile, Store } from '../../models/models';
+import { MaharaFile, Store, MaharaPendingFile } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 
 type Props =
   {
-    uploadList: Array<MaharaFile>;
+    uploadList: Array<MaharaPendingFile>;
     dispatch: any;
     navigation: any;
   }
@@ -21,7 +21,7 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
-    selectedFiles: Array<MaharaFile>
+    selectedFiles: Array<MaharaPendingFile>
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -63,29 +63,30 @@ export class PendingScreen extends Component<Props, State> {
           data={this.props.uploadList}
           extraData={this.state.selectedFiles}
           renderItem={({ item }) => {
-            let itemSelected
+            let isItemSelected = false;
             if (this.state.selectedFiles) {
               this.state.selectedFiles.forEach(file => {
-                return (file.name === item.name) ? itemSelected = true : null
+                return (file.id === item.id) ? isItemSelected = true : false
               })
             }
             return (
               <TouchableOpacity
-                style={itemSelected && styles.highlighted}
+                style={isItemSelected && styles.highlighted}
                 onPress={() => this.props.navigation.navigate('UploadFileScreen')}
                 onLongPress={() => this.handleLongPress(item)}
               >
-                <Text>{item.name}</Text>
+                <Text>ID: {item.id}</Text>
+
               </TouchableOpacity>
             )
           }}
-          keyExtractor={item => item.name + item.size}
+          keyExtractor={item => item.id}
         />
       </View>
     )
   }
 
-  handleLongPress(item: MaharaFile) {
+  handleLongPress(item: MaharaPendingFile) {
     const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
     selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
     this.setState({ selectedFiles: Array.from(selectedFiles) });
@@ -93,7 +94,7 @@ export class PendingScreen extends Component<Props, State> {
 
   onUploadClick() {
     // send uploadList to API
-    this.props.dispatch(uploadToMahara(this.props.uploadList))
+    // this.props.dispatch(uploadToMahara(this.props.uploadList))
     this.setState({
       uploadRequestPending: true
     })
@@ -121,13 +122,14 @@ export class PendingScreen extends Component<Props, State> {
   onDelete() {
     const newUploadList = new Set(this.props.uploadList)
     this.state.selectedFiles.forEach(file => {
-      newUploadList.delete(file)
+      console.log(newUploadList.delete(file))
     })
 
     this.props.dispatch(updateUploadList(Array.from(newUploadList)))
     this.setState({
       selectedFiles: []
     })
+    console.log(this.props.uploadList)
   }
 
   render() {

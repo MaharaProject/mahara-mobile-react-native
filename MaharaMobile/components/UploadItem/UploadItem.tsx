@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Store } from 'redux';
-import { MaharaFile } from '../../models/models';
+import { MaharaFile, MaharaPendingFile } from '../../models/models';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button } from 'react-native';
 import Card from '../Card/Card';
@@ -10,7 +10,7 @@ import { styles as variables } from '../../assets/styles/variables'
 
 type Props =
     {
-        uploadList: Array<MaharaFile>;
+        uploadList: Array<MaharaPendingFile>;
         dispatch: any;
         navigation: any;
     }

@@ -9,7 +9,7 @@ import UploadForm from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, Store } from '../../models/models';
+import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, Store, MaharaPendingFile, MaharaFormData } from '../../models/models';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -19,7 +19,7 @@ type Props = {
   token: string;
   dispatch: any;
   navigation: any;
-  uploadList: Array<MaharaFile>;
+  uploadList: Array<MaharaPendingFile>;
 };
 
 type State = {
@@ -200,22 +200,39 @@ export class AddScreen extends Component<Props, State> {
         size: pickedFile.size
       };
 
+      const maharaFormData: MaharaFormData = {
+        description: description,
+        filetoupload: fileData,
+        foldername: folder,
+        title: filename,
+        webservice: webservice,
+        wstoken: token
+      }
+
+      const pendingFileData: MaharaPendingFile = {
+        id: Math.random() * 10 + '' + fileData.type,
+        maharaFormData: maharaFormData,
+        tagsUrl: url
+      }
+
       console.log('filedata', fileData);
       // add to pending list but let og things happen anyway
-      this.props.dispatch(updateUploadList([fileData]));
+      let newUploadList = [...this.props.uploadList];
+      this.props.dispatch(updateUploadList(newUploadList.concat(pendingFileData)));
       console.log(this.props.uploadList)
 
-      const formData = new FormData();
-      formData.append('wsfunction', webservice);
-      formData.append('wstoken', token);
-      formData.append('foldername', folder);
-      formData.append('title', filename);
-      formData.append('description', description);
-      // TODO: Inspect the network payload to make sure the data is in expected format
-      // @ts-ignore
-      formData.append('filetoupload', fileData);
+      // const formData = new FormData();
+      // formData.append('wsfunction', webservice);
+      // formData.append('wstoken', token);
+      // formData.append('foldername', folder);
+      // formData.append('title', filename);
+      // formData.append('description', description);
+      // // TODO: Inspect the network payload to make sure the data is in expected format
+      // // @ts-ignore
+      // formData.append('filetoupload', fileData);
 
-      this.props.dispatch(uploadToMahara(url, formData));
+      // Move this uploadToMahara dispatch to actions after pending
+      // this.props.dispatch(uploadToMahara(url, formData));
     }
   };
 

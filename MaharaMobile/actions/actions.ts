@@ -1,4 +1,4 @@
-import { MaharaFile, JournalEntry } from '../models/models';
+import { MaharaFile, JournalEntry, MaharaPendingFile } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -27,7 +27,7 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function updateUploadList(uploadList: Array<MaharaFile>) {
+export function updateUploadList(uploadList: Array<MaharaPendingFile>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 

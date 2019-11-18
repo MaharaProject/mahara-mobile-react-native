@@ -1,13 +1,27 @@
 import { combineReducers } from 'redux';
 import { InitialState } from '../models/models';
+import { UPDATE_UPLOAD_LIST } from '../actions/actions';
 
 const initialAppState: InitialState = {
   token: '',
   userName: '',
   userFolders: [],
   userTags: [],
-  uploadList: [{ name: 'name test', size: 10, mimetype: 'image', uri: 'test uri' }]
+  uploadList: [],
+  userBlogs: []
 };
+// {
+//   id: 'kjlfdhfid',
+//   maharaFormData: {
+//     description: 'desc',
+//     filetoupload: { name: 'filename', type: 'type of file', uri: 'uri...' },
+//     foldername: 'foldername',
+//     title: 'title of image',
+//     webservice: 'webservice',
+//     wstoken: 'token'
+//   },
+//   tagsUrl: 'jjdifjdf'
+// }
 
 const app = (state = initialAppState, action: any) => {
   switch (action.type) {
@@ -24,10 +38,10 @@ const app = (state = initialAppState, action: any) => {
         userTags: action.userTags,
         userBlogs: action.userBlogs
       }
-    case 'UPDATE_UPLOAD_LIST':
+    case UPDATE_UPLOAD_LIST:
       return {
         ...state,
-        uploadList: state.uploadList.concat(action.uploadList)
+        uploadList: action.uploadList
       }
     default:
       return state;
