@@ -4,7 +4,7 @@ import styles from './Profile.style';
 
 type Props = {
   name: string;
-  userPic: string;
+  profileIcon: string;
 }
 
 export default class Profile extends Component<Props> {
@@ -14,7 +14,7 @@ export default class Profile extends Component<Props> {
     return (
       <View style={styles.view}>
         <View style={styles.container}>
-          <Image source={this.props.userPic ? { uri: this.props.userPic } : image} style={styles.image} />
+          <Image source={this.props.profileIcon ? { uri: this.props.profileIcon } : image} style={styles.image} />
         </View>
         <Text style={styles.name}>Hi {this.props.name}</Text>
       </View>
