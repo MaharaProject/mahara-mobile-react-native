@@ -8,6 +8,7 @@ import { buttons } from '../../assets/styles/buttons';
 import { updateUploadList, uploadFileToMahara } from '../../actions/actions'
 import { MaharaFile, Store, MaharaPendingFile } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
+import UploadItem from '../../components/UploadItem/UploadItem';
 
 type Props =
   {
@@ -36,22 +37,6 @@ export class PendingScreen extends Component<Props, State> {
     }
   }
 
-  //TEMP
-  // DATA = [
-  //   {
-  //     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-  //     title: 'First Item',
-  //   },
-  //   {
-  //     id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-  //     title: 'Second Item',
-  //   },
-  //   {
-  //     id: '58694a0f-3da1-471f-bd96-145571e29d72',
-  //     title: 'Third Item',
-  //   },
-  // ];
-
   static navigationOptions = {
     header: null
   };
@@ -75,7 +60,8 @@ export class PendingScreen extends Component<Props, State> {
                 onPress={() => this.props.navigation.navigate('UploadFileScreen')}
                 onLongPress={() => this.handleLongPress(item)}
               >
-                <Text>ID: {item.id}</Text>
+                {/* <Text>ID: {item.id}</Text> */}
+                <UploadItem file={item}></UploadItem>
 
               </TouchableOpacity>
             )
@@ -93,10 +79,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onUploadClick = () => {
-    console.log('current uploadList', this.props.uploadList);
     this.props.uploadList.forEach((uploadFile: MaharaPendingFile) => {
-      console.log('url', uploadFile.tagsUrl)
-      console.dir('formdata', uploadFile.maharaFormData)
       this.props.dispatch(uploadFileToMahara(uploadFile.tagsUrl, uploadFile.maharaFormData));
     });
     // send uploadList to API
@@ -119,22 +102,21 @@ export class PendingScreen extends Component<Props, State> {
     })
 
     // // if receive !200:
-    // this.setState({
-    //   successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
-    // })
+    this.setState({
+      successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
+    })
   }
 
   onDelete() {
     const newUploadList = new Set(this.props.uploadList)
     this.state.selectedFiles.forEach(file => {
-      console.log(newUploadList.delete(file))
+      newUploadList.delete(file);
     })
 
     this.props.dispatch(updateUploadList(Array.from(newUploadList)))
     this.setState({
       selectedFiles: []
     })
-    console.log(this.props.uploadList)
   }
 
   render() {

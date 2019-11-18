@@ -3,9 +3,9 @@ import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-na
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
 
-import { uploadToMahara, uploadJournalToMahara, updateUploadList, uploadFileToMahara } from '../../actions/actions';
+import { uploadJournalToMahara, updateUploadList } from '../../actions/actions';
 import Header from '../../components/Header/Header';
-import UploadForm from '../../components/UploadForm/UploadForm';
+import { UploadForm } from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
@@ -215,25 +215,9 @@ export class AddScreen extends Component<Props, State> {
         tagsUrl: url
       }
 
-      console.log('filedata', fileData);
       // add to pending list but let og things happen anyway
       let newUploadList = [...this.props.uploadList.concat(pendingFileData)];
       this.props.dispatch(updateUploadList(newUploadList));
-
-      const formData = new FormData();
-      formData.append('wsfunction', webservice);
-      formData.append('wstoken', token);
-      formData.append('foldername', folder);
-      formData.append('title', filename);
-      formData.append('description', description);
-      // // TODO: Inspect the network payload to make sure the data is in expected format
-      // // @ts-ignore
-      formData.append('filetoupload', fileData);
-
-      // Move this uploadToMahara dispatch to actions after pending
-      console.log('url', url);
-      console.log('formData', formData)
-      this.props.dispatch(uploadFileToMahara(url, formData));
     }
   };
 

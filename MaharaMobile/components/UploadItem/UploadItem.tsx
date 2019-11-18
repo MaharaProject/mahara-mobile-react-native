@@ -8,22 +8,21 @@ import { styles } from './UploadItem.style';
 import { styles as variables } from '../../assets/styles/variables'
 
 
-type Props =
-    {
-        uploadList: Array<MaharaPendingFile>;
-        dispatch: any;
-        navigation: any;
-    }
+type Props = {
+    uploadList: Array<MaharaPendingFile>;
+    dispatch: any;
+    navigation: any;
+}
 
-type State =
-    {
-        uploadRequestPending: boolean;
-        uploadRequestReceived: boolean;
-        successMessage: string;
-        selectedFiles: Array<MaharaFile>
-    }
+type State = {
+    uploadRequestPending: boolean;
+    uploadRequestReceived: boolean;
+    successMessage: string;
+    selectedFiles: Array<MaharaFile>
+}
 
 const UploadItem = (props: any) => {
+    console.log(props.file)
     return (
         <TouchableOpacity /*onPress={props.onDelete.bind(this, props.id)}*/>
             <View style={styles.uploadItem}>
@@ -37,7 +36,7 @@ const UploadItem = (props: any) => {
                             ? styles.title : styles.doneTitle}>{props.title}
                         </Text> */}
 
-                        <Text>{props.file.name}</Text>
+                        <Text>{props.file.maharaFormData.title}</Text>
                         {/* <Text>{props.description.length > 25 ? props.description.substring(0, 25) + ' ...' : props.description}</Text> */}
                     </View>
 
