@@ -44,7 +44,7 @@ const UploadItem = (props: any) => {
                         <View style={styles.button}>
                             <Button
                                 title='Remove'
-                                onPress={() => null/*toggleTodoDoneHandler*/}
+                                onPress={props.onDelete}
                                 color={variables.colors.primary}
                                 backgroundColor={variables.colors.primary}
                             />

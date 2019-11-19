@@ -61,7 +61,7 @@ export class PendingScreen extends Component<Props, State> {
                 onLongPress={() => this.handleLongPress(item)}
               >
                 {/* <Text>ID: {item.id}</Text> */}
-                <UploadItem file={item}></UploadItem>
+                <UploadItem file={item} onDelete={this.onDelete}></UploadItem>
 
               </TouchableOpacity>
             )
@@ -72,7 +72,7 @@ export class PendingScreen extends Component<Props, State> {
     )
   }
 
-  handleLongPress(item: MaharaPendingFile) {
+  handleLongPress = (item: MaharaPendingFile) => {
     const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
     selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
     this.setState({ selectedFiles: Array.from(selectedFiles) });
@@ -107,7 +107,7 @@ export class PendingScreen extends Component<Props, State> {
     })
   }
 
-  onDelete() {
+  onDelete = () => {
     const newUploadList = new Set(this.props.uploadList)
     this.state.selectedFiles.forEach(file => {
       newUploadList.delete(file);
@@ -128,7 +128,7 @@ export class PendingScreen extends Component<Props, State> {
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
           {/* if file is selected, show the Delete button */}
-          {selectedFiles.length > 0 ? <Button title='Delete' onPress={() => { this.onDelete() }} /> : null}
+          {selectedFiles.length > 0 ? <Button title='Delete' onPress={this.onDelete} /> : null}
 
           {/* if there are no items in uploadList, show text */}
           {this.props.uploadList.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text>}
