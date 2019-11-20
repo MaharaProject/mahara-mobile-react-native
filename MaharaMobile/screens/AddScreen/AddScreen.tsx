@@ -9,7 +9,7 @@ import { UploadForm } from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, Store, MaharaPendingFile, MaharaFormData } from '../../models/models';
+import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, MaharaStore, MaharaPendingFile, MaharaFormData } from '../../models/models';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -268,7 +268,7 @@ export class AddScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: Store) => {
+const mapStateToProps = (state: MaharaStore) => {
   return {
     token: state.app.token,
     userTags: state.app.userTags,

@@ -44,18 +44,18 @@ const UploadItem = (props: any) => {
                         <View style={styles.button}>
                             <Button
                                 title='Remove'
-                                onPress={props.onDelete}
+                                onPress={() => props.onRemove(props.file.id)}
                                 color={variables.colors.primary}
-                                backgroundColor={variables.colors.primary}
+                            // backgroundColor={variables.colors.primary} iOS
                             />
                         </View>
 
                         <View style={styles.button}>
                             <Button
                                 title="Details"
-                                onPress={() => null/*props.onEdit.bind(this, props.id)*/}
+                                onPress={() => props.onEdit.bind(props.file.id)}
                                 color={variables.colors.secondary}
-                                backgroundColor={variables.colors.secondary}
+                            // backgroundColor={variables.colors.secondary} iOS
                             />
                         </View>
                     </View>

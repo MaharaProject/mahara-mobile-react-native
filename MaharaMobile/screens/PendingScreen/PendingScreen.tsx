@@ -6,7 +6,7 @@ import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { updateUploadList, uploadFileToMahara } from '../../actions/actions'
-import { MaharaFile, Store, MaharaPendingFile } from '../../models/models';
+import { MaharaFile, MaharaStore, MaharaPendingFile } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import UploadItem from '../../components/UploadItem/UploadItem';
 
@@ -37,9 +37,17 @@ export class PendingScreen extends Component<Props, State> {
     }
   }
 
-  static navigationOptions = {
-    header: null
-  };
+  // Handlers
+  editFileHandler = (fileId: string) => this.props.navigation.navigate({
+    routeName: 'FileDetails',
+    params: {
+      fileId: fileId
+    }
+  })
+
+  // static navigationOptions = {
+  //   header: null
+  // };
 
   renderFlatlist() {
     return (
@@ -61,7 +69,11 @@ export class PendingScreen extends Component<Props, State> {
                 onLongPress={() => this.handleLongPress(item)}
               >
                 {/* <Text>ID: {item.id}</Text> */}
-                <UploadItem file={item} onDelete={this.onDelete}></UploadItem>
+                <UploadItem
+                  file={item}
+                  onRemove={this.onRemove}
+                  onEdit={() => this.editFileHandler.bind(this)}
+                />
 
               </TouchableOpacity>
             )
@@ -119,6 +131,15 @@ export class PendingScreen extends Component<Props, State> {
     })
   }
 
+  onRemove = (fileId: string) => {
+    console.log('here')
+    const newUploadList = this.props.uploadList.filter(file => file.id !== fileId)
+    console.log('New Upload List');
+    console.log(newUploadList)
+    this.props.dispatch(updateUploadList(newUploadList));
+
+  }
+
   render() {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
 
@@ -147,7 +168,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: Store) => {
+const mapStateToProps = (state: MaharaStore) => {
   return {
     token: state.app.token,
     uploadList: state.app.uploadList,
