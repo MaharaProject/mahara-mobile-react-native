@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Store } from 'redux';
 import { MaharaFile, MaharaPendingFile } from '../../models/models';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Image } from 'react-native';
 import Card from '../Card/Card';
 import { styles } from './UploadItem.style';
 import { styles as variables } from '../../assets/styles/variables'
@@ -12,6 +12,7 @@ type Props = {
     uploadList: Array<MaharaPendingFile>;
     dispatch: any;
     navigation: any;
+    file: MaharaPendingFile;
 }
 
 type State = {
@@ -23,21 +24,18 @@ type State = {
 
 const UploadItem = (props: any) => {
     console.log(props.file)
+    const filename: string = props.file.maharaFormData.title;
+
     return (
         <TouchableOpacity /*onPress={props.onDelete.bind(this, props.id)}*/>
             <View style={styles.uploadItem}>
                 <Card style={{ ...styles.todoCard, ...props.style }}>
-
+                    <View style={styles.imageContainer}>
+                        <Image style={styles.thumbnail} source={{ uri: props.file.maharaFormData.uri }} />
+                    </View>
                     <View style={styles.textContainer}>
-                        {/* <Text style={styles.date}>              {props.date.toDateString()}
-                        </Text> */}
-
-                        {/* <Text style={!currentTodoIsDone
-                            ? styles.title : styles.doneTitle}>{props.title}
-                        </Text> */}
-
-                        <Text>{props.file.maharaFormData.title}</Text>
-                        {/* <Text>{props.description.length > 25 ? props.description.substring(0, 25) + ' ...' : props.description}</Text> */}
+                        <Text>Filename: {props.file.maharaFormData.title.length > 25 ? props.file.maharaFormData.title.substring(0, 25) + '...' : props.file.maharaFormData.title.length}</Text>
+                        <Text>Description: {props.file.maharaFormData.description.length > 20 ? props.file.maharaFormData.description.substring(0.20) + '...' : props.file.maharaFormData.description}</Text>
                     </View>
 
                     <View style={styles.buttonContainer}>

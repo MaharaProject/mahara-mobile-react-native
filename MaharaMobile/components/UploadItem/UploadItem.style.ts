@@ -23,6 +23,9 @@ export const styles = StyleSheet.create({
     textContainer: {
         width: '70%'
     },
+    imageContainer: {
+        width: '30%'
+    },
     button: {
         width: '100%',
         height: '50%'
@@ -35,11 +38,11 @@ export const styles = StyleSheet.create({
         paddingVertical: 5,
         fontSize: 16
     },
-    doneTitle: {
-        textDecorationLine: 'line-through',
-        color: variables.colors.primary,
-        paddingVertical: 5,
-        fontSize: 16
-    }
+    // doneTitle: {
+    //     textDecorationLine: 'line-through',
+    //     color: variables.colors.primary,
+    //     paddingVertical: 5,
+    //     fontSize: 16
+    // }
 })
 

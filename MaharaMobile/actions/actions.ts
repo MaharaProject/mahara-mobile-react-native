@@ -51,8 +51,7 @@ export function uploadFileToMahara(url: string, formData: MaharaFormData) {
   sendData.append('foldername', formData.foldername);
   sendData.append('title', formData.title);
   sendData.append('description', formData.description);
-  // // TODO: Inspect the network payload to make sure the data is in expected format
-  // // @ts-ignore
+
   sendData.append('filetoupload', formData.filetoupload);
 
   // Move this uploadToMahara dispatch to actions after pending
