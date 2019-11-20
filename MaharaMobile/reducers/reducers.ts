@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { InitialState } from '../models/models';
-import { UPDATE_UPLOAD_LIST } from '../actions/actions';
+import { ADD_TOKEN, ADD_USER, UPDATE_UPLOAD_LIST } from '../actions/actions';
 
 const initialAppState: InitialState = {
   token: '',
@@ -25,12 +25,12 @@ const initialAppState: InitialState = {
 
 const app = (state = initialAppState, action: any) => {
   switch (action.type) {
-    case 'ADD_TOKEN':
+    case ADD_TOKEN:
       return {
         ...state,
         token: action.token
       }
-    case 'ADD_USER':
+    case ADD_USER:
       return {
         ...state,
         userName: action.userName,
