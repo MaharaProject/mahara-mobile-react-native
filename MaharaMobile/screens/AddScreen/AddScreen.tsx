@@ -196,8 +196,6 @@ export class AddScreen extends Component<Props, State> {
       formData.append('foldername', folder);
       formData.append('title', filename);
       formData.append('description', description);
-      // TODO: Inspect the network payload to make sure the data is in expected format
-      // @ts-ignore
       formData.append('filetoupload', fileData);
 
       this.props.dispatch(uploadToMahara(url, formData));
