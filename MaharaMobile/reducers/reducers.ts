@@ -10,18 +10,6 @@ const initialAppState: InitialState = {
   uploadList: [],
   userBlogs: []
 };
-// {
-//   id: 'kjlfdhfid',
-//   maharaFormData: {
-//     description: 'desc',
-//     filetoupload: { name: 'filename', type: 'type of file', uri: 'uri...' },
-//     foldername: 'foldername',
-//     title: 'title of image',
-//     webservice: 'webservice',
-//     wstoken: 'token'
-//   },
-//   tagsUrl: 'jjdifjdf'
-// }
 
 const app = (state = initialAppState, action: any) => {
   switch (action.type) {

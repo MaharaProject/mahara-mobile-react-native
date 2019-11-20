@@ -132,10 +132,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onRemove = (fileId: string) => {
-    console.log('here')
     const newUploadList = this.props.uploadList.filter(file => file.id !== fileId)
-    console.log('New Upload List');
-    console.log(newUploadList)
     this.props.dispatch(updateUploadList(newUploadList));
 
   }
