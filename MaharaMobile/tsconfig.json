@@ -6,7 +6,6 @@
     "isolatedModules": true,
     "jsx": "react",
     "lib": [
-       "dom",
        "es7"
     ],
     "moduleResolution": "node",
