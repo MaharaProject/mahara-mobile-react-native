@@ -7,6 +7,7 @@ import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
   url: string;
+  errorMessage: string;
   setLoginType: Function;
   resetForm: Function;
   checkServer: Function;
@@ -35,6 +36,9 @@ export default function LoginType(props: Props) {
       :null }
       {props.enterUrlWarning ?
         <Text>Please enter a URL</Text>
+      : null}
+      {props.errorMessage ?
+        <Text>{props.errorMessage}</Text>
       : null}
       {props.serverPing && props.isInputHidden ?
         <View>

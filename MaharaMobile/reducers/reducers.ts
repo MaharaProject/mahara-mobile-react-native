@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { InitialState } from '../models/models';
-import { ADD_TOKEN, ADD_USER, UPDATE_UPLOAD_LIST } from '../actions/actions';
+import { ADD_TOKEN, ADD_USER, UPDATE_UPLOAD_LIST, ERROR_MESSAGE, SERVER_URL } from '../actions/actions';
 
 const initialAppState: InitialState = {
-  token: '',
   url: '',
+  errorMessage: '',
+  token: '',
   tokenLogin: false,
   ssoLogin: false,
   localLogin: false,
@@ -17,6 +18,14 @@ const initialAppState: InitialState = {
 
 const app = (state = initialAppState, action: any) => {
   switch (action.type) {
+    case SERVER_URL:
+      return {
+        ...state,
+        url: action.url,
+        localLogin: action.localLogin,
+        ssoLogin: action.ssoLogin,
+        tokenLogin: action.tokenLogin
+      }
     case ADD_TOKEN:
       return {
         ...state,
@@ -34,6 +43,11 @@ const app = (state = initialAppState, action: any) => {
       return {
         ...state,
         uploadList: action.uploadList
+      }
+    case ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.errorMessage
       }
     default:
       return state;

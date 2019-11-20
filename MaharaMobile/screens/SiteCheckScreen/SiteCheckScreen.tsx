@@ -13,6 +13,7 @@ type Props = {
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
+  errorMessage: string;
 }
 
 type State = {
@@ -108,6 +109,7 @@ export class SiteCheckScreen extends Component<Props, State> {
           localLogin={this.props.localLogin}
           ssoLogin={this.props.ssoLogin}
           tokenLogin={this.props.tokenLogin}
+          errorMessage={this.props.errorMessage}
         />
       </View>
     )
@@ -119,7 +121,8 @@ const mapStateToProps = (state: Store) => {
     url: state.app.url,
     tokenLogin: state.app.tokenLogin,
     ssoLogin: state.app.ssoLogin,
-    localLogin: state.app.localLogin
+    localLogin: state.app.localLogin,
+    errorMessage: state.app.errorMessage
   }
 }
 

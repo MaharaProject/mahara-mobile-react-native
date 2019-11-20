@@ -4,6 +4,7 @@ export interface Store {
 
 export interface InitialState {
   url: string;
+  errorMessage: string;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;

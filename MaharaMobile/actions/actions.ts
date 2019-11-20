@@ -4,6 +4,7 @@ export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
 export const SERVER_URL = 'SERVER_URL';
 export const UPDATE_UPLOAD_LIST = 'UPDATE_UPLOAD_LIST';
+export const ERROR_MESSAGE = 'ERROR_MESSAGE';
 
 export function loginTypes(url: string, response: any) {
   const tokenLogin = response.logintypes.includes('manual') ? true : false;
@@ -37,6 +38,10 @@ export function addUser(json: any) {
 //   }
 // }
 
+export function errorMessage(errorMessage: string) {
+  return { type: ERROR_MESSAGE, errorMessage }
+}
+
 export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
@@ -55,11 +60,19 @@ export function checkLoginTypes(url: string) {
       });
       const result = await response.json();
       console.log('Success:', result);
+      if(!result.maharaversion) {
+        dispatch(errorMessage('This is not a Mahara site'));
+      }
       dispatch(loginTypes(url, result));
     } catch (error) {
-      console.error('Error:', error);
+      console.log('Error:', error);
+
     }
   }
+}
+
+export function errorHandling(error) {
+  // read different responses here
 }
 
 export function sendTokenLogin(serverUrl: string, requestOptions: any) {
