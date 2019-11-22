@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, FlatList, Button, Image } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList, Button } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/Header';
@@ -38,12 +38,16 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   // Handlers
-  editFileHandler = (fileId: string) => this.props.navigation.navigate({
-    routeName: 'FileDetails',
-    params: {
-      fileId: fileId
-    }
-  })
+  editFileHandler() {
+
+    console.log(this.fileId)
+    this.navigation.navigate({
+      routeName: 'FileDetails',
+      params: {
+        fileId: this.fieldId
+      }
+    })
+  }
 
   // static navigationOptions = {
   //   header: null
@@ -75,7 +79,7 @@ export class PendingScreen extends Component<Props, State> {
                 <UploadItem
                   file={item}
                   onRemove={this.onRemove}
-                  onEdit={() => this.editFileHandler.bind(this)}
+                  onEdit={this.editFileHandler}
                   image={testImage}
                 />
               </TouchableOpacity>

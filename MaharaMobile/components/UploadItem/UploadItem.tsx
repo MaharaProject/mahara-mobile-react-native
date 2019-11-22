@@ -22,25 +22,29 @@ type State = {
 }
 
 const UploadItem = (props: any) => {
+    const fileId: string = props.file.id;
+    const fileName: string = props.file.maharaFormData.title;
+    const fileDesc: string = props.file.maharaFormData.description;
+
     return (
-        <TouchableOpacity /*onPress={props.onDelete.bind(this, props.id)}*/>
+        <TouchableOpacity>
             <View style={styles.uploadItem}>
-                <Card style={{ ...styles.todoCard, ...props.style }}>
+                <Card style={{ ...styles.pendingCard }}>
                     <View style={styles.imageContainer}>
                         <Image source={props.image} style={styles.thumbnail} />
 
 
                     </View>
                     <View style={styles.textContainer}>
-                        <Text>Filename: {props.file.maharaFormData.title.length > 25 ? props.file.maharaFormData.title.substring(0, 25) + '...' : props.file.maharaFormData.title.length}</Text>
-                        <Text>Description: {props.file.maharaFormData.description.length > 20 ? props.file.maharaFormData.description.substring(0.20) + '...' : props.file.maharaFormData.description}</Text>
+                        <Text>Filename: {fileName.length > 25 ? fileName.substring(0, 25) + '...' : fileName.length}</Text>
+                        <Text>Description: {fileDesc.length > 20 ? fileDesc.substring(0.20) + '...' : fileDesc}</Text>
                     </View>
 
                     <View style={styles.buttonContainer}>
                         <View style={styles.button}>
                             <Button
                                 title='Remove'
-                                onPress={() => props.onRemove(props.file.id)}
+                                onPress={() => props.onRemove(fileId)}
                                 color={variables.colors.primary}
                             // backgroundColor={variables.colors.primary} iOS
                             />
@@ -49,7 +53,7 @@ const UploadItem = (props: any) => {
                         <View style={styles.button}>
                             <Button
                                 title="Details"
-                                onPress={() => props.onEdit.bind(props.file.id)}
+                                onPress={props.onEdit.bind({ fileId: fileId, nav: props.navigation })}
                                 color={variables.colors.secondary}
                             // backgroundColor={variables.colors.secondary} iOS
                             />

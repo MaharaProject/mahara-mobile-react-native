@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
         marginVertical: 3,
         height: 120,
     },
-    todoCard: {
+    pendingCard: {
         flexDirection: 'row',
         width: '100%',
         alignItems: 'flex-start',
