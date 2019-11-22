@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Store } from 'redux';
+import React from 'react';
 import { MaharaFile, MaharaPendingFile } from '../../models/models';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
@@ -23,15 +22,14 @@ type State = {
 }
 
 const UploadItem = (props: any) => {
-    console.log(props.file)
-    const filename: string = props.file.maharaFormData.title;
-
     return (
         <TouchableOpacity /*onPress={props.onDelete.bind(this, props.id)}*/>
             <View style={styles.uploadItem}>
                 <Card style={{ ...styles.todoCard, ...props.style }}>
                     <View style={styles.imageContainer}>
-                        <Image style={styles.thumbnail} source={{ uri: props.file.maharaFormData.uri }} />
+                        <Image source={props.image} style={styles.thumbnail} />
+
+
                     </View>
                     <View style={styles.textContainer}>
                         <Text>Filename: {props.file.maharaFormData.title.length > 25 ? props.file.maharaFormData.title.substring(0, 25) + '...' : props.file.maharaFormData.title.length}</Text>

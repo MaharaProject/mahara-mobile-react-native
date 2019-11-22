@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, FlatList, Button } from 'react-native';
+import { Text, View, TouchableOpacity, FlatList, Button, Image } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { updateUploadList, uploadFileToMahara } from '../../actions/actions'
-import { MaharaFile, MaharaStore, MaharaPendingFile } from '../../models/models';
+import { MaharaStore, MaharaPendingFile } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import UploadItem from '../../components/UploadItem/UploadItem';
 
@@ -62,6 +62,9 @@ export class PendingScreen extends Component<Props, State> {
                 return (file.id === item.id) ? isItemSelected = true : false
               })
             }
+
+            const testImage = { uri: item.maharaFormData.filetoupload.uri }
+
             return (
               <TouchableOpacity
                 style={isItemSelected && styles.highlighted}
@@ -73,9 +76,10 @@ export class PendingScreen extends Component<Props, State> {
                   file={item}
                   onRemove={this.onRemove}
                   onEdit={() => this.editFileHandler.bind(this)}
+                  image={testImage}
                 />
-
               </TouchableOpacity>
+
             )
           }}
           keyExtractor={item => item.id}

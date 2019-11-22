@@ -17,14 +17,19 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         width: '30%', // of width of parent
         justifyContent: 'space-evenly',
-        paddingLeft: 15, // left and right
+        paddingLeft: 10, // left and right
         height: 80
     },
     textContainer: {
-        width: '70%'
+        paddingLeft: 10,
+        width: '50%'
     },
     imageContainer: {
-        width: '30%'
+        width: '20%',
+    },
+    thumbnail: {
+        height: '100%',
+        width: '100%',
     },
     button: {
         width: '100%',
