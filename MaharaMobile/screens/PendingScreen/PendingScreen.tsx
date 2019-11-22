@@ -37,18 +37,6 @@ export class PendingScreen extends Component<Props, State> {
     }
   }
 
-  // Handlers
-  editFileHandler() {
-
-    console.log(this.fileId)
-    this.navigation.navigate({
-      routeName: 'FileDetails',
-      params: {
-        fileId: this.fieldId
-      }
-    })
-  }
-
   // static navigationOptions = {
   //   header: null
   // };
@@ -68,18 +56,22 @@ export class PendingScreen extends Component<Props, State> {
             }
 
             const testImage = { uri: item.maharaFormData.filetoupload.uri }
-
             return (
               <TouchableOpacity
                 style={isItemSelected && styles.highlighted}
-                onPress={() => this.props.navigation.navigate('UploadFileScreen')}
+                onPress={() => this.props.navigation.navigate('Add')}
                 onLongPress={() => this.handleLongPress(item)}
               >
-                {/* <Text>ID: {item.id}</Text> */}
                 <UploadItem
                   file={item}
                   onRemove={this.onRemove}
-                  onEdit={this.editFileHandler}
+                  // onEdit={this.editFileHandler}
+                  onEdit={() => this.props.navigation.navigate({
+                    routeName: 'FileDetails',
+                    params: {
+                      fileId: item.id
+                    },
+                  })}
                   image={testImage}
                 />
               </TouchableOpacity>

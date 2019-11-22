@@ -53,7 +53,8 @@ const UploadItem = (props: any) => {
                         <View style={styles.button}>
                             <Button
                                 title="Details"
-                                onPress={props.onEdit.bind({ fileId: fileId, nav: props.navigation })}
+                                // onPress={props.onEdit.bind({ fileId: fileId, nav: props.navigation })}
+                                onPress={() => props.onEdit(fileId)}
                                 color={variables.colors.secondary}
                             // backgroundColor={variables.colors.secondary} iOS
                             />
