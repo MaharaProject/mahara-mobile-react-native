@@ -3,13 +3,13 @@ import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-na
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
 
-import { uploadJournalToMahara, updateUploadList } from '../../actions/actions';
+import { uploadJournalToMahara, updateUploadList, addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
 import Header from '../../components/Header/Header';
 import { UploadForm } from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, MaharaStore, MaharaPendingFile, MaharaFormData } from '../../models/models';
+import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, MaharaStore, MaharaPendingFile, MaharaFileFormData, PendingJournalEntry } from '../../models/models';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -19,7 +19,10 @@ type Props = {
   token: string;
   dispatch: any;
   navigation: any;
-  uploadList: Array<MaharaPendingFile>;
+  uploadList: {
+    files: Array<MaharaPendingFile>,
+    journalEntries: Array<PendingJournalEntry>
+  }
 };
 
 type State = {
@@ -182,7 +185,17 @@ export class AddScreen extends Component<Props, State> {
         isdraft: false,
         tags: selectedTags
       };
-      this.props.dispatch(uploadJournalToMahara(url, journalEntry));
+
+      const pendingJournalEntry: PendingJournalEntry = {
+        id: Math.random() * 10 + '' + journalEntry.title,
+        journalEntry: journalEntry,
+        url: url
+      }
+
+      // add journal entry to pending list 
+      this.props.dispatch(addJournalEntryToUploadList(pendingJournalEntry));
+
+      // this.props.dispatch(uploadJournalToMahara(url, journalEntry));
     } else {
       // Upload File
       const tagString = selectedTags ? this.setTagString(selectedTags) : '';
@@ -200,7 +213,7 @@ export class AddScreen extends Component<Props, State> {
         size: pickedFile.size
       };
 
-      const maharaFormData: MaharaFormData = {
+      const maharaFormData: MaharaFileFormData = {
         description: description,
         filetoupload: fileData,
         foldername: folder,
@@ -212,12 +225,11 @@ export class AddScreen extends Component<Props, State> {
       const pendingFileData: MaharaPendingFile = {
         id: Math.random() * 10 + '' + fileData.type,
         maharaFormData: maharaFormData,
-        tagsUrl: url
+        url: url
       }
 
-      // add to pending list but let og things happen anyway
-      let newUploadList = [...this.props.uploadList.concat(pendingFileData)];
-      this.props.dispatch(updateUploadList(newUploadList));
+      // add file to pending list 
+      this.props.dispatch(addFileToUploadList(pendingFileData));
     }
   };
 

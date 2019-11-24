@@ -7,7 +7,10 @@ export interface InitialState {
   userName: string;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
-  uploadList: Array<MaharaPendingFile>;
+  uploadList: {
+    files: Array<MaharaPendingFile>,
+    journalEntries: Array<PendingJournalEntry>
+  }
   userBlogs: Array<any>;
 }
 
@@ -19,19 +22,25 @@ export interface MaharaFile {
 }
 
 export interface MaharaPendingFile {
-  maharaFormData: MaharaFormData;
+  maharaFormData: MaharaFileFormData;
   id: string;
-  tagsUrl: string;
+  url: string; // for files, this url includes tags
 }
 
 export interface JournalEntry {
   blogid: number;
   wsfunction: string;
-  wstoken: string;
+  wstoken: string; // aka: ws function
   title: string;
   body: string;
   isdraft: boolean;
   tags?: Array<string>;
+}
+
+export interface PendingJournalEntry {
+  journalEntry: JournalEntry,
+  id: string;
+  url: string;
 }
 
 export interface User {
@@ -58,7 +67,7 @@ export interface UserBlog {
   title: string;
 }
 
-export interface MaharaFormData {
+export interface MaharaFileFormData {
   webservice: string;
   wstoken: string;
   foldername: string;

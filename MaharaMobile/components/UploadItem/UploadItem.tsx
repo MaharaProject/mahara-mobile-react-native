@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MaharaFile, MaharaPendingFile } from '../../models/models';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
@@ -22,9 +22,25 @@ type State = {
 }
 
 const UploadItem = (props: any) => {
-    const fileId: string = props.file.id;
-    const fileName: string = props.file.maharaFormData.title;
-    const fileDesc: string = props.file.maharaFormData.description;
+    const [id, setId] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDesc] = useState('');
+
+    setId(props.item.id);
+
+    // if item is a file
+    if (props.item.maharaFormData) {
+        setTitle(props.item.maharaFormData.title);
+        setDesc(props.file.maharaFormData.description);
+        const fileName: string = props.item.maharaFormData.title;
+        const displayName: string = fileName.length > 25 ? fileName.substring(0, 25) + '...' : fileName;
+        const fileDesc: string = props.file.maharaFormData.description;
+    }
+
+    if (props.item.journalEntry) {
+        const title = props.item.journalEntry.title;
+        const description = props.item.journalEntry.body;
+    }
 
     return (
         <TouchableOpacity>
@@ -36,7 +52,7 @@ const UploadItem = (props: any) => {
 
                     </View>
                     <View style={styles.textContainer}>
-                        <Text>Filename: {fileName.length > 25 ? fileName.substring(0, 25) + '...' : fileName.length}</Text>
+                        <Text>Filename: {{ displayName }} </Text>
                         <Text>Description: {fileDesc.length > 20 ? fileDesc.substring(0.20) + '...' : fileDesc}</Text>
                     </View>
 
@@ -44,7 +60,7 @@ const UploadItem = (props: any) => {
                         <View style={styles.button}>
                             <Button
                                 title='Remove'
-                                onPress={() => props.onRemove(fileId)}
+                                onPress={() => props.onRemove(id)}
                                 color={variables.colors.primary}
                             // backgroundColor={variables.colors.primary} iOS
                             />
@@ -54,7 +70,7 @@ const UploadItem = (props: any) => {
                             <Button
                                 title="Details"
                                 // onPress={props.onEdit.bind({ fileId: fileId, nav: props.navigation })}
-                                onPress={() => props.onEdit(fileId)}
+                                onPress={() => props.onEdit(id)}
                                 color={variables.colors.secondary}
                             // backgroundColor={variables.colors.secondary} iOS
                             />

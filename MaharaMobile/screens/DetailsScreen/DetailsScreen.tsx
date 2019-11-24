@@ -3,11 +3,11 @@ import { styles } from '../../assets/styles/variables';
 import { View, Text } from 'react-native';
 import { Store } from 'redux';
 import { connect, useSelector } from 'react-redux';
-import { MaharaStore, MaharaPendingFile } from '../../models/models';
+import { MaharaStore, MaharaPendingFile, JournalEntry } from '../../models/models';
 
 const DetailsScreen = (props: any) => {
     const uploadList = useSelector((state: MaharaStore) => state.app.uploadList);
-    const fileId = props.navigation.getParam('fileId');
+    const fileId = props.navigation.getParam('id');
     const blank: MaharaPendingFile = {
         id: '',
         maharaFormData: {
@@ -22,13 +22,17 @@ const DetailsScreen = (props: any) => {
             webservice: '',
             wstoken: '',
         },
-        tagsUrl: ''
+        url: ''
     };
 
 
-    const findFile = uploadList.find(
+    const findFile = uploadList.files.find(
         (file: MaharaPendingFile) => file.id === fileId
     );
+    // TODO: FIND THE RIGHT FILE OR JOURNAL ENTRIES FOR DETAILS PAGE
+    // const fileJournalEntry = uploadList.journalEntries.find(
+    //     (entry: JournalEntry)
+    // )
 
     const selectedFile = findFile ? findFile : blank;
 
@@ -43,7 +47,6 @@ const DetailsScreen = (props: any) => {
 
 
     );
-
 
 
 }
