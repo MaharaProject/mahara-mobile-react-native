@@ -9,6 +9,7 @@ import { updateUploadList, uploadFileToMahara, uploadJournalToMahara } from '../
 import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import UploadItem from '../../components/UploadItem/UploadItem';
+import PendingList from '../../components/PendingList/PendingList';
 
 type Props =
   {
@@ -47,7 +48,20 @@ export class PendingScreen extends Component<Props, State> {
   renderFlatlist() {
     return (
       <View>
-        {/* Files */}
+        <PendingList
+          uploadType='file'
+          dataList={this.props.uploadList.files}
+          onRemove={this.onRemove}
+          navigation={this.props.navigation}
+        />
+        <PendingList
+          uploadType='journalEntry'
+          dataList={this.props.uploadList.journalEntries}
+          onRemove={this.onRemove}
+          navigation={this.props.navigation}
+        />
+
+        {/* Files
         <FlatList
           data={this.props.uploadList.files}
           extraData={this.state.selectedFiles}
@@ -68,6 +82,8 @@ export class PendingScreen extends Component<Props, State> {
               >
                 <UploadItem
                   file={item}
+                  id={item.id}
+                  title={item.maharaFormData.title}
                   onRemove={this.onRemove}
                   onEdit={() => this.props.navigation.navigate({
                     routeName: 'FileDetails',
@@ -82,44 +98,7 @@ export class PendingScreen extends Component<Props, State> {
             )
           }}
           keyExtractor={item => item.id}
-        />
-
-        {/* Journal Entries */}
-        <FlatList
-          data={this.props.uploadList.journalEntries}
-          extraData={this.state.selectedFiles}
-          renderItem={({ item }) => {
-            let isItemSelected = false;
-            if (this.state.selectedFiles) {
-              this.state.selectedFiles.forEach(file => {
-                return (file.id === item.id) ? isItemSelected = true : false
-              })
-            }
-
-            // TODO: get suitable icon for thumbnail
-            // const thumbnail = { uri: item.journalEntry.filetoupload.uri }
-            return (
-              <TouchableOpacity
-                style={isItemSelected && styles.highlighted}
-                onPress={() => this.props.navigation.navigate('Add')}
-                onLongPress={() => this.handleLongPress(item)}
-              >
-                <UploadItem
-                  file={item}
-                  onRemove={this.onRemove}
-                  onEdit={() => this.props.navigation.navigate({
-                    routeName: 'FileDetails',
-                    params: {
-                      id: item.id
-                    },
-                  })}
-                // image={thumbnail}
-                />
-              </TouchableOpacity>
-            )
-          }}
-          keyExtractor={item => item.id}
-        />
+        /> */}
       </View>
     )
   }
@@ -244,6 +223,8 @@ const mapStateToProps = (state: MaharaStore) => {
   return {
     token: state.app.token,
     uploadList: state.app.uploadList,
+    uploadFiles: state.app.uploadList.files,
+    uploadEntries: state.app.uploadList.journalEntries
   };
 }
 

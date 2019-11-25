@@ -22,25 +22,12 @@ type State = {
 }
 
 const UploadItem = (props: any) => {
-    const [id, setId] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDesc] = useState('');
+    const [id, setId] = useState(props.id ? '' : props.id);
+    const [title, setTitle] = useState(props.title ? '' : props.title);
+    const [description, setDesc] = useState(props.description ? props.description : '');
 
-    setId(props.item.id);
-
-    // if item is a file
-    if (props.item.maharaFormData) {
-        setTitle(props.item.maharaFormData.title);
-        setDesc(props.file.maharaFormData.description);
-        const fileName: string = props.item.maharaFormData.title;
-        const displayName: string = fileName.length > 25 ? fileName.substring(0, 25) + '...' : fileName;
-        const fileDesc: string = props.file.maharaFormData.description;
-    }
-
-    if (props.item.journalEntry) {
-        const title = props.item.journalEntry.title;
-        const description = props.item.journalEntry.body;
-    }
+    const fileName: string = props.title;
+    const displayName: string = fileName.length > 25 ? fileName.substring(0, 25) + '...' : fileName;
 
     return (
         <TouchableOpacity>
@@ -49,11 +36,10 @@ const UploadItem = (props: any) => {
                     <View style={styles.imageContainer}>
                         <Image source={props.image} style={styles.thumbnail} />
 
-
                     </View>
                     <View style={styles.textContainer}>
-                        <Text>Filename: {{ displayName }} </Text>
-                        <Text>Description: {fileDesc.length > 20 ? fileDesc.substring(0.20) + '...' : fileDesc}</Text>
+                        <Text>{displayName} </Text>
+                        <Text>{description.length > 20 ? description.substring(0.20) + '...' : description}</Text>
                     </View>
 
                     <View style={styles.buttonContainer}>

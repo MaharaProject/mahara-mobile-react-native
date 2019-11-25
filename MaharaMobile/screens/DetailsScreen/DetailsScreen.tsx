@@ -7,7 +7,7 @@ import { MaharaStore, MaharaPendingFile, JournalEntry } from '../../models/model
 
 const DetailsScreen = (props: any) => {
     const uploadList = useSelector((state: MaharaStore) => state.app.uploadList);
-    const fileId = props.navigation.getParam('id');
+    const fileId = props.navigation.getParam('fileId');
     const blank: MaharaPendingFile = {
         id: '',
         maharaFormData: {
