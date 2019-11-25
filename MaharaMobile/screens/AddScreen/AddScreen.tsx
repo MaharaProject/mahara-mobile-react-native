@@ -187,7 +187,7 @@ export class AddScreen extends Component<Props, State> {
       };
 
       const pendingJournalEntry: PendingJournalEntry = {
-        id: Math.random() * 10 + '' + journalEntry.title,
+        id: Math.random() * 10 + journalEntry.title,
         journalEntry: journalEntry,
         url: url
       }

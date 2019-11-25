@@ -60,45 +60,6 @@ export class PendingScreen extends Component<Props, State> {
           onRemove={this.onRemove}
           navigation={this.props.navigation}
         />
-
-        {/* Files
-        <FlatList
-          data={this.props.uploadList.files}
-          extraData={this.state.selectedFiles}
-          renderItem={({ item }) => {
-            let isItemSelected = false;
-            if (this.state.selectedFiles) {
-              this.state.selectedFiles.forEach(file => {
-                return (file.id === item.id) ? isItemSelected = true : false
-              })
-            }
-
-            const thumbnail = { uri: item.maharaFormData.filetoupload.uri }
-            return (
-              <TouchableOpacity
-                style={isItemSelected && styles.highlighted}
-                onPress={() => this.props.navigation.navigate('Add')}
-                onLongPress={() => this.handleLongPress(item)}
-              >
-                <UploadItem
-                  file={item}
-                  id={item.id}
-                  title={item.maharaFormData.title}
-                  onRemove={this.onRemove}
-                  onEdit={() => this.props.navigation.navigate({
-                    routeName: 'FileDetails',
-                    params: {
-                      fileId: item.id
-                    },
-                  })}
-                  image={thumbnail}
-                />
-              </TouchableOpacity>
-
-            )
-          }}
-          keyExtractor={item => item.id}
-        /> */}
       </View>
     )
   }
