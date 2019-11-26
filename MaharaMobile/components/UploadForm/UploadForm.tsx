@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
-import { UserFolder, MaharaFile, UserTag, UserBlog, MaharaPendingFile } from '../../models/models';
+import { UserFolder, MaharaFile, UserTag, UserBlog } from '../../models/models';
 
 type Props = {
   pickedFile: MaharaFile;
@@ -62,6 +62,8 @@ export const UploadForm = (props: any) => {
           </View>
         </View>
         : null}
+
+      {/* Tags */}
       <View style={styles.tagsContainer}>
         <Text style={styles.tagsTitle}>Tags:</Text>
         {props.showTagInput ?
@@ -71,7 +73,10 @@ export const UploadForm = (props: any) => {
               placeholder={'New tag...'}
               onChangeText={(text) => setNewTag(text)}
             />
-            <TouchableOpacity style={styles.addButton} onPress={() => props.addTag(newTag)}>
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() => props.addTag(newTag)}
+            >
               <Text style={styles.addButtonText}>
                 Add
                 </Text>
@@ -88,11 +93,19 @@ export const UploadForm = (props: any) => {
         ))}
       </View>
       <View style={forms.pickerWrapper}>
-        <Picker style={forms.picker} onValueChange={(itemValue) => { props.addTag(itemValue) }}>
+        <Picker
+          style={forms.picker}
+          onValueChange={(itemValue) => {
+            props.addTag(itemValue)
+            console.log('added tag?')
+          }}
+        >
           {props.userTags && props.userTags.map((value: UserTag, index: number) => (
             <Picker.Item label={value.tag} value={value.tag} key={index} />
           ))}
+          <Picker.Item label='...' value='' color={'#556d32'} />
           <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />
+
         </Picker>
       </View>
       {props.pickedFile ?
