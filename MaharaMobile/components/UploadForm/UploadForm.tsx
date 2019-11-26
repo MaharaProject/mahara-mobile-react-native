@@ -100,10 +100,10 @@ export const UploadForm = (props: any) => {
             console.log('added tag?')
           }}
         >
+          <Picker.Item label='...' value='' color={'#556d32'} />
           {props.userTags && props.userTags.map((value: UserTag, index: number) => (
             <Picker.Item label={value.tag} value={value.tag} key={index} />
           ))}
-          <Picker.Item label='...' value='' color={'#556d32'} />
           <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />
 
         </Picker>

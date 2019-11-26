@@ -2,12 +2,6 @@
 // Variables for stles
 
 export const styles = {
-  screen: {
-
-  },
-  heading: {},
-  titleContainer: {},
-  title: {},
   colors: {
     primary: '#c4d6a9',
     secondary: '#556d32',
