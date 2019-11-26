@@ -1,4 +1,4 @@
-export interface MaharaStore {
+export interface Store {
   app: InitialState;
 }
 
@@ -7,31 +7,33 @@ export interface InitialState {
   userName: string;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
-  uploadList: Array<MaharaPendingFile>;
-  userBlogs: Array<any>;
+  uploadList: Array<MaharaFile>;
+  userBlogs: Array<UserBlog>;
+}
+
+export interface Blob {
+  readonly uri: any;
+  readonly type: string;
+  readonly name: string;
+  readonly size: number;
+  slice(start?: number, end?: number, contentType?: string): Blob;
 }
 
 export interface MaharaFile {
   uri: string;
-  type: string; // mimetype
+  type: string;
   name: string;
   size: number;
 }
 
-export interface MaharaPendingFile {
-  maharaFormData: MaharaFormData;
-  id: string;
-  tagsUrl: string;
-}
-
 export interface JournalEntry {
-  blogid: number;
-  wsfunction: string;
-  wstoken: string;
-  title: string;
-  body: string;
-  isdraft: boolean;
-  tags?: Array<string>;
+    blogid: number;
+    wsfunction: string;
+    wstoken: string;
+    title: string;
+    body: string;
+    isdraft: boolean;
+    tags?: Array<string>;
 }
 
 export interface User {
@@ -58,7 +60,7 @@ export interface UserBlog {
   title: string;
 }
 
-export interface MaharaFormData {
+export interface FormData {
   webservice: string;
   wstoken: string;
   foldername: string;

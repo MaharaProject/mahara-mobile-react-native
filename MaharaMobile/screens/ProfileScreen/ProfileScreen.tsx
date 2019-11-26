@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header';
 import Profile from '../../components/Profile/Profile';
 import styles from './ProfileScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { MaharaStore } from '../../models/models';
+import { Store } from '../../models/models';
 
 type Props = {
   navigation: any; // need to double check type for this
@@ -42,23 +42,23 @@ export class ProfileScreen extends Component<Props, State> {
 
   receiveProfilePic = async () => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
-      wstoken = this.props.token,
-      serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
+          wstoken = this.props.token,
+          serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
 
     RNFetchBlob.config({
       fileCache: true
     })
-      .fetch('GET', serverUrl)
-      .then((res) => {
-        const image = `file://${res.path()}`;
-        this.setState({
-          profileIcon: image
-        })
+    .fetch('GET', serverUrl)
+    .then((res) => {
+      const image = `file://${res.path()}`;
+      this.setState({
+        profileIcon: image
       })
-      .catch((error) => {
-        // error handling
-        console.log(error);
-      })
+    })
+    .catch((error) => {
+      // error handling
+      console.log(error);
+    })
   }
 
   componentDidMount() {
@@ -86,7 +86,7 @@ export class ProfileScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     userName: state.app.userName

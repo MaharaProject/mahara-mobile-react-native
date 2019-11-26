@@ -40,7 +40,7 @@ export default class TokenInput extends Component<Props, State> {
       <View style={styles.view}>
         <TextInput
           style={forms.textInput}
-          defaultValue='c6f3d4fd4b997c96392deeb127ec983b'
+          defaultValue='ab6f3b68f8b0b976cf6b51eac2cd54da'
           onChangeText={(token) => this.updateToken(token)}
         />
         <TouchableOpacity onPress={this.sendToken}>

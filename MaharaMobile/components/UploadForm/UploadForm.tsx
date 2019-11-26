@@ -23,44 +23,39 @@ type State = {
   newTag: string
 }
 
-export const UploadForm = (props: any) => {
-  const [newTag, setNewTag] = useState('');
+export default class UploadForm extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
 
-  const multiLine = props.formType !== 'journal' ? forms.multiLine : [forms.multiLine, styles.description];
-  const placeholder = props.formType !== 'journal' ? 'Enter a description' : 'Enter detail';
+    this.state = {
+      newTag: ''
+    }
+  }
 
-  return (
-    <View>
-      <TextInput
-        style={forms.textInput}
-        placeholder={'Enter a title'}
-        onChangeText={(text) => { props.setFormValue('title', text) }}
-      />
-      <TextInput
-        style={multiLine}
-        placeholder={placeholder}
-        onChangeText={(text) => { props.setFormValue('description', text) }}
-      />
-      {props.formType !== 'journal' ?
-        <View style={forms.pickerWrapper}>
-          <Picker style={forms.picker} onValueChange={(itemValue) => { props.setFormValue('pickedFolder', itemValue) }}>
-            {props.userFolders && props.userFolders.map((folder: UserFolder, index: number) => (
-              <Picker.Item label={folder.title} value={folder.title} key={index} />
-            ))}
-          </Picker>
-        </View>
-        : null}
-      {(props.formType === 'journal' && props.userBlogs.length > 1) ?
-        <View>
-          <Text style={styles.formTitle}>Blog:</Text>
+  render() {
+    const multiLine = this.props.formType !== 'journal' ? forms.multiLine : [forms.multiLine,styles.description];
+    const placeholder = this.props.formType !== 'journal' ? 'Enter a description' : 'Enter detail';
+
+    return (
+      <View>
+        <TextInput
+          style={forms.textInput}
+          placeholder={'Enter a title'}
+          onChangeText={(text) => {this.props.setFormValue('title', text)}}
+        />
+        <TextInput
+          style={multiLine}
+          placeholder={placeholder}
+          onChangeText={(text) => {this.props.setFormValue('description', text)}}
+        />
+        {this.props.formType !== 'journal' ?
           <View style={forms.pickerWrapper}>
-            <Picker style={forms.picker} onValueChange={(itemValue) => { props.setFormValue('pickedBlog', itemValue) }}>
-              {props.userBlogs && props.userBlogs.map((blog: UserBlog, index: number) => (
-                <Picker.Item label={blog.title} value={blog.id} key={index} />
+            <Picker style={forms.picker} onValueChange={(itemValue) => {this.props.setFormValue('pickedFolder', itemValue)}}>
+              {this.props.userFolders && this.props.userFolders.map((folder: UserFolder, index: number) => (
+                <Picker.Item label={folder.title} value={folder.title} key={index} />
               ))}
             </Picker>
           </View>
-        </View>
         : null}
 
       {/* Tags */}
@@ -80,14 +75,7 @@ export const UploadForm = (props: any) => {
               <Text style={styles.addButtonText}>
                 Add
                 </Text>
-            </TouchableOpacity>
-          </View>
-          : null}
-        {props.selectedTags && props.selectedTags.map((value: string, index: number) => (
-          <TouchableOpacity key={index} onPress={() => props.removeTag(value)}>
-            <View style={forms.tag}>
-              <Text style={forms.tagText}>{value}</Text>
-              <Text style={forms.tagClose}>x</Text>
+              </TouchableOpacity>
             </View>
           </TouchableOpacity>
         ))}
@@ -113,6 +101,7 @@ export const UploadForm = (props: any) => {
           <Text style={buttons.lg}>Add file to Pending</Text>
         </TouchableOpacity>
         : null}
-    </View>
-  )
+      </View>
+    )
+  }
 }

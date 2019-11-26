@@ -12,15 +12,5 @@ export default StyleSheet.create({
   },
   highlighted: {
     backgroundColor: styles.colors.light
-  },
-  image: {
-    width: '100%',
-    height: 200,
-    marginBottom: styles.padding.md
-  },
-  imageWrap: {
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+  }
 });

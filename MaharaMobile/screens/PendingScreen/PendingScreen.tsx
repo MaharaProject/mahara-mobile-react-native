@@ -5,14 +5,13 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { updateUploadList, uploadFileToMahara } from '../../actions/actions'
-import { MaharaStore, MaharaPendingFile } from '../../models/models';
+import { uploadToMahara, updateUploadList } from '../../actions/actions'
+import { MaharaFile, Store } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
-import UploadItem from '../../components/UploadItem/UploadItem';
 
 type Props =
   {
-    uploadList: Array<MaharaPendingFile>;
+    uploadList: Array<MaharaFile>;
     dispatch: any;
     navigation: any;
   }
@@ -22,7 +21,7 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
-    selectedFiles: Array<MaharaPendingFile>
+    selectedFiles: Array<File>
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -37,45 +36,47 @@ export class PendingScreen extends Component<Props, State> {
     }
   }
 
-  // static navigationOptions = {
-  //   header: null
-  // };
+  //TEMP
+  DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+
+  static navigationOptions = {
+    header: null
+  };
 
   renderFlatlist() {
     return (
       <View>
         <FlatList
-          data={this.props.uploadList}
+          data={this.DATA}
           extraData={this.state.selectedFiles}
           renderItem={({ item }) => {
-            let isItemSelected = false;
+            let itemSelected
             if (this.state.selectedFiles) {
               this.state.selectedFiles.forEach(file => {
-                return (file.id === item.id) ? isItemSelected = true : false
+                return (file.id === item.id) ? itemSelected = true : null
               })
             }
-
-            const testImage = { uri: item.maharaFormData.filetoupload.uri }
             return (
               <TouchableOpacity
-                style={isItemSelected && styles.highlighted}
-                onPress={() => this.props.navigation.navigate('Add')}
+                style ={itemSelected && styles.highlighted}
+                onPress={() => this.props.navigation.navigate('UploadFileScreen')}
                 onLongPress={() => this.handleLongPress(item)}
               >
-                <UploadItem
-                  file={item}
-                  onRemove={this.onRemove}
-                  // onEdit={this.editFileHandler}
-                  onEdit={() => this.props.navigation.navigate({
-                    routeName: 'FileDetails',
-                    params: {
-                      fileId: item.id
-                    },
-                  })}
-                  image={testImage}
-                />
+                <Text>{item.title}</Text>
               </TouchableOpacity>
-
             )
           }}
           keyExtractor={item => item.id}
@@ -84,17 +85,15 @@ export class PendingScreen extends Component<Props, State> {
     )
   }
 
-  handleLongPress = (item: MaharaPendingFile) => {
+  handleLongPress(item: File) {
     const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
     selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
     this.setState({ selectedFiles: Array.from(selectedFiles) });
   }
 
-  onUploadClick = () => {
-    this.props.uploadList.forEach((uploadFile: MaharaPendingFile) => {
-      this.props.dispatch(uploadFileToMahara(uploadFile.tagsUrl, uploadFile.maharaFormData));
-    });
+  onUploadClick() {
     // send uploadList to API
+    this.props.dispatch(uploadToMahara(this.props.uploadList))
     this.setState({
       uploadRequestPending: true
     })
@@ -113,16 +112,16 @@ export class PendingScreen extends Component<Props, State> {
       successMessage: 'Your files have been uploaded to Mahara'
     })
 
-    // // if receive !200:
+    // if receive !200:
     this.setState({
       successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
     })
   }
 
-  onDelete = () => {
-    const newUploadList = new Set(this.props.uploadList)
+  onDelete() {
+    const newUploadList = new Set(this.DATA)
     this.state.selectedFiles.forEach(file => {
-      newUploadList.delete(file);
+      newUploadList.delete(file)
     })
 
     this.props.dispatch(updateUploadList(Array.from(newUploadList)))
@@ -131,31 +130,18 @@ export class PendingScreen extends Component<Props, State> {
     })
   }
 
-  onRemove = (fileId: string) => {
-    const newUploadList = this.props.uploadList.filter(file => file.id !== fileId)
-    this.props.dispatch(updateUploadList(newUploadList));
-
-  }
-
   render() {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
 
     return (
-      <View style={styles.app} >
+      <View style={styles.app}>
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
-          {/* if file is selected, show the Delete button */}
-          {selectedFiles.length > 0 ? <Button title='Delete' onPress={this.onDelete} /> : null}
-
-          {/* if there are no items in uploadList, show text */}
-          {this.props.uploadList.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text>}
-
-          {/* If state is uploadRequestPending, show spinner */}
-          {uploadRequestPending ? <Spinner /> : null}
-
-          {/* If sate is not uploadRequestPending give successm message */}
-          {!uploadRequestPending && uploadRequestReceived ? <Text>{successMessage}</Text> : null}
+          { selectedFiles.length > 0 ? <Button title='Delete' onPress={() => {this.onDelete()}}/> : null }
+          { this.DATA.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text> }
+          { uploadRequestPending ? <Spinner /> : null }
+          { !uploadRequestPending && uploadRequestReceived ? successMessage : null}
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
@@ -165,7 +151,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     uploadList: state.app.uploadList,

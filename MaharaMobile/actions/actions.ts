@@ -1,4 +1,4 @@
-import { MaharaFile, JournalEntry, MaharaPendingFile, MaharaFormData } from '../models/models';
+import { MaharaFile, JournalEntry } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -27,12 +27,12 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export function updateUploadList(uploadList: Array<MaharaPendingFile>) {
+export function updateUploadList(uploadList:Array<MaharaFile>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 
 export function sendTokenLogin(serverUrl: string, requestOptions: any) {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     try {
       const response = await fetch(serverUrl, requestOptions);
       const json = await response.json();
@@ -56,7 +56,6 @@ export function uploadFileToMahara(url: string, formData: MaharaFormData) {
   // Move this uploadToMahara dispatch to actions after pending
   return async function () {
     try {
-      console.log('formData:', formData)
       const response = await fetch(url, {
         method: 'POST',
         body: sendFormData
@@ -72,7 +71,7 @@ export function uploadFileToMahara(url: string, formData: MaharaFormData) {
 export function uploadJournalToMahara(url: string, body: JournalEntry) {
   const journalEntry = JSON.stringify(body);
 
-  return async function () {
+  return async function() {
     try {
       const response = await fetch(url, {
         method: 'POST',
