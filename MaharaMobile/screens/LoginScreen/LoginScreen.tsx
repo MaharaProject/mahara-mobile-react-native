@@ -54,7 +54,7 @@ export class LoginScreen extends Component<Props, State> {
 
 
   handleToken = (value: string) => {
-    this.setState({ token: value }, function (this: any) {
+    this.setState({token: value}, function(this: any) {
       this.login();
     });
 

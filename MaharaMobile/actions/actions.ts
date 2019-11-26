@@ -1,10 +1,8 @@
-import { MaharaFile, JournalEntry, MaharaPendingFile, MaharaFileFormData, PendingJournalEntry } from '../models/models';
+import { MaharaFile, JournalEntry } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
 export const UPDATE_UPLOAD_LIST = 'UPDATE_UPLOAD_LIST';
-export const ADD_FILE_TO_UPLOAD_LIST = 'ADD_FILE_TO_UPLOAD_LIST';
-export const ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST = 'ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST';
 
 export function addUser(json: any) {
   return {
@@ -29,23 +27,12 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export const addFileToUploadList = (file: MaharaPendingFile) => {
-  return { type: ADD_FILE_TO_UPLOAD_LIST, file }
-}
-
-export const addJournalEntryToUploadList = (journalEntry: PendingJournalEntry) => {
-  return { type: ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST, journalEntry }
-}
-
-export function updateUploadList(uploadList: {
-  files: Array<MaharaPendingFile>,
-  journalEntries: Array<PendingJournalEntry>
-}) {
+export function updateUploadList(uploadList:Array<MaharaFile>) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 
 export function sendTokenLogin(serverUrl: string, requestOptions: any) {
-  return async function (dispatch: any) {
+  return async function(dispatch: any) {
     try {
       const response = await fetch(serverUrl, requestOptions);
       const json = await response.json();
@@ -56,24 +43,12 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
   }
 }
 
-export function uploadFileToMahara(url: string, formData: MaharaFileFormData) {
-
-  const sendData = new FormData();
-  sendData.append('wsfunction', formData.webservice);
-  sendData.append('wstoken', formData.wstoken);
-  sendData.append('foldername', formData.foldername);
-  sendData.append('title', formData.title);
-  sendData.append('description', formData.description);
-
-  sendData.append('filetoupload', formData.filetoupload);
-
-  // Move this uploadToMahara dispatch to actions after pending
-  return async function () {
+export function uploadToMahara(url: string, formData: any) {
+  return async function() {
     try {
-      console.log('formData:', formData)
       const response = await fetch(url, {
         method: 'POST',
-        body: sendData
+        body: formData
       });
       const result = await response.json();
       console.log('Success:', JSON.stringify(result));
@@ -86,7 +61,7 @@ export function uploadFileToMahara(url: string, formData: MaharaFileFormData) {
 export function uploadJournalToMahara(url: string, body: JournalEntry) {
   const journalEntry = JSON.stringify(body);
 
-  return async function () {
+  return async function() {
     try {
       const response = await fetch(url, {
         method: 'POST',

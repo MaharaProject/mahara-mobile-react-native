@@ -5,18 +5,13 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { updateUploadList, uploadFileToMahara, uploadJournalToMahara } from '../../actions/actions'
-import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
+import { uploadToMahara, updateUploadList } from '../../actions/actions'
+import { MaharaFile, Store } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
-import UploadItem from '../../components/UploadItem/UploadItem';
-import PendingList from '../../components/PendingList/PendingList';
 
 type Props =
   {
-    uploadList: {
-      files: Array<MaharaPendingFile>,
-      journalEntries: Array<PendingJournalEntry>
-    };
+    uploadList: Array<MaharaFile>;
     dispatch: any;
     navigation: any;
   }
@@ -26,7 +21,7 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
-    selectedFiles: Array<any>
+    selectedFiles: Array<File>
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -41,136 +36,112 @@ export class PendingScreen extends Component<Props, State> {
     }
   }
 
-  // static navigationOptions = {
-  //   header: null
-  // };
+  //TEMP
+  DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+
+  static navigationOptions = {
+    header: null
+  };
 
   renderFlatlist() {
     return (
       <View>
-        <PendingList
-          uploadType='file'
-          dataList={this.props.uploadList.files}
-          onRemove={this.onRemove}
-          navigation={this.props.navigation}
-        />
-        <PendingList
-          uploadType='journalEntry'
-          dataList={this.props.uploadList.journalEntries}
-          onRemove={this.onRemove}
-          navigation={this.props.navigation}
+        <FlatList
+          data={this.DATA}
+          extraData={this.state.selectedFiles}
+          renderItem={({ item }) => {
+            let itemSelected
+            if (this.state.selectedFiles) {
+              this.state.selectedFiles.forEach(file => {
+                return (file.id === item.id) ? itemSelected = true : null
+              })
+            }
+            return (
+              <TouchableOpacity
+                style ={itemSelected && styles.highlighted}
+                onPress={() => this.props.navigation.navigate('UploadFileScreen')}
+                onLongPress={() => this.handleLongPress(item)}
+              >
+                <Text>{item.title}</Text>
+              </TouchableOpacity>
+            )
+          }}
+          keyExtractor={item => item.id}
         />
       </View>
     )
   }
 
-  /**
-   * When users press and hold a card item in the Pending Screen, 'Delete' button appears.
-   * Handle which item is selected in state (currently only one selection possible max)
-   */
-  handleLongPress = (item: MaharaPendingFile | PendingJournalEntry) => {
+  handleLongPress(item: File) {
     const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
     selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
     this.setState({ selectedFiles: Array.from(selectedFiles) });
   }
 
-  onUploadClick = () => {
-    // Upload Files
-    this.props.uploadList.files.forEach((uploadFile: MaharaPendingFile) => {
-      this.props.dispatch(uploadFileToMahara(uploadFile.url, uploadFile.maharaFormData));
-    });
-
-    // Upload Journal Entries 
-    this.props.uploadList.journalEntries.forEach((journalEntry: PendingJournalEntry) => {
-      this.props.dispatch(uploadJournalToMahara(journalEntry.url, journalEntry.journalEntry));
-    });
-
+  onUploadClick() {
     // send uploadList to API
+    this.props.dispatch(uploadToMahara(this.props.uploadList))
     this.setState({
       uploadRequestPending: true
-    });
+    })
 
     // received response:
     this.setState({
       uploadRequestPending: false,
       uploadRequestReceived: true,
-    });
+    })
 
     // if receive 200 OK status:
     // clear uploadList
-    this.props.dispatch(updateUploadList({
-      files: [],
-      journalEntries: []
-    }));
+    this.props.dispatch(updateUploadList([]))
 
     this.setState({
       successMessage: 'Your files have been uploaded to Mahara'
     })
 
-    // // if receive !200:
+    // if receive !200:
     this.setState({
       successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
-    });
+    })
   }
 
-  /**
-   * Clear the selected file/journal enty and remove it also from the UploadList
-   */
-  onDelete = () => {
-    const newUploadListFiles = new Set(this.props.uploadList.files);
+  onDelete() {
+    const newUploadList = new Set(this.DATA)
     this.state.selectedFiles.forEach(file => {
-      newUploadListFiles.delete(file);
-    });
+      newUploadList.delete(file)
+    })
 
-    const newUploadListJournalEntries = new Set(this.props.uploadList.journalEntries);
-    this.state.selectedFiles.forEach(file => {
-      newUploadListJournalEntries.delete(file);
-    });
-
-    this.props.dispatch(
-      updateUploadList({
-        files: Array.from(newUploadListFiles),
-        journalEntries: Array.from(newUploadListJournalEntries)
-      })
-    );
+    this.props.dispatch(updateUploadList(Array.from(newUploadList)))
     this.setState({
       selectedFiles: []
-    });
-  }
-
-  /**
-   * When the user presses the 'REMOVE' button on the card,
-   * Filter out the file or journal entry with the given id and update the UploadList throught dispatch.
-   */
-  onRemove = (id: string) => {
-    const updatedFiles = this.props.uploadList.files.filter(file => file.id !== id)
-    const updatedJournalEntries = this.props.uploadList.journalEntries.filter(file => file.id !== id)
-
-    this.props.dispatch(updateUploadList({
-      files: updatedFiles,
-      journalEntries: updatedJournalEntries
-    }));
+    })
   }
 
   render() {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
 
     return (
-      <View style={styles.app} >
+      <View style={styles.app}>
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
-          {/* if file is selected, show the Delete button */}
-          {selectedFiles.length > 0 ? <Button title='Delete' onPress={this.onDelete} /> : null}
-
-          {/* if there are no items in uploadList, show text */}
-          {this.props.uploadList.files.length > 0 || this.props.uploadList.journalEntries.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text>}
-
-          {/* If state is uploadRequestPending, show spinner */}
-          {uploadRequestPending ? <Spinner /> : null}
-
-          {/* If sate is not uploadRequestPending give successm message */}
-          {!uploadRequestPending && uploadRequestReceived ? <Text>{successMessage}</Text> : null}
+          { selectedFiles.length > 0 ? <Button title='Delete' onPress={() => {this.onDelete()}}/> : null }
+          { this.DATA.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text> }
+          { uploadRequestPending ? <Spinner /> : null }
+          { !uploadRequestPending && uploadRequestReceived ? successMessage : null}
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
@@ -180,13 +151,11 @@ export class PendingScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: Store) => {
   return {
     token: state.app.token,
     uploadList: state.app.uploadList,
-    uploadFiles: state.app.uploadList.files,
-    uploadEntries: state.app.uploadList.journalEntries
-  };
+  }
 }
 
 export default connect(mapStateToProps)(PendingScreen);
