@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
@@ -57,55 +57,49 @@ export default class UploadForm extends Component<Props, State> {
             </Picker>
           </View>
         : null}
-        {(this.props.formType === 'journal' && this.props.userBlogs.length > 1) ?
-          <View>
-            <Text style={styles.formTitle}>Blog:</Text>
-            <View style={forms.pickerWrapper}>
-              <Picker style={forms.picker} onValueChange={(itemValue) => {this.props.setFormValue('pickedBlog', itemValue)}}>
-                {this.props.userBlogs && this.props.userBlogs.map((blog: UserBlog, index: number) => (
-                  <Picker.Item label={blog.title} value={blog.id} key={index} />
-                ))}
-              </Picker>
-            </View>
-          </View>
-        : null }
-        <View style={styles.tagsContainer}>
-          <Text style={styles.tagsTitle}>Tags:</Text>
-          {this.props.showTagInput ?
-            <View style={styles.tagsInputContainer}>
-              <TextInput
+
+      {/* Tags */}
+      <View style={styles.tagsContainer}>
+        <Text style={styles.tagsTitle}>Tags:</Text>
+        {props.showTagInput ?
+          <View style={styles.tagsInputContainer}>
+            <TextInput
               style={[forms.textInput, styles.tagsTextInput]}
               placeholder={'New tag...'}
-              onChangeText={(text) => this.setState({newTag: text})}
-              />
-              <TouchableOpacity style={styles.addButton} onPress={() => this.props.addTag(this.state.newTag) }>
-                <Text style={styles.addButtonText}>
-                  Add
+              onChangeText={(text) => setNewTag(text)}
+            />
+            <TouchableOpacity
+              style={styles.addButton}
+              onPress={() => props.addTag(newTag)}
+            >
+              <Text style={styles.addButtonText}>
+                Add
                 </Text>
               </TouchableOpacity>
             </View>
-          : null}
-          {this.props.selectedTags && this.props.selectedTags.map((value: string, index: number) => (
-            <TouchableOpacity key={index} onPress={() => this.props.removeTag(value)}>
-              <View style={forms.tag}>
-                <Text style={forms.tagText}>{value}</Text>
-                <Text style={forms.tagClose}>x</Text>
-              </View>
-            </TouchableOpacity>
-          ))}
-        </View>
-        <View style={forms.pickerWrapper}>
-          <Picker style={forms.picker} onValueChange={(itemValue) => {this.props.addTag(itemValue)}}>
-            {this.props.userTags && this.props.userTags.map((value: UserTag, index: number) => (
-              <Picker.Item label={value.tag} value={value.tag} key={index} />
-            ))}
-            <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />
-          </Picker>
-        </View>
-        {this.props.pickedFile ?
-          <TouchableOpacity onPress={()=>{this.props.handleForm()}}>
-            <Text style={buttons.lg}>Add to pending</Text>
           </TouchableOpacity>
+        ))}
+      </View>
+      <View style={forms.pickerWrapper}>
+        <Picker
+          style={forms.picker}
+          onValueChange={(itemValue) => {
+            props.addTag(itemValue)
+            console.log('added tag?')
+          }}
+        >
+          <Picker.Item label='...' value='' color={'#556d32'} />
+          {props.userTags && props.userTags.map((value: UserTag, index: number) => (
+            <Picker.Item label={value.tag} value={value.tag} key={index} />
+          ))}
+          <Picker.Item label='Add new tag +' value='Add new tag +' color={'#556d32'} />
+
+        </Picker>
+      </View>
+      {props.pickedFile ?
+        <TouchableOpacity onPress={() => { props.handleForm() }}>
+          <Text style={buttons.lg}>Add file to Pending</Text>
+        </TouchableOpacity>
         : null}
       </View>
     )

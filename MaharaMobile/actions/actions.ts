@@ -43,12 +43,22 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
   }
 }
 
-export function uploadToMahara(url: string, formData: any) {
-  return async function() {
+export function uploadFileToMahara(url: string, formData: MaharaFormData) {
+
+  const sendFormData = new FormData();
+  sendFormData.append('wsfunction', formData.webservice);
+  sendFormData.append('wstoken', formData.wstoken);
+  sendFormData.append('foldername', formData.foldername);
+  sendFormData.append('title', formData.title);
+  sendFormData.append('description', formData.description);
+  sendFormData.append('filetoupload', formData.filetoupload);
+
+  // Move this uploadToMahara dispatch to actions after pending
+  return async function () {
     try {
       const response = await fetch(url, {
         method: 'POST',
-        body: formData
+        body: sendFormData
       });
       const result = await response.json();
       console.log('Success:', JSON.stringify(result));
