@@ -104,7 +104,7 @@ export default class UploadForm extends Component<Props, State> {
         </View>
         {this.props.pickedFile ?
           <TouchableOpacity onPress={()=>{this.props.handleForm()}}>
-            <Text style={buttons.lg}>Upload to your Mahara</Text>
+            <Text style={buttons.lg}>Add to pending</Text>
           </TouchableOpacity>
         : null}
       </View>
