@@ -9,14 +9,12 @@ type Props = {
   dataList: Array<any>
   selectedFiles: Array<any>
   onRemove: () => {};
-  navigation: any
+  navigation: any;
 }
 
 const PendingList = (props: Props) => {
-  const [uploadType, setuploadType] = useState(props.uploadType);
   const [title, setTitle] = useState('');
   const [thumbnail, setThumbnail] = useState({ uri: '' });
-
 
   return (
     <FlatList
@@ -26,18 +24,17 @@ const PendingList = (props: Props) => {
         const uploadItem: any = item;
 
         //  figure out what to pass in to UploadItem
-        switch (uploadType) {
-          case 'file':
-            setTitle(uploadItem.formData.title);
-            setThumbnail({ uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') })
-            break;
-          case 'journalEntry':
-            setTitle(uploadItem.journalEntry.title);
+        const uploadType = props.uploadType ? props.uploadType : '';
 
-
-          default:
-            break;
+        if (uploadType === 'file') {
+          setTitle(uploadItem.formData.title);
+          setThumbnail({ uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') })
         }
+        else {
+          // Journal Entries
+          setTitle(uploadItem.journalEntry.title);
+        }
+
 
         return (
           <UploadItem

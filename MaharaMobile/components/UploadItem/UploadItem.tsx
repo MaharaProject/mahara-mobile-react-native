@@ -37,7 +37,8 @@ const UploadItem = (props: Props) => {
                 title='Remove'
                 onPress={props.onRemove}
                 color={variables.colors.primary}
-              // backgroundColor={variables.colors.primary} iOS
+                // iOS styles
+                backgroundColor={variables.colors.primary}
               />
             </View>
 
@@ -46,7 +47,8 @@ const UploadItem = (props: Props) => {
                 title="Details"
                 onPress={props.onEdit}
                 color={variables.colors.secondary}
-              // backgroundColor={variables.colors.secondary} iOS
+                // iOS styles
+                backgroundColor={variables.colors.secondary}
               />
             </View>
           </View>
