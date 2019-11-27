@@ -179,8 +179,6 @@ const mapStateToProps = (state: MaharaStore) => {
   return {
     token: state.app.token,
     uploadList: state.app.uploadList,
-    uploadFiles: state.app.uploadList.files,
-    uploadEntries: state.app.uploadList.journalEntries
   };
 }
 
