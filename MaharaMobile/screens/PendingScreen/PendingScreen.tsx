@@ -45,18 +45,27 @@ export class PendingScreen extends Component<Props, State> {
     header: null
   };
 
-  renderFlatlist() {
+  /**
+   * Renders a PendingList upon type of upload item
+   * @param uploadType string: could be 'file' or 'journalEntry'
+   */
+  renderPendingList(uploadType: string) {
+    let dataList: Array<any> = [];
+    switch (uploadType) {
+      case 'file':
+        dataList = this.props.uploadList.files;
+        break;
+      case 'journalEntry':
+        dataList = this.props.uploadList.journalEntries;
+      default:
+        break;
+    }
+
     return (
       <View>
         <PendingList
-          uploadType='file'
-          dataList={this.props.uploadList.files}
-          onRemove={this.onRemove}
-          navigation={this.props.navigation}
-        />
-        <PendingList
-          uploadType='journalEntry'
-          dataList={this.props.uploadList.journalEntries}
+          uploadType={uploadType}
+          dataList={dataList}
           onRemove={this.onRemove}
           navigation={this.props.navigation}
         />
@@ -161,7 +170,12 @@ export class PendingScreen extends Component<Props, State> {
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
           {/* if there are no items in uploadList, show text */}
-          {this.props.uploadList.files.length > 0 || this.props.uploadList.journalEntries.length > 0 ? this.renderFlatlist() : <Text>No pending uploads</Text>}
+          {this.props.uploadList.files.length === 0 && this.props.uploadList.journalEntries.length === 0 ? <Text>No pending uploads</Text> : null}
+
+          {/* Render PendingLists */}
+          {this.props.uploadList.files.length != 0 ? this.renderPendingList('files') : null}
+          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntries') : null}
+
           {uploadRequestPending ? <Spinner /> : null}
           {/* If state is not uploadRequestPending give success message */}
           {!uploadRequestPending && uploadRequestReceived ? <Text>{successMessage}</Text> : null}
