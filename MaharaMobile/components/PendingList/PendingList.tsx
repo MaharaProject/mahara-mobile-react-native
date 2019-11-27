@@ -1,10 +1,23 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 import UploadItem from '../UploadItem/UploadItem';
 import { MaharaPendingFile } from '../../models/models';
 import { Text } from 'react-native';
 
-const PendingList = (props: any) => {
+type Props = {
+  uploadType: string;
+  dataList: Array<any>
+  selectedFiles: Array<any>
+  onRemove: () => {};
+  navigation: any
+}
+
+const PendingList = (props: Props) => {
+  const [uploadType, setuploadType] = useState(props.uploadType);
+  const [title, setTitle] = useState('');
+  const [thumbnail, setThumbnail] = useState({ uri: '' });
+
+
   return (
     <FlatList
       data={props.dataList}
@@ -12,39 +25,34 @@ const PendingList = (props: any) => {
       renderItem={({ item }) => {
         const uploadItem: any = item;
 
-        if (props.uploadType === 'file') {
-          const thumbnail = { uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') }
-          return (
-            <UploadItem
-              itemId={uploadItem.id}
-              title={uploadItem.maharaFormData.title}
-              onRemove={() => props.onRemove(uploadItem.id)}
-              onEdit={() => props.navigation.navigate({
-                routeName: 'FileDetails',
-                params: {
-                  itemId: uploadItem.id
-                },
-              })}
-              image={thumbnail}
-            />
-          );
-        } else if (props.uploadType === 'journalEntry') {
-          return (
-            <UploadItem
-              itemId={uploadItem.id}
-              title={uploadItem.journalEntry.title}
-              onRemove={() => props.onRemove(uploadItem.id)}
-              onEdit={() => props.navigation.navigate({
-                routeName: 'FileDetails',
-                params: {
-                  itemId: uploadItem.id
-                },
-              })}
-            // image={thumbnail}
-            />
-          );
+        //  figure out what to pass in to UploadItem
+        switch (uploadType) {
+          case 'file':
+            setTitle(uploadItem.formData.title);
+            setThumbnail({ uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') })
+            break;
+          case 'journalEntry':
+            setTitle(uploadItem.journalEntry.title);
+
+
+          default:
+            break;
         }
-        return null
+
+        return (
+          <UploadItem
+            itemId={uploadItem.id}
+            title={title}
+            onRemove={() => props.onRemove(uploadItem.id)}
+            onEdit={() => props.navigation.navigate({
+              routeName: 'FileDetails',
+              params: {
+                itemId: uploadItem.id
+              },
+            })}
+            image={thumbnail}
+          />
+        )
       }
       }
     />
