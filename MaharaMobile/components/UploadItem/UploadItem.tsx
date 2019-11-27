@@ -15,8 +15,8 @@ type Props = {
 }
 
 const UploadItem = (props: Props) => {
-  const [title, setTitle] = useState(props.title ? props.title : '');
-  const [description, setDesc] = useState(props.description ? props.description : '');
+  const title = (props.title ? props.title : '');
+  const description = (props.description ? props.description : '');
   const displayName: string = title.length > 25 ? title.substring(0, 20) + '...' : title;
   const displayDesc: string = description.length > 20 ? description.substring(0.20) + '...' : description;
 
