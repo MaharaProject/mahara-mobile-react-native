@@ -143,7 +143,6 @@ export class PendingScreen extends Component<Props, State> {
    * Filter out the file or journal entry with the given id and update the UploadList throught dispatch.
    */
   onRemove = (itemId: string) => {
-    console.log('remove', itemId)
     const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
     const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
 
