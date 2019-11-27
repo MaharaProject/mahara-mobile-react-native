@@ -3,14 +3,14 @@ import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
-import { UserFolder, MaharaFile, UserTag, UserBlog, MaharaPendingFile } from '../../models/models';
+import { UserFolder, MaharaFile, UserTag, UserBlog } from '../../models/models';
 
 type Props = {
   pickedFile: MaharaFile;
-  handleForm: Function;
+  handleForm: () => {};
   setFormValue: any;
-  addTag: Function;
-  removeTag: Function;
+  addTag: () => {};
+  removeTag: () => {};
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
@@ -19,11 +19,7 @@ type Props = {
   formType: string;
 }
 
-type State = {
-  newTag: string
-}
-
-export const UploadForm = (props: any) => {
+export const UploadForm = (props: Props) => {
   const [newTag, setNewTag] = useState('');
 
   const multiLine = props.formType !== 'journal' ? forms.multiLine : [forms.multiLine, styles.description];
