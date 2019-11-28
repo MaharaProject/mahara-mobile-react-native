@@ -26,7 +26,8 @@ type State =
     uploadRequestPending: boolean;
     uploadRequestReceived: boolean;
     successMessage: string;
-    selectedFiles: Array<any>
+    selectedFiles: Array<any>;
+    uploadFilesExist: boolean;
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -37,13 +38,34 @@ export class PendingScreen extends Component<Props, State> {
       uploadRequestPending: false,
       uploadRequestReceived: false,
       successMessage: '',
-      selectedFiles: []
+      selectedFiles: [],
+      uploadFilesExist: (this.props.uploadList.files.length + this.props.uploadList.journalEntries.length > 0 ? true : false);
     }
   }
 
   static navigationOptions = {
     header: null
   };
+
+
+  result = () => {
+    const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
+    // there are items to upload
+    if (this.state.uploadFilesExist) {
+      return (
+        <View>
+          {this.props.uploadList.files.length != 0 ? this.renderPendingList('files') : null}
+          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntries') : null}
+        </View>
+      )
+      // no items to upload
+    } else {
+      if (uploadRequestPending) return <Spinner />
+      else if (!uploadRequestPending && uploadRequestReceived) return <Text>{successMessage}</Text>
+      else return <Text>No pending uploads</Text>
+    }
+  }
+
 
   /**
    * Renders a PendingList upon type of upload item
@@ -57,6 +79,7 @@ export class PendingScreen extends Component<Props, State> {
         break;
       case 'journalEntry':
         dataList = this.props.uploadList.journalEntries;
+        break;
       default:
         break;
     }
@@ -162,24 +185,12 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   render() {
-    const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
-
     return (
       <View style={styles.app} >
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
-          {/* if there are no items in uploadList, show text */}
-          {this.props.uploadList.files.length === 0 && this.props.uploadList.journalEntries.length === 0 ? <Text>No pending uploads</Text> : null}
-
-          {/* Render PendingLists */}
-          {this.props.uploadList.files.length != 0 ? this.renderPendingList('files') : null}
-          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntries') : null}
-
-          {uploadRequestPending ? <Spinner /> : null}
-          {/* If state is not uploadRequestPending give success message */}
-          {!uploadRequestPending && uploadRequestReceived ? <Text>{successMessage}</Text> : null}
-
+          {this.result}
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
