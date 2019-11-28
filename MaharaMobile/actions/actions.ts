@@ -37,10 +37,7 @@ export const addJournalEntryToUploadList = (journalEntry: PendingJournalEntry) =
   return { type: ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST, journalEntry }
 }
 
-export function updateUploadList(uploadList: {
-  files: Array<MaharaPendingFile>,
-  journalEntries: Array<PendingJournalEntry>
-}) {
+export function updateUploadList(uploadList: { files: Array<MaharaPendingFile>, journalEntries: Array<PendingJournalEntry> }) {
   return { type: UPDATE_UPLOAD_LIST, uploadList }
 }
 
@@ -67,16 +64,13 @@ export function uploadFileToMahara(url: string, formData: MaharaFileFormData) {
 
   sendFormData.append('filetoupload', formData.filetoupload);
 
-  // Move this uploadToMahara dispatch to actions after pending
   return async function () {
     try {
-      console.log('formData:', formData)
       const response = await fetch(url, {
         method: 'POST',
         body: sendFormData
       });
       const result = await response.json();
-      console.log('Success:', JSON.stringify(result));
     } catch (error) {
       console.error('Error:', error);
     }
