@@ -5,39 +5,13 @@ import { Store } from 'redux';
 import { connect, useSelector } from 'react-redux';
 import { MaharaStore, MaharaPendingFile, JournalEntry, PendingJournalEntry } from '../../models/models';
 
-const DetailsScreen = (props: any) => {
+type Props = {
+    navigation: any;
+}
+
+const DetailsScreen = (props: Props) => {
     const uploadList = useSelector((state: MaharaStore) => state.app.uploadList);
     const itemId = props.navigation.getParam('itemId');
-    const blank: MaharaPendingFile = {
-        id: '',
-        maharaFormData: {
-            description: '',
-            filetoupload: {
-                name: '',
-                type: '',
-                uri: '',
-            },
-            foldername: '',
-            title: '',
-            webservice: '',
-            wstoken: '',
-        },
-        url: ''
-    };
-
-    const blankJ: PendingJournalEntry = {
-        id: '',
-        journalEntry: {
-            blogid: 0,
-            body: '',
-            isdraft: false,
-            tags: [],
-            title: '',
-            wsfunction: '',
-            wstoken: '',
-        },
-        url: ''
-    }
 
     // Find matching itemId in list of files and journal entries of UploadList
     const findFile = uploadList.files.find(
