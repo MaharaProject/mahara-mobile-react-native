@@ -96,16 +96,6 @@ export class PendingScreen extends Component<Props, State> {
     )
   }
 
-  /**
-   * When users press and hold a card item in the Pending Screen, 'Delete' button appears.
-   * Handle which item is selected in state (currently only one selection possible max)
-   */
-  handleLongPress = (item: MaharaPendingFile | PendingJournalEntry) => {
-    const selectedFiles = new Set([...this.state.selectedFiles]); // copy and mutate new state
-    selectedFiles.has(item) ? selectedFiles.delete(item) : selectedFiles.add(item);
-    this.setState({ selectedFiles: Array.from(selectedFiles) });
-  }
-
   onUploadClick = () => {
     // Upload Files
     this.props.uploadList.files.forEach((uploadFile: MaharaPendingFile) => {
