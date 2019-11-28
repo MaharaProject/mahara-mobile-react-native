@@ -106,37 +106,15 @@ export class PendingScreen extends Component<Props, State> {
       this.props.dispatch(uploadJournalToMahara(journalEntry.url, journalEntry.journalEntry));
     });
 
-    // send uploadList to API
-    this.setState({
-      uploadRequestPending: true
-    });
-
-    // received response:
-    this.setState({
-      uploadRequestPending: false,
-      uploadRequestReceived: true,
-    });
-
-    // if receive 200 OK status:
-    // clear uploadList
     this.props.dispatch(updateUploadList({
       files: [],
       journalEntries: []
     }));
 
-    this.setState({
-      successMessage: 'Your files have been uploaded to Mahara'
-    })
-
-    // // if receive !200:
-    this.setState({
-      successMessage: 'It appears that you are offline or some other error has occurred. Please try again later.'
-    });
   }
 
   /**
-   * When the user presses the 'REMOVE' button on the card,
-   * Filter out the file or journal entry with the given id and update the UploadList throught dispatch.
+   * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   onRemove = (itemId: string) => {
     const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
