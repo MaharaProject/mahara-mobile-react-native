@@ -14,22 +14,19 @@ const DetailsScreen = (props: Props) => {
     const itemId = props.navigation.getParam('itemId');
 
     // Find matching itemId in list of files and journal entries of UploadList
-    const findFile = uploadList.files.find(
+    const matchingFile = uploadList.files.find(
         (file: MaharaPendingFile) => file.id === itemId
     );
 
-    const findJournalEntry = uploadList.journalEntries.find(
+    const matchingJournalEntry = uploadList.journalEntries.find(
         (entry: PendingJournalEntry) => entry.id === itemId
     );
 
-    if (findFile) {
-        return (
-            <Text>{findFile.maharaFormData.title}</Text>
-        )
-    } else if (findJournalEntry) {
-        return (
-            <Text>{findJournalEntry.journalEntry.title}</Text>
-        )
+    if (matchingFile) {
+        return <Text>{matchingFile.maharaFormData.title}</Text>
+
+    } else if (matchingJournalEntry) {
+        return <Text>{matchingJournalEntry.journalEntry.title}</Text>
     }
     else {
         return <View></View>
