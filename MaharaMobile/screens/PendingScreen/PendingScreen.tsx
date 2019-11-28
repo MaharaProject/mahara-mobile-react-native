@@ -47,7 +47,6 @@ export class PendingScreen extends Component<Props, State> {
     header: null
   };
 
-
   result = () => {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
     // there are items to upload
