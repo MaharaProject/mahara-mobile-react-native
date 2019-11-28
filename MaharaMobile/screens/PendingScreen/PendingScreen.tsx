@@ -135,31 +135,6 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   /**
-   * Clear the selected file/journal enty and remove it also from the UploadList
-   */
-  onDelete = () => {
-    const newUploadListFiles = new Set(this.props.uploadList.files);
-    this.state.selectedFiles.forEach(file => {
-      newUploadListFiles.delete(file);
-    });
-
-    const newUploadListJournalEntries = new Set(this.props.uploadList.journalEntries);
-    this.state.selectedFiles.forEach(file => {
-      newUploadListJournalEntries.delete(file);
-    });
-
-    this.props.dispatch(
-      updateUploadList({
-        files: Array.from(newUploadListFiles),
-        journalEntries: Array.from(newUploadListJournalEntries)
-      })
-    );
-    this.setState({
-      selectedFiles: []
-    });
-  }
-
-  /**
    * When the user presses the 'REMOVE' button on the card,
    * Filter out the file or journal entry with the given id and update the UploadList throught dispatch.
    */
