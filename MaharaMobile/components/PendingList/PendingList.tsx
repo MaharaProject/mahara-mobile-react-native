@@ -24,9 +24,7 @@ const PendingList = (props: Props) => {
         const uploadItem: any = item;
 
         //  figure out what to pass in to UploadItem
-        const uploadType = props.uploadType ? props.uploadType : '';
-
-        if (uploadType === 'file') {
+        if (props.uploadType === 'file') {
           title = uploadItem.formData.title;
           thumbnail = { uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') }
         }
