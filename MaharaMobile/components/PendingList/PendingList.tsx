@@ -20,29 +20,27 @@ const PendingList = (props: Props) => {
     <FlatList
       data={props.dataList}
       extraData={props.selectedFiles}
-      renderItem={({ item }) => {
-        const uploadItem: any = item;
-
+      renderItem={({ item }: any) => {
         //  figure out what to pass in to UploadItem
         if (props.uploadType === 'file') {
-          title = uploadItem.formData.title;
-          thumbnail = { uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') }
+          title = item.formData.title;
+          thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') }
         }
         else {
           // Journal Entries
-          title = uploadItem.journalEntry.title;
+          title = item.journalEntry.title;
         }
 
 
         return (
           <UploadItem
-            itemId={uploadItem.id}
+            itemId={item.id}
             title={title}
-            onRemove={() => props.onRemove(uploadItem.id)}
+            onRemove={() => props.onRemove()}
             onEdit={() => props.navigation.navigate({
               routeName: 'FileDetails',
               params: {
-                itemId: uploadItem.id
+                itemId: item.id
               },
             })}
             image={thumbnail}
