@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import React from 'react';
+import { FlatList } from 'react-native-gesture-handler';
 import UploadItem from '../UploadItem/UploadItem';
-import { MaharaPendingFile } from '../../models/models';
-import { Text } from 'react-native';
 
 type Props = {
   uploadType: string;
