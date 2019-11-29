@@ -27,7 +27,6 @@ const PendingList = (props: Props) => {
           thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') }
         }
         else {
-          // Journal Entries
           title = item.journalEntry.title;
         }
 
