@@ -10,11 +10,13 @@ type Props = {
   selectedFiles: Array<any>
   onRemove: () => {};
   navigation: any;
+  title: string;
+  thumbnail: string;
 }
 
 const PendingList = (props: Props) => {
-  const [title, setTitle] = useState('');
-  const [thumbnail, setThumbnail] = useState({ uri: '' });
+  let title = props.title ? props.title : '';
+  let thumbnail = props.thumbnail ? props.thumbnail : {};
 
   return (
     <FlatList
@@ -27,12 +29,12 @@ const PendingList = (props: Props) => {
         const uploadType = props.uploadType ? props.uploadType : '';
 
         if (uploadType === 'file') {
-          setTitle(uploadItem.formData.title);
-          setThumbnail({ uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') })
+          title = uploadItem.formData.title;
+          thumbnail = { uri: (uploadItem.maharaFormData.filetoupload.uri ? uploadItem.maharaFormData.filetoupload.uri : '') }
         }
         else {
           // Journal Entries
-          setTitle(uploadItem.journalEntry.title);
+          title = uploadItem.journalEntry.title;
         }
 
 
