@@ -8,13 +8,11 @@ type Props = {
   selectedFiles: Array<any>
   onRemove: () => {};
   navigation: any;
-  title: string;
-  thumbnail: string;
 }
 
 const PendingList = (props: Props) => {
-  let title = props.title ? props.title : '';
-  let thumbnail = props.thumbnail ? props.thumbnail : {};
+  let title = '';
+  let thumbnail = {};
 
   return (
     <FlatList
