@@ -30,7 +30,6 @@ const PendingList = (props: Props) => {
           title = item.journalEntry.title;
         }
 
-
         return (
           <UploadItem
             itemId={item.id}
