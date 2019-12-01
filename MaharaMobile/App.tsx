@@ -15,7 +15,7 @@ import { styles } from './assets/styles/variables';
 
 
 const AppNavigator = createStackNavigator({
-  // Home: LoginScreen,
+  Home: LoginScreen,
   Add: AddScreen,
   Profile: ProfileScreen,
   PendingScreen: PendingScreen
