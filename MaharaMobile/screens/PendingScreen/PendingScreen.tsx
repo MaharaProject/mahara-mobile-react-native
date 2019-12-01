@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, FlatList, Button } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/Header';
@@ -8,7 +8,6 @@ import { buttons } from '../../assets/styles/buttons';
 import { updateUploadList, uploadFileToMahara, uploadJournalToMahara } from '../../actions/actions'
 import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
-import UploadItem from '../../components/UploadItem/UploadItem';
 import PendingList from '../../components/PendingList/PendingList';
 
 type Props =
