@@ -11,21 +11,28 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
+import { styles } from './assets/styles/variables';
+
 
 const AppNavigator = createStackNavigator({
-  Home: LoginScreen,
-  Profile: ProfileScreen,
+  // Home: LoginScreen,
   Add: AddScreen,
+  Profile: ProfileScreen,
   PendingScreen: PendingScreen
 });
 
 const AppTabNavigator = createBottomTabNavigator({
-  App: AppNavigator,
-  Home: LoginScreen,
   Profile: ProfileScreen,
-  Add: AddScreen,
+  Add: AppNavigator,
+  // Home: LoginScreen,
   PendingScreen: PendingScreen
-});
+},
+  {
+    tabBarOptions: {
+      activeBackgroundColor: styles.colors.secondary,
+      activeTintColor: styles.colors.light
+    }
+  });
 
 const store = configureStore();
 
