@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, Image, ScrollView} from 'react-native';
+import { TouchableOpacity, Text, View, Image, ScrollView } from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
 
@@ -38,7 +38,7 @@ type State = {
 const initialState = {
   title: '',
   description: '',
-  pickedFile: {uri: '', name: '', type: '', size: 0},
+  pickedFile: { uri: '', name: '', type: '', size: 0 },
   pickedFolder: '',
   pickedBlog: 0,
   selectedTags: [],
@@ -65,30 +65,30 @@ export class AddScreen extends Component<Props, State> {
       formType: type
     });
 
-    switch(type) {
+    switch (type) {
       case 'file':
         this.setState({
           filePickerButtonText: 'Pick a different file',
           mediaTypeHeader: 'Upload a file'
         })
         this.pickDocument()
-      break;
+        break;
       case 'journal':
         this.setState({
           webservice: 'module_mobileapi_upload_blog_post',
           mediaTypeHeader: 'Add a journal entry'
         })
-      break;
+        break;
       case 'photo':
         this.setState({
           mediaTypeHeader: 'Upload your photo'
         })
-      break;
+        break;
       case 'audio':
         this.setState({
           mediaTypeHeader: 'Upload your recording'
         })
-      break;
+        break;
     }
   }
 
@@ -113,7 +113,7 @@ export class AddScreen extends Component<Props, State> {
   setTagString = (tags: Array<string>) => {
     const tagsArray: Array<string> = [];
 
-    tags.map(function(tag, index) {
+    tags.map(function (tag, index) {
       tagsArray.push(tag + '&tags[' + (index + 1) + ']=');
     });
 
@@ -207,15 +207,15 @@ export class AddScreen extends Component<Props, State> {
       <ScrollView>
         <Header navigation={this.props.navigation} />
         <View style={styles.view}>
-        {this.state.mediaTypeHeader ?
-          // TODO: temporary styling, add in header styles from diffent branch
-          <Text style={{fontSize: 24, fontWeight: 'bold', marginBottom: 20}}>{this.state.mediaTypeHeader}</Text>
-        : null}
+          {this.state.mediaTypeHeader ?
+            // TODO: temporary styling, add in header styles from diffent branch
+            <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>{this.state.mediaTypeHeader}</Text>
+            : null}
           {this.state.pickedFile.name ?
             <View style={styles.imageWrap}>
-              <Image source={{uri: this.state.pickedFile.uri}} style={styles.image} />
+              <Image source={{ uri: this.state.pickedFile.uri }} style={styles.image} />
             </View>
-          : null}
+            : null}
           <SelectMediaType
             selectAddType={this.selectAddType}
             formType={this.state.formType}
@@ -240,7 +240,7 @@ export class AddScreen extends Component<Props, State> {
                 <Text style={buttons.sm}>Back</Text>
               </TouchableOpacity>
             </View>
-          : null}
+            : null}
         </View>
       </ScrollView>
     )
