@@ -44,42 +44,11 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
   }
 }
 
-export function uploadFileToMahara(url: string, formData: MaharaFileFormData) {
-
-  const sendFormData = new FormData();
-  sendFormData.append('wsfunction', formData.webservice);
-  sendFormData.append('wstoken', formData.wstoken);
-  sendFormData.append('foldername', formData.foldername);
-  sendFormData.append('title', formData.title);
-  sendFormData.append('description', formData.description);
-
-  sendFormData.append('filetoupload', formData.filetoupload);
-
+export function uploadItemToMahara(url: string, item: any) {
+  const uploadObject = buildObject(item);
   return async function () {
     try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: sendFormData
-      });
-      const result = await response.json();
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-}
-
-export function uploadJournalToMahara(url: string, body: JournalEntry) {
-  const journalEntry = JSON.stringify(body);
-
-  return async function () {
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: journalEntry
-      });
+      const response = await fetch(url, uploadObject);
       const result = await response.json();
       console.log('Success:', JSON.stringify(result));
     } catch (error) {
@@ -87,3 +56,35 @@ export function uploadJournalToMahara(url: string, body: JournalEntry) {
     }
   }
 }
+
+function buildObject(item: any) {
+  if (isJournalEntry(item)) {
+    return ({
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(item)
+    })
+  }
+  else if (isMaharaFileFormData(item)) {
+    const sendFormData = new FormData();
+    sendFormData.append('wsfunction', item.webservice);
+    sendFormData.append('wstoken', item.wstoken);
+    sendFormData.append('foldername', item.foldername);
+    sendFormData.append('title', item.title);
+    sendFormData.append('description', item.description);
+    sendFormData.append('filetoupload', item.filetoupload);
+    return ({
+      method: 'POST',
+      body: sendFormData
+    })
+  }
+}
+
+function isJournalEntry(x: any): x is JournalEntry {
+  return (x as JournalEntry).blogid !== undefined;
+}
+
+function isMaharaFileFormData(x: any): x is MaharaFileFormData {
+  return (x as MaharaFileFormData).filetoupload !== undefined;
