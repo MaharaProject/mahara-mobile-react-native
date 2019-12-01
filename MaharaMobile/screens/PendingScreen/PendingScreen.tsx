@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { updateUploadList, uploadFileToMahara, uploadJournalToMahara } from '../../actions/actions'
+import { updateUploadList, uploadItemToMahara } from '../../actions/actions'
 import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
@@ -94,20 +94,14 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onUploadClick = () => {
-    // Upload Files
-    this.props.uploadList.files.forEach((uploadFile: MaharaPendingFile) => {
-      this.props.dispatch(uploadFileToMahara(uploadFile.url, uploadFile.maharaFormData));
-    });
-
-    // Upload Journal Entries 
-    this.props.uploadList.journalEntries.forEach((journalEntry: PendingJournalEntry) => {
-      this.props.dispatch(uploadJournalToMahara(journalEntry.url, journalEntry.journalEntry));
-    });
-
-    this.props.dispatch(updateUploadList({
-      files: [],
-      journalEntries: []
-    }));
+    const obj = this.props.uploadList;
+    Object.values(obj).forEach((array: Array<any>) => {
+      array.forEach((item: any) => {
+        const uploadItem = item.maharaFormData || item.journalEntry;
+        debugger;
+        this.props.dispatch(uploadItemToMahara(item.url, uploadItem));
+      })
+    })
   }
 
   /**
