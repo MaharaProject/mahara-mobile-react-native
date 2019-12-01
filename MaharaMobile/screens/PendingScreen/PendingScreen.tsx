@@ -130,6 +130,7 @@ export class PendingScreen extends Component<Props, State> {
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
           <TouchableOpacity onPress={this.onUploadClick}>
+            {this.pendingDisplay}
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
         </View>
