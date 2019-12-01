@@ -1,4 +1,4 @@
-import { MaharaFile, JournalEntry, MaharaPendingFile, PendingJournalEntry, MaharaFileFormData } from '../models/models';
+import { JournalEntry, MaharaPendingFile, PendingJournalEntry, MaharaFileFormData } from '../models/models';
 
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const ADD_USER = 'ADD_USER';
@@ -16,24 +16,15 @@ export function addUser(json: any) {
   }
 }
 
-// TODO: add function for adding tags to loca state
-// function for adding tag start
-// export function addTag(tag: string) {
-//   return {
-//     type: ADD_TAG,
-//     tag: tag
-//   }
-// }
-
 export function addToken(token: string) {
   return { type: ADD_TOKEN, token }
 }
 
-export const addFileToUploadList = (file: MaharaPendingFile) => {
+export function addFileToUploadList(file: MaharaPendingFile) {
   return { type: ADD_FILE_TO_UPLOAD_LIST, file }
 }
 
-export const addJournalEntryToUploadList = (journalEntry: PendingJournalEntry) => {
+export function addJournalEntryToUploadList(journalEntry: PendingJournalEntry) {
   return { type: ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST, journalEntry }
 }
 
