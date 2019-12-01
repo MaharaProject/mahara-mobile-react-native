@@ -38,7 +38,7 @@ export class PendingScreen extends Component<Props, State> {
       uploadRequestReceived: false,
       successMessage: '',
       selectedFiles: [],
-      uploadFilesExist: (this.props.uploadList.files.length + this.props.uploadList.journalEntries.length > 0 ? true : false);
+      uploadFilesExist: (this.props.uploadList.files.length + this.props.uploadList.journalEntries.length > 0 ? true : false)
     }
   }
 
@@ -46,7 +46,7 @@ export class PendingScreen extends Component<Props, State> {
     header: null
   };
 
-  currentState = () => {
+  pendingDisplay = () => {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
     // there are items to upload
     if (this.state.uploadFilesExist) {
@@ -63,7 +63,6 @@ export class PendingScreen extends Component<Props, State> {
       else return <Text>No pending uploads</Text>
     }
   }
-
 
   /**
    * Renders a PendingList upon type of upload item
@@ -109,7 +108,6 @@ export class PendingScreen extends Component<Props, State> {
       files: [],
       journalEntries: []
     }));
-
   }
 
   /**
@@ -131,7 +129,6 @@ export class PendingScreen extends Component<Props, State> {
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
-          {this.result}
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
