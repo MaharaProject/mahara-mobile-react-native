@@ -42,23 +42,23 @@ export class ProfileScreen extends Component<Props, State> {
 
   receiveProfilePic = async () => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100',
-          wstoken = this.props.token,
-          serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
+      wstoken = this.props.token,
+      serverUrl = 'https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=' + api + '&wstoken=' + wstoken;
 
     RNFetchBlob.config({
       fileCache: true
     })
-    .fetch('GET', serverUrl)
-    .then((res) => {
-      const image = `file://${res.path()}`;
-      this.setState({
-        profileIcon: image
+      .fetch('GET', serverUrl)
+      .then((res) => {
+        const image = `file://${res.path()}`;
+        this.setState({
+          profileIcon: image
+        })
       })
-    })
-    .catch((error) => {
-      // error handling
-      console.log(error);
-    })
+      .catch((error) => {
+        // error handling
+        console.log(error);
+      })
   }
 
   componentDidMount() {
@@ -74,12 +74,6 @@ export class ProfileScreen extends Component<Props, State> {
             name={this.props.userName}
             profileIcon={this.state.profileIcon}
           />
-          <TouchableOpacity onPress={this.goToUploadScreen}>
-            <Text style={buttons.lg}>Upload a file</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.goToPendingScreen}>
-            <Text style={buttons.lg}>Go to Pending Screen</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );

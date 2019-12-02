@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -19,7 +19,6 @@ import { Colors } from 'react-native-paper';
 
 
 const AppNavigator = createStackNavigator({
-  Home: LoginScreen,
   Add: AddScreen,
   Profile: ProfileScreen,
   PendingScreen: PendingScreen
@@ -28,25 +27,22 @@ const AppNavigator = createStackNavigator({
 const tabScreenConfig = {
   Profile: {
     screen: ProfileScreen, navigationOptions: {
-      // tabBarLabel: ' ',
       tabBarIcon: () => {
         return <FontAwesomeIcon icon={faUser} />
       },
-      // tabBarColor: styles.colors.secondary // only works with shifting
     },
   },
   Add: {
     screen: AppNavigator, navigationOptions: {
-      // tabBarLabel: ' ',
+      tabBarLabel: 'Upload',
       tabBarIcon: () => {
         return <FontAwesomeIcon icon={faPlusCircle} />
       }
     }
   },
-  // Home: LoginScreen,
   PendingScreen: {
     screen: PendingScreen, navigationOptions: {
-      // tabBarLabel: ' ',
+      tabBarLabel: 'Pending ',
       tabBarIcon: () => {
         return <FontAwesomeIcon icon={faHistory} />
       }
@@ -54,6 +50,7 @@ const tabScreenConfig = {
   }
 };
 
+// Check the OS system for correct styles
 const AppTabNavigator = Platform.OS === 'android'
   ? createMaterialBottomTabNavigator(tabScreenConfig, {
     activeColor: styles.colors.light,
@@ -70,9 +67,20 @@ const AppTabNavigator = Platform.OS === 'android'
       }
     });
 
+// Navigator with only LoginScreen 
+const AuthNavigator = createStackNavigator({
+  Auth: LoginScreen
+});
+
+// Main navigator, with route to AppNavigator once authenticated
+const MainNavigator = createSwitchNavigator({
+  Auth: AuthNavigator,
+  App: AppTabNavigator
+});
+
 const store = configureStore();
 
-const Navigation = createAppContainer(AppTabNavigator);
+const Navigation = createAppContainer(MainNavigator);
 
 // Render the app container component with the provider around it
 export default class App extends React.Component {
