@@ -4,7 +4,8 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 // import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faUser, faPlusCircle, faHistory } from '@fortawesome/free-solid-svg-icons';
 
 import configureStore from './store/store';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
@@ -22,10 +23,28 @@ const AppNavigator = createStackNavigator({
 });
 
 const AppTabNavigator = createBottomTabNavigator({
-  Profile: ProfileScreen,
-  Add: AppNavigator,
+  Profile: {
+    screen: ProfileScreen, navigationOptions: {
+      tabBarIcon: (tabInfo) => {
+        return <FontAwesomeIcon icon={faUser} />
+      }
+    }
+  },
+  Add: {
+    screen: AddScreen, navigationOptions: {
+      tabBarIcon: (tabInfo) => {
+        return <FontAwesomeIcon icon={faPlusCircle} />
+      }
+    }
+  },
   // Home: LoginScreen,
-  PendingScreen: PendingScreen
+  PendingScreen: {
+    screen: PendingScreen, navigationOptions: {
+      tabBarIcon: (tabInfo) => {
+        return <FontAwesomeIcon icon={faHistory} />
+      }
+    }
+  }
 },
   {
     tabBarOptions: {
