@@ -54,7 +54,7 @@ const tabScreenConfig = {
 const AppTabNavigator = Platform.OS === 'android'
   ? createMaterialBottomTabNavigator(tabScreenConfig, {
     activeColor: styles.colors.light,
-    shifting: true,
+    // shifting: true,
     barStyle: {
       backgroundColor: styles.colors.secondary
     }
