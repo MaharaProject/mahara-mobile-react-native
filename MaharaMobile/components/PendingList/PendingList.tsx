@@ -5,34 +5,38 @@ import UploadItem from '../UploadItem/UploadItem';
 type Props = {
   uploadType: string;
   dataList: Array<any>
-  selectedFiles: Array<any>
-  onRemove: () => {};
+  onRemove: Function;
   navigation: any;
 }
 
 const PendingList = (props: Props) => {
+  let itemId = '';
   let title = '';
+  let description = '';
   let thumbnail = {};
 
   return (
     <FlatList
       data={props.dataList}
-      extraData={props.selectedFiles}
       renderItem={({ item }: any) => {
         //  figure out what to pass in to UploadItem
         if (props.uploadType === 'file') {
-          title = item.formData.title;
+          itemId = item.maharaFormData.id;
+          title = item.maharaFormData.title;
+          description = item.maharaFormData.description;
           thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') }
         }
         else {
+          itemId = item.journalEntry.id;
           title = item.journalEntry.title;
+          description = item.journalEntry.body
         }
 
         return (
           <UploadItem
-            itemId={item.id}
             title={title}
-            onRemove={() => props.onRemove()}
+            description={description}
+            onRemove={() => props.onRemove('0')}
             onEdit={() => props.navigation.navigate({
               routeName: 'FileDetails',
               params: {

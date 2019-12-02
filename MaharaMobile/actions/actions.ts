@@ -88,3 +88,4 @@ function isJournalEntry(x: any): x is JournalEntry {
 
 function isMaharaFileFormData(x: any): x is MaharaFileFormData {
   return (x as MaharaFileFormData).filetoupload !== undefined;
+}

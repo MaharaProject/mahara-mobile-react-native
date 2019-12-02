@@ -9,6 +9,7 @@ import { updateUploadList, uploadItemToMahara } from '../../actions/actions'
 import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
+import { conditionalExpression } from '@babel/types';
 
 type Props =
   {
@@ -28,6 +29,7 @@ type State =
     selectedFiles: Array<any>;
     uploadFilesExist: boolean;
   }
+
 
 export class PendingScreen extends Component<Props, State> {
   constructor(props: Props) {
@@ -52,8 +54,8 @@ export class PendingScreen extends Component<Props, State> {
     if (this.state.uploadFilesExist) {
       return (
         <View>
-          {this.props.uploadList.files.length != 0 ? this.renderPendingList('files') : null}
-          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntries') : null}
+          {this.props.uploadList.files.length != 0 ? this.renderPendingList('file') : null}
+          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntry') : null}
         </View>
       )
       // no items to upload
@@ -81,6 +83,7 @@ export class PendingScreen extends Component<Props, State> {
         break;
     }
 
+
     return (
       <View>
         <PendingList
@@ -106,14 +109,15 @@ export class PendingScreen extends Component<Props, State> {
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
-  onRemove = (itemId: string) => {
-    const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
-    const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
+  onRemove(itemId: string) {
+    console.log(typeof this.props.uploadList !== undefined ? 'no' : 'yes')
+    // const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
+    // const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
 
-    this.props.dispatch(updateUploadList({
-      files: updatedFiles,
-      journalEntries: updatedJournalEntries
-    }));
+    // this.props.dispatch(updateUploadList({
+    // files: updatedFiles,
+    // journalEntries: updatedJournalEntries
+    // }));
   }
 
   render() {
@@ -122,8 +126,8 @@ export class PendingScreen extends Component<Props, State> {
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
+          {this.pendingDisplay()}
           <TouchableOpacity onPress={this.onUploadClick}>
-            {this.pendingDisplay}
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
         </View>
