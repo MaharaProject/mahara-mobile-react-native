@@ -98,7 +98,6 @@ export class PendingScreen extends Component<Props, State> {
     Object.values(obj).forEach((array: Array<any>) => {
       array.forEach((item: any) => {
         const uploadItem = item.maharaFormData || item.journalEntry;
-        debugger;
         this.props.dispatch(uploadItemToMahara(item.url, uploadItem));
       })
     })
