@@ -15,6 +15,7 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
 import { styles } from './assets/styles/variables';
+import { Colors } from 'react-native-paper';
 
 
 const AppNavigator = createStackNavigator({
@@ -30,8 +31,9 @@ const tabScreenConfig = {
       // tabBarLabel: ' ',
       tabBarIcon: () => {
         return <FontAwesomeIcon icon={faUser} />
-      }
-    }
+      },
+      // tabBarColor: styles.colors.secondary // only works with shifting
+    },
   },
   Add: {
     screen: AppNavigator, navigationOptions: {
@@ -53,7 +55,13 @@ const tabScreenConfig = {
 };
 
 const AppTabNavigator = Platform.OS === 'android'
-  ? createMaterialBottomTabNavigator(tabScreenConfig, {}) :
+  ? createMaterialBottomTabNavigator(tabScreenConfig, {
+    activeColor: styles.colors.light,
+    shifting: true,
+    barStyle: {
+      backgroundColor: styles.colors.secondary
+    }
+  }) :
   createBottomTabNavigator(tabScreenConfig,
     {
       tabBarOptions: {
