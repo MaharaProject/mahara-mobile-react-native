@@ -8,12 +8,14 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
+import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const AppNavigator = createStackNavigator({
   Home: LoginScreen,
   Profile: ProfileScreen,
   Add: AddScreen,
-  PendingScreen: PendingScreen
+  PendingScreen: PendingScreen,
+  Details: DetailsScreen
 });
 
 const store = configureStore();

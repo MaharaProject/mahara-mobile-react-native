@@ -21,13 +21,13 @@ const PendingList = (props: Props) => {
       renderItem={({ item }: any) => {
         //  figure out what to pass in to UploadItem
         if (props.uploadType === 'file') {
-          itemId = item.maharaFormData.id;
+          itemId = item.id;
           title = item.maharaFormData.title;
           description = item.maharaFormData.description;
           thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') }
         }
         else {
-          itemId = item.journalEntry.id;
+          itemId = item.id;
           title = item.journalEntry.title;
           description = item.journalEntry.body
         }
@@ -38,9 +38,9 @@ const PendingList = (props: Props) => {
             description={description}
             onRemove={() => props.onRemove('0')}
             onEdit={() => props.navigation.navigate({
-              routeName: 'FileDetails',
+              routeName: 'Details',
               params: {
-                itemId: item.id
+                itemId: itemId
               },
             })}
             image={thumbnail}
