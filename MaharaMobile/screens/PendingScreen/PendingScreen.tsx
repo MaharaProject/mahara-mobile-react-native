@@ -100,9 +100,7 @@ export class PendingScreen extends Component<Props, State> {
     const obj = this.props.uploadList;
     Object.values(obj).forEach((array: Array<any>) => {
       array.forEach((item: any) => {
-        console.log(item)
         const uploadItem = item.maharaFormData || item.journalEntry;
-        console.log('uploadItem', uploadItem)
         this.props.dispatch(uploadItemToMahara(item.url, uploadItem));
         this.props.dispatch(updateUploadList({ files: [], journalEntries: [] }))
       })
@@ -113,7 +111,6 @@ export class PendingScreen extends Component<Props, State> {
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   onRemove = (itemId: string) => {
-    console.log(typeof this.props.uploadList !== undefined ? 'no' : 'yes')
     const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
     const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
 
