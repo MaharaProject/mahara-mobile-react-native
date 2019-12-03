@@ -36,7 +36,7 @@ const PendingList = (props: Props) => {
           <UploadItem
             title={title}
             description={description}
-            onRemove={() => props.onRemove('0')}
+            onRemove={() => props.onRemove(itemId)}
             onEdit={() => props.navigation.navigate({
               routeName: 'Details',
               params: {

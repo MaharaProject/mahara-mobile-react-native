@@ -112,15 +112,15 @@ export class PendingScreen extends Component<Props, State> {
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
-  onRemove(itemId: string) {
+  onRemove = (itemId: string) => {
     console.log(typeof this.props.uploadList !== undefined ? 'no' : 'yes')
-    // const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
-    // const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
+    const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
+    const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
 
-    // this.props.dispatch(updateUploadList({
-    // files: updatedFiles,
-    // journalEntries: updatedJournalEntries
-    // }));
+    this.props.dispatch(updateUploadList({
+      files: updatedFiles,
+      journalEntries: updatedJournalEntries
+    }));
   }
 
   render() {
