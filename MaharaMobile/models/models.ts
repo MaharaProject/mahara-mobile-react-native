@@ -1,8 +1,8 @@
-export interface MaharaStore {
+export type MaharaStore = {
   app: InitialState;
 }
 
-export interface InitialState {
+export type InitialState = {
   url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;
@@ -18,26 +18,26 @@ export interface InitialState {
   userBlogs: Array<any>;
 }
 
-export interface RequestErrorPayload {
+export type RequestErrorPayload = {
   code: number;
   message: string;
   previousError?: Error;
 };
 
-export interface MaharaFile {
+export type MaharaFile = {
   uri: string;
   type: string;
   name: string;
   size: number;
 }
 
-export interface MaharaPendingFile {
+export type MaharaPendingFile = {
   maharaFormData: MaharaFileFormData;
   id: string;
   url: string; // for files, this url includes tags
 }
 
-export interface JournalEntry {
+export type JournalEntry = {
   blogid: number;
   wsfunction: string;
   wstoken: string; // aka: ws function
@@ -47,40 +47,29 @@ export interface JournalEntry {
   tags?: Array<string>;
 }
 
-export interface PendingJournalEntry {
+export type PendingJournalEntry = {
   journalEntry: JournalEntry,
   id: string;
   url: string;
 }
 
-
-export interface JournalEntry {
-  blogid: number;
-  wsfunction: string;
-  wstoken: string;
-  title: string;
-  body: string;
-  isdraft: boolean;
-  tags?: Array<string>;
-}
-
-export interface User {
+export type User = {
   userName: string;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
 }
 
-export interface UserFolder {
+export type UserFolder = {
   title: string;
 }
 
-export interface UserTag {
+export type UserTag = {
   tag: string;
   usage: number;
 }
 
-export interface UserBlog {
+export type UserBlog = {
   description: string;
   id: number;
   locked: boolean;
@@ -88,7 +77,7 @@ export interface UserBlog {
   title: string;
 }
 
-export interface MaharaFileFormData {
+export type MaharaFileFormData = {
   webservice: string;
   wstoken: string;
   foldername: string;
