@@ -13,10 +13,10 @@ type Props = {
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
-  errorMessage: string;
 }
 
 type State = {
+  errorMessage: string;
   url: string;
   loginType: string;
   serverPing: boolean;
@@ -25,6 +25,7 @@ type State = {
 }
 
 const initialState: State = {
+  errorMessage: '',
   url: '',
   loginType: '',
   serverPing: false,
@@ -73,21 +74,26 @@ export class SiteCheckScreen extends Component<Props, State> {
     this.setState({url: serverUrl});
   }
 
-  checkServer = () => {
+  checkServer = async () => {
     const serverUrl = this.state.url;
 
     if(!serverUrl) {
       return;
     }
 
-    this.props.dispatch(checkLoginTypes(serverUrl)).then( () => {
+    try {
+      await this.props.dispatch(checkLoginTypes(serverUrl))
       if(this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
-        this.setState({
-          serverPing: true,
-          isInputHidden: true
-        });
-      }
-    });
+          this.setState({
+            serverPing: true,
+            isInputHidden: true,
+            errorMessage: ''
+          });
+        }
+    } catch (error) {
+      this.setState({errorMessage: error.message});
+      console.log(error);
+    }
   }
 
   resetForm = () => {
@@ -109,7 +115,7 @@ export class SiteCheckScreen extends Component<Props, State> {
           localLogin={this.props.localLogin}
           ssoLogin={this.props.ssoLogin}
           tokenLogin={this.props.tokenLogin}
-          errorMessage={this.props.errorMessage}
+          errorMessage={this.state.errorMessage}
         />
       </View>
     )

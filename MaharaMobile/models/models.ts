@@ -24,6 +24,12 @@ export interface Blob {
   slice(start?: number, end?: number, contentType?: string): Blob;
 }
 
+export interface RequestErrorPayload {
+  code: number;
+  message: string;
+  previousError?: Error;
+};
+
 export interface MaharaFile {
   uri: string;
   type: string;

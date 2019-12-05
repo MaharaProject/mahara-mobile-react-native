@@ -4,7 +4,6 @@ import { ADD_TOKEN, ADD_USER, UPDATE_UPLOAD_LIST, ERROR_MESSAGE, SERVER_URL } fr
 
 const initialAppState: InitialState = {
   url: '',
-  errorMessage: '',
   token: '',
   tokenLogin: false,
   ssoLogin: false,
@@ -43,11 +42,6 @@ const app = (state = initialAppState, action: any) => {
       return {
         ...state,
         uploadList: action.uploadList
-      }
-    case ERROR_MESSAGE:
-      return {
-        ...state,
-        errorMessage: action.errorMessage
       }
     default:
       return state;
