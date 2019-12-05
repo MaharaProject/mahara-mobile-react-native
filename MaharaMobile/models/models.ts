@@ -3,6 +3,10 @@ export interface MaharaStore {
 }
 
 export interface InitialState {
+  url: string;
+  tokenLogin: boolean;
+  ssoLogin: boolean;
+  localLogin: boolean;
   token: string;
   userName: string;
   userFolders: Array<UserFolder>;
@@ -13,6 +17,12 @@ export interface InitialState {
   }
   userBlogs: Array<any>;
 }
+
+export interface RequestErrorPayload {
+  code: number;
+  message: string;
+  previousError?: Error;
+};
 
 export interface MaharaFile {
   uri: string;

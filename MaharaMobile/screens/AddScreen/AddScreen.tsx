@@ -19,6 +19,7 @@ type Props = {
   token: string;
   dispatch: any;
   navigation: any;
+  url: string;
   uploadList: {
     files: Array<MaharaPendingFile>,
     journalEntries: Array<PendingJournalEntry>
@@ -192,7 +193,7 @@ export class AddScreen extends Component<Props, State> {
         url: url
       }
 
-      // add journal entry to pending list 
+      // add journal entry to pending list
       this.props.dispatch(addJournalEntryToUploadList(pendingJournalEntry));
 
     } else {
@@ -279,6 +280,7 @@ export class AddScreen extends Component<Props, State> {
 
 const mapStateToProps = (state: MaharaStore) => {
   return {
+    url: state.app.token,
     token: state.app.token,
     userTags: state.app.userTags,
     userFolders: state.app.userFolders,

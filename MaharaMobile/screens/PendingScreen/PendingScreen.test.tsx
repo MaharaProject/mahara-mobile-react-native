@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { PendingScreen } from './PendingScreen.tsx';
+import { PendingScreen } from './PendingScreen';
 
 jest.mock('rn-fetch-blob', () => {
   return true

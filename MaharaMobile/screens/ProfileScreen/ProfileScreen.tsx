@@ -13,6 +13,7 @@ type Props = {
   navigation: any; // need to double check type for this
   token: string;
   userName: string;
+  url: string;
 }
 
 type State = {
@@ -88,6 +89,7 @@ export class ProfileScreen extends Component<Props, State> {
 
 const mapStateToProps = (state: MaharaStore) => {
   return {
+    url: state.app.url,
     token: state.app.token,
     userName: state.app.userName
   }

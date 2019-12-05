@@ -3,7 +3,12 @@ import { styles } from '../../assets/styles/variables';
 
 export default StyleSheet.create({
   view: {
-    backgroundColor: styles.colors.primary,
-    color: styles.colors.secondary
+    padding: styles.padding.md
+  },
+  buttons: {
+    marginBottom: styles.padding.md
+  },
+  url: {
+    textAlign: 'center'
   }
 });
