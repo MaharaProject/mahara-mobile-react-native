@@ -46,7 +46,7 @@ export const UploadForm = (props: Props) => {
             selectedValue={selectedFolder}
             style={forms.picker}
             onValueChange={(itemValue) => {
-              setSelectedTag(itemValue)
+              setSelectedFolder(itemValue)
               props.setFormValue('pickedFolder', itemValue)
             }}
           >
