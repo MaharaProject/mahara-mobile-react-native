@@ -7,10 +7,10 @@ import { UserFolder, MaharaFile, UserTag, UserBlog } from '../../models/models';
 
 type Props = {
   pickedFile: MaharaFile;
-  handleForm: () => {};
+  handleForm: () => void;
   setFormValue: any;
-  addTag: () => {};
-  removeTag: () => {};
+  addTag: (tag: string) => void;
+  removeTag: (tag: string) => void;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
@@ -20,7 +20,9 @@ type Props = {
 }
 
 export const UploadForm = (props: Props) => {
-  const [newTag, setNewTag] = useState('');
+  const [newTag, addNewTag] = useState('');
+  const [selectedTag, setSelectedTag] = useState('');
+  const [selectedFolder, setSelectedFolder] = useState('');
 
   const multiLine = props.formType !== 'journal' ? forms.multiLine : [forms.multiLine, styles.description];
   const placeholder = props.formType !== 'journal' ? 'Enter a description' : 'Enter detail';
@@ -39,7 +41,15 @@ export const UploadForm = (props: Props) => {
       />
       {props.formType !== 'journal' ?
         <View style={forms.pickerWrapper}>
-          <Picker style={forms.picker} onValueChange={(itemValue) => { props.setFormValue('pickedFolder', itemValue) }}>
+          {/* Folder dropdown */}
+          <Picker
+            selectedValue={selectedFolder}
+            style={forms.picker}
+            onValueChange={(itemValue) => {
+              setSelectedTag(itemValue)
+              props.setFormValue('pickedFolder', itemValue)
+            }}
+          >
             {props.userFolders && props.userFolders.map((folder: UserFolder, index: number) => (
               <Picker.Item label={folder.title} value={folder.title} key={index} />
             ))}
@@ -50,7 +60,10 @@ export const UploadForm = (props: Props) => {
         <View>
           <Text style={styles.formTitle}>Blog:</Text>
           <View style={forms.pickerWrapper}>
-            <Picker style={forms.picker} onValueChange={(itemValue) => { props.setFormValue('pickedBlog', itemValue) }}>
+            <Picker
+              style={forms.picker}
+              onValueChange={(itemValue) => { props.setFormValue('pickedBlog', itemValue) }}
+            >
               {props.userBlogs && props.userBlogs.map((blog: UserBlog, index: number) => (
                 <Picker.Item label={blog.title} value={blog.id} key={index} />
               ))}
@@ -65,12 +78,15 @@ export const UploadForm = (props: Props) => {
             <TextInput
               style={[forms.textInput, styles.tagsTextInput]}
               placeholder={'New tag...'}
-              onChangeText={(text) => setNewTag(text)}
+              onChangeText={(text) => addNewTag(text)}
             />
-            <TouchableOpacity style={styles.addButton} onPress={() => props.addTag(newTag)}>
+            <TouchableOpacity style={styles.addButton} onPress={() => {
+              props.addTag(newTag)
+              setSelectedTag('...');
+            }}>
               <Text style={styles.addButtonText}>
                 Add
-                </Text>
+              </Text>
             </TouchableOpacity>
           </View>
           : null}
@@ -83,8 +99,17 @@ export const UploadForm = (props: Props) => {
           </TouchableOpacity>
         ))}
       </View>
+
+      {/* Dropdown for Tags */}
       <View style={forms.pickerWrapper}>
-        <Picker style={forms.picker} onValueChange={(itemValue) => { props.addTag(itemValue) }}>
+        <Picker
+          selectedValue={selectedTag}
+          style={forms.picker}
+          onValueChange={(itemValue) => {
+            setSelectedTag(itemValue)
+            props.addTag(itemValue)
+          }}
+        >
           <Picker.Item label='...' value='' color={'#556d32'} />
           {props.userTags && props.userTags.map((value: UserTag, index: number) => (
             <Picker.Item label={value.tag} value={value.tag} key={index} />
