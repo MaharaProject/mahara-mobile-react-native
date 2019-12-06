@@ -9,7 +9,7 @@ export const buttons = StyleSheet.create({
     paddingTop: styles.padding.md,
     marginBottom: styles.padding.md,
     fontSize: styles.font.md,
-    textAlign:'center',
+    textAlign: 'center',
     width: '100%'
   },
   md: {

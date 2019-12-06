@@ -127,10 +127,10 @@ export class PendingScreen extends Component<Props, State> {
         <Text>Pending Uploads</Text>
         <View style={styles.container}>
           {this.pendingDisplay()}
-          <TouchableOpacity onPress={this.onUploadClick}>
-            <Text style={buttons.lg}>Upload to your Mahara</Text>
-          </TouchableOpacity>
         </View>
+        <TouchableOpacity onPress={this.onUploadClick}>
+          <Text style={buttons.lg}>Upload to your Mahara</Text>
+        </TouchableOpacity>
       </View>
     );
   }

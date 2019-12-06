@@ -5,10 +5,14 @@ import { View, Text, Button, Image } from 'react-native';
 import Card from '../Card/Card';
 import { styles } from './UploadItem.style';
 import { styles as variables } from '../../assets/styles/variables'
+// import Icon from 'react-native-vector-icons/FontAwesome';
+import { Icon } from 'react-native-elements'
+
 
 type Props = {
   title: string;
   description: string;
+  mimetype: string;
   image: any;
   onRemove: () => {};
   onEdit: () => {};
@@ -20,21 +24,47 @@ const UploadItem = (props: Props) => {
   const description = (props.description ? props.description : '');
   const displayName: string = title.length > 25 ? title.substring(0, 20) + '...' : title;
   const displayDesc: string = description.length > 20 ? description.substring(0.20) + '...' : description;
+  const mimetypes = ['application', 'audio', 'text', 'video']; // images ignored as they have own thumbnail
+
+  const getMimetypeIcon = (mimetype: string) => {
+    let match = '';
+    mimetypes.forEach((type: string) => {
+      if (mimetype.includes(type)) {
+        match = type;
+        return;
+      }
+    });
+
+    switch (match) {
+      case 'application':
+        return 'file'
+      case 'audio':
+        return 'music'
+      case 'text':
+        return 'anchor'
+      case 'video':
+        return 'film'
+      default:
+        return 'question'
+    }
+  }
+
 
   const Thumbnail = () => {
-    const noThumbail = props.image == {} ? true : false;
-    // application, audio, image, text, video
-    const mimetype = '';
 
-    let isAudio = false;
-    const isText = false;
-    const isVideo = false;
-
-
-
-
-
-    return (
+    // not an image
+    if (!props.mimetype.includes('image')) {
+      return (
+        <View style={styles.imageContainer}>
+          <Icon name={getMimetypeIcon(props.mimetype)}
+            type='font-awesome'
+            color={variables.colors.tertiary}
+            raised
+            reverse
+          />
+        </View>)
+    }
+    else return (
       <View style={styles.imageContainer}>
         <Image source={props.image} style={styles.thumbnail} />
       </View>
