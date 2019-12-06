@@ -14,19 +14,38 @@ type Props = {
   onEdit: () => {};
 }
 
+
 const UploadItem = (props: Props) => {
   const title = (props.title ? props.title : '');
   const description = (props.description ? props.description : '');
   const displayName: string = title.length > 25 ? title.substring(0, 20) + '...' : title;
   const displayDesc: string = description.length > 20 ? description.substring(0.20) + '...' : description;
 
+  const Thumbnail = () => {
+    const noThumbail = props.image == {} ? true : false;
+    // application, audio, image, text, video
+    const mimetype = '';
+
+    let isAudio = false;
+    const isText = false;
+    const isVideo = false;
+
+
+
+
+
+    return (
+      <View style={styles.imageContainer}>
+        <Image source={props.image} style={styles.thumbnail} />
+      </View>
+    )
+  }
+
   return (
     <TouchableOpacity>
       <View style={styles.uploadItem}>
         <Card style={{ ...styles.pendingCard }}>
-          <View style={styles.imageContainer}>
-            <Image source={props.image} style={styles.thumbnail} />
-          </View>
+          <Thumbnail />
           <View style={styles.textContainer}>
             <Text>{displayName} </Text>
             <Text>{displayDesc}</Text>

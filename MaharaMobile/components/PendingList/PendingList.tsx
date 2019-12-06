@@ -10,7 +10,6 @@ type Props = {
 }
 
 const PendingList = (props: Props) => {
-  let itemId = '';
   let title = '';
   let description = '';
   let thumbnail = {};
@@ -19,6 +18,7 @@ const PendingList = (props: Props) => {
     <FlatList
       data={props.dataList}
       renderItem={({ item }: any) => {
+        let itemId = '';
         //  figure out what to pass in to UploadItem
         if (props.uploadType === 'file') {
           itemId = item.id;
@@ -26,7 +26,7 @@ const PendingList = (props: Props) => {
           description = item.maharaFormData.description;
           thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') }
         }
-        else {
+        else if (props.uploadType === 'journalEntry') {
           itemId = item.id;
           title = item.journalEntry.title;
           description = item.journalEntry.body
