@@ -18,10 +18,10 @@ export default function TokenInput(props: Props) {
       <TextInput
         style={forms.textInput}
         //TODO: remove default value for go live
-        defaultValue='ab6f3b68f8b0b976cf6b51eac2cd54da'
+        defaultValue='c6f3d4fd4b997c96392deeb127ec983b'
         onChangeText={(token) => props.setToken(token)}
       />
-      <TouchableOpacity onPress={()=>props.handleToken()}>
+      <TouchableOpacity onPress={() => props.handleToken()}>
         <Text style={buttons.lg}>Verify Token</Text>
       </TouchableOpacity>
     </View>
