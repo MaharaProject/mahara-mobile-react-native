@@ -58,7 +58,7 @@ export class PendingScreen extends Component<Props, State> {
 
     if (this.state.uploadFilesExist) {
       return (
-        <View style={styles.listContainer}>
+        <View>
           {this.renderPendingList(list)}
         </View>
       )
@@ -76,13 +76,11 @@ export class PendingScreen extends Component<Props, State> {
    */
   renderPendingList(dataList: Array<any>) {
     return (
-      <View>
-        <PendingList
-          dataList={dataList}
-          onRemove={this.onRemove}
-          navigation={this.props.navigation}
-        />
-      </View>
+      <PendingList
+        dataList={dataList}
+        onRemove={this.onRemove}
+        navigation={this.props.navigation}
+      />
     )
   }
 
@@ -115,12 +113,14 @@ export class PendingScreen extends Component<Props, State> {
       <View style={styles.app} >
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
-        {this.pendingDisplay()}
-        {/* <View style={styles.buttonContainer}>
-        </View> */}
-        <TouchableOpacity onPress={this.onUploadClick}>
-          <Text style={buttons.lg}>Upload to your Mahara</Text>
-        </TouchableOpacity>
+        <View style={styles.listContainer}>
+          {this.pendingDisplay()}
+        </View>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity onPress={this.onUploadClick}>
+            <Text style={buttons.lg}>Upload to your Mahara</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

@@ -51,6 +51,7 @@ const UploadItem = (props: Props) => {
       return (
         <View style={styles.imageContainer}>
           <Icon name={getMimetypeIcon(props.mimetype)}
+            size={30}
             type='font-awesome'
             color={variables.colors.primary}
             raised
@@ -60,7 +61,7 @@ const UploadItem = (props: Props) => {
         </View>)
     }
     else return (
-      <View style={styles.imageContainer}>
+      <View style={[styles.imageContainer, { borderWidth: 4, borderColor: variables.colors.light }]}>
         <Image source={props.image} style={styles.thumbnail} />
       </View>
     )
