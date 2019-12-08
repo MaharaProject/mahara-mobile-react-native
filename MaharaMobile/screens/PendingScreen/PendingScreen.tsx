@@ -51,11 +51,15 @@ export class PendingScreen extends Component<Props, State> {
   pendingDisplay = () => {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
     // there are items to upload
+    let list: Array<any> = [];
+
+    if (this.props.uploadList.files.length != 0) list = list.concat(this.props.uploadList.files);
+    if (this.props.uploadList.journalEntries.length != 0) list = list.concat(this.props.uploadList.journalEntries)
+
     if (this.state.uploadFilesExist) {
       return (
-        <View>
-          {this.props.uploadList.files.length != 0 ? this.renderPendingList('file') : null}
-          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntry') : null}
+        <View style={styles.listContainer}>
+          {this.renderPendingList(list)}
         </View>
       )
       // no items to upload
@@ -67,27 +71,13 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   /**
-   * Renders a PendingList upon type of upload item
-   * @param uploadType string: could be 'file' or 'journalEntry'
+   * Renders a PendingList
+   * @param dataList array of files and journal entries
    */
-  renderPendingList(uploadType: string) {
-    let dataList: Array<any> = [];
-    switch (uploadType) {
-      case 'file':
-        dataList = this.props.uploadList.files;
-        break;
-      case 'journalEntry':
-        dataList = this.props.uploadList.journalEntries;
-        break;
-      default:
-        break;
-    }
-
-
+  renderPendingList(dataList: Array<any>) {
     return (
       <View>
         <PendingList
-          uploadType={uploadType}
           dataList={dataList}
           onRemove={this.onRemove}
           navigation={this.props.navigation}
@@ -125,14 +115,12 @@ export class PendingScreen extends Component<Props, State> {
       <View style={styles.app} >
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
-        <View style={styles.container}>
-          {this.pendingDisplay()}
-        </View>
-        <View>
-          <TouchableOpacity onPress={this.onUploadClick}>
-            <Text style={buttons.lg}>Upload to your Mahara</Text>
-          </TouchableOpacity>
-        </View>
+        {this.pendingDisplay()}
+        {/* <View style={styles.buttonContainer}>
+        </View> */}
+        <TouchableOpacity onPress={this.onUploadClick}>
+          <Text style={buttons.lg}>Upload to your Mahara</Text>
+        </TouchableOpacity>
       </View>
     );
   }
