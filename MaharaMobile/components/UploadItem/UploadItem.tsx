@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { MaharaFile, MaharaPendingFile } from '../../models/models';
+import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
 import Card from '../Card/Card';
 import { styles } from './UploadItem.style';
 import { styles as variables } from '../../assets/styles/variables'
-// import Icon from 'react-native-vector-icons/FontAwesome';
 import { Icon } from 'react-native-elements'
-
 
 type Props = {
   title: string;
@@ -17,7 +14,6 @@ type Props = {
   onRemove: () => {};
   onEdit: () => {};
 }
-
 
 const UploadItem = (props: Props) => {
   const title = (props.title ? props.title : '');
@@ -49,18 +45,17 @@ const UploadItem = (props: Props) => {
     }
   }
 
-
   const Thumbnail = () => {
-
     // not an image
     if (!props.mimetype.includes('image')) {
       return (
         <View style={styles.imageContainer}>
           <Icon name={getMimetypeIcon(props.mimetype)}
             type='font-awesome'
-            color={variables.colors.tertiary}
+            color={variables.colors.primary}
             raised
             reverse
+            reverseColor={variables.colors.secondary}
           />
         </View>)
     }
