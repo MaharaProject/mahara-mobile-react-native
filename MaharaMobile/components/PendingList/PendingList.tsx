@@ -28,7 +28,8 @@ const PendingList = (props: Props) => {
         }
         else if (item.journalEntry !== undefined) {
           title = item.journalEntry.title;
-          description = item.journalEntry.body
+          description = item.journalEntry.body;
+          mimetype = 'journalEntry';
         }
 
         return (

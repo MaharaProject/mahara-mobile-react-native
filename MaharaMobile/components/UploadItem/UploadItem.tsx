@@ -20,7 +20,7 @@ const UploadItem = (props: Props) => {
   const description = (props.description ? props.description : '');
   const displayName: string = title.length > 25 ? title.substring(0, 20) + '...' : title;
   const displayDesc: string = description.length > 20 ? description.substring(0.20) + '...' : description;
-  const mimetypes = ['application', 'audio', 'text', 'video']; // images ignored as they have own thumbnail
+  const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
 
   const getMimetypeIcon = (mimetype: string) => {
     let match = '';
@@ -40,6 +40,8 @@ const UploadItem = (props: Props) => {
         return 'anchor'
       case 'video':
         return 'film'
+      case 'journalEntry':
+        return 'book'
       default:
         return 'question'
     }
@@ -47,7 +49,9 @@ const UploadItem = (props: Props) => {
 
   const Thumbnail = () => {
     // not an image
-    if (!props.mimetype.includes('image')) {
+    if (!props.mimetype.includes('image')
+      // && !props.mimetype.includes('video')
+    ) {
       return (
         <View style={styles.imageContainer}>
           <Icon name={getMimetypeIcon(props.mimetype)}
