@@ -3,7 +3,6 @@ import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser, faPlusCircle, faHistory } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +14,6 @@ import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
 import { styles } from './assets/styles/variables';
-import { Colors } from 'react-native-paper';
 
 
 const AppNavigator = createStackNavigator({
@@ -28,15 +26,16 @@ const tabScreenConfig = {
   Profile: {
     screen: ProfileScreen, navigationOptions: {
       tabBarIcon: () => {
-        return <FontAwesomeIcon icon={faUser} />
+        return <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
       },
     },
   },
   Add: {
-    screen: AppNavigator, navigationOptions: {
+    screen: AppNavigator, navigationOptions:
+    {
       tabBarLabel: 'Add',
       tabBarIcon: () => {
-        return <FontAwesomeIcon icon={faPlusCircle} />
+        return <FontAwesomeIcon icon={faPlusCircle} color={styles.colors.light} />
       }
     }
   },
@@ -44,7 +43,7 @@ const tabScreenConfig = {
     screen: PendingScreen, navigationOptions: {
       tabBarLabel: 'Pending ',
       tabBarIcon: () => {
-        return <FontAwesomeIcon icon={faHistory} />
+        return <FontAwesomeIcon icon={faHistory} color={styles.colors.light} />
       }
     }
   }
@@ -57,7 +56,8 @@ const AppTabNavigator = Platform.OS === 'android'
     // shifting: true,
     barStyle: {
       backgroundColor: styles.colors.secondary
-    }
+    },
+
   }) :
   createBottomTabNavigator(tabScreenConfig,
     {
