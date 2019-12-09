@@ -34,7 +34,7 @@ const tabScreenConfig = {
   },
   Add: {
     screen: AppNavigator, navigationOptions: {
-      tabBarLabel: 'Upload',
+      tabBarLabel: 'Add',
       tabBarIcon: () => {
         return <FontAwesomeIcon icon={faPlusCircle} />
       }

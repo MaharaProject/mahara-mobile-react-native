@@ -4,7 +4,6 @@ import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker
 import { connect } from 'react-redux';
 
 import { uploadToMahara, uploadJournalToMahara } from '../../actions/actions';
-import Header from '../../components/Header/Header';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
