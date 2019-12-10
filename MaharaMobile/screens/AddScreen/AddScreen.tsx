@@ -63,7 +63,6 @@ export class AddScreen extends Component<Props, State> {
   static navigationOptions = {
     // header: null
     headerTitle: 'Add items!'
-
   };
 
   selectAddType = (type: string) => {

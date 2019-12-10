@@ -1,6 +1,6 @@
 // Variables for stles
 
-export const styles = {
+const styles = {
   colors: {
     primary: '#c4d6a9',
     secondary: '#556d32',
@@ -29,3 +29,5 @@ export const styles = {
     xl: 30
   }
 }
+
+export default styles;

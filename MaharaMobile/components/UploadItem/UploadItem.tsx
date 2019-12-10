@@ -3,8 +3,8 @@ import { MaharaFile, MaharaPendingFile } from '../../models/models';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
 import Card from '../Card/Card';
-import { styles } from './UploadItem.style';
-import { styles as variables } from '../../assets/styles/variables'
+import uploadItemStyles from './UploadItem.style';
+import styles from '../../assets/styles/variables'
 
 type Props = {
   title: string;
@@ -22,31 +22,31 @@ const UploadItem = (props: Props) => {
 
   return (
     <TouchableOpacity>
-      <View style={styles.uploadItem}>
-        <Card style={{ ...styles.pendingCard }}>
-          <View style={styles.imageContainer}>
-            <Image source={props.image} style={styles.thumbnail} />
+      <View style={uploadItemStyles.uploadItem}>
+        <Card style={{ ...uploadItemStyles.pendingCard }}>
+          <View style={uploadItemStyles.imageContainer}>
+            <Image source={props.image} style={uploadItemStyles.thumbnail} />
           </View>
-          <View style={styles.textContainer}>
+          <View style={uploadItemStyles.textContainer}>
             <Text>{displayName} </Text>
             <Text>{displayDesc}</Text>
           </View>
-          <View style={styles.buttonContainer}>
-            <View style={styles.button}>
+          <View style={uploadItemStyles.buttonContainer}>
+            <View style={uploadItemStyles.button}>
               <Button
                 title='Remove'
                 onPress={props.onRemove}
-                color={variables.colors.primary}
+                color={styles.colors.primary}
               // iOS styles
               // backgroundColor={variables.colors.primary}
               />
             </View>
 
-            <View style={styles.button}>
+            <View style={uploadItemStyles.button}>
               <Button
                 title="Details"
                 onPress={props.onEdit}
-                color={variables.colors.secondary}
+                color={styles.colors.secondary}
               // iOS styles
               // backgroundColor={variables.colors.secondary}
               />
