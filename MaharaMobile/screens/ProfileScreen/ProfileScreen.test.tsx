@@ -3,7 +3,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
-import { ProfileScreen } from './ProfileScreen.tsx';
+import { ProfileScreen } from './ProfileScreen';
 
 jest.mock('rn-fetch-blob', () => {
   return true

@@ -9,17 +9,22 @@ import { faUser, faPlusCircle, faHistory } from '@fortawesome/free-solid-svg-ico
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs'
 
 import configureStore from './store/store';
+import SiteCheckScreen from './screens/SiteCheckScreen/SiteCheckScreen';
 import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
 import { styles } from './assets/styles/variables';
 
+import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const AppNavigator = createStackNavigator({
-  Add: AddScreen,
+  Home: SiteCheckScreen,
+  Login: LoginScreen,
   Profile: ProfileScreen,
-  PendingScreen: PendingScreen
+  Add: AddScreen,
+  PendingScreen: PendingScreen,
+  Details: DetailsScreen
 });
 
 const tabScreenConfig = {
@@ -69,7 +74,7 @@ const AppTabNavigator = Platform.OS === 'android'
 
 // Navigator with only LoginScreen 
 const AuthNavigator = createStackNavigator({
-  Auth: LoginScreen
+  Auth: SiteCheckScreen
 });
 
 // Main navigator, with route to AppNavigator once authenticated

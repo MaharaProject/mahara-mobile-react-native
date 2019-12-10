@@ -1,4 +1,3 @@
-
 // Variables for stles
 
 export const styles = {

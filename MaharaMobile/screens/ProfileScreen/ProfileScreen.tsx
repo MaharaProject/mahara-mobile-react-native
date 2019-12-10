@@ -7,12 +7,13 @@ import Header from '../../components/Header/Header';
 import Profile from '../../components/Profile/Profile';
 import styles from './ProfileScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { Store } from '../../models/models';
+import { MaharaStore } from '../../models/models';
 
 type Props = {
   navigation: any; // need to double check type for this
   token: string;
   userName: string;
+  url: string;
 }
 
 type State = {
@@ -80,8 +81,9 @@ export class ProfileScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: Store) => {
+const mapStateToProps = (state: MaharaStore) => {
   return {
+    url: state.app.url,
     token: state.app.token,
     userName: state.app.userName
   }

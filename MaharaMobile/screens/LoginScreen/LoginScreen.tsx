@@ -2,16 +2,23 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken, sendTokenLogin } from '../../actions/actions';
+import { MaharaStore } from '../../models/models';
 import TokenInput from '../../components/TokenInput/TokenInput';
-import styles from './LoginScreen.style';
+import { generic } from '../../assets/styles/generic';
 
 type Props = {
   dispatch: any;
   navigation: any; // need to double check type for this
+  url: string;
+  tokenLogin: boolean;
+  ssoLogin: boolean;
+  localLogin: boolean;
+  loginType: boolean;
 }
 
 type State = {
   token: string;
+  url: string;
 }
 
 export class LoginScreen extends Component<Props, State> {
@@ -19,7 +26,8 @@ export class LoginScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: ''
+      token: '',
+      url: ''
     };
   }
 
@@ -52,24 +60,44 @@ export class LoginScreen extends Component<Props, State> {
     this.props.dispatch(sendTokenLogin(serverUrl, requestOptions)).then(() => this.props.navigation.navigate('Add'));
   };
 
+  setToken = (input: string) => {
+    let token = input.trim();
 
-  handleToken = (value: string) => {
-    this.setState({token: value}, function(this: any) {
-      this.login();
+    this.setState({
+      token: token
     });
+  }
 
-    this.props.dispatch(addToken(value));
+  handleToken = () => {
+    const token = this.state.token;
+    this.login();
+    this.props.dispatch(addToken(token));
   }
 
   render() {
+    const { params } = this.props.navigation.state;
+    const loginType = params.loginType;
+
     return (
-      <View style={styles.view}>
-        <TokenInput
-          handler={this.handleToken}
-        />
+      <View style={generic.view}>
+        {loginType === 'token' ?
+          <TokenInput
+            handleToken={this.handleToken}
+            setToken={this.setToken}
+          />
+          : null}
       </View>
     );
   }
 };
 
-export default connect()(LoginScreen);
+const mapStateToProps = (state: MaharaStore) => {
+  return {
+    url: state.app.url,
+    tokenLogin: state.app.tokenLogin,
+    ssoLogin: state.app.ssoLogin,
+    localLogin: state.app.localLogin
+  }
+}
+
+export default connect(mapStateToProps)(LoginScreen);
