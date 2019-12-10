@@ -18,10 +18,8 @@ import AddScreen from './screens/AddScreen/AddScreen';
 import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const AppNavigator = createStackNavigator({
-  Home: SiteCheckScreen,
-  Login: LoginScreen,
-  Profile: ProfileScreen,
   Add: AddScreen,
+  Profile: ProfileScreen,
   PendingScreen: PendingScreen,
   Details: DetailsScreen
 });
@@ -73,7 +71,8 @@ const AppTabNavigator = Platform.OS === 'android'
 
 // Navigator with only LoginScreen 
 const AuthNavigator = createStackNavigator({
-  Auth: SiteCheckScreen
+  Auth: SiteCheckScreen,
+  Login: LoginScreen
 });
 
 // Main navigator, with route to AppNavigator once authenticated
