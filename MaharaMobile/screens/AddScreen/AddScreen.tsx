@@ -3,8 +3,7 @@ import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-na
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
 
-import { uploadJournalToMahara, updateUploadList, addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
-import Header from '../../components/Header/Header';
+import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
 import { UploadForm } from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
@@ -62,7 +61,8 @@ export class AddScreen extends Component<Props, State> {
   }
 
   static navigationOptions = {
-    header: null
+    // header: null
+    headerTitle: 'Add items!'
   };
 
   selectAddType = (type: string) => {
@@ -234,13 +234,10 @@ export class AddScreen extends Component<Props, State> {
   render() {
     return (
       <ScrollView>
-        <Header navigation={this.props.navigation} />
         <View style={styles.view}>
           {this.state.mediaTypeHeader ? (
             // TODO: temporary styling, add in header styles from diffent branch
-            <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>
-              {this.state.mediaTypeHeader}
-            </Text>
+            <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 20 }}>{this.state.mediaTypeHeader}</Text>
           ) : null}
           {this.state.pickedFile.name ? (
             <View style={styles.imageWrap}>

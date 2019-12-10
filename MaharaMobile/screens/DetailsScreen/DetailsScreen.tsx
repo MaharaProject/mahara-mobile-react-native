@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { styles } from '../../assets/styles/variables';
+import styles from '../../assets/styles/variables';
 import { View, Text } from 'react-native';
 import { Store } from 'redux';
 import { connect, useSelector } from 'react-redux';

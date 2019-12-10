@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken, sendTokenLogin } from '../../actions/actions';
-import { Store } from '../../models/models';
+import { MaharaStore } from '../../models/models';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import { generic } from '../../assets/styles/generic';
 
@@ -85,13 +85,13 @@ export class LoginScreen extends Component<Props, State> {
             handleToken={this.handleToken}
             setToken={this.setToken}
           />
-        :null}
+          : null}
       </View>
     );
   }
 };
 
-const mapStateToProps = (state: Store) => {
+const mapStateToProps = (state: MaharaStore) => {
   return {
     url: state.app.url,
     tokenLogin: state.app.tokenLogin,

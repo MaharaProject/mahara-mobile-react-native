@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { checkLoginTypes } from '../../actions/actions';
-import { Store } from '../../models/models';
+import { MaharaStore } from '../../models/models';
 import LoginType from '../../components/LoginType/LoginType';
 import { generic } from '../../assets/styles/generic';
 
@@ -53,7 +53,7 @@ export class SiteCheckScreen extends Component<Props, State> {
   checkUrl = (url: string) => {
     let serverUrl = url.trim();
 
-    if(serverUrl.length === 0) {
+    if (serverUrl.length === 0) {
       this.setState({
         enterUrlWarning: true,
         url: ''
@@ -71,27 +71,27 @@ export class SiteCheckScreen extends Component<Props, State> {
     if (!/^https?:\/\//.test(serverUrl)) {
       serverUrl = "https://" + serverUrl;
     }
-    this.setState({url: serverUrl});
+    this.setState({ url: serverUrl });
   }
 
   checkServer = async () => {
     const serverUrl = this.state.url;
 
-    if(!serverUrl) {
+    if (!serverUrl) {
       return;
     }
 
     try {
       await this.props.dispatch(checkLoginTypes(serverUrl))
-      if(this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
-          this.setState({
-            serverPing: true,
-            isInputHidden: true,
-            errorMessage: ''
-          });
-        }
+      if (this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
+        this.setState({
+          serverPing: true,
+          isInputHidden: true,
+          errorMessage: ''
+        });
+      }
     } catch (error) {
-      this.setState({errorMessage: error.message});
+      this.setState({ errorMessage: error.message });
       console.log(error);
     }
   }
@@ -122,13 +122,12 @@ export class SiteCheckScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: Store) => {
+const mapStateToProps = (state: MaharaStore) => {
   return {
     url: state.app.url,
     tokenLogin: state.app.tokenLogin,
     ssoLogin: state.app.ssoLogin,
-    localLogin: state.app.localLogin,
-    errorMessage: state.app.errorMessage
+    localLogin: state.app.localLogin
   }
 }
 

@@ -75,12 +75,6 @@ export class ProfileScreen extends Component<Props, State> {
             name={this.props.userName}
             profileIcon={this.state.profileIcon}
           />
-          <TouchableOpacity onPress={this.goToUploadScreen}>
-            <Text style={buttons.lg}>Upload a file</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.goToPendingScreen}>
-            <Text style={buttons.lg}>Go to Pending Screen</Text>
-          </TouchableOpacity>
         </View>
       </View>
     );

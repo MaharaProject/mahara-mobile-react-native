@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { styles } from './variables';
+import styles from './variables';
 
 export const forms = StyleSheet.create({
   textInput: {
