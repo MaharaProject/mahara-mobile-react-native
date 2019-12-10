@@ -235,7 +235,6 @@ export class AddScreen extends Component<Props, State> {
   render() {
     return (
       <ScrollView>
-        {/* <Header navigation={this.props.navigation} /> */}
         <View style={styles.view}>
           {this.state.mediaTypeHeader ? (
             // TODO: temporary styling, add in header styles from diffent branch
