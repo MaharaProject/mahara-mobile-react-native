@@ -224,6 +224,7 @@ export class AddScreen extends Component<Props, State> {
 
       const pendingFileData: MaharaPendingFile = {
         id: Math.random() * 10 + '' + fileData.type,
+        mimetype: pickedFile.type,
         maharaFormData: maharaFormData,
         url: url
       }

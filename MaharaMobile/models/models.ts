@@ -34,6 +34,7 @@ export type MaharaFile = {
 export type MaharaPendingFile = {
   maharaFormData: MaharaFileFormData;
   id: string;
+  mimetype: string;
   url: string; // for files, this url includes tags
 }
 
