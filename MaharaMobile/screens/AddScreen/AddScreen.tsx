@@ -297,6 +297,7 @@ export class AddScreen extends Component<Props, State> {
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
   }
+
   render() {
     return (
       <ScrollView>
@@ -311,9 +312,14 @@ export class AddScreen extends Component<Props, State> {
             </View>
           ) : null}
           {this.state.formType === 'audio' ?
-            <TouchableOpacity onPress={() => this.onStartPlay()}>
-              <Text style={buttons.sm}>Record</Text>
-            </TouchableOpacity>
+            <View>
+              <TouchableOpacity onPress={() => this.onStartRecord()}>
+                <Text style={buttons.sm}>Record</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.onStopRecord()}>
+                <Text style={buttons.sm}>Stop</Text>
+              </TouchableOpacity>
+            </View>
           :null }
           <SelectMediaType
             selectAddType={this.selectAddType}
