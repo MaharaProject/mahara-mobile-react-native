@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
-import { styles as variables } from '../../assets/styles/variables'
+import styles from '../../assets/styles/variables'
 
-export const styles = StyleSheet.create({
+
+const uploadItemStyles = StyleSheet.create({
   uploadItem: {
     flexDirection: 'row',
     padding: 3,
@@ -41,9 +42,10 @@ export const styles = StyleSheet.create({
     fontSize: 20
   },
   title: {
-    color: variables.colors.primary,
+    color: styles.colors.primary,
     paddingVertical: 5,
     fontSize: 16
-  }
+  },
 })
 
+export default uploadItemStyles;

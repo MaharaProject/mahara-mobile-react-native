@@ -36,6 +36,9 @@ target 'MaharaMobile' do
 
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   target 'MaharaMobileTests' do
     inherit! :search_paths
