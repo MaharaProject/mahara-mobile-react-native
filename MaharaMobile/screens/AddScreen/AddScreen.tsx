@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { connect } from 'react-redux';
 
 import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
@@ -37,6 +38,12 @@ type State = {
   webservice: string;
   filePickerButtonText: string;
   mediaTypeHeader: string;
+  currentPositionSec: number;
+  currentDurationSec: number;
+  playTime: number;
+  duration: number;
+  recordSecs: number;
+  recordTime: number;
 };
 
 const initialState = {
@@ -50,8 +57,16 @@ const initialState = {
   formType: '',
   webservice: 'module_mobileapi_upload_file',
   filePickerButtonText: 'Pick a file',
-  mediaTypeHeader: ''
+  mediaTypeHeader: '',
+  currentPositionSec: 0,
+  currentDurationSec: 0,
+  playTime: 0,
+  duration: 0,
+  recordSecs: 0,
+  recordTime: 0
 };
+
+const audioRecorderPlayer = new AudioRecorderPlayer();
 
 export class AddScreen extends Component<Props, State> {
   constructor(props: Props) {
@@ -61,8 +76,7 @@ export class AddScreen extends Component<Props, State> {
   }
 
   static navigationOptions = {
-    // header: null
-    headerTitle: 'Add items!'
+    header: null
   };
 
   selectAddType = (type: string) => {
@@ -231,6 +245,58 @@ export class AddScreen extends Component<Props, State> {
     }
   };
 
+  // Audio stuff
+  onStartRecord = async () => {
+    const result = await audioRecorderPlayer.startRecorder();
+    audioRecorderPlayer.addRecordBackListener((e) => {
+      this.setState({
+        recordSecs: e.current_position,
+        recordTime: audioRecorderPlayer.mmssss(
+          Math.floor(e.current_position),
+        ),
+      });
+      return;
+    });
+    console.log(result);
+  };
+
+  onStopRecord = async () => {
+    const result = await audioRecorderPlayer.stopRecorder();
+    audioRecorderPlayer.removeRecordBackListener();
+    this.setState({
+      recordSecs: 0,
+    });
+    console.log(result);
+  };
+
+  onStartPlay = async () => {
+    console.log('onStartPlay');
+    const msg = await audioRecorderPlayer.startPlayer();
+    console.log(msg);
+    audioRecorderPlayer.addPlayBackListener((e) => {
+      if (e.current_position === e.duration) {
+        console.log('finished');
+        audioRecorderPlayer.stopPlayer();
+      }
+      this.setState({
+        currentPositionSec: e.current_position,
+        currentDurationSec: e.duration,
+        playTime: audioRecorderPlayer.mmssss(Math.floor(e.current_position)),
+        duration: audioRecorderPlayer.mmssss(Math.floor(e.duration)),
+      });
+      return;
+    });
+  };
+
+  onPausePlay = async () => {
+    await audioRecorderPlayer.pausePlayer();
+  };
+
+  onStopPlay = async () => {
+    console.log('onStopPlay');
+    audioRecorderPlayer.stopPlayer();
+    audioRecorderPlayer.removePlayBackListener();
+  }
   render() {
     return (
       <ScrollView>
@@ -244,6 +310,11 @@ export class AddScreen extends Component<Props, State> {
               <Image source={{ uri: this.state.pickedFile.uri }} style={styles.image} />
             </View>
           ) : null}
+          {this.state.formType === 'audio' ?
+            <TouchableOpacity onPress={() => this.onStartPlay()}>
+              <Text style={buttons.sm}>Record</Text>
+            </TouchableOpacity>
+          :null }
           <SelectMediaType
             selectAddType={this.selectAddType}
             formType={this.state.formType}
