@@ -8,6 +8,7 @@ import Profile from '../../components/Profile/Profile';
 import styles from './ProfileScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { MaharaStore } from '../../models/models';
+import { selectUrl, selectToken, selectUserName } from '../../reducers/loginInfoReducer';
 
 type Props = {
   navigation: any; // need to double check type for this
@@ -83,9 +84,9 @@ export class ProfileScreen extends Component<Props, State> {
 
 const mapStateToProps = (state: MaharaStore) => {
   return {
-    url: state.app.url,
-    token: state.app.token,
-    userName: state.app.userName
+    url: selectUrl(state),
+    token: selectToken(state),
+    userName: selectUserName(state),
   }
 }
 

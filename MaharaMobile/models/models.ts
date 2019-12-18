@@ -1,23 +1,3 @@
-export type MaharaStore = {
-  app: InitialState;
-}
-
-export type InitialState = {
-  url: string;
-  tokenLogin: boolean;
-  ssoLogin: boolean;
-  localLogin: boolean;
-  token: string;
-  userName: string;
-  userFolders: Array<UserFolder>;
-  userTags: Array<UserTag>;
-  uploadList: {
-    files: Array<MaharaPendingFile>,
-    journalEntries: Array<PendingJournalEntry>
-  }
-  userBlogs: Array<any>;
-}
-
 export type RequestErrorPayload = {
   code: number;
   message: string;
@@ -32,10 +12,10 @@ export type MaharaFile = {
 }
 
 export type MaharaPendingFile = {
-  maharaFormData: MaharaFileFormData;
   id: string;
-  mimetype: string;
   url: string; // for files, this url includes tags
+  maharaFormData: MaharaFileFormData;
+  mimetype: string;
 }
 
 export type JournalEntry = {
@@ -49,9 +29,9 @@ export type JournalEntry = {
 }
 
 export type PendingJournalEntry = {
-  journalEntry: JournalEntry,
   id: string;
   url: string;
+  journalEntry: JournalEntry,
 }
 
 export type User = {
@@ -65,7 +45,8 @@ export type UserFolder = {
   title: string;
 }
 
-export type UserTag = {
+export interface UserTag {
+  id: number;
   tag: string;
   usage: number;
 }

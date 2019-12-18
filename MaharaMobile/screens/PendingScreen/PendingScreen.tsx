@@ -5,18 +5,21 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { updateUploadList, uploadItemToMahara } from '../../actions/actions'
-import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
+import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
+import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
-import { conditionalExpression } from '@babel/types';
+import { uploadItemToMahara } from '../../utils/helperFunctions';
+import { RootState } from '../../reducers/reducers';
+import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
+import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
 
 type Props =
   {
-    uploadList: {
-      files: Array<MaharaPendingFile>,
-      journalEntries: Array<PendingJournalEntry>
-    };
+    uploadFiles: Array<MaharaPendingFile>;
+    uploadJEntries: Array<PendingJournalEntry>;
+    uploadFilesIds: Array<string>;
+    uploadJEntriesIds: Array<string>;
     dispatch: any;
     navigation: any;
   }
@@ -27,7 +30,7 @@ type State =
     uploadRequestReceived: boolean;
     successMessage: string;
     selectedFiles: Array<any>;
-    uploadFilesExist: boolean;
+    uploadItemsExist: boolean;
   }
 
 
@@ -40,7 +43,7 @@ export class PendingScreen extends Component<Props, State> {
       uploadRequestReceived: false,
       successMessage: '',
       selectedFiles: [],
-      uploadFilesExist: (this.props.uploadList.files.length + this.props.uploadList.journalEntries.length > 0 ? true : false)
+      uploadItemsExist: (this.props.uploadFiles.length + this.props.uploadJEntries.length > 0 ? true : false),
     }
   }
 
@@ -53,10 +56,10 @@ export class PendingScreen extends Component<Props, State> {
     // there are items to upload
     let list: Array<any> = [];
 
-    if (this.props.uploadList.files.length != 0) list = list.concat(this.props.uploadList.files);
-    if (this.props.uploadList.journalEntries.length != 0) list = list.concat(this.props.uploadList.journalEntries)
+    if (this.props.uploadFilesIds.length > 0) list = list.concat(this.props.uploadFiles);
+    if (this.props.uploadJEntriesIds.length > 0) list = list.concat(this.props.uploadJEntries)
 
-    if (this.state.uploadFilesExist) {
+    if (this.state.uploadItemsExist) {
       return (
         <View>
           {this.renderPendingList(list)}
@@ -85,27 +88,20 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onUploadClick = () => {
-    const obj = this.props.uploadList;
-    Object.values(obj).forEach((array: Array<any>) => {
-      array.forEach((item: any) => {
-        const uploadItem = item.maharaFormData || item.journalEntry;
-        this.props.dispatch(uploadItemToMahara(item.url, uploadItem));
-        this.props.dispatch(updateUploadList({ files: [], journalEntries: [] }))
-      })
-    })
+    this.props.uploadFiles.forEach(file => this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData)));
+    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)));
+    this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)))
+    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)))
   }
+
 
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   onRemove = (itemId: string) => {
-    const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
-    const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
-
-    this.props.dispatch(updateUploadList({
-      files: updatedFiles,
-      journalEntries: updatedJournalEntries
-    }));
+    console.log('itemId', itemId)
+    this.props.dispatch(removeUploadFile(itemId));
+    this.props.dispatch(removeUploadJEntry(itemId));
   }
 
   render() {
@@ -126,10 +122,12 @@ export class PendingScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    token: state.app.token,
-    uploadList: state.app.uploadList,
+    uploadFiles: selectAllUploadFiles(state),
+    uploadFilesIds: selectAllUploadFilesIds(state),
+    uploadJEntries: selectAllJEntries(state),
+    uploadJEntriesIds: selectAllJEntriesIds(state)
   };
 }
 

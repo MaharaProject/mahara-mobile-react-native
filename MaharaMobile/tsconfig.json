@@ -6,7 +6,8 @@
     "isolatedModules": true,
     "jsx": "react",
     "lib": [
-       "es7"
+      "es2017",
+      "es7"
     ],
     "moduleResolution": "node",
     "noEmit": true,
