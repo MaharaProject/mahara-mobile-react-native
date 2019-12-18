@@ -102,7 +102,7 @@ export class SiteCheckScreen extends Component<Props, State> {
   };
 
   static navigationOptions = {
-    // header: null,
+    header: null,
   };
 
   render() {

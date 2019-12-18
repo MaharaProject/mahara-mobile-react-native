@@ -34,7 +34,9 @@ const App = () => {
     Profile: {
       screen: ProfileScreen,
       navigationOptions: {
-        tabBarIcon: () => <FontAwesomeIcon icon={faUser} />,
+        tabBarIcon: () => (
+          <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
+        ),
       },
     },
     Add: {

@@ -80,7 +80,7 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   static navigationOptions = {
-    // header: null,d
+    header: null,
   };
 
   render() {
