@@ -8,7 +8,11 @@ import { UploadForm } from '../../components/UploadForm/UploadForm';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import styles from './AddScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, MaharaStore, MaharaPendingFile, MaharaFileFormData, PendingJournalEntry } from '../../models/models';
+import { MaharaFile, JournalEntry, UserTag, UserFolder, UserBlog, MaharaPendingFile, MaharaFileFormData, PendingJournalEntry } from '../../models/models';
+import { selectUrl, selectToken } from '../../reducers/loginInfoReducer';
+import { selectUserTags } from '../../reducers/userTagsReducer';
+import { selectUserFolders, selectUserBlogs } from '../../reducers/userArtefactsReducer';
+import { RootState } from '../../reducers/reducers';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -19,10 +23,6 @@ type Props = {
   dispatch: any;
   navigation: any;
   url: string;
-  uploadList: {
-    files: Array<MaharaPendingFile>,
-    journalEntries: Array<PendingJournalEntry>
-  }
 };
 
 type State = {
@@ -168,7 +168,7 @@ export class AddScreen extends Component<Props, State> {
     this.setState(stateObject);
   };
 
-  // Add files to uploadList
+  // Add files to upload lists
   handleForm = () => {
     const { selectedTags, pickedFile, pickedFolder, title, description } = this.state;
     const { userFolders, token } = this.props;
@@ -276,14 +276,13 @@ export class AddScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    url: state.app.token,
-    token: state.app.token,
-    userTags: state.app.userTags,
-    userFolders: state.app.userFolders,
-    userBlogs: state.app.userBlogs,
-    uploadList: state.app.uploadList
+    url: selectUrl(state),
+    token: selectToken(state),
+    userTags: selectUserTags(state),
+    userFolders: selectUserFolders(state),
+    userBlogs: selectUserBlogs(state),
   };
 };
 

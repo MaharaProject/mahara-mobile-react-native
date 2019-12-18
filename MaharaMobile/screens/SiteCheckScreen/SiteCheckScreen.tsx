@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { checkLoginTypes } from '../../actions/actions';
-import { MaharaStore } from '../../models/models';
 import LoginType from '../../components/LoginType/LoginType';
 import { generic } from '../../assets/styles/generic';
+import { RootState } from '../../reducers/reducers';
+import { selectUrl, selectTokenLogin, selectSsoLogin, selectLocalLogin } from '../../reducers/loginInfoReducer';
 
 type Props = {
   dispatch: any;
@@ -122,12 +123,12 @@ export class SiteCheckScreen extends Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    url: state.app.url,
-    tokenLogin: state.app.tokenLogin,
-    ssoLogin: state.app.ssoLogin,
-    localLogin: state.app.localLogin
+    url: selectUrl(state),
+    tokenLogin: selectTokenLogin(state),
+    ssoLogin: selectSsoLogin(state),
+    localLogin: selectLocalLogin(state)
   }
 }
 
