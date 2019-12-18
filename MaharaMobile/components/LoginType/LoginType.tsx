@@ -18,65 +18,67 @@ type Props = {
   serverPing: boolean;
   isInputHidden: boolean;
   enterUrlWarning: boolean;
-}
+  skip: () => void;
+};
 
 export default function LoginType(props: Props) {
   return (
     <View style={styles.view}>
-      {!props.isInputHidden ?
+      {!props.isInputHidden ? (
         <View>
-          <Text style={headings.subHeading1}>What is the address of your Mahara?</Text>
+          <Text style={headings.subHeading1}>
+            What is the address of your Mahara?
+          </Text>
           <TextInput
             style={forms.textInput}
             // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
-            defaultValue='https://master.dev.mahara.org/'
-            onChangeText={(url) => props.checkUrl(url)}
+            defaultValue="https://master.dev.mahara.org/"
+            onChangeText={(url:string) => props.checkUrl(url)}
           />
         </View>
-      :null }
-      {props.enterUrlWarning ?
-        <Text>Please enter a URL</Text>
-      : null}
-      {props.errorMessage ?
-        <Text>{props.errorMessage}</Text>
-      : null}
-      {props.serverPing && props.isInputHidden ?
+      ) : null}
+      {props.enterUrlWarning ? <Text>Please enter a URL</Text> : null}
+      {props.errorMessage ? <Text>{props.errorMessage}</Text> : null}
+      {props.serverPing && props.isInputHidden ? (
         <View>
           <Text style={[headings.subHeading2, styles.url]}>{props.url}</Text>
-          <TouchableOpacity onPress={()=>props.resetForm()}>
-            <Text style={[buttons.md, styles.buttons]}>Enter a different URL</Text>
+          <TouchableOpacity onPress={() => props.resetForm()}>
+            <Text style={[buttons.md, styles.buttons]}>
+              Enter a different URL
+            </Text>
           </TouchableOpacity>
         </View>
-      : null}
-      {!props.isInputHidden ?
-        <TouchableOpacity onPress={()=>props.checkServer()}>
-          <Text style={[buttons.md, styles.buttons]}>Next</Text>
-        </TouchableOpacity>
-      : null}
-      {props.serverPing ?
+      ) : null}
+      {!props.isInputHidden ? (
+        <View>
+          <TouchableOpacity onPress={() => props.checkServer()}>
+            <Text style={[buttons.md, styles.buttons]}>Next</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={props.skip}>
+            <Text style={[buttons.md, styles.buttons]}>Skip</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+      {props.serverPing ? (
         <Text style={headings.mainHeading}>Select login type</Text>
-      :null}
-      {props.serverPing && props.tokenLogin ?
-        <TouchableOpacity
-          onPress={()=>props.setLoginType('token')
-        }>
-          <Text style={[buttons.md, styles.buttons]}>Paste in access token</Text>
+      ) : null}
+      {props.serverPing && props.tokenLogin ? (
+        <TouchableOpacity onPress={() => props.setLoginType('token')}>
+          <Text style={[buttons.md, styles.buttons]}>
+            Paste in access token
+          </Text>
         </TouchableOpacity>
-      :null }
-      {props.serverPing && props.localLogin ?
-        <TouchableOpacity
-          onPress={()=>props.setLoginType('basic')
-        }>
+      ) : null}
+      {props.serverPing && props.localLogin ? (
+        <TouchableOpacity onPress={() => props.setLoginType('basic')}>
           <Text style={[buttons.md, styles.buttons]}>Local Login</Text>
         </TouchableOpacity>
-      :null }
-      {props.serverPing && props.ssoLogin ?
-        <TouchableOpacity
-          onPress={()=>props.setLoginType('sso')
-        }>
+      ) : null}
+      {props.serverPing && props.ssoLogin ? (
+        <TouchableOpacity onPress={() => props.setLoginType('sso')}>
           <Text style={[buttons.md, styles.buttons]}>Single Sign On</Text>
         </TouchableOpacity>
-      :null }
+      ) : null}
     </View>
-  )
+  );
 }

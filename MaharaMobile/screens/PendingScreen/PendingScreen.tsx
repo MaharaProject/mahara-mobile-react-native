@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
@@ -13,6 +12,7 @@ import { uploadItemToMahara } from '../../utils/helperFunctions';
 import { RootState } from '../../reducers/reducers';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
+import Header from '../../components/Header/Header';
 
 type Props =
   {
@@ -48,7 +48,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   static navigationOptions = {
-    header: null
+    // header: null
   };
 
   pendingDisplay = () => {

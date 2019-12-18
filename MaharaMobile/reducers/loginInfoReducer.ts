@@ -7,11 +7,12 @@ import { RootState } from './reducers';
 
 type LoginInfoState = {
   url: string;
+  token: string;
+  userName: string;
+  // available login methods
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
-  token: string;
-  userName: string;
 };
 
 const initialState: LoginInfoState = {
@@ -55,3 +56,4 @@ export const selectSsoLogin = (state: RootState) => state.domainData.loginInfo.s
 export const selectLocalLogin = (state: RootState) => state.domainData.loginInfo.localLogin;
 export const selectToken = (state: RootState) => state.domainData.loginInfo.token;
 export const selectUserName = (state: RootState) => state.domainData.loginInfo.userName;
+export const selectLoginState = (state: RootState) => (state.domainData.loginInfo.userName !=='' ? true : false);

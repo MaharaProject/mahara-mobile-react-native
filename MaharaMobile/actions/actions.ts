@@ -84,7 +84,7 @@ const getJSON = (url: string) => {
 const postJSON = (url: string, body: any) => {
   return requestJSON(url, {
     method: 'POST',
-    body: body
+    body: body,
   })
 };
 
