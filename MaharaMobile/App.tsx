@@ -25,13 +25,6 @@ const AppNavigator = createStackNavigator({
 });
 
 const tabScreenConfig = {
-  Profile: {
-    screen: ProfileScreen, navigationOptions: {
-      tabBarIcon: () => {
-        return <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
-      },
-    },
-  },
   Add: {
     screen: AppNavigator, navigationOptions:
     {
@@ -40,6 +33,13 @@ const tabScreenConfig = {
         return <FontAwesomeIcon icon={faPlusCircle} color={styles.colors.light} />
       }
     }
+  },
+  Profile: {
+    screen: ProfileScreen, navigationOptions: {
+      tabBarIcon: () => {
+        return <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
+      },
+    },
   },
   PendingScreen: {
     screen: PendingScreen, navigationOptions: {
