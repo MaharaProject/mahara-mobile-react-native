@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
 import UploadForm from '../../components/UploadForm/UploadForm';
 import generic from '../../assets/styles/generic';
-import { buttons } from '../../assets/styles/buttons';
 import { UserTag, UserBlog, PendingJournalEntry } from '../../models/models';
 import {
   selectUrl,
   selectToken
 } from '../../reducers/loginInfoReducer';
-import { selectUserFolders } from '../../reducers/userArtefactsReducer';
+import { selectUserBlogs } from '../../reducers/userArtefactsReducer';
 import { selectUserTags } from '../../reducers/userTagsReducer';
 import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
-import { RootState } from '../../reducers/reducers';
+import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
   userTags: Array<UserTag>;
@@ -44,9 +43,6 @@ export class AddJournalScreen extends Component<Props> {
             token={this.props.token}
             url={this.props.url}
           />
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('Add')}>
-            <Text style={buttons.sm}>Back</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     );
@@ -58,7 +54,7 @@ const mapStateToProps = (state: RootState) => {
     url: selectUrl(state),
     token: selectToken(state),
     userTags: selectUserTags(state),
-    userFolders: selectUserFolders(state),
+    userBlogs: selectUserBlogs(state),
     uploadJournals: selectAllJEntries(state)
   };
 };

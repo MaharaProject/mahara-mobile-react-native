@@ -15,7 +15,7 @@ import {
 import { selectUserFolders } from '../../reducers/userArtefactsReducer';
 import { selectUserTags } from '../../reducers/userTagsReducer';
 import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
-import { RootState } from '../../reducers/reducers';
+import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -104,9 +104,6 @@ export class AddFileScreen extends Component<Props, State> {
               token={this.props.token}
               url={this.props.url}
             />
-            <TouchableOpacity onPress={() => this.props.navigation.navigate('Add')}>
-              <Text style={buttons.sm}>Back</Text>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>
