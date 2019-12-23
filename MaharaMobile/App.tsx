@@ -24,7 +24,7 @@ import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const App = () => {
   const AddItemsNavigator = createStackNavigator({
-    Add: AddScreen,
+    Add: AddScreen
   });
 
   const PendingItemsNavigator = createStackNavigator({
@@ -33,8 +33,8 @@ const App = () => {
       screen: DetailsScreen,
       navigationOptions: {
         headerTitle: 'Back to Pending Items',
-      },
-    },
+      }
+    }
   });
 
   const tabScreenConfig = {
@@ -43,8 +43,8 @@ const App = () => {
       navigationOptions: {
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
-        ),
-      },
+        )
+      }
     },
     Add: {
       screen: AddItemsNavigator,
@@ -52,8 +52,8 @@ const App = () => {
         tabBarLabel: 'Add',
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faPlusCircle} color={styles.colors.light} />
-        ),
-      },
+        )
+      }
     },
     PendingScreen: {
       screen: PendingItemsNavigator,
@@ -61,8 +61,8 @@ const App = () => {
         tabBarLabel: 'Pending ',
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faHistory} color={styles.colors.light} />
-        ),
-      },
+        )
+      }
     }
   };
 
@@ -85,13 +85,13 @@ const App = () => {
   // Navigator with only LoginScreen
   const AuthNavigator = createStackNavigator({
     Auth: SiteCheckScreen,
-    Login: LoginScreen,
+    Login: LoginScreen
   });
 
   // Main navigator, with route to AppNavigator once authenticated
   const MainNavigator = createSwitchNavigator({
     Auth: AuthNavigator,
-    App: AppTabNavigator,
+    App: AppTabNavigator
   });
 
   const store = configureStore();
