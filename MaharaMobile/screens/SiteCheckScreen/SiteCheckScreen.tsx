@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { checkLoginTypes } from '../../actions/actions';
 import LoginType from '../../components/LoginType/LoginType';
-import { generic } from '../../assets/styles/generic';
+import generic from '../../assets/styles/generic';
 import { RootState } from '../../reducers/reducers';
 import { selectUrl, selectTokenLogin, selectSsoLogin, selectLocalLogin } from '../../reducers/loginInfoReducer';
 
@@ -99,6 +99,10 @@ export class SiteCheckScreen extends Component<Props, State> {
 
   skip = () => {
     this.props.navigation.navigate('Add');
+  };
+
+  static navigationOptions = {
+    header: null,
   };
 
   static navigationOptions = {
