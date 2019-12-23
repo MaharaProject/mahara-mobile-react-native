@@ -23,11 +23,18 @@ import AddScreen from './screens/AddScreen/AddScreen';
 import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const App = () => {
-  const AppNavigator = createStackNavigator({
+  const AddItemsNavigator = createStackNavigator({
     Add: AddScreen,
-    Profile: ProfileScreen,
+  });
+
+  const PendingItemsNavigator = createStackNavigator({
     Pending: PendingScreen,
-    Details: DetailsScreen,
+    Details: {
+      screen: DetailsScreen,
+      navigationOptions: {
+        headerTitle: 'Back to Pending Items',
+      },
+    },
   });
 
   const tabScreenConfig = {
@@ -40,7 +47,7 @@ const App = () => {
       },
     },
     Add: {
-      screen: AppNavigator,
+      screen: AddItemsNavigator,
       navigationOptions: {
         tabBarLabel: 'Add',
         tabBarIcon: () => (
@@ -49,7 +56,7 @@ const App = () => {
       },
     },
     PendingScreen: {
-      screen: PendingScreen,
+      screen: PendingItemsNavigator,
       navigationOptions: {
         tabBarLabel: 'Pending ',
         tabBarIcon: () => (
