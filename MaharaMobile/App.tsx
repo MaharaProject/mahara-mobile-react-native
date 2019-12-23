@@ -20,11 +20,15 @@ import LoginScreen from './screens/LoginScreen/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen/ProfileScreen';
 import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
+import AddFileScreen from './screens/AddFileScreen/AddFileScreen';
+import AddJournalScreen from './screens/AddJournalScreen/AddJournalScreen';
 import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const App = () => {
   const AddItemsNavigator = createStackNavigator({
-    Add: AddScreen
+    Add: AddScreen,
+    AddFile: AddFileScreen,
+    AddJournal: AddJournalScreen
   });
 
   const PendingItemsNavigator = createStackNavigator({

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addToken } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import { sendTokenLogin } from '../../utils/helperFunctions';
-import { generic } from '../../assets/styles/generic';
+import generic from '../../assets/styles/generic';
 import {
   selectUrl,
   selectTokenLogin,
@@ -40,8 +40,9 @@ export class LoginScreen extends Component<Props, State> {
   }
 
   login = () => {
-    const url = 'https://master.dev.mahara.org/';
+    const {url} = this.props;
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
+
     const body = {
       blogs: {},
       folders: {},
@@ -49,7 +50,7 @@ export class LoginScreen extends Component<Props, State> {
       userprofile: {},
       userprofileicon: {},
       wsfunction: 'module_mobileapi_sync',
-      wstoken: this.state.token,
+      wstoken: this.state.token
     };
 
     const requestOptions = {
@@ -74,7 +75,7 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   handleToken = () => {
-    const { token } = this.state;
+    const {token} = this.state;
     this.login();
     this.props.dispatch(addToken(token));
   };
@@ -84,7 +85,8 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   render() {
-    const { loginType } = this.props.navigation.state.params;
+    const {params} = this.props.navigation.state;
+    const {loginType} = params;
 
     return (
       <View style={generic.view}>
