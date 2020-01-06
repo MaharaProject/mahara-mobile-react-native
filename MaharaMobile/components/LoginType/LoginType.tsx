@@ -1,9 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Trans } from '@lingui/macro';
 import styles from './LoginType.style';
 import { headings } from '../../assets/styles/headings';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
+
 
 type Props = {
   url: string;
@@ -27,7 +29,7 @@ export default function LoginType(props: Props) {
       {!props.isInputHidden ? (
         <View>
           <Text style={headings.subHeading1}>
-            What is the address of your Mahara?
+            <Trans>What is the address of your Mahara?</Trans>
           </Text>
           <TextInput
             style={forms.textInput}
@@ -37,14 +39,14 @@ export default function LoginType(props: Props) {
           />
         </View>
       ) : null}
-      {props.enterUrlWarning ? <Text>Please enter a URL</Text> : null}
+      {props.enterUrlWarning ? <Text><Trans>Please enter a URL</Trans></Text> : null}
       {props.errorMessage ? <Text>{props.errorMessage}</Text> : null}
       {props.serverPing && props.isInputHidden ? (
         <View>
           <Text style={[headings.subHeading2, styles.url]}>{props.url}</Text>
           <TouchableOpacity onPress={() => props.resetForm()}>
             <Text style={[buttons.md, styles.buttons]}>
-              Enter a different URL
+              <Trans>Enter a different URL</Trans>
             </Text>
           </TouchableOpacity>
         </View>
@@ -65,7 +67,7 @@ export default function LoginType(props: Props) {
       {props.serverPing && props.tokenLogin ? (
         <TouchableOpacity onPress={() => props.setLoginType('token')}>
           <Text style={[buttons.md, styles.buttons]}>
-            Paste in access token
+            <Trans>Paste in access token</Trans>
           </Text>
         </TouchableOpacity>
       ) : null}

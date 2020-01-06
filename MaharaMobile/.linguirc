@@ -1,0 +1,5 @@
+{
+   "localeDir": "./locales/",
+   "srcPathDirs": ["./components", '/screens'],
+   "format": "po"
+}

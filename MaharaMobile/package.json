@@ -8,7 +8,10 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "add-locale": "lingui add-locale",
+    "extract": "lingui extract",
+    "compile": "lingui compile"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
@@ -16,6 +19,7 @@
     "@fortawesome/react-native-fontawesome": "^0.1.0",
     "@react-native-community/async-storage": "^1.6.2",
     "@react-navigation/bottom-tabs": "^5.0.0-alpha.22",
+    "@types/lingui__react": "^2.8.1",
     "@types/react-redux": "^7.1.5",
     "@typescript-eslint/parser": "^2.7.0",
     "core-js": "^3.4.8",
@@ -42,15 +46,20 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "@babel/core": "7.6.2",
+    "@babel/core": "^7.6.2",
     "@babel/runtime": "7.6.2",
+    "@lingui/cli": "^2.9.0",
+    "@lingui/macro": "^2.9.0",
+    "@lingui/react": "^2.9.0",
     "@react-native-community/eslint-config": "0.0.3",
     "@types/jest": "^24.0.18",
     "@types/react": "^16.9.3",
     "@types/react-native": "^0.60.22",
     "@types/react-test-renderer": "^16.9.0",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "24.9.0",
+    "babel-plugin-macros": "^2.8.0",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.5.0",

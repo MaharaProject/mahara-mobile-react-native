@@ -12,6 +12,7 @@ import {
   faSign,
 } from '@fortawesome/free-solid-svg-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { I18nProvider } from '@lingui/react'
 
 import styles from './assets/styles/variables';
 import configureStore from './store/store';
@@ -105,7 +106,9 @@ const App = () => {
   // Render the app container component with the provider around it
   return (
     <Provider store={store}>
-      <Navigation />
+      <I18nProvider language="en">
+        <Navigation />
+      </I18nProvider>
     </Provider>
   );
 };
