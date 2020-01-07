@@ -57,15 +57,15 @@ export default function LoginType(props: Props) {
       {!props.isInputHidden ? (
         <View>
           <TouchableOpacity onPress={() => props.checkServer()}>
-            <Text style={[buttons.md, styles.buttons]}>Next</Text>
+            <Text style={[buttons.md, styles.buttons]}><Trans>Next</Trans></Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={props.skip}>
-            <Text style={[buttons.md, styles.buttons]}>Skip</Text>
+            <Text style={[buttons.md, styles.buttons]}><Trans>Skip</Trans></Text>
           </TouchableOpacity>
         </View>
       ) : null}
       {props.serverPing ? (
-        <Text style={headings.mainHeading}>Select login type</Text>
+        <Text style={headings.mainHeading}><Trans>Select login type</Trans></Text>
       ) : null}
       {props.serverPing && props.tokenLogin ? (
         <TouchableOpacity onPress={() => props.setLoginType('token')}>
@@ -76,12 +76,16 @@ export default function LoginType(props: Props) {
       ) : null}
       {props.serverPing && props.localLogin ? (
         <TouchableOpacity onPress={() => props.setLoginType('basic')}>
-          <Text style={[buttons.md, styles.buttons]}>Local Login</Text>
+          <Text style={[buttons.md, styles.buttons]}>
+            <Trans>Local Login</Trans>
+          </Text>
         </TouchableOpacity>
       ) : null}
       {props.serverPing && props.ssoLogin ? (
         <TouchableOpacity onPress={() => props.setLoginType('sso')}>
-          <Text style={[buttons.md, styles.buttons]}>Single Sign On</Text>
+          <Text style={[buttons.md, styles.buttons]}>
+           <Trans>Single Sign On</Trans>
+          </Text>
         </TouchableOpacity>
       ) : null}
     </View>
