@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -8,12 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faUser,
   faPlusCircle,
-  faHistory,
-  faSign,
+  faHistory
 } from '@fortawesome/free-solid-svg-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import { I18nProvider } from '@lingui/react';
-import { t, Trans } from '@lingui/macro';
 
 import styles from './assets/styles/variables';
 import configureStore from './store/store';
@@ -51,7 +49,7 @@ const NavigationContainer = () => {
     Details: {
       screen: DetailsScreen,
       navigationOptions: {
-        headerTitle: t `Back to Pending Items`
+        headerTitle: 'Back to Pending Items'
       }
     }
   });
