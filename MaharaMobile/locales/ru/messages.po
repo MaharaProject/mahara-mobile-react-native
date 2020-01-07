@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"POT-Creation-Date: 2020-01-07 08:41+1300\n"
+"POT-Creation-Date: 2020-01-07 15:28+1300\n"
 "Mime-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: en\n"
+"Language: ru\n"
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: \n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: components/LoginType/LoginType.tsx:27
 msgid "Enter a different URL"
-msgstr ""
+msgstr "sdfsdf"
 
 #: components/LoginType/LoginType.tsx:47
 msgid "Local Login"
