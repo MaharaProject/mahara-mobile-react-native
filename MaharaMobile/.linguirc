@@ -1,5 +1,5 @@
 {
    "localeDir": "./locales/",
-   "srcPathDirs": ["./components", '/screens'],
+   "srcPathDirs": ["App.tsx", "./components", '/screens'],
    "format": "po"
 }

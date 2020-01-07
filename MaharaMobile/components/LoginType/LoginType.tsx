@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
+import { I18n } from "@lingui/react";
 import styles from './LoginType.style';
 import { headings } from '../../assets/styles/headings';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
-
 
 type Props = {
   url: string;
@@ -31,12 +31,15 @@ export default function LoginType(props: Props) {
           <Text style={headings.subHeading1}>
             <Trans>What is the address of your Mahara?</Trans>
           </Text>
-          <TextInput
-            style={forms.textInput}
-            // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
-            defaultValue="https://master.dev.mahara.org/"
-            onChangeText={(url:string) => props.checkUrl(url)}
-          />
+          <I18n>
+            {({i18n}) => <TextInput
+                          style={forms.textInput}
+                          // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
+                          defaultValue={i18n._(t `https://master.dev.mahara.org/`)}
+                          onChangeText={(url:string) => props.checkUrl(url)}
+                        />
+            }
+          </I18n>
         </View>
       ) : null}
       {props.enterUrlWarning ? <Text><Trans>Please enter a URL</Trans></Text> : null}

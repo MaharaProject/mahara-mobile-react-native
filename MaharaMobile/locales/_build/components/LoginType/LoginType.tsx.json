@@ -1,0 +1,42 @@
+{
+  "What is the address of your Mahara?": {
+    "origin": [
+      [
+        "components/LoginType/LoginType.tsx",
+        13
+      ]
+    ]
+  },
+  "https://master.dev.mahara.org/": {
+    "origin": [
+      [
+        "components/LoginType/LoginType.tsx",
+        18
+      ]
+    ]
+  },
+  "Please enter a URL": {
+    "origin": [
+      [
+        "components/LoginType/LoginType.tsx",
+        21
+      ]
+    ]
+  },
+  "Enter a different URL": {
+    "origin": [
+      [
+        "components/LoginType/LoginType.tsx",
+        27
+      ]
+    ]
+  },
+  "Paste in access token": {
+    "origin": [
+      [
+        "components/LoginType/LoginType.tsx",
+        42
+      ]
+    ]
+  }
+}
