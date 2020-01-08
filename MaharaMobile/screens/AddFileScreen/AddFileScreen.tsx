@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
@@ -35,17 +35,19 @@ type State = {
   filePickerButtonText: string;
 };
 
-export class AddFileScreen extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const AddFileScreen = (props: Props, state: State) => {
+  let initialState = { uri: '', name: '', type: '', size: 0 }
+  let isEditting = false
 
-    this.state = {
-      pickedFile: { uri: '', name: '', type: '', size: 0 },
-      filePickerButtonText: 'Select a file'
-    };
+  if (props.navigation.getParam('item')) {
+    initialState = props.navigation.getParam('item').maharaFormData.filetoupload
+    isEditting = true
   }
 
-  pickDocument = async () => {
+  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
+  const [filePickerButtonText, setFilePickerButtonText] = useState(isEditting ? 'Pick a different file' : 'Select a file');
+
+  const pickDocument = async () => {
     // iPhone/Android
     DocumentPicker.show(
       {
@@ -53,7 +55,7 @@ export class AddFileScreen extends Component<Props, State> {
       },
       (error, res) => {
         //error
-        console.log('consolelog error:', error);
+        console.log('error:', error);
 
         // No file picked
         if (!res) {
@@ -61,55 +63,50 @@ export class AddFileScreen extends Component<Props, State> {
           return;
         }
 
-        const pickedFile: MaharaFile = {
+        // Android
+        setPickedFile({
           name: res.fileName,
           uri: res.uri,
           type: res.type,
           size: Number(res.fileSize)
-        };
-
-        // Android
-        this.setState({
-          pickedFile: pickedFile,
-          filePickerButtonText: 'Pick a different file'
         });
+        setFilePickerButtonText('Pick a different file')
       }
     );
   };
 
-  static navigationOptions = {
-    headerTitle: 'Add a file'
-  };
-
-  render() {
-    return (
-      <ScrollView>
-        <View style={generic.wrap}>
-          {this.state.pickedFile.name ? (
-            <View style={styles.imageWrap}>
-              <Image source={{ uri: this.state.pickedFile.uri }} style={styles.image} />
-            </View>
-          ) : null}
-          <View>
-            <TouchableOpacity onPress={() => this.pickDocument()}>
-              <Text style={buttons.lg}>{this.state.filePickerButtonText}</Text>
-            </TouchableOpacity>
+  return (
+    <ScrollView>
+      <View style={generic.wrap}>
+        {pickedFile.name ? (
+          <View style={styles.imageWrap}>
+            <Image source={{ uri: pickedFile.uri }} style={styles.image} />
           </View>
-          <View>
-            <UploadForm
-              pickedFile={this.state.pickedFile}
-              userFolders={this.props.userFolders}
-              userTags={this.props.userTags}
-              formType="file"
-              token={this.props.token}
-              url={this.props.url}
-            />
-          </View>
+        ) : null}
+        <View>
+          <TouchableOpacity onPress={() => pickDocument()}>
+            <Text style={buttons.lg}>{filePickerButtonText}</Text>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
-    );
-  }
+        <View>
+          <UploadForm
+            pickedFile={pickedFile}
+            userFolders={props.userFolders}
+            userTags={props.userTags}
+            formType="file"
+            token={props.token}
+            url={props.url}
+            editItem={props.navigation.getParam('item')}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
 }
+
+AddFileScreen.navigationOptions = {
+  headerTitle: 'Add a file'
+};
 
 const mapStateToProps = (state: RootState) => {
   return {

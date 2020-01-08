@@ -5,6 +5,7 @@ import UploadItem from '../UploadItem/UploadItem';
 type Props = {
   dataList: Array<any>
   onRemove: Function;
+  onEdit: Function;
   navigation: any;
 }
 
@@ -38,12 +39,7 @@ const PendingList = (props: Props) => {
             description={description}
             mimetype={mimetype}
             onRemove={() => props.onRemove(itemId)}
-            onEdit={() => props.navigation.navigate({
-              routeName: 'Details',
-              params: {
-                itemId: itemId
-              },
-            })}
+            onEdit={() => props.onEdit(item)}
             image={thumbnail}
           />
         )

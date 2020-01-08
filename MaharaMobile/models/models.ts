@@ -69,5 +69,6 @@ export type MaharaFileFormData = {
     uri: string,
     type: string,
     name: string,
-  }
+  };
+  tags: string[]
 }

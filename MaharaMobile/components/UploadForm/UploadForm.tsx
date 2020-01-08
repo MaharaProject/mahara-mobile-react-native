@@ -17,6 +17,7 @@ type Props = {
   formType: string;
   token: string;
   url: string;
+  editItem: MaharaPendingFile | PendingJournalEntry;
 }
 
 type State = {
@@ -26,18 +27,19 @@ type State = {
 const UploadForm = (props: Props) => {
   const [newTag, addNewTag] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
-  const [selectedFolder, setSelectedFolder] = useState('');
+  const [selectedFolder, setSelectedFolder] = useState(props.editItem ? props.editItem.maharaFormData.foldername : '');
   const [selectedBlog, setSelectedBlog] = useState(0);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState(props.editItem ? props.editItem.maharaFormData.title : '');
+  const [description, setDescription] = useState(props.editItem ? props.editItem.maharaFormData.description : '');
   const [hidden, showTagInput] = useState(false);
-  const [selectedTags, setTags] = useState<State['selectedTags']>([]);
+  const [selectedTags, setTags] = useState<State['selectedTags']>(props.editItem ? props.editItem.maharaFormData.tags : []);
 
   const dispatch = useDispatch();
   const isMultiLine = props.formType !== 'journal' ? forms.multiLine : [forms.multiLine, styles.description];
   const placeholder = props.formType !== 'journal' ? 'Enter a description' : 'Enter detail';
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 1 : null;
   const checkFile = props.pickedFile ? props.pickedFile.size > 0 : null;
+
 
   const addTag = (tag: string) => {
     if (tag === 'Add new tag +') {
@@ -104,11 +106,12 @@ const UploadForm = (props: Props) => {
         foldername: folder,
         title: filename,
         webservice: webservice,
-        wstoken: props.token
+        wstoken: props.token,
+        tags: selectedTags
       }
 
       const pendingFileData: MaharaPendingFile = {
-        id: Math.random() * 10 + '' + fileData.type,
+        id: props.editItem ? props.editItem.id : Math.random() * 10 + '' + fileData.type,
         maharaFormData: maharaFormData,
         mimetype: pickedFile.type,
         url: fileUrl
@@ -118,16 +121,19 @@ const UploadForm = (props: Props) => {
     }
   };
 
+  console.log('editItem ', props.editItem)
   return (
     <View>
       <TextInput
         style={forms.textInput}
         placeholder="Enter a title"
+        value={title}
         onChangeText={(title) => { setTitle(title) }}
       />
       <TextInput
         style={isMultiLine}
         placeholder={placeholder}
+        value={description}
         onChangeText={(description) => { setDescription(description) }}
       />
       {props.formType !== 'journal' ?
@@ -207,7 +213,8 @@ const UploadForm = (props: Props) => {
       </View>
       {checkFile || title && description ?
         <TouchableOpacity onPress={() => handleForm() }>
-          <Text style={buttons.lg}>Add {type} to Pending</Text>
+          { props.editItem && <Text style={buttons.lg}>Confirm edits to {type}</Text> }
+          { !props.editItem && <Text style={buttons.lg}>Add {type} to Pending</Text> }
         </TouchableOpacity>
       : null}
     </View>

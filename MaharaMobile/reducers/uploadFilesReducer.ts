@@ -17,18 +17,19 @@ const addFileToUploadList = (
   state: UploadFilesState,
   file: MaharaPendingFile,
 ) => {
+
+  const updatedUploadFilesIds = new Set([
+    ...state.uploadFilesIds,
+    file.id,
+  ])
   const updatedUploadFiles = {
     ...state.uploadFiles,
     [file.id]: file,
   };
-  const updatedUploadFilesIds: Array<string> = [
-    ...state.uploadFilesIds,
-    file.id,
-  ];
 
   return {
     uploadFiles: updatedUploadFiles,
-    uploadFilesIds: updatedUploadFilesIds,
+    uploadFilesIds: Array.from(updatedUploadFilesIds,)
   };
 };
 

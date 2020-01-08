@@ -82,6 +82,7 @@ export class PendingScreen extends Component<Props, State> {
       <PendingList
         dataList={dataList}
         onRemove={this.onRemove}
+        onEdit={this.onEdit}
         navigation={this.props.navigation}
       />
     )
@@ -99,10 +100,17 @@ export class PendingScreen extends Component<Props, State> {
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   onRemove = (itemId: string) => {
-    console.log('itemId', itemId)
     this.props.dispatch(removeUploadFile(itemId));
     this.props.dispatch(removeUploadJEntry(itemId));
   }
+
+  onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
+    let navigationRoute
+    item.journalEntry ? navigationRoute = 'AddJournalEntry' : navigationRoute = 'AddFile'
+
+    this.props.navigation.navigate({routeName: navigationRoute, params: { item: item }})
+  }
+
 
   render() {
     return (
