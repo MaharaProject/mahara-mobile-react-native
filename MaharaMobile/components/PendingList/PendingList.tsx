@@ -3,14 +3,12 @@ import { FlatList } from 'react-native-gesture-handler';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
-  uploadType: string;
   dataList: Array<any>
   onRemove: Function;
   navigation: any;
 }
 
 const PendingList = (props: Props) => {
-  let itemId = '';
   let title = '';
   let description = '';
   let thumbnail = {};
@@ -19,23 +17,26 @@ const PendingList = (props: Props) => {
     <FlatList
       data={props.dataList}
       renderItem={({ item }: any) => {
+        let itemId = item.id;
+        let mimetype = '';
         //  figure out what to pass in to UploadItem
-        if (props.uploadType === 'file') {
-          itemId = item.id;
+        if (item.maharaFormData !== undefined) {
           title = item.maharaFormData.title;
           description = item.maharaFormData.description;
+          mimetype = item.mimetype;
           thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') }
         }
-        else {
-          itemId = item.id;
+        else if (item.journalEntry !== undefined) {
           title = item.journalEntry.title;
-          description = item.journalEntry.body
+          description = item.journalEntry.body;
+          mimetype = 'journalEntry';
         }
 
         return (
           <UploadItem
             title={title}
             description={description}
+            mimetype={mimetype}
             onRemove={() => props.onRemove(itemId)}
             onEdit={() => props.navigation.navigate({
               routeName: 'Details',

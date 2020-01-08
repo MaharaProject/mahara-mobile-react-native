@@ -27,6 +27,8 @@ const uploadItemStyles = StyleSheet.create({
   },
   imageContainer: {
     width: '20%',
+    borderRadius: 50,
+    overflow: 'hidden',
   },
   thumbnail: {
     height: '100%',

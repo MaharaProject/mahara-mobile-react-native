@@ -2,21 +2,24 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import Header from '../../components/Header/Header';
 import styles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
-import { updateUploadList, uploadItemToMahara } from '../../actions/actions'
-import { MaharaStore, MaharaPendingFile, PendingJournalEntry } from '../../models/models';
+import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
+import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
-import { conditionalExpression } from '@babel/types';
+import { uploadItemToMahara } from '../../utils/helperFunctions';
+import { RootState } from '../../reducers/reducers';
+import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
+import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
+import Header from '../../components/Header/Header';
 
 type Props =
   {
-    uploadList: {
-      files: Array<MaharaPendingFile>,
-      journalEntries: Array<PendingJournalEntry>
-    };
+    uploadFiles: Array<MaharaPendingFile>;
+    uploadJEntries: Array<PendingJournalEntry>;
+    uploadFilesIds: Array<string>;
+    uploadJEntriesIds: Array<string>;
     dispatch: any;
     navigation: any;
   }
@@ -27,7 +30,7 @@ type State =
     uploadRequestReceived: boolean;
     successMessage: string;
     selectedFiles: Array<any>;
-    uploadFilesExist: boolean;
+    uploadItemsExist: boolean;
   }
 
 
@@ -40,22 +43,26 @@ export class PendingScreen extends Component<Props, State> {
       uploadRequestReceived: false,
       successMessage: '',
       selectedFiles: [],
-      uploadFilesExist: (this.props.uploadList.files.length + this.props.uploadList.journalEntries.length > 0 ? true : false)
+      uploadItemsExist: (this.props.uploadFiles.length + this.props.uploadJEntries.length > 0 ? true : false),
     }
   }
 
   static navigationOptions = {
-    header: null
+    // header: null
   };
 
   pendingDisplay = () => {
     const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
     // there are items to upload
-    if (this.state.uploadFilesExist) {
+    let list: Array<any> = [];
+
+    if (this.props.uploadFilesIds.length > 0) list = list.concat(this.props.uploadFiles);
+    if (this.props.uploadJEntriesIds.length > 0) list = list.concat(this.props.uploadJEntries)
+
+    if (this.state.uploadItemsExist) {
       return (
         <View>
-          {this.props.uploadList.files.length != 0 ? this.renderPendingList('file') : null}
-          {this.props.uploadList.journalEntries.length != 0 ? this.renderPendingList('journalEntry') : null}
+          {this.renderPendingList(list)}
         </View>
       )
       // no items to upload
@@ -67,57 +74,34 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   /**
-   * Renders a PendingList upon type of upload item
-   * @param uploadType string: could be 'file' or 'journalEntry'
+   * Renders a PendingList
+   * @param dataList array of files and journal entries
    */
-  renderPendingList(uploadType: string) {
-    let dataList: Array<any> = [];
-    switch (uploadType) {
-      case 'file':
-        dataList = this.props.uploadList.files;
-        break;
-      case 'journalEntry':
-        dataList = this.props.uploadList.journalEntries;
-        break;
-      default:
-        break;
-    }
-
-
+  renderPendingList(dataList: Array<any>) {
     return (
-      <View>
-        <PendingList
-          uploadType={uploadType}
-          dataList={dataList}
-          onRemove={this.onRemove}
-          navigation={this.props.navigation}
-        />
-      </View>
+      <PendingList
+        dataList={dataList}
+        onRemove={this.onRemove}
+        navigation={this.props.navigation}
+      />
     )
   }
 
   onUploadClick = () => {
-    const obj = this.props.uploadList;
-    Object.values(obj).forEach((array: Array<any>) => {
-      array.forEach((item: any) => {
-        const uploadItem = item.maharaFormData || item.journalEntry;
-        this.props.dispatch(uploadItemToMahara(item.url, uploadItem));
-        this.props.dispatch(updateUploadList({ files: [], journalEntries: [] }))
-      })
-    })
+    this.props.uploadFiles.forEach(file => this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData)));
+    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)));
+    this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)))
+    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)))
   }
+
 
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   onRemove = (itemId: string) => {
-    const updatedFiles = this.props.uploadList.files.filter((file: MaharaPendingFile) => file.id !== itemId)
-    const updatedJournalEntries = this.props.uploadList.journalEntries.filter((entry: PendingJournalEntry) => entry.id !== itemId)
-
-    this.props.dispatch(updateUploadList({
-      files: updatedFiles,
-      journalEntries: updatedJournalEntries
-    }));
+    console.log('itemId', itemId)
+    this.props.dispatch(removeUploadFile(itemId));
+    this.props.dispatch(removeUploadJEntry(itemId));
   }
 
   render() {
@@ -125,8 +109,10 @@ export class PendingScreen extends Component<Props, State> {
       <View style={styles.app} >
         <Header navigation={this.props.navigation} />
         <Text>Pending Uploads</Text>
-        <View style={styles.container}>
+        <View style={styles.listContainer}>
           {this.pendingDisplay()}
+        </View>
+        <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={this.onUploadClick}>
             <Text style={buttons.lg}>Upload to your Mahara</Text>
           </TouchableOpacity>
@@ -136,10 +122,12 @@ export class PendingScreen extends Component<Props, State> {
   }
 };
 
-const mapStateToProps = (state: MaharaStore) => {
+const mapStateToProps = (state: RootState) => {
   return {
-    token: state.app.token,
-    uploadList: state.app.uploadList,
+    uploadFiles: selectAllUploadFiles(state),
+    uploadFilesIds: selectAllUploadFilesIds(state),
+    uploadJEntries: selectAllJEntries(state),
+    uploadJEntriesIds: selectAllJEntriesIds(state)
   };
 }
 

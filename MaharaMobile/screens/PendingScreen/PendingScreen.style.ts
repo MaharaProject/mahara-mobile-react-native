@@ -4,13 +4,20 @@ import styles from '../../assets/styles/variables';
 export default StyleSheet.create({
   app: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+  },
+  listContainer: {
+    backgroundColor: styles.colors.light,
+    height: '73%',
+  },
+  buttonContainer: {
+    justifyContent: 'flex-end',
   },
   container: {
     flex: 1,
-    backgroundColor: styles.colors.light
+    backgroundColor: styles.colors.light,
   },
   highlighted: {
-    backgroundColor: styles.colors.light
-  }
+    backgroundColor: styles.colors.light,
+  },
 });

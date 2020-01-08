@@ -1,32 +1,18 @@
-import { JournalEntry, MaharaPendingFile, PendingJournalEntry, MaharaFileFormData, RequestErrorPayload } from '../models/models';
+import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload } from '../models/models';
+import { UPDATE_SERVER_URL, UPDATE_USERNAME, UPDATE_USER_TAGS, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, ADD_TOKEN, ADD_UPLOAD_FILE, ADD_UPLOAD_JOURNAL_ENTRY, REMOVE_UPLOAD_FILE, REMOVE_UPLOAD_JOURNAL_ENTRY } from '../utils/constants';
 
-export const ADD_TOKEN = 'ADD_TOKEN';
-export const ADD_USER = 'ADD_USER';
-export const SERVER_URL = 'SERVER_URL';
-export const UPDATE_UPLOAD_LIST = 'UPDATE_UPLOAD_LIST';
-export const ADD_FILE_TO_UPLOAD_LIST = 'ADD_FILE_TO_UPLOAD_LIST';
-export const ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST = 'ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST';
+// action creators - functions that create actions
 
 export function loginTypes(url: string, response: any) {
   const tokenLogin = response.logintypes.includes('manual') ? true : false;
   const localLogin = response.logintypes.includes('basic') ? true : false;
   const ssoLogin = response.logintypes.includes('sso') ? true : false;
   return {
-    type: SERVER_URL,
+    type: UPDATE_SERVER_URL,
     url: url,
     tokenLogin: tokenLogin,
     localLogin: localLogin,
     ssoLogin: ssoLogin
-  }
-}
-
-export function addUser(json: any) {
-  return {
-    type: ADD_USER,
-    userName: json.userprofile.myname,
-    userTags: json.tags.tags,
-    userBlogs: json.blogs.blogs,
-    userFolders: json.folders.folders
   }
 }
 
@@ -35,17 +21,36 @@ export function addToken(token: string) {
 }
 
 export function addFileToUploadList(file: MaharaPendingFile) {
-  return { type: ADD_FILE_TO_UPLOAD_LIST, file }
+  return { type: ADD_UPLOAD_FILE, file }
 }
 
 export function addJournalEntryToUploadList(journalEntry: PendingJournalEntry) {
-  return { type: ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST, journalEntry }
+  return { type: ADD_UPLOAD_JOURNAL_ENTRY, journalEntry }
 }
 
-export function updateUploadList(uploadList: { files: Array<MaharaPendingFile>, journalEntries: Array<PendingJournalEntry> }) {
-  return { type: UPDATE_UPLOAD_LIST, uploadList }
+export function updateUserName(json: any) {
+  return { type: UPDATE_USERNAME, userName: json.userprofile.myname }
 }
 
+export function updateUserTags(json: any) {
+  return { type: UPDATE_USER_TAGS, userTags: json.tags.tags }
+}
+
+export function updateUserBlogs(json: any) {
+  return { type: UPDATE_USER_BLOGS, userBlogs: json.blogs.blogs }
+}
+
+export function updateUserFolders(json: any) {
+  return { type: UPDATE_USER_FOLDERS, userFolders: json.folders.folders }
+}
+
+export function removeUploadFile(id: string) {
+  return { type: REMOVE_UPLOAD_FILE, id }
+}
+
+export function removeUploadJEntry(id: string) {
+  return { type: REMOVE_UPLOAD_JOURNAL_ENTRY, id }
+}
 
 export class RequestError extends Error {
   code: number;
@@ -79,14 +84,14 @@ const getJSON = (url: string) => {
 const postJSON = (url: string, body: any) => {
   return requestJSON(url, {
     method: 'POST',
-    body: body
+    body: body,
   })
 };
 
 const requestJSON = async (url: any, config: any) => {
   try {
     const response = await fetch(url, config);
-    if(!response.ok) {
+    if (!response.ok) {
       throw new RequestError({
         code: response.status,
         message: 'Network Error' // TODO: double check
@@ -109,12 +114,12 @@ export function checkLoginTypes(url: string) {
       const result: any = await getJSON(serverUrl);
 
       // check that there is a mahara version, and therefore a Mahara instance
-      if(!result.maharaversion) {
+      if (!result.maharaversion) {
         throw new Error('This is not a Mahara site');
       }
 
       // check that webservices is enabled on the Mahara instance
-      if(!result.wsenabled) {
+      if (!result.wsenabled) {
         throw new Error('Webservices is not enabled.');
       }
 
@@ -123,62 +128,4 @@ export function checkLoginTypes(url: string) {
       throw error;
     }
   }
-}
-
-export function sendTokenLogin(serverUrl: string, requestOptions: any) {
-  return async function (dispatch: any) {
-    try {
-      const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
-      dispatch(addUser(json));
-    } catch (error) {
-      // errorHandle(error);
-    }
-  }
-}
-
-export function uploadItemToMahara(url: string, item: any) {
-  const uploadObject = buildObject(item);
-  return async function () {
-    try {
-      const response = await fetch(url, uploadObject);
-      const result = await response.json();
-      console.log('Success:', JSON.stringify(result));
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
-}
-
-function buildObject(item: any) {
-  if (isJournalEntry(item)) {
-    return ({
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(item)
-    })
-  }
-  else if (isMaharaFileFormData(item)) {
-    const sendFormData = new FormData();
-    sendFormData.append('wsfunction', item.webservice);
-    sendFormData.append('wstoken', item.wstoken);
-    sendFormData.append('foldername', item.foldername);
-    sendFormData.append('title', item.title);
-    sendFormData.append('description', item.description);
-    sendFormData.append('filetoupload', item.filetoupload);
-    return ({
-      method: 'POST',
-      body: sendFormData
-    })
-  }
-}
-
-function isJournalEntry(x: any): x is JournalEntry {
-  return (x as JournalEntry).blogid !== undefined;
-}
-
-function isMaharaFileFormData(x: any): x is MaharaFileFormData {
-  return (x as MaharaFileFormData).filetoupload !== undefined;
 }

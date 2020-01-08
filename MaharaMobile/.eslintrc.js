@@ -24,7 +24,8 @@ module.exports = {
     "no-console": 1,
     "no-unused-expressions": ["error", { "allowTernary": true }],
     "no-unused-vars":0,
-    "max-len": ["error", 140]
+    "max-len": ["error", 140],
+    "comma-dangle": ["error", "never"]
   },
   "parserOptions": {
       "ecmaVersion": 6,
