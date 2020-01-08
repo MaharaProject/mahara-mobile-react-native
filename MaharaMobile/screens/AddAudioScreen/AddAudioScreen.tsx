@@ -31,6 +31,12 @@ type Props = {
 
 type State = {
   pickedFile: MaharaFile;
+  result: string;
+  recordSecs: number;
+  recordTime: number;
+  playTime: number;
+  duration: number;
+  currentPositionSec: number;
   filePickerButtonText: string;
 };
 
@@ -42,6 +48,12 @@ export class AddAudioScreen extends Component<Props, State> {
 
     this.state = {
       pickedFile: { uri: '', name: '', type: '', size: 0 },
+      result: '',
+      recordSecs: 0,
+      recordTime: 0,
+      playTime: 0,
+      duration: 0,
+      currentPositionSec: 0,
       filePickerButtonText: 'Select a file'
     };
   };
@@ -52,17 +64,21 @@ export class AddAudioScreen extends Component<Props, State> {
 
   // Audio stuff
   onStartRecord = async () => {
-    const result = await audioRecorderPlayer.startRecorder();
-    audioRecorderPlayer.addRecordBackListener((e) => {
-      this.setState({
-        recordSecs: e.current_position,
-        recordTime: audioRecorderPlayer.mmssss(
-          Math.floor(e.current_position),
-        ),
+    try {
+      const result = await audioRecorderPlayer.startRecorder();
+      audioRecorderPlayer.addRecordBackListener((e) => {
+        this.setState({
+          result: result,
+          recordSecs: e.current_position,
+          recordTime: audioRecorderPlayer.mmssss(
+            Math.floor(e.current_position)
+          ),
+        });
+        return;
       });
-      return;
-    });
-    console.log(result);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   onStopRecord = async () => {
@@ -71,17 +87,21 @@ export class AddAudioScreen extends Component<Props, State> {
     this.setState({
       recordSecs: 0,
     });
-    console.log(result);
-        // result.play();
+    this.setState({
+      result: result
+    });
+    console.log(result, this.state.recordTime);
   };
 
   onStartPlay = async () => {
-    const msg = await audioRecorderPlayer.startPlayer();
+    const msg = await audioRecorderPlayer.startPlayer(this.state.result);
     console.log(msg);
     audioRecorderPlayer.addPlayBackListener((e) => {
       if (e.current_position === e.duration) {
         console.log('finished');
-        audioRecorderPlayer.stopPlayer();
+        audioRecorderPlayer
+          .stopPlayer()
+          .catch(e => console.log(e.message));
       }
       this.setState({
         currentPositionSec: e.current_position,
@@ -94,7 +114,11 @@ export class AddAudioScreen extends Component<Props, State> {
   };
 
   onPausePlay = async () => {
-    await audioRecorderPlayer.pausePlayer();
+    try {
+      await audioRecorderPlayer.pausePlayer();
+    } catch(e) {
+      console.log(e);
+    }
   };
 
   onStopPlay = async () => {
@@ -113,6 +137,9 @@ export class AddAudioScreen extends Component<Props, State> {
              </TouchableOpacity>
              <TouchableOpacity onPress={() => this.onStopRecord()}>
                <Text style={buttons.sm}>Stop</Text>
+             </TouchableOpacity>
+             <TouchableOpacity onPress={() => this.onStartPlay()}>
+               <Text style={buttons.sm}>Play</Text>
              </TouchableOpacity>
           </View>
           <View>
