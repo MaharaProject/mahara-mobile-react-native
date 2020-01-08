@@ -16,7 +16,7 @@ const SelectMediaType = (props: Props) => {
       <TouchableOpacity onPress={() => props.selectMediaType('photo')}>
         <Text style={[buttons.md, styles.button]}>Take a photo</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.selectMediaType('journal')}>
+      <TouchableOpacity onPress={() => props.selectMediaType('journal entry')}>
         <Text style={[buttons.md, styles.button]}>Add a journal entry</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => props.selectMediaType('audio')}>

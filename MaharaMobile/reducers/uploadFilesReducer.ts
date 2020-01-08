@@ -17,7 +17,6 @@ const addFileToUploadList = (
   state: UploadFilesState,
   file: MaharaPendingFile,
 ) => {
-
   const updatedUploadFilesIds = new Set([
     ...state.uploadFilesIds,
     file.id,

@@ -52,7 +52,7 @@ export class PendingScreen extends Component<Props, State> {
   };
 
   pendingDisplay = () => {
-    const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
+    const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state
     // there are items to upload
     let list: Array<any> = [];
 
@@ -95,7 +95,6 @@ export class PendingScreen extends Component<Props, State> {
     this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)))
   }
 
-
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
@@ -105,12 +104,8 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
-    let navigationRoute
-    item.journalEntry ? navigationRoute = 'AddJournalEntry' : navigationRoute = 'AddFile'
-
-    this.props.navigation.navigate({routeName: navigationRoute, params: { item: item }})
+    this.props.navigation.navigate({routeName: 'AddFile', params: { item: item }})
   }
-
 
   render() {
     return (
