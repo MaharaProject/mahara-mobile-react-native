@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
+import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { connect } from 'react-redux';
 
@@ -84,13 +85,16 @@ export class AddAudioScreen extends Component<Props, State> {
   onStopRecord = async () => {
     const result = await audioRecorderPlayer.stopRecorder();
     audioRecorderPlayer.removeRecordBackListener();
-    this.setState({
-      recordSecs: 0,
-    });
-    this.setState({
-      result: result
-    });
-    console.log(result, this.state.recordTime);
+    this.setState(prevState => ({
+      result: result,
+      pickedFile: {
+        ...prevState.pickedFile,
+        uri: result,
+        name: result,
+        type: 'audio/m4a'
+      }
+    }));
+    this.getFileSize();
   };
 
   onStartPlay = async () => {
@@ -125,6 +129,22 @@ export class AddAudioScreen extends Component<Props, State> {
     console.log('onStopPlay');
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
+  };
+
+  getFileSize = async () => {
+    const base64 = require('base-64');
+    RNFetchBlob.fs.readFile(this.state.result, 'base64')
+      .then((data) => {
+        var decodedData = base64.decode(data);
+        var bytes=decodedData.length;
+        this.setState(prevState=> ({
+          pickedFile: {
+            ...prevState.pickedFile,
+            size: bytes
+          }
+        }));
+      })
+      console.log(this.state.pickedFile);
   };
 
   render() {
