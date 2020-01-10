@@ -104,6 +104,7 @@ const AddFileScreen = (props: Props) => {
             token={props.token}
             url={props.url}
             editItem={props.navigation.getParam('item')}
+            navigation={props.navigation}
           />
         </View>
       </View>
