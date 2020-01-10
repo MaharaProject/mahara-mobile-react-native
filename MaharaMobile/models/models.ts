@@ -70,4 +70,5 @@ export type MaharaFileFormData = {
     type: string,
     name: string,
   }
+  tags: string[]
 }

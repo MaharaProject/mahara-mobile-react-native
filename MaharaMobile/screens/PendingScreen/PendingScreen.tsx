@@ -52,7 +52,7 @@ export class PendingScreen extends Component<Props, State> {
   };
 
   pendingDisplay = () => {
-    const { uploadRequestPending, uploadRequestReceived, successMessage, selectedFiles } = this.state
+    const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state;
     // there are items to upload
     let list: Array<any> = [];
 
@@ -82,6 +82,7 @@ export class PendingScreen extends Component<Props, State> {
       <PendingList
         dataList={dataList}
         onRemove={this.onRemove}
+        onEdit={this.onEdit}
         navigation={this.props.navigation}
       />
     )
@@ -90,18 +91,20 @@ export class PendingScreen extends Component<Props, State> {
   onUploadClick = () => {
     this.props.uploadFiles.forEach(file => this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData)));
     this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)));
-    this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)))
-    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)))
+    this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)));
+    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)));
   }
-
 
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   onRemove = (itemId: string) => {
-    console.log('itemId', itemId)
     this.props.dispatch(removeUploadFile(itemId));
     this.props.dispatch(removeUploadJEntry(itemId));
+  }
+
+  onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
+    this.props.navigation.navigate({routeName: 'AddFile', params: { item: item }});
   }
 
   render() {
