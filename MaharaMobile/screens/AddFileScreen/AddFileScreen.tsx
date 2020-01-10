@@ -34,17 +34,17 @@ type Props = {
 };
 
 const AddFileScreen = (props: Props) => {
-  let initialState = { uri: '', name: '', type: '', size: 0 }
-  let type = props.navigation.getParam('fileType')
+  let initialState = { uri: '', name: '', type: '', size: 0 };
+  let type = props.navigation.getParam('fileType');
 
   // check if user is adding new or editing existing
   // populate form with existing details and set 'type' so headerTitle is accurate
   if (props.navigation.getParam('item')) {
     if (props.navigation.getParam('item').maharaFormData) {
-      type = 'file'
-      initialState = props.navigation.getParam('item').maharaFormData.filetoupload
+      type = 'file';
+      initialState = props.navigation.getParam('item').maharaFormData.filetoupload;
     } else {
-      type = 'journal entry'
+      type = 'journal entry';
     }
   }
 

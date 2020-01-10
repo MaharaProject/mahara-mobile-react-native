@@ -52,7 +52,7 @@ export class PendingScreen extends Component<Props, State> {
   };
 
   pendingDisplay = () => {
-    const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state
+    const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state;
     // there are items to upload
     let list: Array<any> = [];
 
@@ -91,8 +91,8 @@ export class PendingScreen extends Component<Props, State> {
   onUploadClick = () => {
     this.props.uploadFiles.forEach(file => this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData)));
     this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)));
-    this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)))
-    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)))
+    this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)));
+    this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)));
   }
 
   /**
@@ -104,7 +104,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
-    this.props.navigation.navigate({routeName: 'AddFile', params: { item: item }})
+    this.props.navigation.navigate({routeName: 'AddFile', params: { item: item }});
   }
 
   render() {

@@ -28,7 +28,7 @@ const addFileToUploadList = (
 
   return {
     uploadFiles: updatedUploadFiles,
-    uploadFilesIds: Array.from(updatedUploadFilesIds,)
+    uploadFilesIds: Array.from(updatedUploadFilesIds)
   };
 };
 
