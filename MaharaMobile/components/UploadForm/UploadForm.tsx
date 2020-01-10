@@ -8,6 +8,8 @@ import { buttons } from '../../assets/styles/buttons';
 import { UserFolder, MaharaFile, JournalEntry,UserTag, UserBlog, PendingJournalEntry, MaharaFileFormData, MaharaPendingFile } from '../../models/models';
 import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
 import setTagString from '../../utils/formhelper';
+import popNavigationStack from '../../utils/helperFunctions';
+import { StackActions } from 'react-navigation';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -17,7 +19,8 @@ type Props = {
   formType: string;
   token: string;
   url: string;
-  editItem: MaharaPendingFile | PendingJournalEntry;
+  editItem?: MaharaPendingFile | PendingJournalEntry;
+  navigation: any;
 }
 
 type State = {
@@ -136,6 +139,11 @@ const UploadForm = (props: Props) => {
 
       dispatch(addFileToUploadList(pendingFileData));
     }
+
+    // upon successful upload, remove the AddFile screen from the navigation stack
+    props.navigation.dispatch(StackActions.popToTop());
+    // then take user to PendingScreen
+    props.navigation.navigate({routeName: 'PendingScreen', params: { fileType: type }});
   };
 
   return (

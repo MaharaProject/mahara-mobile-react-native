@@ -37,14 +37,6 @@ export class ProfileScreen extends Component<Props, State> {
     this.receiveProfilePic();
   }
 
-  goToUploadScreen = () => {
-    this.props.navigation.navigate('Add');
-  };
-
-  goToPendingScreen = () => {
-    this.props.navigation.navigate('Pending');
-  };
-
   receiveProfilePic = async () => {
     const api = 'module_mobileapi_get_user_profileicon&height=100&width=100';
     const wstoken = this.props.token;
