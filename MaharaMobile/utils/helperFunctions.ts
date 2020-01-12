@@ -1,6 +1,8 @@
 import { JournalEntry, MaharaFileFormData } from '../models/models';
 import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags } from '../actions/actions';
 
+import { StackActions } from 'react-navigation';
+
 export function sendTokenLogin(serverUrl: string, requestOptions: any) {
   return async function (dispatch: any) {
     try {
@@ -61,3 +63,5 @@ export function isJournalEntry(x: any): x is JournalEntry {
 export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
   return (x as MaharaFileFormData).filetoupload !== undefined;
 }
+
+export const popNavigationStack = StackActions.pop({ n: 1 });

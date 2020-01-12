@@ -24,15 +24,17 @@ const addJEntryToUploadList = (
     ...state.uploadJEntries,
     [journalEntry.id]: journalEntry,
   };
-  const uploadJEntriesIds: Array<string> = [
+  const uploadJEntriesIdsSet = new Set([
     ...state.uploadJEntriesIds,
     journalEntry.id,
-  ];
+  ]);
 
+  const uploadJEntriesIds = Array.from(uploadJEntriesIdsSet)
   const newState: UploadJEntriesState = {
     uploadJEntries,
-    uploadJEntriesIds,
+    uploadJEntriesIds
   };
+
   return newState;
 };
 

@@ -22,14 +22,12 @@ import PendingScreen from './screens/PendingScreen/PendingScreen';
 import AddScreen from './screens/AddScreen/AddScreen';
 import AddFileScreen from './screens/AddFileScreen/AddFileScreen';
 import AddAudioScreen from './screens/AddAudioScreen/AddAudioScreen';
-import AddJournalScreen from './screens/AddJournalScreen/AddJournalScreen';
 import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const App = () => {
   const AddItemsNavigator = createStackNavigator({
     Add: AddScreen,
     AddFile: AddFileScreen,
-    AddJournal: AddJournalScreen,
     AddAudio: AddAudioScreen
   });
 

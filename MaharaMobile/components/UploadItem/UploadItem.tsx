@@ -93,7 +93,7 @@ const UploadItem = (props: Props) => {
 
             <View style={uploadItemStyles.button}>
               <Button
-                title="Details"
+                title="Edit"
                 onPress={props.onEdit}
                 color={styles.colors.secondary}
               // iOS styles
@@ -108,5 +108,3 @@ const UploadItem = (props: Props) => {
 }
 
 export default UploadItem;
-
-
