@@ -11,6 +11,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "@babel/runtime": "7.6.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.25",
     "@fortawesome/free-solid-svg-icons": "^5.11.2",
     "@fortawesome/react-native-fontawesome": "^0.1.0",
@@ -43,7 +44,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.6.2",
-    "@babel/runtime": "7.6.2",
     "@react-native-community/eslint-config": "0.0.3",
     "react-native-audio-recorder-player": "^2.4.4-rc.1",
     "@types/jest": "^24.0.18",
