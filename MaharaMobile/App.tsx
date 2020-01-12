@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -8,10 +8,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faUser,
   faPlusCircle,
-  faHistory,
-  faSign,
+  faHistory
 } from '@fortawesome/free-solid-svg-icons';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { I18nProvider } from '@lingui/react';
 
 import styles from './assets/styles/variables';
 import configureStore from './store/store';
@@ -24,6 +24,19 @@ import AddFileScreen from './screens/AddFileScreen/AddFileScreen';
 import DetailsScreen from './screens/DetailsScreen/DetailsScreen';
 
 const App = () => {
+  const store = configureStore();
+
+  // Render the app container component with the provider around it
+  return (
+    <Provider store={store}>
+      <I18nProvider language="en">
+        <NavigationContainer />
+      </I18nProvider>
+    </Provider>
+  );
+};
+
+const NavigationContainer = () => {
   const AddItemsNavigator = createStackNavigator({
     Add: AddScreen,
     AddFile: AddFileScreen,
@@ -34,7 +47,7 @@ const App = () => {
     Details: {
       screen: DetailsScreen,
       navigationOptions: {
-        headerTitle: 'Back to Pending Items',
+        headerTitle: 'Back to Pending Items'
       }
     }
   });
@@ -45,7 +58,8 @@ const App = () => {
       navigationOptions: {
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
-        )
+        ),
+        tabBarAccessibilityLabel: 'Profile page'
       }
     },
     Add: {
@@ -54,7 +68,8 @@ const App = () => {
         tabBarLabel: 'Add',
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faPlusCircle} color={styles.colors.light} />
-        )
+        ),
+        tabBarAccessibilityLabel: 'Add item to Mahara'
       }
     },
     PendingScreen: {
@@ -63,7 +78,8 @@ const App = () => {
         tabBarLabel: 'Pending ',
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faHistory} color={styles.colors.light} />
-        )
+        ),
+        tabBarAccessibilityLabel: 'Pending uploads page'
       }
     }
   };
@@ -95,17 +111,10 @@ const App = () => {
     Auth: AuthNavigator,
     App: AppTabNavigator
   });
-
-  const store = configureStore();
-
   const Navigation = createAppContainer(MainNavigator);
 
-  // Render the app container component with the provider around it
-  return (
-    <Provider store={store}>
-      <Navigation />
-    </Provider>
-  );
+
+  return <Navigation />;
 };
 
 export default App;
