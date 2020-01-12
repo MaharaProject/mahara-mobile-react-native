@@ -4,6 +4,7 @@ import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker
 import { connect } from 'react-redux';
 
 import UploadForm from '../../components/UploadForm/UploadForm';
+import AddAudio from '../../components/AddAudio/AddAudio';
 import styles from '../AddFileScreen/AddFileScreen.style';
 import generic from '../../assets/styles/generic';
 import { buttons } from '../../assets/styles/buttons';
@@ -93,6 +94,11 @@ const AddFileScreen = (props: Props) => {
             <Text style={buttons.lg}>{filePickerButtonText}</Text>
           </TouchableOpacity>
         </View>
+        }
+        {type === 'audio' &&
+          <View>
+          <AddAudio />
+          </View>
         }
         <View>
           <UploadForm

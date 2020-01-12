@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
+import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import generic from '../../assets/styles/generic';
 import { buttons } from '../../assets/styles/buttons';
-import styles from './AddAudioScreen.style';
+import styles from './AddAudio.style';
 import { MaharaFile, UserTag, UserFolder, MaharaPendingFile } from '../../models/models';
 import {
   selectUrl,
@@ -44,7 +44,7 @@ type State = {
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
-export class AddAudioScreen extends Component<Props, State> {
+export class AddAudio extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -222,4 +222,4 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-export default connect(mapStateToProps)(AddAudioScreen);
+export default connect(mapStateToProps)(AddAudio);
