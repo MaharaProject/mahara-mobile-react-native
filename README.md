@@ -25,3 +25,14 @@ To generate and run iOS:
 ```
 npm run ios
 ```
+
+## Translations
+We are using linguiJS for translation https://lingui.js.org/
+
+Follow documentation on how to wrap strings so they get picked up then run:
+
+```
+npm run extract
+```
+
+To extract the strings into a PO file under /locales. 
