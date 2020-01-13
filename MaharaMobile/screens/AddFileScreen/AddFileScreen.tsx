@@ -80,10 +80,15 @@ const AddFileScreen = (props: Props) => {
     );
   };
 
+  const addPickedFile = (file: MaharaFile) => {
+    setPickedFile(file);
+    console.log('passed', file);
+  }
+
   return (
     <ScrollView>
       <View style={generic.wrap}>
-        {pickedFile.name ? (
+        {pickedFile.name && type === 'file' ? (
           <View style={styles.imageWrap}>
             <Image source={{ uri: pickedFile.uri }} style={styles.image} />
           </View>
@@ -97,7 +102,9 @@ const AddFileScreen = (props: Props) => {
         }
         {type === 'audio' &&
           <View>
-          <AddAudio />
+          <AddAudio
+            addPickedFile = {addPickedFile}
+          />
           </View>
         }
         <View>

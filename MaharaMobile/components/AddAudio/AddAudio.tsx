@@ -1,92 +1,47 @@
-import React, { Component } from 'react';
-import { TouchableOpacity, Text, View, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { TouchableOpacity, Text, View } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import { connect } from 'react-redux';
 
-import UploadForm from '../../components/UploadForm/UploadForm';
-import generic from '../../assets/styles/generic';
 import { buttons } from '../../assets/styles/buttons';
 import styles from './AddAudio.style';
-import { MaharaFile, UserTag, UserFolder, MaharaPendingFile } from '../../models/models';
-import {
-  selectUrl,
-  selectToken
-} from '../../reducers/loginInfoReducer';
-import { selectUserFolders } from '../../reducers/userArtefactsReducer';
-import { selectUserTags } from '../../reducers/userTagsReducer';
-import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
-import { RootState } from '../../reducers/rootReducer';
+import { MaharaFile } from '../../models/models';
 
 type Props = {
-  userFolders: Array<UserFolder>;
-  userTags: Array<UserTag>;
-  userName: string;
-  token: string;
-  dispatch: any;
-  navigation: any;
-  url: string;
-  uploadList: {
-    files: Array<MaharaPendingFile>;
-  }
-};
-
-type State = {
-  pickedFile: MaharaFile;
-  audioFile: string;
-  recordSecs: number;
-  recordTime: number;
-  recordButtonText: string;
-  playButtonText: string;
-  isRecorded: boolean;
-  isPlaying: boolean;
+  addPickedFile: any;
 };
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
-export class AddAudio extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+const AddAudio = (props: Props) => {
+  let initialState = { uri: '', name: '', type: '', size: 0 };
+  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
+  const [audioFile, setAudioFile] = useState('');
+  const [recordButtonText, setRecordButtonText] = useState('Record');
+  const [playButtonText, setPlayButtonText] = useState('Play');
+  const [isRecorded, setIsRecorded] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-    this.state = {
-      pickedFile: { uri: '', name: '', type: '', size: 0 },
-      audioFile: '',
-      recordSecs: 0,
-      recordTime: 0,
-      recordButtonText: 'Record',
-      playButtonText: 'Play',
-      isRecorded: false,
-      isPlaying: false
-    };
-  };
+  useEffect(() => {
+    props.addPickedFile(pickedFile);
+  }, [pickedFile.size]);
 
-  static navigationOptions = {
-    headerTitle: 'Add audio'
-  };
-
-  // Audio stuff
   // Handling recording
-  handleRecord = () => {
-    if (this.state.recordButtonText === "Record" || this.state.recordButtonText === "Re-record") {
-      this.onStartRecord();
-      this.setState({ isRecorded: false });
+  const handleRecord = () => {
+    if (recordButtonText === "Record" || recordButtonText === "Re-record") {
+      onStartRecord();
+      setIsRecorded(false);
     } else {
-      this.onStopRecord();
+      onStopRecord();
     }
   };
 
-  onStartRecord = async () => {
+  const onStartRecord = async () => {
     try {
       const result = await audioRecorderPlayer.startRecorder();
-      audioRecorderPlayer.addRecordBackListener((e) => {
-        this.setState({
-          audioFile: result,
-          recordSecs: e.current_position,
-          recordButtonText: 'Stop recording',
-          recordTime: audioRecorderPlayer.mmssss(
-            Math.floor(e.current_position)
-          ),
-        });
+      audioRecorderPlayer.addRecordBackListener(() => {
+        setAudioFile(result);
+        setRecordButtonText('Stop recording');
         return;
       });
     } catch (e) {
@@ -94,70 +49,62 @@ export class AddAudio extends Component<Props, State> {
     }
   };
 
-  onStopRecord = async () => {
+  const onStopRecord = async () => {
     const result = await audioRecorderPlayer.stopRecorder();
     audioRecorderPlayer.removeRecordBackListener();
-    this.setState(prevState => ({
-      audioFile: result,
-      recordButtonText: 'Re-record',
-      isRecorded: true,
-      pickedFile: {
-        ...prevState.pickedFile,
-        uri: result,
+    setAudioFile(result);
+    setRecordButtonText('Re-record');
+    setIsRecorded(true);
+    const size = await getFileSize();
+    setPickedFile({
         name: result,
-        type: 'audio/m4a'
-      }
-    }));
-    this.getFileSize();
+        uri: result,
+        type: 'audio/m4a',
+        size: size
+      });
   };
 
-  getFileSize = async () => {
+  const getFileSize = () => {
     const base64 = require('base-64');
-    RNFetchBlob.fs.readFile(this.state.audioFile, 'base64')
+    const bytes = RNFetchBlob.fs.readFile(audioFile, 'base64')
       .then((data) => {
-        var decodedData = base64.decode(data);
-        var bytes=decodedData.length;
-        this.setState(prevState=> ({
-          pickedFile: {
-            ...prevState.pickedFile,
-            size: bytes
-          }
-        }));
+        const decodedData = base64.decode(data);
+        const bytes=decodedData.length;
+        return bytes;
       });
+    return bytes;
   };
 
   // Handling playing
 
-  handlePlay = () => {
-    if (this.state.playButtonText === 'Play') {
-      this.setState({ playButtonText: 'Pause' });
-      this.onStartPlay();
-    } else if (this.state.playButtonText === 'Pause') {
-      this.setState({ playButtonText: 'Play' });
-      this.onPausePlay();
+  const handlePlay = () => {
+    if (playButtonText === 'Play') {
+      setPlayButtonText('Pause');
+      onStartPlay();
+    } else if (playButtonText === 'Pause') {
+      setPlayButtonText('Play');
+      onPausePlay();
     }
   }
 
-  onStartPlay = async () => {
-    const msg = await audioRecorderPlayer.startPlayer(this.state.audioFile);
+  const onStartPlay = async () => {
+    const msg = await audioRecorderPlayer.startPlayer(audioFile);
     console.log(msg);
-    this.setState({ isPlaying: true });
+    setIsPlaying(true);
     audioRecorderPlayer.addPlayBackListener((e: any) => {
       if (e.current_position === e.duration) {
         console.log('finished');
         audioRecorderPlayer
           .stopPlayer()
           .catch(e => console.log(e.message));
-        this.setState({
-          isPlaying: false,
-          playButtonText: 'Play'
-        });
+          setIsPlaying(false);
+          setPlayButtonText('Play');
       };
       return;
     });
   };
 
-  onPausePlay = async () => {
+  const onPausePlay = async () => {
     try {
       await audioRecorderPlayer.pausePlayer();
     } catch(e) {
@@ -165,61 +112,32 @@ export class AddAudio extends Component<Props, State> {
     }
   };
 
-  onStopPlay = async () => {
-    console.log('onStopPlay');
+  const onStopPlay = async () => {
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
-    this.setState({
-      playButtonText: 'Play',
-      isPlaying: false
-    });
+    setPlayButtonText('Play');
+    setIsPlaying(false);
   };
 
-  render() {
-    return (
-      <ScrollView>
-        <View style={generic.wrap}>
-          <View>
-             <TouchableOpacity onPress={() => this.handleRecord()}>
-               <Text style={[buttons.md, styles.button]}>{this.state.recordButtonText}</Text>
-             </TouchableOpacity>
-             <View style={styles.buttonWrap}>
-               {this.state.isRecorded ?
-                 <TouchableOpacity onPress={() => this.handlePlay()}>
-                  <Text style={[buttons.sm, styles.smButton]}>{this.state.playButtonText}</Text>
-                 </TouchableOpacity>
-               : null}
-              {this.state.isPlaying ?
-                 <TouchableOpacity onPress={() => this.onStopPlay()}>
-                  <Text style={[buttons.sm, styles.smButton]}>Stop</Text>
-                 </TouchableOpacity>
-               : null}
-             </View>
-          </View>
-          <View>
-            <UploadForm
-              pickedFile={this.state.pickedFile}
-              userFolders={this.props.userFolders}
-              userTags={this.props.userTags}
-              formType="file"
-              token={this.props.token}
-              url={this.props.url}
-            />
-          </View>
-        </View>
-      </ScrollView>
-    );
-  }
+  return (
+    <View>
+       <TouchableOpacity onPress={() => handleRecord()}>
+         <Text style={[buttons.md, styles.button]}>{recordButtonText}</Text>
+       </TouchableOpacity>
+       <View style={styles.buttonWrap}>
+         {isRecorded ?
+           <TouchableOpacity onPress={() => handlePlay()}>
+            <Text style={[buttons.sm, styles.smButton]}>{playButtonText}</Text>
+           </TouchableOpacity>
+         : null}
+        {isPlaying ?
+           <TouchableOpacity onPress={() => onStopPlay()}>
+            <Text style={[buttons.sm, styles.smButton]}>Stop</Text>
+           </TouchableOpacity>
+        : null}
+       </View>
+    </View>
+  );
 }
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    url: selectUrl(state),
-    token: selectToken(state),
-    userTags: selectUserTags(state),
-    userFolders: selectUserFolders(state),
-    uploadFiles: selectAllUploadFiles(state)
-  };
-};
-
-export default connect(mapStateToProps)(AddAudio);
+export default AddAudio;
