@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
@@ -30,27 +30,33 @@ type Props = {
   uploadList: {
     files: Array<MaharaPendingFile>;
   },
-  type: string;
+  formType: string;
   userBlogs: Array<UserBlog>;
 };
 
 const AddFileScreen = (props: Props) => {
   let initialState = { uri: '', name: '', type: '', size: 0 };
-  let type = props.navigation.getParam('fileType');
+  let isEditing = false;
+  let formType = props.navigation.getParam('formType');
+  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
+  const [filePickerButtonText, setFilePickerButtonText] = useState(props.navigation.getParam('item') ? 'Pick a different file' : 'Select a file');
 
   // check if user is adding new or editing existing
   // populate form with existing details and set 'type' so headerTitle is accurate
   if (props.navigation.getParam('item')) {
     if (props.navigation.getParam('item').maharaFormData) {
-      type = 'file';
       initialState = props.navigation.getParam('item').maharaFormData.filetoupload;
+      isEditing = true;
     } else {
-      type = 'journal entry';
+      formType = 'journal entry';
     }
   }
 
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
-  const [filePickerButtonText, setFilePickerButtonText] = useState(props.navigation.getParam('item') ? 'Pick a different file' : 'Select a file');
+  useEffect(() => {
+    if (isEditing) {
+      setPickedFile(initialState);
+    }
+  }, [initialState]);
 
   const pickDocument = async () => {
     // iPhone/Android
@@ -82,29 +88,29 @@ const AddFileScreen = (props: Props) => {
 
   const addPickedFile = (file: MaharaFile) => {
     setPickedFile(file);
-    console.log('passed', file);
   }
 
   return (
     <ScrollView>
       <View style={generic.wrap}>
-        {pickedFile.name && type === 'file' ? (
+        {pickedFile.name && formType === 'file' ? (
           <View style={styles.imageWrap}>
             <Image source={{ uri: pickedFile.uri }} style={styles.image} />
           </View>
         ) : null}
-        {type === 'file' &&
+        {formType === 'file' &&
         <View>
           <TouchableOpacity onPress={() => pickDocument()}>
             <Text style={buttons.lg}>{filePickerButtonText}</Text>
           </TouchableOpacity>
         </View>
         }
-        {type === 'audio' &&
+        {formType === 'audio' &&
           <View>
-          <AddAudio
-            addPickedFile = {addPickedFile}
-          />
+            <AddAudio
+              addPickedFile = {addPickedFile}
+              isEditing = {isEditing}
+            />
           </View>
         }
         <View>
@@ -113,7 +119,7 @@ const AddFileScreen = (props: Props) => {
             userFolders={props.userFolders}
             userTags={props.userTags}
             userBlogs={props.userBlogs}
-            formType={type}
+            formType={formType}
             token={props.token}
             url={props.url}
             editItem={props.navigation.getParam('item')}
@@ -134,7 +140,7 @@ const setAddorEdit = (props: Props) => {
 }
 
 AddFileScreen.navigationOptions = (props: Props) => ({
-  headerTitle: `${setAddorEdit(props)} ${props.navigation.getParam('fileType')}`
+  headerTitle: `${setAddorEdit(props)} ${props.navigation.getParam('formType')}`
 });
 
 const mapStateToProps = (state: RootState) => {

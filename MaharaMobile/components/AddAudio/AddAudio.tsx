@@ -9,6 +9,7 @@ import { MaharaFile } from '../../models/models';
 
 type Props = {
   addPickedFile: any;
+  isEditing: boolean;
 };
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
@@ -25,6 +26,13 @@ const AddAudio = (props: Props) => {
   useEffect(() => {
     props.addPickedFile(pickedFile);
   }, [pickedFile.size]);
+
+  useEffect(() => {
+    if(props.isEditing) {
+      setRecordButtonText('Re-record');
+      setIsRecorded(true);
+    }
+  }, [props.isEditing]);
 
   // Handling recording
   const handleRecord = () => {
