@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import { Trans } from '@lingui/macro';
 
 import { buttons } from '../../assets/styles/buttons';
 import styles from './AddAudio.style';
@@ -15,13 +16,27 @@ type Props = {
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AddAudio = (props: Props) => {
+  type PlayStatus = 'playing' | 'notplaying';
+  type RecordStatus = 'unrecorded' | 'recording' | 'recorded';
+
   let initialState = { uri: '', name: '', type: '', size: 0 };
   const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
   const [audioFile, setAudioFile] = useState('');
-  const [recordButtonText, setRecordButtonText] = useState('Record');
-  const [playButtonText, setPlayButtonText] = useState('Play');
+  const [recordButtonStatus, setRecordButtonStatus] = useState<RecordStatus>('unrecorded');
+  const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>('notplaying');
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  const playStrings = {
+    playing: <Trans>Pause</Trans>,
+    notplaying: <Trans>Play</Trans>
+  }
+
+  const recordStrings = {
+    unrecorded: <Trans>Record</Trans>,
+    recording: <Trans>Stop</Trans>,
+    recorded: <Trans>Re-record</Trans>
+  }
 
   useEffect(() => {
     props.addPickedFile(pickedFile);
@@ -29,14 +44,14 @@ const AddAudio = (props: Props) => {
 
   useEffect(() => {
     if(props.isEditing) {
-      setRecordButtonText('Re-record');
+      setRecordButtonStatus('recorded');
       setIsRecorded(true);
     }
   }, [props.isEditing]);
 
   // Handling recording
   const handleRecord = () => {
-    if (recordButtonText === "Record" || recordButtonText === "Re-record") {
+    if (recordButtonStatus === 'unrecorded' || recordButtonStatus === 'recorded') {
       onStartRecord();
       setIsRecorded(false);
     } else {
@@ -49,7 +64,7 @@ const AddAudio = (props: Props) => {
       const result = await audioRecorderPlayer.startRecorder();
       audioRecorderPlayer.addRecordBackListener(() => {
         setAudioFile(result);
-        setRecordButtonText('Stop recording');
+        setRecordButtonStatus('recording');
         return;
       });
     } catch (e) {
@@ -61,7 +76,7 @@ const AddAudio = (props: Props) => {
     const result = await audioRecorderPlayer.stopRecorder();
     audioRecorderPlayer.removeRecordBackListener();
     setAudioFile(result);
-    setRecordButtonText('Re-record');
+    setRecordButtonStatus('recorded');
     setIsRecorded(true);
     const size = await getFileSize();
     setPickedFile({
@@ -86,11 +101,11 @@ const AddAudio = (props: Props) => {
   // Handling playing
 
   const handlePlay = () => {
-    if (playButtonText === 'Play') {
-      setPlayButtonText('Pause');
+    if (playButtonStatus === 'notplaying') {
+      setPlayButtonStatus('playing');
       onStartPlay();
-    } else if (playButtonText === 'Pause') {
-      setPlayButtonText('Play');
+    } else if (playButtonStatus === 'playing') {
+      setPlayButtonStatus('notplaying');
       onPausePlay();
     }
   }
@@ -106,7 +121,7 @@ const AddAudio = (props: Props) => {
           .stopPlayer()
           .catch(e => console.log(e.message));
           setIsPlaying(false);
-          setPlayButtonText('Play');
+          setPlayButtonStatus('notplaying');
       };
       return;
     });
@@ -123,24 +138,24 @@ const AddAudio = (props: Props) => {
   const onStopPlay = async () => {
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
-    setPlayButtonText('Play');
+    setPlayButtonStatus('notplaying');
     setIsPlaying(false);
   };
 
   return (
     <View>
        <TouchableOpacity onPress={() => handleRecord()}>
-         <Text style={[buttons.md, styles.button]}>{recordButtonText}</Text>
+         <Text style={[buttons.md, styles.button]}>{recordStrings[recordButtonStatus]}</Text>
        </TouchableOpacity>
        <View style={styles.buttonWrap}>
          {isRecorded ?
            <TouchableOpacity onPress={() => handlePlay()}>
-            <Text style={[buttons.sm, styles.smButton]}>{playButtonText}</Text>
+            <Text style={[buttons.sm, styles.smButton]}>{playStrings[playButtonStatus]}</Text>
            </TouchableOpacity>
          : null}
         {isPlaying ?
            <TouchableOpacity onPress={() => onStopPlay()}>
-            <Text style={[buttons.sm, styles.smButton]}>Stop</Text>
+            <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
            </TouchableOpacity>
         : null}
        </View>

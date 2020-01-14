@@ -47,8 +47,6 @@ const AddFileScreen = (props: Props) => {
     if (props.navigation.getParam('item').maharaFormData) {
       initialState = props.navigation.getParam('item').maharaFormData.filetoupload;
       isEditing = true;
-    } else {
-      formType = 'journal entry';
     }
   }
 

@@ -31,15 +31,12 @@ export default function LoginType(props: Props) {
           <Text style={headings.subHeading1}>
             <Trans>What is the address of your Mahara?</Trans>
           </Text>
-          <I18n>
-            {({i18n}) => <TextInput
-                          style={forms.textInput}
-                          // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
-                          defaultValue={i18n._(t `https://master.dev.mahara.org/`)}
-                          onChangeText={(url:string) => props.checkUrl(url)}
-                        />
-            }
-          </I18n>
+          <TextInput
+            style={forms.textInput}
+            // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
+            defaultValue={'https://master.dev.mahara.org/'}
+            onChangeText={(url:string) => props.checkUrl(url)}
+          />
         </View>
       ) : null}
       {props.enterUrlWarning ? <Text><Trans>Please enter a URL</Trans></Text> : null}

@@ -104,7 +104,7 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
-    let type = item.type ? item.type : '';
+    const type = item.type ? item.type : 'journal entry';
     this.props.navigation.navigate({routeName: 'AddFile', params: { item: item, formType: type }});
   }
 
