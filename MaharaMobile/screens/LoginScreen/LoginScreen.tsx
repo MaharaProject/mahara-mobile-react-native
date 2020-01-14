@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
@@ -37,6 +37,22 @@ export class LoginScreen extends Component<Props, State> {
     this.state = {
       token: '',
     };
+  }
+
+  ssoLogin = async () => {
+    Linking.openURL(this.props.url)
+    .then(() => {
+      this.handleSSO();
+    })
+    .catch((err) => console.error('An error occurred', err));
+  };
+
+  componentWillUnmount() {
+    Linking.removeEventListener(this.props.url, this.handleSSO);
+  }
+
+  handleSSO = () => {
+    Linking.addEventListener(this.props.url, function(e) {console.log(e)});
   }
 
   login = () => {
@@ -85,8 +101,10 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   render() {
-    const {params} = this.props.navigation.state;
-    const {loginType} = params;
+  const {params} = this.props.navigation.state;
+  const {loginType} = params;
+
+  if(loginType === 'sso') { this.ssoLogin() };
 
     return (
       <View style={generic.view}>
