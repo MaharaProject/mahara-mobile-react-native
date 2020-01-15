@@ -33,6 +33,7 @@
     "react-native-safe-area-context": "^0.6.1",
     "react-native-svg": "^9.13.2",
     "react-native-vector-icons": "^6.6.0",
+    "react-native-webview": "^8.0.3",
     "react-navigation": "^4.0.10",
     "react-navigation-material-bottom-tabs": "^2.1.5",
     "react-navigation-stack": "^1.9.4",

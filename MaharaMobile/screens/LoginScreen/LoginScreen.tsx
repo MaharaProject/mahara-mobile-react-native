@@ -4,6 +4,7 @@ import { View, Linking } from 'react-native';
 import { connect } from 'react-redux';
 import { addToken } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
+import SSOLogin from '../../components/SSOLogin/SSOLogin';
 import { sendTokenLogin } from '../../utils/helperFunctions';
 import generic from '../../assets/styles/generic';
 import {
@@ -39,22 +40,6 @@ export class LoginScreen extends Component<Props, State> {
     };
   }
 
-  ssoLogin = async () => {
-    Linking.openURL(this.props.url)
-    .then(() => {
-      this.handleSSO();
-    })
-    .catch((err) => console.error('An error occurred', err));
-  };
-
-  componentWillUnmount() {
-    Linking.removeEventListener(this.props.url, this.handleSSO);
-  }
-
-  handleSSO = () => {
-    Linking.addEventListener(this.props.url, function(e) {console.log(e)});
-  }
-
   login = () => {
     const {url} = this.props;
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
@@ -86,9 +71,17 @@ export class LoginScreen extends Component<Props, State> {
     const token = input.trim();
 
     this.setState({
-      token,
+      token
     });
   };
+
+  ssoLogin = (token: string, webview: any) => {
+
+    this.setState({ token }, () => {
+      this.handleToken();
+      webview.stopLoading();
+    });
+  }
 
   handleToken = () => {
     const {token} = this.state;
@@ -104,12 +97,19 @@ export class LoginScreen extends Component<Props, State> {
   const {params} = this.props.navigation.state;
   const {loginType} = params;
 
-  if(loginType === 'sso') { this.ssoLogin() };
-
     return (
       <View style={generic.view}>
         {loginType === 'token' ? (
-          <TokenInput handleToken={this.handleToken} setToken={this.setToken} />
+          <TokenInput
+            handleToken={this.handleToken}
+            setToken={this.setToken}
+          />
+        ) : null}
+        {loginType === 'sso' ? (
+          <SSOLogin
+            url={this.props.url}
+            ssoLogin={this.ssoLogin}
+           />
         ) : null}
       </View>
     );
