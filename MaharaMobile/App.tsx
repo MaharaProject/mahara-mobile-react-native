@@ -1,6 +1,8 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
