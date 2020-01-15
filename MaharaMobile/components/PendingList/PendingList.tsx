@@ -8,6 +8,8 @@ type Props = {
   onEdit: Function;
   navigation: any;
   successfullyUploadedItems: Array<any>;
+  uploadErrorItems: Array<any>;
+  onClearError: Function;
 }
 
 const PendingList = (props: Props) => {
@@ -15,6 +17,7 @@ const PendingList = (props: Props) => {
   let description = '';
   let thumbnail = {};
   let isSuccessfullyUploadedItem = false
+  let showUploadError = false
 
   return (
     <FlatList
@@ -36,6 +39,7 @@ const PendingList = (props: Props) => {
         }
 
         if (props.successfullyUploadedItems.indexOf(itemId) !== -1) isSuccessfullyUploadedItem = true
+        props.uploadErrorItems.indexOf(itemId) !== -1 ? showUploadError = true : showUploadError = false;
 
         return (
           <UploadItem
@@ -46,6 +50,8 @@ const PendingList = (props: Props) => {
             onEdit={() => props.onEdit(item)}
             image={thumbnail}
             successfullyUploadedItem={isSuccessfullyUploadedItem}
+            showUploadError={showUploadError}
+            onClearError={() => props.onClearError(itemId)}
           />
         )
       }

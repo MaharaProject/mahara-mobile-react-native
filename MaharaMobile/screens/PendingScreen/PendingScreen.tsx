@@ -9,7 +9,7 @@ import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
 import { uploadItemToMahara } from '../../utils/helperFunctions';
-import { RootState } from '../../reducers/reducers';
+import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
 import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
@@ -33,6 +33,7 @@ type State =
     successMessage: string;
     uploadItemsExist: boolean;
     successfullyUploadedItems: Array<any>;
+    uploadErrorItems: Array<any>;
   }
 
 export class PendingScreen extends Component<Props, State> {
@@ -58,7 +59,8 @@ export class PendingScreen extends Component<Props, State> {
       uploadRequestReceived: false,
       successMessage: '',
       uploadItemsExist: (this.props.uploadFiles.length + this.props.uploadJEntries.length > 0 ? true : false),
-      successfullyUploadedItems: []
+      successfullyUploadedItems: [],
+      uploadErrorItems: []
     };
   }
 
@@ -87,16 +89,23 @@ export class PendingScreen extends Component<Props, State> {
 
   onUploadClick = () => {
     this.props.uploadFiles.forEach(file => {
+      this.clearUploadError(file.id)
       this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData))
       .then((result: any) => {
-        if (!result.error) this.onSuccessfulUpload(file.id)
+        // an error either returns result = undefined, or result = { error: true }
+        if (result === undefined || result.error) {
+          this.onUploadError(file.id)
+        } else this.onSuccessfulUpload(file.id)
       })
     });
 
     this.props.uploadJEntries.forEach(journalEntry => {
+      this.clearUploadError(journalEntry.id)
       this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
       .then((result: any) => {
-        if (!result.error) this.onSuccessfulUpload(journalEntry.id)
+        if (result === undefined || result.error) {
+          this.onUploadError(journalEntry.id)
+        } else this.onSuccessfulUpload(journalEntry.id)
       })
     });
   };
@@ -105,7 +114,7 @@ export class PendingScreen extends Component<Props, State> {
    * Renders a PendingList
    * @param dataList array of files and journal entries
    */
-  renderPendingList(dataList: Array<any>, successfullyUploadedItems: Array<any>) {
+  renderPendingList(dataList: Array<any>) {
     return (
       <PendingList
         dataList={dataList}
@@ -113,15 +122,15 @@ export class PendingScreen extends Component<Props, State> {
         onEdit={this.onEdit}
         navigation={this.props.navigation}
         successfullyUploadedItems={this.state.successfullyUploadedItems}
+        uploadErrorItems={this.state.uploadErrorItems}
+        onClearError={this.clearUploadError}
       />
     );
   }
 
   onSuccessfulUpload = (id: string) => {
     // change class to show upload success
-    this.setState({
-      successfullyUploadedItems: [...this.state.successfullyUploadedItems, id]
-    })
+    this.setState({ successfullyUploadedItems: [...this.state.successfullyUploadedItems, id] })
     // then, card disappears
     // and remove id from successfullyUploadedItems to clear memory
     setTimeout( () => {
@@ -131,6 +140,15 @@ export class PendingScreen extends Component<Props, State> {
       let newState = this.state.successfullyUploadedItems.filter(item => item !== id)
       this.setState({ successfullyUploadedItems: newState })
     }, 1000)
+  }
+
+  onUploadError = (id: string) => {
+    this.setState({ uploadErrorItems: [...this.state.uploadErrorItems, id] })
+  }
+
+  clearUploadError = (id: string) => {
+    let newState = this.state.uploadErrorItems.filter(item => item !== id)
+    this.setState({ uploadErrorItems: newState })
   }
 
   onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {

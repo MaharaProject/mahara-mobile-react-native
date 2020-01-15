@@ -1,5 +1,5 @@
 import { JournalEntry, MaharaFileFormData } from '../models/models';
-import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags, removeUploadJEntry, removeUploadFile, uploadError } from '../actions/actions';
+import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags } from '../actions/actions';
 
 import { StackActions } from 'react-navigation';
 
@@ -25,12 +25,11 @@ export function uploadItemToMahara(url: string, item: any) {
       return await fetch(url, uploadObject)
       .then(response => response.json())
       .then(result => {
-        if (result.error) dispatch(uploadError(result))
         return result
       })
     } catch (error) {
-      dispatch(uploadError(error))
-      console.error('Error:', error);
+      // the way Mahara works, we will always receive a 200 status from the backend on upload
+      // therefore, this catch will never get triggered
     }
   }
 }
