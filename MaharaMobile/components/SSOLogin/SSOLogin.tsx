@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { WebView } from 'react-native-webview';
 
 type Props = {
@@ -7,22 +7,28 @@ type Props = {
 }
 
 export default function SSOLogin(props: Props) {
-  let webview: any = null;
+  let webref: any = useRef(null);
   const [token, setToken] = useState('');
   const url = props.url + 'module/mobileapi/tokenform.php';
   const GET_TOKEN = `(function() {
-    window.ReactNativeWebView.postMessage(JSON.stringify(maharatoken));
+    window.ReactNativeWebView.postMessage(maharatoken);
   })();`;
+
+  setTimeout(() => {
+    if (webref) {
+      webref.injectJavaScript(GET_TOKEN);
+    }
+  }, 1000);
 
   useEffect(() => {
     if (token) {
-      props.ssoLogin(token, webview);
+      props.ssoLogin(token, webref);
     }
   }, [token]);
 
   return (
     <WebView
-      ref={ref => (webview = ref)}
+      ref={ref => {webref = ref}}
       source={{ uri: url }}
       injectedJavaScript={GET_TOKEN}
       onMessage={event => {
