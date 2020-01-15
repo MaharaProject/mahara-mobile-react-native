@@ -1,5 +1,5 @@
 import { JournalEntry, MaharaFileFormData } from '../models/models';
-import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags } from '../actions/actions';
+import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags, removeUploadJEntry, removeUploadFile, uploadError } from '../actions/actions';
 
 import { StackActions } from 'react-navigation';
 
@@ -20,12 +20,16 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
 
 export function uploadItemToMahara(url: string, item: any) {
   const uploadObject = buildObject(item);
-  return async function () {
+  return async function (dispatch: any) {
     try {
-      const response = await fetch(url, uploadObject);
-      const result = await response.json();
-      console.log('Success:', JSON.stringify(result));
+      return await fetch(url, uploadObject)
+      .then(response => response.json())
+      .then(result => {
+        if (result.error) dispatch(uploadError(result))
+        return result
+      })
     } catch (error) {
+      dispatch(uploadError(error))
       console.error('Error:', error);
     }
   }

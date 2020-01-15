@@ -13,6 +13,7 @@ type Props = {
   image: any;
   onRemove: () => {};
   onEdit: () => {};
+  successfullyUploadedItem: boolean;
 }
 
 const UploadItem = (props: Props) => {
@@ -75,6 +76,9 @@ const UploadItem = (props: Props) => {
     <TouchableOpacity>
       <View style={uploadItemStyles.uploadItem}>
         <Card style={{ ...uploadItemStyles.pendingCard }}>
+          {props.successfullyUploadedItem &&
+            <Text>Upload successful!</Text>
+          }
           <Thumbnail />
           <View style={uploadItemStyles.textContainer}>
             <Text>{displayName} </Text>

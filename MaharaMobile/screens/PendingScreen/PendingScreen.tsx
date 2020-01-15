@@ -26,12 +26,14 @@ type Props = {
   userName: string;
 }
 
-type State = {
-  uploadRequestPending: boolean;
-  uploadRequestReceived: boolean;
-  successMessage: string;
-  uploadItemsExist: boolean;
-}
+type State =
+  {
+    uploadRequestPending: boolean;
+    uploadRequestReceived: boolean;
+    successMessage: string;
+    uploadItemsExist: boolean;
+    successfullyUploadedItems: Array<any>;
+  }
 
 export class PendingScreen extends Component<Props, State> {
   static navigationOptions = (navData) => ({
@@ -56,6 +58,7 @@ export class PendingScreen extends Component<Props, State> {
       uploadRequestReceived: false,
       successMessage: '',
       uploadItemsExist: (this.props.uploadFiles.length + this.props.uploadJEntries.length > 0 ? true : false),
+      successfullyUploadedItems: []
     };
   }
 
@@ -83,29 +86,51 @@ export class PendingScreen extends Component<Props, State> {
   }
 
   onUploadClick = () => {
-    try {
-      this.props.uploadFiles.forEach(file => this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData)));
-      this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)));
-      this.props.uploadFiles.forEach(file => this.props.dispatch(removeUploadFile(file.id)))
-      this.props.uploadJEntries.forEach(journalEntry => this.props.dispatch(removeUploadJEntry(journalEntry.id)))
-    } catch (error) {
-      console.log('onUploadClick error', error);
-    }
+    this.props.uploadFiles.forEach(file => {
+      this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData))
+      .then((result: any) => {
+        if (!result.error) this.onSuccessfulUpload(file.id)
+      })
+    });
+
+    this.props.uploadJEntries.forEach(journalEntry => {
+      this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
+      .then((result: any) => {
+        if (!result.error) this.onSuccessfulUpload(journalEntry.id)
+      })
+    });
   };
 
   /**
    * Renders a PendingList
    * @param dataList array of files and journal entries
    */
-  renderPendingList(dataList: Array<any>) {
+  renderPendingList(dataList: Array<any>, successfullyUploadedItems: Array<any>) {
     return (
       <PendingList
         dataList={dataList}
         onRemove={this.onRemove}
         onEdit={this.onEdit}
         navigation={this.props.navigation}
+        successfullyUploadedItems={this.state.successfullyUploadedItems}
       />
     );
+  }
+
+  onSuccessfulUpload = (id: string) => {
+    // change class to show upload success
+    this.setState({
+      successfullyUploadedItems: [...this.state.successfullyUploadedItems, id]
+    })
+    // then, card disappears
+    // and remove id from successfullyUploadedItems to clear memory
+    setTimeout( () => {
+      this.props.dispatch(removeUploadFile(id));
+      this.props.dispatch(removeUploadJEntry(id));
+
+      let newState = this.state.successfullyUploadedItems.filter(item => item !== id)
+      this.setState({ successfullyUploadedItems: newState })
+    }, 1000)
   }
 
   onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
