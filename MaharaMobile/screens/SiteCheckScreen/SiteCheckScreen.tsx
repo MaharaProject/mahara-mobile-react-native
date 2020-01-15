@@ -4,8 +4,14 @@ import { connect } from 'react-redux';
 import { checkLoginTypes } from '../../actions/actions';
 import LoginType from '../../components/LoginType/LoginType';
 import generic from '../../assets/styles/generic';
-import { RootState } from '../../reducers/reducers';
-import { selectUrl, selectTokenLogin, selectSsoLogin, selectLocalLogin } from '../../reducers/loginInfoReducer';
+import {
+  selectUrl,
+  selectTokenLogin,
+  selectSsoLogin,
+  selectLocalLogin
+} from '../../reducers/loginInfoReducer';
+import { setUpGuest } from '../../utils/authHelperFunctions';
+import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
   dispatch: any;
@@ -31,7 +37,7 @@ const initialState: State = {
   loginType: '',
   serverPing: false,
   isInputHidden: false,
-  enterUrlWarning: false,
+  enterUrlWarning: false
 };
 
 export class SiteCheckScreen extends Component<Props, State> {
@@ -43,7 +49,7 @@ export class SiteCheckScreen extends Component<Props, State> {
 
   setLoginType = (loginType: string) => {
     this.props.navigation.navigate('Login', {
-      loginType,
+      loginType
     });
   };
 
@@ -53,12 +59,12 @@ export class SiteCheckScreen extends Component<Props, State> {
     if (serverUrl.length === 0) {
       this.setState({
         enterUrlWarning: true,
-        url: '',
+        url: ''
       });
       return;
     }
     this.setState({
-      enterUrlWarning: false,
+      enterUrlWarning: false
     });
 
     if (serverUrl.slice(-1) !== '/') {
@@ -79,34 +85,30 @@ export class SiteCheckScreen extends Component<Props, State> {
 
     try {
       await this.props.dispatch(checkLoginTypes(serverUrl));
-      if (
-        this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin ) {
+      if (this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
         this.setState({
           serverPing: true,
           isInputHidden: true,
-          errorMessage: '',
+          errorMessage: ''
         });
       }
     } catch (error) {
       this.setState({ errorMessage: error.message });
-      console.log(error);
+      console.error(error);
     }
+  };
+
+  skipLogin = () => {
+    setUpGuest(this.props.dispatch);
+    this.props.navigation.navigate('App');
   };
 
   resetForm = () => {
     this.setState(initialState);
   };
 
-  skip = () => {
-    this.props.navigation.navigate('Add');
-  };
-
   static navigationOptions = {
-    header: null,
-  };
-
-  static navigationOptions = {
-    header: null,
+    header: null
   };
 
   render() {
@@ -125,7 +127,8 @@ export class SiteCheckScreen extends Component<Props, State> {
           ssoLogin={this.props.ssoLogin}
           tokenLogin={this.props.tokenLogin}
           errorMessage={this.state.errorMessage}
-          skip={this.skip}
+          navigation={this.props.navigation}
+          onSkip={this.skipLogin}
         />
       </View>
     );
@@ -136,7 +139,7 @@ const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
   tokenLogin: selectTokenLogin(state),
   ssoLogin: selectSsoLogin(state),
-  localLogin: selectLocalLogin(state),
+  localLogin: selectLocalLogin(state)
 });
 
 export default connect(mapStateToProps)(SiteCheckScreen);

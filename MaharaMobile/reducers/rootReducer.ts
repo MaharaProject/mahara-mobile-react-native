@@ -11,7 +11,7 @@ export const rootReducer = combineReducers({
     loginInfo: loginInfoReducer,
     userTags: userTagsReducer,
     userFolders: userFoldersReducer,
-    userBlogs: userBlogsReducer,
+    userBlogs: userBlogsReducer
   }),
   appState: combineReducers({
     uploadFiles: uploadFilesReducer,

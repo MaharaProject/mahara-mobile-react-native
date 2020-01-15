@@ -1,10 +1,15 @@
 import { UserFolder, UserBlog } from '../models/models';
-import { RootState } from './reducers';
-import { UPDATE_USER_FOLDERS, UPDATE_USER_BLOGS } from '../utils/constants';
+import { RootState } from './rootReducer';
+import {
+  UPDATE_USER_FOLDERS,
+  UPDATE_USER_BLOGS,
+  CLEAR_USER_BLOGS,
+  CLEAR_USER_FOLDERS,
+} from '../utils/constants';
 
 // UserFolders
 type UserFoldersState = Array<UserFolder>;
-const initialUserFoldersState: UserFoldersState = [];
+const initialUserFoldersState: UserFoldersState = [{title: 'images'}];
 
 export const userFoldersReducer = (
   state = initialUserFoldersState,
@@ -12,15 +17,17 @@ export const userFoldersReducer = (
 ) => {
   switch (action.type) {
     case UPDATE_USER_FOLDERS:
+      if (action.userFolders.includes('images') && action.userFolders.length === 1) return state;
       return [...state, ...action.userFolders];
+    case CLEAR_USER_FOLDERS:
+      return initialUserFoldersState;
     default:
       return state;
   }
 };
 
 // UserFolders Selectors
-export const selectUserFolders = (state: RootState) =>
-  state.domainData.userFolders;
+export const selectUserFolders = (state: RootState) => state.domainData.userFolders;
 
 // UserBlogs
 type UserBlogsState = Array<UserBlog>;
@@ -33,6 +40,8 @@ export const userBlogsReducer = (
   switch (action.type) {
     case UPDATE_USER_BLOGS:
       return [...state, ...action.userBlogs];
+    case CLEAR_USER_BLOGS:
+      return initialUserBlogsState;
     default:
       return state;
   }
