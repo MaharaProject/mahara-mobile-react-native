@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import styles from './variables';
 
-export const headings = StyleSheet.create({
+export const headingStyles = StyleSheet.create({
   mainHeading: {
     fontSize: styles.font.lg,
     color: styles.colors.secondary,

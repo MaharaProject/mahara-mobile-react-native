@@ -1,19 +1,27 @@
-/* eslint-disable import/extensions */
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Alert } from 'react-native';
 import { connect } from 'react-redux';
-import { addToken } from '../../actions/actions';
+import AsyncStorage from '@react-native-community/async-storage';
+import { addToken, updateGuestStatus } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
-import { sendTokenLogin } from '../../utils/helperFunctions';
 import generic from '../../assets/styles/generic';
 import {
   selectUrl,
   selectTokenLogin,
   selectSsoLogin,
   selectLocalLogin,
-  selectLoginState,
+  selectIsGuestStatus
 } from '../../reducers/loginInfoReducer';
 import { RootState } from '../../reducers/reducers';
+import {
+  selectUserBlogs,
+  selectUserFolders
+} from '../../reducers/userArtefactsReducer';
+import { UserFolder, UserBlog } from '../../models/models';
+import {
+  updatePendingItemsOnLogin,
+  fetchUserOnTokenLogin
+} from '../../utils/authHelperFunctions';
 
 type Props = {
   dispatch: any;
@@ -23,7 +31,9 @@ type Props = {
   ssoLogin: boolean;
   localLogin: boolean;
   loginType: boolean;
-  isLoggedIn: boolean;
+  userFolders: Array<UserFolder>;
+  userBlogs: Array<UserBlog>;
+  isGuest: boolean;
 };
 
 type State = {
@@ -35,12 +45,12 @@ export class LoginScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: '',
+      token: ''
     };
   }
 
   login = () => {
-    const {url} = this.props;
+    const { url } = this.props;
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
 
     const body = {
@@ -56,42 +66,64 @@ export class LoginScreen extends Component<Props, State> {
     const requestOptions = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body)
     };
 
-    this.props
-      .dispatch(sendTokenLogin(serverUrl, requestOptions))
-      .then(() => this.props.navigation.navigate('Add'));
+    this.props.dispatch(fetchUserOnTokenLogin(serverUrl, requestOptions))
+      .then(() => {
+        this.props.dispatch(addToken(this.state.token));
+        this.signInAsync();
+      })
+      .then(() => this.props.navigation.navigate('App'));
   };
 
-  setToken = (input: string) => {
-    const token = input.trim();
-
+  updateToken = (input: string) => {
+    const newToken = input.trim();
     this.setState({
-      token,
+      token: newToken
     });
   };
 
-  handleToken = () => {
-    const {token} = this.state;
+  verifyToken = () => {
     this.login();
-    this.props.dispatch(addToken(token));
+  };
+
+  /**
+   * Save user token to async storage
+   */
+  signInAsync = async () => {
+    if (this.state.token.length < 1) {
+      Alert.alert('Nothing entered in field');
+    } else if (this.props.isGuest) {
+      await this.props.dispatch(updateGuestStatus(false));
+      updatePendingItemsOnLogin(
+        this.props.dispatch,
+        this.props.userBlogs,
+        this.props.userFolders,
+        this.state.token,
+        this.props.url
+      );
+      await AsyncStorage.setItem('userToken', this.state.token);
+    }
   };
 
   static navigationOptions = {
-    header: null,
+    header: null
   };
 
   render() {
-    const {params} = this.props.navigation.state;
-    const {loginType} = params;
+    const { params } = this.props.navigation.state;
+    const { loginType } = params;
 
     return (
       <View style={generic.view}>
         {loginType === 'token' ? (
-          <TokenInput handleToken={this.handleToken} setToken={this.setToken} />
+          <TokenInput
+            onVerifyToken={this.verifyToken}
+            onUpdateToken={this.updateToken}
+          />
         ) : null}
       </View>
     );
@@ -103,7 +135,9 @@ const mapStateToProps = (state: RootState) => ({
   tokenLogin: selectTokenLogin(state),
   ssoLogin: selectSsoLogin(state),
   localLogin: selectLocalLogin(state),
-  isLoggedIn: selectLoginState(state),
+  userBlogs: selectUserBlogs(state),
+  userFolders: selectUserFolders(state),
+  isGuest: selectIsGuestStatus(state)
 });
 
 export default connect(mapStateToProps)(LoginScreen);
