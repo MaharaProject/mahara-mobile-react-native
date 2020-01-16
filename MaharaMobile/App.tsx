@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { I18nProvider } from '@lingui/react';
 
 import configureStore from './store/store';
+import 'react-native-gesture-handler';
 import AppNavigator from './navigations/app-navigator';
 
 const App = () => {

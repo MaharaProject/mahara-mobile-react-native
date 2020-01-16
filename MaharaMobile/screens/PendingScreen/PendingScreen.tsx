@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import styles from './PendingScreen.style';
+import pendingScreenStyles from './PendingScreen.style';
+import { buttons } from '../../assets/styles/buttons';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
@@ -11,8 +12,9 @@ import { uploadItemToMahara } from '../../utils/helperFunctions';
 import { RootState } from '../../reducers/reducers';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
+import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import styles from '../../assets/styles/variables';
 import { selectUserName } from '../../reducers/loginInfoReducer';
-import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -32,6 +34,20 @@ type State = {
 }
 
 export class PendingScreen extends Component<Props, State> {
+  static navigationOptions = (navData) => ({
+    headerStyle: {
+      backgroundColor: styles.colors.primary
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      flex: 1,
+      textAlign: 'center'
+    },
+    headerTintColor: '#fff',
+    headerLeft: <HeaderMenuButton navData={navData} />,
+    headerTitle: 'Pending items'
+  });
+
   constructor(props: Props) {
     super(props);
 
@@ -47,8 +63,8 @@ export class PendingScreen extends Component<Props, State> {
     const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state
     let list: Array<any> = [];
 
-    if (this.props.uploadFilesIds.length > 0) list = list.concat(this.props.uploadFiles);
-    if (this.props.uploadJEntriesIds.length > 0) list = list.concat(this.props.uploadJEntries)
+    if (this.props.uploadFilesIds?.length > 0) list = list.concat(this.props.uploadFiles);
+    if (this.props.uploadJEntriesIds?.length > 0) list = list.concat(this.props.uploadJEntries)
 
     if (this.state.uploadItemsExist) {
       return <View>{this.renderPendingList(list)}</View>;
@@ -77,10 +93,6 @@ export class PendingScreen extends Component<Props, State> {
     }
   };
 
-  static navigationOptions = {
-    headerTitle: 'Pending items'
-  };
-
   /**
    * Renders a PendingList
    * @param dataList array of files and journal entries
@@ -103,18 +115,20 @@ export class PendingScreen extends Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.app}>
-        <View style={styles.listContainer}>{this.pendingDisplay()}</View>
-        <View style={styles.buttonContainer}>
+      <View style={pendingScreenStyles.app}>
+        <View style={pendingScreenStyles.listContainer}>
+          {this.pendingDisplay()}
+        </View>
+        <View style={pendingScreenStyles.buttonContainer}>
           {this.props.userName !== 'guest' ? (
             <TouchableOpacity onPress={this.onUploadClick}>
               <Text style={buttons.lg}>Upload to your Mahara</Text>
             </TouchableOpacity>
           ) : (
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Auth')}>
-                <Text style={buttons.lg}>Please login</Text>
-              </TouchableOpacity>)
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate('Auth')}>
+              <Text style={buttons.lg}>Please login</Text>
+            </TouchableOpacity>)
           }
         </View>
       </View>

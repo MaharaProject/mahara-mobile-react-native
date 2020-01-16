@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { styles } from './Card.style'
+import {  styles } from './Card.style'
 
 type Props = {
   style: Array<string>,

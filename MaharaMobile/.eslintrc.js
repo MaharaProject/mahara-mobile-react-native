@@ -15,24 +15,24 @@ module.exports = {
     "react/prop-types": 0,
     "react/self-closing-comp": 1,
     "react/jsx-filename-extension": [
-       1,
-       {
-          "extensions": [".js", "jsx", ".ts", ".tsx"]
-       }
+      1,
+      {
+        "extensions": [".js", "jsx", ".ts", ".tsx"]
+      }
     ],
     "prefer-destructuring": 1,
     "no-console": 1,
     "no-unused-expressions": ["error", { "allowTernary": true }],
-    "no-unused-vars":0,
+    "no-unused-vars": 0,
     "max-len": ["error", 140],
     "comma-dangle": ["error", "never"]
   },
   "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-          "jsx": true
-      }
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "env": {
     "browser": true,
