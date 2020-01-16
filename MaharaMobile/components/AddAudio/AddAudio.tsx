@@ -9,7 +9,7 @@ import styles from './AddAudio.style';
 import { MaharaFile } from '../../models/models';
 
 type Props = {
-  addPickedFile: any;
+  setPickedFile: any;
   isEditing: boolean;
 };
 
@@ -39,7 +39,7 @@ const AddAudio = (props: Props) => {
   }
 
   useEffect(() => {
-    props.addPickedFile(pickedFile);
+    props.setPickedFile(pickedFile);
   }, [pickedFile.size]);
 
   useEffect(() => {
@@ -80,11 +80,11 @@ const AddAudio = (props: Props) => {
     setIsRecorded(true);
     const size = await getFileSize();
     setPickedFile({
-        name: result,
-        uri: result,
-        type: 'audio/m4a',
-        size: size
-      });
+      name: result,
+      uri: result,
+      type: 'audio/m4a',
+      size: size
+    });
   };
 
   const getFileSize = () => {
@@ -99,7 +99,6 @@ const AddAudio = (props: Props) => {
   };
 
   // Handling playing
-
   const handlePlay = () => {
     if (playButtonStatus === 'notplaying') {
       setPlayButtonStatus('playing');
@@ -111,12 +110,10 @@ const AddAudio = (props: Props) => {
   }
 
   const onStartPlay = async () => {
-    const msg = await audioRecorderPlayer.startPlayer(audioFile);
-    console.log(msg);
+    await audioRecorderPlayer.startPlayer(audioFile);
     setIsPlaying(true);
     audioRecorderPlayer.addPlayBackListener((e: any) => {
       if (e.current_position === e.duration) {
-        console.log('finished');
         audioRecorderPlayer
           .stopPlayer()
           .catch(e => console.log(e.message));
@@ -144,21 +141,21 @@ const AddAudio = (props: Props) => {
 
   return (
     <View>
-       <TouchableOpacity onPress={() => handleRecord()}>
-         <Text style={[buttons.md, styles.button]}>{recordStrings[recordButtonStatus]}</Text>
-       </TouchableOpacity>
-       <View style={styles.buttonWrap}>
-         {isRecorded ?
-           <TouchableOpacity onPress={() => handlePlay()}>
+      <TouchableOpacity onPress={() => handleRecord()}>
+        <Text style={[buttons.md, styles.button]}>{recordStrings[recordButtonStatus]}</Text>
+      </TouchableOpacity>
+      <View style={styles.buttonWrap}>
+        {isRecorded ?
+          <TouchableOpacity onPress={() => handlePlay()}>
             <Text style={[buttons.sm, styles.smButton]}>{playStrings[playButtonStatus]}</Text>
-           </TouchableOpacity>
-         : null}
-        {isPlaying ?
-           <TouchableOpacity onPress={() => onStopPlay()}>
-            <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
-           </TouchableOpacity>
+          </TouchableOpacity>
         : null}
-       </View>
+        {isPlaying ?
+          <TouchableOpacity onPress={() => onStopPlay()}>
+            <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
+          </TouchableOpacity>
+        : null}
+      </View>
     </View>
   );
 }

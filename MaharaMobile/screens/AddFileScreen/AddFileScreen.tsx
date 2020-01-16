@@ -84,10 +84,6 @@ const AddFileScreen = (props: Props) => {
     );
   };
 
-  const addPickedFile = (file: MaharaFile) => {
-    setPickedFile(file);
-  }
-
   return (
     <ScrollView>
       <View style={generic.wrap}>
@@ -106,7 +102,7 @@ const AddFileScreen = (props: Props) => {
         {formType === 'audio' &&
           <View>
             <AddAudio
-              addPickedFile = {addPickedFile}
+              setPickedFile = {setPickedFile}
               isEditing = {isEditing}
             />
           </View>

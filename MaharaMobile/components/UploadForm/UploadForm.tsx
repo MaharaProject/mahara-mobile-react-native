@@ -61,7 +61,7 @@ const UploadForm = (props: Props) => {
   const placeholder = props.formType !== 'journal entry' ? 'Enter a description' : 'Enter detail';
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 1 : null;
   const checkFile = props.pickedFile ? props.pickedFile.size > 0 : null;
-  const {formType} = props;
+  const { formType } = props;
 
   const addTag = (tag: string) => {
     if (tag === 'Add new tag +') {
