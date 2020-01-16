@@ -3,9 +3,9 @@ import { Text, View, TouchableOpacity, TextInput } from 'react-native';
 import { Trans, t } from '@lingui/macro';
 import { I18n } from "@lingui/react";
 import styles from './LoginType.style';
-import { headings } from '../../assets/styles/headings';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
+import { headingStyles } from '../../assets/styles/headings';
 
 type Props = {
   url: string;
@@ -20,7 +20,8 @@ type Props = {
   serverPing: boolean;
   isInputHidden: boolean;
   enterUrlWarning: boolean;
-  skip: () => void;
+  navigation: any;
+  onSkip: () => void;
 };
 
 export default function LoginType(props: Props) {
@@ -28,7 +29,7 @@ export default function LoginType(props: Props) {
     <View style={styles.view}>
       {!props.isInputHidden ? (
         <View>
-          <Text style={headings.subHeading1}>
+          <Text style={headingStyles.subHeading1}>
             <Trans>What is the address of your Mahara?</Trans>
           </Text>
           <TextInput
@@ -43,7 +44,7 @@ export default function LoginType(props: Props) {
       {props.errorMessage ? <Text>{props.errorMessage}</Text> : null}
       {props.serverPing && props.isInputHidden ? (
         <View>
-          <Text style={[headings.subHeading2, styles.url]}>{props.url}</Text>
+          <Text style={[headingStyles.subHeading2, styles.url]}>{props.url}</Text>
           <TouchableOpacity onPress={() => props.resetForm()}>
             <Text style={[buttons.md, styles.buttons]}>
               <Trans>Enter a different URL</Trans>
@@ -56,13 +57,13 @@ export default function LoginType(props: Props) {
           <TouchableOpacity onPress={() => props.checkServer()}>
             <Text style={[buttons.md, styles.buttons]}><Trans>Next</Trans></Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={props.skip}>
+          <TouchableOpacity onPress={() => props.onSkip()}>
             <Text style={[buttons.md, styles.buttons]}><Trans>Skip</Trans></Text>
           </TouchableOpacity>
         </View>
       ) : null}
       {props.serverPing ? (
-        <Text style={headings.mainHeading}><Trans>Select login type</Trans></Text>
+        <Text style={headingStyles.mainHeading}><Trans>Select login type</Trans></Text>
       ) : null}
       {props.serverPing && props.tokenLogin ? (
         <TouchableOpacity onPress={() => props.setLoginType('token')}>

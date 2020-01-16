@@ -1,55 +1,173 @@
-import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload } from '../models/models';
-import { UPDATE_SERVER_URL, UPDATE_USERNAME, UPDATE_USER_TAGS, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, ADD_TOKEN, ADD_UPLOAD_FILE, ADD_UPLOAD_JOURNAL_ENTRY, REMOVE_UPLOAD_FILE, REMOVE_UPLOAD_JOURNAL_ENTRY } from '../utils/constants';
+import AsyncStorage from '@react-native-community/async-storage';
+import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload, UserBlog, UserFolder } from '../models/models';
+import {
+  UPDATE_USERNAME,
+  UPDATE_USER_TAGS,
+  UPDATE_USER_BLOGS,
+  UPDATE_USER_FOLDERS,
+  ADD_TOKEN,
+  ADD_UPLOAD_FILE,
+  ADD_UPLOAD_JOURNAL_ENTRY,
+  REMOVE_UPLOAD_FILE,
+  REMOVE_UPLOAD_JOURNAL_ENTRY,
+  CLEAR_USER_TAGS,
+  CLEAR_LOGIN_INFO,
+  CLEAR_UPLOAD_FILES,
+  CLEAR_UPLOAD_J_ENTRIES,
+  CLEAR_USER_BLOGS,
+  CLEAR_USER_FOLDERS,
+  UPDATE_J_ENTRIES_ON_LOGIN,
+  UPDATE_UPLOAD_FILES_ON_LOGIN,
+  UPDATE_LOGIN_TYPES,
+  UPDATE_URL,
+  UPDATE_PROFILE_ICON,
+  UPDATE_GUEST_STATUS
+} from '../utils/constants';
 
 // action creators - functions that create actions
 
-export function loginTypes(url: string, response: any) {
-  const tokenLogin = response.logintypes.includes('manual') ? true : false;
-  const localLogin = response.logintypes.includes('basic') ? true : false;
-  const ssoLogin = response.logintypes.includes('sso') ? true : false;
-  return {
-    type: UPDATE_SERVER_URL,
-    url: url,
-    tokenLogin: tokenLogin,
-    localLogin: localLogin,
-    ssoLogin: ssoLogin
-  }
+// userTagsReducer
+export function updateUserTags(tags: any) {
+  AsyncStorage.setItem('userTags', JSON.stringify(tags));
+  return { type: UPDATE_USER_TAGS, userTags: tags };
+}
+
+export function clearUserTags() {
+  return { type: CLEAR_USER_TAGS };
+}
+
+// loginInfoReducer
+export function updateGuestStatus(isGuest: boolean) {
+  return { type: UPDATE_GUEST_STATUS, isGuest };
 }
 
 export function addToken(token: string) {
-  return { type: ADD_TOKEN, token }
+  AsyncStorage.setItem('userToken', token);
+  return { type: ADD_TOKEN, token };
 }
 
+export function updateUserName(username: any) {
+  AsyncStorage.setItem('username', username);
+  return { type: UPDATE_USERNAME, userName: username };
+}
+
+export function updateUrl(url: string) {
+  AsyncStorage.setItem('url', url);
+  return {
+    type: UPDATE_URL,
+    url: url
+  };
+}
+
+export function updateProfilePic(filepath: string) {
+  AsyncStorage.setItem('profileIcon', filepath);
+  return {
+    type: UPDATE_PROFILE_ICON,
+    profileIcon: filepath
+  }
+}
+
+/**
+ * Update stored boolean login types
+ *  - response retrieved when users login the first time
+ *  - localL, tokenL, and ssoL are retrieved from AsyncStorage
+ */
+export function updateLoginTypes(
+  response: any,
+  localL = false,
+  tokenL = false,
+  ssoL = false
+) {
+  let tokenLogin;
+  let localLogin;
+  let ssoLogin;
+  if (response) {
+    tokenLogin = response.logintypes.includes('manual');
+    localLogin = response.logintypes.includes('basic');
+    ssoLogin = response.logintypes.includes('sso');
+  } else {
+    tokenLogin = tokenL;
+    localLogin = localL;
+    ssoLogin = ssoL;
+  }
+
+  AsyncStorage.setItem('tokenLogin', JSON.stringify(tokenLogin));
+  AsyncStorage.setItem('localLogin', JSON.stringify(localLogin));
+  AsyncStorage.setItem('ssoLogin', JSON.stringify(ssoLogin));
+
+  return {
+    type: UPDATE_LOGIN_TYPES,
+    tokenLogin,
+    localLogin,
+    ssoLogin
+  }
+}
+
+export function clearLoginInfo() {
+  return { type: CLEAR_LOGIN_INFO };
+}
+
+// uploadFilesReducer
 export function addFileToUploadList(file: MaharaPendingFile) {
   return { type: ADD_UPLOAD_FILE, file }
-}
-
-export function addJournalEntryToUploadList(journalEntry: PendingJournalEntry) {
-  return { type: ADD_UPLOAD_JOURNAL_ENTRY, journalEntry }
-}
-
-export function updateUserName(json: any) {
-  return { type: UPDATE_USERNAME, userName: json.userprofile.myname }
-}
-
-export function updateUserTags(json: any) {
-  return { type: UPDATE_USER_TAGS, userTags: json.tags.tags }
-}
-
-export function updateUserBlogs(json: any) {
-  return { type: UPDATE_USER_BLOGS, userBlogs: json.blogs.blogs }
-}
-
-export function updateUserFolders(json: any) {
-  return { type: UPDATE_USER_FOLDERS, userFolders: json.folders.folders }
 }
 
 export function removeUploadFile(id: string) {
   return { type: REMOVE_UPLOAD_FILE, id }
 }
 
+export function clearUploadFiles() {
+  return { type: CLEAR_UPLOAD_FILES };
+}
+
+export function updateUploadFilesOnLogin(
+  token: string,
+  urlDomain: string,
+  userFolders: Array<UserFolder>,
+) {
+  return { type: UPDATE_UPLOAD_FILES_ON_LOGIN, token, urlDomain, userFolders };
+}
+
+// uploadJEntriesReducer
+export function addJournalEntryToUploadList(journalEntry: PendingJournalEntry) {
+  return { type: ADD_UPLOAD_JOURNAL_ENTRY, journalEntry };
+}
+
 export function removeUploadJEntry(id: string) {
-  return { type: REMOVE_UPLOAD_JOURNAL_ENTRY, id }
+  return { type: REMOVE_UPLOAD_JOURNAL_ENTRY, id };
+}
+
+export function clearUploadJEntires() {
+  return { type: CLEAR_UPLOAD_J_ENTRIES };
+}
+
+export function updateJEntriesOnLogin(
+  token: string,
+  urlDomain: string,
+  userBlogs: Array<UserBlog>,
+) {
+  return { type: UPDATE_J_ENTRIES_ON_LOGIN, token, urlDomain, userBlogs };
+}
+
+// userArtefactsReducer
+export function updateUserBlogs(blogs: any) {
+  AsyncStorage.setItem('userBlogs', JSON.stringify(blogs));
+  return { type: UPDATE_USER_BLOGS, userBlogs: blogs };
+}
+
+export function updateUserFolders(folders: any) {
+  AsyncStorage.setItem('userFolders', JSON.stringify(folders));
+  return { type: UPDATE_USER_FOLDERS, userFolders: folders };
+}
+
+export function clearUserBlogs() {
+  AsyncStorage.removeItem('userBlogs');
+  return { type: CLEAR_USER_BLOGS };
+}
+
+export function clearUserFolders() {
+  AsyncStorage.removeItem('userFolders');
+  return { type: CLEAR_USER_FOLDERS };
 }
 
 export class RequestError extends Error {
@@ -85,7 +203,7 @@ const postJSON = (url: string, body: any) => {
   return requestJSON(url, {
     method: 'POST',
     body: body,
-  })
+  });
 };
 
 const requestJSON = async (url: any, config: any) => {
@@ -102,7 +220,7 @@ const requestJSON = async (url: any, config: any) => {
   } catch (error) {
     throw RequestError.createFromError(error);
   }
-}
+};
 
 export function checkLoginTypes(url: string) {
   const serverUrl = url + 'module/mobileapi/json/info.php';
@@ -110,20 +228,17 @@ export function checkLoginTypes(url: string) {
   return async function (dispatch: any) {
     try {
       // TODO: dispatch loading state for spinner
-
       const result: any = await getJSON(serverUrl);
-
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
         throw new Error('This is not a Mahara site');
       }
-
       // check that webservices is enabled on the Mahara instance
       if (!result.wsenabled) {
         throw new Error('Webservices is not enabled.');
       }
-
-      dispatch(loginTypes(url, result));
+      dispatch(updateLoginTypes(result));
+      dispatch(updateUrl(url));
     } catch (error) {
       throw error;
     }
