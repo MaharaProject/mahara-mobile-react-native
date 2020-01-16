@@ -61,7 +61,7 @@ const UploadForm = (props: Props) => {
   const placeholder = props.formType !== 'journal entry' ? 'Enter a description' : 'Enter detail';
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 1 : null;
   const checkFile = props.pickedFile ? props.pickedFile.size > 0 : null;
-  const type = props.formType;
+  const { formType } = props;
 
   const addTag = (tag: string) => {
     if (tag === 'Add new tag +') {
@@ -82,7 +82,7 @@ const UploadForm = (props: Props) => {
     const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
 
     // Upload Journal Entry
-    if (props.formType === 'journal entry') {
+    if (formType === 'journal entry') {
       const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
       const journalEntry: JournalEntry = {
         blogid: selectedBlog ? selectedBlog : firstBlog,
@@ -134,7 +134,8 @@ const UploadForm = (props: Props) => {
         id: props.editItem ? props.editItem.id : Math.random() * 10 + '' + fileData.type,
         maharaFormData: maharaFormData,
         mimetype: pickedFile.type,
-        url: fileUrl
+        url: fileUrl,
+        type: formType
       }
 
       dispatch(addFileToUploadList(pendingFileData));
@@ -143,7 +144,7 @@ const UploadForm = (props: Props) => {
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate({routeName: 'Pending', params: { fileType: type }});
+    props.navigation.navigate({routeName: 'PendingScreen', params: { formType: formType }});
   };
 
   return (
@@ -160,7 +161,7 @@ const UploadForm = (props: Props) => {
         value={description}
         onChangeText={(description) => { setDescription(description) }}
       />
-      {props.formType !== 'journal entry' ?
+      {formType !== 'journal entry' ?
         <View style={forms.pickerWrapper}>
           {/* Folder dropdown */}
           <Picker
@@ -174,7 +175,7 @@ const UploadForm = (props: Props) => {
           </Picker>
         </View>
         : null}
-      {(props.formType === 'journal entry' && checkUserBlogs) ?
+      {(formType === 'journal entry' && checkUserBlogs) ?
         <View>
           <Text style={styles.formTitle}>Blog:</Text>
           <View style={forms.pickerWrapper}>
@@ -237,8 +238,8 @@ const UploadForm = (props: Props) => {
       </View>
       {checkFile || title && description ?
         <TouchableOpacity onPress={() => handleForm() }>
-          { props.editItem && <Text style={buttons.lg}>Confirm edits to {type}</Text> }
-          { !props.editItem && <Text style={buttons.lg}>Add {type} to Pending</Text> }
+          { props.editItem && <Text style={buttons.lg}>Confirm edits to {formType}</Text> }
+          { !props.editItem && <Text style={buttons.lg}>Add {formType} to Pending</Text> }
         </TouchableOpacity>
       : null}
     </View>
