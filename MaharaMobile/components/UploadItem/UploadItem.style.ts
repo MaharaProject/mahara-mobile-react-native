@@ -7,7 +7,7 @@ const uploadItemStyles = StyleSheet.create({
     flexDirection: 'row',
     padding: 3,
     marginVertical: 3,
-    height: 120,
+    height: 110,
   },
   pendingCard: {
     flexDirection: 'row',

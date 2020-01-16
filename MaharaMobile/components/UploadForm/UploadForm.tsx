@@ -143,7 +143,7 @@ const UploadForm = (props: Props) => {
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate({routeName: 'PendingScreen', params: { fileType: type }});
+    props.navigation.navigate({routeName: 'Pending', params: { fileType: type }});
   };
 
   return (
