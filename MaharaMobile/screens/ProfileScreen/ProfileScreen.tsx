@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import Header from '../../components/Header/Header';
 import Profile from '../../components/Profile/Profile';
-import styles from './ProfileScreen.style';
+import profileScreenStyles from './ProfileScreen.style';
 import {
   selectUrl,
   selectToken,
   selectUserName,
   selectProfileIcon
 } from '../../reducers/loginInfoReducer';
+import { buttons } from '../../assets/styles/buttons';
+import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import styles from '../../assets/styles/variables';
 import MediumButton from '../../components/MediumButton/MediumButton';
 import { clearReduxData, fetchProfilePic } from '../../utils/authHelperFunctions';
 import { selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
 import { selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { RootState } from '../../reducers/rootReducer';
+import { connect } from 'react-redux';
 
 type Props = {
   navigation: any; // need to double check type for this
@@ -33,6 +36,22 @@ type State = {
 };
 
 export class ProfileScreen extends Component<Props, State> {
+  static navigationOptions = (navData) => {
+    return {
+      headerStyle: {
+        backgroundColor: styles.colors.primary
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        flex: 1,
+        textAlign: 'center'
+      },
+      headerTintColor: '#fff',
+      headerLeft: <HeaderMenuButton navData={navData} />,
+      headerTitle: 'Profile'
+    };
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -59,7 +78,7 @@ export class ProfileScreen extends Component<Props, State> {
     if (this.props.token !== 'guest') {
       return (
         <View>
-          <View style={styles.container}>
+          <View style={profileScreenStyles.container}>
             <Profile
               name={this.props.userName}
               profileIcon={this.props.profileIcon}
@@ -74,13 +93,13 @@ export class ProfileScreen extends Component<Props, State> {
 
     return (
       <View>
-        <View style={styles.container}>
+        <View style={profileScreenStyles.container}>
           <Profile
             name={this.props.userName}
             profileIcon={this.state.profileIcon || this.props.profileIcon}
           />
         </View>
-        <View style={styles.buttons}>
+        <View style={profileScreenStyles.buttons}>
           <MediumButton
             title="Logout as Guest"
             onPress={() => this.signOutAsync()}
@@ -94,15 +113,12 @@ export class ProfileScreen extends Component<Props, State> {
     );
   };
 
-  static navigationOptions = {
-    header: null
-  };
-
   render() {
     return (
-      <View style={styles.app}>
-        <Header navigation={this.props.navigation} />
-        <View style={styles.container}>{this.generateProfileScreen()}</View>
+      <View style={profileScreenStyles.app}>
+        <View style={profileScreenStyles.container}>
+          {this.generateProfileScreen()}
+        </View>
       </View>
     );
   }
