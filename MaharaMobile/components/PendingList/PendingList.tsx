@@ -16,8 +16,8 @@ const PendingList = (props: Props) => {
   let title = '';
   let description = '';
   let thumbnail = {};
-  let isSuccessfullyUploadedItem = false
-  let showUploadError = false
+  let isSuccessfullyUploadedItem = false;
+  let showUploadError = false;
 
   return (
     <FlatList
@@ -38,7 +38,7 @@ const PendingList = (props: Props) => {
           mimetype = 'journalEntry';
         }
 
-        if (props.successfullyUploadedItems.indexOf(itemId) !== -1) isSuccessfullyUploadedItem = true
+        if (props.successfullyUploadedItems.indexOf(itemId) !== -1) isSuccessfullyUploadedItem = true;
         props.uploadErrorItems.indexOf(itemId) !== -1 ? showUploadError = true : showUploadError = false;
 
         return (

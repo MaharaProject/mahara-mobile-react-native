@@ -23,10 +23,8 @@ export function uploadItemToMahara(url: string, item: any) {
   return async function (dispatch: any) {
     try {
       return await fetch(url, uploadObject)
-      .then(response => response.json())
-      .then(result => {
-        return result
-      })
+        .then(response => response.json())
+        .then(result => result);
     } catch (error) {
       // the way Mahara works, we will always receive a 200 status from the backend on upload
       // therefore, this catch will never get triggered

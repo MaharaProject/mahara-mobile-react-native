@@ -8,7 +8,7 @@ import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
-import { uploadItemToMahara } from '../../utils/helperFunctions';
+import { uploadItemToMahara, isJournalEntry } from '../../utils/helperFunctions';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
@@ -26,15 +26,14 @@ type Props = {
   userName: string;
 }
 
-type State =
-  {
-    uploadRequestPending: boolean;
-    uploadRequestReceived: boolean;
-    successMessage: string;
-    uploadItemsExist: boolean;
-    successfullyUploadedItems: Array<any>;
-    uploadErrorItems: Array<any>;
-  }
+type State = {
+  uploadRequestPending: boolean;
+  uploadRequestReceived: boolean;
+  successMessage: string;
+  uploadItemsExist: boolean;
+  successfullyUploadedItems: Array<any>;
+  uploadErrorItems: Array<any>;
+}
 
 export class PendingScreen extends Component<Props, State> {
   static navigationOptions = (navData) => ({
@@ -89,25 +88,55 @@ export class PendingScreen extends Component<Props, State> {
 
   onUploadClick = () => {
     this.props.uploadFiles.forEach(file => {
-      this.clearUploadError(file.id)
+      this.clearUploadError(file.id);
       this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData))
-      .then((result: any) => {
-        // an error either returns result = undefined, or result = { error: true }
-        if (result === undefined || result.error) {
-          this.onUploadError(file.id)
-        } else this.onSuccessfulUpload(file.id)
-      })
+        .then((result: any) => {
+          // an error either returns result = undefined, or result = { error: true }
+          if (result === undefined || result.error) {
+            this.onUploadError(file.id);
+          } else this.onSuccessfulUpload(file.id);
+        });
     });
 
     this.props.uploadJEntries.forEach(journalEntry => {
       this.clearUploadError(journalEntry.id)
       this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
-      .then((result: any) => {
-        if (result === undefined || result.error) {
-          this.onUploadError(journalEntry.id)
-        } else this.onSuccessfulUpload(journalEntry.id)
-      })
+        .then((result: any) => {
+          if (result === undefined || result.error) {
+            this.onUploadError(journalEntry.id);
+          } else this.onSuccessfulUpload(journalEntry.id);
+        });
     });
+  };
+
+  onSuccessfulUpload = (id: string) => {
+    // change class to show upload success
+    this.setState({ successfullyUploadedItems: [...this.state.successfullyUploadedItems, id] });
+    // then, card disappears
+    // and remove id from successfullyUploadedItems to clear memory
+    setTimeout(() => {
+      this.props.dispatch(removeUploadFile(id));
+      this.props.dispatch(removeUploadJEntry(id));
+
+      const newState = this.state.successfullyUploadedItems.filter(item => item !== id);
+      this.setState({ successfullyUploadedItems: newState });
+    }, 1000);
+  };
+
+  onUploadError = (id: string) => {
+    this.setState({ uploadErrorItems: [...this.state.uploadErrorItems, id] });
+  };
+
+  clearUploadError = (id: string) => {
+    this.setState(prevState => {
+      const newState = prevState.uploadErrorItems.filter(item => item !== id);
+      return { uploadErrorItems: newState };
+    });
+  };
+
+  onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
+    const type = isJournalEntry(item) ? 'journal entry' : item.type;
+    this.props.navigation.navigate({routeName: 'AddFile', params: { item: item, formType: type }});
   };
 
   /**
@@ -126,34 +155,6 @@ export class PendingScreen extends Component<Props, State> {
         onClearError={this.clearUploadError}
       />
     );
-  }
-
-  onSuccessfulUpload = (id: string) => {
-    // change class to show upload success
-    this.setState({ successfullyUploadedItems: [...this.state.successfullyUploadedItems, id] })
-    // then, card disappears
-    // and remove id from successfullyUploadedItems to clear memory
-    setTimeout( () => {
-      this.props.dispatch(removeUploadFile(id));
-      this.props.dispatch(removeUploadJEntry(id));
-
-      let newState = this.state.successfullyUploadedItems.filter(item => item !== id)
-      this.setState({ successfullyUploadedItems: newState })
-    }, 1000)
-  }
-
-  onUploadError = (id: string) => {
-    this.setState({ uploadErrorItems: [...this.state.uploadErrorItems, id] })
-  }
-
-  clearUploadError = (id: string) => {
-    let newState = this.state.uploadErrorItems.filter(item => item !== id)
-    this.setState({ uploadErrorItems: newState })
-  }
-
-  onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
-    const type = item.type ? item.type : 'journal entry';
-    this.props.navigation.navigate({routeName: 'AddFile', params: { item: item, formType: type }});
   }
 
   render() {
