@@ -1,18 +1,22 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
+import { Icon } from 'react-native-elements';
+
 import Card from '../Card/Card';
 import uploadItemStyles from './UploadItem.style';
-import styles from '../../assets/styles/variables'
-import { Icon } from 'react-native-elements'
+import styles from '../../assets/styles/variables';
 
 type Props = {
   title: string;
   description: string;
   mimetype: string;
   image: any;
+  successfullyUploadedItem: boolean;
+  showUploadError: boolean;
   onRemove: () => {};
   onEdit: () => {};
+  onClearError: () => {};
 }
 
 const UploadItem = (props: Props) => {
@@ -75,6 +79,13 @@ const UploadItem = (props: Props) => {
     <TouchableOpacity>
       <View style={uploadItemStyles.uploadItem}>
         <Card style={{ ...uploadItemStyles.pendingCard }}>
+          {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
+          {props.showUploadError &&
+            <View>
+              <Text>There was an error uploading this file. Please try again.</Text>
+              <Icon onPress={props.onClearError} name="times" type="font-awesome" color={styles.colors.dark} />
+            </View>
+          }
           <Thumbnail />
           <View style={uploadItemStyles.textContainer}>
             <Text>{displayName} </Text>

@@ -4,7 +4,6 @@ import styles from './Spinner.style';
 
 export const Spinner: React.FC = () => (
   <View style={styles.view}>
-    <Text>spinner goes here</Text>
   </View>
 );
 

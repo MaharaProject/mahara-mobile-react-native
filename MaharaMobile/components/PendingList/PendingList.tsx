@@ -3,16 +3,21 @@ import { FlatList } from 'react-native-gesture-handler';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
-  dataList: Array<any>
+  dataList: Array<any>;
   onRemove: Function;
   onEdit: Function;
   navigation: any;
+  successfullyUploadedItems: Array<any>;
+  uploadErrorItems: Array<any>;
+  onClearError: Function;
 }
 
 const PendingList = (props: Props) => {
   let title = '';
   let description = '';
   let thumbnail = {};
+  let isSuccessfullyUploadedItem = false;
+  let showUploadError = false;
 
   return (
     <FlatList
@@ -33,6 +38,9 @@ const PendingList = (props: Props) => {
           mimetype = 'journalEntry';
         }
 
+        if (props.successfullyUploadedItems.indexOf(itemId) !== -1) isSuccessfullyUploadedItem = true;
+        props.uploadErrorItems.indexOf(itemId) !== -1 ? showUploadError = true : showUploadError = false;
+
         return (
           <UploadItem
             title={title}
@@ -41,6 +49,9 @@ const PendingList = (props: Props) => {
             onRemove={() => props.onRemove(itemId)}
             onEdit={() => props.onEdit(item)}
             image={thumbnail}
+            successfullyUploadedItem={isSuccessfullyUploadedItem}
+            showUploadError={showUploadError}
+            onClearError={() => props.onClearError(itemId)}
           />
         )
       }

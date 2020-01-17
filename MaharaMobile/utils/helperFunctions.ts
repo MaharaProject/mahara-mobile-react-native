@@ -20,13 +20,14 @@ export function sendTokenLogin(serverUrl: string, requestOptions: any) {
 
 export function uploadItemToMahara(url: string, item: any) {
   const uploadObject = buildObject(item);
-  return async function () {
+  return async function (dispatch: any) {
     try {
-      const response = await fetch(url, uploadObject);
-      const result = await response.json();
-      console.log('Success:', JSON.stringify(result));
+      return await fetch(url, uploadObject)
+        .then(response => response.json())
+        .then(result => result);
     } catch (error) {
-      console.error('Error:', error);
+      // the way Mahara works, we will always receive a 200 status from the backend on upload
+      // therefore, this catch will never get triggered
     }
   }
 }
