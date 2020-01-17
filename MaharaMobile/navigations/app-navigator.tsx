@@ -54,8 +54,6 @@ const AppNavigator = () => {
     Add: {
       screen: AddItemsTabNavigator,
       navigationOptions: {
-        headerTitleAlign: 'center',
-        headerTitle: 'bhahhh',
         tabBarLabel: 'Add',
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faPlusCircle} color={styles.colors.light} />
@@ -93,15 +91,22 @@ const AppNavigator = () => {
 
   // Navigator with only LoginScreen
   const AuthNavigator = createStackNavigator({
+    AuthLoading: AuthLoadingScreen,
     Auth: SiteCheckScreen,
     Login: LoginScreen
   });
 
   // Main navigator, with route to AppNavigator once authenticated
-  const SwitchNavigator = createSwitchNavigator({
-    Auth: AuthNavigator,
-    App: AppTabNavigator
-  });
+  const SwitchNavigator = createSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      App: AppTabNavigator,
+      Auth: AuthNavigator
+    },
+    {
+      initialRouteName: 'AuthLoading'
+    }
+  );
 
   const DrawerNavigator = createDrawerNavigator({
     MaharaMobile: SwitchNavigator,
