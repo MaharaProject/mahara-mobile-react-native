@@ -83,7 +83,7 @@ const UploadItem = (props: Props) => {
           {props.showUploadError &&
             <View>
               <Text>There was an error uploading this file. Please try again.</Text>
-              <Icon onPress={props.onClearError} name='times' type='font-awesome' color={styles.colors.dark} />
+              <Icon onPress={props.onClearError} name="times" type="font-awesome" color={styles.colors.dark} />
             </View>
           }
           <Thumbnail />
