@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
 
+import sanitize from 'sanitize-filename';
 import styles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
@@ -108,7 +109,7 @@ const UploadForm = (props: Props) => {
       const tagString = selectedTags ? setTagString(selectedTags) : '';
       const fileUrl = props.url + '/webservice/rest/server.php?alt=json' + tagString;
       const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-      const filename = title ? title + extension : pickedFile.name;
+      const filename = title ? sanitize(title) + extension : pickedFile.name;
       const firstFolder = props.userFolders ? props.userFolders[0].title : '';
       const folder = selectedFolder || firstFolder; // TODO: setting to first folder until we set up preferred default folder functionality
       const webservice = 'module_mobileapi_upload_file';
