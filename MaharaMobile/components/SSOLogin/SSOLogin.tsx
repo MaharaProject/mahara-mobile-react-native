@@ -35,12 +35,6 @@ export default function SSOLogin(props: Props) {
     window.ReactNativeWebView.postMessage(maharatoken);
   })();`;
 
-  setTimeout(() => {
-    if (webref) {
-      webref.injectJavaScript(GET_TOKEN);
-    }
-  }, 1000);
-
   useEffect(() => {
     if (token) {
       props.ssoLogin(token, webref);
