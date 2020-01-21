@@ -11,7 +11,8 @@ const styles = {
     light: '#fff',
     dark: '#000',
     dark2: '#2e3a1c',
-    darkgrey: '#777'
+    darkgrey: '#777',
+    warn: '#fc0320'
   },
   padding: {
     xs: 5,

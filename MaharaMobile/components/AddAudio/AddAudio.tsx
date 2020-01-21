@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, Text, View, Platform, PermissionsAndroid } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { Trans } from '@lingui/macro';
@@ -26,6 +26,7 @@ const AddAudio = (props: Props) => {
   const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>('notplaying');
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
   const playStrings = {
     playing: <Trans>Pause</Trans>,
@@ -49,8 +50,60 @@ const AddAudio = (props: Props) => {
     }
   }, [props.isEditing]);
 
+  // Check permissions
+  const checkPermissions = async () => {
+    let permission = true;
+
+    if (Platform.OS === 'android') {
+      try {
+        const grantedStorage = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Permissions for write access',
+            message: 'Give permission to your storage to write a file',
+            buttonPositive: 'ok',
+          },
+        );
+        if (grantedStorage === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('You can use the storage');
+        } else {
+          console.log('permission denied for storage');
+          setIsPermissionGranted(false);
+          return;
+        }
+
+        const grantedRecord = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+          {
+            title: 'Permissions for recoding audio',
+            message: 'Give permission to your microphone to record a file',
+            buttonPositive: 'ok',
+          },
+        );
+        if (grantedRecord === PermissionsAndroid.RESULTS.GRANTED) {
+          console.log('You can use the storage');
+        } else {
+          console.log('Permission denied for microphone');
+          setIsPermissionGranted(false);
+          return;
+        }
+      } catch (err) {
+        setIsPermissionGranted(false);
+        permission = false;
+        return permission;
+      }
+      return permission;
+    }
+  };
+
   // Handling recording
-  const handleRecord = () => {
+  const handleRecord = async () => {
+    const permission = await checkPermissions();
+
+    if (!permission) {
+      return;
+    }
+
     if (recordButtonStatus === 'unrecorded' || recordButtonStatus === 'recorded') {
       onStartRecord();
       setIsRecorded(false);
@@ -154,6 +207,9 @@ const AddAudio = (props: Props) => {
           <TouchableOpacity onPress={() => onStopPlay()}>
             <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
           </TouchableOpacity>
+        : null}
+        {!isPermissionGranted ?
+          <Text style={styles.warning}>You need to grant the app permission in order to use this feature</Text>
         : null}
       </View>
     </View>
