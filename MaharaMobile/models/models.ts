@@ -26,7 +26,7 @@ export type JournalEntry = {
   title: string;
   body: string;
   isdraft: boolean;
-  tags: Array<string>;
+  tags?: Array<string>;
 }
 
 export type PendingJournalEntry = {

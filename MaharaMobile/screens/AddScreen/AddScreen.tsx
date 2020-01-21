@@ -2,8 +2,8 @@ import React from 'react';
 import { View, ScrollView } from 'react-native';
 import generic from '../../assets/styles/generic';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
-import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
-import { cardStyles } from '../../components/UI/Card/Card.style';
+import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import { cardStyles } from '../../components/Card/Card.style';
 import styles from '../../assets/styles/variables';
 
 

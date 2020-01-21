@@ -4,7 +4,7 @@ import { Text } from 'react-native';
 import { Trans, I18n } from '@lingui/react';
 import { t } from '@lingui/macro';
 import mdButtonStyles from './MediumButton.style';
-import { buttons } from '../../../assets/styles/buttons';
+import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
   onPress: () => void;

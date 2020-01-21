@@ -1,8 +1,8 @@
 import React from 'react';
 import { HeaderButtons, HeaderButton, Item } from 'react-navigation-header-buttons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import styles from '../../../assets/styles/variables';
-import LogoSvg from '../../../assets/images/Logo';
+import styles from '../../assets/styles/variables';
+import LogoSvg from '../../assets/images/Logo';
 import { View } from 'react-native';
 
 type Props = {

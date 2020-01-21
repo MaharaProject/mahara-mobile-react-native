@@ -9,7 +9,7 @@ import { buttons } from '../../assets/styles/buttons';
 import { UserFolder, MaharaFile, JournalEntry,UserTag, UserBlog, PendingJournalEntry, MaharaFileFormData, MaharaPendingFile } from '../../models/models';
 import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
 import setTagString from '../../utils/formhelper';
-import { isMaharaFileFormData, isJournalEntry } from '../../utils/helperFunctions';
+import popNavigationStack from '../../utils/helperFunctions';
 import { StackActions } from 'react-navigation';
 
 type Props = {
@@ -22,7 +22,7 @@ type Props = {
   url: string;
   editItem?: MaharaPendingFile | PendingJournalEntry;
   navigation: any;
-};
+}
 
 type State = {
   selectedTags: Array<string>;
@@ -41,21 +41,18 @@ const UploadForm = (props: Props) => {
 
   useEffect(() => {
     if (props.editItem) {
-      if (isMaharaFileFormData(props.editItem)) {
-        const maharaFormData: MaharaFileFormData = props.editItem;
-
-        setTitle(maharaFormData.title);
-        setDescription(maharaFormData.description);
-        setSelectedFolder(maharaFormData.foldername);
-        setTags(maharaFormData.tags);
+      if (props.editItem.maharaFormData) {
+        setTitle(props.editItem.maharaFormData.title)
+        setDescription(props.editItem.maharaFormData.description)
+        setSelectedFolder(props.editItem.maharaFormData.foldername)
+        setTags(props.editItem.maharaFormData.tags)
       }
 
-      if (isJournalEntry(props.editItem)) {
-        const journalEntry: JournalEntry = props.editItem;
-        setTitle(journalEntry.title);
-        setDescription(journalEntry.body);
-        setSelectedBlog(journalEntry.blogid);
-        setTags(journalEntry.tags);
+      if (props.editItem.journalEntry) {
+        setTitle(props.editItem.journalEntry.title)
+        setDescription(props.editItem.journalEntry.body)
+        setSelectedBlog(props.editItem.journalEntry.blogid)
+        setTags(props.editItem.journalEntry.tags)
       }
     }
   }, [props.editItem]);
@@ -106,6 +103,7 @@ const UploadForm = (props: Props) => {
 
       // add journal entry to pending list
       dispatch(addJournalEntryToUploadList(pendingJournalEntry));
+
     } else if (pickedFile) {
       // Upload File
       const tagString = selectedTags ? setTagString(selectedTags) : '';
@@ -131,7 +129,7 @@ const UploadForm = (props: Props) => {
         webservice: webservice,
         wstoken: props.token,
         tags: selectedTags
-      };
+      }
 
       const pendingFileData: MaharaPendingFile = {
         id: props.editItem ? props.editItem.id : Math.random() * 10 + '' + fileData.type,
@@ -139,7 +137,7 @@ const UploadForm = (props: Props) => {
         mimetype: pickedFile.type,
         url: fileUrl,
         type: formType
-      };
+      }
 
       dispatch(addFileToUploadList(pendingFileData));
     }
@@ -150,105 +148,34 @@ const UploadForm = (props: Props) => {
     props.navigation.navigate({routeName: 'PendingScreen', params: { formType: formType }});
   };
 
-  const renderTitleAndDescTextInputs = () => {
-    return (
-      <View>
-        <TextInput
-          style={forms.textInput}
-          placeholder="Enter a title"
-          value={title}
-          onChangeTextHandler={(title) => { setTitle(title) }}
-        />
-        <TextInput
-          style={isMultiLine}
-          placeholder={placeholder}
-          value={description}
-          onChangeTextHandler={(description) => { setDescription(description) }}
-        />
-      </View>
-    );
-  };
-
-  const renderFolderPicker = () => (
-    <View style={forms.pickerWrapper}>
-      <Picker
-        selectedValue={selectedFolder}
-        style={forms.picker}
-        onValueChange={folder => setSelectedFolder(folder)}>
-        {props.userFolders?.map((folder: UserFolder, index: number) => (
-          <Picker.Item label={folder.title} value={folder.title} key={index} />
-        ))}
-      </Picker>
-    </View>
-  );
-
-  const renderTagsPicker = () => (
-    <View>
-      <View style={styles.tagsContainer}>
-        <Text style={styles.tagsTitle}>Tags:</Text>
-        {hidden ? (
-          <View style={styles.tagsInputContainer}>
-            <TextInput
-              style={[forms.textInput, styles.tagsTextInput]}
-              placeholder="New tag..."
-              onChangeTextHandler={text => addNewTag(text)}
-            />
-            <TouchableOpacity
-              style={styles.addButton}
-              onPress={() => {
-                addTag(newTag);
-                setSelectedTag('...');
-              }}>
-              <Text style={styles.addButtonText}>Add</Text>
-            </TouchableOpacity>
-          </View>
-        ) : null}
-        {selectedTags && selectedTags.map((value: string, index: number) => (
-            <TouchableOpacity key={index} onPress={() => removeTag(value)}>
-              <View style={forms.tag}>
-                <Text style={forms.tagText}>{value}</Text>
-                <Text style={forms.tagClose}>x</Text>
-              </View>
-            </TouchableOpacity>
-        ))}
-      </View>
-      <View style={forms.pickerWrapper}>
-        <Picker
-          selectedValue={selectedTag}
-          style={forms.picker}
-          onValueChange={itemValue => {
-            setSelectedTag(itemValue);
-            addTag(itemValue);
-          }}>
-          <Picker.Item label="..." value="" color="#556d32" />
-          {props.userTags && props.userTags.map((value: UserTag, index: number) => (
-              <Picker.Item label={value.tag} value={value.tag} key={index} />
-          ))}
-          <Picker.Item label="Add new tag +" value="Add new tag +" color={"#556d32"} />
-        </Picker>
-      </View>
-    </View>
-  );
-
-  const renderButtons = () => (
-    <View>
-      {/* {checkFile || title && description ? */}
-      <TouchableOpacity onPress={() => handleForm()}>
-        {props.editItem && (
-          <Text style={buttons.lg}>Confirm edits to {formType}</Text>
-        )}
-        {!props.editItem && (
-          <Text style={buttons.lg}>Add {formType} to Pending</Text>
-        )}
-      </TouchableOpacity>
-      {/* : null} */}
-    </View>
-  );
-
   return (
     <View>
-      {renderTitleAndDescTextInputs()}
-      {formType !== 'journal entry' ? renderFolderPicker() : null}
+      <TextInput
+        style={forms.textInput}
+        placeholder="Enter a title"
+        value={title}
+        onChangeText={(title) => { setTitle(title) }}
+      />
+      <TextInput
+        style={isMultiLine}
+        placeholder={placeholder}
+        value={description}
+        onChangeText={(description) => { setDescription(description) }}
+      />
+      {formType !== 'journal entry' ?
+        <View style={forms.pickerWrapper}>
+          {/* Folder dropdown */}
+          <Picker
+            selectedValue={selectedFolder}
+            style={forms.picker}
+            onValueChange={folder => {setSelectedFolder(folder)}}
+          >
+            {props.userFolders && props.userFolders.map((folder: UserFolder, index: number) => (
+              <Picker.Item label={folder.title} value={folder.title} key={index} />
+            ))}
+          </Picker>
+        </View>
+        : null}
       {(formType === 'journal entry' && checkUserBlogs) ?
         <View>
           <Text style={styles.formTitle}>Blog:</Text>
@@ -259,14 +186,63 @@ const UploadForm = (props: Props) => {
               onValueChange={blogId => { setSelectedBlog(blogId)}}
             >
               {props.userBlogs && props.userBlogs.map((blog: UserBlog, index: number) => (
-                 <Picker.Item label={blog.title} value={blog.id} key={index} />
+                <Picker.Item label={blog.title} value={blog.id} key={index} />
               ))}
             </Picker>
           </View>
         </View>
         : null}
-      {renderTagsPicker()}
-      {renderButtons()}
+      <View style={styles.tagsContainer}>
+        <Text style={styles.tagsTitle}>Tags:</Text>
+        {hidden ?
+          <View style={styles.tagsInputContainer}>
+            <TextInput
+              style={[forms.textInput, styles.tagsTextInput]}
+              placeholder="New tag..."
+              onChangeText={text => addNewTag(text)}
+            />
+            <TouchableOpacity style={styles.addButton} onPress={() => {
+              addTag(newTag);
+              setSelectedTag('...');
+            }}>
+              <Text style={styles.addButtonText}>
+                Add
+              </Text>
+            </TouchableOpacity>
+          </View>
+          : null}
+        {selectedTags && selectedTags.map((value: string, index: number) => (
+          <TouchableOpacity key={index} onPress={() => removeTag(value)}>
+            <View style={forms.tag}>
+              <Text style={forms.tagText}>{value}</Text>
+              <Text style={forms.tagClose}>x</Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+      {/* Dropdown for Tags */}
+      <View style={forms.pickerWrapper}>
+        <Picker
+          selectedValue={selectedTag}
+          style={forms.picker}
+          onValueChange={(itemValue) => {
+            setSelectedTag(itemValue);
+            addTag(itemValue);
+          }}
+        >
+          <Picker.Item label="..." value="" color="#556d32" />
+          {props.userTags && props.userTags.map((value: UserTag, index: number) => (
+            <Picker.Item label={value.tag} value={value.tag} key={index} />
+          ))}
+          <Picker.Item label="Add new tag +" value="Add new tag +" color={"#556d32"} />
+        </Picker>
+      </View>
+      {checkFile || title && description ?
+        <TouchableOpacity onPress={() => handleForm() }>
+          { props.editItem && <Text style={buttons.lg}>Confirm edits to {formType}</Text> }
+          { !props.editItem && <Text style={buttons.lg}>Add {formType} to Pending</Text> }
+        </TouchableOpacity>
+      : null}
     </View>
   );
 };
