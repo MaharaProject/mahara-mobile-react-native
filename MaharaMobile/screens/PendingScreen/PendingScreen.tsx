@@ -6,13 +6,13 @@ import pendingScreenStyles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
-import Spinner from '../../components/Spinner/Spinner'
+import Spinner from '../../components/UI/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
 import { uploadItemToMahara, isJournalEntry } from '../../utils/helperFunctions';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
-import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
 import { selectUserName } from '../../reducers/loginInfoReducer';
 

@@ -3,9 +3,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import Card from '../Card/Card';
 import uploadItemStyles from './UploadItem.style';
 import styles from '../../assets/styles/variables';
+import Card from '../UI/Card/Card';
 
 type Props = {
   title: string;

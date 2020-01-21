@@ -36,7 +36,7 @@ export default function LoginType(props: Props) {
             style={forms.textInput}
             // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
             defaultValue={'https://master.dev.mahara.org/'}
-            onChangeText={(url:string) => props.checkUrl(url)}
+            onChangeTextHandler={(url:string) => props.checkUrl(url)}
           />
         </View>
       ) : null}

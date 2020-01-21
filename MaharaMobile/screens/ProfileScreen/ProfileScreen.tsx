@@ -11,9 +11,9 @@ import {
   selectProfileIcon
 } from '../../reducers/loginInfoReducer';
 import { buttons } from '../../assets/styles/buttons';
-import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
-import MediumButton from '../../components/MediumButton/MediumButton';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import { clearReduxData, fetchProfilePic } from '../../utils/authHelperFunctions';
 import { selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
 import { selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
