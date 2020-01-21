@@ -16,6 +16,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { I18nProvider } from '@lingui/react';
 
 import configureStore from './store/store';
+import 'react-native-gesture-handler';
 import AppNavigator from './navigations/app-navigator';
 
 const App = () => {

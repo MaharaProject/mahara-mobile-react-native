@@ -16,6 +16,7 @@ export type MaharaPendingFile = {
   url: string; // for files, this url includes tags
   maharaFormData: MaharaFileFormData;
   mimetype: string;
+  type: string;
 }
 
 export type JournalEntry = {
@@ -31,7 +32,7 @@ export type JournalEntry = {
 export type PendingJournalEntry = {
   id: string;
   url: string;
-  journalEntry: JournalEntry,
+  journalEntry: JournalEntry;
 }
 
 export type User = {
@@ -70,5 +71,5 @@ export type MaharaFileFormData = {
     type: string,
     name: string,
   }
-  tags: string[]
+  tags: string[];
 }

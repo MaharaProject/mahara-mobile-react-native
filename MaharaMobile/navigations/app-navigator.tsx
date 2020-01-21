@@ -19,14 +19,15 @@ import styles from '../assets/styles/variables';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 const AppNavigator = () => {
-  const AddItemsNavigator = createStackNavigator({
-    AddItems: AddScreen,
+  const AddItemsTabNavigator = createStackNavigator({
+    Add: AddScreen,
     AddFile: AddFileScreen
   });
 
-  const PendingItemsNavigator = createStackNavigator({
+  const PendingItemsTabNavigator = createStackNavigator({
     Pending: PendingScreen,
     Details: {
       screen: DetailsScreen,
@@ -36,19 +37,22 @@ const AppNavigator = () => {
     }
   });
 
+  const ProfileTabNavigator = createStackNavigator({
+    Profile: ProfileScreen
+  });
+
   const tabScreenConfig = {
-    ProfileTab: {
-      screen: ProfileScreen,
+    Profile: {
+      screen: ProfileTabNavigator,
       navigationOptions: {
-        tabBarLabel: 'Profile',
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
         ),
         tabBarAccessibilityLabel: 'Profile page'
       }
     },
-    AddItemsTab: {
-      screen: AddItemsNavigator,
+    Add: {
+      screen: AddItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: 'Add',
         tabBarIcon: () => (
@@ -57,8 +61,8 @@ const AppNavigator = () => {
         tabBarAccessibilityLabel: 'Add item to Mahara'
       }
     },
-    PendingTab: {
-      screen: PendingItemsNavigator,
+    PendingScreen: {
+      screen: PendingItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: 'Pending ',
         tabBarIcon: () => (
@@ -87,12 +91,13 @@ const AppNavigator = () => {
 
   // Navigator with only LoginScreen
   const AuthNavigator = createStackNavigator({
-    SiteCheck: SiteCheckScreen,
+    AuthLoading: AuthLoadingScreen,
+    Auth: SiteCheckScreen,
     Login: LoginScreen
   });
 
   // Main navigator, with route to AppNavigator once authenticated
-  const MainNavigator = createSwitchNavigator(
+  const SwitchNavigator = createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
       App: AppTabNavigator,
@@ -103,7 +108,19 @@ const AppNavigator = () => {
     }
   );
 
-  const Navigation = createAppContainer(MainNavigator);
+  const DrawerNavigator = createDrawerNavigator({
+    MaharaMobile: SwitchNavigator,
+    Add: {
+      navigationOptions: {
+        drawerLabel: 'Add Item'
+      },
+      screen: AddItemsTabNavigator
+    },
+    Pending: PendingItemsTabNavigator
+  });
+
+  const Navigation = createAppContainer(DrawerNavigator);
+
   return <Navigation />;
 };
 

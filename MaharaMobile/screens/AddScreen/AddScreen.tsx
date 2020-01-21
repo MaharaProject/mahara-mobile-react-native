@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, ScrollView } from 'react-native';
-
 import generic from '../../assets/styles/generic';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
+import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import { cardStyles } from '../../components/Card/Card.style';
+import styles from '../../assets/styles/variables';
+
 
 type Props = {
   navigation: any;
@@ -10,7 +13,7 @@ type Props = {
 
 const AddScreen = (props: Props) => {
   const selectMediaType = (type: string) => {
-    props.navigation.navigate({routeName: 'AddFile', params: { fileType: type }});
+    props.navigation.navigate({routeName: 'AddFile', params: { formType: type }});
   };
 
   return (
@@ -22,8 +25,18 @@ const AddScreen = (props: Props) => {
   );
 }
 
-AddScreen.navigationOptions = {
-  headerTitle: 'Add items'
-};
+AddScreen.navigationOptions = (navData: any) => ({
+  headerStyle: {
+    backgroundColor: styles.colors.primary
+  },
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    flex: 1,
+    textAlign: 'center'
+  },
+  headerTintColor: styles.colors.light,
+  headerLeft: <HeaderMenuButton navData={navData} />,
+  headerTitle: 'Add Item'
+});
 
 export default AddScreen;

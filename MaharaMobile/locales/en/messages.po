@@ -17,42 +17,59 @@ msgstr ""
 #~ msgid "Back to Pending Items"
 #~ msgstr ""
 
-#: components/LoginType/LoginType.tsx:27
+#: components/LoginType/LoginType.tsx:24
 msgid "Enter a different URL"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:47
+#: components/LoginType/LoginType.tsx:44
 msgid "Local Login"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:33
+#: components/LoginType/LoginType.tsx:30
 msgid "Next"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:42
+#: components/LoginType/LoginType.tsx:39
 msgid "Paste in access token"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:21
-msgid "Please enter a URL"
+#: components/AddAudio/AddAudio.tsx:27
+msgid "Pause"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:39
-msgid "Select login type"
-msgstr ""
-
-#: components/LoginType/LoginType.tsx:52
-msgid "Single Sign On"
-msgstr ""
-
-#: components/LoginType/LoginType.tsx:36
-msgid "Skip"
-msgstr ""
-
-#: components/LoginType/LoginType.tsx:13
-msgid "What is the address of your Mahara?"
+#: components/AddAudio/AddAudio.tsx:28
+msgid "Play"
 msgstr ""
 
 #: components/LoginType/LoginType.tsx:18
-msgid "https://master.dev.mahara.org/"
+msgid "Please enter a URL"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:33
+msgid "Re-record"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:31
+msgid "Record"
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:36
+msgid "Select login type"
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:49
+msgid "Single Sign On"
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:33
+msgid "Skip"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:32
+#: components/AddAudio/AddAudio.tsx:145
+msgid "Stop"
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:12
+msgid "What is the address of your Mahara?"
 msgstr ""
