@@ -4,7 +4,6 @@ import { WebView } from 'react-native-webview';
 import uuid from "react-native-uuid";
 import { getManufacturer, getModel } from 'react-native-device-info';
 
-
 type Props = {
   ssoLogin: Function;
   url: string;
@@ -30,7 +29,6 @@ export default function SSOLogin(props: Props) {
               + '#sso';
 
   // Function to watch window until it has obtained maharatoken
-
   const GET_TOKEN = `(function() {
     window.ReactNativeWebView.postMessage(maharatoken);
   })();`;

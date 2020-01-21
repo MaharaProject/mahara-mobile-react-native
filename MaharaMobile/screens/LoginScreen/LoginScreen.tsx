@@ -87,7 +87,6 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   ssoLogin = (token: string, webview: any) => {
-
     this.setState({ token }, () => {
       this.verifyToken();
       webview.stopLoading();
