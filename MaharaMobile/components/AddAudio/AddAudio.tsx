@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Platform, PermissionsAndroid } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import { I18n } from '@lingui/core';
 
 import { buttons } from '../../assets/styles/buttons';
 import styles from './AddAudio.style';
@@ -11,6 +13,7 @@ import { MaharaFile } from '../../models/models';
 type Props = {
   setPickedFile: any;
   isEditing: boolean;
+  i18n: I18n;
 };
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
@@ -59,31 +62,25 @@ const AddAudio = (props: Props) => {
         const grantedStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
-            title: 'Permissions for write access',
-            message: 'Give permission to your storage to write a file',
-            buttonPositive: 'ok',
-          },
+            title: props.i18n._(t `Permissions for write access`),
+            message: props.i18n._(t `Give permission to your storage to write a file`),
+            buttonPositive: props.i18n._(t `ok`)
+          }
         );
-        if (grantedStorage === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('You can use the storage');
-        } else {
-          console.log('permission denied for storage');
-          setIsPermissionGranted(false);
-          return;
-        }
-
         const grantedRecord = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
           {
-            title: 'Permissions for recoding audio',
-            message: 'Give permission to your microphone to record a file',
-            buttonPositive: 'ok',
-          },
+            title: props.i18n._(t `Permissions for recording audio`),
+            message: props.i18n._(t `Give permission to your microphone to record a file`),
+            buttonPositive: props.i18n._(t `ok`)
+          }
         );
-        if (grantedRecord === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('You can use the storage');
-        } else {
-          console.log('Permission denied for microphone');
+
+        if (!(grantedStorage === PermissionsAndroid.RESULTS.GRANTED)) {
+          setIsPermissionGranted(false);
+          return;
+        }
+        if (!(grantedRecord === PermissionsAndroid.RESULTS.GRANTED)) {
           setIsPermissionGranted(false);
           return;
         }
@@ -92,6 +89,7 @@ const AddAudio = (props: Props) => {
         permission = false;
         return permission;
       }
+      setIsPermissionGranted(true);
       return permission;
     }
   };
@@ -216,4 +214,4 @@ const AddAudio = (props: Props) => {
   );
 }
 
-export default AddAudio;
+export default withI18n()(AddAudio);
