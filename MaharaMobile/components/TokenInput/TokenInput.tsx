@@ -10,7 +10,7 @@ import { headingStyles } from '../../assets/styles/headings';
 import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
-  onVerifyToken: Function;
+  onLogin: Function;
   onUpdateToken: Function;
 };
 
@@ -21,10 +21,10 @@ export default function TokenInput(props: Props) {
     <TextInput
         style={forms.textInput}
         // TODO: remove default value for go live
-        defaultValue="c6f3d4fd4b997c96392deeb127ec983b"
+        defaultValue="ab6f3b68f8b0b976cf6b51eac2cd54da"
         onChangeText={(token) => props.onUpdateToken(token)}
       />
-      <TouchableOpacity onPress={() => props.onVerifyToken()}>
+      <TouchableOpacity onPress={() => props.onLogin()}>
         <Text style={buttons.lg}>Verify Token</Text>
       </TouchableOpacity>
     </View>

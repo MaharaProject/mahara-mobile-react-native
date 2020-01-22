@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { addToken, updateGuestStatus } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import SSOLogin from '../../components/SSOLogin/SSOLogin';
+import LocalLogin from '../../components/LocalLogin/LocalLogin';
 import { sendTokenLogin } from '../../utils/helperFunctions';
 import generic from '../../assets/styles/generic';
 import {
@@ -40,6 +41,8 @@ type Props = {
 
 type State = {
   token: string;
+  username: string;
+  password: string;
 };
 
 export class LoginScreen extends Component<Props, State> {
@@ -47,7 +50,9 @@ export class LoginScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: ''
+      token: '',
+      username: '',
+      password: ''
     };
   }
 
@@ -86,16 +91,22 @@ export class LoginScreen extends Component<Props, State> {
     this.setState({ token });
   };
 
-  ssoLogin = (token: string, webview: any) => {
-    this.setState({ token }, () => {
-      this.verifyToken();
-      webview.stopLoading();
-    });
+  setUsername = (username: string) => {
+    this.setState({ username })
   }
 
-  verifyToken = () => {
-    this.login();
-  };
+  setPassword = (password: string) => {
+    this.setState({ password })
+  }
+
+  ssoLogin = (token: string, webview?: any) => {
+    this.setState({ token }, () => {
+      this.login();
+      if (webview) {
+        webview.stopLoading();
+      }
+    });
+  }
 
   /**
    * Save user token to async storage
@@ -128,7 +139,7 @@ export class LoginScreen extends Component<Props, State> {
       <View style={generic.view}>
         {loginType === 'token' ? (
           <TokenInput
-            onVerifyToken={this.verifyToken}
+            onLogin={this.login}
             onUpdateToken={this.updateToken}
           />
         ) : null}
@@ -137,6 +148,14 @@ export class LoginScreen extends Component<Props, State> {
             url={this.props.url}
             ssoLogin={this.ssoLogin}
            />
+        ) : null}
+        {loginType === 'basic' ? (
+          <LocalLogin
+            url={this.props.url}
+            setUsername={this.setUsername}
+            setPassword={this.setPassword}
+            verifyLogin={this.ssoLogin}
+          />
         ) : null}
       </View>
     );
