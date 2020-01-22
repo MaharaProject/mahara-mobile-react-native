@@ -1,5 +1,18 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Buffer } from 'buffer';
+global.Buffer = Buffer;
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {
+  faUser,
+  faPlusCircle,
+  faHistory
+} from '@fortawesome/free-solid-svg-icons';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+
 import { I18nProvider } from '@lingui/react';
 
 import configureStore from './store/store';

@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 import { addToken, updateGuestStatus } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
+import SSOLogin from '../../components/SSOLogin/SSOLogin';
+import { sendTokenLogin } from '../../utils/helperFunctions';
 import generic from '../../assets/styles/generic';
 import {
   selectUrl,
@@ -80,11 +82,16 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   updateToken = (input: string) => {
-    const newToken = input.trim();
-    this.setState({
-      token: newToken
-    });
+    const token = input.trim();
+    this.setState({ token });
   };
+
+  ssoLogin = (token: string, webview: any) => {
+    this.setState({ token }, () => {
+      this.verifyToken();
+      webview.stopLoading();
+    });
+  }
 
   verifyToken = () => {
     this.login();
@@ -124,6 +131,12 @@ export class LoginScreen extends Component<Props, State> {
             onVerifyToken={this.verifyToken}
             onUpdateToken={this.updateToken}
           />
+        ) : null}
+        {loginType === 'sso' ? (
+          <SSOLogin
+            url={this.props.url}
+            ssoLogin={this.ssoLogin}
+           />
         ) : null}
       </View>
     );
