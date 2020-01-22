@@ -40,6 +40,7 @@ target 'MaharaMobile' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
   pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
