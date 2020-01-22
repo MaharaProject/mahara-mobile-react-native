@@ -11,6 +11,7 @@ import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/
 import setTagString from '../../utils/formhelper';
 import popNavigationStack from '../../utils/helperFunctions';
 import { StackActions } from 'react-navigation';
+import MediumButton from '../MediumButton/MediumButton';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -145,7 +146,7 @@ const UploadForm = (props: Props) => {
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate({routeName: 'PendingScreen', params: { formType: formType }});
+    props.navigation.navigate('Pending');
   };
 
   return (
@@ -238,10 +239,24 @@ const UploadForm = (props: Props) => {
         </Picker>
       </View>
       {checkFile || title && description ?
-        <TouchableOpacity onPress={() => handleForm() }>
-          { props.editItem && <Text style={buttons.lg}>Confirm edits to {formType}</Text> }
-          { !props.editItem && <Text style={buttons.lg}>Add {formType} to Pending</Text> }
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity onPress={() => handleForm() }>
+            {props.editItem && <Text style={buttons.lg}>Confirm edits to {formType}</Text> }
+            {!props.editItem && <Text style={buttons.lg}>Add {formType} to pending</Text> }
+          </TouchableOpacity>
+
+          {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
+          pressing the device back button will still remain on the wrong stack: AddScreen not Pending */}
+          {props.editItem && (
+            <MediumButton
+              title="Cancel"
+              onPress={() => {
+                props.navigation.popToTop();
+                props.navigation.navigate('Pending');
+              }}
+            />
+          )}
+      </View>
       : null}
     </View>
   );

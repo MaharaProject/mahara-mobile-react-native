@@ -27,4 +27,8 @@
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 
+    <!-- for react-native-image-picker -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
+
 </manifest>

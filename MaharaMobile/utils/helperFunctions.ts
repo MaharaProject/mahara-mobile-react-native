@@ -1,4 +1,4 @@
-import { JournalEntry, MaharaFileFormData } from '../models/models';
+import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry } from '../models/models';
 import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags } from '../actions/actions';
 
 import { StackActions } from 'react-navigation';
@@ -61,8 +61,15 @@ export function isJournalEntry(x: any): x is JournalEntry {
   return (x as JournalEntry).blogid !== undefined;
 }
 
+export function isPendingJournalEntry(x: any): x is PendingJournalEntry {
+  return (x as PendingJournalEntry).journalEntry !== undefined;
+}
 export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
   return (x as MaharaFileFormData).filetoupload !== undefined;
+}
+
+export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
+  return (x as MaharaPendingFile).maharaFormData !== undefined;
 }
 
 export const popNavigationStack = StackActions.pop({ n: 1 });

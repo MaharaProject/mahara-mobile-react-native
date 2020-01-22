@@ -34,6 +34,7 @@
     "react-native-document-picker": "git+https://github.com/Elyx0/react-native-document-picker.git#v2",
     "react-native-elements": "^1.2.7",
     "react-native-gesture-handler": "^1.5.3",
+    "react-native-image-picker": "^2.0.0",
     "react-native-paper": "^3.2.1",
     "react-native-reanimated": "^1.4.0",
     "react-native-safe-area-context": "^0.6.2",
