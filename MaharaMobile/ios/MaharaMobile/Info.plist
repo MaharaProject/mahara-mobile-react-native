@@ -37,6 +37,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This allows you to upload audio to your Mahara site. It is then deleted from your device.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>UILaunchStoryboardName</key>

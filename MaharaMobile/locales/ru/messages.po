@@ -21,6 +21,18 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
+#: components/AddAudio/AddAudio.tsx:53
+#: components/AddAudio/AddAudio.tsx:67
+#: components/AddAudio/AddAudio.tsx:67
+msgid "Give permission to your microphone to record a file"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:55
+#: components/AddAudio/AddAudio.tsx:62
+#: components/AddAudio/AddAudio.tsx:62
+msgid "Give permission to your storage to write a file"
+msgstr ""
+
 #: components/LoginType/LoginType.tsx:44
 msgid "Local Login"
 msgstr ""
@@ -33,11 +45,23 @@ msgstr ""
 msgid "Paste in access token"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:27
+#: components/AddAudio/AddAudio.tsx:29
 msgid "Pause"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:28
+#: components/AddAudio/AddAudio.tsx:52
+#: components/AddAudio/AddAudio.tsx:66
+#: components/AddAudio/AddAudio.tsx:66
+msgid "Permissions for recoding audio"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:54
+#: components/AddAudio/AddAudio.tsx:61
+#: components/AddAudio/AddAudio.tsx:61
+msgid "Permissions for write access"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:30
 msgid "Play"
 msgstr ""
 
@@ -45,11 +69,11 @@ msgstr ""
 msgid "Please enter a URL"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:33
+#: components/AddAudio/AddAudio.tsx:35
 msgid "Re-record"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:31
+#: components/AddAudio/AddAudio.tsx:33
 msgid "Record"
 msgstr ""
 
@@ -65,11 +89,30 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:32
-#: components/AddAudio/AddAudio.tsx:145
+#: components/AddAudio/AddAudio.tsx:34
+#: components/AddAudio/AddAudio.tsx:191
 msgid "Stop"
 msgstr ""
 
 #: components/LoginType/LoginType.tsx:12
 msgid "What is the address of your Mahara?"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:56
+#: components/AddAudio/AddAudio.tsx:63
+#: components/AddAudio/AddAudio.tsx:63
+msgid "ok"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:57
+#~ msgid "okay"
+#~ msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:68
+#: components/AddAudio/AddAudio.tsx:68
+msgid "test"
+msgstr ""
+
+#: components/MediumButton/MediumButton.tsx:11
+msgid "{0}"
 msgstr ""

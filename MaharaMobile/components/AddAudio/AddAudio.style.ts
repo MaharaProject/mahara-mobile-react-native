@@ -11,5 +11,9 @@ export default StyleSheet.create({
   },
   buttonWrap: {
     flexDirection: 'row'
+  },
+  warning: {
+    color: styles.colors.warn,
+    marginBottom: styles.padding.md
   }
 });

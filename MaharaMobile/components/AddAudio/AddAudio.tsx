@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, Text, View, Platform, PermissionsAndroid } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import { Trans } from '@lingui/macro';
+import { Trans, t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import { I18n } from '@lingui/core';
 
 import { buttons } from '../../assets/styles/buttons';
 import styles from './AddAudio.style';
@@ -11,6 +13,7 @@ import { MaharaFile } from '../../models/models';
 type Props = {
   setPickedFile: any;
   isEditing: boolean;
+  i18n: I18n;
 };
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
@@ -26,6 +29,7 @@ const AddAudio = (props: Props) => {
   const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>('notplaying');
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
   const playStrings = {
     playing: <Trans>Pause</Trans>,
@@ -49,8 +53,55 @@ const AddAudio = (props: Props) => {
     }
   }, [props.isEditing]);
 
+  // Check permissions
+  const checkPermissions = async () => {
+    let permission = true;
+
+    if (Platform.OS === 'android') {
+      try {
+        const grantedStorage = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: props.i18n._(t `Permissions for write access`),
+            message: props.i18n._(t `Give permission to your storage to write a file`),
+            buttonPositive: props.i18n._(t `ok`)
+          }
+        );
+        const grantedRecord = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+          {
+            title: props.i18n._(t `Permissions for recording audio`),
+            message: props.i18n._(t `Give permission to your microphone to record a file`),
+            buttonPositive: props.i18n._(t `ok`)
+          }
+        );
+
+        if (!(grantedStorage === PermissionsAndroid.RESULTS.GRANTED)) {
+          setIsPermissionGranted(false);
+          return;
+        }
+        if (!(grantedRecord === PermissionsAndroid.RESULTS.GRANTED)) {
+          setIsPermissionGranted(false);
+          return;
+        }
+      } catch (err) {
+        setIsPermissionGranted(false);
+        permission = false;
+        return permission;
+      }
+      setIsPermissionGranted(true);
+      return permission;
+    }
+  };
+
   // Handling recording
-  const handleRecord = () => {
+  const handleRecord = async () => {
+    const permission = await checkPermissions();
+
+    if (!permission) {
+      return;
+    }
+
     if (recordButtonStatus === 'unrecorded' || recordButtonStatus === 'recorded') {
       onStartRecord();
       setIsRecorded(false);
@@ -155,9 +206,12 @@ const AddAudio = (props: Props) => {
             <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
           </TouchableOpacity>
         : null}
+        {!isPermissionGranted ?
+          <Text style={styles.warning}>You need to grant the app permission in order to use this feature</Text>
+        : null}
       </View>
     </View>
   );
 }
 
-export default AddAudio;
+export default withI18n()(AddAudio);

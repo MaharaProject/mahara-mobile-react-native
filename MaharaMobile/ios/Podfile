@@ -21,6 +21,7 @@ target 'MaharaMobile' do
   pod 'React-RCTText', :path => '../node_modules/react-native/Libraries/Text'
   pod 'React-RCTVibration', :path => '../node_modules/react-native/Libraries/Vibration'
   pod 'React-Core/RCTWebSocket', :path => '../node_modules/react-native/'
+  pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone.podspec"
 
   pod 'React-cxxreact', :path => '../node_modules/react-native/ReactCommon/cxxreact'
   pod 'React-jsi', :path => '../node_modules/react-native/ReactCommon/jsi'
@@ -45,6 +46,8 @@ target 'MaharaMobile' do
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
   pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
+  pod 'RNAudioRecorderPlayer', :path => '../node_modules/react-native-audio-recorder-player'
 
   target 'MaharaMobileTests' do
     inherit! :search_paths
