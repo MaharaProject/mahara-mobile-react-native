@@ -12,9 +12,7 @@ import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
   url: string;
-  verifyLogin: Function;
-  setUsername: Function;
-  setPassword: Function;
+  onUpdateToken: Function;
 };
 
 export default function LocalLogin(props: Props) {
@@ -44,10 +42,7 @@ export default function LocalLogin(props: Props) {
     try {
       const request = await fetch(url, config);
       const json = await request.json();
-      props.setUsername(username);
-      props.setPassword(password);
-      props.verifyLogin(json.token);
-      console.log('token', json.token.trim());
+      props.onUpdateToken(json.token);
     } catch (e) {
       console.log(e);
     }

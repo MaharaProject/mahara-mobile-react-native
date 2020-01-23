@@ -5,7 +5,7 @@ import uuid from "react-native-uuid";
 import { getManufacturer, getModel } from 'react-native-device-info';
 
 type Props = {
-  ssoLogin: Function;
+  onUpdateToken: Function;
   url: string;
 }
 
@@ -35,7 +35,7 @@ export default function SSOLogin(props: Props) {
 
   useEffect(() => {
     if (token) {
-      props.ssoLogin(token, webref);
+      props.onUpdateToken(token, webref);
     }
   }, [token]);
 

@@ -86,20 +86,7 @@ export class LoginScreen extends Component<Props, State> {
       .then(() => this.props.navigation.navigate('App'));
   };
 
-  updateToken = (input: string) => {
-    const token = input.trim();
-    this.setState({ token });
-  };
-
-  setUsername = (username: string) => {
-    this.setState({ username })
-  }
-
-  setPassword = (password: string) => {
-    this.setState({ password })
-  }
-
-  ssoLogin = (token: string, webview?: any) => {
+  updateToken = (token: string, webview?: any) => {
     this.setState({ token }, () => {
       this.login();
       if (webview) {
@@ -139,22 +126,19 @@ export class LoginScreen extends Component<Props, State> {
       <View style={generic.view}>
         {loginType === 'token' ? (
           <TokenInput
-            onLogin={this.login}
             onUpdateToken={this.updateToken}
           />
         ) : null}
         {loginType === 'sso' ? (
           <SSOLogin
             url={this.props.url}
-            ssoLogin={this.ssoLogin}
+            onUpdateToken={this.updateToken}
            />
         ) : null}
         {loginType === 'basic' ? (
           <LocalLogin
             url={this.props.url}
-            setUsername={this.setUsername}
-            setPassword={this.setPassword}
-            verifyLogin={this.ssoLogin}
+            onUpdateToken={this.updateToken}
           />
         ) : null}
       </View>
