@@ -1,8 +1,8 @@
 import 'react-native';
 import React from 'react';
-import AddScreen from './AddScreen';
+import SelectMediaScreen from './SelectMediaScreen';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
-  renderer.create(<AddScreen {...props} />);
+  renderer.create(<SelectMediaScreen {...props} />);
 });

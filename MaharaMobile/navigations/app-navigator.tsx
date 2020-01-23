@@ -10,8 +10,8 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Platform } from 'react-native';
 import {createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import AddScreen from '../screens/AddScreen/AddScreen';
-import AddFileScreen from '../screens/AddFileScreen/AddFileScreen';
+import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
+import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import DetailsScreen from '../screens/DetailsScreen/DetailsScreen';
 import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
@@ -23,8 +23,8 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 
 const AppNavigator = () => {
   const AddItemsTabNavigator = createStackNavigator({
-    Add: AddScreen,
-    AddFile: AddFileScreen
+    Add: SelectMediaScreen,
+    AddFile: AddItemScreen
   });
 
   const PendingItemsTabNavigator = createStackNavigator({

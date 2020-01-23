@@ -7,7 +7,7 @@ import ImagePicker from 'react-native-image-picker';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import AddAudio from '../../components/AddAudio/AddAudio';
-import styles from '../AddFileScreen/AddFileScreen.style';
+import styles from '../AddItemScreen/AddItemScreen.style';
 import generic from '../../assets/styles/generic';
 import { buttons } from '../../assets/styles/buttons';
 import { MaharaFile, UserTag, UserBlog, UserFolder, MaharaPendingFile } from '../../models/models';
@@ -36,7 +36,7 @@ type Props = {
   userBlogs: Array<UserBlog>;
 };
 
-const AddFileScreen = (props: Props) => {
+const AddItemScreen = (props: Props) => {
   let initialState = { uri: '', name: '', type: '', size: 0 };
   let isEditing = false;
   let formType = props.navigation.getParam('formType');
@@ -130,7 +130,7 @@ const AddFileScreen = (props: Props) => {
             <Image source={{ uri: pickedFile.uri }} style={styles.image} />
           </View>
         ) : null}
-        {formType === 'file' && 
+        {formType === 'file' &&
           <View>
             <TouchableOpacity onPress={() => pickDocument()}>
               <Text style={buttons.lg}>{filePickerButtonText}</Text>
@@ -175,7 +175,7 @@ const setAddorEdit = (props: Props) => {
   return 'Add';
 };
 
-AddFileScreen.navigationOptions = (props: Props) => ({
+AddItemScreen.navigationOptions = (props: Props) => ({
   headerTitle: `${setAddorEdit(props)} ${props.navigation.getParam('formType')}`,
   headerLeft: null
 });
@@ -192,4 +192,4 @@ const mapStateToProps = (state: RootState) => {
   };
 };
 
-export default connect(mapStateToProps)(AddFileScreen);
+export default connect(mapStateToProps)(AddItemScreen);
