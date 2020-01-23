@@ -11,7 +11,7 @@ type Props = {
   navigation: any;
 }
 
-const AddScreen = (props: Props) => {
+const SelectMediaScreen = (props: Props) => {
   const selectMediaType = (type: string) => {
     props.navigation.navigate({routeName: 'AddFile', params: { formType: type }});
   };
@@ -25,7 +25,7 @@ const AddScreen = (props: Props) => {
   );
 }
 
-AddScreen.navigationOptions = (navData: any) => ({
+SelectMediaScreen.navigationOptions = (navData: any) => ({
   headerStyle: {
     backgroundColor: styles.colors.primary
   },
@@ -39,4 +39,4 @@ AddScreen.navigationOptions = (navData: any) => ({
   headerTitle: 'Add Item'
 });
 
-export default AddScreen;
+export default SelectMediaScreen;

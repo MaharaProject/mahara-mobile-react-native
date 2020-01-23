@@ -246,7 +246,7 @@ const UploadForm = (props: Props) => {
           </TouchableOpacity>
 
           {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
-          pressing the device back button will still remain on the wrong stack: AddScreen not Pending */}
+          pressing the device back button will still remain on the wrong stack: SelectMediaScreen not Pending */}
           {props.editItem && (
             <MediumButton
               title="Cancel"
