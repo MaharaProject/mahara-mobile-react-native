@@ -4,6 +4,8 @@ import { Platform } from 'react-native';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import uuid from "react-native-uuid";
 import { getManufacturer, getModel } from 'react-native-device-info';
+import { I18n } from "@lingui/react"
+import { t, Trans } from '@lingui/macro';
 
 import generic from '../../assets/styles/generic';
 import { forms } from '../../assets/styles/forms';
@@ -50,20 +52,28 @@ export default function LocalLogin(props: Props) {
 
   return (
     <View style={generic.wrap}>
-      <Text style={headingStyles.mainHeading}>Login via Token</Text>
-      <TextInput
-        style={forms.textInput}
-        placeholder="Enter your username"
-        onChangeText={(username) => setUsername(username)}
-      />
-      <TextInput
-        style={forms.textInput}
-        secureTextEntry={true}
-        placeholder="Enter your password"
-        onChangeText={(password) => setPassword(password)}
-      />
+      <Text style={headingStyles.mainHeading}><Trans>Login via Token</Trans></Text>
+      <I18n>
+        {({i18n}) => (
+          <TextInput
+            style={forms.textInput}
+            placeholder={i18n._(t `Enter your username`)}
+            onChangeText={(username) => setUsername(username)}
+          />
+        )};
+      </I18n>
+      <I18n>
+        {({i18n}) => (
+          <TextInput
+            style={forms.textInput}
+            secureTextEntry={true}
+            placeholder={i18n._(t `Enter your password`)}
+            onChangeText={(password) => setPassword(password)}
+          />
+        )};
+      </I18n>
       <TouchableOpacity onPress={() => checkLogins()}>
-        <Text style={buttons.lg}>Login</Text>
+        <Text style={buttons.lg}><Trans>Login</Trans></Text>
       </TouchableOpacity>
     </View>
   );
