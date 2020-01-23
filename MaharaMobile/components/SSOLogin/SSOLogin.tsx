@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
-import uuid from "react-native-uuid";
+import uuid from 'react-native-uuid';
 import { getManufacturer, getModel } from 'react-native-device-info';
 
 type Props = {
@@ -14,8 +14,8 @@ export default function SSOLogin(props: Props) {
   const [token, setToken] = useState('');
 
   // Params for SSO login to retain authentication
-  const service = "maharamobile";
-  const component = "module/mobileapi";
+  const service = 'maharamobile';
+  const component = 'module/mobileapi';
   const manufacturer = getManufacturer();
   const model = getModel();
   const id = uuid.v4();

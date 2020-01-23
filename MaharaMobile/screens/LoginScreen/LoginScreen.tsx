@@ -6,7 +6,6 @@ import { addToken, updateGuestStatus } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import SSOLogin from '../../components/SSOLogin/SSOLogin';
 import LocalLogin from '../../components/LocalLogin/LocalLogin';
-import { sendTokenLogin } from '../../utils/helperFunctions';
 import generic from '../../assets/styles/generic';
 import {
   selectUrl,
@@ -125,21 +124,13 @@ export class LoginScreen extends Component<Props, State> {
     return (
       <View style={generic.view}>
         {loginType === 'token' ? (
-          <TokenInput
-            onUpdateToken={this.updateToken}
-          />
+          <TokenInput onUpdateToken={this.updateToken} />
         ) : null}
         {loginType === 'sso' ? (
-          <SSOLogin
-            url={this.props.url}
-            onUpdateToken={this.updateToken}
-           />
+          <SSOLogin url={this.props.url} onUpdateToken={this.updateToken} />
         ) : null}
         {loginType === 'basic' ? (
-          <LocalLogin
-            url={this.props.url}
-            onUpdateToken={this.updateToken}
-          />
+          <LocalLogin url={this.props.url} onUpdateToken={this.updateToken} />
         ) : null}
       </View>
     );

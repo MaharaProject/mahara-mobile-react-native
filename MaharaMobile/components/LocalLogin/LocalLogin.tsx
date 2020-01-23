@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
-import uuid from "react-native-uuid";
+import uuid from 'react-native-uuid';
 import { getManufacturer, getModel } from 'react-native-device-info';
-import { I18n } from "@lingui/react"
+import { I18n } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 
 import generic from '../../assets/styles/generic';
@@ -58,7 +58,7 @@ export default function LocalLogin(props: Props) {
           <TextInput
             style={forms.textInput}
             placeholder={i18n._(t `Enter your username`)}
-            onChangeText={(username) => setUsername(username)}
+            onChangeText={(usernameInput) => setUsername(usernameInput)}
           />
         )};
       </I18n>
@@ -68,7 +68,7 @@ export default function LocalLogin(props: Props) {
             style={forms.textInput}
             secureTextEntry={true}
             placeholder={i18n._(t `Enter your password`)}
-            onChangeText={(password) => setPassword(password)}
+            onChangeText={(passwordInput) => setPassword(passwordInput)}
           />
         )};
       </I18n>

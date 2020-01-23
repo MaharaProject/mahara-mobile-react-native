@@ -8,7 +8,6 @@ import { headingStyles } from '../../assets/styles/headings';
 import { buttons } from '../../assets/styles/buttons';
 
 type Props = {
-  onLogin: Function;
   onUpdateToken: Function;
 };
 
@@ -18,7 +17,7 @@ export default function TokenInput(props: Props) {
   const handleToken = (input: string) => {
     const token = input.trim();
     setToken(token);
-  }
+  };
 
   return (
     <View style={styles.view}>
