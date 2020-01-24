@@ -54,23 +54,21 @@ export default function LocalLogin(props: Props) {
     <View style={generic.wrap}>
       <Text style={headingStyles.mainHeading}><Trans>Login via Token</Trans></Text>
       <I18n>
-        {({i18n}) => (
-          <TextInput
-            style={forms.textInput}
-            placeholder={i18n._(t `Enter your username`)}
-            onChangeText={(usernameInput) => setUsername(usernameInput)}
-          />
-        )};
+        {({ i18n }) => <TextInput
+                          style={forms.textInput}
+                          placeholder={i18n._(t `Enter your username`)}
+                          onChangeText={(usernameInput) => setUsername(usernameInput)}
+                        />
+        }
       </I18n>
       <I18n>
-        {({i18n}) => (
-          <TextInput
-            style={forms.textInput}
-            secureTextEntry={true}
-            placeholder={i18n._(t `Enter your password`)}
-            onChangeText={(passwordInput) => setPassword(passwordInput)}
-          />
-        )};
+        {({ i18n }) => <TextInput
+                          style={forms.textInput}
+                          secureTextEntry={true}
+                          placeholder={i18n._(t `Enter your password`)}
+                          onChangeText={(passwordInput) => setPassword(passwordInput)}
+                        />
+        }
       </I18n>
       <TouchableOpacity onPress={() => checkLogins()}>
         <Text style={buttons.lg}><Trans>Login</Trans></Text>
