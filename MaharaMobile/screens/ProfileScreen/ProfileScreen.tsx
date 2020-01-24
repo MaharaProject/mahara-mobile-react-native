@@ -65,7 +65,7 @@ export class ProfileScreen extends Component<Props, State> {
 
   getProfilePic = async () => {
     if (!this.props.token || this.props.token === 'guest') return;
-    fetchProfilePic(this.props.dispatch, this.props.token);
+    fetchProfilePic(this.props.dispatch, this.props.token, this.props.url);
   };
 
   signOutAsync = async () => {

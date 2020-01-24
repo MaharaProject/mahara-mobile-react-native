@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { addToken, updateGuestStatus } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import SSOLogin from '../../components/SSOLogin/SSOLogin';
-import { sendTokenLogin } from '../../utils/helperFunctions';
+import LocalLogin from '../../components/LocalLogin/LocalLogin';
 import generic from '../../assets/styles/generic';
 import {
   selectUrl,
@@ -40,6 +40,8 @@ type Props = {
 
 type State = {
   token: string;
+  username: string;
+  password: string;
 };
 
 export class LoginScreen extends Component<Props, State> {
@@ -47,7 +49,9 @@ export class LoginScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: ''
+      token: '',
+      username: '',
+      password: ''
     };
   }
 
@@ -81,21 +85,14 @@ export class LoginScreen extends Component<Props, State> {
       .then(() => this.props.navigation.navigate('App'));
   };
 
-  updateToken = (input: string) => {
-    const token = input.trim();
-    this.setState({ token });
-  };
-
-  ssoLogin = (token: string, webview: any) => {
+  updateToken = (token: string, webview?: any) => {
     this.setState({ token }, () => {
-      this.verifyToken();
-      webview.stopLoading();
+      this.login();
+      if (webview) {
+        webview.stopLoading();
+      }
     });
   }
-
-  verifyToken = () => {
-    this.login();
-  };
 
   /**
    * Save user token to async storage
@@ -127,16 +124,13 @@ export class LoginScreen extends Component<Props, State> {
     return (
       <View style={generic.view}>
         {loginType === 'token' ? (
-          <TokenInput
-            onVerifyToken={this.verifyToken}
-            onUpdateToken={this.updateToken}
-          />
+          <TokenInput onUpdateToken={this.updateToken} />
         ) : null}
         {loginType === 'sso' ? (
-          <SSOLogin
-            url={this.props.url}
-            ssoLogin={this.ssoLogin}
-           />
+          <SSOLogin url={this.props.url} onUpdateToken={this.updateToken} />
+        ) : null}
+        {loginType === 'basic' ? (
+          <LocalLogin url={this.props.url} onUpdateToken={this.updateToken} />
         ) : null}
       </View>
     );

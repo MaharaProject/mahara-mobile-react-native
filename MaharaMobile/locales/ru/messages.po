@@ -21,6 +21,12 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
+#: components/LocalLogin/LocalLogin.tsx:57
+msgid "Enter your password"
+msgstr ""
+
+#: components/LocalLogin/LocalLogin.tsx:54
+msgid "Enter your username"
 #: components/AddAudio/AddAudio.tsx:53
 #: components/AddAudio/AddAudio.tsx:67
 #: components/AddAudio/AddAudio.tsx:67
@@ -35,6 +41,14 @@ msgstr ""
 
 #: components/LoginType/LoginType.tsx:44
 msgid "Local Login"
+msgstr ""
+
+#: components/LocalLogin/LocalLogin.tsx:60
+msgid "Login"
+msgstr ""
+
+#: components/LocalLogin/LocalLogin.tsx:52
+msgid "Login via Token"
 msgstr ""
 
 #: components/LoginType/LoginType.tsx:30
@@ -89,6 +103,8 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
+#: components/AddAudio/AddAudio.tsx:32
+#: components/AddAudio/AddAudio.tsx:143
 #: components/AddAudio/AddAudio.tsx:34
 #: components/AddAudio/AddAudio.tsx:191
 msgid "Stop"

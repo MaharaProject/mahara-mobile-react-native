@@ -117,10 +117,10 @@ export const updatePendingItemsOnLogin = async (
   await dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
 };
 
-export const fetchProfilePic = async (dispatch: any, token: string) => {
+export const fetchProfilePic = async (dispatch: any, token: string, url: string) => {
   const api = 'module_mobileapi_get_user_profileicon&height=100&width=100';
   const wstoken = token;
-  const serverUrl = `https://master.dev.mahara.org/module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;
+  const serverUrl = url + `module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;
 
   let profilePic = '';
 
