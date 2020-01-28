@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements';
 
 import pendingScreenStyles from './PendingScreen.style';
 import { buttons } from '../../assets/styles/buttons';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
-import Spinner from '../../components/Spinner/Spinner'
 import PendingList from '../../components/PendingList/PendingList';
-import { uploadItemToMahara, isJournalEntry } from '../../utils/helperFunctions';
+import { uploadItemToMahara, isJournalEntry, usePreviousProps } from '../../utils/helperFunctions';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
@@ -26,168 +26,158 @@ type Props = {
   userName: string;
 }
 
-type State = {
-  uploadRequestPending: boolean;
-  uploadRequestReceived: boolean;
-  successMessage: string;
-  uploadItemsExist: boolean;
-  successfullyUploadedItems: Array<any>;
-  uploadErrorItems: Array<any>;
-}
+const PendingScreen = (props: Props) => {
+  const uploadItemsCount = props.uploadFiles.length + props.uploadJEntries.length;
+  const prevUploadCount = usePreviousProps(uploadItemsCount) || 0;
+  const [successfullyUploadedItems, setSuccessfullyUploadedItems] = useState<string[]>([]);
+  const [uploadErrorItems, setUploadErrorItems] = useState<string[]>([]);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-export class PendingScreen extends Component<Props, State> {
-  static navigationOptions = (navData) => ({
-    headerStyle: {
-      backgroundColor: styles.colors.primary
-    },
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      flex: 1,
-      textAlign: 'center'
-    },
-    headerTintColor: '#fff',
-    headerLeft: <HeaderMenuButton navData={navData} />,
-    headerTitle: 'Pending items'
-  });
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      uploadRequestPending: false,
-      uploadRequestReceived: false,
-      successMessage: '',
-      uploadItemsExist: (this.props.uploadFiles.length + this.props.uploadJEntries.length > 0 ? true : false),
-      successfullyUploadedItems: [],
-      uploadErrorItems: []
-    };
-  }
-
-  pendingDisplay = () => {
-    const { uploadRequestPending, uploadRequestReceived, successMessage } = this.state
-    let list: Array<any> = [];
-
-    if (this.props.uploadFilesIds?.length > 0) list = list.concat(this.props.uploadFiles);
-    if (this.props.uploadJEntriesIds?.length > 0) list = list.concat(this.props.uploadJEntries)
-
-    if (this.state.uploadItemsExist) {
-      return <View>{this.renderPendingList(list)}</View>;
+  useEffect(() => {
+    if (prevUploadCount < uploadItemsCount && uploadItemsCount !== 0) {
+      setShowSuccessMessage(true);
     }
-    if (uploadRequestPending) return <Spinner />;
-    if (!uploadRequestPending && uploadRequestReceived) return <Text>{successMessage}</Text>;
-    return <Text>No pending uploads</Text>;
-  };
+  }, [uploadItemsCount]);
 
   /**
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
-  onRemove = (itemId: string) => {
-    this.props.dispatch(removeUploadFile(itemId));
-    this.props.dispatch(removeUploadJEntry(itemId));
-  }
-
-  onUploadClick = () => {
-    this.props.uploadFiles.forEach(file => {
-      this.clearUploadError(file.id);
-      this.props.dispatch(uploadItemToMahara(file.url, file.maharaFormData))
-        .then((result: any) => {
-          // an error either returns result = undefined, or result = { error: true }
-          if (result === undefined || result.error) {
-            this.onUploadError(file.id);
-          } else this.onSuccessfulUpload(file.id);
-        });
-    });
-
-    this.props.uploadJEntries.forEach(journalEntry => {
-      this.clearUploadError(journalEntry.id)
-      this.props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
-        .then((result: any) => {
-          if (result === undefined || result.error) {
-            this.onUploadError(journalEntry.id);
-          } else this.onSuccessfulUpload(journalEntry.id);
-        });
-    });
+  const onRemove = (itemId: string) => {
+    props.dispatch(removeUploadFile(itemId));
+    props.dispatch(removeUploadJEntry(itemId));
   };
 
-  onSuccessfulUpload = (id: string) => {
-    // change class to show upload success
-    this.setState({ successfullyUploadedItems: [...this.state.successfullyUploadedItems, id] });
-    // then, card disappears
-    // and remove id from successfullyUploadedItems to clear memory
-    setTimeout(() => {
-      this.props.dispatch(removeUploadFile(id));
-      this.props.dispatch(removeUploadJEntry(id));
-
-      const newState = this.state.successfullyUploadedItems.filter(item => item !== id);
-      this.setState({ successfullyUploadedItems: newState });
-    }, 1000);
-  };
-
-  onUploadError = (id: string) => {
-    this.setState({ uploadErrorItems: [...this.state.uploadErrorItems, id] });
-  };
-
-  clearUploadError = (id: string) => {
-    this.setState(prevState => {
-      const newState = prevState.uploadErrorItems.filter(item => item !== id);
-      return { uploadErrorItems: newState };
-    });
-  };
-
-  onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
+  const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
     const type = isJournalEntry(item) ? 'journal entry' : item.type;
-    this.props.navigation.navigate({routeName: 'AddFile', params: { itemToEdit: item, formType: type }});
+    props.navigation.navigate({ routeName: 'AddFile', params: { item: item, formType: type } });
+  };
+
+  const clearUploadError = (id: string) => {
+    const newState = uploadErrorItems.filter(item => item !== id);
+    setUploadErrorItems(newState);
+  };
+
+  const onUploadError = (id: string) => {
+    setUploadErrorItems([...uploadErrorItems, id]);
   };
 
   /**
    * Renders a PendingList
    * @param dataList array of files and journal entries
    */
-  renderPendingList(dataList: Array<any>) {
+  const renderPendingList = (dataList: Array<any>) => {
     return (
       <PendingList
         dataList={dataList}
-        onRemove={this.onRemove}
-        onEdit={this.onEdit}
-        navigation={this.props.navigation}
-        successfullyUploadedItems={this.state.successfullyUploadedItems}
-        uploadErrorItems={this.state.uploadErrorItems}
-        onClearError={this.clearUploadError}
+        onRemove={onRemove}
+        onEdit={onEdit}
+        navigation={props.navigation}
+        successfullyUploadedItems={successfullyUploadedItems}
+        uploadErrorItems={uploadErrorItems}
+        onClearError={clearUploadError}
       />
     );
   }
 
-  render() {
-    return (
-      <View style={pendingScreenStyles.app}>
-        <View style={pendingScreenStyles.listContainer}>
-          {this.pendingDisplay()}
-        </View>
-        <View style={pendingScreenStyles.buttonContainer}>
-          {this.props.userName !== 'guest' ? (
-            <TouchableOpacity onPress={this.onUploadClick}>
-              <Text style={buttons.lg}>Upload to your Mahara</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate('Auth')}>
-              <Text style={buttons.lg}>Please login</Text>
-            </TouchableOpacity>)
-          }
-        </View>
-      </View>
-    );
-  }
-}
+  const pendingDisplay = () => {
+    let list: Array<any> = [];
 
-const mapStateToProps = (state: RootState) => {
-  return {
-    uploadFiles: selectAllUploadFiles(state),
-    uploadFilesIds: selectAllUploadFilesIds(state),
-    uploadJEntries: selectAllJEntries(state),
-    uploadJEntriesIds: selectAllJEntriesIds(state),
-    userName: selectUserName(state)
+    if (props.uploadFilesIds?.length > 0) list = list.concat(props.uploadFiles);
+    if (props.uploadJEntriesIds?.length > 0) list = list.concat(props.uploadJEntries);
+
+    if (uploadItemsCount > 0) {
+      return <View>{renderPendingList(list)}</View>;
+    }
+    return <Text>No pending uploads</Text>;
   };
+
+  const onSuccessfulUpload = (id: string) => {
+    // change class to show upload success
+    setSuccessfullyUploadedItems([...successfullyUploadedItems, id]);
+    // then, card disappears
+    // and remove id from successfullyUploadedItems to clear memory
+    setTimeout(() => {
+      props.dispatch(removeUploadFile(id));
+      props.dispatch(removeUploadJEntry(id));
+
+      const newState = successfullyUploadedItems.filter(item => item !== id);
+      setSuccessfullyUploadedItems(newState);
+    }, 1000);
+  };
+
+  const onUploadClick = () => {
+    props.uploadFiles.forEach(file => {
+      clearUploadError(file.id);
+      props.dispatch(uploadItemToMahara(file.url, file.maharaFormData))
+        .then((result: any) => {
+          // an error either returns result = undefined, or result = { error: true }
+          if (result === undefined || result.error) {
+            onUploadError(file.id);
+          } else onSuccessfulUpload(file.id);
+        });
+    });
+
+    props.uploadJEntries.forEach(journalEntry => {
+      clearUploadError(journalEntry.id);
+      props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
+        .then((result: any) => {
+          if (result === undefined || result.error) {
+            onUploadError(journalEntry.id);
+          } else onSuccessfulUpload(journalEntry.id);
+        });
+    });
+  };
+
+  return (
+    <View style={pendingScreenStyles.app}>
+      {showSuccessMessage &&
+        <View>
+          <Text>Upload added to Pending List!</Text>
+          <Icon
+            onPress={() => setShowSuccessMessage(false)}
+            accessibilityLabel="Close success message"
+            name="times"
+            type="font-awesome"
+            color={styles.colors.dark}
+          />
+        </View>
+      }
+      <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
+      <View style={pendingScreenStyles.buttonContainer}>
+        {props.userName !== 'guest' ? (
+          <TouchableOpacity onPress={onUploadClick}>
+            <Text style={buttons.lg}>Upload to your Mahara</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => props.navigation.navigate('Auth')}>
+            <Text style={buttons.lg}>Please login</Text>
+          </TouchableOpacity>)
+        }
+      </View>
+    </View>
+  );
 };
+
+PendingScreen.navigationOptions = (navData: any) => ({
+  headerStyle: {
+    backgroundColor: styles.colors.primary
+  },
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    flex: 1,
+    textAlign: 'center'
+  },
+  headerTintColor: styles.colors.light,
+  headerLeft: <HeaderMenuButton navData={navData} />,
+  headerTitle: 'Add Item'
+});
+
+const mapStateToProps = (state: RootState) => ({
+  uploadFiles: selectAllUploadFiles(state),
+  uploadFilesIds: selectAllUploadFilesIds(state),
+  uploadJEntries: selectAllJEntries(state),
+  uploadJEntriesIds: selectAllJEntriesIds(state),
+  userName: selectUserName(state)
+});
 
 export default connect(mapStateToProps)(PendingScreen);

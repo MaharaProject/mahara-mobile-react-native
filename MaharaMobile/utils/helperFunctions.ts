@@ -2,6 +2,7 @@ import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntr
 import { updateUserName, updateUserBlogs, updateUserFolders, updateUserTags } from '../actions/actions';
 
 import { StackActions } from 'react-navigation';
+import { useEffect, useRef } from 'react';
 
 export function sendTokenLogin(serverUrl: string, requestOptions: any) {
   return async function (dispatch: any) {
@@ -73,3 +74,12 @@ export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
 }
 
 export const popNavigationStack = StackActions.pop({ n: 1 });
+
+// to use prevProps in Hooks
+export function usePreviousProps(value: any) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
