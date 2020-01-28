@@ -91,7 +91,6 @@ const AppNavigator = () => {
 
   // Navigator with only LoginScreen
   const AuthNavigator = createStackNavigator({
-    AuthLoading: AuthLoadingScreen,
     Auth: SiteCheckScreen,
     Login: LoginScreen
   });
@@ -100,8 +99,8 @@ const AppNavigator = () => {
   const SwitchNavigator = createSwitchNavigator(
     {
       AuthLoading: AuthLoadingScreen,
-      App: AppTabNavigator,
-      Auth: AuthNavigator
+      Auth: AuthNavigator,
+      App: AppTabNavigator
     },
     {
       initialRouteName: 'AuthLoading'
