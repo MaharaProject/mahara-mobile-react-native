@@ -175,10 +175,12 @@ const setAddorEdit = (props: Props) => {
   return 'Add';
 };
 
-AddItemScreen.navigationOptions = (props: Props) => ({
-  headerTitle: `${setAddorEdit(props)} ${props.navigation.getParam('formType')}`,
-  headerLeft: null
-});
+AddItemScreen.navigationOptions = (navData: any) => {
+  return {
+    headerTitle: `${setAddorEdit(navData)} ${navData.navigation.getParam('formType')}`,
+    headerLeft: null
+}
+};
 
 const mapStateToProps = (state: RootState) => {
   return {
