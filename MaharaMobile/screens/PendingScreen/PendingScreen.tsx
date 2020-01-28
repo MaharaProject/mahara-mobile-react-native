@@ -8,7 +8,7 @@ import { buttons } from '../../assets/styles/buttons';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import PendingList from '../../components/PendingList/PendingList';
-import { uploadItemToMahara, isJournalEntry, usePreviousProps } from '../../utils/helperFunctions';
+import { uploadItemToMahara, isPendingJournalEntry, usePreviousProps} from '../../utils/helperFunctions';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
@@ -48,7 +48,7 @@ const PendingScreen = (props: Props) => {
   };
 
   const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
-    const type = isJournalEntry(item) ? 'journal entry' : item.type;
+    const type = isPendingJournalEntry(item) ? 'journal entry' : item.type;
     props.navigation.navigate({ routeName: 'AddFile', params: { item: item, formType: type } });
   };
 
