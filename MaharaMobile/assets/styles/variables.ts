@@ -12,7 +12,7 @@ const styles = {
     dark: '#000',
     dark2: '#2e3a1c',
     darkgrey: '#777',
-    warn: '#fc0320'
+    warn: '#a94442'
   },
   padding: {
     xs: 5,

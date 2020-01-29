@@ -20,6 +20,7 @@ import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
 import { selectUserTags } from '../../reducers/userTagsReducer';
 import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
 import { RootState } from '../../reducers/rootReducer';
+import { FILE, AUDIO, PHOTO } from '../../utils/constants';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -31,7 +32,7 @@ type Props = {
   url: string;
   uploadList: {
     files: Array<MaharaPendingFile>;
-  },
+  };
   formType: string;
   userBlogs: Array<UserBlog>;
 };
@@ -39,7 +40,7 @@ type Props = {
 const AddItemScreen = (props: Props) => {
   let initialState = { uri: '', name: '', type: '', size: 0 };
   let isEditing = false;
-  let formType = props.navigation.getParam('formType');
+  const formType = props.navigation.getParam('formType');
   const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
   const [filePickerButtonText, setFilePickerButtonText] = useState(props.navigation.getParam('itemToEdit') ? 'Pick a different file' : 'Select a file');
 
@@ -86,7 +87,7 @@ const AddItemScreen = (props: Props) => {
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
       }
     });
-  }
+  };
 
   useEffect(() => {
     if (isEditing) {
@@ -101,7 +102,7 @@ const AddItemScreen = (props: Props) => {
         filetype: [DocumentPickerUtil.allFiles()]
       },
       (error, res) => {
-        //error
+        // error
         console.log('error:', error);
 
         // No file picked
@@ -125,31 +126,31 @@ const AddItemScreen = (props: Props) => {
   return (
     <ScrollView>
       <View style={generic.wrap}>
-        {pickedFile.name && (formType === 'file' || formType === 'photo') ? (
+        {pickedFile.name && (formType === FILE || formType === PHOTO) ? (
           <View style={styles.imageWrap}>
             <Image source={{ uri: pickedFile.uri }} style={styles.image} />
           </View>
         ) : null}
-        {formType === 'file' &&
+        {formType === FILE && (
           <View>
             <TouchableOpacity onPress={() => pickDocument()}>
               <Text style={buttons.lg}>{filePickerButtonText}</Text>
             </TouchableOpacity>
           </View>
-        }
-        {formType === 'photo' &&
+        )}
+        {formType === PHOTO && (
           <TouchableOpacity onPress={() => takePhoto()}>
             <Text style={buttons.lg}>
-              <FontAwesome5 name="camera" size={20}/>
+              <FontAwesome5 name="camera" size={20} />
               &nbsp; Open Camera
             </Text>
           </TouchableOpacity>
-        }
-        {formType === 'audio' &&
+        )}
+        {formType === AUDIO && (
           <View>
             <AddAudio setPickedFile={setPickedFile} isEditing={isEditing} />
           </View>
-        }
+        )}
         <View>
           <UploadForm
             pickedFile={pickedFile}
@@ -166,7 +167,7 @@ const AddItemScreen = (props: Props) => {
       </View>
     </ScrollView>
   );
-}
+};
 
 const setAddorEdit = (props: Props) => {
   if (props.navigation.getParam('itemToEdit')) {

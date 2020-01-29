@@ -12,7 +12,7 @@ import { uploadItemToMahara, isPendingJournalEntry, usePreviousProps} from '../.
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
-import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
 import { selectUserName } from '../../reducers/loginInfoReducer';
 

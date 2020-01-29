@@ -13,49 +13,100 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: components/UploadForm/UploadForm.tsx:49
+msgid "\"Fields marked by * are required\""
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:272
+msgid "<0>{0} {formType}</0>"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:169
+msgid "A file is required"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:232
+msgid "Add"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:250
+msgid "Add new tag +"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:283
+msgid "Add {formType} to Pending"
+msgstr ""
+
 #: App.tsx:42
 #~ msgid "Back to Pending Items"
 #~ msgstr ""
 
-#: components/LoginType/LoginType.tsx:24
+#: components/UploadForm/UploadForm.tsx:50
+msgid "Cancel"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:48
+msgid "Confirm edits to"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:176
+msgid "Description"
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:25
 msgid "Enter a different URL"
 msgstr ""
 
-#: components/LocalLogin/LocalLogin.tsx:57
+#: components/UploadForm/UploadForm.tsx:46
+msgid "Enter a title"
+msgstr ""
+
+#: components/LocalLogin/LocalLogin.tsx:56
 msgid "Enter your password"
 msgstr ""
 
-#: components/LocalLogin/LocalLogin.tsx:54
+#: components/LocalLogin/LocalLogin.tsx:53
 msgid "Enter your username"
-#: components/AddAudio/AddAudio.tsx:53
-#: components/AddAudio/AddAudio.tsx:67
-#: components/AddAudio/AddAudio.tsx:67
+
+#: components/UploadForm/UploadForm.tsx:47
+msgid "Error: User has no Blogs"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:187
+msgid "Folder"
+msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:58
+#: components/AddAudio/AddAudio.tsx:58
 msgid "Give permission to your microphone to record a file"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:55
-#: components/AddAudio/AddAudio.tsx:62
-#: components/AddAudio/AddAudio.tsx:62
+#: components/AddAudio/AddAudio.tsx:53
+#: components/AddAudio/AddAudio.tsx:53
 msgid "Give permission to your storage to write a file"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:44
+#: components/LoginType/LoginType.tsx:45
 msgid "Local Login"
 msgstr ""
 
-#: components/LocalLogin/LocalLogin.tsx:60
+#: components/LocalLogin/LocalLogin.tsx:59
 msgid "Login"
 msgstr ""
 
-#: components/LocalLogin/LocalLogin.tsx:52
+#: components/LocalLogin/LocalLogin.tsx:51
 msgid "Login via Token"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:30
+#: components/UploadForm/UploadForm.tsx:225
+msgid "New tag..."
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:31
 msgid "Next"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:39
+#: components/LoginType/LoginType.tsx:40
 msgid "Paste in access token"
 msgstr ""
 
@@ -66,12 +117,16 @@ msgstr ""
 #: components/AddAudio/AddAudio.tsx:52
 #: components/AddAudio/AddAudio.tsx:66
 #: components/AddAudio/AddAudio.tsx:66
-msgid "Permissions for recoding audio"
+#~ msgid "Permissions for recoding audio"
+#~ msgstr ""
+
+#: components/AddAudio/AddAudio.tsx:57
+#: components/AddAudio/AddAudio.tsx:57
+msgid "Permissions for recording audio"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:54
-#: components/AddAudio/AddAudio.tsx:61
-#: components/AddAudio/AddAudio.tsx:61
+#: components/AddAudio/AddAudio.tsx:52
+#: components/AddAudio/AddAudio.tsx:52
 msgid "Permissions for write access"
 msgstr ""
 
@@ -79,7 +134,7 @@ msgstr ""
 msgid "Play"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:18
+#: components/LoginType/LoginType.tsx:19
 msgid "Please enter a URL"
 msgstr ""
 
@@ -91,33 +146,102 @@ msgstr ""
 msgid "Record"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:36
+#: components/UploadForm/UploadForm.tsx:51
+msgid "Save item to Pending"
+msgstr ""
+
+#: components/LoginType/LoginType.tsx:37
 msgid "Select login type"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:49
+#: components/LoginType/LoginType.tsx:50
 msgid "Single Sign On"
 msgstr ""
 
-#: components/LoginType/LoginType.tsx:33
+#: components/LoginType/LoginType.tsx:34
 msgid "Skip"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:32
-#: components/AddAudio/AddAudio.tsx:143
+#: components/AddAudio/AddAudio.tsx:34
+#: components/AddAudio/AddAudio.tsx:182
 msgid "Stop"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:221
+msgid "Tags"
+msgstr ""
+
+#: utils/formHelper.tsx:25
+msgid "This field is required"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:171
+msgid "Title"
 msgstr ""
 
 #: components/LoginType/LoginType.tsx:12
 msgid "What is the address of your Mahara?"
 msgstr ""
 
-#: components/AddAudio/AddAudio.tsx:56
-#: components/AddAudio/AddAudio.tsx:63
-#: components/AddAudio/AddAudio.tsx:63
+#: components/AddAudio/AddAudio.tsx:54
+#: components/AddAudio/AddAudio.tsx:59
+#: components/AddAudio/AddAudio.tsx:54
+#: components/AddAudio/AddAudio.tsx:59
 msgid "ok"
 msgstr ""
 
-#: components/MediumButton/MediumButton.tsx:11
+#: components/UI/MediumButton/MediumButton.tsx:11
+#: components/UploadForm/UploadForm.tsx:174
+#: components/UploadForm/UploadForm.tsx:200
+#: components/UploadForm/UploadForm.tsx:209
+#: components/UploadForm/UploadForm.tsx:268
+#: components/UploadForm/UploadForm.tsx:274
+#: components/UploadForm/UploadForm.tsx:289
+#: components/UploadForm/UploadForm.tsx:298
+#: utils/formHelper.tsx:24
 msgid "{0}"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:287
+#~ msgid "{CANCEL}"
+#~ msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:272
+#~ msgid "{CONFIRM_EDITS_TO}"
+#~ msgstr ""
+
+#: screens/ProfileScreen/ProfileScreen.tsx:65
+msgid "{CONTINUE_USER}"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:172
+#~ msgid "{ENTER_TITLE}"
+#~ msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:198
+#~ msgid "{ERROR_NO_BLOGS}"
+#~ msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:296
+#~ msgid "{FIELDS_REQUIRED}"
+#~ msgstr ""
+
+#: screens/ProfileScreen/ProfileScreen.tsx:64
+msgid "{GUEST_LOGOUT}"
+msgstr ""
+
+#: screens/ProfileScreen/ProfileScreen.tsx:61
+msgid "{GUEST}"
+msgstr ""
+
+#: screens/ProfileScreen/ProfileScreen.tsx:55
+msgid "{LOGOUT}"
+msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:266
+#~ msgid "{SAVE_TO_PENDING}"
+#~ msgstr ""
+
+#: components/UploadForm/UploadForm.tsx:179
+msgid "{placeholder}"
 msgstr ""

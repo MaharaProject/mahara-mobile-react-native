@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Platform } from 'react-native';
-import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View, TouchableOpacity, Platform } from 'react-native';
 import uuid from 'react-native-uuid';
 import { getManufacturer, getModel } from 'react-native-device-info';
 import { I18n } from '@lingui/react';
@@ -27,7 +26,7 @@ export default function LocalLogin(props: Props) {
     const id = uuid.v4();
     const url = props.url + 'module/mobileapi/json/token.php';
 
-    const body = new FormData;
+    const body = new FormData();
     body.append('username', username);
     body.append('password', password);
     body.append('service', 'maharamobile');
