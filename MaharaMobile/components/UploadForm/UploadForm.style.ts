@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import styles from '../../assets/styles/variables';
 
-export default StyleSheet.create({
+const uploadFormStyes = StyleSheet.create({
   tagsContainer: {
     flexDirection: 'row',
     marginBottom: 10,
@@ -40,3 +40,5 @@ export default StyleSheet.create({
     height: 300
   }
 });
+
+export default uploadFormStyes;

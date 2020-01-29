@@ -13,6 +13,7 @@ import { selectUserBlogs } from '../../reducers/userArtefactsReducer';
 import { selectUserTags } from '../../reducers/userTagsReducer';
 import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
 import { RootState } from '../../reducers/rootReducer';
+import { JOURNAL_ENTRY } from '../../utils/constants';
 
 type Props = {
   userTags: Array<UserTag>;
@@ -39,9 +40,10 @@ export class AddJournalScreen extends Component<Props> {
           <UploadForm
             userTags={this.props.userTags}
             userBlogs={this.props.userBlogs}
-            formType="journal"
+            formType={JOURNAL_ENTRY}
             token={this.props.token}
             url={this.props.url}
+            navigation={this.props.navigation}
           />
         </View>
       </ScrollView>

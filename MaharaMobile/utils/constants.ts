@@ -32,3 +32,9 @@ export const ADD_UPLOAD_JOURNAL_ENTRY = 'ADD_JOURNAL_ENTRY_TO_UPLOAD_LIST';
 export const REMOVE_UPLOAD_JOURNAL_ENTRY = 'REMOVE_UPLOAD_JOURNAL_ENTRY';
 export const CLEAR_UPLOAD_J_ENTRIES = 'CLEAR_UPLOAD_J_ENTRIES';
 export const UPDATE_J_ENTRIES_ON_LOGIN = 'UPDATE_J_ENTRIES_ON_LOGIN';
+
+// form types
+export const JOURNAL_ENTRY = 'journal entry';
+export const FILE = 'file';
+export const PHOTO = 'photo';
+export const AUDIO = 'audio';

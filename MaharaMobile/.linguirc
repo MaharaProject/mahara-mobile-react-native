@@ -1,5 +1,7 @@
 {
    "localeDir": "./locales/",
-   "srcPathDirs": ["App.tsx", "./components", '/screens'],
+   "srcPathDirs": ['App.tsx', './components', './screens', './actions', './navigations',
+   './store', './utils'],
+
    "format": "po"
 }

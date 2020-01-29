@@ -17,7 +17,7 @@ export type MaharaPendingFile = {
   maharaFormData: MaharaFileFormData;
   mimetype: string;
   type: string;
-}
+};
 
 export type JournalEntry = {
   blogid: number;
@@ -27,30 +27,30 @@ export type JournalEntry = {
   body: string;
   isdraft: boolean;
   tags?: Array<string>;
-}
+};
 
 export type PendingJournalEntry = {
   id: string;
   url: string;
   journalEntry: JournalEntry;
-}
+};
 
 export type User = {
   userName: string;
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
-}
+};
 
 export type UserFolder = {
   title: string;
-}
+};
 
-export interface UserTag {
+export type UserTag = {
   id: number;
   tag: string;
   usage: number;
-}
+};
 
 export type UserBlog = {
   description: string;
@@ -58,7 +58,7 @@ export type UserBlog = {
   locked: boolean;
   numBlogPosts: number;
   title: string;
-}
+};
 
 export type MaharaFileFormData = {
   webservice: string;
@@ -67,9 +67,9 @@ export type MaharaFileFormData = {
   title: string;
   description: string;
   filetoupload: {
-    uri: string,
-    type: string,
-    name: string,
-  }
-  tags: string[];
-}
+    uri: string;
+    type: string;
+    name: string;
+  };
+  tags?: string[];
+};

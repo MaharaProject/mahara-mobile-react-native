@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import Header from '../../components/Header/Header';
 import Profile from '../../components/Profile/Profile';
 import profileScreenStyles from './ProfileScreen.style';
 import {
-  selectUrl,
   selectToken,
   selectUserName,
-  selectProfileIcon
+  selectProfileIcon,
+  selectUrl,
 } from '../../reducers/loginInfoReducer';
-import { buttons } from '../../assets/styles/buttons';
-import HeaderMenuButton from '../../components/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
-import MediumButton from '../../components/MediumButton/MediumButton';
 import { clearReduxData, fetchProfilePic } from '../../utils/authHelperFunctions';
-import { selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
-import { selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { RootState } from '../../reducers/rootReducer';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import { t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import { I18n, i18n } from '@lingui/core';
+
 
 type Props = {
   navigation: any; // need to double check type for this
@@ -29,63 +29,56 @@ type Props = {
   jEntriesIds: string[];
   fileIds: string[];
   dispatch: any;
+  i18n: I18n;
 };
 
 type State = {
   profileIcon: string;
 };
 
-export class ProfileScreen extends Component<Props, State> {
-  static navigationOptions = (navData) => {
-    return {
-      headerStyle: {
-        backgroundColor: styles.colors.primary
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        flex: 1,
-        textAlign: 'center'
-      },
-      headerTintColor: '#fff',
-      headerLeft: <HeaderMenuButton navData={navData} />,
-      headerTitle: 'Profile'
-    };
+const ProfileScreen = (props: Props) => {
+  const profileStrings = {
+    LOGOUT: props.i18n._(t`Logout`),
+    GUEST_LOGOUT: props.i18n._(t`Logout as Guest`),
+    GUEST: props.i18n._(t`GUEST`),
+    CONTINUE_USER: props.i18n._(t`Continue as user`)
   };
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      profileIcon: ''
-    };
-  }
+  const [profileIcon, setProfileIcon] = useState('');
+  const dispatch = useDispatch();
 
-  componentDidMount() {
-    this.getProfilePic();
-  }
+  const url = useSelector((state: RootState) => selectUrl(state));
+  const token = useSelector((state: RootState) => selectToken(state));
+  const userName = useSelector((state: RootState) => selectUserName(state));
+  const pIcon = useSelector((state: RootState) => selectProfileIcon(state));
 
-  getProfilePic = async () => {
-    if (!this.props.token || this.props.token === 'guest') return;
-    fetchProfilePic(this.props.dispatch, this.props.token, this.props.url);
+  const getProfilePic = async () => {
+    if (token === 'guest') return;
+    fetchProfilePic(dispatch, token, url);
   };
 
-  signOutAsync = async () => {
+  const signOutAsync = async () => {
     await AsyncStorage.clear();
-    clearReduxData(this.props.dispatch);
-    this.props.navigation.navigate('Auth');
+    clearReduxData(dispatch);
+    props.navigation.navigate('SiteCheck');
   };
 
-  generateProfileScreen = () => {
-    if (this.props.token !== 'guest') {
+  useEffect(() => {
+    getProfilePic();
+  }, [profileIcon]);
+
+  const generateProfileScreen = () => {
+    if (token !== 'guest') {
       return (
         <View>
           <View style={profileScreenStyles.container}>
-            <Profile
-              name={this.props.userName}
-              profileIcon={this.props.profileIcon}
-            />
+            <Profile name={userName} profileIcon={pIcon} />
           </View>
           <View style={{ marginTop: 450 }}>
-            <MediumButton title="Logout" onPress={this.signOutAsync} />
+            <MediumButton
+              title={profileStrings.LOGOUT}
+              onPress={signOutAsync}
+            />
           </View>
         </View>
       );
@@ -94,43 +87,43 @@ export class ProfileScreen extends Component<Props, State> {
     return (
       <View>
         <View style={profileScreenStyles.container}>
-          <Profile
-            name={this.props.userName}
-            profileIcon={this.state.profileIcon || this.props.profileIcon}
-          />
+          <Profile name={profileStrings.GUEST} profileIcon={profileIcon} />
         </View>
         <View style={profileScreenStyles.buttons}>
           <MediumButton
-            title="Logout as Guest"
-            onPress={() => this.signOutAsync()}
+            title={profileStrings.GUEST_LOGOUT}
+            onPress={() => signOutAsync()}
           />
           <MediumButton
-            title="Login"
-            onPress={() => this.props.navigation.navigate('Auth')}
+            title={profileStrings.CONTINUE_USER}
+            onPress={() => props.navigation.navigate('SiteCheck')}
           />
         </View>
       </View>
     );
   };
 
-  render() {
-    return (
-      <View style={profileScreenStyles.app}>
-        <View style={profileScreenStyles.container}>
-          {this.generateProfileScreen()}
-        </View>
+  return (
+    <View style={profileScreenStyles.app}>
+      <View style={profileScreenStyles.container}>
+        {generateProfileScreen()}
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
-const mapStateToProps = (state: RootState) => ({
-  url: selectUrl(state),
-  token: selectToken(state),
-  userName: selectUserName(state),
-  profileIcon: selectProfileIcon(state),
-  jEntryIds: selectAllJEntriesIds(state),
-  fileIds: selectAllUploadFilesIds(state)
+ProfileScreen.navigationOptions = (navData: any) => ({
+  headerStyle: {
+    backgroundColor: styles.colors.primary
+  },
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    flex: 1,
+    textAlign: 'center'
+  },
+  headerTintColor: '#fff',
+  headerLeft: <HeaderMenuButton navData={navData} />,
+  headerTitle: 'Profile'
 });
 
-export default connect(mapStateToProps)(ProfileScreen);
+export default withI18n()(ProfileScreen);

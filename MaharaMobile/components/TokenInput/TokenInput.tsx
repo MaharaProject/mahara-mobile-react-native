@@ -22,7 +22,7 @@ export default function TokenInput(props: Props) {
   return (
     <View style={styles.view}>
       <Text style={headingStyles.mainHeading}>Login via Token</Text>
-      <TextInput
+    <TextInput
         style={forms.textInput}
         // TODO: remove default value for go live
         defaultValue="ab6f3b68f8b0b976cf6b51eac2cd54da"

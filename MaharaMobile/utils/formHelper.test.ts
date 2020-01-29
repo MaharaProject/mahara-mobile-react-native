@@ -1,4 +1,4 @@
-import setTagString from './formhelper';
+import { setTagString } from "./formHelper";
 
 test('String should match expected output', () => {
   const tags = ['tagkey', 'tagkey2', 'tagkey3'];

@@ -36,7 +36,7 @@ export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
       dispatch(updateUserBlogs(json.blogs.blogs));
       dispatch(updateUserFolders(json.folders.folders));
     } catch (error) {
-      // errorHandle(error);
+      console.log(error);
     }
   };
 }

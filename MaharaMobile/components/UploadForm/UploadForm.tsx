@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
-import { Text, View, TouchableOpacity, TextInput, Picker } from 'react-native';
-
+import { Text, View, TouchableOpacity, Picker } from 'react-native';
 import sanitize from 'sanitize-filename';
-import styles from './UploadForm.style';
+import { StackActions } from 'react-navigation';
+import { Trans, t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import { I18n, i18n } from '@lingui/core';
+import uploadFormStyles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
 import { UserFolder, MaharaFile, JournalEntry,UserTag, UserBlog, PendingJournalEntry, MaharaFileFormData, MaharaPendingFile } from '../../models/models';
 import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
-import setTagString from '../../utils/formhelper';
-import popNavigationStack from '../../utils/helperFunctions';
-import { StackActions } from 'react-navigation';
-import MediumButton from '../MediumButton/MediumButton';
+import { isMaharaFileFormData, isJournalEntry } from '../../utils/helperFunctions';
+import styles from '../../assets/styles/variables';
+import { JOURNAL_ENTRY, FILE, PHOTO, AUDIO } from '../../utils/constants';
+import { setTagString, validateText, RequiredWarningText, SubHeading } from '../../utils/formHelper';
+import MediumButton from '../UI/MediumButton/MediumButton';
+import CancelButton from '../UI/CancelButton/CancelButton';
+import FormInput from '../UI/FormInput/FormInput';
+import { uploadFilesReducer } from '../../reducers/uploadFilesReducer';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -23,47 +30,76 @@ type Props = {
   url: string;
   editItem?: MaharaPendingFile | PendingJournalEntry;
   navigation: any;
-}
+  i18n: I18n;
+};
 
 type State = {
   selectedTags: Array<string>;
 };
 
 const UploadForm = (props: Props) => {
+  // Translation strings
+  const formStrings = {
+    ENTER_TITLE: props.i18n._(t`Enter a title`),
+    ERROR_NO_BLOGS: props.i18n._(t` Error: User has no Blogs`),
+    CONFIRM_EDITS_TO: props.i18n._(t`Confirm edits to`),
+    FIELDS_REQUIRED: props.i18n._(t`"Fields marked by * are required"`),
+    CANCEL: props.i18n._(t`Cancel`),
+    SAVE_TO_PENDING: props.i18n._(t`Save item to Pending`),
+    ADD_NEW_TAG: props.i18n._(t`Add new tag +`),
+    NEW_TAG: props.i18n._(t`New tag...`),
+    ENTER_DESC: props.i18n._(t`Enter a description`),
+    ENTER_DETAIL: props.i18n._(t`Enter detail`)
+  };
+
+  const dispatch = useDispatch();
+  const isMultiLine = props.formType !== JOURNAL_ENTRY ? forms.multiLine : [forms.multiLine, uploadFormStyles.description];
+  const placeholder = props.formType !== JOURNAL_ENTRY ? formStrings.ENTER_DESC : formStrings.ENTER_DETAIL;
+  const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
+  const { formType } = props;
+  let fileValid = props.pickedFile ? props.pickedFile.size > 0 : false;
+
+  // STATE
   const [newTag, addNewTag] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
   const [hidden, showTagInput] = useState(false);
   // form fields
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [controlTitle, setTitle] = useState('');
+  const [controlDesc, setDescription] = useState('');
+  const [controlTitleValid, setControlTitleValid] = useState(
+    props.formType !== JOURNAL_ENTRY
+  );
+  const [controlDescValid, setControlDescValid] = useState(
+    props.formType !== JOURNAL_ENTRY
+  );
   const [selectedFolder, setSelectedFolder] = useState('');
   const [selectedBlog, setSelectedBlog] = useState(0);
   const [selectedTags, setTags] = useState<State['selectedTags']>([]);
+  // error messages
+  const [showInvalidTitleMessage, setShowInvalidTitleMessage] = useState(false);
+  const [showInvalidDescMessage, setShowInvalidDescMessage] = useState(false);
+  const [showInvalidFileMessage, setShowInvalidFileNessage] = useState(fileValid);
 
   useEffect(() => {
     if (props.editItem) {
-      if (props.editItem.maharaFormData) {
-        setTitle(props.editItem.maharaFormData.title)
-        setDescription(props.editItem.maharaFormData.description)
-        setSelectedFolder(props.editItem.maharaFormData.foldername)
-        setTags(props.editItem.maharaFormData.tags)
+      if (isMaharaFileFormData(props.editItem)) {
+        const maharaFormData: MaharaFileFormData = props.editItem;
+
+        setTitle(maharaFormData.title);
+        setDescription(maharaFormData.description);
+        setSelectedFolder(maharaFormData.foldername);
+        setTags(maharaFormData.tags);
       }
 
-      if (props.editItem.journalEntry) {
-        setTitle(props.editItem.journalEntry.title)
-        setDescription(props.editItem.journalEntry.body)
-        setSelectedBlog(props.editItem.journalEntry.blogid)
-        setTags(props.editItem.journalEntry.tags)
+      if (isJournalEntry(props.editItem)) {
+        const journalEntry: JournalEntry = props.editItem;
+        setTitle(journalEntry.title);
+        setDescription(journalEntry.body);
+        setSelectedBlog(journalEntry.blogid);
+        setTags(journalEntry.tags);
       }
     }
   }, [props.editItem]);
-
-  const dispatch = useDispatch();
-  const isMultiLine = props.formType !== 'journal entry' ? forms.multiLine : [forms.multiLine, styles.description];
-  const placeholder = props.formType !== 'journal entry' ? 'Enter a description' : 'Enter detail';
-  const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 1 : null;
-  const checkFile = props.pickedFile ? props.pickedFile.size > 0 : null;
-  const { formType } = props;
 
   const addTag = (tag: string) => {
     if (tag === 'Add new tag +') {
@@ -84,36 +120,35 @@ const UploadForm = (props: Props) => {
     const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
 
     // Upload Journal Entry
-    if (formType === 'journal entry') {
+    if (formType === JOURNAL_ENTRY) {
       const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
-      const journalEntry: JournalEntry = {
-        blogid: selectedBlog ? selectedBlog : firstBlog,
+      const jEntry: JournalEntry = {
+        blogid: selectedBlog || firstBlog,
         wsfunction: 'module_mobileapi_upload_blog_post',
         wstoken: props.token,
-        title: title,
-        body: description,
+        title: controlTitle,
+        body: controlDesc,
         isdraft: false,
         tags: selectedTags
       };
 
       const pendingJournalEntry: PendingJournalEntry = {
-        id: props.editItem ? props.editItem.id : Math.random() * 10 + journalEntry.title,
-        journalEntry: journalEntry,
+        id: props.editItem ? props.editItem.id : Math.random() * 10 + jEntry.title,
+        journalEntry: jEntry,
         url: journalUrl
       };
 
       // add journal entry to pending list
       dispatch(addJournalEntryToUploadList(pendingJournalEntry));
-
     } else if (pickedFile) {
       // Upload File
       const tagString = selectedTags ? setTagString(selectedTags) : '';
       const fileUrl = props.url + '/webservice/rest/server.php?alt=json' + tagString;
       const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-      const filename = title ? sanitize(title) + extension : pickedFile.name;
+      const filename = controlTitle ? sanitize(controlTitle) + extension : pickedFile.name;
       const firstFolder = props.userFolders ? props.userFolders[0].title : '';
       const folder = selectedFolder || firstFolder; // TODO: setting to first folder until we set up preferred default folder functionality
-      const webservice = 'module_mobileapi_upload_file';
+      const webService = 'module_mobileapi_upload_file';
 
       const fileData: MaharaFile = {
         uri: pickedFile.uri,
@@ -122,23 +157,23 @@ const UploadForm = (props: Props) => {
         size: pickedFile.size
       };
 
-      const maharaFormData: MaharaFileFormData = {
-        description: description,
+      const formData: MaharaFileFormData = {
+        description: controlDesc,
         filetoupload: fileData,
         foldername: folder,
         title: filename,
-        webservice: webservice,
+        webservice: webService,
         wstoken: props.token,
         tags: selectedTags
-      }
+      };
 
       const pendingFileData: MaharaPendingFile = {
         id: props.editItem ? props.editItem.id : Math.random() * 10 + '' + fileData.type,
-        maharaFormData: maharaFormData,
+        maharaFormData: formData,
         mimetype: pickedFile.type,
         url: fileUrl,
         type: formType
-      }
+      };
 
       dispatch(addFileToUploadList(pendingFileData));
     }
@@ -149,70 +184,144 @@ const UploadForm = (props: Props) => {
     props.navigation.navigate('Pending');
   };
 
-  return (
+  const updateTitle = (title: string) => {
+    if (showInvalidTitleMessage) setShowInvalidTitleMessage(false);
+    setControlTitleValid(validateText(formType, title));
+    setTitle(title);
+  };
+
+  const updateDescription = (desc: string) => {
+    if (showInvalidDescMessage) setShowInvalidDescMessage(false);
+    setControlDescValid(validateText(formType, desc));
+    setDescription(desc);
+  };
+
+  const renderDisplayedFilename = () => {
+    if (formType === JOURNAL_ENTRY) return null;
+    return (
+      <View>
+        <SubHeading required={formType !== JOURNAL_ENTRY}>File</SubHeading>
+        {fileValid ? <Text>{props.pickedFile?.name}</Text> : null}
+      </View>
+    );
+  };
+
+  const renderTextInputs = () => (
     <View>
-      <TextInput
+      {/* Error messages */}
+      {showInvalidFileMessage && (
+        <RequiredWarningText customText={i18n._(t`A file is required`)} />
+      )}
+      <SubHeading required={formType === JOURNAL_ENTRY}>
+        <Trans>Title</Trans>
+      </SubHeading>
+      {showInvalidTitleMessage && <RequiredWarningText />}
+      <FormInput
+        valid={controlTitleValid}
         style={forms.textInput}
-        placeholder="Enter a title"
-        value={title}
-        onChangeText={(title) => { setTitle(title) }}
+        placeholder={i18n._(t`${formStrings.ENTER_TITLE}`)}
+        value={controlTitle}
+        onChangeText={(title: string) => updateTitle(title.trim())}
       />
-      <TextInput
+      <SubHeading required={formType === JOURNAL_ENTRY}>
+        <Trans>Description</Trans>
+      </SubHeading>
+      {showInvalidDescMessage && <RequiredWarningText />}
+      <FormInput
+        valid={controlDescValid}
         style={isMultiLine}
         placeholder={placeholder}
-        value={description}
-        onChangeText={(description) => { setDescription(description) }}
+        value={controlDesc}
+        onChangeText={(desc: string) => updateDescription(desc.trim())}
       />
-      {formType !== 'journal entry' ?
+    </View>
+  );
+
+  const renderFolderPicker = () => {
+    if (formType === JOURNAL_ENTRY) return null;
+    return (
+      <View>
+        <SubHeading>
+          <Trans>Folder</Trans>
+        </SubHeading>
         <View style={forms.pickerWrapper}>
-          {/* Folder dropdown */}
           <Picker
             selectedValue={selectedFolder}
             style={forms.picker}
-            onValueChange={folder => {setSelectedFolder(folder)}}
-          >
-            {props.userFolders && props.userFolders.map((folder: UserFolder, index: number) => (
-              <Picker.Item label={folder.title} value={folder.title} key={index} />
+            onValueChange={(folder: string) => setSelectedFolder(folder)}>
+            {props.userFolders?.map((folder: UserFolder, index: number) => (
+              <Picker.Item
+                label={folder.title}
+                value={folder.title}
+                key={index}
+              />
             ))}
           </Picker>
         </View>
-        : null}
-      {(formType === 'journal entry' && checkUserBlogs) ?
-        <View>
-          <Text style={styles.formTitle}>Blog:</Text>
-          <View style={forms.pickerWrapper}>
-            <Picker
-              selectedValue={selectedBlog}
-              style={forms.picker}
-              onValueChange={blogId => { setSelectedBlog(blogId)}}
-            >
-              {props.userBlogs && props.userBlogs.map((blog: UserBlog, index: number) => (
-                <Picker.Item label={blog.title} value={blog.id} key={index} />
-              ))}
-            </Picker>
-          </View>
+      </View>
+    );
+  };
+
+  const renderBlogPicker = () => {
+    if (formType !== JOURNAL_ENTRY) return null;
+    if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
+      return (
+        <RequiredWarningText
+          customText={i18n._(t`${formStrings.ERROR_NO_BLOGS}`)}
+        />
+      );
+    }
+    return (
+      <View>
+        <SubHeading>Blog</SubHeading>
+        <View style={forms.pickerWrapper}>
+          <I18n>
+            {({i18n}) => (
+              <Picker
+                selectedValue={selectedBlog}
+                style={forms.picker}
+                onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
+                {props.userBlogs?.map((blog: UserBlog, index: number) => (
+                  <Picker.Item
+                    label={i18n._(t`${blog.title}`)}
+                    value={blog.id}
+                    key={index}
+                  />
+                ))}
+              </Picker>
+            )}
+          </I18n>
         </View>
-        : null}
-      <View style={styles.tagsContainer}>
-        <Text style={styles.tagsTitle}>Tags:</Text>
-        {hidden ?
-          <View style={styles.tagsInputContainer}>
-            <TextInput
-              style={[forms.textInput, styles.tagsTextInput]}
-              placeholder="New tag..."
-              onChangeText={text => addNewTag(text)}
+      </View>
+    );
+  };
+
+  const renderTagsPicker = () => (
+    <View>
+      <View style={uploadFormStyles.tagsContainer}>
+        <SubHeading>
+          <Trans>Tags </Trans>
+        </SubHeading>
+        {hidden ? (
+          <View style={uploadFormStyles.tagsInputContainer}>
+            <FormInput
+              style={[forms.textInput, uploadFormStyles.tagsTextInput]}
+              placeholder={formStrings.NEW_TAG}
+              onChangeText={(text: string) => addNewTag(text)}
             />
-            <TouchableOpacity style={styles.addButton} onPress={() => {
-              addTag(newTag);
-              setSelectedTag('...');
-            }}>
-              <Text style={styles.addButtonText}>
-                Add
+            <TouchableOpacity
+              style={uploadFormStyles.addButton}
+              onPress={() => {
+                addTag(newTag);
+                setSelectedTag('...');
+              }}>
+              <Text style={uploadFormStyles.addButtonText}>
+                <Trans>Add</Trans>
               </Text>
             </TouchableOpacity>
           </View>
-          : null}
-        {selectedTags && selectedTags.map((value: string, index: number) => (
+        ) : null}
+        {selectedTags?.map((value: string, index: number) => (
           <TouchableOpacity key={index} onPress={() => removeTag(value)}>
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
@@ -221,45 +330,100 @@ const UploadForm = (props: Props) => {
           </TouchableOpacity>
         ))}
       </View>
-      {/* Dropdown for Tags */}
       <View style={forms.pickerWrapper}>
         <Picker
           selectedValue={selectedTag}
           style={forms.picker}
-          onValueChange={(itemValue) => {
+          onValueChange={(itemValue: string) => {
             setSelectedTag(itemValue);
             addTag(itemValue);
-          }}
-        >
+          }}>
           <Picker.Item label="..." value="" color="#556d32" />
-          {props.userTags && props.userTags.map((value: UserTag, index: number) => (
+          {props.userTags?.map((value: UserTag, index: number) => (
             <Picker.Item label={value.tag} value={value.tag} key={index} />
           ))}
-          <Picker.Item label="Add new tag +" value="Add new tag +" color={"#556d32"} />
+          <Picker.Item
+            label={formStrings.ADD_NEW_TAG}
+            value="Add new tag +"
+            color="#556d32"
+          />
         </Picker>
       </View>
-      {checkFile || title && description ?
-        <View>
-          <TouchableOpacity onPress={() => handleForm() }>
-            {props.editItem && <Text style={buttons.lg}>Confirm edits to {formType}</Text> }
-            {!props.editItem && <Text style={buttons.lg}>Add {formType} to pending</Text> }
-          </TouchableOpacity>
+    </View>
+  );
 
+  const renderUserMessages = () => {
+    if (!controlTitleValid) setShowInvalidTitleMessage(true);
+    if (!controlDescValid) setShowInvalidDescMessage(true);
+    if (!fileValid) setShowInvalidFileNessage(true);
+  };
+
+  const renderButtons = () => {
+    if (formType === JOURNAL_ENTRY) fileValid = true;
+    const validButton = controlTitleValid && controlDescValid && fileValid;
+    return (
+      <View>
+        <TouchableOpacity
+          onPress={() => (validButton ? handleForm() : renderUserMessages())}
+          accessibilityLabel={i18n._(t`${formStrings.SAVE_TO_PENDING}`)}>
+          {/* Editing items */}
+          {/* TODO: validation for edit button */}
           {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
           pressing the device back button will still remain on the wrong stack: SelectMediaScreen not Pending */}
           {props.editItem && (
-            <MediumButton
-              title="Cancel"
-              onPress={() => {
-                props.navigation.popToTop();
-                props.navigation.navigate('Pending');
-              }}
-            />
+            <Trans>
+              <Text style={buttons.lg}>
+                {i18n._(t`${formStrings.CONFIRM_EDITS_TO}`)}
+                {formType}
+              </Text>
+            </Trans>
           )}
+
+          {/* Creating items */}
+          {!props.editItem && (
+            <Text
+              style={{
+                ...buttons.lg,
+                backgroundColor: validButton
+                  ? buttons.lg.backgroundColor
+                  : styles.colors.darkgrey
+              }}>
+              <Trans>Add {formType} to Pending</Trans>
+            </Text>
+          )}
+        </TouchableOpacity>
+
+        {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
+          pressing the device back button will still remain on the wrong stack: AddScreen not Pending */}
+
+        {props.editItem && (
+          <MediumButton
+            title={i18n._(t`${formStrings.CANCEL}`)}
+            onPress={() => {
+              props.navigation.popToTop();
+              props.navigation.navigate('Pending');
+            }}
+          />
+        )}
+
+        {!props.editItem && <CancelButton navigation={props.navigation} />}
       </View>
-      : null}
+    );
+  };
+
+  return (
+    <View>
+      <RequiredWarningText
+        customText={i18n._(t`${formStrings.FIELDS_REQUIRED}`)}
+      />
+      {renderDisplayedFilename()}
+      {renderTextInputs()}
+      {renderFolderPicker()}
+      {renderBlogPicker()}
+      {renderTagsPicker()}
+      {renderButtons()}
     </View>
   );
 };
 
-export default UploadForm;
+export default withI18n()(UploadForm);

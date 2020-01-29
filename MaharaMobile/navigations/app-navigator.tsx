@@ -91,7 +91,7 @@ const AppNavigator = () => {
 
   // Navigator with only LoginScreen
   const AuthNavigator = createStackNavigator({
-    Auth: SiteCheckScreen,
+    SiteCheck: SiteCheckScreen,
     Login: LoginScreen
   });
 
