@@ -169,7 +169,7 @@ PendingScreen.navigationOptions = (navData: any) => ({
   },
   headerTintColor: styles.colors.light,
   headerLeft: <HeaderMenuButton navData={navData} />,
-  headerTitle: 'Add Item'
+  headerTitle: 'Pending items'
 });
 
 const mapStateToProps = (state: RootState) => ({
