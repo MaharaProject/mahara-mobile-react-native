@@ -65,3 +65,6 @@ __snapshots__
 # i18n
 locales/_build/
 locales/**/*.js
+
+# IDEs VS Code
+.vscode/*
