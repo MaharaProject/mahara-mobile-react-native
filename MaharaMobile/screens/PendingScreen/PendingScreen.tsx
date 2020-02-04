@@ -51,7 +51,7 @@ const PendingScreen = (props: Props) => {
 
   const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
     const type = isPendingJournalEntry(item) ? 'journal entry' : item.type;
-    props.navigation.navigate({ routeName: 'AddFile', params: { itemToEdit: item, formType: type } });
+    props.navigation.navigate({ routeName: 'AddItem', params: { itemToEdit: item, formType: type } });
   };
 
   const clearUploadError = (id: string) => {

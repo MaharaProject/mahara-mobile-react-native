@@ -22,7 +22,8 @@ import {
 import { UserFolder, UserBlog } from '../../models/models';
 import {
   updatePendingItemsOnLogin,
-  fetchUserOnTokenLogin
+  fetchUserOnTokenLogin,
+  fetchProfilePic
 } from '../../utils/authHelperFunctions';
 
 type Props = {
@@ -40,8 +41,6 @@ type Props = {
 
 type State = {
   token: string;
-  username: string;
-  password: string;
 };
 
 export class LoginScreen extends Component<Props, State> {
@@ -49,9 +48,7 @@ export class LoginScreen extends Component<Props, State> {
     super(props);
 
     this.state = {
-      token: '',
-      username: '',
-      password: ''
+      token: ''
     };
   }
 
@@ -77,12 +74,17 @@ export class LoginScreen extends Component<Props, State> {
       body: JSON.stringify(body)
     };
 
-    this.props.dispatch(fetchUserOnTokenLogin(serverUrl, requestOptions))
+    this.props
+      .dispatch(fetchUserOnTokenLogin(serverUrl, requestOptions))
       .then(() => {
         this.props.dispatch(addToken(this.state.token));
+        fetchProfilePic(this.props.dispatch, this.state.token, url);
         this.signInAsync();
       })
-      .then(() => this.props.navigation.navigate('App'));
+      .then(() => this.props.navigation.navigate('App'))
+      .catch(() => {
+        Alert.alert('Invalid token, please try again!');
+      });
   };
 
   updateToken = (token: string, webview?: any) => {

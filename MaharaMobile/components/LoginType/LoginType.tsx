@@ -23,7 +23,7 @@ type Props = {
   onSkip: () => void;
 };
 
-export default function LoginType(props: Props) {
+const LoginType = (props: Props) => {
   return (
     <View style={styles.view}>
       {!props.isInputHidden ? (
@@ -47,14 +47,16 @@ export default function LoginType(props: Props) {
           <MediumButton title={t`Enter a different URL`} onPress={() => props.resetForm()} />
         </View>
       ) : null}
-      {!props.isInputHidden ? (
+      {!props.isInputHidden ?
         <View>
           <MediumButton title={t`Next`} onPress={() => props.checkServer()} />
           <MediumButton title={t`Skip`} onPress={() => props.onSkip()} />
         </View>
-      ) : null}
-      {props.serverPing &&
-        <Text style={headingStyles.mainHeading}><Trans>Select login type</Trans></Text>
+        : null}
+      {props.serverPing && 
+        <Text style={headingStyles.mainHeading}>
+          <Trans>Select login type</Trans>
+        </Text>
       }
       {props.serverPing && props.tokenLogin &&
         <MediumButton title={t`Paste in access token`} onPress={() => props.setLoginType('token')} />
@@ -67,4 +69,6 @@ export default function LoginType(props: Props) {
       }
     </View>
   );
-}
+};
+
+export default LoginType;
