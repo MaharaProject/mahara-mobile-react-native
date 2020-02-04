@@ -191,7 +191,7 @@ const requestJSON = async (url: any, config: any) => {
 const getJSON = (url: string) => requestJSON(url, { method: 'GET'});
 
 export function checkLoginTypes(url: string) {
-  const serverUrl = `${UPDATE_URL}module/mobileapi/json/info.php`;
+  const serverUrl = `${url}module/mobileapi/json/info.php`;
 
   // eslint-disable-next-line func-names
   return async function (dispatch: any) {
