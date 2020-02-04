@@ -5,7 +5,7 @@ import sanitize from 'sanitize-filename';
 import { StackActions } from 'react-navigation';
 import { Trans, t } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { I18n, i18n } from '@lingui/core';
+import { i18n } from '@lingui/core';
 import uploadFormStyles from './UploadForm.style';
 import { forms } from '../../assets/styles/forms';
 import { buttons } from '../../assets/styles/buttons';
@@ -13,12 +13,11 @@ import { UserFolder, MaharaFile, JournalEntry,UserTag, UserBlog, PendingJournalE
 import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
 import { isMaharaFileFormData, isJournalEntry } from '../../utils/helperFunctions';
 import styles from '../../assets/styles/variables';
-import { JOURNAL_ENTRY, FILE, PHOTO, AUDIO } from '../../utils/constants';
+import { JOURNAL_ENTRY } from '../../utils/constants';
 import { setTagString, validateText, RequiredWarningText, SubHeading } from '../../utils/formHelper';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
-import { uploadFilesReducer } from '../../reducers/uploadFilesReducer';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -30,7 +29,6 @@ type Props = {
   url: string;
   editItem?: MaharaPendingFile | PendingJournalEntry;
   navigation: any;
-  i18n: I18n;
 };
 
 type State = {
@@ -40,16 +38,15 @@ type State = {
 const UploadForm = (props: Props) => {
   // Translation strings
   const formStrings = {
-    ENTER_TITLE: props.i18n._(t`Enter a title`),
-    ERROR_NO_BLOGS: props.i18n._(t` Error: User has no Blogs`),
-    CONFIRM_EDITS_TO: props.i18n._(t`Confirm edits to`),
-    FIELDS_REQUIRED: props.i18n._(t`"Fields marked by * are required"`),
-    CANCEL: props.i18n._(t`Cancel`),
-    SAVE_TO_PENDING: props.i18n._(t`Save item to Pending`),
-    ADD_NEW_TAG: props.i18n._(t`Add new tag +`),
-    NEW_TAG: props.i18n._(t`New tag...`),
-    ENTER_DESC: props.i18n._(t`Enter a description`),
-    ENTER_DETAIL: props.i18n._(t`Enter detail`)
+    ENTER_TITLE: i18n._(t`Enter a title`),
+    ERROR_NO_BLOGS: i18n._(t` Error: User has no Blogs`),
+    CONFIRM_EDITS_TO: i18n._(t`Confirm edits to`),
+    FIELDS_REQUIRED: i18n._(t`"Fields marked by * are required"`),
+    SAVE_TO_PENDING: i18n._(t`Save item to Pending`),
+    ADD_NEW_TAG: i18n._(t`Add new tag +`),
+    NEW_TAG: i18n._(t`New tag\u2026`),
+    ENTER_DESC: i18n._(t`Enter a description`),
+    ENTER_DETAIL: i18n._(t`Enter detail`)
   };
 
   const dispatch = useDispatch();
@@ -201,7 +198,7 @@ const UploadForm = (props: Props) => {
     return (
       <View>
         <SubHeading required={formType !== JOURNAL_ENTRY}>File</SubHeading>
-        {fileValid ? <Text>{props.pickedFile?.name}</Text> : null}
+        {fileValid ? <Text accessibilityLabel={i18n._(t`A file has been added`)}>{props.pickedFile?.name}</Text> : null}
       </View>
     );
   };
@@ -245,7 +242,7 @@ const UploadForm = (props: Props) => {
           <Trans>Folder</Trans>
         </SubHeading>
         <View style={forms.pickerWrapper}>
-          <Picker
+          <Picker accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolder}
             style={forms.picker}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
@@ -275,22 +272,15 @@ const UploadForm = (props: Props) => {
       <View>
         <SubHeading>Blog</SubHeading>
         <View style={forms.pickerWrapper}>
-          <I18n>
-            {({i18n}) => (
-              <Picker
-                selectedValue={selectedBlog}
-                style={forms.picker}
-                onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
-                {props.userBlogs?.map((blog: UserBlog, index: number) => (
-                  <Picker.Item
-                    label={i18n._(t`${blog.title}`)}
-                    value={blog.id}
-                    key={index}
-                  />
-                ))}
-              </Picker>
-            )}
-          </I18n>
+          <Picker
+            accessibilityLabel={i18n._(t`Select blog`)}
+            selectedValue={selectedBlog}
+            style={forms.picker}
+            onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
+            {props.userBlogs?.map((blog: UserBlog, index: number) => (
+              <Picker.Item label={blog.title} value={blog.id} key={index} />
+            ))}
+          </Picker>
         </View>
       </View>
     );
@@ -310,6 +300,7 @@ const UploadForm = (props: Props) => {
               onChangeText={(text: string) => addNewTag(text)}
             />
             <TouchableOpacity
+              accessibilityRole='button'
               style={uploadFormStyles.addButton}
               onPress={() => {
                 addTag(newTag);
@@ -322,16 +313,22 @@ const UploadForm = (props: Props) => {
           </View>
         ) : null}
         {selectedTags?.map((value: string, index: number) => (
-          <TouchableOpacity key={index} onPress={() => removeTag(value)}>
+          <TouchableOpacity
+            key={index}
+            onPress={() => removeTag(value)}
+            accessibilityRole="button"
+            accessibilityLabel={value}
+            accessibilityHint={i18n._(t`Click to remove tag`)}>
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
-              <Text style={forms.tagClose}>x</Text>
+              <Text style={forms.tagClose} accessibilityLabel="">x</Text>
             </View>
           </TouchableOpacity>
         ))}
       </View>
       <View style={forms.pickerWrapper}>
         <Picker
+          accessibilityLabel={i18n._(t`Select tags`)}
           selectedValue={selectedTag}
           style={forms.picker}
           onValueChange={(itemValue: string) => {
@@ -365,11 +362,10 @@ const UploadForm = (props: Props) => {
       <View>
         <TouchableOpacity
           onPress={() => (validButton ? handleForm() : renderUserMessages())}
-          accessibilityLabel={i18n._(t`${formStrings.SAVE_TO_PENDING}`)}>
+          accessibilityLabel={i18n._(t`${formStrings.SAVE_TO_PENDING}`)}
+          accessibilityRole="button">
           {/* Editing items */}
           {/* TODO: validation for edit button */}
-          {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
-          pressing the device back button will still remain on the wrong stack: SelectMediaScreen not Pending */}
           {props.editItem && (
             <Trans>
               <Text style={buttons.lg}>
@@ -395,10 +391,9 @@ const UploadForm = (props: Props) => {
 
         {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
           pressing the device back button will still remain on the wrong stack: AddScreen not Pending */}
-
         {props.editItem && (
           <MediumButton
-            title={i18n._(t`${formStrings.CANCEL}`)}
+            title={t`Cancel`}
             onPress={() => {
               props.navigation.popToTop();
               props.navigation.navigate('Pending');

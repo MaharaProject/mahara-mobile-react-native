@@ -1,5 +1,5 @@
-import React, { Component, useState, useEffect } from 'react';
-import { View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Profile from '../../components/Profile/Profile';
 import profileScreenStyles from './ProfileScreen.style';
@@ -19,7 +19,6 @@ import { t } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { I18n, i18n } from '@lingui/core';
 
-
 type Props = {
   navigation: any; // need to double check type for this
   token: string;
@@ -37,13 +36,6 @@ type State = {
 };
 
 const ProfileScreen = (props: Props) => {
-  const profileStrings = {
-    LOGOUT: props.i18n._(t`Logout`),
-    GUEST_LOGOUT: props.i18n._(t`Logout as Guest`),
-    GUEST: props.i18n._(t`GUEST`),
-    CONTINUE_USER: props.i18n._(t`Continue as user`)
-  };
-
   const [profileIcon, setProfileIcon] = useState('');
   const dispatch = useDispatch();
 
@@ -75,10 +67,7 @@ const ProfileScreen = (props: Props) => {
             <Profile name={userName} profileIcon={pIcon} />
           </View>
           <View style={{ marginTop: 450 }}>
-            <MediumButton
-              title={profileStrings.LOGOUT}
-              onPress={signOutAsync}
-            />
+            <MediumButton title={t`Logout`} onPress={signOutAsync} />
           </View>
         </View>
       );
@@ -87,17 +76,11 @@ const ProfileScreen = (props: Props) => {
     return (
       <View>
         <View style={profileScreenStyles.container}>
-          <Profile name={profileStrings.GUEST} profileIcon={profileIcon} />
+          <Profile name={props.i18n._(t`GUEST`)} profileIcon={profileIcon} />
         </View>
         <View style={profileScreenStyles.buttons}>
-          <MediumButton
-            title={profileStrings.GUEST_LOGOUT}
-            onPress={() => signOutAsync()}
-          />
-          <MediumButton
-            title={profileStrings.CONTINUE_USER}
-            onPress={() => props.navigation.navigate('SiteCheck')}
-          />
+          <MediumButton title={t`Logout as Guest`} onPress={() => signOutAsync()} />
+          <MediumButton title={t`Continue as user`} onPress={() => props.navigation.navigate('SiteCheck')} />
         </View>
       </View>
     );

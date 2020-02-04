@@ -1,30 +1,21 @@
 import React from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
-import { buttons } from '../../assets/styles/buttons';
-import styles from './SelectMediaType.style';
+import { View } from 'react-native';
+import { t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import { FILE, JOURNAL_ENTRY, PHOTO, AUDIO } from '../../utils/constants';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   selectMediaType: Function;
-}
+};
 
-const SelectMediaType = (props: Props) => {
-  return (
-    <View>
-      <TouchableOpacity onPress={() => props.selectMediaType(FILE)}>
-        <Text style={[buttons.md, styles.button]}>Pick a file</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.selectMediaType(PHOTO)}>
-        <Text style={[buttons.md, styles.button]}>Take a photo</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.selectMediaType(JOURNAL_ENTRY)}>
-        <Text style={[buttons.md, styles.button]}>Add a journal entry</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => props.selectMediaType(AUDIO)}>
-        <Text style={[buttons.md, styles.button]}>Record audio</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
+const SelectMediaType = (props: Props) => (
+  <View>
+    <MediumButton title={t`Add file`} onPress={() => props.selectMediaType(FILE)} />
+    <MediumButton title={t`Take photo`} onPress={() => props.selectMediaType(PHOTO)} />
+    <MediumButton title={t`Add journal entry`} onPress={() => props.selectMediaType(JOURNAL_ENTRY)} />
+    <MediumButton title={t`Record audio`} onPress={() => props.selectMediaType(AUDIO)} />
+  </View>
+);
 
-export default SelectMediaType;
+export default withI18n()(SelectMediaType);

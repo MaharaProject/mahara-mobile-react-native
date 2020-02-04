@@ -73,3 +73,11 @@ export type MaharaFileFormData = {
   };
   tags?: string[];
 };
+
+// as stated in LinguiJS docs: https://lingui.js.org/ref/macro.html#usage
+export type MessageDescriptor = {
+   id: string,
+   defaults?: string,
+   values?: object,
+   formats?: object,
+}

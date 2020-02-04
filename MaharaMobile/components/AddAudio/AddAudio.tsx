@@ -4,16 +4,16 @@ import RNFetchBlob from 'rn-fetch-blob';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { Trans, t } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
-import { I18n } from '@lingui/core';
+import { i18n, I18n } from '@lingui/core';
 
 import { buttons } from '../../assets/styles/buttons';
 import styles from './AddAudio.style';
 import { MaharaFile } from '../../models/models';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   setPickedFile: any;
   isEditing: boolean;
-  i18n: I18n;
 };
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
@@ -34,20 +34,20 @@ const AddAudio = (props: Props) => {
   const playStrings = {
     playing: <Trans>Pause</Trans>,
     notplaying: <Trans>Play</Trans>
-  }
+  };
 
   const recordStrings = {
-    unrecorded: <Trans>Record</Trans>,
-    recording: <Trans>Stop</Trans>,
-    recorded: <Trans>Re-record</Trans>
-  }
+    unrecorded: i18n._(t`Record`),
+    recording: i18n._(t`Stop`),
+    recorded: i18n._(t`Re-record`)
+  };
 
   useEffect(() => {
     props.setPickedFile(pickedFile);
   }, [pickedFile.size]);
 
   useEffect(() => {
-    if(props.isEditing) {
+    if (props.isEditing) {
       setRecordButtonStatus('recorded');
       setIsRecorded(true);
     }
@@ -171,14 +171,13 @@ const AddAudio = (props: Props) => {
           setIsPlaying(false);
           setPlayButtonStatus('notplaying');
       };
-      return;
     });
   };
 
   const onPausePlay = async () => {
     try {
       await audioRecorderPlayer.pausePlayer();
-    } catch(e) {
+    } catch (e) {
       console.log(e);
     }
   };
@@ -192,26 +191,27 @@ const AddAudio = (props: Props) => {
 
   return (
     <View>
-      <TouchableOpacity onPress={() => handleRecord()}>
-        <Text style={[buttons.md, styles.button]}>{recordStrings[recordButtonStatus]}</Text>
-      </TouchableOpacity>
+      <MediumButton title={t`${recordStrings[recordButtonStatus]}`} onPress={() => handleRecord()}
+      />
       <View style={styles.buttonWrap}>
         {isRecorded ?
-          <TouchableOpacity onPress={() => handlePlay()}>
+          <TouchableOpacity onPress={() => handlePlay()} accessibilityRole='button'>
             <Text style={[buttons.sm, styles.smButton]}>{playStrings[playButtonStatus]}</Text>
           </TouchableOpacity>
         : null}
         {isPlaying ?
-          <TouchableOpacity onPress={() => onStopPlay()}>
+          <TouchableOpacity onPress={() => onStopPlay()} accessibilityRole='button'>
             <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
           </TouchableOpacity>
         : null}
         {!isPermissionGranted ?
-          <Text style={styles.warning}>You need to grant the app permission in order to use this feature</Text>
+          <Text style={styles.warning}>
+            You need to grant the app permission in order to use this feature
+          </Text>
         : null}
       </View>
     </View>
   );
-}
+};
 
 export default withI18n()(AddAudio);

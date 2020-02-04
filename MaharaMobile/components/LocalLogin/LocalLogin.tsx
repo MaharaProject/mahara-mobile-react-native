@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Text, TextInput, View, TouchableOpacity, Platform } from 'react-native';
+import { Text, TextInput, View, Platform } from 'react-native';
 import uuid from 'react-native-uuid';
 import { getManufacturer, getModel } from 'react-native-device-info';
 import { I18n } from '@lingui/react';
@@ -9,7 +9,7 @@ import { t, Trans } from '@lingui/macro';
 import generic from '../../assets/styles/generic';
 import { forms } from '../../assets/styles/forms';
 import { headingStyles } from '../../assets/styles/headings';
-import { buttons } from '../../assets/styles/buttons';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   url: string;
@@ -47,7 +47,7 @@ export default function LocalLogin(props: Props) {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   return (
     <View style={generic.wrap}>
@@ -69,9 +69,8 @@ export default function LocalLogin(props: Props) {
                         />
         }
       </I18n>
-      <TouchableOpacity onPress={() => checkLogins()}>
-        <Text style={buttons.lg}><Trans>Login</Trans></Text>
-      </TouchableOpacity>
+      <MediumButton title={t`Login`} onPress={() => checkLogins()}
+      />
     </View>
   );
 }

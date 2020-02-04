@@ -1,11 +1,10 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, TextInput } from 'react-native';
 import { Trans, t } from '@lingui/macro';
-import { I18n } from "@lingui/react";
 import styles from './LoginType.style';
 import { forms } from '../../assets/styles/forms';
-import { buttons } from '../../assets/styles/buttons';
 import { headingStyles } from '../../assets/styles/headings';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   url: string;
@@ -45,47 +44,27 @@ export default function LoginType(props: Props) {
       {props.serverPing && props.isInputHidden ? (
         <View>
           <Text style={[headingStyles.subHeading2, styles.url]}>{props.url}</Text>
-          <TouchableOpacity onPress={() => props.resetForm()}>
-            <Text style={[buttons.md, styles.buttons]}>
-              <Trans>Enter a different URL</Trans>
-            </Text>
-          </TouchableOpacity>
+          <MediumButton title={t`Enter a different URL`} onPress={() => props.resetForm()} />
         </View>
       ) : null}
       {!props.isInputHidden ? (
         <View>
-          <TouchableOpacity onPress={() => props.checkServer()}>
-            <Text style={[buttons.md, styles.buttons]}><Trans>Next</Trans></Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => props.onSkip()}>
-            <Text style={[buttons.md, styles.buttons]}><Trans>Skip</Trans></Text>
-          </TouchableOpacity>
+          <MediumButton title={t`Next`} onPress={() => props.checkServer()} />
+          <MediumButton title={t`Skip`} onPress={() => props.onSkip()} />
         </View>
       ) : null}
-      {props.serverPing ? (
+      {props.serverPing &&
         <Text style={headingStyles.mainHeading}><Trans>Select login type</Trans></Text>
-      ) : null}
-      {props.serverPing && props.tokenLogin ? (
-        <TouchableOpacity onPress={() => props.setLoginType('token')}>
-          <Text style={[buttons.md, styles.buttons]}>
-            <Trans>Paste in access token</Trans>
-          </Text>
-        </TouchableOpacity>
-      ) : null}
-      {props.serverPing && props.localLogin ? (
-        <TouchableOpacity onPress={() => props.setLoginType('basic')}>
-          <Text style={[buttons.md, styles.buttons]}>
-            <Trans>Local Login</Trans>
-          </Text>
-        </TouchableOpacity>
-      ) : null}
-      {props.serverPing && props.ssoLogin ? (
-        <TouchableOpacity onPress={() => props.setLoginType('sso')}>
-          <Text style={[buttons.md, styles.buttons]}>
-           <Trans>Single Sign On</Trans>
-          </Text>
-        </TouchableOpacity>
-      ) : null}
+      }
+      {props.serverPing && props.tokenLogin &&
+        <MediumButton title={t`Paste in access token`} onPress={() => props.setLoginType('token')} />
+      }
+      {props.serverPing && props.localLogin &&
+        <MediumButton title={t`Local Login`} onPress={() => props.setLoginType('basic')} />
+      }
+      {props.serverPing && props.ssoLogin &&
+        <MediumButton title={t`Single Sign On`} onPress={() => props.setLoginType('sso')} />
+      }
     </View>
   );
 }
