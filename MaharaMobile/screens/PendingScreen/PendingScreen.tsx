@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
+import { t } from '@lingui/macro';
+import { i18n } from '@lingui/core';
 
 import pendingScreenStyles from './PendingScreen.style';
-import { buttons } from '../../assets/styles/buttons';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions'
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import PendingList from '../../components/PendingList/PendingList';
@@ -15,6 +16,7 @@ import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJE
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
 import { selectUserName } from '../../reducers/loginInfoReducer';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -130,29 +132,29 @@ const PendingScreen = (props: Props) => {
 
   return (
     <View style={pendingScreenStyles.app}>
-      {showSuccessMessage &&
+      {showSuccessMessage && (
         <View>
           <Text>Upload added to Pending List!</Text>
           <Icon
             onPress={() => setShowSuccessMessage(false)}
-            accessibilityLabel="Close success message"
+            accessibilityLabel={i18n._(t`Close success message`)}
             name="times"
             type="font-awesome"
             color={styles.colors.dark}
           />
         </View>
-      }
+      )}
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
       <View style={pendingScreenStyles.buttonContainer}>
         {props.userName !== 'guest' ? (
-          <TouchableOpacity onPress={onUploadClick}>
-            <Text style={buttons.lg}>Upload to your Mahara</Text>
-          </TouchableOpacity>
+          <MediumButton title={t`Upload to your Mahara`} onPress={onUploadClick} />
         ) : (
-          <TouchableOpacity onPress={() => props.navigation.navigate('Auth')}>
-            <Text style={buttons.lg}>Please login</Text>
-          </TouchableOpacity>)
-        }
+          <MediumButton
+            title={t`Please login`}
+            accessibilityHint={t`To upload pending items`}
+            onPress={() => props.navigation.navigate('Auth')}
+          />
+        )}
       </View>
     </View>
   );

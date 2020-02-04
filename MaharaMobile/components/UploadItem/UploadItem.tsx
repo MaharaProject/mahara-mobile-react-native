@@ -2,6 +2,9 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { View, Text, Button, Image } from 'react-native';
 import { Icon } from 'react-native-elements';
+import { i18n } from '@lingui/core';
+import { t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 
 import Card from '../UI/Card/Card';
 import uploadItemStyles from './UploadItem.style';
@@ -11,6 +14,7 @@ type Props = {
   title: string;
   description: string;
   mimetype: string;
+  index: number;
   image: any;
   successfullyUploadedItem: boolean;
   showUploadError: boolean;
@@ -75,14 +79,20 @@ const UploadItem = (props: Props) => {
   };
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity accessibilityLabel={`${props.index + 1}: ${displayName}`}>
       <View style={uploadItemStyles.uploadItem}>
-        <Card style={{ ...uploadItemStyles.pendingCard }}>
+        <Card style={{...uploadItemStyles.pendingCard}}>
           {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
           {props.showUploadError && (
             <View>
               <Text>There was an error uploading this file. Please try again.</Text>
-              <Icon onPress={props.onClearError} accessibilityLabel="Close error message" name="times" type="font-awesome" color={styles.colors.dark} />
+              <Icon
+                onPress={props.onClearError}
+                accessibilityLabel={i18n._(t`Close error message`)}
+                name="times"
+                type="font-awesome"
+                color={styles.colors.dark}
+              />
             </View>
           )}
           <Thumbnail />
@@ -117,4 +127,4 @@ const UploadItem = (props: Props) => {
   );
 };
 
-export default UploadItem;
+export default withI18n()(UploadItem);

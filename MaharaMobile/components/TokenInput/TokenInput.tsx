@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
+import { t } from '@lingui/macro';
 
 import styles from './TokenInput.style';
 import { forms } from '../../assets/styles/forms';
 import { headingStyles } from '../../assets/styles/headings';
-import { buttons } from '../../assets/styles/buttons';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   onUpdateToken: Function;
@@ -26,11 +27,10 @@ export default function TokenInput(props: Props) {
         style={forms.textInput}
         // TODO: remove default value for go live
         defaultValue="ab6f3b68f8b0b976cf6b51eac2cd54da"
-        onChangeText={(token) => {handleToken(token)}}
+        onChangeText={(token) => handleToken(token)}
       />
-      <TouchableOpacity onPress={() => props.onUpdateToken(token)}>
-        <Text style={buttons.lg}>Verify Token</Text>
-      </TouchableOpacity>
+      <MediumButton title={t`Verify Token`} onPress={() => props.onUpdateToken(token)}
+      />
     </View>
   );
 }

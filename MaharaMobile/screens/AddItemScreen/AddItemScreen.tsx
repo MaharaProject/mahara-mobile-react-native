@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
 import { connect } from 'react-redux';
-
 import ImagePicker from 'react-native-image-picker';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { t } from '@lingui/macro';
+import { I18n, i18n } from '@lingui/core';
+
 import UploadForm from '../../components/UploadForm/UploadForm';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import styles from '../AddItemScreen/AddItemScreen.style';
@@ -21,6 +23,7 @@ import { selectUserTags } from '../../reducers/userTagsReducer';
 import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
 import { RootState } from '../../reducers/rootReducer';
 import { FILE, AUDIO, PHOTO } from '../../utils/constants';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -128,18 +131,16 @@ const AddItemScreen = (props: Props) => {
       <View style={generic.wrap}>
         {pickedFile.name && (formType === FILE || formType === PHOTO) ? (
           <View style={styles.imageWrap}>
-            <Image source={{ uri: pickedFile.uri }} style={styles.image} />
+            <Image source={{ uri: pickedFile.uri }} style={styles.image} accessibilityLabel={i18n._(t`image preview`)}/>
           </View>
         ) : null}
         {formType === FILE && (
           <View>
-            <TouchableOpacity onPress={() => pickDocument()}>
-              <Text style={buttons.lg}>{filePickerButtonText}</Text>
-            </TouchableOpacity>
+            <MediumButton title={t`${filePickerButtonText}`} onPress={() => pickDocument()} />
           </View>
         )}
         {formType === PHOTO && (
-          <TouchableOpacity onPress={() => takePhoto()}>
+          <TouchableOpacity onPress={() => takePhoto()} accessibilityRole="button">
             <Text style={buttons.lg}>
               <FontAwesome5 name="camera" size={20} />
               &nbsp; Open Camera
@@ -180,7 +181,7 @@ AddItemScreen.navigationOptions = (navData: any) => {
   return {
     headerTitle: `${setAddorEdit(navData)} ${navData.navigation.getParam('formType')}`,
     headerLeft: null
-}
+  };
 };
 
 const mapStateToProps = (state: RootState) => {

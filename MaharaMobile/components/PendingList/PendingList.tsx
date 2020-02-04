@@ -22,8 +22,8 @@ const PendingList = (props: Props) => {
   return (
     <FlatList
       data={props.dataList}
-      renderItem={({ item }: any) => {
-        let itemId = item.id;
+      renderItem={({ item, index }: any) => {
+        const itemId = item.id;
         let mimetype = '';
         //  figure out what to pass in to UploadItem
         if (item.maharaFormData !== undefined) {
@@ -52,12 +52,12 @@ const PendingList = (props: Props) => {
             successfullyUploadedItem={isSuccessfullyUploadedItem}
             showUploadError={showUploadError}
             onClearError={() => props.onClearError(itemId)}
+            index={index}
           />
-        )
-      }
-      }
+        );
+      }}
     />
-  )
-}
+  );
+};
 
 export default PendingList;
