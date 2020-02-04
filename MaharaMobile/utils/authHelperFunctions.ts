@@ -31,6 +31,9 @@ export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
     try {
       const response = await fetch(serverUrl, requestOptions);
       const json = await response.json();
+      if (json.error) {
+        return Promise.reject();
+      }
       dispatch(updateUserName(json.userprofile.myname));
       dispatch(updateUserTags(json.tags.tags));
       dispatch(updateUserBlogs(json.blogs.blogs));

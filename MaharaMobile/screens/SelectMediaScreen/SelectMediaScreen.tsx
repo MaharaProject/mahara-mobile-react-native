@@ -13,7 +13,7 @@ type Props = {
 
 const SelectMediaScreen = (props: Props) => {
   const selectMediaType = (type: string) => {
-    props.navigation.navigate({routeName: 'AddFile', params: { formType: type }});
+    props.navigation.navigate({routeName: 'AddItem', params: { formType: type }});
   };
 
   return (
