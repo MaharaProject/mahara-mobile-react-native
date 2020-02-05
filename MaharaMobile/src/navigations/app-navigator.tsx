@@ -14,15 +14,16 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import { I18n } from '@lingui/core';
 import { withI18n } from '@lingui/react';
 import { t } from '@lingui/macro';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
-import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import styles from '../assets/styles/variables';
+import ProfileSettingsScreen from '../screens/ProfileSettingsScreen/ProfileSettingsScreen';
 
 type Props = {
   i18n: I18n;
@@ -30,40 +31,22 @@ type Props = {
 
 const AppNavigator = (props: Props) => {
   const navigatorStrings = {
-    PROFILE: props.i18n._(t`Profile`),
+    PROFILE_SETTINGS: props.i18n._(t`Profile Settings`),
     PENDING: props.i18n._(t`Pending`),
     ADD: props.i18n._(t`Add`)
   };
 
   const AddItemsTabNavigator = createStackNavigator({
     Add: SelectMediaScreen,
-    AddItem: AddItemScreen
+    AddItem: AddItemScreen,
+    ProfileSettings: ProfileSettingsScreen
   });
 
   const PendingItemsTabNavigator = createStackNavigator({
     Pending: PendingScreen
   });
 
-  const ProfileTabNavigator = createStackNavigator({
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        headerTitle: navigatorStrings.PROFILE
-      }
-    }
-  });
-
   const tabScreenConfig = {
-    Profile: {
-      screen: ProfileTabNavigator,
-      navigationOptions: {
-        tabBarLabel: navigatorStrings.PROFILE,
-        tabBarIcon: () => (
-          <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
-        ),
-        tabBarAccessibilityLabel: 'Profile page'
-      }
-    },
     Add: {
       screen: AddItemsTabNavigator,
       navigationOptions: {
@@ -121,6 +104,13 @@ const AppNavigator = (props: Props) => {
 
   const DrawerNavigator = createDrawerNavigator({
     MaharaMobile: SwitchNavigator,
+    ProfileSettings: {
+      screen: ProfileSettingsScreen,
+      navigationOptions: {
+        drawerLabel: 'Profile Settings',
+        drawerIcon: ({tintColor}) => <FontAwesome5 name="user" size={20} />
+      }
+    },
     Add: {
       navigationOptions: {
         drawerLabel: 'Add Item'
