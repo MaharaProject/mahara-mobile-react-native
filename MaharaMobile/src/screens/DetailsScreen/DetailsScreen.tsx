@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers/reducers';
-import { selectJEntryById } from '../../reducers/uploadJEntriesReducer';
 import { selectUploadFileById } from '../../reducers/uploadFilesReducer';
+import { selectJEntryById } from '../../reducers/uploadJEntriesReducer';
 
 type Props = {
   navigation: any;

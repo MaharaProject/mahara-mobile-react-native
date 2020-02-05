@@ -2,11 +2,14 @@ import { StyleSheet } from 'react-native';
 import styles from '../../assets/styles/variables';
 
 export default StyleSheet.create({
-  view: {
+  profileView: {
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'column',
+    height: '50%',
+    // backgroundColor: '#5FC99D'
   },
   container: {
+    flexDirection: 'row',
     width: 100,
     padding: styles.padding.md
   },
@@ -17,5 +20,14 @@ export default StyleSheet.create({
   name: {
     padding: styles.padding.md,
     fontSize: styles.font.md
+  },
+  settingsView: {
+    flex: 1,
+    height: '50%',
+    // backgroundColor: '#9D62CE'
+  },
+  view: {
+    height: 400,
+    margin: 10
   }
 });
