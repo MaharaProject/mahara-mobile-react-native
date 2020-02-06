@@ -6,6 +6,7 @@ import { I18n } from '@lingui/core';
 import { withI18n } from '@lingui/react';
 import { t } from '@lingui/macro';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 import Profile from '../../components/Profile/Profile';
 import profileScreenStyles from './ProfileSettingsScreen.style';
 import {
@@ -21,14 +22,13 @@ import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuBut
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 
 type Props = {
-  navigation: any; // need to double check type for this
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   token: string;
   userName: string;
   url: string;
   profileIcon: string;
   jEntriesIds: string[];
   fileIds: string[];
-  dispatch: any;
   i18n: I18n;
 };
 

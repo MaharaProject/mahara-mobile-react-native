@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import RNFetchBlob from 'rn-fetch-blob';
+import { Dispatch } from 'redux';
 import {
   UserBlog,
   UserFolder,
@@ -27,7 +28,7 @@ import {
 } from '../actions/actions';
 
 export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
-  return async function(dispatch: any) {
+  return async function(dispatch: Dispatch) {
     try {
       const response = await fetch(serverUrl, requestOptions);
       const json = await response.json();
@@ -44,7 +45,7 @@ export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
   };
 }
 
-export const clearReduxData = async (dispatch: any) => {
+export const clearReduxData = async (dispatch: Dispatch) => {
   try {
     dispatch(clearLoginInfo());
     dispatch(clearUploadFiles());
@@ -59,7 +60,7 @@ export const clearReduxData = async (dispatch: any) => {
 
 const parseJSON = (jsonString: string) => JSON.parse(jsonString);
 
-export const setUpGuest = async (dispatch: any) => {
+export const setUpGuest = async (dispatch: Dispatch) => {
   await dispatch(addToken('guest'));
   await dispatch(updateUserName('guest'));
   await dispatch(updateUserFolders([{id: -1, title: 'images'}]));
@@ -90,6 +91,7 @@ export const setUpGuest = async (dispatch: any) => {
   await dispatch(updateGuestStatus(true));
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const arrayToObject = (array: Array<any>) => {
   const arrayCopy = [...array];
   return arrayCopy.reduce((obj, item) => {
@@ -106,7 +108,7 @@ export const arrayToObject = (array: Array<any>) => {
  * - Rerieved Mahara data to replace guest data be able to upload items.
  */
 export const updatePendingItemsOnLogin = async (
-  dispatch: any,
+  dispatch: Dispatch,
   userBlogs: Array<UserBlog>,
   userFolders: Array<UserFolder>,
   token: string,
@@ -116,7 +118,7 @@ export const updatePendingItemsOnLogin = async (
   await dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
 };
 
-export const fetchProfilePic = async (dispatch: any, token: string, url: string) => {
+export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: string) => {
   const api = 'module_mobileapi_get_user_profileicon&height=100&width=100';
   const wstoken = token;
   const serverUrl = `${url}module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;

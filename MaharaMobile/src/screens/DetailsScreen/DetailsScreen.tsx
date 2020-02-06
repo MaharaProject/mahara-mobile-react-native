@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 import { RootState } from '../../reducers/reducers';
 import { selectJEntryById } from '../../reducers/uploadJEntriesReducer';
 import { selectUploadFileById } from '../../reducers/uploadFilesReducer';
 
 type Props = {
-  navigation: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
 const DetailsScreen = (props: Props) => {

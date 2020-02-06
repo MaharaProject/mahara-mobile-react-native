@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { Dispatch } from 'redux';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import generic from '../../assets/styles/generic';
 import { UserTag, UserBlog, PendingJournalEntry } from '../../models/models';
@@ -16,8 +18,8 @@ type Props = {
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
   token: string;
-  dispatch: any;
-  navigation: any;
+  dispatch: Dispatch;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   uploadList: {
     journalEntries: Array<PendingJournalEntry>;

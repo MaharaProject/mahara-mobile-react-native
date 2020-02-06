@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload, UserBlog, UserFolder } from '../models/models';
+import { Dispatch } from 'redux';
+import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload, UserBlog, UserFolder, UserTag } from '../models/models';
 import { UPDATE_USER_TAGS, CLEAR_USER_TAGS, UPDATE_GUEST_STATUS, ADD_TOKEN, UPDATE_USERNAME, UPDATE_URL, UPDATE_PROFILE_ICON, UPDATE_LOGIN_TYPES, CLEAR_LOGIN_INFO, ADD_UPLOAD_FILE, REMOVE_UPLOAD_FILE, CLEAR_UPLOAD_FILES, UPDATE_UPLOAD_FILES_ON_LOGIN, ADD_UPLOAD_JOURNAL_ENTRY, REMOVE_UPLOAD_JOURNAL_ENTRY, CLEAR_UPLOAD_J_ENTRIES, UPDATE_J_ENTRIES_ON_LOGIN, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS } from '../utils/constants';
 
 // action creators - functions that create actions
 
 // userTagsReducer
-export function updateUserTags(tags: any) {
+export function updateUserTags(tags: Array<UserTag>) {
   AsyncStorage.setItem('userTags', JSON.stringify(tags));
   return { type: UPDATE_USER_TAGS, userTags: tags };
 }
@@ -24,7 +25,7 @@ export function addToken(token: string) {
   return { type: ADD_TOKEN, token };
 }
 
-export function updateUserName(username: any) {
+export function updateUserName(username: string) {
   AsyncStorage.setItem('username', username);
   return { type: UPDATE_USERNAME, userName: username };
 }
@@ -128,12 +129,12 @@ export function updateJEntriesOnLogin(
 }
 
 // userArtefactsReducer
-export function updateUserBlogs(blogs: any) {
+export function updateUserBlogs(blogs: Array<UserBlog>) {
   AsyncStorage.setItem('userBlogs', JSON.stringify(blogs));
   return { type: UPDATE_USER_BLOGS, userBlogs: blogs };
 }
 
-export function updateUserFolders(folders: any) {
+export function updateUserFolders(folders: Array<UserFolder>) {
   AsyncStorage.setItem('userFolders', JSON.stringify(folders));
   return { type: UPDATE_USER_FOLDERS, userFolders: folders };
 }
@@ -172,7 +173,7 @@ export class RequestError extends Error {
   }
 }
 
-const requestJSON = async (url: any, config: any) => {
+const requestJSON = async (url: string, config: any) => {
   try {
     const response = await fetch(url, config);
     if (!response.ok) {
@@ -194,7 +195,7 @@ export function checkLoginTypes(url: string) {
   const serverUrl = `${url}module/mobileapi/json/info.php`;
 
   // eslint-disable-next-line func-names
-  return async function (dispatch: any) {
+  return async function (dispatch: Dispatch) {
     // eslint-disable-next-line no-useless-catch
     try {
       // TODO: dispatch loading state for spinner

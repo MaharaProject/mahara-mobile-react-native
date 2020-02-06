@@ -1,12 +1,13 @@
 import React from 'react';
 import { View, ScrollView } from 'react-native';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 import generic from '../../assets/styles/generic';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
 
 type Props = {
-  navigation: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
 const SelectMediaScreen = (props: Props) => {

@@ -13,7 +13,7 @@ import { MaharaFile } from '../../models/models';
 import MediumButton from '../UI/MediumButton/MediumButton';
 
 type Props = {
-  setPickedFile: any;
+  setPickedFile: MaharaFile;
   isEditing: boolean;
   i18n: I18n;
 };

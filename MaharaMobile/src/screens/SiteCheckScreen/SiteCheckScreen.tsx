@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { Dispatch } from 'redux';
 import { checkLoginTypes } from '../../actions/actions';
 import LoginType from '../../components/LoginType/LoginType';
 import generic from '../../assets/styles/generic';
@@ -14,8 +16,8 @@ import { setUpGuest } from '../../utils/authHelperFunctions';
 import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
-  dispatch: any;
-  navigation: any; // TODO: need to double check type for this
+  dispatch: Dispatch;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;

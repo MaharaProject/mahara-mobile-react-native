@@ -7,6 +7,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { t } from '@lingui/macro';
 import { i18n } from '@lingui/core';
 
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { Dispatch } from 'redux';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import styles from './AddItemScreen.style';
@@ -27,8 +29,8 @@ type Props = {
   userTags: Array<UserTag>;
   userName: string;
   token: string;
-  dispatch: any;
-  navigation: any;
+  dispatch: Dispatch;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   uploadList: {
     files: Array<MaharaPendingFile>;
