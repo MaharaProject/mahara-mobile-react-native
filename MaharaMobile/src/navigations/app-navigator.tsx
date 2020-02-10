@@ -1,28 +1,24 @@
-import React, { Props } from 'react';
-import { createStackNavigator } from 'react-navigation-stack';
-import {
-  faUser,
-  faPlusCircle,
-  faHistory
-} from '@fortawesome/free-solid-svg-icons';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Platform } from 'react-native';
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { faHistory, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { createDrawerNavigator } from 'react-navigation-drawer';
 import { I18n } from '@lingui/core';
-import { withI18n } from '@lingui/react';
 import { t } from '@lingui/macro';
-
-import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
-import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
-import PendingScreen from '../screens/PendingScreen/PendingScreen';
-import ProfileScreen from '../screens/ProfileScreen/ProfileScreen';
-import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
-import LoginScreen from '../screens/LoginScreen/LoginScreen';
-import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import { withI18n } from '@lingui/react';
+import React, { Props } from 'react';
+import { Platform } from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import styles from '../assets/styles/variables';
+import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import PendingScreen from '../screens/PendingScreen/PendingScreen';
+import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
+import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
+import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 
 type Props = {
   i18n: I18n;
@@ -30,40 +26,22 @@ type Props = {
 
 const AppNavigator = (props: Props) => {
   const navigatorStrings = {
-    PROFILE: props.i18n._(t`Profile`),
+    PREFERENCES: props.i18n._(t`Preferences`),
     PENDING: props.i18n._(t`Pending`),
     ADD: props.i18n._(t`Add`)
   };
 
   const AddItemsTabNavigator = createStackNavigator({
     Add: SelectMediaScreen,
-    AddItem: AddItemScreen
+    AddItem: AddItemScreen,
+    Preferences: PreferencesScreen
   });
 
   const PendingItemsTabNavigator = createStackNavigator({
     Pending: PendingScreen
   });
 
-  const ProfileTabNavigator = createStackNavigator({
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        headerTitle: navigatorStrings.PROFILE
-      }
-    }
-  });
-
   const tabScreenConfig = {
-    Profile: {
-      screen: ProfileTabNavigator,
-      navigationOptions: {
-        tabBarLabel: navigatorStrings.PROFILE,
-        tabBarIcon: () => (
-          <FontAwesomeIcon icon={faUser} color={styles.colors.light} />
-        ),
-        tabBarAccessibilityLabel: 'Profile page'
-      }
-    },
     Add: {
       screen: AddItemsTabNavigator,
       navigationOptions: {
@@ -100,7 +78,7 @@ const AppNavigator = (props: Props) => {
     }
   });
 
-  const AppTabNavigator = Platform.OS === 'android' ? androidTabConfig : iOSTabConfig;
+  const AppTabNavigator =    Platform.OS === 'android' ? androidTabConfig : iOSTabConfig;
   // Navigator with only Authentication screens
   const AuthNavigator = createStackNavigator({
     SiteCheck: SiteCheckScreen,
@@ -121,6 +99,12 @@ const AppNavigator = (props: Props) => {
 
   const DrawerNavigator = createDrawerNavigator({
     MaharaMobile: SwitchNavigator,
+    Preferences: {
+      screen: PreferencesScreen,
+      navigationOptions: {
+        drawerIcon: ({tintColor}) => <FontAwesome5 name="user" size={20} />
+      }
+    },
     Add: {
       navigationOptions: {
         drawerLabel: 'Add Item'

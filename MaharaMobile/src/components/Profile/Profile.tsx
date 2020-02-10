@@ -1,7 +1,7 @@
-import React from 'react';
-import { Text, View, Image } from 'react-native';
-import styles from './Profile.style';
 import { Trans } from '@lingui/react';
+import React from 'react';
+import { Image, Text, View } from 'react-native';
+import styles from './Profile.style';
 
 type Props = {
   name: string;
