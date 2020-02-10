@@ -1,23 +1,23 @@
-import { i18n } from '@lingui/core';
-import { t, Trans } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
-import React, { useEffect, useState } from 'react';
-import { Picker, Text, TouchableOpacity, View } from 'react-native';
-import { StackActions } from 'react-navigation';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { Text, View, TouchableOpacity, Picker } from 'react-native';
 import sanitize from 'sanitize-filename';
-import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
-import buttons from '../../assets/styles/buttons';
+import { StackActions } from 'react-navigation';
+import { Trans, t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import { i18n } from '@lingui/core';
+import uploadFormStyles from './UploadForm.style';
 import forms from '../../assets/styles/forms';
+import buttons from '../../assets/styles/buttons';
+import { UserFolder, MaharaFile, JournalEntry,UserTag, UserBlog, PendingJournalEntry, MaharaFileFormData, MaharaPendingFile } from '../../models/models';
+import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
+import { isMaharaFileFormData, isJournalEntry } from '../../utils/helperFunctions';
 import styles from '../../assets/styles/variables';
-import { JournalEntry, MaharaFile, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserFolder, UserTag } from '../../models/models';
-import { JOURNAL_ENTRY } from '../../utils/constants';
-import { RequiredWarningText, setTagString, SubHeading, validateText } from '../../utils/formHelper';
-import { isJournalEntry, isMaharaFileFormData } from '../../utils/helperFunctions';
+import MediumButton from '../UI/MediumButton/MediumButton';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import uploadFormStyles from './UploadForm.style';
+import { setTagString, validateText, SubHeading, RequiredWarningText } from '../../utils/formHelper';
+import { JOURNAL_ENTRY } from '../../utils/constants';
 
 type Props = {
   pickedFile?: MaharaFile;

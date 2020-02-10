@@ -47,7 +47,7 @@ export function buildObject(item: any) {
     const sendFormData = new FormData();
     sendFormData.append('wsfunction', item.webservice);
     sendFormData.append('wstoken', item.wstoken);
-    sendFormData.append('foldername', item.foldername);
+    sendFormData.append('foldername', item.title);
     sendFormData.append('title', item.title);
     sendFormData.append('description', item.description);
     sendFormData.append('filetoupload', item.filetoupload);
