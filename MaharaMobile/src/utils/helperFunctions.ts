@@ -1,39 +1,29 @@
 import { StackActions } from 'react-navigation';
 import { useEffect, useRef } from 'react';
+import { Dispatch } from 'redux';
 import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry } from '../models/models';
-import { updateUserName, updateUserTags, updateUserBlogs, updateUserFolders } from '../actions/actions';
 
-export function sendTokenLogin(serverUrl: string, requestOptions: any) {
-  return async function (dispatch: any) {
-    try {
-      const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
-      dispatch(updateUserName(json));
-      dispatch(updateUserTags(json));
-      dispatch(updateUserBlogs(json));
-      dispatch(updateUserFolders(json));
-    } catch (error) {
-      // errorHandle(error);
-    }
-  }
-}
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
   return (x as JournalEntry).blogid !== undefined;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isPendingJournalEntry(x: any): x is PendingJournalEntry {
   return (x as PendingJournalEntry).journalEntry !== undefined;
 }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
   return (x as MaharaFileFormData).filetoupload !== undefined;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
   return (x as MaharaPendingFile).maharaFormData !== undefined;
 }
 
-export function buildObject(item: any) {
+export function buildObject(item: object) {
   if (isJournalEntry(item)) {
     return {
       method: 'POST',
@@ -59,9 +49,9 @@ export function buildObject(item: any) {
   return null;
 }
 
-export function uploadItemToMahara(url: string, item: any) {
+export function uploadItemToMahara(url: string, item: object) {
   const uploadObject = buildObject(item);
-  return async function (dispatch: any) {
+  return async function (dispatch: Dispatch) {
     try {
       return await fetch(url, uploadObject)
         .then(response => response.json())

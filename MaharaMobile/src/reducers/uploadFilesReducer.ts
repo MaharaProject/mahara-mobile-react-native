@@ -16,7 +16,7 @@ const initialState: UploadFilesState = {
 };
 
 // Helper functions
-const getFiles = (ids: string[], arr: any) => ids.map((id: string) => arr[id]);
+const getFiles = (ids: string[], arr: Record<string, MaharaPendingFile>) => ids.map((id: string) => arr[id]);
 
 const updateAsyncStorageUploadFiles = (uploadFiles: MaharaPendingFile[]) => {
   AsyncStorage.setItem('uploadFiles', JSON.stringify(uploadFiles));

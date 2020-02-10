@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { Text, View, TouchableOpacity, Picker } from 'react-native';
 import sanitize from 'sanitize-filename';
-import { StackActions } from 'react-navigation';
+import { StackActions, NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 import { Trans, t } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import { i18n } from '@lingui/core';
@@ -28,7 +28,7 @@ type Props = {
   token: string;
   url: string;
   editItem?: MaharaPendingFile | PendingJournalEntry;
-  navigation: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
 type State = {

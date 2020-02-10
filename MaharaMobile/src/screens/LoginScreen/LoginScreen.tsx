@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { View, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { Dispatch } from 'redux';
 import { addToken, updateGuestStatus } from '../../actions/actions';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import SSOLogin from '../../components/SSOLogin/SSOLogin';
@@ -27,8 +29,8 @@ import {
 import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
-  dispatch: any;
-  navigation: any; // need to double check type for this
+  dispatch: Dispatch;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;
