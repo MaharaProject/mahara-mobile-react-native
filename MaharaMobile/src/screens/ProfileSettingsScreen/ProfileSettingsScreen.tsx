@@ -1,23 +1,24 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { View} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import { I18n } from '@lingui/core';
+import { withI18n } from '@lingui/react';
+import { t } from '@lingui/macro';
+import { useSelector, useDispatch } from 'react-redux';
 import Profile from '../../components/Profile/Profile';
-import profileScreenStyles from './ProfileScreen.style';
+import profileScreenStyles from './ProfileSettingsScreen.style';
 import {
   selectToken,
   selectUserName,
   selectProfileIcon,
-  selectUrl,
+  selectUrl
 } from '../../reducers/loginInfoReducer';
 import styles from '../../assets/styles/variables';
 import { clearReduxData, fetchProfilePic } from '../../utils/authHelperFunctions';
 import { RootState } from '../../reducers/rootReducer';
-import { useSelector, useDispatch } from 'react-redux';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import { t } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
-import { I18n } from '@lingui/core';
 
 type Props = {
   navigation: any; // need to double check type for this
@@ -31,15 +32,19 @@ type Props = {
   i18n: I18n;
 };
 
-
-const ProfileScreen = (props: Props) => {
+const ProfileSettingsScreen = (props: Props) => {
   const [profileIcon, setProfileIcon] = useState('');
   const dispatch = useDispatch();
-
   const url = useSelector((state: RootState) => selectUrl(state));
   const token = useSelector((state: RootState) => selectToken(state));
   const userName = useSelector((state: RootState) => selectUserName(state));
   const pIcon = useSelector((state: RootState) => selectProfileIcon(state));
+
+  useEffect(() => {
+    props.navigation.setParams({
+      title: props.i18n._(t`Profile Settings`)
+    });
+  }, [props.i18n]);
 
   const getProfilePic = async () => {
     if (token === 'guest') return;
@@ -92,18 +97,11 @@ const ProfileScreen = (props: Props) => {
   );
 };
 
-ProfileScreen.navigationOptions = (navData: any) => ({
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    flex: 1,
-    textAlign: 'center'
-  },
-  headerTintColor: '#fff',
-  headerLeft: <HeaderMenuButton navData={navData} />,
-  headerTitle: 'Profile'
-});
+ProfileSettingsScreen.navigationOptions = ({navigation}) => {
+  const title = navigation.getParam('title');
+  return {
+    headerTitle: title
+  };
+};
 
-export default withI18n()(ProfileScreen);
+export default withI18n()(ProfileSettingsScreen);
