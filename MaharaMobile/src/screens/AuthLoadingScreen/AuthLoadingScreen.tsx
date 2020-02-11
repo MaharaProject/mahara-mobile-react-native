@@ -2,6 +2,7 @@ import React, { useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
 import { View, ActivityIndicator, StatusBar, StyleSheet } from 'react-native';
 import { useDispatch} from 'react-redux';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 import {
   updateUserBlogs,
   updateUserFolders,
@@ -17,8 +18,7 @@ import {
 import { PendingJournalEntry, MaharaPendingFile } from '../../models/models';
 
 type Props = {
-  navigation: any;
-  dispatch: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
 const AuthLoadingScreen = (props: Props) => {
@@ -29,15 +29,15 @@ const AuthLoadingScreen = (props: Props) => {
   const retrieveAsyncData = async () => {
     try {
       // Sort data strings
-      await AsyncStorage.getItem('username').then((result: any) => {
+      await AsyncStorage.getItem('username').then((result: string) => {
         dispatch(updateUserName(result));
       });
 
-      await AsyncStorage.getItem('userToken').then((result: any) => {
+      await AsyncStorage.getItem('userToken').then((result: string) => {
         dispatch(addToken(result));
       });
 
-      await AsyncStorage.getItem('profileIcon').then((result: any) => {
+      await AsyncStorage.getItem('profileIcon').then((result: string) => {
         dispatch(updateProfilePic(result));
       });
 
@@ -45,44 +45,44 @@ const AuthLoadingScreen = (props: Props) => {
       let tokenLogin = false;
       let ssoLogin = false;
 
-      await AsyncStorage.getItem('localLogin').then((result: any) => {
+      await AsyncStorage.getItem('localLogin').then((result: string) => {
         if (result) localLogin = JSON.parse(result);
       });
 
-      await AsyncStorage.getItem('tokenLogin').then((result: any) => {
+      await AsyncStorage.getItem('tokenLogin').then((result: string) => {
         if (result) tokenLogin = JSON.parse(result);
       });
 
-      await AsyncStorage.getItem('ssoLogin').then((result: any) => {
+      await AsyncStorage.getItem('ssoLogin').then((result: string) => {
         if (result) ssoLogin = JSON.parse(result);
       });
 
       dispatch(updateLoginTypes(null, localLogin, tokenLogin, ssoLogin));
 
-      await AsyncStorage.getItem('url').then((result: any) => {
+      await AsyncStorage.getItem('url').then((result: string) => {
         dispatch(updateUrl(result));
       });
 
       // Sort data objects
-      await AsyncStorage.getItem('userTags').then((result: any) => {
+      await AsyncStorage.getItem('userTags').then((result: string) => {
         if (result) {
           dispatch(updateUserTags(parseJSON(result)));
         }
       });
 
-      await AsyncStorage.getItem('userFolders').then((result: any) => {
+      await AsyncStorage.getItem('userFolders').then((result: string) => {
         if (result) {
           dispatch(updateUserFolders(parseJSON(result)));
         }
       });
 
-      await AsyncStorage.getItem('userBlogs').then((result: any) => {
+      await AsyncStorage.getItem('userBlogs').then((result: string) => {
         if (result) {
           dispatch(updateUserBlogs(parseJSON(result)));
         }
       });
 
-      await AsyncStorage.getItem('uploadFiles').then((result: any) => {
+      await AsyncStorage.getItem('uploadFiles').then((result: string) => {
         if (result) {
           const uploadFilesList = parseJSON(result);
           uploadFilesList.forEach((uploadFile: MaharaPendingFile) => {
@@ -91,7 +91,7 @@ const AuthLoadingScreen = (props: Props) => {
         }
       });
 
-      await AsyncStorage.getItem('uploadJEntries').then((result: any) => {
+      await AsyncStorage.getItem('uploadJEntries').then((result: string) => {
         if (result) {
           const uploadJEntries = parseJSON(result);
           uploadJEntries.forEach((jEntry: PendingJournalEntry) => {

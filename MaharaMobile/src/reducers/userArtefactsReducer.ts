@@ -8,7 +8,7 @@ const initialUserFoldersState: UserFoldersState = [{ title: 'images' }];
 
 export const userFoldersReducer = (
   state = initialUserFoldersState,
-  action: any,
+  action: any
 ) => {
   switch (action.type) {
     case UPDATE_USER_FOLDERS:

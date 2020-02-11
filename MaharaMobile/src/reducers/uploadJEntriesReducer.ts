@@ -15,7 +15,7 @@ const initialState: UploadJEntriesState = {
 };
 
 // Helper functions
-const getJEntries = (ids: string[], arr: any) => ids.map((id: string) => arr[id]);
+const getJEntries = (ids: string[], arr: Record<string, PendingJournalEntry>) => ids.map((id: string) => arr[id]);
 
 const updateAsyncStorageJEntries = (jEntries: PendingJournalEntry[]) => {
   AsyncStorage.setItem('uploadJEntries', JSON.stringify(jEntries));

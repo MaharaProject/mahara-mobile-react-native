@@ -5,9 +5,9 @@ import { ADD_TAG, REMOVE_TAG, UPDATE_USER_TAGS, CLEAR_USER_TAGS } from '../utils
 const initialState: Array<UserTag> = [];
 
 // Reducer
-const addTag = (state: any, tag: UserTag) => [...state.concat(tag)];
+const addTag = (state: Array<UserTag>, tag: UserTag) => [...state.concat(tag)];
 
-const removeTag = (state: any, tag: UserTag) => {
+const removeTag = (state: Array<UserTag>, tag: UserTag) => {
   const newState = { ...state };
   delete newState[tag.id];
   return newState;

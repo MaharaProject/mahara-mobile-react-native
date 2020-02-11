@@ -17,6 +17,7 @@ import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
+import ProfileSettingsScreen from '../screens/ProfileSettingsScreen/ProfileSettingsScreen';
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 

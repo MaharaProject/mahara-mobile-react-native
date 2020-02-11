@@ -5,6 +5,8 @@ import { Icon } from 'react-native-elements';
 import { t } from '@lingui/macro';
 import { i18n } from '@lingui/core';
 
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { Dispatch } from 'redux';
 import pendingScreenStyles from './PendingScreen.style';
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import PendingList from '../../components/PendingList/PendingList';
@@ -23,10 +25,10 @@ type Props = {
   uploadJEntries: Array<PendingJournalEntry>;
   uploadFilesIds: Array<string>;
   uploadJEntriesIds: Array<string>;
-  dispatch: any;
-  navigation: any;
+  dispatch: Dispatch;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   userName: string;
-}
+};
 
 const PendingScreen = (props: Props) => {
   const uploadItemsCount = props.uploadFiles.length + props.uploadJEntries.length;

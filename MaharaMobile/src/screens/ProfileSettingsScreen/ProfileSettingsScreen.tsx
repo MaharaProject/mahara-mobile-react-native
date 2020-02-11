@@ -1,34 +1,27 @@
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react';
-import { View} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
 import { I18n } from '@lingui/core';
-import { withI18n } from '@lingui/react';
 import { t } from '@lingui/macro';
-import { useSelector, useDispatch } from 'react-redux';
+import { withI18n } from '@lingui/react';
+import AsyncStorage from '@react-native-community/async-storage';
+import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import { useDispatch, useSelector } from 'react-redux';
 import Profile from '../../components/Profile/Profile';
-import profileScreenStyles from './ProfileSettingsScreen.style';
-import {
-  selectToken,
-  selectUserName,
-  selectProfileIcon,
-  selectUrl
-} from '../../reducers/loginInfoReducer';
-import styles from '../../assets/styles/variables';
-import { clearReduxData, fetchProfilePic } from '../../utils/authHelperFunctions';
-import { RootState } from '../../reducers/rootReducer';
-import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import { selectProfileIcon, selectToken, selectUrl, selectUserName } from '../../reducers/loginInfoReducer';
+import { RootState } from '../../reducers/rootReducer';
+import { clearReduxData, fetchProfilePic } from '../../utils/authHelperFunctions';
+import profileScreenStyles from './ProfileSettingsScreen.style';
 
 type Props = {
-  navigation: any; // need to double check type for this
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   token: string;
   userName: string;
   url: string;
   profileIcon: string;
   jEntriesIds: string[];
   fileIds: string[];
-  dispatch: any;
   i18n: I18n;
 };
 

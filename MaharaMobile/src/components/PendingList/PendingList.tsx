@@ -1,16 +1,17 @@
 import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
   dataList: Array<any>;
   onRemove: Function;
   onEdit: Function;
-  navigation: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   successfullyUploadedItems: Array<any>;
   uploadErrorItems: Array<any>;
   onClearError: Function;
-}
+};
 
 const PendingList = (props: Props) => {
   let title = '';

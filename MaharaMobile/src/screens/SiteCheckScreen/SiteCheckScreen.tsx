@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { Dispatch } from 'redux';
 import { checkLoginTypes } from '../../actions/actions';
 import LoginType from '../../components/LoginType/LoginType';
 import generic from '../../assets/styles/generic';
@@ -14,8 +16,8 @@ import { setUpGuest } from '../../utils/authHelperFunctions';
 import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
-  dispatch: any;
-  navigation: any; // TODO: need to double check type for this
+  dispatch: Dispatch;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;
@@ -86,6 +88,7 @@ export class SiteCheckScreen extends Component<Props, State> {
     try {
       await this.props.dispatch(checkLoginTypes(serverUrl));
       if (this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
+        console.log('checked')
         this.setState({
           serverPing: true,
           isInputHidden: true,
@@ -95,6 +98,7 @@ export class SiteCheckScreen extends Component<Props, State> {
     } catch (error) {
       this.setState({ errorMessage: error.message });
       console.error(error);
+      console.log('error')
     }
   };
 

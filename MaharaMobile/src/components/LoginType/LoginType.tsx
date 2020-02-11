@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 import { Trans, t } from '@lingui/macro';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
 import styles from './LoginType.style';
 import forms from '../../assets/styles/forms';
 import { headingStyles } from '../../assets/styles/headings';
@@ -19,7 +20,7 @@ type Props = {
   serverPing: boolean;
   isInputHidden: boolean;
   enterUrlWarning: boolean;
-  navigation: any;
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   onSkip: () => void;
 };
 
