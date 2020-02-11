@@ -63,10 +63,7 @@ const AppNavigator = (props: Props) => {
       screen: PendingItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: navigatorStrings.PENDING,
-        tabBarIcon: () => (
-          // <FontAwesomeIcon icon={faHistory} color={styles.colors.light} />
-          <IconWithBadge {...props} />
-        ),
+        tabBarIcon: () => <IconWithBadge {...props} />,
         tabBarAccessibilityLabel: 'Pending uploads page'
       }
     }

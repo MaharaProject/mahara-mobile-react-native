@@ -1,7 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { Dispatch } from 'redux';
-import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload, UserBlog, UserFolder, UserTag } from '../models/models';
-import { UPDATE_USER_TAGS, CLEAR_USER_TAGS, UPDATE_GUEST_STATUS, ADD_TOKEN, UPDATE_USERNAME, UPDATE_URL, UPDATE_PROFILE_ICON, UPDATE_LOGIN_TYPES, CLEAR_LOGIN_INFO, ADD_UPLOAD_FILE, REMOVE_UPLOAD_FILE, CLEAR_UPLOAD_FILES, UPDATE_UPLOAD_FILES_ON_LOGIN, ADD_UPLOAD_JOURNAL_ENTRY, REMOVE_UPLOAD_JOURNAL_ENTRY, CLEAR_UPLOAD_J_ENTRIES, UPDATE_J_ENTRIES_ON_LOGIN, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS } from '../utils/constants';
+import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload, UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
+import { ADD_TOKEN, ADD_UPLOAD_FILE, ADD_UPLOAD_JOURNAL_ENTRY, CLEAR_LOGIN_INFO, CLEAR_UPLOAD_FILES, CLEAR_UPLOAD_J_ENTRIES, CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS, CLEAR_USER_TAGS, REMOVE_UPLOAD_FILE, REMOVE_UPLOAD_JOURNAL_ENTRY, UPDATE_GUEST_STATUS, UPDATE_J_ENTRIES_ON_LOGIN, UPDATE_LOGIN_TYPES, UPDATE_PROFILE_ICON, UPDATE_UPLOAD_FILES_ON_LOGIN, UPDATE_URL, UPDATE_USERNAME, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, UPDATE_USER_TAGS, SET_DEFAULT_FOLDER, SET_DEFAULT_BLOG, DEFAULT_BLOG_ID, DEFAULT_FOLDER_TITLE } from '../utils/constants';
+import { userBlogJSONtoUserBlog } from '../utils/helperFunctions';
 
 // action creators - functions that create actions
 
@@ -86,6 +87,16 @@ export function clearLoginInfo() {
   return { type: CLEAR_LOGIN_INFO };
 }
 
+export function setDefaultFolder(folderTitle: string) {
+  AsyncStorage.setItem(DEFAULT_FOLDER_TITLE, folderTitle);
+  return { type: SET_DEFAULT_FOLDER, folderTitle };
+}
+
+export function setDefaultBlogId(blogId: number) {
+  AsyncStorage.setItem(DEFAULT_BLOG_ID, JSON.stringify(blogId));
+  return { type: SET_DEFAULT_BLOG, blogId: blogId };
+}
+
 // uploadFilesReducer
 export function addFileToUploadList(file: MaharaPendingFile) {
   return { type: ADD_UPLOAD_FILE, file }
@@ -134,6 +145,11 @@ export function updateUserBlogs(blogs: Array<UserBlog>) {
   return { type: UPDATE_USER_BLOGS, userBlogs: blogs };
 }
 
+export function clearUserFolders() {
+  AsyncStorage.removeItem('userFolders');
+  return { type: CLEAR_USER_FOLDERS };
+}
+
 export function updateUserFolders(folders: Array<UserFolder>) {
   AsyncStorage.setItem('userFolders', JSON.stringify(folders));
   return { type: UPDATE_USER_FOLDERS, userFolders: folders };
@@ -142,11 +158,6 @@ export function updateUserFolders(folders: Array<UserFolder>) {
 export function clearUserBlogs() {
   AsyncStorage.removeItem('userBlogs');
   return { type: CLEAR_USER_BLOGS };
-}
-
-export function clearUserFolders() {
-  AsyncStorage.removeItem('userFolders');
-  return { type: CLEAR_USER_FOLDERS };
 }
 
 export class RequestError extends Error {

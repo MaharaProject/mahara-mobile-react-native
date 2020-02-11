@@ -60,6 +60,14 @@ export type UserBlog = {
   title: string;
 };
 
+export type UserBlogJSON = {
+  id: number;
+  title: string;
+  description: string;
+  locked: boolean;
+  numblogposts: number;
+};
+
 export type MaharaFileFormData = {
   webservice: string;
   wstoken: string;

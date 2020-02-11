@@ -1,21 +1,11 @@
-import React, { useEffect} from 'react';
 import AsyncStorage from '@react-native-community/async-storage';
-import { View, ActivityIndicator, StatusBar, StyleSheet } from 'react-native';
-import { useDispatch} from 'react-redux';
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
-import {
-  updateUserBlogs,
-  updateUserFolders,
-  updateUserName,
-  updateUserTags,
-  addToken,
-  updateLoginTypes,
-  updateUrl,
-  addFileToUploadList,
-  addJournalEntryToUploadList,
-  updateProfilePic
-} from '../../actions/actions';
-import { PendingJournalEntry, MaharaPendingFile } from '../../models/models';
+import React, { useEffect } from 'react';
+import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import { useDispatch } from 'react-redux';
+import { addFileToUploadList, addJournalEntryToUploadList, addToken, setDefaultBlogId, setDefaultFolder, updateLoginTypes, updateProfilePic, updateUrl, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags } from '../../actions/actions';
+import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
+import { DEFAULT_BLOG_ID, DEFAULT_FOLDER_TITLE } from '../../utils/constants';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -63,6 +53,14 @@ const AuthLoadingScreen = (props: Props) => {
         dispatch(updateUrl(result));
       });
 
+      await AsyncStorage.getItem(DEFAULT_FOLDER_TITLE).then(
+        (result: string) => {
+          if (result) {
+            dispatch(setDefaultFolder(result));
+          }
+        }
+      );
+
       // Sort data objects
       await AsyncStorage.getItem('userTags').then((result: string) => {
         if (result) {
@@ -97,6 +95,13 @@ const AuthLoadingScreen = (props: Props) => {
           uploadJEntries.forEach((jEntry: PendingJournalEntry) => {
             dispatch(addJournalEntryToUploadList(jEntry));
           });
+        }
+      });
+
+      await AsyncStorage.getItem(DEFAULT_BLOG_ID).then((result: string) => {
+        if (result) {
+          const defaultBlogId = parseJSON(result);
+          dispatch(setDefaultBlogId(defaultBlogId));
         }
       });
     } catch (error) {

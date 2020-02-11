@@ -1,5 +1,8 @@
 import { RootState } from './rootReducer';
-import { UPDATE_SERVER_URL, ADD_TOKEN, UPDATE_USERNAME, CLEAR_LOGIN_INFO, UPDATE_LOGIN_TYPES, UPDATE_URL, UPDATE_PROFILE_ICON, UPDATE_GUEST_STATUS } from '../utils/constants';
+import { UPDATE_SERVER_URL, ADD_TOKEN, UPDATE_USERNAME, CLEAR_LOGIN_INFO, UPDATE_LOGIN_TYPES, UPDATE_URL, UPDATE_PROFILE_ICON, UPDATE_GUEST_STATUS, SET_DEFAULT_BLOG, SET_DEFAULT_FOLDER } from '../utils/constants';
+import { UserFolder, UserBlog } from '../models/models';
+import { selectUserBlogs, selectUserFolders } from './userArtefactsReducer';
+import { useSelector } from 'react-redux';
 
 type LoginInfoState = {
   url: string;
@@ -11,7 +14,14 @@ type LoginInfoState = {
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
+  // default preferences
+  defaultFolderTitle: string;
+  defaultBlogId: number;
 };
+
+// Helpers
+const userBlogs = (state: RootState) => state.domainData.userBlogs;
+const userFolders = (state: RootState) => state.domainData.userFolders;
 
 const initialState: LoginInfoState = {
   url: '',
@@ -21,7 +31,9 @@ const initialState: LoginInfoState = {
   token: '',
   userName: '',
   isGuest: false,
-  profileIcon: ''
+  profileIcon: '',
+  defaultBlogId: userBlogs[0],
+  defaultFolderTitle: userFolders[0]
 };
 
 export const loginInfoReducer = (
@@ -68,6 +80,16 @@ export const loginInfoReducer = (
         ...state,
         isGuest: action.isGuest
       };
+    case SET_DEFAULT_BLOG:
+      return {
+        ...state,
+        defaultBlogId: action.blogId
+      };
+    case SET_DEFAULT_FOLDER:
+      return {
+        ...state,
+        defaultFolderTitle: action.folderTitle
+      };
     default:
       return state;
   }
@@ -83,3 +105,6 @@ export const selectUserName = (state: RootState) =>  state.domainData.loginInfo.
 export const selectAllLoginInfo = (state: RootState) =>  state.domainData.loginInfo;
 export const selectProfileIcon = (state: RootState) =>  state.domainData.loginInfo.profileIcon;
 export const selectIsGuestStatus = (state: RootState) =>  state.domainData.loginInfo.isGuest;
+export const selectDefaultBlogId = (state: RootState) => state.domainData.loginInfo.defaultBlogId;
+export const selectDefaultFolderTitle = (state: RootState) => state.domainData.loginInfo.defaultFolderTitle;
+

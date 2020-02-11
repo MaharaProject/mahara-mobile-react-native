@@ -2,8 +2,9 @@ import { i18n } from '@lingui/core';
 import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import React, { useEffect, useState } from 'react';
-import { Alert, AsyncStorage, Image, Picker, Text, View } from 'react-native';
+import { Alert, Image, Picker, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { setDefaultBlogId, setDefaultFolder } from '../../actions/actions';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import ProfileStyle from '../../components/Profile/Profile.style';
@@ -27,11 +28,11 @@ const PreferencesScreen = (props: any) => {
   const userName = useSelector((state: RootState) => selectUserName(state));
   const pIcon = useSelector((state: RootState) => selectProfileIcon(state));
 
-  // Coomponent state
+  // Component state
   const [profileIcon, setProfileIcon] = useState('');
   const userFolders = useSelector((state: RootState) => selectUserFolders(state));
   const userBlogs = useSelector((state: RootState) => selectUserBlogs(state));
-  const [selectedFolder, setSelectedFolder] = useState('images');
+  const [selectedFolderTitle, setSelectedFolderTitle] = useState('');
   const [selectedBlogId, setSelectedBlogId] = useState(0);
 
   useEffect(() => {
@@ -49,24 +50,36 @@ const PreferencesScreen = (props: any) => {
     getProfilePic();
   }, [profileIcon]);
 
-  const defaultFolderSelector = () => (
-    <View>
-      <SubHeading>
-        <Trans>Default Folder</Trans>
-      </SubHeading>
-      <Picker
-        accessibilityLabel={i18n._(t`Select folder`)}
-        selectedValue={selectedFolder}
-        style={forms.picker}
-        onValueChange={(folder: string) => {
-          setSelectedFolder(folder);
-        }}>
-        {userFolders?.map((folder: UserFolder, index: number) => (
-          <Picker.Item label={folder.title} value={folder.title} key={index} />
-        ))}
-      </Picker>
-    </View>
-  );
+  const defaultFolderSelector = () => {
+    console.log('in loop', userFolders);
+    return (
+      <View>
+        <SubHeading>
+          <Trans>Default Folder</Trans>
+        </SubHeading>
+        <Picker
+          accessibilityLabel={i18n._(t`Select folder`)}
+          selectedValue={selectedFolderTitle}
+          style={forms.picker}
+          onValueChange={(folder: string) => {
+            setSelectedFolderTitle(folder);
+          }}>
+          {/* <Picker.Item
+            label={`${defFolder.title} (default)`}
+            value={defFolder.title}
+            key={}
+          /> */}
+          {userFolders?.map((f: UserFolder, index) => (
+            <Picker.Item
+              label={f.title}
+              value={f.title}
+              key={f.title + index}
+            />
+          ))}
+        </Picker>
+      </View>
+    );
+  };
 
   const defaultBlogSelector = () => (
     <View>
@@ -78,8 +91,9 @@ const PreferencesScreen = (props: any) => {
         selectedValue={selectedBlogId}
         style={forms.picker}
         onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
-        {userBlogs?.map((blog: UserBlog, index: number) => (
-          <Picker.Item label={blog.title} value={blog.id} key={index} />
+        {/* <Picker.Item label={`${defBlog.title} (default)`} value={defBlog.id} /> */}
+        {userBlogs?.map((b: UserBlog) => (
+          <Picker.Item label={b.title} value={b.id} key={b.id} />
         ))}
       </Picker>
     </View>
@@ -89,12 +103,12 @@ const PreferencesScreen = (props: any) => {
     <View>
       <View style={PreferencesScreenStyle.container}>
         <Image
-          source={props.profileIcon ? {uri: props.profileIcon} : image}
+          source={pIcon ? { uri: pIcon } : image}
           style={ProfileStyle.image}
         />
       </View>
       <Text style={PreferencesScreenStyle.name}>
-        <Trans>Hi</Trans> {props.name ? props.name : 'Guest'}
+        <Trans>Hi</Trans> {userName}
       </Text>
     </View>
   );
@@ -107,10 +121,12 @@ const PreferencesScreen = (props: any) => {
       <MediumButton
         title={t`Update preferences`}
         onPress={() => {
-          AsyncStorage.setItem('defaultFolderId', selectedFolder);
+          if (selectedBlogId) dispatch(setDefaultBlogId(selectedBlogId));
+          if (selectedFolderTitle) dispatch(setDefaultFolder(selectedFolderTitle));
           Alert.alert(
             'Updated Preferences',
-            `Folder: ${selectedFolder}\nBlog: ${userBlogs[selectedBlogId].title}`
+            `Folder: ${selectedFolderTitle}
+            \nBlog: ${userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title}`
           );
         }}
       />
@@ -118,7 +134,7 @@ const PreferencesScreen = (props: any) => {
   );
 };
 
-PreferencesScreen.navigationOptions = ({navigation}) => ({
+PreferencesScreen.navigationOptions = ({ navigation }) => ({
   headerStyle: {
     backgroundColor: styles.colors.primary
   },

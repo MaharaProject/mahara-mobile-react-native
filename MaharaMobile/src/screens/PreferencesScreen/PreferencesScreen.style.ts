@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: '50%'
-    // backgroundColor: '#5FC99D'
   },
   container: {
     flexDirection: 'row',
@@ -23,8 +22,7 @@ export default StyleSheet.create({
   },
   settingsView: {
     flex: 1,
-    height: '50%',
-    // backgroundColor: '#9D62CE'
+    height: '50%'
   },
   view: {
     height: 400,
