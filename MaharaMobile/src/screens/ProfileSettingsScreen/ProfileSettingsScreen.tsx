@@ -44,11 +44,12 @@ const ProfileSettingsScreen = (props: Props) => {
     fetchProfilePic(dispatch, token, url);
   };
 
-  const signOutAsync = async () => {
-    await AsyncStorage.clear();
-    clearReduxData(dispatch);
-    props.navigation.navigate('SiteCheck');
-  };
+  // TODO: moved to authHelper in util
+  // const signOutAsync = async () => {
+  //   await AsyncStorage.clear();
+  //   clearReduxData(dispatch);
+  //   props.navigation.navigate('SiteCheck');
+  // };
 
   useEffect(() => {
     getProfilePic();

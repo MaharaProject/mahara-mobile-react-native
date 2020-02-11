@@ -126,7 +126,6 @@ PreferencesScreen.navigationOptions = ({navigation}) => ({
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center'
-  },
-  headerTitle: 'Preferences'
+  }
 });
 export default withI18n()(PreferencesScreen);

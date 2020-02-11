@@ -26,6 +26,7 @@ import {
   addFileToUploadList,
   updateProfilePic
 } from '../actions/actions';
+import { useDispatch } from 'react-redux';
 
 export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
   return async function(dispatch: Dispatch) {
@@ -139,4 +140,10 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
     });
 
   return profilePic;
+};
+
+export const signOutAsync = async (navigation, dispatch) => {
+  await AsyncStorage.clear();
+  clearReduxData(dispatch);
+  navigation.navigate('SiteCheck');
 };

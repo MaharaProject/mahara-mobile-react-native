@@ -88,7 +88,6 @@ export class SiteCheckScreen extends Component<Props, State> {
     try {
       await this.props.dispatch(checkLoginTypes(serverUrl));
       if (this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
-        console.log('checked')
         this.setState({
           serverPing: true,
           isInputHidden: true,
@@ -98,7 +97,6 @@ export class SiteCheckScreen extends Component<Props, State> {
     } catch (error) {
       this.setState({ errorMessage: error.message });
       console.error(error);
-      console.log('error')
     }
   };
 
