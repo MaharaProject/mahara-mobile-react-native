@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux'
-import { Text, View, TouchableOpacity, Picker } from 'react-native';
-import sanitize from 'sanitize-filename';
-import { StackActions, NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
-import { Trans, t } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
 import { i18n } from '@lingui/core';
-import uploadFormStyles from './UploadForm.style';
-import forms from '../../assets/styles/forms';
-import buttons from '../../assets/styles/buttons';
-import { UserFolder, MaharaFile, JournalEntry,UserTag, UserBlog, PendingJournalEntry, MaharaFileFormData, MaharaPendingFile } from '../../models/models';
+import { t, Trans } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
+import React, { useEffect, useState } from 'react';
+import { Picker, Text, TouchableOpacity, View } from 'react-native';
+import { Switch } from 'react-native-paper';
+import { NavigationParams, NavigationScreenProp, NavigationState, StackActions } from 'react-navigation';
+import { useDispatch } from 'react-redux';
+import sanitize from 'sanitize-filename';
 import { addFileToUploadList, addJournalEntryToUploadList } from '../../actions/actions';
-import { isMaharaFileFormData, isJournalEntry } from '../../utils/helperFunctions';
+import buttons from '../../assets/styles/buttons';
+import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
-import MediumButton from '../UI/MediumButton/MediumButton';
+import { JournalEntry, MaharaFile, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserFolder, UserTag } from '../../models/models';
+import { JOURNAL_ENTRY } from '../../utils/constants';
+import { RequiredWarningText, setTagString, SubHeading, validateText } from '../../utils/formHelper';
+import { isJournalEntry, isMaharaFileFormData } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
-import { setTagString, validateText, SubHeading, RequiredWarningText } from '../../utils/formHelper';
-import { JOURNAL_ENTRY } from '../../utils/constants';
+import MediumButton from '../UI/MediumButton/MediumButton';
+import uploadFormStyles from './UploadForm.style';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -62,7 +63,7 @@ const UploadForm = (props: Props) => {
   const [newTag, addNewTag] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
   const [hidden, showTagInput] = useState(false);
-  // form fields
+  // form values
   const [controlTitle, setTitle] = useState('');
   const [controlDesc, setDescription] = useState('');
   const [controlTitleValid, setControlTitleValid] = useState(
@@ -71,6 +72,9 @@ const UploadForm = (props: Props) => {
   const [controlDescValid, setControlDescValid] = useState(
     props.formType !== JOURNAL_ENTRY
   );
+
+  const [isDraft, setIsDraft] = useState(false);
+
   const [selectedFolder, setSelectedFolder] = useState('');
   const [selectedBlog, setSelectedBlog] = useState(0);
   const [selectedTags, setTags] = useState<State['selectedTags']>([]);
@@ -127,7 +131,7 @@ const UploadForm = (props: Props) => {
         wstoken: props.token,
         title: controlTitle,
         body: controlDesc,
-        isdraft: false,
+        isdraft: isDraft,
         tags: selectedTags
       };
 
@@ -280,6 +284,20 @@ const UploadForm = (props: Props) => {
     );
   };
 
+  const renderJournalDraftSwitch = () => (
+    <View style={{flexDirection: 'row'}}>
+      <SubHeading>
+        <Trans>Draft Journal Entry &nbsp;</Trans>
+      </SubHeading>
+      <Switch
+        value={isDraft}
+        accessibilityRole="switch"
+        onValueChange={() => setIsDraft(!isDraft)}
+        color={styles.colors.tertiary}
+      />
+    </View>
+  );
+
   const renderBlogPicker = () => {
     if (formType !== JOURNAL_ENTRY) return null;
     if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
@@ -291,6 +309,7 @@ const UploadForm = (props: Props) => {
     }
     return (
       <View>
+        {renderJournalDraftSwitch()}
         <SubHeading>Blog</SubHeading>
         <View style={forms.pickerWrapper}>
           <Picker

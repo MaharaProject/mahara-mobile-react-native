@@ -43,6 +43,7 @@ export type User = {
 };
 
 export type UserFolder = {
+  id: number;
   title: string;
 };
 

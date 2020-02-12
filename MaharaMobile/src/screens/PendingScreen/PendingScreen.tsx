@@ -171,7 +171,6 @@ PendingScreen.navigationOptions = (navData: any) => ({
     flex: 1,
     textAlign: 'center'
   },
-  headerTintColor: styles.colors.light,
   headerLeft: <HeaderMenuButton navData={navData} />,
   headerTitle: 'Pending items'
 });

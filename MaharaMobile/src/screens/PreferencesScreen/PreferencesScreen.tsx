@@ -10,7 +10,7 @@ import styles from '../../assets/styles/variables';
 import ProfileStyle from '../../components/Profile/Profile.style';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import { UserBlog, UserFolder } from '../../models/models';
-import { selectProfileIcon, selectToken, selectUrl, selectUserName } from '../../reducers/loginInfoReducer';
+import { selectDefaultBlogId, selectDefaultFolderTitle, selectProfileIcon, selectToken, selectUrl, selectUserName } from '../../reducers/loginInfoReducer';
 import { RootState } from '../../reducers/rootReducer';
 import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefactsReducer';
 import { fetchProfilePic } from '../../utils/authHelperFunctions';
@@ -27,6 +27,8 @@ const PreferencesScreen = (props: any) => {
   const token = useSelector((state: RootState) => selectToken(state));
   const userName = useSelector((state: RootState) => selectUserName(state));
   const pIcon = useSelector((state: RootState) => selectProfileIcon(state));
+  const defaultFolderTitle = useSelector((state: RootState) => selectDefaultFolderTitle(state));
+  const defaultBlogId = useSelector((state: RootState) => selectDefaultBlogId(state));
 
   // Component state
   const [profileIcon, setProfileIcon] = useState('');
@@ -50,48 +52,37 @@ const PreferencesScreen = (props: any) => {
     getProfilePic();
   }, [profileIcon]);
 
-  const defaultFolderSelector = () => {
-    console.log('in loop', userFolders);
-    return (
-      <View>
-        <SubHeading>
-          <Trans>Default Folder</Trans>
-        </SubHeading>
-        <Picker
-          accessibilityLabel={i18n._(t`Select folder`)}
-          selectedValue={selectedFolderTitle}
-          style={forms.picker}
-          onValueChange={(folder: string) => {
-            setSelectedFolderTitle(folder);
-          }}>
-          {/* <Picker.Item
-            label={`${defFolder.title} (default)`}
-            value={defFolder.title}
-            key={}
-          /> */}
-          {userFolders?.map((f: UserFolder, index) => (
-            <Picker.Item
-              label={f.title}
-              value={f.title}
-              key={f.title + index}
-            />
-          ))}
-        </Picker>
-      </View>
-    );
-  };
-
-  const defaultBlogSelector = () => (
+  const defaultFolderPicker = () => (
     <View>
       <SubHeading>
-        <Trans>Default Blog</Trans>
+        <Trans>Default Folder</Trans>: {defaultFolderTitle}
+      </SubHeading>
+      <Picker
+        accessibilityLabel={i18n._(t`Select folder`)}
+        selectedValue={selectedFolderTitle}
+        style={forms.picker}
+        onValueChange={(folder: string) => {
+          setSelectedFolderTitle(folder);
+        }}>
+        <Picker.Item label="Change folder ..."></Picker.Item>
+        {userFolders?.map((f: UserFolder, index) => (
+          <Picker.Item label={f.title} value={f.title} key={f.id} />
+        ))}
+      </Picker>
+    </View>
+  );
+
+  const defaultBlogPicker = () => (
+    <View>
+      <SubHeading>
+        <Trans>Default Blog</Trans>: {userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title}
       </SubHeading>
       <Picker
         accessibilityLabel={i18n._(t`Select blog`)}
         selectedValue={selectedBlogId}
         style={forms.picker}
         onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
-        {/* <Picker.Item label={`${defBlog.title} (default)`} value={defBlog.id} /> */}
+        <Picker.Item label="Change blog ..."></Picker.Item>
         {userBlogs?.map((b: UserBlog) => (
           <Picker.Item label={b.title} value={b.id} key={b.id} />
         ))}
@@ -116,8 +107,8 @@ const PreferencesScreen = (props: any) => {
   return (
     <View>
       {renderProfile()}
-      {defaultFolderSelector()}
-      {defaultBlogSelector()}
+      {defaultFolderPicker()}
+      {defaultBlogPicker()}
       <MediumButton
         title={t`Update preferences`}
         onPress={() => {
@@ -126,7 +117,9 @@ const PreferencesScreen = (props: any) => {
           Alert.alert(
             'Updated Preferences',
             `Folder: ${selectedFolderTitle}
-            \nBlog: ${userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title}`
+            \nBlog: ${
+              userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title
+            }`
           );
         }}
       />
@@ -142,6 +135,8 @@ PreferencesScreen.navigationOptions = ({ navigation }) => ({
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center'
-  }
+  },
+  headerTintColor: styles.colors.light,
+  headerTitle: i18n._(t`Preferences`)
 });
 export default withI18n()(PreferencesScreen);

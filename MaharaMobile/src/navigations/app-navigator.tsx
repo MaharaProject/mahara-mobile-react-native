@@ -14,6 +14,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import styles from '../assets/styles/variables';
 import DrawerContainer from '../components/DrawerContainer/DrawerContainer';
 import IconWithBadge from '../components/UI/IconWithBadge/IconWithBadge';
+import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
@@ -30,12 +31,20 @@ const AppNavigator = (props: Props) => {
   const navigatorStrings = {
     PREFERENCES: props.i18n._(t`Preferences`),
     PENDING: props.i18n._(t`Pending`),
-    ADD: props.i18n._(t`Add`)
+    ADD: props.i18n._(t`Add`),
+    ABOUT: props.i18n._(t`About`)
   };
 
+  // Home page navigator, all other pages get attached to this  navigation stack.
   const AddItemsTabNavigator = createStackNavigator({
     Add: SelectMediaScreen,
     AddItem: AddItemScreen,
+    About: {
+      screen: AboutScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.ABOUT
+      }
+    },
     Preferences: PreferencesScreen
   });
 
@@ -111,13 +120,12 @@ const AppNavigator = (props: Props) => {
           drawerIcon: ({ tintColor }) => <FontAwesome5 name="user" size={20} />
         }
       },
-      Add: {
+      About: {
+        screen: AboutScreen,
         navigationOptions: {
-          drawerLabel: 'Add Item'
-        },
-        screen: AddItemsTabNavigator
-      },
-      Pending: PendingItemsTabNavigator
+          drawerIcon: ({ tintColor }) => <FontAwesome5 name="question" size={20} />
+        }
+      }
     },
     {
       drawerWidth: '60%',
