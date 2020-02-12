@@ -115,14 +115,12 @@ const AppNavigator = (props: Props) => {
         drawerIcon: ({tintColor}) => <FontAwesome5 name="user" size={20} />
       }
     },
-    Add: {
+    About: {
+      screen: AboutScreen,
       navigationOptions: {
-        drawerLabel: 'Add Item'
-      },
-      screen: AddItemsTabNavigator
-    },
-    Pending: PendingItemsTabNavigator,
-    About: AboutScreen
+        drawerIcon: ({ tintColor }) => <FontAwesome5 name="question" size={20} />
+      }
+    }
   });
 
   const Navigation = createAppContainer(DrawerNavigator);
