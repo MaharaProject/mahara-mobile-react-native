@@ -12,6 +12,7 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import styles from '../assets/styles/variables';
+import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
@@ -29,12 +30,20 @@ const AppNavigator = (props: Props) => {
   const navigatorStrings = {
     PREFERENCES: props.i18n._(t`Preferences`),
     PENDING: props.i18n._(t`Pending`),
-    ADD: props.i18n._(t`Add`)
+    ADD: props.i18n._(t`Add`),
+    ABOUT: props.i18n._(t`About`)
   };
 
+  // Home page navigator, all other pages get attached to this  navigation stack.
   const AddItemsTabNavigator = createStackNavigator({
     Add: SelectMediaScreen,
     AddItem: AddItemScreen,
+    About: {
+      screen: AboutScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.ABOUT
+      }
+    },
     Preferences: PreferencesScreen
   });
 
@@ -112,7 +121,8 @@ const AppNavigator = (props: Props) => {
       },
       screen: AddItemsTabNavigator
     },
-    Pending: PendingItemsTabNavigator
+    Pending: PendingItemsTabNavigator,
+    About: AboutScreen
   });
 
   const Navigation = createAppContainer(DrawerNavigator);
