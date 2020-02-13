@@ -7,8 +7,7 @@ const forms = StyleSheet.create({
     paddingLeft: styles.padding.md,
     paddingRight: styles.padding.md,
     marginBottom: styles.padding.md,
-    borderWidth: 1,
-    borderColor: styles.colors.secondary,
+    borderRadius: 5,
     backgroundColor: styles.colors.light,
     height: 40
   },

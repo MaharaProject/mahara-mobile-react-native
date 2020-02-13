@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 import styles from './variables';
 
-export const headingStyles = StyleSheet.create({
+const headingStyles = StyleSheet.create({
   mainHeading: {
     fontSize: styles.font.lg,
-    color: styles.colors.secondary,
+    color: styles.colors.light,
     fontWeight: 'bold',
     marginBottom: styles.padding.md,
     marginTop: styles.padding.md
@@ -24,3 +24,5 @@ export const headingStyles = StyleSheet.create({
     marginTop: styles.padding.sm
   }
 });
+
+export default headingStyles;

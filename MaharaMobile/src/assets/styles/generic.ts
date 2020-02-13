@@ -9,6 +9,13 @@ const generic = StyleSheet.create({
   },
   wrap: {
     padding: styles.padding.sm
+  },
+  center: {
+    textAlign: 'center'
+  },
+  linearGradient: {
+    flex: 1,
+    padding: styles.padding.md
   }
 });
 

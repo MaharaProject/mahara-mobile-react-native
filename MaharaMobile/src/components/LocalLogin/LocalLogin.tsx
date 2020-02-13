@@ -6,10 +6,25 @@ import { getManufacturer, getModel } from 'react-native-device-info';
 import { I18n } from '@lingui/react';
 import { t, Trans } from '@lingui/macro';
 
+// Linear gradient
+import LinearGradient from 'react-native-linear-gradient';
+
+// Styles
+import styles from './LocalLogin.style';
 import generic from '../../assets/styles/generic';
 import forms from '../../assets/styles/forms';
-import { headingStyles } from '../../assets/styles/headings';
+import headingStyles from '../../assets/styles/headings';
+
+// Images
+import LogoSvg from '../../assets/images/Logo-big';
+
+// Components
 import MediumButton from '../UI/MediumButton/MediumButton';
+
+// Font Awesome
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
 
 type Props = {
   url: string;
@@ -50,27 +65,33 @@ export default function LocalLogin(props: Props) {
   };
 
   return (
-    <View style={generic.wrap}>
-      <Text style={headingStyles.mainHeading}><Trans>Login via username and password</Trans></Text>
-      <I18n>
-        {({ i18n }) => <TextInput
-                          style={forms.textInput}
-                          placeholder={i18n._(t `Enter your username`)}
-                          onChangeText={(usernameInput) => setUsername(usernameInput)}
-                        />
-        }
-      </I18n>
-      <I18n>
-        {({ i18n }) => <TextInput
-                          style={forms.textInput}
-                          secureTextEntry
-                          placeholder={i18n._(t `Enter your password`)}
-                          onChangeText={(passwordInput) => setPassword(passwordInput)}
-                        />
-        }
-      </I18n>
-      <MediumButton title={t`Login`} onPress={() => checkLogins()}
-      />
+    <View style={styles.view}>
+      <LinearGradient colors={['#2e391c', '#566d31', '#9db576']} style={generic.linearGradient}>
+        <View style={styles.wrapper}>
+          <View style={styles.imageWrapper}>
+            <LogoSvg />
+          </View>
+          <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Login via username and password</Trans></Text>
+          <I18n>
+            {({ i18n }) => <TextInput
+                              style={forms.textInput}
+                              placeholder={i18n._(t `Enter your username`)}
+                              onChangeText={(usernameInput) => setUsername(usernameInput)}
+                            />
+            }
+          </I18n>
+          <I18n>
+            {({ i18n }) => <TextInput
+                              style={forms.textInput}
+                              secureTextEntry
+                              placeholder={i18n._(t `Enter your password`)}
+                              onChangeText={(passwordInput) => setPassword(passwordInput)}
+                            />
+            }
+          </I18n>
+          <MediumButton title={t` Login`} onPress={() => checkLogins()} />
+        </View>
+      </LinearGradient>
     </View>
   );
 }

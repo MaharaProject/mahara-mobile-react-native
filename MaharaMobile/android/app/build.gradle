@@ -179,6 +179,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-linear-gradient')
     implementation project(':react-native-audio-recorder-player')
     implementation project(':react-native-image-picker')
     implementation project(':react-native-device-info')

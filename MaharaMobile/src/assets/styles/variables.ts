@@ -3,7 +3,7 @@
 const styles = {
   colors: {
     primary: '#c4d6a9',
-    secondary: '#556d32',
+    secondary: '#ba9c53',
     tertiary: '#566d31',
     quaternary: '#1f6c88',
     contrast: '#eff4e7',
@@ -12,7 +12,8 @@ const styles = {
     dark: '#000',
     dark2: '#2e3a1c',
     darkgrey: '#777',
-    warn: '#a94442'
+    warnbg: '#e8c4c4',
+    warn: '#aa0500'
   },
   padding: {
     xs: 5,
