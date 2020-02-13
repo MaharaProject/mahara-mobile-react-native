@@ -1,10 +1,11 @@
-import { Text} from 'react-native';
-import React from 'react';
 import { setupI18n } from '@lingui/core';
 import { t } from '@lingui/macro';
-import { JOURNAL_ENTRY, FILE, PHOTO } from './constants';
-import styles from '../assets/styles/variables';
+import React from 'react';
+import { Text } from 'react-native';
 import { headingStyles } from '../assets/styles/headings';
+import styles from '../assets/styles/variables';
+import { UserBlog, UserFolder } from '../models/models';
+import { FILE, JOURNAL_ENTRY, PHOTO } from './constants';
 
 export const setTagString = (tags: Array<string>) => {
   const tagsArray = tags.map(
@@ -42,3 +43,24 @@ export const SubHeading = (props: any) => (
     {props.required ? <RedAsterix /> : null}
   </Text>
 );
+
+/**
+ * Order list for UserBlog and UserFolder types for default on UploadForm
+ */
+export const putDefaultAtTop = (
+  defaultBlog: UserBlog,
+  defFolder: UserFolder,
+  arr: Array<UserFolder> | Array<UserBlog>
+): Array<UserFolder> | Array<UserBlog> => {
+  if (defFolder || defaultBlog) {
+    let resultArray = [];
+    const defaultItem = defaultBlog || defFolder;
+
+    const set = new Set([...arr]);
+    set.delete(defaultItem);
+    resultArray.push(defaultItem);
+    resultArray = resultArray.concat(Array.from(set));
+    return resultArray;
+  }
+  return null;
+};

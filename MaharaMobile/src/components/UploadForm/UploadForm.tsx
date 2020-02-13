@@ -3,7 +3,6 @@ import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import React, { useEffect, useState } from 'react';
 import { Picker, Text, TouchableOpacity, View } from 'react-native';
-import { Switch } from 'react-native-paper';
 import { NavigationParams, NavigationScreenProp, NavigationState, StackActions } from 'react-navigation';
 import { useDispatch } from 'react-redux';
 import sanitize from 'sanitize-filename';
@@ -13,7 +12,7 @@ import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import { JournalEntry, MaharaFile, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserFolder, UserTag } from '../../models/models';
 import { JOURNAL_ENTRY } from '../../utils/constants';
-import { RequiredWarningText, setTagString, SubHeading, validateText } from '../../utils/formHelper';
+import { putDefaultAtTop, RequiredWarningText, setTagString, SubHeading, validateText } from '../../utils/formHelper';
 import { isJournalEntry, isMaharaFileFormData } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
@@ -53,8 +52,12 @@ const UploadForm = (props: Props) => {
   };
 
   const dispatch = useDispatch();
-  const isMultiLine = props.formType !== JOURNAL_ENTRY ? forms.multiLine : [forms.multiLine, uploadFormStyles.description];
-  const placeholder = props.formType !== JOURNAL_ENTRY ? formStrings.ENTER_DESC : formStrings.ENTER_DETAIL;
+  const isMultiLine =    props.formType !== JOURNAL_ENTRY
+      ? forms.multiLine
+      : [forms.multiLine, uploadFormStyles.description];
+  const placeholder =    props.formType !== JOURNAL_ENTRY
+      ? formStrings.ENTER_DESC
+      : formStrings.ENTER_DETAIL;
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
   const { formType } = props;
   let fileValid = props.pickedFile ? props.pickedFile.size > 0 : false;
@@ -63,7 +66,7 @@ const UploadForm = (props: Props) => {
   const [newTag, addNewTag] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
   const [hidden, showTagInput] = useState(false);
-  // form values
+  // form fields
   const [controlTitle, setTitle] = useState('');
   const [controlDesc, setDescription] = useState('');
   const [controlTitleValid, setControlTitleValid] = useState(
@@ -72,16 +75,15 @@ const UploadForm = (props: Props) => {
   const [controlDescValid, setControlDescValid] = useState(
     props.formType !== JOURNAL_ENTRY
   );
-
-  const [isDraft, setIsDraft] = useState(false);
-
   const [selectedFolder, setSelectedFolder] = useState('');
   const [selectedBlog, setSelectedBlog] = useState(0);
   const [selectedTags, setTags] = useState<State['selectedTags']>([]);
   // error messages
   const [showInvalidTitleMessage, setShowInvalidTitleMessage] = useState(false);
   const [showInvalidDescMessage, setShowInvalidDescMessage] = useState(false);
-  const [showInvalidFileMessage, setShowInvalidFileNessage] = useState(fileValid);
+  const [showInvalidFileMessage, setShowInvalidFileNessage] = useState(
+    fileValid
+  );
 
   useEffect(() => {
     if (props.editItem) {
@@ -131,12 +133,14 @@ const UploadForm = (props: Props) => {
         wstoken: props.token,
         title: controlTitle,
         body: controlDesc,
-        isdraft: isDraft,
+        isdraft: false,
         tags: selectedTags
       };
 
       const pendingJournalEntry: PendingJournalEntry = {
-        id: props.editItem ? props.editItem.id : Math.random() * 10 + jEntry.title,
+        id: props.editItem
+          ? props.editItem.id
+          : Math.random() * 10 + jEntry.title,
         journalEntry: jEntry,
         url: journalUrl
       };
@@ -146,9 +150,11 @@ const UploadForm = (props: Props) => {
     } else if (pickedFile) {
       // Upload File
       const tagString = selectedTags ? setTagString(selectedTags) : '';
-      const fileUrl = props.url + '/webservice/rest/server.php?alt=json' + tagString;
+      const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
       const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-      const filename = controlTitle ? sanitize(controlTitle) + extension : pickedFile.name;
+      const filename = controlTitle
+        ? sanitize(controlTitle) + extension
+        : pickedFile.name;
       const firstFolder = props.userFolders ? props.userFolders[0].title : '';
       const folder = selectedFolder || firstFolder; // TODO: setting to first folder until we set up preferred default folder functionality
       const webService = 'module_mobileapi_upload_file';
@@ -173,7 +179,7 @@ const UploadForm = (props: Props) => {
       const pendingFileData: MaharaPendingFile = {
         id: props.editItem
           ? props.editItem.id
-          : Math.random() * 10 + '' + fileData.type,
+          : `${Math.random() * 10}${fileData.type}`,
         maharaFormData: formData,
         mimetype: pickedFile.type,
         url: fileUrl,
@@ -248,6 +254,10 @@ const UploadForm = (props: Props) => {
 
   const renderFolderPicker = () => {
     if (formType === JOURNAL_ENTRY) return null;
+
+    const matchingFolder = props.userFolders.find(f => f.title === props.defaultFolderTitle);
+    const folders: Array<UserFolder> = putDefaultAtTop(null, matchingFolder, props.userFolders);
+
     return (
       <View>
         <SubHeading>
@@ -259,24 +269,9 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedFolder}
             style={forms.picker}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
-            {props.defaultFolderTitle && (
-              <Picker.Item
-                label={`${props.defaultFolderTitle} - default`}
-                value={props.defaultFolderTitle}
-                key={-1}
-              />
-            )}
-            {props.userFolders?.map((folder: UserFolder, index: number) => {
-              if (folder.title !== props.defaultFolderTitle) {
-                return (
-                  <Picker.Item
-                    label={folder.title}
-                    value={folder.title}
-                    key={index}
-                  />
-                );
-              }
-              return null;
+            {folders.map((f: UserFolder, index: number) => {
+              const label = f.title === props.defaultFolderTitle ? `${f.title} - default` : f.title;
+              return <Picker.Item label={label} value={f.title} key={f.id} />;
             })}
           </Picker>
         </View>
@@ -284,22 +279,12 @@ const UploadForm = (props: Props) => {
     );
   };
 
-  const renderJournalDraftSwitch = () => (
-    <View style={{flexDirection: 'row'}}>
-      <SubHeading>
-        <Trans>Draft Journal Entry &nbsp;</Trans>
-      </SubHeading>
-      <Switch
-        value={isDraft}
-        accessibilityRole="switch"
-        onValueChange={() => setIsDraft(!isDraft)}
-        color={styles.colors.tertiary}
-      />
-    </View>
-  );
-
   const renderBlogPicker = () => {
     if (formType !== JOURNAL_ENTRY) return null;
+
+    const matchingBlog = props.userBlogs.find(b => b.id === props.defaultBlogId);
+    const blogs : Array<UserBlog> = putDefaultAtTop(matchingBlog, null, props.userBlogs);
+
     if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
       return (
         <RequiredWarningText
@@ -309,7 +294,6 @@ const UploadForm = (props: Props) => {
     }
     return (
       <View>
-        {renderJournalDraftSwitch()}
         <SubHeading>Blog</SubHeading>
         <View style={forms.pickerWrapper}>
           <Picker
@@ -317,20 +301,14 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedBlog}
             style={forms.picker}
             onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
-            {props.defaultBlogId && (
-              <Picker.Item
-                label={`${props.userBlogs.find(blog => blog.id === props.defaultBlogId).title} - default`}
-                value={props.defaultBlogId}
-                key={-1}
-              />
-            )}
-            {props.userBlogs?.map((blog: UserBlog, index: number) => {
-              if (blog.id !== props.defaultBlogId) {
-                return (
-                  <Picker.Item label={blog.title} value={blog.id} key={index} />
-                );
-              }
-              return null;
+            {blogs.map((blog: UserBlog) => {
+              const label =
+                blog.id === props.defaultBlogId
+                  ? `${blog.title} - default`
+                  : blog.title;
+              return (
+                <Picker.Item label={label} value={blog.id} key={blog.id} />
+              );
             })}
           </Picker>
         </View>
@@ -373,7 +351,9 @@ const UploadForm = (props: Props) => {
             accessibilityHint={i18n._(t`Click to remove tag`)}>
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
-              <Text style={forms.tagClose} accessibilityLabel="">x</Text>
+              <Text style={forms.tagClose} accessibilityLabel="">
+                x
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
