@@ -1,10 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-
+import { I18n } from '@lingui/core';
 import { rootReducer } from '../reducers/rootReducer';
 
-export default function configureStore(preloadedState) {
+export default function configureStore(
+  preloadedState: any,
+  i18n: I18n) {
   const middleware = [thunk];
 
   middleware.push(createLogger());
@@ -15,6 +17,9 @@ export default function configureStore(preloadedState) {
   return createStore(
     rootReducer,
     preloadedState,
-    composeEnhancers(applyMiddleware(...middleware)),
+    composeEnhancers(applyMiddleware(
+       thunk.withExtraArgument({ i18n }),
+      ...middleware
+    )),
   );
 }

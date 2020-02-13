@@ -38,26 +38,9 @@ type State = {
 };
 
 const UploadForm = (props: Props) => {
-  // Translation strings
-  const formStrings = {
-    ENTER_TITLE: i18n._(t`Enter a title`),
-    ERROR_NO_BLOGS: i18n._(t` Error: User has no Blogs`),
-    CONFIRM_EDITS_TO: i18n._(t`Confirm edits to`),
-    FIELDS_REQUIRED: i18n._(t`"Fields marked by * are required"`),
-    SAVE_TO_PENDING: i18n._(t`Save item to Pending`),
-    ADD_NEW_TAG: i18n._(t`Add new tag +`),
-    NEW_TAG: i18n._(t`New tag\u2026`),
-    ENTER_DESC: i18n._(t`Enter a description`),
-    ENTER_DETAIL: i18n._(t`Enter detail`)
-  };
-
   const dispatch = useDispatch();
-  const isMultiLine =    props.formType !== JOURNAL_ENTRY
-      ? forms.multiLine
-      : [forms.multiLine, uploadFormStyles.description];
-  const placeholder =    props.formType !== JOURNAL_ENTRY
-      ? formStrings.ENTER_DESC
-      : formStrings.ENTER_DETAIL;
+  const isMultiLine = props.formType !== JOURNAL_ENTRY ? forms.multiLine : [forms.multiLine, uploadFormStyles.description];
+  const placeholder = props.formType !== JOURNAL_ENTRY ? t`Enter a description`: t`Enter detail`;
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
   const { formType } = props;
   let fileValid = props.pickedFile ? props.pickedFile.size > 0 : false;
@@ -225,7 +208,7 @@ const UploadForm = (props: Props) => {
     <View>
       {/* Error messages */}
       {showInvalidFileMessage && (
-        <RequiredWarningText customText={i18n._(t`A file is required`)} />
+        <RequiredWarningText customText={t`A file is required`} />
       )}
       <SubHeading required={formType === JOURNAL_ENTRY}>
         <Trans>Title</Trans>
@@ -234,7 +217,7 @@ const UploadForm = (props: Props) => {
       <FormInput
         valid={controlTitleValid}
         style={forms.textInput}
-        placeholder={i18n._(t`${formStrings.ENTER_TITLE}`)}
+        placeholder={t`Enter a title`}
         value={controlTitle}
         onChangeText={(title: string) => updateTitle(title.trim())}
       />
@@ -288,7 +271,7 @@ const UploadForm = (props: Props) => {
     if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
       return (
         <RequiredWarningText
-          customText={i18n._(t`${formStrings.ERROR_NO_BLOGS}`)}
+          customText={t`Error: User has no Blogs`}
         />
       );
     }
@@ -326,7 +309,7 @@ const UploadForm = (props: Props) => {
           <View style={uploadFormStyles.tagsInputContainer}>
             <FormInput
               style={[forms.textInput, uploadFormStyles.tagsTextInput]}
-              placeholder={formStrings.NEW_TAG}
+              placeholder={t`Add new tag +`}
               onChangeText={(text: string) => addNewTag(text)}
             />
             <TouchableOpacity
@@ -372,7 +355,7 @@ const UploadForm = (props: Props) => {
             <Picker.Item label={value.tag} value={value.tag} key={index} />
           ))}
           <Picker.Item
-            label={formStrings.ADD_NEW_TAG}
+            label={i18n._(t`Add new tag +`)}
             value="Add new tag +"
             color="#556d32"
           />
@@ -394,14 +377,14 @@ const UploadForm = (props: Props) => {
       <View>
         <TouchableOpacity
           onPress={() => (validButton ? handleForm() : renderUserMessages())}
-          accessibilityLabel={i18n._(t`${formStrings.SAVE_TO_PENDING}`)}
+          accessibilityLabel={i18n._(t`Save item to Pending`)}
           accessibilityRole="button">
           {/* Editing items */}
           {/* TODO: validation for edit button */}
           {props.editItem && (
             <Trans>
               <Text style={buttons.lg}>
-                {i18n._(t`${formStrings.CONFIRM_EDITS_TO}`)}
+                Confirm edits to
                 {formType}
               </Text>
             </Trans>
@@ -441,7 +424,7 @@ const UploadForm = (props: Props) => {
   return (
     <View>
       <RequiredWarningText
-        customText={i18n._(t`${formStrings.FIELDS_REQUIRED}`)}
+        customText={t`Fields marked by * are required`}
       />
       {renderDisplayedFilename()}
       {renderTextInputs()}

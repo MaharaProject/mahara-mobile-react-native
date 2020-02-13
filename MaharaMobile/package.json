@@ -23,6 +23,7 @@
     "@react-navigation/bottom-tabs": "^5.0.0-alpha.22",
     "@types/react-native-uuid": "^1.4.0",
     "@types/react-redux": "^7.1.5",
+    "@types/redux-logger": "^3.0.7",
     "@typescript-eslint/parser": "^2.7.0",
     "buffer": "^5.4.3",
     "core-js": "^3.4.8",

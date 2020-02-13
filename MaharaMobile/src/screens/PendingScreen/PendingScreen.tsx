@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Icon } from 'react-native-elements';
-import { t } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core';
 
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
@@ -53,7 +53,7 @@ const PendingScreen = (props: Props) => {
 
   const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
     const type = isPendingJournalEntry(item) ? 'journal entry' : item.type;
-    props.navigation.navigate({ routeName: 'AddItem', params: { itemToEdit: item, formType: type } });
+    props.navigation.navigate({ routeName: 'AddItem', params: { itemToEdit: item, formType: type, title: 'Edit' } });
   };
 
   const clearUploadError = (id: string) => {
@@ -136,7 +136,7 @@ const PendingScreen = (props: Props) => {
     <View style={pendingScreenStyles.app}>
       {showSuccessMessage && (
         <View>
-          <Text>Upload added to Pending List!</Text>
+          <Text><Trans>Upload added to Pending List!</Trans></Text>
           <Icon
             onPress={() => setShowSuccessMessage(false)}
             accessibilityLabel={i18n._(t`Close success message`)}
@@ -171,8 +171,8 @@ PendingScreen.navigationOptions = (navData: any) => ({
     flex: 1,
     textAlign: 'center'
   },
-  headerLeft: <HeaderMenuButton navData={navData} />,
-  headerTitle: 'Pending items'
+  headerTintColor: styles.colors.light,
+  headerLeft: <HeaderMenuButton navData={navData} />
 });
 
 const mapStateToProps = (state: RootState) => ({

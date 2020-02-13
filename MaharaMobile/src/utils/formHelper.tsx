@@ -1,5 +1,5 @@
-import { setupI18n } from '@lingui/core';
 import { t } from '@lingui/macro';
+import { I18n } from '@lingui/react';
 import React from 'react';
 import { Text } from 'react-native';
 import { headingStyles } from '../assets/styles/headings';
@@ -23,14 +23,16 @@ export const validateText = (formType: string, text: string): boolean => {
   return false;
 };
 
-const i18n = setupI18n();
-
 export const RequiredWarningText = (props: any) => (
-  <Text style={{color: styles.colors.warn}}>
-    {props.customText
-      ? i18n._(t`${props.customText}`)
-      : i18n._(t`This field is required`)}
-  </Text>
+  <I18n>
+    {({i18n}) => (
+      <Text style={{color: styles.colors.warn}}>
+        {props.customText
+          ? i18n._(props.customText)
+          : i18n._(t`This field is required`)}
+      </Text>
+    )}
+  </I18n>
 );
 
 export const RedAsterix = () => (

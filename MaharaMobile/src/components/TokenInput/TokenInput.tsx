@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { t } from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 
 import styles from './TokenInput.style';
 import forms from '../../assets/styles/forms';
@@ -22,7 +22,7 @@ export default function TokenInput(props: Props) {
 
   return (
     <View style={styles.view}>
-      <Text style={headingStyles.mainHeading}>Login via Token</Text>
+      <Text style={headingStyles.mainHeading}><Trans>Login via Token</Trans></Text>
     <TextInput
         style={forms.textInput}
         // TODO: remove default value for go live

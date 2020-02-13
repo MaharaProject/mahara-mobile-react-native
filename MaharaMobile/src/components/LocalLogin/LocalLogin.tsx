@@ -51,7 +51,7 @@ export default function LocalLogin(props: Props) {
 
   return (
     <View style={generic.wrap}>
-      <Text style={headingStyles.mainHeading}><Trans>Login via Token</Trans></Text>
+      <Text style={headingStyles.mainHeading}><Trans>Login via username and password</Trans></Text>
       <I18n>
         {({ i18n }) => <TextInput
                           style={forms.textInput}
