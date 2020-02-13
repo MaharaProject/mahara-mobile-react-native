@@ -58,5 +58,6 @@ export const GUEST_BLOG: UserBlog = {
 };
 
 export const GUEST_FOLDER: UserFolder = {
+  id: -1,
   title: 'Guest Images'
 };
