@@ -202,7 +202,7 @@ const AddAudio = (props: Props) => {
           </TouchableOpacity>
         ) : null}
         {isPlaying ? (
-          <TouchableOpacity onPress={() => onStopPlay()} accessibilityRole='button'>
+          <TouchableOpacity onPress={() => onStopPlay()} accessibilityRole="button">
             <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
           </TouchableOpacity>
         ) : null}

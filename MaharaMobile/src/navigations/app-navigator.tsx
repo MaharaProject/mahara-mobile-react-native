@@ -29,15 +29,24 @@ type Props = {
 
 const AppNavigator = (props: Props) => {
   const navigatorStrings = {
+    PROFILE: props.i18n._(t`Profile`),
+    PENDING: props.i18n._(t`Upload Queue`),
+    ADD: props.i18n._(t`Add Item`),
+    PROFILE_ACCESSIBILITY_LABEL: props.i18n._(t`Profile Page`),
+    ADD_ACCESBILITY_LABEL: props.i18n._(t`Add item to Mahara`),
+    PENDING_ACCESSBILITY_LABEL: props.i18n._(t`Pending uploads page`),
     PREFERENCES: props.i18n._(t`Preferences`),
-    PENDING: props.i18n._(t`Pending`),
-    ADD: props.i18n._(t`Add`),
     ABOUT: props.i18n._(t`About`)
   };
 
   // Home page navigator, all other pages get attached to this  navigation stack.
   const AddItemsTabNavigator = createStackNavigator({
-    Add: SelectMediaScreen,
+    Add: {
+      screen: SelectMediaScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.ADD
+      }
+    },
     AddItem: AddItemScreen,
     About: {
       screen: AboutScreen,
@@ -52,7 +61,7 @@ const AppNavigator = (props: Props) => {
     Pending: {
       screen: PendingScreen,
       navigationOptions: {
-        headerTitle: 'Preferences'
+        headerTitle: navigatorStrings.PENDING
       }
     }
   });
@@ -65,7 +74,7 @@ const AppNavigator = (props: Props) => {
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faPlusCircle} color={styles.colors.light} />
         ),
-        tabBarAccessibilityLabel: 'Add item to Mahara'
+        tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESBILITY_LABEL
       }
     },
     PendingScreen: {
@@ -73,7 +82,7 @@ const AppNavigator = (props: Props) => {
       navigationOptions: {
         tabBarLabel: navigatorStrings.PENDING,
         tabBarIcon: () => <IconWithBadge {...props} />,
-        tabBarAccessibilityLabel: 'Pending uploads page'
+        tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSBILITY_LABEL
       }
     }
   };
