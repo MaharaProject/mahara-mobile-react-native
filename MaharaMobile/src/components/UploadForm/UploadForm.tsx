@@ -30,6 +30,8 @@ type Props = {
   url: string;
   editItem?: MaharaPendingFile | PendingJournalEntry;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  defaultFolderTitle: string;
+  defaultBlogId: number;
 };
 
 type State = {
@@ -257,13 +259,25 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedFolder}
             style={forms.picker}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
-            {props.userFolders?.map((folder: UserFolder, index: number) => (
+            {props.defaultFolderTitle && (
               <Picker.Item
-                label={folder.title}
-                value={folder.title}
-                key={index}
+                label={`${props.defaultFolderTitle} - default`}
+                value={props.defaultFolderTitle}
+                key={-1}
               />
-            ))}
+            )}
+            {props.userFolders?.map((folder: UserFolder, index: number) => {
+              if (folder.title !== props.defaultFolderTitle) {
+                return (
+                  <Picker.Item
+                    label={folder.title}
+                    value={folder.title}
+                    key={index}
+                  />
+                );
+              }
+              return null;
+            })}
           </Picker>
         </View>
       </View>
@@ -303,9 +317,21 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedBlog}
             style={forms.picker}
             onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
-            {props.userBlogs?.map((blog: UserBlog, index: number) => (
-              <Picker.Item label={blog.title} value={blog.id} key={index} />
-            ))}
+            {props.defaultBlogId && (
+              <Picker.Item
+                label={`${props.userBlogs.find(blog => blog.id === props.defaultBlogId).title} - default`}
+                value={props.defaultBlogId}
+                key={-1}
+              />
+            )}
+            {props.userBlogs?.map((blog: UserBlog, index: number) => {
+              if (blog.id !== props.defaultBlogId) {
+                return (
+                  <Picker.Item label={blog.title} value={blog.id} key={index} />
+                );
+              }
+              return null;
+            })}
           </Picker>
         </View>
       </View>

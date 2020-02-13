@@ -5,7 +5,8 @@ import {
   UserBlog,
   UserFolder,
   MaharaPendingFile,
-  PendingJournalEntry
+  PendingJournalEntry,
+  UserBlogJSON
 } from '../models/models';
 import {
   clearLoginInfo,
@@ -24,8 +25,13 @@ import {
   updateGuestStatus,
   addJournalEntryToUploadList,
   addFileToUploadList,
-  updateProfilePic
+  updateProfilePic,
+  setDefaultBlogId,
+  setDefaultFolder
 } from '../actions/actions';
+import { useDispatch } from 'react-redux';
+import { GUEST_BLOG, GUEST_FOLDER } from './constants';
+import { userBlogJSONtoUserBlog } from './helperFunctions';
 
 export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
   return async function(dispatch: Dispatch) {
@@ -37,8 +43,15 @@ export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
       }
       dispatch(updateUserName(json.userprofile.myname));
       dispatch(updateUserTags(json.tags.tags));
-      dispatch(updateUserBlogs(json.blogs.blogs));
+
+      dispatch(
+        updateUserBlogs(
+          json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
+        )
+      );
       dispatch(updateUserFolders(json.folders.folders));
+      dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
+      dispatch(setDefaultFolder(json.folders.folders[0].title));
     } catch (error) {
       console.log(error);
     }
@@ -63,18 +76,8 @@ const parseJSON = (jsonString: string) => JSON.parse(jsonString);
 export const setUpGuest = async (dispatch: Dispatch) => {
   await dispatch(addToken('guest'));
   await dispatch(updateUserName('guest'));
-  await dispatch(updateUserFolders([{id: -1, title: 'images'}]));
-  await dispatch(
-    updateUserBlogs([
-      {
-        id: -1,
-        title: 'Guest Blog',
-        description: null,
-        locked: false,
-        numblogposts: -1
-      }
-    ])
-  );
+  await dispatch(updateUserFolders([GUEST_FOLDER]));
+  await dispatch(updateUserBlogs([GUEST_BLOG]));
   await AsyncStorage.getItem('uploadFiles').then(async (result: any) => {
     if (result) {
       const uploadFilesList = parseJSON(result);
@@ -139,4 +142,10 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
     });
 
   return profilePic;
+};
+
+export const signOutAsync = async (navigation, dispatch) => {
+  await AsyncStorage.clear();
+  clearReduxData(dispatch);
+  navigation.navigate('SiteCheck');
 };

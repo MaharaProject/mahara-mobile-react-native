@@ -137,3 +137,5 @@ export const selectUploadFileById = (
   const { uploadFiles } = uploadFilesState(state);
   return uploadFiles[id];
 };
+
+export const selectNumOfFiles = (state: RootState) => state.appState.uploadFiles.uploadFilesIds.length;

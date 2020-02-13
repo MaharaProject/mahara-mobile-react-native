@@ -1,4 +1,4 @@
-import { faHistory, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { I18n } from '@lingui/core';
 import { t } from '@lingui/macro';
@@ -12,13 +12,14 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import styles from '../assets/styles/variables';
+import DrawerContainer from '../components/DrawerContainer/DrawerContainer';
+import IconWithBadge from '../components/UI/IconWithBadge/IconWithBadge';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
-import ProfileSettingsScreen from '../screens/ProfileSettingsScreen/ProfileSettingsScreen';
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 
@@ -48,7 +49,12 @@ const AppNavigator = (props: Props) => {
   });
 
   const PendingItemsTabNavigator = createStackNavigator({
-    Pending: PendingScreen
+    Pending: {
+      screen: PendingScreen,
+      navigationOptions: {
+        headerTitle: 'Preferences'
+      }
+    }
   });
 
   const tabScreenConfig = {
@@ -66,9 +72,7 @@ const AppNavigator = (props: Props) => {
       screen: PendingItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: navigatorStrings.PENDING,
-        tabBarIcon: () => (
-          <FontAwesomeIcon icon={faHistory} color={styles.colors.light} />
-        ),
+        tabBarIcon: () => <IconWithBadge {...props} />,
         tabBarAccessibilityLabel: 'Pending uploads page'
       }
     }
@@ -107,21 +111,27 @@ const AppNavigator = (props: Props) => {
     }
   );
 
-  const DrawerNavigator = createDrawerNavigator({
-    MaharaMobile: SwitchNavigator,
-    Preferences: {
-      screen: PreferencesScreen,
-      navigationOptions: {
-        drawerIcon: ({tintColor}) => <FontAwesome5 name="user" size={20} />
+  const DrawerNavigator = createDrawerNavigator(
+    {
+      MaharaMobile: SwitchNavigator,
+      Preferences: {
+        screen: PreferencesScreen,
+        navigationOptions: {
+          drawerIcon: ({ tintColor }) => <FontAwesome5 name="user" size={20} />
+        }
+      },
+      About: {
+        screen: AboutScreen,
+        navigationOptions: {
+          drawerIcon: ({ tintColor }) => <FontAwesome5 name="question" size={20} />
+        }
       }
     },
-    About: {
-      screen: AboutScreen,
-      navigationOptions: {
-        drawerIcon: ({ tintColor }) => <FontAwesome5 name="question" size={20} />
-      }
+    {
+      drawerWidth: '60%',
+      contentComponent: props => <DrawerContainer {...props} />
     }
-  });
+  );
 
   const Navigation = createAppContainer(DrawerNavigator);
 

@@ -1,8 +1,7 @@
-import { StackActions } from 'react-navigation';
 import { useEffect, useRef } from 'react';
+import { StackActions } from 'react-navigation';
 import { Dispatch } from 'redux';
-import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry } from '../models/models';
-
+import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON } from '../models/models';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -21,6 +20,17 @@ export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
   return (x as MaharaPendingFile).maharaFormData !== undefined;
+}
+
+export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {
+  const userBlog: UserBlog = {
+    description: blogJSON.description,
+    id: blogJSON.id,
+    locked: blogJSON.locked,
+    numBlogPosts: blogJSON.numblogposts,
+    title: blogJSON.title
+  };
+  return userBlog;
 }
 
 export function buildObject(item: object) {

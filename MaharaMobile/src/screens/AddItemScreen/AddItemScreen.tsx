@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text, View, Image, ScrollView, Alert } from 'react-native';
+import { i18n } from '@lingui/core';
+import { t } from '@lingui/macro';
+import React, { useEffect, useState } from 'react';
+import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
-import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { t } from '@lingui/macro';
-import { i18n } from '@lingui/core';
-
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import UploadForm from '../../components/UploadForm/UploadForm';
-import AddAudio from '../../components/AddAudio/AddAudio';
-import styles from './AddItemScreen.style';
-import generic from '../../assets/styles/generic';
 import buttons from '../../assets/styles/buttons';
-import { MaharaFile, UserTag, UserBlog, UserFolder, MaharaPendingFile } from '../../models/models';
-import {selectUrl, selectToken} from '../../reducers/loginInfoReducer';
-import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefactsReducer';
-import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
-import { selectUserTags } from '../../reducers/userTagsReducer';
-import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
-import { RootState } from '../../reducers/rootReducer';
-import { FILE, AUDIO, PHOTO } from '../../utils/constants';
+import generic from '../../assets/styles/generic';
+import AddAudio from '../../components/AddAudio/AddAudio';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import UploadForm from '../../components/UploadForm/UploadForm';
+import { MaharaFile, MaharaPendingFile, UserBlog, UserFolder, UserTag } from '../../models/models';
+import { selectDefaultBlogId, selectDefaultFolderTitle, selectToken, selectUrl } from '../../reducers/loginInfoReducer';
+import { RootState } from '../../reducers/rootReducer';
+import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
+import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
+import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefactsReducer';
+import { selectUserTags } from '../../reducers/userTagsReducer';
+import { AUDIO, FILE, PHOTO } from '../../utils/constants';
+import styles from './AddItemScreen.style';
+
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -37,6 +37,8 @@ type Props = {
   };
   formType: string;
   userBlogs: Array<UserBlog>;
+  defaultFolderTitle: string;
+  defaultBlogId: number;
 };
 
 const AddItemScreen = (props: Props) => {
@@ -168,6 +170,8 @@ const AddItemScreen = (props: Props) => {
             url={props.url}
             editItem={props.navigation.getParam('itemToEdit')}
             navigation={props.navigation}
+            defaultFolderTitle={props.defaultFolderTitle}
+            defaultBlogId={props.defaultBlogId}
           />
         </View>
       </View>
@@ -194,7 +198,9 @@ const mapStateToProps = (state: RootState) => ({
   userFolders: selectUserFolders(state),
   userBlogs: selectUserBlogs(state),
   uploadJournals: selectAllJEntries(state),
-  uploadFiles: selectAllUploadFiles(state)
+  uploadFiles: selectAllUploadFiles(state),
+  defaultFolderTitle: selectDefaultFolderTitle(state),
+  defaultBlogId: selectDefaultBlogId(state)
 });
 
 export default connect(mapStateToProps)(AddItemScreen);

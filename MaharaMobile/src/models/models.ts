@@ -43,6 +43,7 @@ export type User = {
 };
 
 export type UserFolder = {
+  id: number;
   title: string;
 };
 
@@ -58,6 +59,14 @@ export type UserBlog = {
   locked: boolean;
   numBlogPosts: number;
   title: string;
+};
+
+export type UserBlogJSON = {
+  id: number;
+  title: string;
+  description: string;
+  locked: boolean;
+  numblogposts: number;
 };
 
 export type MaharaFileFormData = {

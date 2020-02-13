@@ -137,3 +137,5 @@ export const selectJEntryById = (
   const { uploadJEntries } = uploadJEntriesState(state);
   return uploadJEntries[id];
 };
+
+export const selectNumOfJEntries = (state: RootState) => state.appState.uploadJEntries.uploadJEntriesIds.length;

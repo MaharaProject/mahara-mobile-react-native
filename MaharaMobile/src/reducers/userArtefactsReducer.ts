@@ -1,10 +1,10 @@
-import { UserFolder, UserBlog } from '../models/models';
+import { UserBlog, UserFolder } from '../models/models';
+import { CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS } from '../utils/constants';
 import { RootState } from './rootReducer';
-import { UPDATE_USER_FOLDERS, CLEAR_USER_FOLDERS, UPDATE_USER_BLOGS, CLEAR_USER_BLOGS } from '../utils/constants';
 
 // UserFolders
 type UserFoldersState = Array<UserFolder>;
-const initialUserFoldersState: UserFoldersState = [{ title: 'images' }];
+const initialUserFoldersState: UserFoldersState = [];
 
 export const userFoldersReducer = (
   state = initialUserFoldersState,
@@ -12,8 +12,9 @@ export const userFoldersReducer = (
 ) => {
   switch (action.type) {
     case UPDATE_USER_FOLDERS:
-      if (action.userFolders.includes('images') && action.userFolders.length === 1) return state;
-      return [...state, ...action.userFolders];
+      // TODO: this doesn't update folders but just overwrites.
+      // TODO: response to when users have no folders, maybe like tags have a create new folder
+      return [...action.userFolders];
     case CLEAR_USER_FOLDERS:
       return initialUserFoldersState;
     default:
@@ -34,7 +35,9 @@ export const userBlogsReducer = (
 ) => {
   switch (action.type) {
     case UPDATE_USER_BLOGS:
-      return [...state, ...action.userBlogs];
+      // TODO: this doesn't update blogs but just overwrites.
+      // TODO: response to when users have no folders, maybe like tags have a create new folder
+      return [...action.userBlogs];
     case CLEAR_USER_BLOGS:
       return initialUserBlogsState;
     default:

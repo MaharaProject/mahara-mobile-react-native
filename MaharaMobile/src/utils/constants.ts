@@ -1,3 +1,5 @@
+import { UserBlog, UserFolder } from '../models/models';
+
 // action types - payloads of information that send data from your application to your store
 
 // DOMAIN DATA
@@ -15,6 +17,8 @@ export const UPDATE_LOGIN_TYPES = 'UPDATE_LOGIN_TYPES';
 export const UPDATE_URL = 'UPDATE_URL';
 export const UPDATE_PROFILE_ICON = 'UPDATE_PROFILE_ICON';
 export const UPDATE_GUEST_STATUS = 'UPDATE_GUEST_STATUS';
+export const SET_DEFAULT_FOLDER = 'SET_DEFAULT_FOLDER';
+export const SET_DEFAULT_BLOG = 'SET_DEFAULT_BLOG';
 // userArtefactsReducer
 export const UPDATE_USER_BLOGS = 'UPDATE_USER_BLOGS';
 export const UPDATE_USER_FOLDERS = 'UPDATE_USER_FOLDERS';
@@ -38,3 +42,21 @@ export const JOURNAL_ENTRY = 'journal entry';
 export const FILE = 'file';
 export const PHOTO = 'photo';
 export const AUDIO = 'audio';
+
+// AsyncStorage keys
+export const DEFAULT_BLOG_ID = 'DEFAULT_BLOG_ID';
+export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';
+
+// OTHER DATA
+// guest blog and folder objects
+export const GUEST_BLOG: UserBlog = {
+  id: -1,
+  title: 'Guest Blog',
+  description: null,
+  locked: false,
+  numBlogPosts: -1
+};
+
+export const GUEST_FOLDER: UserFolder = {
+  title: 'Guest Images'
+};
