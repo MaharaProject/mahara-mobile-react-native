@@ -11,6 +11,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 // Styles
 import styles from './LocalLogin.style';
+import variables from '../../assets/styles/variables';
 import generic from '../../assets/styles/generic';
 import forms from '../../assets/styles/forms';
 import headingStyles from '../../assets/styles/headings';
@@ -66,7 +67,7 @@ export default function LocalLogin(props: Props) {
 
   return (
     <View style={styles.view}>
-      <LinearGradient colors={['#2e391c', '#566d31', '#9db576']} style={generic.linearGradient}>
+      <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
         <View style={styles.wrapper}>
           <View style={styles.imageWrapper}>
             <LogoSvg />
