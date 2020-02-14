@@ -78,6 +78,8 @@ export const setUpGuest = async (dispatch: Dispatch) => {
   await dispatch(updateUserName('guest'));
   await dispatch(updateUserFolders([GUEST_FOLDER]));
   await dispatch(updateUserBlogs([GUEST_BLOG]));
+  await dispatch(setDefaultBlogId(GUEST_BLOG.id));
+  await dispatch(setDefaultFolder(GUEST_FOLDER.title));
   await AsyncStorage.getItem('uploadFiles').then(async (result: any) => {
     if (result) {
       const uploadFilesList = parseJSON(result);
