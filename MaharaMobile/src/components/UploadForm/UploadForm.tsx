@@ -19,6 +19,7 @@ import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import uploadFormStyles from './UploadForm.style';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -41,7 +42,7 @@ type State = {
 const UploadForm = (props: Props) => {
   const dispatch = useDispatch();
   const isMultiLine = props.formType !== JOURNAL_ENTRY ? forms.multiLine : [forms.multiLine, uploadFormStyles.description];
-  const placeholder = props.formType !== JOURNAL_ENTRY ? t`Enter a description`: t`Enter detail`;
+  const placeholder = props.formType !== JOURNAL_ENTRY ? t`Enter a description`: t`Enter entry`;
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
   const { formType } = props;
   let fileValid = props.pickedFile ? props.pickedFile.size > 0 : false;
@@ -390,7 +391,7 @@ const UploadForm = (props: Props) => {
       <View>
         <TouchableOpacity
           onPress={() => (validButton ? handleForm() : renderUserMessages())}
-          accessibilityLabel={i18n._(t`Save item to Pending`)}
+          accessibilityLabel={i18n._(t`Queue to upload`)}
           accessibilityRole="button">
           {/* Editing items */}
           {/* TODO: validation for edit button */}
@@ -412,7 +413,10 @@ const UploadForm = (props: Props) => {
                   ? buttons.lg.backgroundColor
                   : styles.colors.darkgrey
               }}>
-              <Trans>Add {formType} to Pending</Trans>
+              <FontAwesome5Icon name="clock" size={20}>
+                {' '}
+                <Trans>Queue to upload</Trans>
+              </FontAwesome5Icon>
             </Text>
           )}
         </TouchableOpacity>
