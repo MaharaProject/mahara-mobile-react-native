@@ -108,6 +108,7 @@ const AppNavigator = (props: Props) => {
   };
 
   const androidTabConfig = createMaterialBottomTabNavigator(tabScreenConfig, {
+    initialRouteName: 'Add',
     activeColor: styles.colors.light,
     inactiveColor: '#3e2465',
     labeled: false,
