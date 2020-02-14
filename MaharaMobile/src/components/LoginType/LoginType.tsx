@@ -52,7 +52,7 @@ type Props = {
 const LoginType = (props: Props) => {
   return (
     <View style={styles.view}>
-      <LinearGradient colors={['#2e391c', '#566d31', '#9db576']} style={generic.linearGradient}>
+      <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
         <View style={styles.wrapper}>
           <View style={styles.imageWrapper}>
             <LogoSvg />

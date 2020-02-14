@@ -9,6 +9,7 @@ const styles = {
     contrast: '#eff4e7',
     text: '#000',
     light: '#fff',
+    light2: '#9db576',
     dark: '#000',
     dark2: '#2e3a1c',
     darkgrey: '#777',

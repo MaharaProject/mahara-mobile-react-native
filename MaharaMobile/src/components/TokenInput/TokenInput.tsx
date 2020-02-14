@@ -8,6 +8,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 // Styles
 import styles from './TokenInput.style';
+import variables from '../../assets/styles/variables';
 import forms from '../../assets/styles/forms';
 import headingStyles from '../../assets/styles/headings';
 import generic from '../../assets/styles/generic';
@@ -31,7 +32,7 @@ export default function TokenInput(props: Props) {
 
   return (
     <View style={styles.view}>
-      <LinearGradient colors={['#2e391c', '#566d31', '#9db576']} style={generic.linearGradient}>
+      <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
       <View style={styles.wrapper}>
         <View style={styles.imageWrapper}>
           <LogoSvg />
