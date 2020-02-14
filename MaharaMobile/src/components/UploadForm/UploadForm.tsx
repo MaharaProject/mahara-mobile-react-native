@@ -3,6 +3,7 @@ import { t, Trans } from '@lingui/macro';
 import { withI18n } from '@lingui/react';
 import React, { useEffect, useState } from 'react';
 import { Picker, Text, TouchableOpacity, View } from 'react-native';
+import { Switch } from 'react-native-paper';
 import { NavigationParams, NavigationScreenProp, NavigationState, StackActions } from 'react-navigation';
 import { useDispatch } from 'react-redux';
 import sanitize from 'sanitize-filename';
@@ -49,7 +50,8 @@ const UploadForm = (props: Props) => {
   const [newTag, addNewTag] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
   const [hidden, showTagInput] = useState(false);
-  // form fields
+  // form values
+  const [isDraft, setIsDraft] = useState(false);
   const [controlTitle, setTitle] = useState('');
   const [controlDesc, setDescription] = useState('');
   const [controlTitleValid, setControlTitleValid] = useState(
@@ -116,7 +118,7 @@ const UploadForm = (props: Props) => {
         wstoken: props.token,
         title: controlTitle,
         body: controlDesc,
-        isdraft: false,
+        isdraft: isDraft,
         tags: selectedTags
       };
 
@@ -262,6 +264,20 @@ const UploadForm = (props: Props) => {
     );
   };
 
+  const renderJournalDraftSwitch = () => (
+    <View style={{ flexDirection: 'row' }}>
+      <SubHeading>
+        <Trans>Draft Journal Entry &nbsp;</Trans>
+      </SubHeading>
+      <Switch
+        value={isDraft}
+        accessibilityRole="switch"
+        onValueChange={() => setIsDraft(!isDraft)}
+        color={styles.colors.tertiary}
+      />
+    </View>
+  );
+
   const renderBlogPicker = () => {
     if (formType !== JOURNAL_ENTRY) return null;
 
@@ -269,15 +285,12 @@ const UploadForm = (props: Props) => {
     const blogs : Array<UserBlog> = putDefaultAtTop(matchingBlog, null, props.userBlogs);
 
     if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
-      return (
-        <RequiredWarningText
-          customText={t`Error: User has no Blogs`}
-        />
-      );
+      return <RequiredWarningText customText={t`Error: User has no Blogs`} />;
     }
     return (
       <View>
         <SubHeading>Blog</SubHeading>
+        {renderJournalDraftSwitch()}
         <View style={forms.pickerWrapper}>
           <Picker
             accessibilityLabel={i18n._(t`Select blog`)}
@@ -423,9 +436,7 @@ const UploadForm = (props: Props) => {
 
   return (
     <View>
-      <RequiredWarningText
-        customText={t`Fields marked by * are required`}
-      />
+      <RequiredWarningText customText={t`Fields marked by * are required`} />
       {renderDisplayedFilename()}
       {renderTextInputs()}
       {renderFolderPicker()}
