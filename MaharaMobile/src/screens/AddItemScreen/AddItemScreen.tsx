@@ -159,8 +159,8 @@ const AddItemScreen = (props: Props) => {
             accessibilityRole="button">
             <Text style={buttons.lg}>
               <FontAwesome5 name="camera" size={20} />
-              &nbsp; {!pickedFile && <Trans>Take photo</Trans>}
-              {pickedFile && <Trans>Re-take photo</Trans>}
+              &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
+              {pickedFile.uri && <Trans>Re-take photo</Trans>}
             </Text>
           </TouchableOpacity>
         )}
