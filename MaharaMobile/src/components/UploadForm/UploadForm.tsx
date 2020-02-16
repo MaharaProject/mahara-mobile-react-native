@@ -365,14 +365,14 @@ const UploadForm = (props: Props) => {
             addTag(itemValue);
           }}>
           <Picker.Item label="..." value="" color="#556d32" />
-          {props.userTags?.map((value: UserTag, index: number) => (
-            <Picker.Item label={value.tag} value={value.tag} key={index} />
-          ))}
           <Picker.Item
             label={i18n._(t`Add new tag +`)}
             value="Add new tag +"
             color="#556d32"
           />
+          {props.userTags?.map((value: UserTag, index: number) => (
+            <Picker.Item label={value.tag} value={value.tag} key={index} />
+            ))}
         </Picker>
       </View>
     </View>
