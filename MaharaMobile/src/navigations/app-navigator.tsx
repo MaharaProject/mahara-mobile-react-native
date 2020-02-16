@@ -90,7 +90,7 @@ const AppNavigator = (props: Props) => {
   const androidTabConfig = createMaterialBottomTabNavigator(tabScreenConfig, {
     activeColor: styles.colors.light,
     barStyle: {
-      backgroundColor: styles.colors.secondary
+      backgroundColor: styles.colors.light2
     }
   });
 

@@ -11,9 +11,9 @@ type Props = {
 
 const SelectMediaType = (props: Props) => (
   <View>
-    <MediumButton title={t`Add file`} onPress={() => props.selectMediaType(FILE)} />
-    <MediumButton title={t`Take photo`} onPress={() => props.selectMediaType(PHOTO)} />
-    <MediumButton title={t`Add journal entry`} onPress={() => props.selectMediaType(JOURNAL_ENTRY)} />
+    <MediumButton title={t`Select a file`} onPress={() => props.selectMediaType(FILE)} />
+    <MediumButton title={t`Take a photo`} onPress={() => props.selectMediaType(PHOTO)} />
+    <MediumButton title={t`Add a journal entry`} onPress={() => props.selectMediaType(JOURNAL_ENTRY)} />
     <MediumButton title={t`Record audio`} onPress={() => props.selectMediaType(AUDIO)} />
   </View>
 );
