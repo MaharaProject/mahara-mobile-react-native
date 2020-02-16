@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import { t, Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core';
@@ -16,9 +16,11 @@ import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/up
 import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import styles from '../../assets/styles/variables';
-import { selectUserName } from '../../reducers/loginInfoReducer';
+import { selectUserName, selectUrl } from '../../reducers/loginInfoReducer';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import { removeUploadFile, removeUploadJEntry } from '../../actions/actions';
+import { SubHeading } from '../../utils/formHelper';
+import { Subheading } from 'react-native-paper';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -36,6 +38,7 @@ const PendingScreen = (props: Props) => {
   const [successfullyUploadedItems, setSuccessfullyUploadedItems] = useState<string[]>([]);
   const [uploadErrorItems, setUploadErrorItems] = useState<string[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const url = useSelector((state: RootState) => selectUrl(state));
 
   useEffect(() => {
     if (prevUploadCount < uploadItemsCount && uploadItemsCount !== 0) {
@@ -149,7 +152,10 @@ const PendingScreen = (props: Props) => {
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
       <View style={pendingScreenStyles.buttonContainer}>
         {props.userName !== 'guest' ? (
-          <MediumButton title={t`Upload to your Mahara`} onPress={onUploadClick} />
+          <View>
+            <SubHeading style={styles.padding.md}>{`URL: ${url}`}</SubHeading>
+            <MediumButton title={t`Upload to your Mahara`} onPress={onUploadClick} />
+          </View>
         ) : (
           <MediumButton
             title={t`Please login`}
