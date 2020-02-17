@@ -20,8 +20,13 @@ install_dependencies:
 
 lint:
   stage: lint
-  script: "npm run lint"
+  script:
+    - cd MaharaMobile
+    - npm ci
+    - npm run lint
 
 tests:
   stage: test
-  script: "npm run test"
+  script:
+    - cd MaharaMobile
+    - npm run test
