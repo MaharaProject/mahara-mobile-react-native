@@ -1,0 +1,24 @@
+image: node:latest
+
+stages:
+  - build
+  - lint
+
+cache:
+  paths:
+  - MaharaMobile/node_modules/
+
+install_dependencies:
+  stage: build
+  script:
+    - cd MaharaMobile
+    - npm ci
+  artifacts:
+    paths:
+    - MaharaMobile/node_modules/
+
+lint:
+  stage: lint
+  script:
+    - cd MaharaMobile
+    - npm run lint
