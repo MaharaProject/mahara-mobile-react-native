@@ -290,8 +290,8 @@ const UploadForm = (props: Props) => {
     }
     return (
       <View>
-        <SubHeading>Blog</SubHeading>
         {renderJournalDraftSwitch()}
+        <SubHeading><Trans>Journal</Trans></SubHeading>
         <View style={forms.pickerWrapper}>
           <Picker
             accessibilityLabel={i18n._(t`Select blog`)}
