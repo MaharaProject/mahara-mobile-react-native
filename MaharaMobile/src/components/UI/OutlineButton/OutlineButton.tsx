@@ -9,6 +9,7 @@ type Props = {
   onPress: () => void;
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
+  dark?: boolean;
 };
 
 const OutlineButton = (props: Props) => (
@@ -19,7 +20,7 @@ const OutlineButton = (props: Props) => (
         accessibilityLabel={i18n._(props.title)}
         accessibilityHint={i18n._(props.accessibilityHint)}
         onPress={props.onPress}>
-        <Text style={[buttons.md, outlineButtonStyles.buttons]}>
+        <Text style={[buttons.md, outlineButtonStyles.buttons, props.dark ? buttons.dark : buttons.light]}>
           {i18n._(props.title)}
         </Text>
       </TouchableOpacity>

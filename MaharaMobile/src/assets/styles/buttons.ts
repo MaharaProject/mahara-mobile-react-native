@@ -10,7 +10,8 @@ const buttons = StyleSheet.create({
     marginBottom: styles.padding.md,
     fontSize: styles.font.md,
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
+    borderRadius: 25
   },
   md: {
     backgroundColor: styles.colors.secondary,
@@ -34,6 +35,17 @@ const buttons = StyleSheet.create({
     fontSize: styles.font.md,
     alignSelf: 'center',
     textDecorationLine: "underline"
+  },
+  dark: {
+    borderColor: styles.colors.tertiary,
+    color: styles.colors.tertiary
+  },
+  light: {
+    borderColor: styles.colors.light,
+    color: styles.colors.light
+  },
+  cancel: {
+    backgroundColor: styles.colors.lightgrey
   }
 });
 

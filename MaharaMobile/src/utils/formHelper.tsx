@@ -40,7 +40,7 @@ export const RedAsterix = () => (
 );
 
 export const SubHeading = (props: any) => (
-  <Text style={[headingStyles.subHeading1, props.styles]}>
+  <Text style={[headingStyles.subHeading2, props.styles]}>
     {props.children}
     {props.required ? <RedAsterix /> : null}
   </Text>

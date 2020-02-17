@@ -13,7 +13,7 @@ import { Dispatch } from 'redux';
 import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import { MaharaFile, MaharaPendingFile, UserBlog, UserFolder, UserTag } from '../../models/models';
 import { selectDefaultBlogId, selectDefaultFolderTitle, selectToken, selectUrl } from '../../reducers/loginInfoReducer';
@@ -150,7 +150,7 @@ const AddItemScreen = (props: Props) => {
         ) : null}
         {formType === FILE && (
           <View>
-            <MediumButton title={t`${filePickerButtonText}`} onPress={() => pickDocument()} />
+            <OutlineButton title={t`${filePickerButtonText}`}  dark={true} onPress={() => pickDocument()} />
           </View>
         )}
         {formType === PHOTO && (

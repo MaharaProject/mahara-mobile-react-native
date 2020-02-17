@@ -12,9 +12,11 @@ const styles = {
     light2: '#9db576',
     dark: '#000',
     dark2: '#2e3a1c',
+    lightgrey: '#efefef',
     darkgrey: '#777',
     warnbg: '#e8c4c4',
-    warn: '#aa0500'
+    warn: '#aa0500',
+    border: '#cfcfcf'
   },
   padding: {
     xs: 5,

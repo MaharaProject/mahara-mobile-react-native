@@ -11,5 +11,9 @@ export default StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  button: {
+    borderColor: '#f00',
+    color: '#0f0'
   }
 });

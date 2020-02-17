@@ -220,7 +220,6 @@ const UploadForm = (props: Props) => {
       <FormInput
         valid={controlTitleValid}
         style={forms.textInput}
-        placeholder={t`Enter a title`}
         value={controlTitle}
         onChangeText={(title: string) => updateTitle(title.trim())}
       />
@@ -231,7 +230,6 @@ const UploadForm = (props: Props) => {
       <FormInput
         valid={controlDescValid}
         style={isMultiLine}
-        placeholder={placeholder}
         value={controlDesc}
         onChangeText={(desc: string) => updateDescription(desc.trim())}
       />
