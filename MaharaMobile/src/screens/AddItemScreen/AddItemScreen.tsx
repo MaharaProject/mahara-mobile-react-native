@@ -24,6 +24,8 @@ import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefacts
 import { selectUserTags } from '../../reducers/userTagsReducer';
 import { AUDIO, FILE, PHOTO } from '../../utils/constants';
 import styles from './AddItemScreen.style';
+import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
+
 
 
 
@@ -157,7 +159,7 @@ const AddItemScreen = (props: Props) => {
           <TouchableOpacity
             onPress={() => takePhoto()}
             accessibilityRole="button">
-            <Text style={buttons.lg}>
+            <Text style={[buttons.lg,  outlineButtonStyles.buttons, buttons.dark]}>
               <FontAwesome5 name="camera" size={20} />
               &nbsp; {!pickedFile && <Trans>Take photo</Trans>}
               {pickedFile && <Trans>Re-take photo</Trans>}

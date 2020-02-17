@@ -11,7 +11,7 @@ const buttons = StyleSheet.create({
     fontSize: styles.font.md,
     textAlign: 'center',
     width: '100%',
-    borderRadius: 25
+    borderRadius: 35
   },
   md: {
     backgroundColor: styles.colors.secondary,
