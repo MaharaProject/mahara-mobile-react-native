@@ -6,7 +6,7 @@ stages:
 
 cache:
   paths:
-  - node_modules/
+  - MaharaMobile/node_modules/
 
 install_dependencies:
   stage: build
@@ -15,11 +15,10 @@ install_dependencies:
     - npm ci
   artifacts:
     paths:
-    - node_modules/
+    - MaharaMobile/node_modules/
 
 lint:
   stage: lint
   script:
     - cd MaharaMobile
-    - npm ci
     - npm run lint
