@@ -3,7 +3,6 @@ image: node:latest
 stages:
   - build
   - lint
-  - test
 
 cache:
   paths:
@@ -24,9 +23,3 @@ lint:
     - cd MaharaMobile
     - npm ci
     - npm run lint
-
-tests:
-  stage: test
-  script:
-    - cd MaharaMobile
-    - npm run test
