@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
-import { connect, useSelector } from 'react-redux';
-import { Icon } from 'react-native-elements';
-import { t, Trans } from '@lingui/macro';
 import { i18n } from '@lingui/core';
-
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import { t, Trans } from '@lingui/macro';
+import React, { useEffect, useState } from 'react';
+import { Alert, Text, View } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import pendingScreenStyles from './PendingScreen.style';
-import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
+import { removeUploadFile, removeUploadJEntry } from '../../actions/actions';
+import styles from '../../assets/styles/variables';
 import PendingList from '../../components/PendingList/PendingList';
-import { uploadItemToMahara, isPendingJournalEntry, usePreviousProps} from '../../utils/helperFunctions';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
+import { selectUrl, selectUserName } from '../../reducers/loginInfoReducer';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
-import { selectAllJEntriesIds, selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
-import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
-import styles from '../../assets/styles/variables';
-import { selectUserName, selectUrl } from '../../reducers/loginInfoReducer';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import { removeUploadFile, removeUploadJEntry } from '../../actions/actions';
+import { selectAllJEntries, selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
 import { SubHeading } from '../../utils/formHelper';
-import { Subheading } from 'react-native-paper';
+import { isPendingJournalEntry, uploadItemToMahara, usePreviousProps } from '../../utils/helperFunctions';
+import pendingScreenStyles from './PendingScreen.style';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -50,8 +48,24 @@ const PendingScreen = (props: Props) => {
    * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
    */
   const onRemove = (itemId: string) => {
-    props.dispatch(removeUploadFile(itemId));
-    props.dispatch(removeUploadJEntry(itemId));
+    Alert.alert(
+      'Are you sure?',
+      'You will not be able to retrieve this information once removed',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel'
+        },
+        {
+          text: 'Remove',
+          onPress: () => {
+            props.dispatch(removeUploadFile(itemId));
+            props.dispatch(removeUploadJEntry(itemId));
+          }
+        }
+      ],
+      { cancelable: false });
   };
 
   const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
