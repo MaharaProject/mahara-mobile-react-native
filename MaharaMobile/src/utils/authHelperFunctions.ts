@@ -1,35 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import RNFetchBlob from 'rn-fetch-blob';
+import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
-import {
-  UserBlog,
-  UserFolder,
-  MaharaPendingFile,
-  PendingJournalEntry,
-  UserBlogJSON
-} from '../models/models';
-import {
-  clearLoginInfo,
-  clearUploadFiles,
-  clearUploadJEntires,
-  clearUserFolders,
-  clearUserTags,
-  clearUserBlogs,
-  addToken,
-  updateUserName,
-  updateUserFolders,
-  updateUserBlogs,
-  updateJEntriesOnLogin,
-  updateUploadFilesOnLogin,
-  updateUserTags,
-  updateGuestStatus,
-  addJournalEntryToUploadList,
-  addFileToUploadList,
-  updateProfilePic,
-  setDefaultBlogId,
-  setDefaultFolder
-} from '../actions/actions';
-import { useDispatch } from 'react-redux';
+import RNFetchBlob from 'rn-fetch-blob';
+import { addFileToUploadList, addJournalEntryToUploadList, addToken, clearLoginInfo, clearUploadFiles, clearUploadJEntires, clearUserBlogs, clearUserFolders, clearUserTags, setDefaultBlogId, setDefaultFolder, updateGuestStatus, updateJEntriesOnLogin, updateProfilePic, updateUploadFilesOnLogin, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags } from '../actions/actions';
+import { MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON, UserFolder } from '../models/models';
 import { GUEST_BLOG, GUEST_FOLDER } from './constants';
 import { userBlogJSONtoUserBlog } from './helperFunctions';
 
@@ -147,7 +121,24 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
 };
 
 export const signOutAsync = async (navigation, dispatch) => {
-  await AsyncStorage.clear();
-  clearReduxData(dispatch);
-  navigation.navigate('SiteCheck');
+  Alert.alert(
+    'Are you sure?',
+    'Items in upload queue will not be retrievable once logged out.',
+    [
+      {
+        text: 'Cancel',
+        onPress: () => null,
+        style: 'cancel'
+      },
+      {
+        text: 'Logout',
+        onPress: async () => {
+          await AsyncStorage.clear();
+          clearReduxData(dispatch);
+          navigation.navigate('SiteCheck');
+        }
+      }
+    ],
+    { cancelable: false }
+  );
 };
