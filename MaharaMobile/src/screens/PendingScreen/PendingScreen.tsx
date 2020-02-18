@@ -11,12 +11,12 @@ import styles from '../../assets/styles/variables';
 import PendingList from '../../components/PendingList/PendingList';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import SubHeading from '../../components/UI/SubHeading/SubHeading';
 import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
 import { selectUrl, selectUserName } from '../../reducers/loginInfoReducer';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
 import { selectAllJEntries, selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
-import { SubHeading } from '../../utils/formHelper';
 import { isPendingJournalEntry, uploadItemToMahara, usePreviousProps } from '../../utils/helperFunctions';
 import pendingScreenStyles from './PendingScreen.style';
 
