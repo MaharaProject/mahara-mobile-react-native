@@ -99,7 +99,11 @@
     "typescript": "^3.7.2"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "@testing-library/react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./jest-setup.js"
+    ],
     "transform": {
       "^.+\\.ts$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
@@ -107,13 +111,11 @@
       "<rootDir>"
     ],
     "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-navigation|@react-navigation|@react-native-community/.*))",
       "/node_modules/(?!react-native|native-base-shoutem-theme|react-navigation-stack|@react-navigation|react-navigation-fluid-transitions)"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/"
-    ],
-    "setupFiles": [
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]
   }
 }
