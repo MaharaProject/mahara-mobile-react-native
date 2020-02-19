@@ -8,9 +8,15 @@ import { withI18n } from '@lingui/react';
 import { i18n, I18n } from '@lingui/core';
 
 import buttons from '../../assets/styles/buttons';
+import variables from '../../assets/styles/variables';
 import styles from './AddAudio.style';
 import { MaharaFile } from '../../models/models';
 import MediumButton from '../UI/MediumButton/MediumButton';
+import OutlineButton from '../UI/OutlineButton/OutlineButton';
+
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 type Props = {
   setPickedFile: MaharaFile;
@@ -34,8 +40,8 @@ const AddAudio = (props: Props) => {
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
   const playStrings = {
-    playing: <Trans>Pause</Trans>,
-    notplaying: <Trans>Play</Trans>
+    playing: <FontAwesomeIcon icon={faPauseCircle} color={variables.colors.tertiary} />,
+    notplaying: <FontAwesomeIcon icon={faPlayCircle} color={variables.colors.tertiary} />
   };
 
   const recordStrings = {
@@ -189,10 +195,6 @@ const AddAudio = (props: Props) => {
 
   return (
     <View>
-      <MediumButton
-        title={t`${recordStrings[recordButtonStatus]}`}
-        onPress={() => handleRecord()}
-      />
       <View style={styles.buttonWrap}>
         {isRecorded ? (
           <TouchableOpacity
@@ -212,6 +214,10 @@ const AddAudio = (props: Props) => {
           </Text>
         ) : null}
       </View>
+      <OutlineButton
+        title={t`${recordStrings[recordButtonStatus]}`}
+        onPress={() => handleRecord()}
+      />
     </View>
   );
 };

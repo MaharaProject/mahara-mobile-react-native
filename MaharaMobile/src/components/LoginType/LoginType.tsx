@@ -12,6 +12,7 @@ import variables from '../../assets/styles/variables';
 import generic from '../../assets/styles/generic';
 import forms from '../../assets/styles/forms';
 import messages from '../../assets/styles/messages';
+import buttons from '../../assets/styles/buttons';
 import textStyles  from '../../assets/styles/text';
 import headingStyles from '../../assets/styles/headings';
 
@@ -95,7 +96,11 @@ const LoginType = (props: Props) => {
           {props.serverPing && props.isInputHidden ? (
             <View>
               <Text style={[headingStyles.mainHeading, styles.url, generic.center]}>{props.url}</Text>
-              <OutlineButton title={t`Enter a different URL`} onPress={() => props.resetForm()} />
+              <OutlineButton
+                title={t`Enter a different URL`}
+                style={buttons.light}
+                onPress={() => props.resetForm()}
+              />
             </View>
           ) : null}
           {!props.isInputHidden ?

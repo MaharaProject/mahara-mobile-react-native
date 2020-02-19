@@ -36,10 +36,6 @@ const buttons = StyleSheet.create({
     alignSelf: 'center',
     textDecorationLine: "underline"
   },
-  dark: {
-    borderColor: styles.colors.tertiary,
-    color: styles.colors.tertiary
-  },
   light: {
     borderColor: styles.colors.light,
     color: styles.colors.light

@@ -7,7 +7,11 @@ export default StyleSheet.create({
   },
   smButton: {
     marginBottom: styles.padding.md,
-    marginRight: styles.padding.sm
+    marginRight: styles.padding.sm,
+    borderRadius: 25,
+    backgroundColor: styles.colors.light,
+    borderColor: styles.colors.tertiary,
+    borderWidth: 2
   },
   buttonWrap: {
     flexDirection: 'row'

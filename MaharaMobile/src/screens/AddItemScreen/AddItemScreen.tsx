@@ -152,7 +152,7 @@ const AddItemScreen = (props: Props) => {
         ) : null}
         {formType === FILE && (
           <View>
-            <OutlineButton title={t`${filePickerButtonText}`}  dark={true} onPress={() => pickDocument()} />
+            <OutlineButton title={t`${filePickerButtonText}`} onPress={() => pickDocument()} />
           </View>
         )}
         {formType === PHOTO && (
