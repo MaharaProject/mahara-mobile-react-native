@@ -19,7 +19,7 @@ import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 type Props = {
-  setPickedFile: MaharaFile;
+  setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
   isEditing: boolean;
   i18n: I18n;
 };

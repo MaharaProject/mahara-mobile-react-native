@@ -4,6 +4,7 @@ import { withI18n } from '@lingui/react';
 import React, { useEffect, useState } from 'react';
 import { Picker, Text, TouchableOpacity, View } from 'react-native';
 import { Switch } from 'react-native-paper';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import { NavigationParams, NavigationScreenProp, NavigationState, StackActions } from 'react-navigation';
 import { useDispatch } from 'react-redux';
 import sanitize from 'sanitize-filename';
@@ -13,13 +14,14 @@ import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import { JournalEntry, MaharaFile, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserFolder, UserTag } from '../../models/models';
 import { JOURNAL_ENTRY } from '../../utils/constants';
-import { putDefaultAtTop, RequiredWarningText, setTagString, SubHeading, validateText } from '../../utils/formHelper';
+import { putDefaultAtTop, setTagString, validateText } from '../../utils/formHelper';
 import { isJournalEntry, isMaharaFileFormData } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
 import MediumButton from '../UI/MediumButton/MediumButton';
+import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
+import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -281,15 +283,15 @@ const UploadForm = (props: Props) => {
     if (formType !== JOURNAL_ENTRY) return null;
 
     const matchingBlog = props.userBlogs.find(b => b.id === props.defaultBlogId);
-    const blogs : Array<UserBlog> = putDefaultAtTop(matchingBlog, null, props.userBlogs);
+    const blogs: Array<UserBlog> = putDefaultAtTop(matchingBlog, null, props.userBlogs);
 
     if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
       return <RequiredWarningText customText={t`Error: User has no Blogs`} />;
     }
     return (
       <View>
-        <SubHeading>Blog</SubHeading>
         {renderJournalDraftSwitch()}
+        <SubHeading><Trans>Journal</Trans></SubHeading>
         <View style={forms.pickerWrapper}>
           <Picker
             accessibilityLabel={i18n._(t`Select blog`)}
@@ -363,14 +365,14 @@ const UploadForm = (props: Props) => {
             addTag(itemValue);
           }}>
           <Picker.Item label="..." value="" color="#556d32" />
-          {props.userTags?.map((value: UserTag, index: number) => (
-            <Picker.Item label={value.tag} value={value.tag} key={index} />
-          ))}
           <Picker.Item
             label={i18n._(t`Add new tag +`)}
             value="Add new tag +"
             color="#556d32"
           />
+          {props.userTags?.map((value: UserTag, index: number) => (
+            <Picker.Item label={value.tag} value={value.tag} key={index} />
+            ))}
         </Picker>
       </View>
     </View>
