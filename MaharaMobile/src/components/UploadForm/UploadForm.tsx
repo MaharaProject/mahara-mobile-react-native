@@ -255,7 +255,7 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedFolder}
             style={forms.picker}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
-            {folders.map((f: UserFolder, index: number) => {
+            {folders && folders.map((f: UserFolder, index: number) => {
               const label = f.title === props.defaultFolderTitle ? `${f.title} - default` : f.title;
               return <Picker.Item label={label} value={f.title} key={f.id} />;
             })}

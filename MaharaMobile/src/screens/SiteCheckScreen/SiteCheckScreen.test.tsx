@@ -4,6 +4,9 @@ import renderer from 'react-test-renderer';
 import { SiteCheckScreen } from './SiteCheckScreen';
 
 it('renders correctly', () => {
-  let props;
+  let props = {
+    url: ''
+  };
+
   renderer.create(<SiteCheckScreen {...props} />);
 });

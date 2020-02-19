@@ -122,8 +122,8 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   render() {
-    const { params } = this.props.navigation.state;
-    const { loginType } = params;
+    const { params } = this.props.navigation ? this.props.navigation.state : '';
+    const { loginType } = params ? params : '';
 
     return (
       <View style={generic.view}>
