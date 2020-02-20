@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
 import { addFileToUploadList, addJournalEntryToUploadList, addToken, clearLoginInfo, clearUploadFiles, clearUploadJEntires, clearUserBlogs, clearUserFolders, clearUserTags, setDefaultBlogId, setDefaultFolder, updateGuestStatus, updateJEntriesOnLogin, updateProfilePic, updateUploadFilesOnLogin, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags } from '../actions/actions';
 import { MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON, UserFolder } from '../models/models';
-import { GUEST_BLOG, GUEST_FOLDER } from './constants';
+import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
 import { userBlogJSONtoUserBlog } from './helperFunctions';
 
 export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
@@ -48,8 +48,8 @@ export const clearReduxData = async (dispatch: Dispatch) => {
 const parseJSON = (jsonString: string) => JSON.parse(jsonString);
 
 export const setUpGuest = async (dispatch: Dispatch) => {
-  await dispatch(addToken('guest'));
-  await dispatch(updateUserName('guest'));
+  await dispatch(addToken(GUEST_TOKEN));
+  await dispatch(updateUserName(GUEST_USERNAME));
   await dispatch(updateUserFolders([GUEST_FOLDER]));
   await dispatch(updateUserBlogs([GUEST_BLOG]));
   await dispatch(setDefaultBlogId(GUEST_BLOG.id));
@@ -67,7 +67,6 @@ export const setUpGuest = async (dispatch: Dispatch) => {
       uploadJEntries.forEach((jEntry: PendingJournalEntry) => dispatch(addJournalEntryToUploadList(jEntry)));
     }
   });
-  await dispatch(updateGuestStatus(true));
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -13,8 +13,7 @@ import {
   selectUrl,
   selectTokenLogin,
   selectSsoLogin,
-  selectLocalLogin,
-  selectIsGuestStatus
+  selectLocalLogin
 } from '../../reducers/loginInfoReducer';
 import {
   selectUserBlogs,
@@ -38,7 +37,6 @@ type Props = {
   loginType: boolean;
   userFolders: Array<UserFolder>;
   userBlogs: Array<UserBlog>;
-  isGuest: boolean;
 };
 
 type State = {
@@ -104,16 +102,6 @@ export class LoginScreen extends Component<Props, State> {
   signInAsync = async () => {
     if (this.state.token.length < 1) {
       Alert.alert('Nothing entered in field');
-    } else if (this.props.isGuest) {
-      await this.props.dispatch(updateGuestStatus(false));
-      updatePendingItemsOnLogin(
-        this.props.dispatch,
-        this.props.userBlogs,
-        this.props.userFolders,
-        this.state.token,
-        this.props.url
-      );
-      await AsyncStorage.setItem('userToken', this.state.token);
     }
   };
 
@@ -147,8 +135,7 @@ const mapStateToProps = (state: RootState) => ({
   ssoLogin: selectSsoLogin(state),
   localLogin: selectLocalLogin(state),
   userBlogs: selectUserBlogs(state),
-  userFolders: selectUserFolders(state),
-  isGuest: selectIsGuestStatus(state)
+  userFolders: selectUserFolders(state)
 });
 
 export default connect(mapStateToProps)(LoginScreen);
