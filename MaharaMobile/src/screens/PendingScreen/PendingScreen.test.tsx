@@ -1,24 +1,19 @@
 import 'react-native';
 import React from 'react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 import renderer from 'react-test-renderer';
-import ShallowRenderer from 'react-test-renderer/shallow';
-
 import { PendingScreen } from './PendingScreen';
 
-jest.mock('rn-fetch-blob', () => {
-  return true
-});
-
 it('renders correctly', () => {
-  renderer.create(<PendingScreen />);
+  const initialState = {
+    loginInfo: {}
+  };
+  const mockStore = configureStore();
+
+  renderer.create(
+    <Provider store={mockStore(initialState)}>
+      <PendingScreen />
+    </Provider>
+  );
 });
-
-// Below set up for snapshot when component is complete
-
-// it('renders correctly react-test-renderer', () => {
-//   const renderer = new ShallowRenderer();
-//   renderer.render(<PendingScreen />);
-//   const result = renderer.getRenderOutput();
-//
-//   expect(result).toMatchSnapshot();
-// });

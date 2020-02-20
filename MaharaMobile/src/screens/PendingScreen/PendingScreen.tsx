@@ -30,8 +30,8 @@ type Props = {
   userName: string;
 };
 
-const PendingScreen = (props: Props) => {
-  const uploadItemsCount = props.uploadFiles.length + props.uploadJEntries.length;
+export const PendingScreen = (props: Props) => {
+  const uploadItemsCount = props.uploadFiles ? props.uploadFiles.length + props.uploadJEntries.length : null;
   const prevUploadCount = usePreviousProps(uploadItemsCount) || 0;
   const [successfullyUploadedItems, setSuccessfullyUploadedItems] = useState<string[]>([]);
   const [uploadErrorItems, setUploadErrorItems] = useState<string[]>([]);
