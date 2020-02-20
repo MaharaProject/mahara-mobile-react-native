@@ -49,6 +49,8 @@ export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';
 
 // OTHER DATA
 // guest blog and folder objects
+export const GUEST_USERNAME = 'GUEST_USERNAME';
+export const GUEST_TOKEN = 'GUEST_TOKEN';
 export const GUEST_BLOG: UserBlog = {
   id: -1,
   title: 'Guest Blog',

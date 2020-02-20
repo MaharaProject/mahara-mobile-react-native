@@ -17,6 +17,7 @@ import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefacts
 import { fetchProfilePic } from '../../utils/authHelperFunctions';
 import { putDefaultAtTop } from '../../utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
+import { GUEST_TOKEN } from '../../utils/constants';
 
 const PreferencesScreen = (props: any) => {
   const image: any = require('../../assets/images/no_userphoto.png');
@@ -45,7 +46,7 @@ const PreferencesScreen = (props: any) => {
   }, [props.i18n]);
 
   const getProfilePic = async () => {
-    if (token === 'guest') return;
+    if (token === GUEST_TOKEN) return;
     fetchProfilePic(dispatch, token, url);
   };
 
