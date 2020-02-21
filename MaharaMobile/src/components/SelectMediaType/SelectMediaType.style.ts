@@ -3,6 +3,6 @@ import styles from '../../assets/styles/variables';
 
 export default StyleSheet.create({
   button: {
-    marginBottom: styles.padding.sm
+    marginBottom: styles.padding.sm,
   }
 });
