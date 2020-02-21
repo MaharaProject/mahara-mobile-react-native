@@ -17,10 +17,6 @@ export function clearUserTags() {
 }
 
 // loginInfoReducer
-export function updateGuestStatus(isGuest: boolean) {
-  return { type: UPDATE_GUEST_STATUS, isGuest };
-}
-
 export function addToken(token: string) {
   AsyncStorage.setItem('userToken', token);
   return { type: ADD_TOKEN, token };

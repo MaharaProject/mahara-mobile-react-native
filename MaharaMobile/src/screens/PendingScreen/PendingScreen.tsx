@@ -19,6 +19,7 @@ import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/up
 import { selectAllJEntries, selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
 import { isPendingJournalEntry, uploadItemToMahara, usePreviousProps } from '../../utils/helperFunctions';
 import pendingScreenStyles from './PendingScreen.style';
+import { GUEST_USERNAME } from '../../utils/constants';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -165,7 +166,7 @@ const PendingScreen = (props: Props) => {
       )}
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
       <View style={pendingScreenStyles.buttonContainer}>
-        {props.userName !== 'guest' ? (
+        {props.userName !== GUEST_USERNAME ? (
           <View>
             <SubHeading style={styles.padding.md}>{`URL: ${url}`}</SubHeading>
             <MediumButton title={t`Upload to your Mahara`} onPress={onUploadClick} />
