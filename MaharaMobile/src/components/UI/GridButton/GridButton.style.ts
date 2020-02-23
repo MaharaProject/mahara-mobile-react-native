@@ -12,6 +12,18 @@ const gridButtonStyles = StyleSheet.create({
     color: styles.colors.light
   },
   imageWrapper: {
+  },
+  green: {
+    backgroundColor: styles.colors.green
+  },
+  purple: {
+    backgroundColor: styles.colors.purple
+  },
+  lightbrown: {
+    backgroundColor: styles.colors.lightbrown
+  },
+  darkbrown: {
+    backgroundColor: styles.colors.darkbrown
   }
 });
 

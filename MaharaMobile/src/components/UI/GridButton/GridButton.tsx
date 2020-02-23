@@ -10,6 +10,7 @@ type Props = {
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
   image?: null;
+  color?: null;
 };
 
 const GridButton = (props: Props) => (
@@ -20,7 +21,14 @@ const GridButton = (props: Props) => (
         accessibilityLabel={i18n._(props.title)}
         accessibilityHint={props.accessibilityHint ? i18n._(props.accessibilityHint): undefined}
         onPress={props.onPress}
-        style={[buttons.md, gridButtonStyles.button]}>
+        style={[
+          buttons.md,
+          gridButtonStyles.button,
+          props.color === 'green' ? gridButtonStyles.green : null,
+          props.color === 'purple' ? gridButtonStyles.purple : null,
+          props.color === 'lightbrown' ? gridButtonStyles.lightbrown : null,
+          props.color === 'darkbrown' ? gridButtonStyles.darkbrown : null
+        ]}>
         {props.image ?
           <View style={gridButtonStyles.imageWrapper}>
             {props.image}

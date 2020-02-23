@@ -16,7 +16,11 @@ const styles = {
     darkgrey: '#777',
     warnbg: '#e8c4c4',
     warn: '#aa0500',
-    border: '#cfcfcf'
+    border: '#cfcfcf',
+    green: '#295934',
+    purple: '#622c46',
+    lightbrown: '#763b36',
+    darkbrown: '#423017'
   },
   padding: {
     xs: 5,
