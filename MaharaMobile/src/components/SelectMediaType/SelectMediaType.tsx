@@ -18,30 +18,34 @@ type Props = {
 
 const SelectMediaType = (props: Props) => (
   <View style={styles.wrapper}>
-    <GridButton
-      image={<PickFileSvg />}
-      title={t`Select a file`}
-      color={'green'}
-      onPress={() => props.selectMediaType(FILE)}
-    />
-    <GridButton
-      image={<TakePhotoSvg />}
-      title={t`Take a photo`}
-      color={'purple'}
-      onPress={() => props.selectMediaType(PHOTO)}
-    />
-    <GridButton
-      image={<AddJournalEntrySvg />}
-      title={t`Add a journal entry`}
-      color={'lightbrown'}
-      onPress={() => props.selectMediaType(JOURNAL_ENTRY)}
-    />
-    <GridButton
-      image={<RecordAudioSvg />}
-      title={t`Record audio`}
-      color={'darkbrown'}
-      onPress={() => props.selectMediaType(AUDIO)}
-    />
+    <View style={styles.row}>
+      <GridButton
+        image={<PickFileSvg />}
+        title={t`Select a file`}
+        color={'green'}
+        onPress={() => props.selectMediaType(FILE)}
+      />
+      <GridButton
+        image={<TakePhotoSvg />}
+        title={t`Take a photo`}
+        color={'purple'}
+        onPress={() => props.selectMediaType(PHOTO)}
+      />
+    </View>
+    <View style={styles.row}>
+      <GridButton
+        image={<AddJournalEntrySvg />}
+        title={t`Add a journal entry`}
+        color={'lightbrown'}
+        onPress={() => props.selectMediaType(JOURNAL_ENTRY)}
+      />
+      <GridButton
+        image={<RecordAudioSvg />}
+        title={t`Record audio`}
+        color={'darkbrown'}
+        onPress={() => props.selectMediaType(AUDIO)}
+      />
+    </View>
   </View>
 );
 

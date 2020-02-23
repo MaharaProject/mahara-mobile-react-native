@@ -3,15 +3,19 @@ import styles from '../../../assets/styles/variables';
 
 const gridButtonStyles = StyleSheet.create({
   button: {
-    marginBottom: styles.padding.md,
-    width: '50%'
+    margin: styles.padding.xs,
+    flex: 1
   },
   buttonText: {
     textAlign: 'center',
-    fontSize: styles.font.md,
-    color: styles.colors.light
+    fontSize: styles.font.lg,
+    fontWeight: 'bold',
+    color: styles.colors.light,
+    marginBottom: styles.padding.md
   },
   imageWrapper: {
+    marginTop: styles.padding.lg,
+    marginBottom: styles.padding.lg
   },
   green: {
     backgroundColor: styles.colors.green
