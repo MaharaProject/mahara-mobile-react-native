@@ -36,10 +36,7 @@ const initialState: LoginInfoState = {
   defaultFolderTitle: userFolders[0]
 };
 
-export const loginInfoReducer = (
-  state = initialState,
-  action: any
-): LoginInfoState => {
+export const loginInfoReducer = (state = initialState, action: any): LoginInfoState => {
   switch (action.type) {
     case UPDATE_SERVER_URL:
       return {
