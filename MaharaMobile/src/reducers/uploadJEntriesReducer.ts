@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { PendingJournalEntry, UserBlog } from '../models/models';
-import { RootState } from './rootReducer';
 import { arrayToObject } from '../utils/authHelperFunctions';
-import { ADD_UPLOAD_JOURNAL_ENTRY, REMOVE_UPLOAD_JOURNAL_ENTRY, CLEAR_UPLOAD_J_ENTRIES, UPDATE_J_ENTRIES_ON_LOGIN } from '../utils/constants';
+import { ADD_UPLOAD_JOURNAL_ENTRY, CLEAR_UPLOAD_J_ENTRIES, REMOVE_UPLOAD_JOURNAL_ENTRY, UPDATE_J_ENTRIES_ON_LOGIN } from '../utils/constants';
+import { RootState } from './rootReducer';
 
 type UploadJEntriesState = {
   uploadJEntries: Record<string, PendingJournalEntry>;
@@ -69,13 +69,11 @@ const updateJEntriesOnLogin = (
   urlDomain: string,
   userBlogs: Array<UserBlog>
 ): UploadJEntriesState => {
-  const uploadJEntries = {
-    ...state.uploadJEntries
-  };
-
+  const {uploadJEntries} = state;
   const newJournalEntries: Array<PendingJournalEntry> = [];
   const journalEntriesArr = Object.values(uploadJEntries);
   journalEntriesArr.forEach((pendingJEntry: PendingJournalEntry) => {
+    // TODO: add helper function for creating Pending Journal Entry
     const newPendingJEntry: PendingJournalEntry = {
       id: pendingJEntry.id,
       journalEntry: {

@@ -1,15 +1,42 @@
-// import { setupI18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-community/async-storage';
 import { MaharaPendingFile, PendingJournalEntry, RequestErrorPayload, UserBlog, UserFolder, UserTag } from '../models/models';
-import { ADD_TOKEN, ADD_UPLOAD_FILE, ADD_UPLOAD_JOURNAL_ENTRY, CLEAR_LOGIN_INFO, CLEAR_UPLOAD_FILES, CLEAR_UPLOAD_J_ENTRIES, CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS, CLEAR_USER_TAGS, DEFAULT_BLOG_ID, DEFAULT_FOLDER_TITLE, REMOVE_UPLOAD_FILE, REMOVE_UPLOAD_JOURNAL_ENTRY, SET_DEFAULT_BLOG, SET_DEFAULT_FOLDER, UPDATE_GUEST_STATUS, UPDATE_J_ENTRIES_ON_LOGIN, UPDATE_LOGIN_TYPES, UPDATE_PROFILE_ICON, UPDATE_UPLOAD_FILES_ON_LOGIN, UPDATE_URL, UPDATE_USERNAME, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, UPDATE_USER_TAGS } from '../utils/constants';
+import { ADD_TOKEN, ADD_UPLOAD_FILE, ADD_UPLOAD_JOURNAL_ENTRY, ADD_USER_TAGS, CLEAR_LOGIN_INFO, CLEAR_UPLOAD_FILES, CLEAR_UPLOAD_J_ENTRIES, CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS, CLEAR_USER_TAGS, DEFAULT_BLOG_ID, DEFAULT_FOLDER_TITLE, REMOVE_UPLOAD_FILE, REMOVE_UPLOAD_JOURNAL_ENTRY, SAVE_TAGGED_ITEMS_TO_ASYNC, SET_DEFAULT_BLOG, SET_DEFAULT_FOLDER, TAGS_IDS, TAG_ITEM, UPDATE_J_ENTRIES_ON_LOGIN, UPDATE_LOGIN_TYPES, UPDATE_PROFILE_ICON, UPDATE_TAGGED_ITEMS, UPDATE_TAGS_IDS, UPDATE_UPLOAD_FILES_ON_LOGIN, UPDATE_URL, UPDATE_USERNAME, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS, UPDATE_USER_TAGS, USER_TAGS } from '../utils/constants';
 
 // action creators - functions that create actions
 
 // userTagsReducer
+export function addUserTags(tags: Array<UserTag>) {
+  // saved to async storage inside the reducer
+  return { type: ADD_USER_TAGS, userTags: tags };
+}
+
 export function updateUserTags(tags: Array<UserTag>) {
-  AsyncStorage.setItem('userTags', JSON.stringify(tags));
+  AsyncStorage.setItem(USER_TAGS, JSON.stringify(tags));
   return { type: UPDATE_USER_TAGS, userTags: tags };
+}
+
+export function updateUserTagsIds(userTagsIds: Array<number>) {
+  AsyncStorage.setItem(TAGS_IDS, JSON.stringify(userTagsIds));
+  return { type: UPDATE_TAGS_IDS, userTagsIds };
+}
+
+export function addTagsToItem(itemId: string, tagIds: Set<number>) {
+  // saved to async storage inside reducer
+  return { type: TAG_ITEM, tagIds, itemId }
+}
+
+/**
+ * Action to save taggedItems to AsyncStorage, as we cannot action
+ * this until after an item has been tagged and the new state has been
+ * returned.
+ */
+export function saveTaggedItemsToAsync() {
+  return { type: SAVE_TAGGED_ITEMS_TO_ASYNC }
+}
+
+export function updateTaggedItemsFromAsync(taggedItems: string) {
+  return { type: UPDATE_TAGGED_ITEMS, taggedItems };
 }
 
 export function clearUserTags() {

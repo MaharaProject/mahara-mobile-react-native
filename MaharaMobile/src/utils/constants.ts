@@ -4,10 +4,20 @@ import { UserBlog, UserFolder } from '../models/models';
 
 // DOMAIN DATA
 // userTagsReducer
-export const ADD_TAG = 'ADD_TAG';
-export const REMOVE_TAG = 'REMOVE_TAG';
-export const UPDATE_USER_TAGS = 'UPDATE_USER_TAGS';
+export const ADD_USER_TAGS = 'ADD_USER_TAGS';
 export const CLEAR_USER_TAGS = 'CLEAR_USER_TAGS';
+export const REMOVE_USER_TAG = 'REMOVE_USER_TAG';
+export const TAG_ITEM = 'TAG_ITEM';
+export const TAGGED_ITEMS = 'TAGGED_ITEMS';
+export const UPDATE_TAGGED_ITEMS = 'UPDATE_TAGGED_ITEMS';
+export const UPDATE_USER_TAGS = 'UPDATE_USER_TAGS';
+export const USER_TAGS = 'USER_TAGS';
+
+export const UPDATE_TAGS_IDS = 'UPDATE_TAGS_IDS';
+export const TAGS_IDS = 'TAGS_IDS';
+export const TAGGED_ITEMS_IDS = 'TAGGED_ITEMS_IDS';
+export const SAVE_TAGGED_ITEMS_TO_ASYNC = 'SAVE_TAGGED_ITEMS_TO_ASYNC';
+
 // loginInfoReducer
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';

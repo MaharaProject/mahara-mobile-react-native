@@ -56,7 +56,7 @@ const PreferencesScreen = (props: any) => {
 
   const defaultFolderPicker = () => {
     const matchingFolder = userFolders.find(
-      f => f.title === defaultFolderTitle
+      (f: UserFolder) => f.title === defaultFolderTitle
     );
     const folders: Array<UserFolder> = putDefaultAtTop(
       null,

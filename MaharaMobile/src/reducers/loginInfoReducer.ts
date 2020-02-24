@@ -1,8 +1,5 @@
+import { ADD_TOKEN, CLEAR_LOGIN_INFO, SET_DEFAULT_BLOG, SET_DEFAULT_FOLDER, UPDATE_GUEST_STATUS, UPDATE_LOGIN_TYPES, UPDATE_PROFILE_ICON, UPDATE_SERVER_URL, UPDATE_URL, UPDATE_USERNAME } from '../utils/constants';
 import { RootState } from './rootReducer';
-import { UPDATE_SERVER_URL, ADD_TOKEN, UPDATE_USERNAME, CLEAR_LOGIN_INFO, UPDATE_LOGIN_TYPES, UPDATE_URL, UPDATE_PROFILE_ICON, UPDATE_GUEST_STATUS, SET_DEFAULT_BLOG, SET_DEFAULT_FOLDER } from '../utils/constants';
-import { UserFolder, UserBlog } from '../models/models';
-import { selectUserBlogs, selectUserFolders } from './userArtefactsReducer';
-import { useSelector } from 'react-redux';
 
 type LoginInfoState = {
   url: string;
@@ -99,4 +96,3 @@ export const selectAllLoginInfo = (state: RootState) =>  state.domainData.loginI
 export const selectProfileIcon = (state: RootState) =>  state.domainData.loginInfo.profileIcon;
 export const selectDefaultBlogId = (state: RootState) => state.domainData.loginInfo.defaultBlogId;
 export const selectDefaultFolderTitle = (state: RootState) => state.domainData.loginInfo.defaultFolderTitle;
-

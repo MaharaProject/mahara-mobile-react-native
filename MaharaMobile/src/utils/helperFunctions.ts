@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { StackActions } from 'react-navigation';
 import { Dispatch } from 'redux';
-import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON } from '../models/models';
+import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON, UserTag } from '../models/models';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -21,6 +21,16 @@ export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
 export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
   return (x as MaharaPendingFile).maharaFormData !== undefined;
 }
+
+/**
+ * Creates a new UserTag and returns the object.
+ * @param tagName string
+ */
+export const newUserTag = (tagName: string): UserTag => ({
+  id: Math.round(Math.random() * 1000),
+  tag: tagName
+});
+// TODO: id is just external from Mahara, for organisatin in this app
 
 export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {
   const userBlog: UserBlog = {
@@ -83,3 +93,6 @@ export function usePreviousProps(value: any) {
   });
   return ref.current;
 }
+
+export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
+  tags.find((t: UserTag) => t.tag === tagString);

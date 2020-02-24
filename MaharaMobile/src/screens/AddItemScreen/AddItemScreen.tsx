@@ -9,13 +9,12 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-
 import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
-import { MaharaFile, MaharaPendingFile, UserBlog, UserFolder, UserTag } from '../../models/models';
+import { MaharaFile, MaharaPendingFile, PendingJournalEntry, UserBlog, UserFolder, UserTag } from '../../models/models';
 import { selectDefaultBlogId, selectDefaultFolderTitle, selectToken, selectUrl } from '../../reducers/loginInfoReducer';
 import { RootState } from '../../reducers/rootReducer';
 import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
@@ -23,10 +22,8 @@ import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
 import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefactsReducer';
 import { selectUserTags } from '../../reducers/userTagsReducer';
 import { AUDIO, FILE, PHOTO } from '../../utils/constants';
+import { isMaharaPendingFile } from '../../utils/helperFunctions';
 import styles from './AddItemScreen.style';
-
-
-
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -47,21 +44,29 @@ type Props = {
 };
 
 const AddItemScreen = (props: Props) => {
-  let initialState = { uri: '', name: '', type: '', size: 0 };
+  let initialPickedFileState: MaharaFile = {name: '', size: 0, type: '', uri: ''};
   let isEditing = false;
-  const formType = props.navigation.getParam('formType');
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
-  const [filePickerButtonText, setFilePickerButtonText] = useState(props.navigation.getParam('itemToEdit') ? props.i18n._(t `Pick a different file`) : props.i18n._(t `Select a file`));
-  // props.navigation.setParams('add', 'Add ');
 
-  // check if user is adding new or editing existing
-  // populate form with existing details and set 'type' so headerTitle is accurate
-  if (props.navigation.getParam('itemToEdit')) {
-    if (props.navigation.getParam('itemToEdit').maharaFormData) {
-      initialState = props.navigation.getParam('itemToEdit').maharaFormData.filetoupload;
-      isEditing = true;
+  // Check Adding or Editing
+  // Populate Uploadform with existing details and set 'type' so headerTitle is accurate
+  const itemToEdit: MaharaPendingFile | PendingJournalEntry = props.navigation.getParam('itemToEdit');
+  if (itemToEdit) {
+    isEditing = true;
+    if (isMaharaPendingFile(itemToEdit)) {
+      const maharaPendingFile: MaharaPendingFile = itemToEdit;
+      initialPickedFileState = maharaPendingFile.maharaFormData.filetoupload;
     }
   }
+
+  // State
+  const formType = props.navigation.getParam('formType');
+  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialPickedFileState);
+
+  const [filePickerButtonText, setFilePickerButtonText] = useState(
+    props.navigation.getParam('itemToEdit')
+      ? props.i18n._(t`Pick a different file`)
+      : props.i18n._(t`Select a file`)
+  );
 
   const takePhoto = () => {
     const options = {
@@ -104,9 +109,9 @@ const AddItemScreen = (props: Props) => {
 
   useEffect(() => {
     if (isEditing) {
-      setPickedFile(initialState);
+      setPickedFile(initialPickedFileState);
     }
-  }, [initialState]);
+  }, [pickedFile]);
 
   const pickDocument = async () => {
     // iPhone/Android
@@ -178,7 +183,7 @@ const AddItemScreen = (props: Props) => {
             formType={formType}
             token={props.token}
             url={props.url}
-            editItem={props.navigation.getParam('itemToEdit')}
+            editItem={itemToEdit}
             navigation={props.navigation}
             defaultFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
@@ -204,7 +209,7 @@ const mapStateToProps = (state: RootState) => ({
   uploadJournals: selectAllJEntries(state),
   uploadFiles: selectAllUploadFiles(state),
   defaultFolderTitle: selectDefaultFolderTitle(state),
-  defaultBlogId: selectDefaultBlogId(state)
+  defaultBlogId: selectDefaultBlogId(state),
 });
 
 export default connect(mapStateToProps)(
