@@ -1,18 +1,20 @@
-import { faHistory } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import {faHistory} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
-import { Text, View } from 'react-native';
+import {Text, View} from 'react-native';
+import {useSelector} from 'react-redux';
 import styles from '../../../assets/styles/variables';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../reducers/rootReducer';
-import { selectNumOfJEntries } from '../../../reducers/uploadJEntriesReducer';
-import { selectNumOfFiles } from '../../../reducers/uploadFilesReducer';
+import {RootState} from '../../../reducers/rootReducer';
+import {selectNumOfFiles} from '../../../reducers/uploadFilesReducer';
+import {selectNumOfJEntries} from '../../../reducers/uploadJEntriesReducer';
 
 /**
  * Used for PendingItems count
  */
 const IconWithBadge = () => {
-  const numOfJEntries = useSelector((state: RootState) => selectNumOfJEntries(state));
+  const numOfJEntries = useSelector((state: RootState) =>
+    selectNumOfJEntries(state)
+  );
   const numOfFiles = useSelector((state: RootState) => selectNumOfFiles(state));
   const badgeCount = numOfFiles + numOfJEntries;
   return (

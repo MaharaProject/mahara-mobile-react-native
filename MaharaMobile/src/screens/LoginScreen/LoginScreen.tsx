@@ -1,31 +1,33 @@
-import React, { Component } from 'react';
-import { View, Alert } from 'react-native';
-import { connect } from 'react-redux';
-import AsyncStorage from '@react-native-community/async-storage';
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
-import { Dispatch } from 'redux';
-import { addToken, updateGuestStatus } from '../../actions/actions';
-import TokenInput from '../../components/TokenInput/TokenInput';
-import SSOLogin from '../../components/SSOLogin/SSOLogin';
-import LocalLogin from '../../components/LocalLogin/LocalLogin';
-import generic from '../../assets/styles/generic';
+import React, {Component} from 'react';
+import {Alert, View} from 'react-native';
 import {
-  selectUrl,
-  selectTokenLogin,
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+import {addToken} from '../../actions/actions';
+import generic from '../../assets/styles/generic';
+import LocalLogin from '../../components/LocalLogin/LocalLogin';
+import SSOLogin from '../../components/SSOLogin/SSOLogin';
+import TokenInput from '../../components/TokenInput/TokenInput';
+import {UserBlog, UserFolder} from '../../models/models';
+import {
+  selectLocalLogin,
   selectSsoLogin,
-  selectLocalLogin
+  selectTokenLogin,
+  selectUrl
 } from '../../reducers/loginInfoReducer';
+import {RootState} from '../../reducers/rootReducer';
 import {
   selectUserBlogs,
   selectUserFolders
 } from '../../reducers/userArtefactsReducer';
-import { UserFolder, UserBlog } from '../../models/models';
 import {
-  updatePendingItemsOnLogin,
-  fetchUserOnTokenLogin,
-  fetchProfilePic
+  fetchProfilePic,
+  fetchUserOnTokenLogin
 } from '../../utils/authHelperFunctions';
-import { RootState } from '../../reducers/rootReducer';
 
 type Props = {
   dispatch: Dispatch;
@@ -53,7 +55,7 @@ export class LoginScreen extends Component<Props, State> {
   }
 
   login = () => {
-    const { url } = this.props;
+    const {url} = this.props;
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
 
     const body = {
@@ -87,14 +89,14 @@ export class LoginScreen extends Component<Props, State> {
       });
   };
 
-  updateToken = (token: string, webview?: any) => {
-    this.setState({ token }, () => {
+  updateToken = (token: string, webview?: {stopLoading: () => void}) => {
+    this.setState({token}, () => {
       this.login();
       if (webview) {
         webview.stopLoading();
       }
     });
-  }
+  };
 
   /**
    * Save user token to async storage
@@ -110,8 +112,8 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   render() {
-    const { params } = this.props.navigation.state;
-    const { loginType } = params;
+    const {params} = this.props.navigation.state;
+    const {loginType} = params;
 
     return (
       <View style={generic.view}>

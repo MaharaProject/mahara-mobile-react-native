@@ -1,12 +1,11 @@
-import 'react-native';
 import React from 'react';
+import 'react-native';
 import renderer from 'react-test-renderer';
-import ShallowRenderer from 'react-test-renderer/shallow';
-
-import { PendingScreen } from './PendingScreen';
+import PendingScreen from './PendingScreen';
+// import ShallowRenderer from 'react-test-renderer/shallow';
 
 jest.mock('rn-fetch-blob', () => {
-  return true
+  return true;
 });
 
 it('renders correctly', () => {

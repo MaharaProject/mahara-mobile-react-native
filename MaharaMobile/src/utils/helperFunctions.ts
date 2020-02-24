@@ -1,7 +1,14 @@
-import { useEffect, useRef } from 'react';
-import { StackActions } from 'react-navigation';
-import { Dispatch } from 'redux';
-import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON, UserTag } from '../models/models';
+import {useEffect, useRef} from 'react';
+import {StackActions} from 'react-navigation';
+import {
+  JournalEntry,
+  MaharaFileFormData,
+  MaharaPendingFile,
+  PendingJournalEntry,
+  UserBlog,
+  UserBlogJSON,
+  UserTag
+} from '../models/models';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -60,7 +67,7 @@ export function buildObject(item: object) {
     sendFormData.append('foldername', item.foldername);
     sendFormData.append('title', item.title);
     sendFormData.append('description', item.description);
-    sendFormData.append('filetoupload', item.filetoupload);
+    sendFormData.append('filetoupload', (item.filetoupload as unknown) as Blob);
     return {
       method: 'POST',
       body: sendFormData
@@ -71,7 +78,9 @@ export function buildObject(item: object) {
 
 export function uploadItemToMahara(url: string, item: object) {
   const uploadObject = buildObject(item);
-  return async function (dispatch: Dispatch) {
+  // eslint-disable-next-line func-names
+  // eslint-disable-next-line consistent-return
+  return async function() {
     try {
       return await fetch(url, uploadObject)
         .then(response => response.json())
@@ -83,11 +92,11 @@ export function uploadItemToMahara(url: string, item: object) {
   };
 }
 
-export const popNavigationStack = StackActions.pop({ n: 1 });
+export const popNavigationStack = StackActions.pop({n: 1});
 
 // to use prevProps in Hooks
-export function usePreviousProps(value: any) {
-  const ref = useRef();
+export function usePreviousProps(value: number) {
+  const ref: React.MutableRefObject<number> = useRef();
   useEffect(() => {
     ref.current = value;
   });

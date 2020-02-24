@@ -25,11 +25,6 @@ type Props = {
 export default function TokenInput(props: Props) {
   const [token, setToken] = useState('');
 
-  const handleToken = (input: string) => {
-    const token = input.trim();
-    setToken(token);
-  };
-
   return (
     <View style={styles.view}>
       <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
@@ -42,7 +37,8 @@ export default function TokenInput(props: Props) {
             style={forms.textInput}
             // TODO: remove default value for go live
             defaultValue="ab6f3b68f8b0b976cf6b51eac2cd54da"
-            onChangeText={(token) => handleToken(token)}
+            onChangeText={(input) => setToken(input.trim())
+}
           />
           <MediumButton title={t`Verify Token`} onPress={() => props.onUpdateToken(token)} />
         </View>

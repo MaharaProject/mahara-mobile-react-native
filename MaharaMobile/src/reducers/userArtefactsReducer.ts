@@ -1,6 +1,12 @@
-import { UserBlog, UserFolder } from '../models/models';
-import { CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS } from '../utils/constants';
-import { RootState } from './rootReducer';
+import {UserBlog, UserFolder} from '../models/models';
+import {
+  CLEAR_USER_BLOGS,
+  CLEAR_USER_FOLDERS,
+  UPDATE_USER_BLOGS,
+  UPDATE_USER_FOLDERS
+} from '../utils/constants';
+import {RootState} from './rootReducer';
+import {UserBlogsActions, UserFoldersActions} from './userArtefactsTypes';
 
 // UserFolders
 type UserFoldersState = Array<UserFolder>;
@@ -8,7 +14,7 @@ const initialUserFoldersState: UserFoldersState = [];
 
 export const userFoldersReducer = (
   state = initialUserFoldersState,
-  action: any
+  action: UserFoldersActions
 ) => {
   switch (action.type) {
     case UPDATE_USER_FOLDERS:
@@ -23,7 +29,8 @@ export const userFoldersReducer = (
 };
 
 // UserFolders Selectors
-export const selectUserFolders = (state: RootState) => state.domainData.userFolders;
+export const selectUserFolders = (state: RootState) =>
+  state.domainData.userFolders;
 
 // UserBlogs
 type UserBlogsState = Array<UserBlog>;
@@ -31,7 +38,7 @@ const initialUserBlogsState: UserBlogsState = [];
 
 export const userBlogsReducer = (
   state = initialUserBlogsState,
-  action: any
+  action: UserBlogsActions
 ) => {
   switch (action.type) {
     case UPDATE_USER_BLOGS:

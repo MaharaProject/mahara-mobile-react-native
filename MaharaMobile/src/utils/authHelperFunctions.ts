@@ -1,13 +1,39 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { Alert } from 'react-native';
-import { Dispatch } from 'redux';
+import {Alert} from 'react-native';
+import {Dispatch} from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import { addToken, clearLoginInfo, clearUploadFiles, clearUploadJEntires, clearUserBlogs, clearUserFolders, clearUserTags, setDefaultBlogId, setDefaultFolder, updateJEntriesOnLogin, updateProfilePic, updateUploadFilesOnLogin, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags, updateUserTagsIds } from '../actions/actions';
-import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
-import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
-import { newUserTag, userBlogJSONtoUserBlog } from './helperFunctions';
+import {
+  addToken,
+  clearLoginInfo,
+  clearUploadFiles,
+  clearUploadJEntires,
+  clearUserBlogs,
+  clearUserFolders,
+  clearUserTags,
+  setDefaultBlogId,
+  setDefaultFolder,
+  updateJEntriesOnLogin,
+  updateProfilePic,
+  updateUploadFilesOnLogin,
+  updateUserBlogs,
+  updateUserFolders,
+  updateUserName,
+  updateUserTags,
+  updateUserTagsIds
+} from '../actions/actions';
+import {UserBlog, UserBlogJSON, UserFolder, UserTag} from '../models/models';
+import {
+  GUEST_BLOG,
+  GUEST_FOLDER,
+  GUEST_TOKEN,
+  GUEST_USERNAME
+} from './constants';
+import {newUserTag, userBlogJSONtoUserBlog} from './helperFunctions';
 
-export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
+export function fetchUserOnTokenLogin(
+  serverUrl: string,
+  requestOptions: RequestInit
+) {
   return async function(dispatch: Dispatch) {
     try {
       const response = await fetch(serverUrl, requestOptions);
@@ -38,8 +64,9 @@ export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
       dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
       dispatch(setDefaultFolder(json.folders.folders[0].title));
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
+    return null;
   };
 }
 
@@ -52,11 +79,9 @@ export const clearReduxData = async (dispatch: Dispatch) => {
     dispatch(clearUserFolders());
     dispatch(clearUserTags());
   } catch (error) {
-    console.log('clearReduxData$', error);
+    // console.log('clearReduxData$', error);
   }
 };
-
-const parseJSON = (jsonString: string) => JSON.parse(jsonString);
 
 export const setUpGuest = async (dispatch: Dispatch) => {
   await dispatch(addToken(GUEST_TOKEN));
@@ -109,13 +134,12 @@ export const fetchProfilePic = async (
     fileCache: true
   })
     .fetch('GET', serverUrl)
-    .then((res) => {
+    .then(res => {
       profilePic = `file://${res.path()}`;
       dispatch(updateProfilePic(profilePic));
     })
-    .catch((error) => {
-      // error handling
-      console.log(error);
+    .catch(() => {
+      // TODO error handling
     });
 
   return profilePic;
@@ -134,12 +158,12 @@ export const signOutAsync = async (navigation, dispatch) => {
       {
         text: 'Logout',
         onPress: async () => {
+          navigation.navigate('SiteCheck');
           await AsyncStorage.clear();
           clearReduxData(dispatch);
-          navigation.navigate('SiteCheck');
         }
       }
     ],
-    { cancelable: false }
+    {cancelable: false}
   );
 };

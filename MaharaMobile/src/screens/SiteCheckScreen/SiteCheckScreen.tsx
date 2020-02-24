@@ -1,19 +1,23 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import { connect } from 'react-redux';
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
-import { Dispatch } from 'redux';
-import { checkLoginTypes } from '../../actions/actions';
-import LoginType from '../../components/LoginType/LoginType';
-import generic from '../../assets/styles/generic';
+import React, {Component} from 'react';
+import {View} from 'react-native';
 import {
-  selectUrl,
-  selectTokenLogin,
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
+import {checkLoginTypes} from '../../actions/actions';
+import generic from '../../assets/styles/generic';
+import LoginType from '../../components/LoginType/LoginType';
+import {
+  selectLocalLogin,
   selectSsoLogin,
-  selectLocalLogin
+  selectTokenLogin,
+  selectUrl
 } from '../../reducers/loginInfoReducer';
-import { setUpGuest } from '../../utils/authHelperFunctions';
-import { RootState } from '../../reducers/rootReducer';
+import {RootState} from '../../reducers/rootReducer';
+import {setUpGuest} from '../../utils/authHelperFunctions';
 
 type Props = {
   dispatch: Dispatch;
@@ -75,7 +79,7 @@ export class SiteCheckScreen extends Component<Props, State> {
     if (!/^https?:\/\//.test(serverUrl)) {
       serverUrl = `https://${serverUrl}`;
     }
-    this.setState({ url: serverUrl });
+    this.setState({url: serverUrl});
   };
 
   checkServer = async () => {
@@ -87,7 +91,11 @@ export class SiteCheckScreen extends Component<Props, State> {
 
     try {
       await this.props.dispatch(checkLoginTypes(serverUrl));
-      if (this.props.tokenLogin || this.props.localLogin || this.props.ssoLogin) {
+      if (
+        this.props.tokenLogin ||
+        this.props.localLogin ||
+        this.props.ssoLogin
+      ) {
         this.setState({
           serverPing: true,
           isInputHidden: true,
@@ -95,8 +103,8 @@ export class SiteCheckScreen extends Component<Props, State> {
         });
       }
     } catch (error) {
-      this.setState({ errorMessage: error.message });
-      console.error(error);
+      this.setState({errorMessage: error.message});
+      // console.error(error);
     }
   };
 

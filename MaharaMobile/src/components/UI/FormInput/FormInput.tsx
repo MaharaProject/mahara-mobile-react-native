@@ -1,8 +1,22 @@
+import {I18n} from '@lingui/react';
 import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
-import { I18n } from '@lingui/react';
+import {StyleSheet, TextInput, ViewProps} from 'react-native';
 
-const FormInput = (props: any) => {
+const validStyle = StyleSheet.create({
+  valid: {
+    backgroundColor: '#eff2ee'
+  }
+});
+
+type Props = {
+  valid: boolean;
+  style: ViewProps;
+  placeholder: string;
+  value: string;
+  onChangeText: (text: string) => void;
+};
+
+const FormInput = (props: Props) => {
   const defaultInputStyles = props.valid ? validStyle.valid : null;
   return (
     <I18n>
@@ -17,11 +31,5 @@ const FormInput = (props: any) => {
     </I18n>
   );
 };
-
-const validStyle = StyleSheet.create({
-  valid: {
-    backgroundColor: '#eff2ee'
-  }
-});
 
 export default FormInput;

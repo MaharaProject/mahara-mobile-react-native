@@ -1,7 +1,20 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { UserTag } from '../models/models';
-import { ADD_USER_TAGS, CLEAR_USER_TAGS, REMOVE_USER_TAG, SAVE_TAGGED_ITEMS_TO_ASYNC, TAGGED_ITEMS, TAGGED_ITEMS_IDS, TAGS_IDS, TAG_ITEM, UPDATE_TAGGED_ITEMS, UPDATE_TAGS_IDS, UPDATE_USER_TAGS, USER_TAGS } from '../utils/constants';
-import { RootState } from './rootReducer';
+import {UserTag} from '../models/models';
+import {
+  ADD_USER_TAGS,
+  CLEAR_USER_TAGS,
+  REMOVE_USER_TAG,
+  SAVE_TAGGED_ITEMS_TO_ASYNC,
+  TAGGED_ITEMS,
+  TAGGED_ITEMS_IDS,
+  TAGS_IDS,
+  TAG_ITEM,
+  UPDATE_TAGGED_ITEMS,
+  UPDATE_TAGS_IDS,
+  UPDATE_USER_TAGS,
+  USER_TAGS
+} from '../utils/constants';
+import {RootState} from './rootReducer';
 
 /**
  * taggedItems: PendingJournalEntry.id | MaharaPendingFile(s).id -> set of tag ids
@@ -138,7 +151,7 @@ const updateTaggedItemsFromAsync = (
 // REDUCER
 export const userTagsReducer = (
   state = initialState,
-  action: any
+  action
 ): UserTagInfoState => {
   switch (action.type) {
     case ADD_USER_TAGS:
@@ -146,9 +159,12 @@ export const userTagsReducer = (
     case REMOVE_USER_TAG:
       return removeTag(state, action.userTag);
     case UPDATE_USER_TAGS:
-      return { ...state, userTags: state.userTags.concat(action.userTags)};
+      return {...state, userTags: state.userTags.concat(action.userTags)};
     case UPDATE_TAGS_IDS:
-      return { ...state, userTagsIds: state.userTagsIds.concat(action.userTagsIds)};
+      return {
+        ...state,
+        userTagsIds: state.userTagsIds.concat(action.userTagsIds)
+      };
     case CLEAR_USER_TAGS:
       return initialState;
     case TAG_ITEM:
@@ -182,7 +198,7 @@ export const selectItemTagsStrings = (
   const tagsArr = [];
 
   tagIds.forEach((id: number) =>
-    state.domainData.userTagsInfo.userTags.map((tag: UserTag) => {
+    state.domainData.userTagsInfo.userTags.forEach((tag: UserTag) => {
       if (tag.id === id) tagsArr.push(tag.tag);
     })
   );

@@ -1,21 +1,24 @@
-/* eslint-disable consistent-return */
-import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text, View, Platform, PermissionsAndroid } from 'react-native';
-import RNFetchBlob from 'rn-fetch-blob';
+import {faPauseCircle, faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {i18n, I18n} from '@lingui/core';
+import {t, Trans} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
+import React, {useEffect, useState} from 'react';
+import {
+  PermissionsAndroid,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import { Trans, t } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
-import { i18n, I18n } from '@lingui/core';
-
+import RNFetchBlob from 'rn-fetch-blob';
+import base64 from 'base-64';
 import buttons from '../../assets/styles/buttons';
 import variables from '../../assets/styles/variables';
-import styles from './AddAudio.style';
-import { MaharaFile } from '../../models/models';
+import {MaharaFile, Playback} from '../../models/models';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
-
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
-
+import styles from './AddAudio.style';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
@@ -29,18 +32,26 @@ const AddAudio = (props: Props) => {
   type PlayStatus = 'playing' | 'notplaying';
   type RecordStatus = 'unrecorded' | 'recording' | 'recorded';
 
-  const initialState = { uri: '', name: '', type: '', size: 0 };
+  const initialState = {uri: '', name: '', type: '', size: 0};
   const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
   const [audioFile, setAudioFile] = useState('');
-  const [recordButtonStatus, setRecordButtonStatus] = useState<RecordStatus>('unrecorded');
-  const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>('notplaying');
+  const [recordButtonStatus, setRecordButtonStatus] = useState<RecordStatus>(
+    'unrecorded'
+  );
+  const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>(
+    'notplaying'
+  );
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
   const playStrings = {
-    playing: <FontAwesomeIcon icon={faPauseCircle} color={variables.colors.tertiary} />,
-    notplaying: <FontAwesomeIcon icon={faPlayCircle} color={variables.colors.tertiary} />
+    playing: (
+      <FontAwesomeIcon icon={faPauseCircle} color={variables.colors.tertiary} />
+    ),
+    notplaying: (
+      <FontAwesomeIcon icon={faPlayCircle} color={variables.colors.tertiary} />
+    )
   };
 
   const recordStrings = {
@@ -62,24 +73,28 @@ const AddAudio = (props: Props) => {
 
   // Check permissions
   const checkPermissions = async () => {
-    let permission = true;
+    // let permission = true;
 
     if (Platform.OS === 'android') {
       try {
         const grantedStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
-            title: props.i18n._(t `Permissions for write access`),
-            message: props.i18n._(t `Give permission to your storage to write a file`),
-            buttonPositive: props.i18n._(t `ok`)
+            title: props.i18n._(t`Permissions for write access`),
+            message: props.i18n._(
+              t`Give permission to your storage to write a file`
+            ),
+            buttonPositive: props.i18n._(t`ok`)
           }
         );
         const grantedRecord = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
           {
-            title: props.i18n._(t `Permissions for recording audio`),
-            message: props.i18n._(t `Give permission to your microphone to record a file`),
-            buttonPositive: props.i18n._(t `ok`)
+            title: props.i18n._(t`Permissions for recording audio`),
+            message: props.i18n._(
+              t`Give permission to your microphone to record a file`
+            ),
+            buttonPositive: props.i18n._(t`ok`)
           }
         );
 
@@ -93,23 +108,26 @@ const AddAudio = (props: Props) => {
         }
       } catch (err) {
         setIsPermissionGranted(false);
-        permission = false;
-        return permission;
+        // permission = false;
+        // return permission;
       }
       setIsPermissionGranted(true);
-      return permission;
+      // return permission;
     }
   };
 
+  useEffect(() => {
+    checkPermissions();
+  });
+
   // Handling recording
   const getFileSize = () => {
-    const base64 = require('base-64');
-    const bytes = RNFetchBlob.fs.readFile(audioFile, 'base64').then(data => {
+    const fileSize = RNFetchBlob.fs.readFile(audioFile, 'base64').then(data => {
       const decodedData = base64.decode(data);
       const bytes = decodedData.length;
       return bytes;
     });
-    return bytes;
+    return fileSize;
   };
 
   const onStartRecord = async () => {
@@ -120,7 +138,7 @@ const AddAudio = (props: Props) => {
         setRecordButtonStatus('recording');
       });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -135,18 +153,21 @@ const AddAudio = (props: Props) => {
       name: result,
       uri: result,
       type: 'audio/m4a',
-      size: size
+      size
     });
   };
 
   const handleRecord = async () => {
-    const permission = await checkPermissions();
+    // const permission = await checkPermissions();
 
-    if (!permission) {
+    if (!isPermissionGranted) {
       return;
     }
 
-    if (recordButtonStatus === 'unrecorded' || recordButtonStatus === 'recorded') {
+    if (
+      recordButtonStatus === 'unrecorded' ||
+      recordButtonStatus === 'recorded'
+    ) {
       onStartRecord();
       setIsRecorded(false);
     } else {
@@ -158,9 +179,9 @@ const AddAudio = (props: Props) => {
   const onStartPlay = async () => {
     await audioRecorderPlayer.startPlayer(audioFile);
     setIsPlaying(true);
-    audioRecorderPlayer.addPlayBackListener((e: any) => {
+    audioRecorderPlayer.addPlayBackListener((e: Playback) => {
       if (e.current_position === e.duration) {
-        audioRecorderPlayer.stopPlayer().catch(e => console.log(e.message));
+        audioRecorderPlayer.stopPlayer().catch(() => {});
         setIsPlaying(false);
         setPlayButtonStatus('notplaying');
       }
@@ -171,7 +192,7 @@ const AddAudio = (props: Props) => {
     try {
       await audioRecorderPlayer.pausePlayer();
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -199,12 +220,18 @@ const AddAudio = (props: Props) => {
           <TouchableOpacity
             onPress={() => handlePlay()}
             accessibilityRole="button">
-            <Text style={[buttons.sm, styles.smButton]}>{playStrings[playButtonStatus]}</Text>
+            <Text style={[buttons.sm, styles.smButton]}>
+              {playStrings[playButtonStatus]}
+            </Text>
           </TouchableOpacity>
         ) : null}
         {isPlaying ? (
-          <TouchableOpacity onPress={() => onStopPlay()} accessibilityRole="button">
-            <Text style={[buttons.sm, styles.smButton]}><Trans>Stop</Trans></Text>
+          <TouchableOpacity
+            onPress={() => onStopPlay()}
+            accessibilityRole="button">
+            <Text style={[buttons.sm, styles.smButton]}>
+              <Trans>Stop</Trans>
+            </Text>
           </TouchableOpacity>
         ) : null}
         {!isPermissionGranted ? (
