@@ -3,6 +3,7 @@ import { I18n } from '@lingui/react';
 import React from 'react';
 import { Text } from 'react-native';
 import styles from '../assets/styles/variables';
+import headingStyles from '../assets/styles/headings';
 import { UserBlog, UserFolder } from '../models/models';
 import { FILE, JOURNAL_ENTRY, PHOTO } from './constants';
 
@@ -36,6 +37,13 @@ export const RequiredWarningText = (props: any) => (
 
 export const RedAsterix = () => (
   <Text style={{color: styles.colors.warn}}> *</Text>
+);
+
+export const SubHeading = (props: any) => (
+  <Text style={[headingStyles.subHeading2, props.styles]}>
+    {props.children}
+    {props.required ? <RedAsterix /> : null}
+  </Text>
 );
 
 /**

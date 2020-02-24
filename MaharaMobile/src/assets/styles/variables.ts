@@ -12,9 +12,16 @@ const styles = {
     light2: '#9db576',
     dark: '#000',
     dark2: '#2e3a1c',
+    lightgrey: '#efefef',
     darkgrey: '#777',
     warnbg: '#e8c4c4',
-    warn: '#aa0500'
+    warn: '#aa0500',
+    border: '#cfcfcf',
+    green: '#295934',
+    purple: '#622c46',
+    lightbrown: '#763b36',
+    darkbrown: '#423017',
+    red: '#76302e'
   },
   padding: {
     xs: 5,
@@ -31,6 +38,6 @@ const styles = {
     lg: 20,
     xl: 30
   }
-}
+};
 
 export default styles;

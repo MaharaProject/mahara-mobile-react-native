@@ -1,15 +1,24 @@
 import React from 'react';
-import { withI18n } from '@lingui/react';
-import { t } from '@lingui/macro';
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
-import MediumButton from '../MediumButton/MediumButton';
+import { TouchableOpacity, Text } from 'react-native';
+import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
+import { I18n } from '@lingui/react';
+import buttons from '../../../assets/styles/buttons';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
 const CancelButton = (props: Props) => (
-  <MediumButton title={t`Cancel`} onPress={() => props.navigation.goBack()} />
+  <I18n>
+    {({i18n}) => (
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel="Cancel"
+        onPress={() => props.navigation.goBack()}>
+        <Text style={[buttons.md, buttons.cancel]}>Cancel</Text>
+      </TouchableOpacity>
+    )}
+  </I18n>
 );
 
-export default withI18n()(CancelButton);
+export default CancelButton;

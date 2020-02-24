@@ -7,18 +7,22 @@ const forms = StyleSheet.create({
     paddingLeft: styles.padding.md,
     paddingRight: styles.padding.md,
     marginBottom: styles.padding.md,
+    borderColor: styles.colors.border,
+    borderWidth: 1,
     borderRadius: 5,
     backgroundColor: styles.colors.light,
     height: 40
   },
   multiLine: {
     color: styles.colors.dark,
-    height: 200,
-    borderColor: styles.colors.darkgrey,
+    height: 150,
+    borderColor: styles.colors.border,
     borderWidth: 1,
     textAlignVertical: 'top',
     padding: styles.padding.md,
-    marginBottom: styles.padding.md
+    borderRadius: 5,
+    marginBottom: styles.padding.md,
+    backgroundColor: styles.colors.light
   },
   picker: {
     color: styles.colors.dark,
@@ -27,8 +31,9 @@ const forms = StyleSheet.create({
   pickerWrapper: {
     height: 40,
     width: '100%',
-    borderColor: styles.colors.darkgrey,
+    borderColor: styles.colors.border,
     borderWidth: 1,
+    borderRadius: 5,
     marginBottom: styles.padding.md
   },
   tag: {

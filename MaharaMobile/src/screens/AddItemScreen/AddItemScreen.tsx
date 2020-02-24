@@ -12,7 +12,7 @@ import { Dispatch } from 'redux';
 import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import { MaharaFile, MaharaPendingFile, PendingJournalEntry, UserBlog, UserFolder, UserTag } from '../../models/models';
 import { selectDefaultBlogId, selectDefaultFolderTitle, selectToken, selectUrl } from '../../reducers/loginInfoReducer';
@@ -24,6 +24,8 @@ import { selectUserTags } from '../../reducers/userTagsReducer';
 import { AUDIO, FILE, PHOTO } from '../../utils/constants';
 import { isMaharaPendingFile } from '../../utils/helperFunctions';
 import styles from './AddItemScreen.style';
+import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
+
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -155,14 +157,14 @@ const AddItemScreen = (props: Props) => {
         ) : null}
         {formType === FILE && (
           <View>
-            <MediumButton title={t`${filePickerButtonText}`} onPress={() => pickDocument()} />
+            <OutlineButton title={t`${filePickerButtonText}`} onPress={() => pickDocument()} />
           </View>
         )}
         {formType === PHOTO && (
           <TouchableOpacity
             onPress={() => takePhoto()}
             accessibilityRole="button">
-            <Text style={buttons.lg}>
+            <Text style={[buttons.lg,  outlineButtonStyles.buttons]}>
               <FontAwesome5 name="camera" size={20} />
               &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
               {pickedFile.uri && <Trans>Re-take photo</Trans>}

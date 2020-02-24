@@ -10,7 +10,8 @@ const buttons = StyleSheet.create({
     marginBottom: styles.padding.md,
     fontSize: styles.font.md,
     textAlign: 'center',
-    width: '100%'
+    width: '100%',
+    borderRadius: 35
   },
   md: {
     backgroundColor: styles.colors.secondary,
@@ -33,7 +34,14 @@ const buttons = StyleSheet.create({
   link: {
     fontSize: styles.font.md,
     alignSelf: 'center',
-    textDecorationLine: "underline"
+    textDecorationLine: 'underline'
+  },
+  light: {
+    borderColor: styles.colors.light,
+    color: styles.colors.light
+  },
+  cancel: {
+    backgroundColor: styles.colors.lightgrey
   }
 });
 

@@ -113,7 +113,7 @@ const AppNavigator = (props: Props) => {
     inactiveColor: '#3e2465',
     labeled: false,
     barStyle: {
-      backgroundColor: styles.colors.secondary
+      backgroundColor: styles.colors.light2
     }
   });
 
