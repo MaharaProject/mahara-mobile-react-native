@@ -1,3 +1,5 @@
-import { setupI18n } from '@lingui/core';
+import {setupI18n} from '@lingui/core';
 
-export const i18n = setupI18n({ language: 'en' });
+const i18n = setupI18n({language: 'en'});
+
+export default i18n;

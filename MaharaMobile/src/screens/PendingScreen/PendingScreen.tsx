@@ -1,25 +1,44 @@
-import { i18n } from '@lingui/core';
-import { t, Trans } from '@lingui/macro';
-import React, { useEffect, useState } from 'react';
-import { Alert, Text, View } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { connect, useSelector } from 'react-redux';
-import { Dispatch } from 'redux';
-import { removeUploadFile, removeUploadJEntry } from '../../actions/actions';
+import {i18n} from '@lingui/core';
+import {t, Trans} from '@lingui/macro';
+import React, {useEffect, useState} from 'react';
+import {Alert, Text, View} from 'react-native';
+import {Icon} from 'react-native-elements';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {connect, useSelector} from 'react-redux';
+import {Dispatch} from 'redux';
+import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
 import styles from '../../assets/styles/variables';
 import PendingList from '../../components/PendingList/PendingList';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
-import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
-import { selectUrl, selectUserName } from '../../reducers/loginInfoReducer';
-import { RootState } from '../../reducers/rootReducer';
-import { selectAllUploadFiles, selectAllUploadFilesIds } from '../../reducers/uploadFilesReducer';
-import { selectAllJEntries, selectAllJEntriesIds } from '../../reducers/uploadJEntriesReducer';
-import { isPendingJournalEntry, uploadItemToMahara, usePreviousProps } from '../../utils/helperFunctions';
+import {
+  DisplayItems,
+  MaharaPendingFile,
+  PendingJournalEntry,
+  UploadResponse
+} from '../../models/models';
+import {selectUrl, selectUserName} from '../../reducers/loginInfoReducer';
+import {RootState} from '../../reducers/rootReducer';
+import {
+  selectAllUploadFiles,
+  selectAllUploadFilesIds
+} from '../../reducers/uploadFilesReducer';
+import {
+  selectAllJEntries,
+  selectAllJEntriesIds
+} from '../../reducers/uploadJEntriesReducer';
+import {GUEST_USERNAME} from '../../utils/constants';
+import {
+  isPendingJournalEntry,
+  uploadItemToMahara,
+  usePreviousProps
+} from '../../utils/helperFunctions';
 import pendingScreenStyles from './PendingScreen.style';
-import { GUEST_USERNAME } from '../../utils/constants';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -32,9 +51,12 @@ type Props = {
 };
 
 const PendingScreen = (props: Props) => {
-  const uploadItemsCount = props.uploadFiles.length + props.uploadJEntries.length;
+  const uploadItemsCount =
+    props.uploadFiles.length + props.uploadJEntries.length;
   const prevUploadCount = usePreviousProps(uploadItemsCount) || 0;
-  const [successfullyUploadedItems, setSuccessfullyUploadedItems] = useState<string[]>([]);
+  const [successfullyUploadedItems, setSuccessfullyUploadedItems] = useState<
+    string[]
+  >([]);
   const [uploadErrorItems, setUploadErrorItems] = useState<string[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const url = useSelector((state: RootState) => selectUrl(state));
@@ -66,12 +88,16 @@ const PendingScreen = (props: Props) => {
           }
         }
       ],
-      { cancelable: false });
+      {cancelable: false}
+    );
   };
 
   const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
     const type = isPendingJournalEntry(item) ? 'journal entry' : item.type;
-    props.navigation.navigate({ routeName: 'AddItem', params: { itemToEdit: item, formType: type, title: 'Edit' } });
+    props.navigation.navigate({
+      routeName: 'AddItem',
+      params: {itemToEdit: item, formType: type, title: 'Edit'}
+    });
   };
 
   const clearUploadError = (id: string) => {
@@ -87,7 +113,7 @@ const PendingScreen = (props: Props) => {
    * Renders a PendingList
    * @param dataList array of files and journal entries
    */
-  const renderPendingList = (dataList: Array<any>) => {
+  const renderPendingList = (dataList: DisplayItems) => {
     return (
       <PendingList
         dataList={dataList}
@@ -99,13 +125,15 @@ const PendingScreen = (props: Props) => {
         onClearError={clearUploadError}
       />
     );
-  }
+  };
 
   const pendingDisplay = () => {
-    let list: Array<any> = [];
+    let list: DisplayItems = [];
 
     if (props.uploadFilesIds?.length > 0) list = list.concat(props.uploadFiles);
-    if (props.uploadJEntriesIds?.length > 0) list = list.concat(props.uploadJEntries);
+    if (props.uploadJEntriesIds?.length > 0) {
+      list = list.concat(props.uploadJEntries);
+    }
 
     if (uploadItemsCount > 0) {
       return <View>{renderPendingList(list)}</View>;
@@ -128,10 +156,11 @@ const PendingScreen = (props: Props) => {
   };
 
   const onUploadClick = () => {
-    props.uploadFiles.forEach(file => {
+    props.uploadFiles.forEach(async file => {
       clearUploadError(file.id);
-      props.dispatch(uploadItemToMahara(file.url, file.maharaFormData))
-        .then((result: any) => {
+      props
+        .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
+        .then((result: UploadResponse) => {
           // an error either returns result = undefined, or result = { error: true }
           if (result === undefined || result.error) {
             onUploadError(file.id);
@@ -139,10 +168,13 @@ const PendingScreen = (props: Props) => {
         });
     });
 
-    props.uploadJEntries.forEach(journalEntry => {
+    props.uploadJEntries.forEach(async journalEntry => {
       clearUploadError(journalEntry.id);
-      props.dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
-        .then((result: any) => {
+      props
+        .dispatch(
+          uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)
+        )
+        .then((result: UploadResponse) => {
           if (result === undefined || result.error) {
             onUploadError(journalEntry.id);
           } else onSuccessfulUpload(journalEntry.id);
@@ -154,7 +186,9 @@ const PendingScreen = (props: Props) => {
     <View style={pendingScreenStyles.app}>
       {showSuccessMessage && (
         <View>
-          <Text><Trans>Upload added to Pending List!</Trans></Text>
+          <Text>
+            <Trans>Upload added to Pending List!</Trans>
+          </Text>
           <Icon
             onPress={() => setShowSuccessMessage(false)}
             accessibilityLabel={i18n._(t`Close success message`)}
@@ -169,7 +203,10 @@ const PendingScreen = (props: Props) => {
         {props.userName !== GUEST_USERNAME ? (
           <View>
             <SubHeading style={styles.padding.md}>{`URL: ${url}`}</SubHeading>
-            <MediumButton title={t`Upload to your Mahara`} onPress={onUploadClick} />
+            <MediumButton
+              title={t`Upload to your Mahara`}
+              onPress={onUploadClick}
+            />
           </View>
         ) : (
           <MediumButton
@@ -183,7 +220,7 @@ const PendingScreen = (props: Props) => {
   );
 };
 
-PendingScreen.navigationOptions = (navData: any) => ({
+PendingScreen.navigationOptions = () => ({
   headerStyle: {
     backgroundColor: styles.colors.primary
   },
@@ -193,7 +230,7 @@ PendingScreen.navigationOptions = (navData: any) => ({
     textAlign: 'center'
   },
   headerTintColor: styles.colors.light,
-  headerLeft: <HeaderMenuButton navData={navData} />
+  headerLeft: <HeaderMenuButton />
 });
 
 const mapStateToProps = (state: RootState) => ({

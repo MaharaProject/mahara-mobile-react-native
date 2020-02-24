@@ -1,7 +1,11 @@
+import {I18n} from '@lingui/react';
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { I18n } from '@lingui/react';
+import {Text, TouchableOpacity} from 'react-native';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
 import buttons from '../../../assets/styles/buttons';
 
 type Props = {

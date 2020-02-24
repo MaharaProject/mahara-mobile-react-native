@@ -1,6 +1,7 @@
-import { Trans } from '@lingui/react';
+import {Trans} from '@lingui/react';
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import {Image, Text, View} from 'react-native';
+import image from '../../assets/images/no_userphoto.png';
 import styles from './Profile.style';
 
 type Props = {
@@ -9,12 +10,11 @@ type Props = {
 };
 
 const Profile = (props: Props) => {
-  const image: any = require('../../assets/images/no_userphoto.png');
   return (
     <View style={styles.view}>
       <View>
         <Image
-          source={props.profileIcon ? { uri: props.profileIcon } : image}
+          source={props.profileIcon ? {uri: props.profileIcon} : image}
           style={styles.image}
         />
       </View>

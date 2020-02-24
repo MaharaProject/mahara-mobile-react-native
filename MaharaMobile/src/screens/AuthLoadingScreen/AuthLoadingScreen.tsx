@@ -1,11 +1,36 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import React, { useEffect } from 'react';
-import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { useDispatch } from 'react-redux';
-import { addFileToUploadList, addJournalEntryToUploadList, addToken, setDefaultBlogId, setDefaultFolder, updateLoginTypes, updateProfilePic, updateTaggedItemsFromAsync, updateUrl, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags, updateUserTagsIds } from '../../actions/actions';
-import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
-import { DEFAULT_BLOG_ID, DEFAULT_FOLDER_TITLE, TAGGED_ITEMS, TAGS_IDS, USER_TAGS } from '../../utils/constants';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {useDispatch} from 'react-redux';
+import {
+  addFileToUploadList,
+  addJournalEntryToUploadList,
+  addToken,
+  setDefaultBlogId,
+  setDefaultFolder,
+  updateLoginTypes,
+  updateProfilePic,
+  updateTaggedItemsFromAsync,
+  updateUrl,
+  updateUserBlogs,
+  updateUserFolders,
+  updateUserName,
+  updateUserTags,
+  updateUserTagsIds
+} from '../../actions/actions';
+import {MaharaPendingFile, PendingJournalEntry} from '../../models/models';
+import {
+  DEFAULT_BLOG_ID,
+  DEFAULT_FOLDER_TITLE,
+  TAGGED_ITEMS,
+  TAGS_IDS,
+  USER_TAGS
+} from '../../utils/constants';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -116,7 +141,7 @@ const AuthLoadingScreen = (props: Props) => {
         }
       });
     } catch (error) {
-      console.log(`Error getting items from AsyncStorage: ${error}`);
+      // console.log(`Error getting items from AsyncStorage: ${error}`);
     }
   };
 

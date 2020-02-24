@@ -83,3 +83,23 @@ export type MessageDescriptor = {
   values?: object;
   formats?: object;
 };
+
+export type LoginInfo = {
+  maharaversion: string;
+  wwwroot: string;
+  sitename: string;
+  wsenabled: boolean;
+  wsprotocols: Array<string>;
+  mobileapienabled: boolean;
+  mobileapiversion: string;
+  logintypes: Array<string>;
+};
+
+export type UploadResponse = {
+  error?: object;
+  file?: number;
+};
+
+export type DisplayItems = Array<PendingJournalEntry | MaharaPendingFile>;
+
+export type Playback = {current_position: number; duration: number};

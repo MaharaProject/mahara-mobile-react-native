@@ -1,4 +1,4 @@
-import { UserBlog, UserFolder } from '../models/models';
+import {UserBlog, UserFolder} from '../models/models';
 
 // action types - payloads of information that send data from your application to your store
 

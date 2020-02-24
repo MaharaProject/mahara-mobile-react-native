@@ -1,9 +1,9 @@
 import React from 'react';
-import { View } from 'react-native';
-import { t } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
+import {View} from 'react-native';
+import {t} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
 import GridButton from '../UI/GridButton/GridButton';
-import { FILE, PHOTO, JOURNAL_ENTRY, AUDIO } from '../../utils/constants';
+import {FILE, PHOTO, JOURNAL_ENTRY, AUDIO} from '../../utils/constants';
 import styles from './SelectMediaType.style';
 
 // Images

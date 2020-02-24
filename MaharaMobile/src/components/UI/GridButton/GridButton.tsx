@@ -1,9 +1,9 @@
+import {I18n} from '@lingui/react';
 import React from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { I18n } from '@lingui/react';
-import gridButtonStyles from './GridButton.style';
-import { MessageDescriptor } from '../../../models/models';
+import {Text, TouchableOpacity, View} from 'react-native';
 import buttons from '../../../assets/styles/buttons';
+import {MessageDescriptor} from '../../../models/models';
+import gridButtonStyles from './GridButton.style';
 
 type Props = {
   onPress: () => void;
@@ -19,7 +19,9 @@ const GridButton = (props: Props) => (
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel={i18n._(props.title)}
-        accessibilityHint={props.accessibilityHint ? i18n._(props.accessibilityHint): undefined}
+        accessibilityHint={
+          props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
+        }
         onPress={props.onPress}
         style={[
           buttons.md,
@@ -29,15 +31,10 @@ const GridButton = (props: Props) => (
           props.color === 'lightbrown' ? gridButtonStyles.lightbrown : null,
           props.color === 'darkbrown' ? gridButtonStyles.darkbrown : null
         ]}>
-        {props.image ?
-          <View style={gridButtonStyles.imageWrapper}>
-            {props.image}
-          </View> : null
-        }
-        <Text style={[gridButtonStyles.buttonText]}>
-          {i18n._(props.title)}
-        </Text>
-
+        {props.image ? (
+          <View style={gridButtonStyles.imageWrapper}>{props.image}</View>
+        ) : null}
+        <Text style={[gridButtonStyles.buttonText]}>{i18n._(props.title)}</Text>
       </TouchableOpacity>
     )}
   </I18n>

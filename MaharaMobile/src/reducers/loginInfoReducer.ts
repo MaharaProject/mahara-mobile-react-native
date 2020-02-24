@@ -1,5 +1,16 @@
-import { ADD_TOKEN, CLEAR_LOGIN_INFO, SET_DEFAULT_BLOG, SET_DEFAULT_FOLDER, UPDATE_GUEST_STATUS, UPDATE_LOGIN_TYPES, UPDATE_PROFILE_ICON, UPDATE_SERVER_URL, UPDATE_URL, UPDATE_USERNAME } from '../utils/constants';
-import { RootState } from './rootReducer';
+import {
+  ADD_TOKEN,
+  CLEAR_LOGIN_INFO,
+  SET_DEFAULT_BLOG,
+  SET_DEFAULT_FOLDER,
+  UPDATE_LOGIN_TYPES,
+  UPDATE_PROFILE_ICON,
+  UPDATE_SERVER_URL,
+  UPDATE_URL,
+  UPDATE_USERNAME
+} from '../utils/constants';
+import {LoginInfoActions} from './loginInfoTypes';
+import {RootState} from './rootReducer';
 
 type LoginInfoState = {
   url: string;
@@ -33,7 +44,7 @@ const initialState: LoginInfoState = {
 
 export const loginInfoReducer = (
   state = initialState,
-  action: any
+  action: LoginInfoActions
 ): LoginInfoState => {
   switch (action.type) {
     case UPDATE_SERVER_URL:
@@ -87,12 +98,21 @@ export const loginInfoReducer = (
 
 // Selector
 export const selectUrl = (state: RootState) => state.domainData.loginInfo.url;
-export const selectTokenLogin = (state: RootState) => state.domainData.loginInfo.tokenLogin;
-export const selectSsoLogin = (state: RootState) =>  state.domainData.loginInfo.ssoLogin;
-export const selectLocalLogin = (state: RootState) =>  state.domainData.loginInfo.localLogin;
-export const selectToken = (state: RootState) =>  state.domainData.loginInfo.token;
-export const selectUserName = (state: RootState) =>  state.domainData.loginInfo.userName;
-export const selectAllLoginInfo = (state: RootState) =>  state.domainData.loginInfo;
-export const selectProfileIcon = (state: RootState) =>  state.domainData.loginInfo.profileIcon;
-export const selectDefaultBlogId = (state: RootState) => state.domainData.loginInfo.defaultBlogId;
-export const selectDefaultFolderTitle = (state: RootState) => state.domainData.loginInfo.defaultFolderTitle;
+export const selectTokenLogin = (state: RootState) =>
+  state.domainData.loginInfo.tokenLogin;
+export const selectSsoLogin = (state: RootState) =>
+  state.domainData.loginInfo.ssoLogin;
+export const selectLocalLogin = (state: RootState) =>
+  state.domainData.loginInfo.localLogin;
+export const selectToken = (state: RootState) =>
+  state.domainData.loginInfo.token;
+export const selectUserName = (state: RootState) =>
+  state.domainData.loginInfo.userName;
+export const selectAllLoginInfo = (state: RootState) =>
+  state.domainData.loginInfo;
+export const selectProfileIcon = (state: RootState) =>
+  state.domainData.loginInfo.profileIcon;
+export const selectDefaultBlogId = (state: RootState) =>
+  state.domainData.loginInfo.defaultBlogId;
+export const selectDefaultFolderTitle = (state: RootState) =>
+  state.domainData.loginInfo.defaultFolderTitle;

@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   view: {
@@ -9,5 +9,5 @@ export default StyleSheet.create({
   },
   imageWrapper: {
     flex: 0.5
-  },
+  }
 });

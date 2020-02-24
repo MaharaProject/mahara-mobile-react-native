@@ -1,11 +1,11 @@
-import { t } from '@lingui/macro';
-import { I18n } from '@lingui/react';
+import {t} from '@lingui/macro';
+import {I18n} from '@lingui/react';
 import React from 'react';
-import { Text } from 'react-native';
+import {Text} from 'react-native';
 import styles from '../assets/styles/variables';
 import headingStyles from '../assets/styles/headings';
-import { UserBlog, UserFolder } from '../models/models';
-import { FILE, JOURNAL_ENTRY, PHOTO } from './constants';
+import {UserBlog, UserFolder} from '../models/models';
+import {FILE, JOURNAL_ENTRY, PHOTO} from './constants';
 
 export const setTagString = (tags: Array<string>) => {
   const tagsArray = tags.map(
@@ -23,7 +23,7 @@ export const isValidText = (formType: string, text: string): boolean => {
   return true;
 };
 
-export const RequiredWarningText = (props: any) => (
+export const RequiredWarningText = (props: {customText: string}) => (
   <I18n>
     {({i18n}) => (
       <Text style={{color: styles.colors.warn}}>
@@ -39,7 +39,7 @@ export const RedAsterix = () => (
   <Text style={{color: styles.colors.warn}}> *</Text>
 );
 
-export const SubHeading = (props: any) => (
+export const SubHeading = props => (
   <Text style={[headingStyles.subHeading2, props.styles]}>
     {props.children}
     {props.required ? <RedAsterix /> : null}
@@ -53,7 +53,7 @@ export const putDefaultAtTop = (
   defaultBlog: UserBlog,
   defFolder: UserFolder,
   arr: Array<UserFolder> | Array<UserBlog>
-): Array<any> => {
+): Array<UserFolder> | Array<UserBlog> => {
   if (defFolder || defaultBlog) {
     let resultArray = [];
     const defaultItem = defaultBlog || defFolder;

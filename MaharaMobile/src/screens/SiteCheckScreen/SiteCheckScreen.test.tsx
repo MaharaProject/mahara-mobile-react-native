@@ -1,7 +1,7 @@
-import 'react-native';
 import React from 'react';
+import 'react-native';
 import renderer from 'react-test-renderer';
-import { SiteCheckScreen } from './SiteCheckScreen';
+import {SiteCheckScreen} from './SiteCheckScreen';
 
 it('renders correctly', () => {
   let props;
