@@ -2,10 +2,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import { addFileToUploadList, addJournalEntryToUploadList, addToken, clearLoginInfo, clearUploadFiles, clearUploadJEntires, clearUserBlogs, clearUserFolders, clearUserTags, setDefaultBlogId, setDefaultFolder, updateGuestStatus, updateJEntriesOnLogin, updateProfilePic, updateUploadFilesOnLogin, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags } from '../actions/actions';
-import { MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON, UserFolder } from '../models/models';
+import { addToken, clearLoginInfo, clearUploadFiles, clearUploadJEntires, clearUserBlogs, clearUserFolders, clearUserTags, setDefaultBlogId, setDefaultFolder, updateJEntriesOnLogin, updateProfilePic, updateUploadFilesOnLogin, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags, updateUserTagsIds } from '../actions/actions';
+import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
 import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
-import { userBlogJSONtoUserBlog } from './helperFunctions';
+import { newUserTag, userBlogJSONtoUserBlog } from './helperFunctions';
 
 export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
   return async function(dispatch: Dispatch) {
@@ -16,7 +16,18 @@ export function fetchUserOnTokenLogin(serverUrl: string, requestOptions: any) {
         return Promise.reject();
       }
       dispatch(updateUserName(json.userprofile.myname));
-      dispatch(updateUserTags(json.tags.tags));
+
+      type FetchedTag = {
+        tag: string;
+        usage: number;
+      };
+
+      // Create UserTags with id and string.
+      const newUserTags: Array<UserTag> = json.tags.tags.map(
+        (tag: FetchedTag) => newUserTag(tag.tag)
+      );
+      dispatch(updateUserTags(newUserTags));
+      dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
 
       dispatch(
         updateUserBlogs(
@@ -54,19 +65,6 @@ export const setUpGuest = async (dispatch: Dispatch) => {
   await dispatch(updateUserBlogs([GUEST_BLOG]));
   await dispatch(setDefaultBlogId(GUEST_BLOG.id));
   await dispatch(setDefaultFolder(GUEST_FOLDER.title));
-  await AsyncStorage.getItem('uploadFiles').then(async (result: any) => {
-    if (result) {
-      const uploadFilesList = parseJSON(result);
-      uploadFilesList.forEach((uploadFile: MaharaPendingFile) => dispatch(addFileToUploadList(uploadFile)));
-    }
-  });
-
-  await AsyncStorage.getItem('uploadJEntries').then(async (result: any) => {
-    if (result) {
-      const uploadJEntries = parseJSON(result);
-      uploadJEntries.forEach((jEntry: PendingJournalEntry) => dispatch(addJournalEntryToUploadList(jEntry)));
-    }
-  });
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -96,7 +94,11 @@ export const updatePendingItemsOnLogin = async (
   await dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
 };
 
-export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: string) => {
+export const fetchProfilePic = async (
+  dispatch: Dispatch,
+  token: string,
+  url: string
+) => {
   const api = 'module_mobileapi_get_user_profileicon&height=100&width=100';
   const wstoken = token;
   const serverUrl = `${url}module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;

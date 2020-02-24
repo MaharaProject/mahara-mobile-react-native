@@ -16,10 +16,10 @@ export const setTagString = (tags: Array<string>) => {
   return string;
 };
 
-export const validateText = (formType: string, text: string): boolean => {
-  if (formType === JOURNAL_ENTRY && text.length > 0) return true;
+export const isValidText = (formType: string, text: string): boolean => {
+  if (formType === JOURNAL_ENTRY && text.length === 0) return false;
   if (formType === FILE || formType === PHOTO) return true;
-  return false;
+  return true;
 };
 
 export const RequiredWarningText = (props: any) => (
@@ -45,7 +45,7 @@ export const putDefaultAtTop = (
   defaultBlog: UserBlog,
   defFolder: UserFolder,
   arr: Array<UserFolder> | Array<UserBlog>
-): Array<UserFolder> | Array<UserBlog> => {
+): Array<any> => {
   if (defFolder || defaultBlog) {
     let resultArray = [];
     const defaultItem = defaultBlog || defFolder;
