@@ -34,7 +34,7 @@ const buttons = StyleSheet.create({
   link: {
     fontSize: styles.font.md,
     alignSelf: 'center',
-    textDecorationLine: "underline"
+    textDecorationLine: 'underline'
   },
   light: {
     borderColor: styles.colors.light,

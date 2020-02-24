@@ -38,6 +38,6 @@ const styles = {
     lg: 20,
     xl: 30
   }
-}
+};
 
 export default styles;

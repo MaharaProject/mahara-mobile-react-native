@@ -11,7 +11,6 @@ import buttons from '../../assets/styles/buttons';
 import variables from '../../assets/styles/variables';
 import styles from './AddAudio.style';
 import { MaharaFile } from '../../models/models';
-import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';

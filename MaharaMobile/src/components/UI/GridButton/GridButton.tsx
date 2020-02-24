@@ -9,8 +9,8 @@ type Props = {
   onPress: () => void;
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
-  image?: null;
-  color?: null;
+  image?: object;
+  color?: string;
 };
 
 const GridButton = (props: Props) => (

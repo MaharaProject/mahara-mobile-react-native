@@ -9,6 +9,7 @@ type Props = {
   onPress: () => void;
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
+  style: React.CSSProperties;
 };
 
 const OutlineButton = (props: Props) => (
