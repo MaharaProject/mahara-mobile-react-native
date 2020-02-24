@@ -46,7 +46,7 @@ const AddAudio = (props: Props) => {
 
   const recordStrings = {
     unrecorded: i18n._(t`Record`),
-    recording: i18n._(t`Stop`),
+    recording: i18n._(t`Stop recording`),
     recorded: i18n._(t`Re-record`)
   };
 
@@ -195,7 +195,7 @@ const AddAudio = (props: Props) => {
 
   return (
     <View>
-      <View style={styles.buttonWrap}>
+      <View style={styles.playbackButtonWrapper}>
         {isRecorded ? (
           <TouchableOpacity
             onPress={() => handlePlay()}
@@ -216,6 +216,7 @@ const AddAudio = (props: Props) => {
       </View>
       <OutlineButton
         title={t`${recordStrings[recordButtonStatus]}`}
+        style={recordButtonStatus === 'recording' ? styles.recording : ''}
         onPress={() => handleRecord()}
       />
     </View>

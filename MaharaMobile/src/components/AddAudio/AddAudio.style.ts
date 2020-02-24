@@ -13,11 +13,16 @@ export default StyleSheet.create({
     borderColor: styles.colors.tertiary,
     borderWidth: 2
   },
-  buttonWrap: {
-    flexDirection: 'row'
+  playbackButtonWrapper: {
+    flexDirection: 'row',
   },
   warning: {
     color: styles.colors.warn,
     marginBottom: styles.padding.md
+  },
+  recording: {
+    backgroundColor: styles.colors.red,
+    color: styles.colors.light,
+    borderWidth: 0
   }
 });

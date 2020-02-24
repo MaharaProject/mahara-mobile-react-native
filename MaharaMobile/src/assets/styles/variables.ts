@@ -20,7 +20,8 @@ const styles = {
     green: '#295934',
     purple: '#622c46',
     lightbrown: '#763b36',
-    darkbrown: '#423017'
+    darkbrown: '#423017',
+    red: '#76302e'
   },
   padding: {
     xs: 5,
