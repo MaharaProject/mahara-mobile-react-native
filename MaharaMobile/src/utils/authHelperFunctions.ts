@@ -63,8 +63,8 @@ export function fetchUserOnTokenLogin(
       dispatch(updateUserFolders(json.folders.folders));
       dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
       dispatch(setDefaultFolder(json.folders.folders[0].title));
-    } catch (error) {
-      // console.log(error);
+    } catch (e) {
+      //
     }
     return null;
   };
