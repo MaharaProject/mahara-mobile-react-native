@@ -189,7 +189,7 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:61
+#: src/screens/LoginScreen/LoginScreen.tsx:60
 msgid "Invalid token, please try again."
 msgstr ""
 
@@ -205,9 +205,9 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:58
-#: src/screens/LoginScreen/LoginScreen.tsx:61
-#: src/screens/LoginScreen/LoginScreen.tsx:64
+#: src/screens/LoginScreen/LoginScreen.tsx:57
+#: src/screens/LoginScreen/LoginScreen.tsx:60
+#: src/screens/LoginScreen/LoginScreen.tsx:63
 msgid "Login failed"
 msgstr ""
 
@@ -252,7 +252,7 @@ msgstr ""
 msgid "No photo captured"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:84
+#: src/screens/LoginScreen/LoginScreen.tsx:83
 msgid "Nothing entered in field"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "Please pick a file"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:64
+#: src/screens/LoginScreen/LoginScreen.tsx:63
 msgid "Please try again."
 msgstr ""
 
@@ -448,7 +448,7 @@ msgstr ""
 msgid "Upload to your Mahara"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:58
+#: src/screens/LoginScreen/LoginScreen.tsx:57
 msgid "Username or password incorrect."
 msgstr ""
 
