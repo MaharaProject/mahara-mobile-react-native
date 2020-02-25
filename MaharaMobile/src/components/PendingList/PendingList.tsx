@@ -9,12 +9,12 @@ import {DisplayItems} from '../../models/models';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
-  dataList: Array<DisplayItems>;
+  dataList: DisplayItems;
   onRemove: Function;
   onEdit: Function;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  successfullyUploadedItems: Array<DisplayItems>;
-  uploadErrorItems: Array<DisplayItems>;
+  successfullyUploadedItemsIds: Array<string>;
+  uploadErrorItems: Array<string>;
   onClearError: Function;
 };
 
@@ -47,7 +47,7 @@ const PendingList = (props: Props) => {
           mimetype = 'journalEntry';
         }
 
-        if (props.successfullyUploadedItems.indexOf(itemId) !== -1) {
+        if (props.successfullyUploadedItemsIds.indexOf(itemId) !== -1) {
           isSuccessfullyUploadedItem = true;
         }
         props.uploadErrorItems.indexOf(itemId) !== -1

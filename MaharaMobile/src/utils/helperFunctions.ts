@@ -78,9 +78,7 @@ export function buildObject(item: object) {
 
 export function uploadItemToMahara(url: string, item: object) {
   const uploadObject = buildObject(item);
-  // eslint-disable-next-line func-names
-  // eslint-disable-next-line consistent-return
-  return async function() {
+  return async () => {
     try {
       return await fetch(url, uploadObject)
         .then(response => response.json())
@@ -89,6 +87,7 @@ export function uploadItemToMahara(url: string, item: object) {
       // the way Mahara works, we will always receive a 200 status from the backend on upload
       // therefore, this catch will never get triggered
     }
+    return null;
   };
 }
 

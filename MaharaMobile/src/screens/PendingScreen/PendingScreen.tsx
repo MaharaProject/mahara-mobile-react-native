@@ -54,10 +54,11 @@ const PendingScreen = (props: Props) => {
   const uploadItemsCount =
     props.uploadFiles.length + props.uploadJEntries.length;
   const prevUploadCount = usePreviousProps(uploadItemsCount) || 0;
-  const [successfullyUploadedItems, setSuccessfullyUploadedItems] = useState<
-    string[]
-  >([]);
-  const [uploadErrorItems, setUploadErrorItems] = useState<string[]>([]);
+  const [
+    successfullyUploadedItemsIds,
+    setSuccessfullyUploadedItemsIds
+  ] = useState<string[]>([]);
+  const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const url = useSelector((state: RootState) => selectUrl(state));
 
@@ -101,12 +102,12 @@ const PendingScreen = (props: Props) => {
   };
 
   const clearUploadError = (id: string) => {
-    const newState = uploadErrorItems.filter(item => item !== id);
-    setUploadErrorItems(newState);
+    const newState = uploadErrorItemsIds.filter(item => item !== id);
+    setUploadErrorItemsIds(newState);
   };
 
   const onUploadError = (id: string) => {
-    setUploadErrorItems([...uploadErrorItems, id]);
+    setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
   };
 
   /**
@@ -120,8 +121,8 @@ const PendingScreen = (props: Props) => {
         onRemove={onRemove}
         onEdit={onEdit}
         navigation={props.navigation}
-        successfullyUploadedItems={successfullyUploadedItems}
-        uploadErrorItems={uploadErrorItems}
+        successfullyUploadedItemsIds={successfullyUploadedItemsIds}
+        uploadErrorItems={uploadErrorItemsIds}
         onClearError={clearUploadError}
       />
     );
@@ -143,15 +144,15 @@ const PendingScreen = (props: Props) => {
 
   const onSuccessfulUpload = (id: string) => {
     // change class to show upload success
-    setSuccessfullyUploadedItems([...successfullyUploadedItems, id]);
+    setSuccessfullyUploadedItemsIds([...successfullyUploadedItemsIds, id]);
     // then, card disappears
     // and remove id from successfullyUploadedItems to clear memory
     setTimeout(() => {
       props.dispatch(removeUploadFile(id));
       props.dispatch(removeUploadJEntry(id));
 
-      const newState = successfullyUploadedItems.filter(item => item !== id);
-      setSuccessfullyUploadedItems(newState);
+      const newState = successfullyUploadedItemsIds.filter(item => item !== id);
+      setSuccessfullyUploadedItemsIds(newState);
     }, 1000);
   };
 
