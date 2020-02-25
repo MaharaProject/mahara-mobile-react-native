@@ -51,7 +51,6 @@ const PreferencesScreen = (props: Props) => {
   );
 
   // Component state
-  const [profileIcon, setProfileIcon] = useState('');
   const userFolders = useSelector((state: RootState) =>
     selectUserFolders(state)
   );
@@ -73,7 +72,7 @@ const PreferencesScreen = (props: Props) => {
 
   useEffect(() => {
     getProfilePic();
-  }, [profileIcon]);
+  }, []);
 
   const defaultFolderPicker = () => {
     const match = userFolders.find(f => f.title === defaultFolderTitle);

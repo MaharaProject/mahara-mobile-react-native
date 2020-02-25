@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {I18n} from '@lingui/core';
+import {t} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
 import {Alert, View} from 'react-native';
 import {
   NavigationParams,
@@ -39,6 +42,7 @@ type Props = {
   loginType: boolean;
   userFolders: Array<UserFolder>;
   userBlogs: Array<UserBlog>;
+  i18n: I18n;
 };
 
 type State = {
@@ -85,7 +89,29 @@ export class LoginScreen extends Component<Props, State> {
       })
       .then(() => this.props.navigation.navigate('App'))
       .catch(() => {
-        Alert.alert('Invalid token, please try again!');
+        const {loginType} = this.props.navigation.state.params;
+        switch (loginType) {
+          case 'basic':
+            Alert.alert(
+              this.props.i18n._(t`Login failed`),
+              this.props.i18n._(t`Username or password incorrect.`)
+            );
+            break;
+          case 'token':
+            Alert.alert(
+              this.props.i18n._(t`Login failed`),
+              this.props.i18n._(t`Invalid token, please try again.`)
+            );
+            break;
+          case 'SSO':
+            Alert.alert(
+              this.props.i18n._(t`Login failed`),
+              this.props.i18n._(t`Please try again.`)
+            );
+            break;
+          default:
+            break;
+        }
       });
   };
 
@@ -103,7 +129,7 @@ export class LoginScreen extends Component<Props, State> {
    */
   signInAsync = async () => {
     if (this.state.token.length < 1) {
-      Alert.alert('Nothing entered in field');
+      Alert.alert(this.props.i18n._(t`Nothing entered in field`));
     }
   };
 
@@ -140,4 +166,4 @@ const mapStateToProps = (state: RootState) => ({
   userFolders: selectUserFolders(state)
 });
 
-export default connect(mapStateToProps)(LoginScreen);
+export default connect(mapStateToProps)(withI18n()(LoginScreen));

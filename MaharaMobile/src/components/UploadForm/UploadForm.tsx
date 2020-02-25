@@ -455,7 +455,6 @@ const UploadForm = (props: Props) => {
           </View>
         )}
         {/* Display selected tags */}
-        {/* TODO: get selectedTags from connected in redux */}
         {selectedTags?.map((value: string, index: number) => (
           <TouchableOpacity
             key={index}
