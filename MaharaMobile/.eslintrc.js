@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['prettier', 'airbnb', 'plugin:@typescript-eslint/recommended', 'prettier/@typescript-eslint', 'prettier/react'],
+  extends: ['airbnb', 'plugin:@typescript-eslint/recommended', 'prettier', 'prettier/react', 'prettier/@typescript-eslint'],
   plugins: ['react', 'prettier', '@typescript-eslint', 'react-native'],
   rules: {
     "@typescript-eslint/explicit-function-return-type": 0,

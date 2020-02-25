@@ -1,31 +1,17 @@
 import React from 'react';
-import { Button, StyleSheet, View as SafeAreaView } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { DrawerItems } from 'react-navigation-drawer';
-import { useDispatch } from 'react-redux';
-import { signOutAsync } from '../../utils/authHelperFunctions';
+import {Button, StyleSheet, View as SafeAreaView} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {DrawerItems} from 'react-navigation-drawer';
+import {useDispatch} from 'react-redux';
+import {signOutAsync} from '../../utils/authHelperFunctions';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-};
-
-const DrawerContainer = (props: Props) => {
-  const dispatch = useDispatch();
-  const {navigation} = props;
-  return (
-    <ScrollView>
-      <SafeAreaView
-        style={styles.container}
-        forceInset={{ top: 'always', horizontal: 'never' }}>
-        <DrawerItems {...props} />
-        <Button
-          title="Logout"
-          onPress={() => signOutAsync(props.navigation, dispatch)}
-        />
-      </SafeAreaView>
-    </ScrollView>
-  );
 };
 
 const styles = StyleSheet.create({
@@ -47,5 +33,23 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   }
 });
+
+const DrawerContainer = (props: Props) => {
+  const dispatch = useDispatch();
+  const {navigation} = props;
+  return (
+    <ScrollView>
+      <SafeAreaView
+        style={styles.container}
+        forceInset={{top: 'always', horizontal: 'never'}}>
+        <DrawerItems {...props} />
+        <Button
+          title="Logout"
+          onPress={() => signOutAsync(navigation, dispatch)}
+        />
+      </SafeAreaView>
+    </ScrollView>
+  );
+};
 
 export default DrawerContainer;

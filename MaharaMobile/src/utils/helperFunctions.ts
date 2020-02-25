@@ -1,7 +1,14 @@
-import { useEffect, useRef } from 'react';
-import { StackActions } from 'react-navigation';
-import { Dispatch } from 'redux';
-import { JournalEntry, MaharaFileFormData, MaharaPendingFile, PendingJournalEntry, UserBlog, UserBlogJSON } from '../models/models';
+import {useEffect, useRef} from 'react';
+import {StackActions} from 'react-navigation';
+import {
+  JournalEntry,
+  MaharaFileFormData,
+  MaharaPendingFile,
+  PendingJournalEntry,
+  UserBlog,
+  UserBlogJSON,
+  UserTag
+} from '../models/models';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -21,6 +28,16 @@ export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
 export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
   return (x as MaharaPendingFile).maharaFormData !== undefined;
 }
+
+/**
+ * Creates a new UserTag and returns the object.
+ * @param tagName string
+ */
+export const newUserTag = (tagName: string): UserTag => ({
+  id: Math.round(Math.random() * 1000),
+  tag: tagName
+});
+// TODO: id is just external from Mahara, for structure in this app
 
 export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {
   const userBlog: UserBlog = {
@@ -50,7 +67,7 @@ export function buildObject(item: object) {
     sendFormData.append('foldername', item.foldername);
     sendFormData.append('title', item.title);
     sendFormData.append('description', item.description);
-    sendFormData.append('filetoupload', item.filetoupload);
+    sendFormData.append('filetoupload', (item.filetoupload as unknown) as Blob);
     return {
       method: 'POST',
       body: sendFormData
@@ -61,7 +78,7 @@ export function buildObject(item: object) {
 
 export function uploadItemToMahara(url: string, item: object) {
   const uploadObject = buildObject(item);
-  return async function (dispatch: Dispatch) {
+  return async () => {
     try {
       return await fetch(url, uploadObject)
         .then(response => response.json())
@@ -70,16 +87,20 @@ export function uploadItemToMahara(url: string, item: object) {
       // the way Mahara works, we will always receive a 200 status from the backend on upload
       // therefore, this catch will never get triggered
     }
+    return null;
   };
 }
 
-export const popNavigationStack = StackActions.pop({ n: 1 });
+export const popNavigationStack = StackActions.pop({n: 1});
 
 // to use prevProps in Hooks
-export function usePreviousProps(value: any) {
-  const ref = useRef();
+export function usePreviousProps(value: number) {
+  const ref: React.MutableRefObject<number> = useRef();
   useEffect(() => {
     ref.current = value;
   });
   return ref.current;
 }
+
+export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
+  tags.find((t: UserTag) => t.tag === tagString);

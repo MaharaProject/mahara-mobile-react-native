@@ -1,8 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import {View} from 'react-native';
 import styles from './Card.style';
 
-const Card = (props: any) => (
+type Props = {
+  children: React.ReactNode;
+  style: object;
+};
+
+const Card = (props: Props) => (
   <View style={{...styles.uploadCard, ...props.style}}>{props.children}</View>
 );
 

@@ -1,32 +1,56 @@
-import { I18n } from '@lingui/core';
-import { t, Trans } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
-import React, { useEffect, useState } from 'react';
-import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { DocumentPicker, DocumentPickerUtil } from 'react-native-document-picker';
+import {I18n} from '@lingui/core';
+import {t, Trans} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
+import React, {useEffect, useState} from 'react';
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View
+} from 'react-native';
+import {DocumentPicker, DocumentPickerUtil} from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
 import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
+import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
 import UploadForm from '../../components/UploadForm/UploadForm';
-import { MaharaFile, MaharaPendingFile, UserBlog, UserFolder, UserTag } from '../../models/models';
-import { selectDefaultBlogId, selectDefaultFolderTitle, selectToken, selectUrl } from '../../reducers/loginInfoReducer';
-import { RootState } from '../../reducers/rootReducer';
-import { selectAllUploadFiles } from '../../reducers/uploadFilesReducer';
-import { selectAllJEntries } from '../../reducers/uploadJEntriesReducer';
-import { selectUserBlogs, selectUserFolders } from '../../reducers/userArtefactsReducer';
-import { selectUserTags } from '../../reducers/userTagsReducer';
-import { AUDIO, FILE, PHOTO } from '../../utils/constants';
+import {
+  MaharaFile,
+  MaharaPendingFile,
+  PendingJournalEntry,
+  UserBlog,
+  UserFolder,
+  UserTag
+} from '../../models/models';
+import {
+  selectDefaultBlogId,
+  selectDefaultFolderTitle,
+  selectToken,
+  selectUrl
+} from '../../reducers/loginInfoReducer';
+import {RootState} from '../../reducers/rootReducer';
+import {selectAllUploadFiles} from '../../reducers/uploadFilesReducer';
+import {selectAllJEntries} from '../../reducers/uploadJEntriesReducer';
+import {
+  selectUserBlogs,
+  selectUserFolders
+} from '../../reducers/userArtefactsReducer';
+import {selectUserTags} from '../../reducers/userTagsReducer';
+import {AUDIO, FILE, PHOTO} from '../../utils/constants';
+import {isMaharaPendingFile} from '../../utils/helperFunctions';
 import styles from './AddItemScreen.style';
-
-
-
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -47,25 +71,42 @@ type Props = {
 };
 
 const AddItemScreen = (props: Props) => {
-  let initialState = { uri: '', name: '', type: '', size: 0 };
+  let initialPickedFileState: MaharaFile = {
+    name: '',
+    size: 0,
+    type: '',
+    uri: ''
+  };
   let isEditing = false;
-  const formType = props.navigation.getParam('formType');
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
-  const [filePickerButtonText, setFilePickerButtonText] = useState(props.navigation.getParam('itemToEdit') ? props.i18n._(t `Pick a different file`) : props.i18n._(t `Select a file`));
-  // props.navigation.setParams('add', 'Add ');
 
-  // check if user is adding new or editing existing
-  // populate form with existing details and set 'type' so headerTitle is accurate
-  if (props.navigation.getParam('itemToEdit')) {
-    if (props.navigation.getParam('itemToEdit').maharaFormData) {
-      initialState = props.navigation.getParam('itemToEdit').maharaFormData.filetoupload;
-      isEditing = true;
+  // Check Adding or Editing
+  // Populate Uploadform with existing details and set 'type' so headerTitle is accurate
+  const itemToEdit:
+    | MaharaPendingFile
+    | PendingJournalEntry = props.navigation.getParam('itemToEdit');
+  if (itemToEdit) {
+    isEditing = true;
+    if (isMaharaPendingFile(itemToEdit)) {
+      const maharaPendingFile: MaharaPendingFile = itemToEdit;
+      initialPickedFileState = maharaPendingFile.maharaFormData.filetoupload;
     }
   }
 
+  // State
+  const formType = props.navigation.getParam('formType');
+  const [pickedFile, setPickedFile] = useState<MaharaFile>(
+    initialPickedFileState
+  );
+
+  const [filePickerButtonText, setFilePickerButtonText] = useState(
+    props.navigation.getParam('itemToEdit')
+      ? props.i18n._(t`Pick a different file`)
+      : props.i18n._(t`Select a file`)
+  );
+
   const takePhoto = () => {
     const options = {
-      title: props.i18n._(t `Select Image`),
+      title: props.i18n._(t`Select Image`),
       storageOptions: {
         skipBackup: true,
         path: 'images'
@@ -76,18 +117,14 @@ const AddItemScreen = (props: Props) => {
      * The first arg is the options object for customization (it can also be null or omitted for default options),
      * The second arg is the callback which sends object: response (more info in the API Reference)
      */
-    ImagePicker.launchCamera(options, (response) => {
-      console.log('Response = ', response);
-
+    ImagePicker.launchCamera(options, response => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
         Alert.alert(
-         props.i18n._(t `No photo captured`),
-         props.i18n._(t `Camera closed by user`)
+          props.i18n._(t`No photo captured`),
+          props.i18n._(t`Camera closed by user`)
         );
       } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-        Alert.alert(props.i18n._(t `ImagePicker Error:${response.error}`));
+        Alert.alert(props.i18n._(t`ImagePicker Error:${response.error}`));
       } else {
         setPickedFile({
           name: response.fileName,
@@ -104,9 +141,9 @@ const AddItemScreen = (props: Props) => {
 
   useEffect(() => {
     if (isEditing) {
-      setPickedFile(initialState);
+      setPickedFile(initialPickedFileState);
     }
-  }, [initialState]);
+  }, [pickedFile]);
 
   const pickDocument = async () => {
     // iPhone/Android
@@ -116,14 +153,14 @@ const AddItemScreen = (props: Props) => {
       },
       (error, res) => {
         // error
-        console.log('error:', error);
+        // console.log('error:', error);
 
         // No file picked
         if (!res) {
           Alert.alert(
-            props.i18n._(t `Invalid file`),
-            props.i18n._(t `Please pick a file`),
-            [{ text: 'Okay', style: 'destructive' }]
+            props.i18n._(t`Invalid file`),
+            props.i18n._(t`Please pick a file`),
+            [{text: 'Okay', style: 'destructive'}]
           );
           return;
         }
@@ -135,7 +172,7 @@ const AddItemScreen = (props: Props) => {
           type: res.type,
           size: Number(res.fileSize)
         });
-        setFilePickerButtonText(props.i18n._(t `Pick a different file`));
+        setFilePickerButtonText(props.i18n._(t`Pick a different file`));
       }
     );
   };
@@ -145,19 +182,27 @@ const AddItemScreen = (props: Props) => {
       <View style={generic.wrap}>
         {pickedFile.name && (formType === FILE || formType === PHOTO) ? (
           <View style={styles.imageWrap}>
-            <Image source={{ uri: pickedFile.uri }} style={styles.image} accessibilityLabel={props.i18n._(t`image preview`)}/>
+            <Image
+              source={{uri: pickedFile.uri}}
+              style={styles.image}
+              accessibilityLabel={props.i18n._(t`image preview`)}
+            />
           </View>
         ) : null}
         {formType === FILE && (
           <View>
-            <MediumButton title={t`${filePickerButtonText}`} onPress={() => pickDocument()} />
+            <OutlineButton
+              title={t`${filePickerButtonText}`}
+              onPress={() => pickDocument()}
+              style={null}
+            />
           </View>
         )}
         {formType === PHOTO && (
           <TouchableOpacity
             onPress={() => takePhoto()}
             accessibilityRole="button">
-            <Text style={buttons.lg}>
+            <Text style={[buttons.lg, outlineButtonStyles.buttons]}>
               <FontAwesome5 name="camera" size={20} />
               &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
               {pickedFile.uri && <Trans>Re-take photo</Trans>}
@@ -178,7 +223,7 @@ const AddItemScreen = (props: Props) => {
             formType={formType}
             token={props.token}
             url={props.url}
-            editItem={props.navigation.getParam('itemToEdit')}
+            editItem={itemToEdit}
             navigation={props.navigation}
             defaultFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
@@ -189,9 +234,11 @@ const AddItemScreen = (props: Props) => {
   );
 };
 
-AddItemScreen.navigationOptions = (navData: any) => ({
+AddItemScreen.navigationOptions = ({navigation}) => ({
   // Title is 'add' and 'edit' respectively, passed in from when you navigate to this page
-  headerTitle:  `${navData.navigation.getParam('title')} ${navData.navigation.getParam('formType')}`,
+  headerTitle: `${navigation.getParam('title')} ${navigation.getParam(
+    'formType'
+  )}`,
   headerLeft: null
 });
 
@@ -207,6 +254,4 @@ const mapStateToProps = (state: RootState) => ({
   defaultBlogId: selectDefaultBlogId(state)
 });
 
-export default connect(mapStateToProps)(
-  withI18n()(AddItemScreen)
-);
+export default connect(mapStateToProps)(withI18n()(AddItemScreen));

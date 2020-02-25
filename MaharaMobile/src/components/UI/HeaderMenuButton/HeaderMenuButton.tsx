@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
-import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
+import {View} from 'react-native';
+import {
+  HeaderButton,
+  HeaderButtons,
+  Item
+} from 'react-navigation-header-buttons';
 import LogoSvg from '../../../assets/images/Logo';
 
-type Props = {
-  navData: any;
-};
-
-const HeaderMenuButton = (props: Props) => (
+const HeaderMenuButton = () => (
   <HeaderButtons HeaderButtonComponent={HeaderButton}>
     <Item
       title="Menu"

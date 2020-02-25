@@ -1,8 +1,14 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { PendingJournalEntry, UserBlog } from '../models/models';
-import { RootState } from './rootReducer';
-import { arrayToObject } from '../utils/authHelperFunctions';
-import { ADD_UPLOAD_JOURNAL_ENTRY, REMOVE_UPLOAD_JOURNAL_ENTRY, CLEAR_UPLOAD_J_ENTRIES, UPDATE_J_ENTRIES_ON_LOGIN } from '../utils/constants';
+import {PendingJournalEntry, UserBlog} from '../models/models';
+import {arrayToObject} from '../utils/authHelperFunctions';
+import {
+  ADD_UPLOAD_JOURNAL_ENTRY,
+  CLEAR_UPLOAD_J_ENTRIES,
+  REMOVE_UPLOAD_JOURNAL_ENTRY,
+  UPDATE_J_ENTRIES_ON_LOGIN
+} from '../utils/constants';
+import {RootState} from './rootReducer';
+import {UploadJEntriesActions} from './uploadJEntriesTypes';
 
 type UploadJEntriesState = {
   uploadJEntries: Record<string, PendingJournalEntry>;
@@ -15,7 +21,8 @@ const initialState: UploadJEntriesState = {
 };
 
 // Helper functions
-const getJEntries = (ids: string[], arr: Record<string, PendingJournalEntry>) => ids.map((id: string) => arr[id]);
+const getJEntries = (ids: string[], arr: Record<string, PendingJournalEntry>) =>
+  ids.map((id: string) => arr[id]);
 
 const updateAsyncStorageJEntries = (jEntries: PendingJournalEntry[]) => {
   AsyncStorage.setItem('uploadJEntries', JSON.stringify(jEntries));
@@ -53,7 +60,7 @@ const removeUploadJEntry = (
     (uploadJEntriesId: string) => uploadJEntriesId !== id
   );
 
-  const updatedJEntries = { ...state.uploadJEntries };
+  const updatedJEntries = {...state.uploadJEntries};
   delete updatedJEntries[id];
 
   updateAsyncStorageJEntries(getJEntries(updatedJEntriesIds, updatedJEntries));
@@ -69,13 +76,13 @@ const updateJEntriesOnLogin = (
   urlDomain: string,
   userBlogs: Array<UserBlog>
 ): UploadJEntriesState => {
-  const uploadJEntries = {
-    ...state.uploadJEntries
-  };
-
+  const {uploadJEntries} = state;
   const newJournalEntries: Array<PendingJournalEntry> = [];
-  const journalEntriesArr = Object.values(uploadJEntries);
+  const journalEntriesArr = Object.keys(uploadJEntries).map(
+    k => uploadJEntries[k]
+  );
   journalEntriesArr.forEach((pendingJEntry: PendingJournalEntry) => {
+    // TODO: add helper function for creating Pending Journal Entry
     const newPendingJEntry: PendingJournalEntry = {
       id: pendingJEntry.id,
       journalEntry: {
@@ -99,7 +106,10 @@ const updateJEntriesOnLogin = (
 };
 
 // REDUCER
-export const uploadJEntriesReducer = (state = initialState, action: any) => {
+export const uploadJEntriesReducer = (
+  state = initialState,
+  action: UploadJEntriesActions
+) => {
   switch (action.type) {
     case ADD_UPLOAD_JOURNAL_ENTRY:
       return addJEntryToUploadList(state, action.journalEntry);
@@ -108,7 +118,12 @@ export const uploadJEntriesReducer = (state = initialState, action: any) => {
     case CLEAR_UPLOAD_J_ENTRIES:
       return initialState;
     case UPDATE_J_ENTRIES_ON_LOGIN:
-      return updateJEntriesOnLogin(state, action.token, action.urlDomain, action.userBlogs);
+      return updateJEntriesOnLogin(
+        state,
+        action.token,
+        action.urlDomain,
+        action.userBlogs
+      );
     default:
       return state;
   }
@@ -120,8 +135,8 @@ const uploadJEntriesState = (state: RootState) => state.appState.uploadJEntries;
 export const selectAllJEntries = (
   state: RootState
 ): Array<PendingJournalEntry> => {
-  const { uploadJEntries } = uploadJEntriesState(state);
-  const { uploadJEntriesIds } = uploadJEntriesState(state);
+  const {uploadJEntries} = uploadJEntriesState(state);
+  const {uploadJEntriesIds} = uploadJEntriesState(state);
   const jEntries = uploadJEntriesIds.map((id: string) => uploadJEntries[id]);
   return jEntries;
 };
@@ -132,10 +147,11 @@ export const selectAllJEntriesIds = (state: RootState) => [
 
 export const selectJEntryById = (
   state: RootState,
-  { id }: { id: string }
+  {id}: {id: string}
 ): PendingJournalEntry => {
-  const { uploadJEntries } = uploadJEntriesState(state);
+  const {uploadJEntries} = uploadJEntriesState(state);
   return uploadJEntries[id];
 };
 
-export const selectNumOfJEntries = (state: RootState) => state.appState.uploadJEntries.uploadJEntriesIds.length;
+export const selectNumOfJEntries = (state: RootState) =>
+  state.appState.uploadJEntries.uploadJEntriesIds.length;

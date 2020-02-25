@@ -1,16 +1,26 @@
-import { faBars, faHistory, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { I18n } from '@lingui/core';
-import { t } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
-import React, { Props } from 'react';
-import { Platform } from 'react-native';
+import {
+  faBars,
+  faHistory,
+  faPlusCircle
+} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {I18n} from '@lingui/core';
+import {t} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
+import React from 'react';
+import {Platform} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { createAppContainer, createSwitchNavigator, NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { createDrawerNavigator } from 'react-navigation-drawer';
-import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import {
+  createAppContainer,
+  createSwitchNavigator,
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 import styles from '../assets/styles/variables';
 import DrawerContainer from '../components/DrawerContainer/DrawerContainer';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
@@ -75,7 +85,7 @@ const AppNavigator = (props: Props) => {
         tabBarLabel: navigatorStrings.PENDING,
         // TODO: add back later for number or can use tabBarBadge
         // tabBarIcon: () => <IconWithBadge {...props} />,
-        tabBarIcon: ({ tintColor }) => (
+        tabBarIcon: ({tintColor}) => (
           <FontAwesomeIcon icon={faHistory} color={tintColor} />
         ),
         tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSBILITY_LABEL
@@ -99,8 +109,9 @@ const AppNavigator = (props: Props) => {
         ),
         tabBarTestID: 'tabBar',
         tabBarAccessibilityLabel: navigatorStrings.MENU,
-        tabBarOnPress: ({ navigation, defaultHandler }) => {
+        tabBarOnPress: ({navigation}) => {
           navigation.toggleDrawer();
+          // tabBarOnPress: ({navigation, defaultHandler}) => {
           // defaultHandler(); // TODO: keep for future reference
         }
       }
@@ -113,7 +124,7 @@ const AppNavigator = (props: Props) => {
     inactiveColor: '#3e2465',
     labeled: false,
     barStyle: {
-      backgroundColor: styles.colors.secondary
+      backgroundColor: styles.colors.light2
     }
   });
 
@@ -124,7 +135,8 @@ const AppNavigator = (props: Props) => {
     }
   });
 
-  const AppTabNavigator =    Platform.OS === 'android' ? androidTabConfig : iOSTabConfig;
+  const AppTabNavigator =
+    Platform.OS === 'android' ? androidTabConfig : iOSTabConfig;
   // Navigator with only Authentication screens
   const AuthNavigator = createStackNavigator({
     SiteCheck: SiteCheckScreen,
@@ -149,21 +161,18 @@ const AppNavigator = (props: Props) => {
       Preferences: {
         screen: PreferencesScreen,
         navigationOptions: {
-          drawerIcon: ({ tintColor }) => <FontAwesome5 name="user" size={20} />
+          drawerIcon: () => <FontAwesome5 name="user" size={20} />
         }
       },
       About: {
         screen: AboutScreen,
         navigationOptions: {
-          drawerIcon: ({ tintColor }) => (
-            <FontAwesome5 name="question" size={20} />
-          )
+          drawerIcon: () => <FontAwesome5 name="question" size={20} />
         }
       }
     },
     {
-      drawerWidth: '60%',
-      contentComponent: props => <DrawerContainer {...props} />
+      contentComponent: navProps => <DrawerContainer {...navProps} />
     }
   );
 

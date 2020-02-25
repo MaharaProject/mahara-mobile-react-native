@@ -1,11 +1,11 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { Buffer } from 'buffer';
-import { I18nProvider } from '@lingui/react';
+import {Provider} from 'react-redux';
+import {Buffer} from 'buffer';
+import {I18nProvider} from '@lingui/react';
 import 'react-native-gesture-handler';
 import configureStore from './store/store';
 import AppNavigator from './navigations/app-navigator';
-import { i18n } from './i18n';
+import i18n from './i18n';
 
 global.Buffer = Buffer;
 

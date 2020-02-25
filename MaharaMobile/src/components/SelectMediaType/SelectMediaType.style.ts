@@ -1,8 +1,8 @@
-import { StyleSheet } from 'react-native';
-import styles from '../../assets/styles/variables';
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-  button: {
-    marginBottom: styles.padding.sm
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 });

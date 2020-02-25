@@ -1,9 +1,9 @@
+import {I18n} from '@lingui/react';
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native';
-import { I18n } from '@lingui/react';
-import mdButtonStyles from './MediumButton.style';
-import { MessageDescriptor } from '../../../models/models';
+import {Text, TouchableOpacity} from 'react-native';
 import buttons from '../../../assets/styles/buttons';
+import {MessageDescriptor} from '../../../models/models';
+import mdButtonStyles from './MediumButton.style';
 
 type Props = {
   onPress: () => void;
@@ -17,7 +17,9 @@ const MediumButton = (props: Props) => (
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel={i18n._(props.title)}
-        accessibilityHint={props.accessibilityHint ? i18n._(props.accessibilityHint): undefined}
+        accessibilityHint={
+          props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
+        }
         onPress={props.onPress}>
         <Text style={[buttons.md, mdButtonStyles.buttons]}>
           {i18n._(props.title)}

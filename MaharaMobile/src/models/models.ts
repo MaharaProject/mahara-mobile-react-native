@@ -8,7 +8,7 @@ export type MaharaFile = {
   uri: string;
   type: string;
   name: string;
-  size: number;
+  size: number; // Not used in upload
 };
 
 export type MaharaPendingFile = {
@@ -26,7 +26,6 @@ export type JournalEntry = {
   title: string;
   body: string;
   isdraft: boolean;
-  tags?: Array<string>;
 };
 
 export type PendingJournalEntry = {
@@ -50,7 +49,6 @@ export type UserFolder = {
 export type UserTag = {
   id: number;
   tag: string;
-  usage: number;
 };
 
 export type UserBlog = {
@@ -75,12 +73,7 @@ export type MaharaFileFormData = {
   foldername: string;
   title: string;
   description: string;
-  filetoupload: {
-    uri: string;
-    type: string;
-    name: string;
-  };
-  tags?: string[];
+  filetoupload: MaharaFile;
 };
 
 // as stated in LinguiJS docs: https://lingui.js.org/ref/macro.html#usage
@@ -90,3 +83,23 @@ export type MessageDescriptor = {
   values?: object;
   formats?: object;
 };
+
+export type LoginInfo = {
+  maharaversion: string;
+  wwwroot: string;
+  sitename: string;
+  wsenabled: boolean;
+  wsprotocols: Array<string>;
+  mobileapienabled: boolean;
+  mobileapiversion: string;
+  logintypes: Array<string>;
+};
+
+export type UploadResponse = {
+  error?: object;
+  file?: number;
+};
+
+export type DisplayItems = Array<PendingJournalEntry | MaharaPendingFile>;
+
+export type Playback = {current_position: number; duration: number};

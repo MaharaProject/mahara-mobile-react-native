@@ -1,11 +1,36 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import React, { useEffect } from 'react';
-import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-import { useDispatch } from 'react-redux';
-import { addFileToUploadList, addJournalEntryToUploadList, addToken, setDefaultBlogId, setDefaultFolder, updateLoginTypes, updateProfilePic, updateUrl, updateUserBlogs, updateUserFolders, updateUserName, updateUserTags } from '../../actions/actions';
-import { MaharaPendingFile, PendingJournalEntry } from '../../models/models';
-import { DEFAULT_BLOG_ID, DEFAULT_FOLDER_TITLE } from '../../utils/constants';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {useDispatch} from 'react-redux';
+import {
+  addFileToUploadList,
+  addJournalEntryToUploadList,
+  addToken,
+  setDefaultBlogId,
+  setDefaultFolder,
+  updateLoginTypes,
+  updateProfilePic,
+  updateTaggedItemsFromAsync,
+  updateUrl,
+  updateUserBlogs,
+  updateUserFolders,
+  updateUserName,
+  updateUserTags,
+  updateUserTagsIds
+} from '../../actions/actions';
+import {MaharaPendingFile, PendingJournalEntry} from '../../models/models';
+import {
+  DEFAULT_BLOG_ID,
+  DEFAULT_FOLDER_TITLE,
+  TAGGED_ITEMS,
+  TAGS_IDS,
+  USER_TAGS
+} from '../../utils/constants';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -62,9 +87,19 @@ const AuthLoadingScreen = (props: Props) => {
       );
 
       // Sort data objects
-      await AsyncStorage.getItem('userTags').then((result: string) => {
+      await AsyncStorage.getItem(USER_TAGS).then((result: string) => {
         if (result) {
           dispatch(updateUserTags(parseJSON(result)));
+        }
+      });
+
+      await AsyncStorage.getItem(TAGS_IDS).then((result: string) => {
+        dispatch(updateUserTagsIds(parseJSON(result)));
+      });
+
+      await AsyncStorage.getItem(TAGGED_ITEMS).then((result: string) => {
+        if (result) {
+          dispatch(updateTaggedItemsFromAsync(parseJSON(result)));
         }
       });
 
@@ -98,6 +133,7 @@ const AuthLoadingScreen = (props: Props) => {
         }
       });
 
+      // TODO ? Object - because blogId is a number TODO
       await AsyncStorage.getItem(DEFAULT_BLOG_ID).then((result: string) => {
         if (result) {
           const defaultBlogId = parseJSON(result);
@@ -105,7 +141,7 @@ const AuthLoadingScreen = (props: Props) => {
         }
       });
     } catch (error) {
-      console.log(`Error getting items from AsyncStorage: ${error}`);
+      // console.log(`Error getting items from AsyncStorage: ${error}`);
     }
   };
 
@@ -115,7 +151,7 @@ const AuthLoadingScreen = (props: Props) => {
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     if (userToken !== null) {
-      retrieveAsyncData().then(props.navigation.navigate('App'));
+      retrieveAsyncData().then(() => props.navigation.navigate('App'));
     } else props.navigation.navigate('SiteCheck');
   };
 

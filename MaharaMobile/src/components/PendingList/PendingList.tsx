@@ -1,15 +1,20 @@
 import React from 'react';
-import { FlatList } from 'react-native-gesture-handler';
-import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation';
+import {FlatList} from 'react-native-gesture-handler';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
+import {DisplayItems} from '../../models/models';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
-  dataList: Array<any>;
+  dataList: DisplayItems;
   onRemove: Function;
   onEdit: Function;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  successfullyUploadedItems: Array<any>;
-  uploadErrorItems: Array<any>;
+  successfullyUploadedItemsIds: Array<string>;
+  uploadErrorItems: Array<string>;
   onClearError: Function;
 };
 
@@ -23,7 +28,7 @@ const PendingList = (props: Props) => {
   return (
     <FlatList
       data={props.dataList}
-      renderItem={({ item, index }: any) => {
+      renderItem={({item, index}: any) => {
         const itemId = item.id;
         let mimetype = '';
         //  figure out what to pass in to UploadItem
@@ -31,15 +36,23 @@ const PendingList = (props: Props) => {
           title = item.maharaFormData.title;
           description = item.maharaFormData.description;
           mimetype = item.mimetype;
-          thumbnail = { uri: (item.maharaFormData.filetoupload.uri ? item.maharaFormData.filetoupload.uri : '') };
+          thumbnail = {
+            uri: item.maharaFormData.filetoupload.uri
+              ? item.maharaFormData.filetoupload.uri
+              : ''
+          };
         } else if (item.journalEntry !== undefined) {
           title = item.journalEntry.title;
           description = item.journalEntry.body;
           mimetype = 'journalEntry';
         }
 
-        if (props.successfullyUploadedItems.indexOf(itemId) !== -1) isSuccessfullyUploadedItem = true;
-        props.uploadErrorItems.indexOf(itemId) !== -1 ? showUploadError = true : showUploadError = false;
+        if (props.successfullyUploadedItemsIds.indexOf(itemId) !== -1) {
+          isSuccessfullyUploadedItem = true;
+        }
+        props.uploadErrorItems.indexOf(itemId) !== -1
+          ? (showUploadError = true)
+          : (showUploadError = false);
 
         return (
           <UploadItem

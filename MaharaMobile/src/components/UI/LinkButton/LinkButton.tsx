@@ -1,9 +1,9 @@
+import {I18n} from '@lingui/react';
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { I18n } from '@lingui/react';
-import linkButtonStyles from './LinkButton.style';
-import { MessageDescriptor } from '../../../models/models';
+import {Text, TouchableOpacity} from 'react-native';
 import buttons from '../../../assets/styles/buttons';
+import {MessageDescriptor} from '../../../models/models';
+import linkButtonStyles from './LinkButton.style';
 
 type Props = {
   onPress: () => void;

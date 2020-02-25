@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import styles from '../../assets/styles/variables';
 
 export default StyleSheet.create({
@@ -11,5 +11,9 @@ export default StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  button: {
+    borderColor: '#f00',
+    color: '#0f0'
   }
 });

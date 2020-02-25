@@ -1,13 +1,23 @@
-import { UserBlog, UserFolder } from '../models/models';
+import {UserBlog, UserFolder} from '../models/models';
 
 // action types - payloads of information that send data from your application to your store
 
 // DOMAIN DATA
 // userTagsReducer
-export const ADD_TAG = 'ADD_TAG';
-export const REMOVE_TAG = 'REMOVE_TAG';
-export const UPDATE_USER_TAGS = 'UPDATE_USER_TAGS';
+export const ADD_USER_TAGS = 'ADD_USER_TAGS';
 export const CLEAR_USER_TAGS = 'CLEAR_USER_TAGS';
+export const REMOVE_USER_TAG = 'REMOVE_USER_TAG';
+export const TAG_ITEM = 'TAG_ITEM';
+export const TAGGED_ITEMS = 'TAGGED_ITEMS';
+export const UPDATE_TAGGED_ITEMS = 'UPDATE_TAGGED_ITEMS';
+export const UPDATE_USER_TAGS = 'UPDATE_USER_TAGS';
+export const USER_TAGS = 'USER_TAGS';
+
+export const UPDATE_TAGS_IDS = 'UPDATE_TAGS_IDS';
+export const TAGS_IDS = 'TAGS_IDS';
+export const TAGGED_ITEMS_IDS = 'TAGGED_ITEMS_IDS';
+export const SAVE_TAGGED_ITEMS_TO_ASYNC = 'SAVE_TAGGED_ITEMS_TO_ASYNC';
+
 // loginInfoReducer
 export const ADD_TOKEN = 'ADD_TOKEN';
 export const UPDATE_USERNAME = 'UPDATE_USERNAME';
@@ -49,6 +59,8 @@ export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';
 
 // OTHER DATA
 // guest blog and folder objects
+export const GUEST_USERNAME = 'GUEST_USERNAME';
+export const GUEST_TOKEN = 'GUEST_TOKEN';
 export const GUEST_BLOG: UserBlog = {
   id: -1,
   title: 'Guest Blog',

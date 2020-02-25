@@ -1,36 +1,31 @@
+// Font Awesome
+import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {t, Trans} from '@lingui/macro';
 import React from 'react';
-import { Text, View, TextInput } from 'react-native';
-import { Trans, t } from '@lingui/macro';
-import { NavigationParams, NavigationScreenProp, NavigationState } from 'react-navigation';
-
-// Linear gradient
+import {Text, TextInput, View} from 'react-native';
+import FlashMessage, {showMessage} from 'react-native-flash-message';
 import LinearGradient from 'react-native-linear-gradient';
 
-// Styles
-import styles from './LoginType.style';
-import variables from '../../assets/styles/variables';
-import generic from '../../assets/styles/generic';
-import forms from '../../assets/styles/forms';
-import messages from '../../assets/styles/messages';
-import textStyles  from '../../assets/styles/text';
-import headingStyles from '../../assets/styles/headings';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState
+} from 'react-navigation';
 
-// Images
 import LogoSvg from '../../assets/images/Logo-big';
+import buttons from '../../assets/styles/buttons';
+import forms from '../../assets/styles/forms';
+import generic from '../../assets/styles/generic';
+import headingStyles from '../../assets/styles/headings';
+import messages from '../../assets/styles/messages';
+import textStyles from '../../assets/styles/text';
+import variables from '../../assets/styles/variables';
 
-// Components
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import LinkButton from '../../components/UI/LinkButton/LinkButton';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-
-// Font Awesome
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
-// Flash messages
-import FlashMessage from "react-native-flash-message";
-import { showMessage } from "react-native-flash-message";
-
+import styles from './LoginType.style';
 
 type Props = {
   url: string;
@@ -52,7 +47,13 @@ type Props = {
 const LoginType = (props: Props) => {
   return (
     <View style={styles.view}>
-      <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
+      <LinearGradient
+        colors={[
+          variables.colors.dark2,
+          variables.colors.tertiary,
+          variables.colors.light2
+        ]}
+        style={generic.linearGradient}>
         <View style={styles.wrapper}>
           <View style={styles.imageWrapper}>
             <LogoSvg />
@@ -60,66 +61,96 @@ const LoginType = (props: Props) => {
 
           {!props.isInputHidden ? (
             <View>
-              <Text style={[headingStyles.subHeading1, textStyles.textWhite, textStyles.center]}>
+              <Text
+                style={[
+                  headingStyles.subHeading1,
+                  textStyles.textWhite,
+                  textStyles.center
+                ]}>
                 <Trans>What is the address of your Mahara?</Trans>
               </Text>
               <TextInput
-                style={[forms.textInput, props.enterUrlWarning ? styles.errorTextInput : null ]}
+                style={[
+                  forms.textInput,
+                  props.enterUrlWarning ? styles.errorTextInput : null
+                ]}
                 // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
-                defaultValue={'https://master.dev.mahara.org/'}
-                onChangeText={(url:string) => props.checkUrl(url)}
+                defaultValue="https://master.dev.mahara.org/"
+                onChangeText={(url: string) => props.checkUrl(url)}
               />
             </View>
           ) : null}
 
-          {props.enterUrlWarning ? <Text style={textStyles.errorText}><Trans>Please enter a URL</Trans></Text> : null}
+          {props.enterUrlWarning ? (
+            <Text style={textStyles.errorText}>
+              <Trans>Please enter a URL</Trans>
+            </Text>
+          ) : null}
 
           {props.errorMessage
             ? showMessage({
-              message: (
-                <Text style={messages.errorMessage}>
-                  <FontAwesomeIcon
-                    icon={faExclamationTriangle}
-                    size={variables.font.md}
-                    color={variables.colors.warn}
-                  />
-                  {props.errorMessage}
-                </Text>
-              ),
-              type: 'danger',
-              backgroundColor: variables.colors.warnbg,
-              color: variables.colors.warn,
-            }
-          ) : null}
+                message: (
+                  <Text style={messages.errorMessage}>
+                    <FontAwesomeIcon
+                      icon={faExclamationTriangle}
+                      size={variables.font.md}
+                      color={variables.colors.warn}
+                    />
+                    {props.errorMessage}
+                  </Text>
+                ),
+                type: 'danger',
+                backgroundColor: variables.colors.warnbg,
+                color: variables.colors.warn
+              })
+            : null}
 
           {props.serverPing && props.isInputHidden ? (
             <View>
-              <Text style={[headingStyles.mainHeading, styles.url, generic.center]}>{props.url}</Text>
-              <OutlineButton title={t`Enter a different URL`} onPress={() => props.resetForm()} />
+              <Text
+                style={[headingStyles.mainHeading, styles.url, generic.center]}>
+                {props.url}
+              </Text>
+              <OutlineButton
+                title={t`Enter a different URL`}
+                style={buttons.light}
+                onPress={() => props.resetForm()}
+              />
             </View>
           ) : null}
-          {!props.isInputHidden ?
+          {!props.isInputHidden ? (
             <View style={styles.buttonGroup}>
-              <MediumButton title={t`Next`} onPress={() => props.checkServer()} />
+              <MediumButton
+                title={t`Next`}
+                onPress={() => props.checkServer()}
+              />
               <LinkButton title={t`Skip`} onPress={() => props.onSkip()} />
             </View>
-            : null}
-          {props.serverPing &&
+          ) : null}
+          {props.serverPing && (
             <Text style={[headingStyles.mainHeading, generic.center]}>
               <Trans>Select login type</Trans>
             </Text>
-          }
+          )}
 
-          {props.serverPing && props.ssoLogin &&
-            <MediumButton title={t`SSO`} onPress={() => props.setLoginType('sso')} />
-          }
-          {props.serverPing && props.localLogin &&
-            <MediumButton title={t`Local Login`} onPress={() => props.setLoginType('basic')} />
-          }
-          {props.serverPing && props.tokenLogin &&
-            <MediumButton title={t`Access token`} onPress={() => props.setLoginType('token')} />
-          }
-
+          {props.serverPing && props.ssoLogin && (
+            <MediumButton
+              title={t`SSO`}
+              onPress={() => props.setLoginType('sso')}
+            />
+          )}
+          {props.serverPing && props.localLogin && (
+            <MediumButton
+              title={t`Local Login`}
+              onPress={() => props.setLoginType('basic')}
+            />
+          )}
+          {props.serverPing && props.tokenLogin && (
+            <MediumButton
+              title={t`Access token`}
+              onPress={() => props.setLoginType('token')}
+            />
+          )}
         </View>
       </LinearGradient>
 

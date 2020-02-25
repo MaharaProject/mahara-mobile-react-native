@@ -1,21 +1,20 @@
+import {i18n} from '@lingui/core';
+import {t} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { View, Text, Button, Image } from 'react-native';
-import { Icon } from 'react-native-elements';
-import { i18n } from '@lingui/core';
-import { t } from '@lingui/macro';
-import { withI18n } from '@lingui/react';
-
+import {Button, Image, ImageSourcePropType, Text, View} from 'react-native';
+import {Icon} from 'react-native-elements';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import styles from '../../assets/styles/variables';
 import Card from '../UI/Card/Card';
 import uploadItemStyles from './UploadItem.style';
-import styles from '../../assets/styles/variables';
 
 type Props = {
   title: string;
   description: string;
   mimetype: string;
   index: number;
-  image: any;
+  image: ImageSourcePropType;
   successfullyUploadedItem: boolean;
   showUploadError: boolean;
   onRemove: () => {};
@@ -26,8 +25,10 @@ type Props = {
 const UploadItem = (props: Props) => {
   const title = props.title ? props.title : '';
   const description = props.description ? props.description : '';
-  const displayName: string = title.length > 25 ? title.substring(0, 20) + '...' : title;
-  const displayDesc: string = description.length > 20 ? description.substring(0.20) + '...' : description;
+  const displayName: string =
+    title.length > 25 ? `${title.substring(0, 20)}...` : title;
+  const displayDesc: string =
+    description.length > 20 ? `${description.substring(0.2)}...` : description;
   const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
 
   const getMimetypeIcon = (mimetype: string) => {
@@ -89,7 +90,9 @@ const UploadItem = (props: Props) => {
           {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
           {props.showUploadError && (
             <View>
-              <Text>There was an error uploading this file. Please try again.</Text>
+              <Text>
+                There was an error uploading this file. Please try again.
+              </Text>
               <Icon
                 onPress={props.onClearError}
                 accessibilityLabel={i18n._(t`Close error message`)}
