@@ -359,13 +359,14 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedFolder}
             style={forms.picker}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
-            {folders && folders.map((f: UserFolder) => {
-              const label =
-                f.title === props.defaultFolderTitle
-                  ? `${f.title} - default`
-                  : f.title;
-              return <Picker.Item label={label} value={f.title} key={f.id} />;
-            })}
+            {folders &&
+              folders.map((f: UserFolder) => {
+                const label =
+                  f.title === props.defaultFolderTitle
+                    ? `${f.title} - default`
+                    : f.title;
+                return <Picker.Item label={label} value={f.title} key={f.id} />;
+              })}
           </Picker>
         </View>
       </View>
