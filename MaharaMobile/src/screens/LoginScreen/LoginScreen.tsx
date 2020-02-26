@@ -89,7 +89,7 @@ export class LoginScreen extends Component<Props, State> {
       })
       .then(() => this.props.navigation.navigate('App'))
       .catch(() => {
-        const {loginType} = this.props.navigation.state.params;
+        const {loginType} = this.props.navigation ? this.props.navigation.state.params : '';
         switch (loginType) {
           case 'basic':
             Alert.alert(
@@ -138,8 +138,8 @@ export class LoginScreen extends Component<Props, State> {
   };
 
   render() {
-    const {params} = this.props.navigation.state;
-    const {loginType} = params;
+    const {params} = this.props.navigation ? this.props.navigation.state : '';
+    const {loginType} = params ? params : '';
 
     return (
       <View style={generic.view}>

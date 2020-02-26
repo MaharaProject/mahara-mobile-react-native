@@ -10,6 +10,14 @@ jest.mock('rn-fetch-blob', () => {
 
 it('renders correctly', () => {
   const initialState = {
+    appState: {
+      uploadFiles: {
+        uploadFilesIds: []
+      },
+      uploadJEntries: {
+        uploadJEntriesIds: []
+      }
+    },
     domainData: {
       loginInfo: {}
     }
