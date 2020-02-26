@@ -96,12 +96,17 @@
     "react-native-audio-recorder-player": "^2.4.4-rc.1",
     "react-native-testing-library": "^1.11.1",
     "react-test-renderer": "16.9.0",
+    "redux-mock-store": "^1.5.4",
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.7.2"
   },
   "jest": {
-    "preset": "react-native",
+    "preset": "@testing-library/react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./jest-setup.js"
+    ],
     "transform": {
       "^.+\\.ts$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
     },
@@ -109,13 +114,11 @@
       "<rootDir>"
     ],
     "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-navigation|@react-navigation|@react-native-community/.*))",
       "/node_modules/(?!react-native|native-base-shoutem-theme|react-navigation-stack|@react-navigation|react-navigation-fluid-transitions)"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/"
-    ],
-    "setupFiles": [
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
     ]
   }
 }

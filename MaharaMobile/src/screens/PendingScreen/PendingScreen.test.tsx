@@ -9,15 +9,27 @@ jest.mock('rn-fetch-blob', () => {
 });
 
 it('renders correctly', () => {
-  renderer.create(<PendingScreen />);
+  const initialState = {
+    appState: {
+      uploadFiles: {
+        uploadFilesIds: []
+      },
+      uploadJEntries: {
+        uploadJEntriesIds: []
+      }
+    },
+    domainData: {
+      loginInfo: {}
+    }
+  };
+  
+  const mockStore = configureStore();
+
+  renderer.create(
+    <Provider store={mockStore(initialState)}>
+      <I18nProvider i18n={i18n} language="en">
+        <PendingScreen />
+      </I18nProvider>
+    </Provider>
+  );
 });
-
-// Below set up for snapshot when component is complete
-
-// it('renders correctly react-test-renderer', () => {
-//   const renderer = new ShallowRenderer();
-//   renderer.render(<PendingScreen />);
-//   const result = renderer.getRenderOutput();
-//
-//   expect(result).toMatchSnapshot();
-// });
