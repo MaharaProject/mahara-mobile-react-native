@@ -3,6 +3,7 @@ image: node:latest
 stages:
   - build
   - lint
+  - test
 
 cache:
   paths:
@@ -16,9 +17,17 @@ install_dependencies:
   artifacts:
     paths:
     - MaharaMobile/node_modules/
+    expire_in: 1 day
+    when: on_success
 
 lint:
   stage: lint
   script:
     - cd MaharaMobile
     - npm run lint
+
+test:
+  stage: test
+  script: 
+    - cd MaharaMobile
+    - npm run test

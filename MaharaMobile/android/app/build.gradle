@@ -187,10 +187,11 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-device-info')
+    implementation project(':@react-native-community_async-storage')
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-audio-recorder-player')
     implementation project(':react-native-image-picker')
-    implementation project(':react-native-device-info')
     implementation project(':react-native-webview')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-vector-icons')

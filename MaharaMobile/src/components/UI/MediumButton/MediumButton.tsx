@@ -13,7 +13,7 @@ type Props = {
 
 const MediumButton = (props: Props) => (
   <I18n>
-    {({i18n}) => (
+    {({ i18n }) => (
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel={i18n._(props.title)}
