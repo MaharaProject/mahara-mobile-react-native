@@ -17,6 +17,8 @@ install_dependencies:
   artifacts:
     paths:
     - MaharaMobile/node_modules/
+    expire_in: 1 day
+    when: on_success
 
 lint:
   stage: lint
