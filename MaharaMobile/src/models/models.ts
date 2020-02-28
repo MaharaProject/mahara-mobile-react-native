@@ -71,7 +71,7 @@ export type MaharaFileFormData = {
   webservice: string;
   wstoken: string;
   foldername: string;
-  title: string;
+  name: string;
   description: string;
   filetoupload: MaharaFile;
 };
