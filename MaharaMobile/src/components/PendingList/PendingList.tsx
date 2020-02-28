@@ -5,7 +5,15 @@ import {
   NavigationScreenProp,
   NavigationState
 } from 'react-navigation';
-import {DisplayItems} from '../../models/models';
+import {
+  DisplayItems,
+  MaharaPendingFile,
+  PendingJournalEntry
+} from '../../models/models';
+import {
+  isMaharaPendingFile,
+  isPendingJournalEntry
+} from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
@@ -28,22 +36,24 @@ const PendingList = (props: Props) => {
   return (
     <FlatList
       data={props.dataList}
-      renderItem={({item, index}: any) => {
+      renderItem={({item, index}) => {
         const itemId = item.id;
         let mimetype = '';
         //  figure out what to pass in to UploadItem
-        if (item.maharaFormData !== undefined) {
-          title = item.maharaFormData.title;
-          description = item.maharaFormData.description;
-          mimetype = item.mimetype;
+        if (isMaharaPendingFile(item)) {
+          const pendingFile: MaharaPendingFile = item;
+          title = pendingFile.maharaFormData.title;
+          description = pendingFile.maharaFormData.description;
+          mimetype = pendingFile.mimetype;
           thumbnail = {
-            uri: item.maharaFormData.filetoupload.uri
-              ? item.maharaFormData.filetoupload.uri
+            uri: pendingFile.maharaFormData.filetoupload.uri
+              ? pendingFile.maharaFormData.filetoupload.uri
               : ''
           };
-        } else if (item.journalEntry !== undefined) {
-          title = item.journalEntry.title;
-          description = item.journalEntry.body;
+        } else if (isPendingJournalEntry(item)) {
+          const pendingJEntry: PendingJournalEntry = item;
+          title = pendingJEntry.journalEntry.title;
+          description = pendingJEntry.journalEntry.body;
           mimetype = 'journalEntry';
         }
 
