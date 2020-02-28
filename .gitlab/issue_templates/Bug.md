@@ -6,6 +6,7 @@
 - [ ] When
 - [ ] How
 
+<!-- 
 # Bug Report
 
 ## Summary
@@ -34,4 +35,6 @@
 
 /label ~bug ~reproduced ~needs-investigation  
 /cc @project-manager  
-/assign @qa-tester  
+/assign @qa-tester   
+
+-->
