@@ -29,16 +29,6 @@ export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
   return (x as MaharaPendingFile).maharaFormData !== undefined;
 }
 
-/**
- * Creates a new UserTag and returns the object.
- * @param tagName string
- */
-export const newUserTag = (tagName: string): UserTag => ({
-  id: Math.round(Math.random() * 1000),
-  tag: tagName
-});
-// TODO: id is just external from Mahara, for structure in this app
-
 export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {
   const userBlog: UserBlog = {
     description: blogJSON.description,
@@ -65,7 +55,7 @@ export function buildObject(item: object) {
     sendFormData.append('wsfunction', item.webservice);
     sendFormData.append('wstoken', item.wstoken);
     sendFormData.append('foldername', item.foldername);
-    sendFormData.append('title', item.title);
+    sendFormData.append('title', item.name);
     sendFormData.append('description', item.description);
     sendFormData.append('filetoupload', (item.filetoupload as unknown) as Blob);
     return {

@@ -26,16 +26,20 @@ import styles from '../../assets/styles/variables';
 import {
   JournalEntry,
   MaharaFile,
-  MaharaFileFormData,
   MaharaPendingFile,
   PendingJournalEntry,
   UserBlog,
   UserFolder,
   UserTag
 } from '../../models/models';
+import {
+  createMaharaFileFormData,
+  newMaharaPendingFile,
+  newUserTag
+} from '../../models/typeCreators';
 import {RootState} from '../../reducers/rootReducer';
 import {selectItemTagsStrings} from '../../reducers/userTagsReducer';
-import {JOURNAL_ENTRY} from '../../utils/constants';
+import {FILE, JOURNAL_ENTRY} from '../../utils/constants';
 import {
   isValidText,
   putDefaultAtTop,
@@ -44,8 +48,7 @@ import {
 import {
   findUserTagByString,
   isMaharaPendingFile,
-  isPendingJournalEntry,
-  newUserTag
+  isPendingJournalEntry
 } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
@@ -238,24 +241,23 @@ const UploadForm = (props: Props) => {
       const folder = selectedFolder || firstFolder; // TODO: setting to first folder until we set up preferred default folder functionality
       const webService = 'module_mobileapi_upload_file';
 
-      const formData: MaharaFileFormData = {
-        description: controlDesc,
-        filetoupload: pickedFile,
-        foldername: folder,
-        title: filename,
-        webservice: webService,
-        wstoken: props.token
-      };
+      const formData = createMaharaFileFormData(
+        webService,
+        props.token,
+        folder,
+        filename,
+        controlDesc,
+        pickedFile
+      );
 
-      pendingFileData = {
-        id: props.editItem
-          ? props.editItem.id
-          : `${Math.random() * 10}${pickedFile.type}`,
-        maharaFormData: formData,
-        mimetype: pickedFile.type,
-        url: fileUrl,
-        type: formType
-      };
+      const id = props.editItem ? props.editItem.id : null;
+      pendingFileData = newMaharaPendingFile(
+        id,
+        fileUrl,
+        formData,
+        pickedFile.type,
+        formType
+      );
 
       dispatch(addFileToUploadList(pendingFileData));
     }
@@ -314,7 +316,8 @@ const UploadForm = (props: Props) => {
         <RequiredWarningText customText={t`A file is required`} />
       )}
       <SubHeading required={formType === JOURNAL_ENTRY}>
-        <Trans>Title</Trans>
+        {formType === JOURNAL_ENTRY && <Trans>Title</Trans>}
+        {formType === FILE && <Trans>Name</Trans>}
       </SubHeading>
       {showInvalidTitleMessage && <RequiredWarningText />}
       <FormInput

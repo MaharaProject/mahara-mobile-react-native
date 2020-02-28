@@ -22,13 +22,14 @@ import {
   updateUserTagsIds
 } from '../actions/actions';
 import {UserBlog, UserBlogJSON, UserFolder, UserTag} from '../models/models';
+import {newUserTag} from '../models/typeCreators';
 import {
   GUEST_BLOG,
   GUEST_FOLDER,
   GUEST_TOKEN,
   GUEST_USERNAME
 } from './constants';
-import {newUserTag, userBlogJSONtoUserBlog} from './helperFunctions';
+import {userBlogJSONtoUserBlog} from './helperFunctions';
 
 export function fetchUserOnTokenLogin(
   serverUrl: string,
