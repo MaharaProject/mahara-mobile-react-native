@@ -2,38 +2,26 @@ import {StyleSheet} from 'react-native';
 import styles from '../../assets/styles/variables';
 
 export default StyleSheet.create({
-  profileView: {
-    flex: 1,
-    flexDirection: 'column',
-    height: '50%'
+  view: {
+    padding: 10,
+    height: '100%'
   },
-  container: {
-    flexDirection: 'row',
-    width: 100,
-    padding: styles.padding.md
+  imageContainer: {
+    margin: styles.padding.md,
+    alignItems: 'center'
   },
   image: {
-    minWidth: 100,
-    minHeight: 100
+    width: 100,
+    height: 100,
+    borderRadius: 100
   },
   name: {
     padding: styles.padding.md,
-    fontSize: styles.font.md
+    fontSize: styles.font.lg,
+    textAlign: 'center',
+    paddingTop: 0
   },
-  settingsView: {
-    flex: 1,
-    height: '50%'
-  },
-  view: {
-    height: 400,
-    margin: 10
-  },
-  app: {
-    flex: 1,
-    backgroundColor: '#fff'
-  },
-  profileContainer: {
-    flex: 1,
-    backgroundColor: styles.colors.light
+  button: {
+    alignSelf: 'flex-end'
   }
 });

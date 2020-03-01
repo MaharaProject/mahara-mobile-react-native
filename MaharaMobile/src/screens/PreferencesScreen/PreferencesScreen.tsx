@@ -8,8 +8,6 @@ import {setDefaultBlogId, setDefaultFolder} from '../../actions/actions';
 import image from '../../assets/images/no_userphoto.png';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
-import ProfileStyle from '../../components/Profile/Profile.style';
-import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
 import {UserBlog, UserFolder} from '../../models/models';
@@ -88,19 +86,23 @@ const PreferencesScreen = (props: Props) => {
         <SubHeading>
           <Trans>Destination folder:</Trans>
         </SubHeading>
-        <Picker
-          accessibilityLabel={i18n._(t`Select folder`)}
-          selectedValue={selectedFolderTitle}
-          style={forms.picker}
-          onValueChange={(folder: string) => {
-            setSelectedFolderTitle(folder);
-          }}>
-          {sortedFolders.map((f: UserFolder) => {
-            const label =
-              f.title === defaultFolderTitle ? `${f.title} - default` : f.title;
-            return <Picker.Item label={label} value={f.title} key={f.id} />;
-          })}
-        </Picker>
+        <View style={forms.pickerWrapper}>
+          <Picker
+            accessibilityLabel={i18n._(t`Select folder`)}
+            selectedValue={selectedFolderTitle}
+            style={forms.picker}
+            onValueChange={(folder: string) => {
+              setSelectedFolderTitle(folder);
+            }}>
+            {sortedFolders.map((f: UserFolder) => {
+              const label =
+                f.title === defaultFolderTitle
+                  ? `${f.title} - default`
+                  : f.title;
+              return <Picker.Item label={label} value={f.title} key={f.id} />;
+            })}
+          </Picker>
+        </View>
       </View>
     );
   };
@@ -114,28 +116,32 @@ const PreferencesScreen = (props: Props) => {
         <SubHeading>
           <Trans>Destination journal:</Trans>
         </SubHeading>
-        <Picker
-          accessibilityLabel={i18n._(t`Select journal`)}
-          selectedValue={selectedBlogId}
-          style={forms.picker}
-          onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
-          {blogs.map((blog: UserBlog) => {
-            const label =
-              blog.id === defaultBlogId
-                ? `${blog.title} - default`
-                : blog.title;
-            return <Picker.Item label={label} value={blog.id} key={blog.id} />;
-          })}
-        </Picker>
+        <View style={forms.pickerWrapper}>
+          <Picker
+            accessibilityLabel={i18n._(t`Select journal`)}
+            selectedValue={selectedBlogId}
+            style={forms.picker}
+            onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
+            {blogs.map((blog: UserBlog) => {
+              const label =
+                blog.id === defaultBlogId
+                  ? `${blog.title} - default`
+                  : blog.title;
+              return (
+                <Picker.Item label={label} value={blog.id} key={blog.id} />
+              );
+            })}
+          </Picker>
+        </View>
       </View>
     );
   };
   const renderProfile = () => (
     <View>
-      <View style={PreferencesScreenStyle.container}>
+      <View style={PreferencesScreenStyle.imageContainer}>
         <Image
           source={pIcon ? {uri: pIcon} : image}
-          style={ProfileStyle.image}
+          style={PreferencesScreenStyle.image}
         />
       </View>
       <Text style={PreferencesScreenStyle.name}>
@@ -145,15 +151,16 @@ const PreferencesScreen = (props: Props) => {
   );
 
   return (
-    <View>
+    <View style={PreferencesScreenStyle.view}>
       {renderProfile()}
-      <SubHeading style={{fontSize: 25}}>
+      <SubHeading style={{fontSize: styles.font.xl}}>
         <Trans>Default options:</Trans>
       </SubHeading>
       {defaultFolderPicker()}
       {defaultBlogPicker()}
       <MediumButton
         title={t`Update preferences`}
+        style={PreferencesScreenStyle.button}
         onPress={() => {
           if (selectedBlogId) dispatch(setDefaultBlogId(selectedBlogId));
           if (selectedFolderTitle) {

@@ -36,7 +36,7 @@ const styles = {
     sm: 16,
     md: 18,
     lg: 20,
-    xl: 30
+    xl: 25
   }
 };
 
