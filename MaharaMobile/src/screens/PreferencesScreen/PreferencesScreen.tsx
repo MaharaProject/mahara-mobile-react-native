@@ -61,7 +61,7 @@ const PreferencesScreen = (props: Props) => {
 
   useEffect(() => {
     props.navigation.setParams({
-      title: props.i18n._(t`Profile Settings`)
+      title: props.i18n._(t`Profile settings`)
     });
   }, [props.i18n]);
 
@@ -111,10 +111,10 @@ const PreferencesScreen = (props: Props) => {
     return (
       <View>
         <SubHeading>
-          <Trans>Destination journal</Trans>:
+          <Trans>Destination journal:</Trans>
         </SubHeading>
         <Picker
-          accessibilityLabel={i18n._(t`Select blog`)}
+          accessibilityLabel={i18n._(t`Select journal`)}
           selectedValue={selectedBlogId}
           style={forms.picker}
           onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>

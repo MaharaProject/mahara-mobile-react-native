@@ -32,7 +32,7 @@ export default function TokenInput(props: Props) {
         <View style={styles.imageWrapper}>
           <LogoSvg />
         </View>
-          <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Login via Token</Trans></Text>
+          <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Log in via an access token</Trans></Text>
           <TextInput
             style={forms.textInput}
             // TODO: remove default value for go live
@@ -40,7 +40,7 @@ export default function TokenInput(props: Props) {
             onChangeText={(input) => setToken(input.trim())
 }
           />
-          <MediumButton title={t`Verify Token`} onPress={() => props.onUpdateToken(token)} />
+          <MediumButton title={t`Verify token`} onPress={() => props.onUpdateToken(token)} />
         </View>
       </LinearGradient>
     </View>

@@ -40,11 +40,11 @@ type Props = {
 const AppNavigator = (props: Props) => {
   const navigatorStrings = {
     PROFILE: props.i18n._(t`Profile`),
-    PENDING: props.i18n._(t`Upload Queue`),
-    ADD: props.i18n._(t`Add Item`),
-    PROFILE_ACCESSIBILITY_LABEL: props.i18n._(t`Profile Page`),
-    ADD_ACCESBILITY_LABEL: props.i18n._(t`Add item to Mahara`),
-    PENDING_ACCESSBILITY_LABEL: props.i18n._(t`Pending uploads page`),
+    PENDING: props.i18n._(t`Upload queue`),
+    ADD: props.i18n._(t`Add`),
+    PROFILE_ACCESSIBILITY_LABEL: props.i18n._(t`Profile page`),
+    ADD_ACCESSIBILITY_LABEL: props.i18n._(t`Add an item`),
+    PENDING_ACCESSIBILITY_LABEL: props.i18n._(t`Upload queue page`),
     PREFERENCES: props.i18n._(t`Preferences`),
     ABOUT: props.i18n._(t`About`),
     MENU: props.i18n._(t`Menu`)
@@ -88,7 +88,7 @@ const AppNavigator = (props: Props) => {
         tabBarIcon: ({tintColor}) => (
           <FontAwesomeIcon icon={faHistory} color={tintColor} />
         ),
-        tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSBILITY_LABEL
+        tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSIBILITY_LABEL
       }
     },
     Add: {
@@ -98,7 +98,7 @@ const AppNavigator = (props: Props) => {
         tabBarIcon: ({tintColor}) => (
           <FontAwesomeIcon icon={faPlusCircle} color={tintColor} />
         ),
-        tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESBILITY_LABEL
+        tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESSIBILITY_LABEL
       }
     },
     Menu: {

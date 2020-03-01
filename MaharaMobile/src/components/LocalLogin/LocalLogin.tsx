@@ -66,7 +66,7 @@ export default function LocalLogin(props: Props) {
             <LogoSvg />
           </View>
           <Text style={[headingStyles.mainHeading, generic.center]}>
-            <Trans>Login via username and password</Trans>
+            <Trans>Log in via username and password</Trans>
           </Text>
           <I18n>
             {({i18n}) => (

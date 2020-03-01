@@ -100,13 +100,13 @@ const AddItemScreen = (props: Props) => {
 
   const [filePickerButtonText, setFilePickerButtonText] = useState(
     props.navigation.getParam('itemToEdit')
-      ? props.i18n._(t`Pick a different file`)
+      ? props.i18n._(t`Select a different file`)
       : props.i18n._(t`Select a file`)
   );
 
   const takePhoto = () => {
     const options = {
-      title: props.i18n._(t`Select Image`),
+      title: props.i18n._(t`Select image`),
       storageOptions: {
         skipBackup: true,
         path: 'images'
@@ -120,8 +120,8 @@ const AddItemScreen = (props: Props) => {
     ImagePicker.launchCamera(options, response => {
       if (response.didCancel) {
         Alert.alert(
-          props.i18n._(t`No photo captured`),
-          props.i18n._(t`Camera closed by user`)
+          props.i18n._(t`The photo couldn't be taken.`),
+          props.i18n._(t`You shut down the camera.`)
         );
       } else if (response.error) {
         Alert.alert(props.i18n._(t`ImagePicker Error:${response.error}`));
@@ -159,7 +159,7 @@ const AddItemScreen = (props: Props) => {
         if (!res) {
           Alert.alert(
             props.i18n._(t`Invalid file`),
-            props.i18n._(t`Please pick a file`),
+            props.i18n._(t`Please select a file.`),
             [{text: 'Okay', style: 'destructive'}]
           );
           return;
@@ -172,7 +172,7 @@ const AddItemScreen = (props: Props) => {
           type: res.type,
           size: Number(res.fileSize)
         });
-        setFilePickerButtonText(props.i18n._(t`Pick a different file`));
+        setFilePickerButtonText(props.i18n._(t`Select different file`));
       }
     );
   };

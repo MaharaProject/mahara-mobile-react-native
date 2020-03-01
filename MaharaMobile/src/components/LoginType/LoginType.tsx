@@ -67,7 +67,7 @@ const LoginType = (props: Props) => {
                   textStyles.textWhite,
                   textStyles.center
                 ]}>
-                <Trans>What is the address of your Mahara?</Trans>
+                <Trans>Address of your Mahara site</Trans>
               </Text>
               <TextInput
                 style={[
@@ -83,7 +83,7 @@ const LoginType = (props: Props) => {
 
           {props.enterUrlWarning ? (
             <Text style={textStyles.errorText}>
-              <Trans>Please enter a URL</Trans>
+              <Trans>Please enter a URL.</Trans>
             </Text>
           ) : null}
 
@@ -135,13 +135,13 @@ const LoginType = (props: Props) => {
 
           {props.serverPing && props.ssoLogin && (
             <MediumButton
-              title={t`SSO`}
+              title={t`Single sign-on`}
               onPress={() => props.setLoginType('sso')}
             />
           )}
           {props.serverPing && props.localLogin && (
             <MediumButton
-              title={t`Local Login`}
+              title={t`Login`}
               onPress={() => props.setLoginType('basic')}
             />
           )}
