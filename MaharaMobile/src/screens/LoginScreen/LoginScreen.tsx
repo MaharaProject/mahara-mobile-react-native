@@ -96,13 +96,15 @@ export class LoginScreen extends Component<Props, State> {
           case 'basic':
             Alert.alert(
               this.props.i18n._(t`Login failed`),
-              this.props.i18n._(t`Username or password incorrect.`)
+              this.props.i18n._(
+                t`Your username or password was incorrect. Please try again.`
+              )
             );
             break;
           case 'token':
             Alert.alert(
               this.props.i18n._(t`Login failed`),
-              this.props.i18n._(t`Invalid token, please try again.`)
+              this.props.i18n._(t`Invalid token: please try again.`)
             );
             break;
           case 'SSO':
@@ -131,7 +133,9 @@ export class LoginScreen extends Component<Props, State> {
    */
   signInAsync = async () => {
     if (this.state.token.length < 1) {
-      Alert.alert(this.props.i18n._(t`Nothing entered in field`));
+      Alert.alert(
+        this.props.i18n._(t`You didn't enter anything in this field.`)
+      );
     }
   };
 

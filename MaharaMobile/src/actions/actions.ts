@@ -284,17 +284,21 @@ export function checkLoginTypes(url: string) {
       );
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
-        throw new Error(i18n._(t`This is not a Mahara site`));
+        throw new Error(i18n._(t`This is not a Mahara site.`));
       }
       // check that webservices is enabled on the Mahara instance
       if (!result.wsenabled) {
-        throw new Error(i18n._(t`Webservices is not enabled.`));
+        throw new Error(
+          i18n._(
+            t`Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.`
+          )
+        );
       }
       dispatch(updateLoginTypes(result));
       dispatch(updateUrl(url));
     } catch (error) {
       if (error.code === 404) {
-        throw new Error(i18n._(t`This is not a Mahara site`));
+        throw new Error(i18n._(t`This is not a Mahara site.`));
       }
       throw error;
     }

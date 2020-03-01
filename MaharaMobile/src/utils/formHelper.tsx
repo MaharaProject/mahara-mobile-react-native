@@ -29,7 +29,7 @@ export const RequiredWarningText = (props: {customText: string}) => (
       <Text style={{color: styles.colors.warn}}>
         {props.customText
           ? i18n._(props.customText)
-          : i18n._(t`This field is required`)}
+          : i18n._(t`This field is required.`)}
       </Text>
     )}
   </I18n>

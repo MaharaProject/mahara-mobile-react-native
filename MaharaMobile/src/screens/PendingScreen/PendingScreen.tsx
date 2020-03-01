@@ -74,7 +74,7 @@ const PendingScreen = (props: Props) => {
   const onRemove = (itemId: string) => {
     Alert.alert(
       'Are you sure?',
-      'You will not be able to retrieve this information once removed',
+      'You will not be able to get this information back once removed.',
       [
         {
           text: 'Cancel',
@@ -139,7 +139,7 @@ const PendingScreen = (props: Props) => {
     if (uploadItemsCount > 0) {
       return <View>{renderPendingList(list)}</View>;
     }
-    return <Text>No pending uploads</Text>;
+    return <Text>Your upload queue is empty.</Text>;
   };
 
   const onSuccessfulUpload = (id: string) => {
@@ -188,7 +188,7 @@ const PendingScreen = (props: Props) => {
       {showSuccessMessage && (
         <View>
           <Text>
-            <Trans>Upload added to Pending List!</Trans>
+            <Trans>Your file was added to the upload queue.</Trans>
           </Text>
           <Icon
             onPress={() => setShowSuccessMessage(false)}
@@ -205,14 +205,14 @@ const PendingScreen = (props: Props) => {
           <View>
             <SubHeading style={styles.padding.md}>{`URL: ${url}`}</SubHeading>
             <MediumButton
-              title={t`Upload to your Mahara`}
+              title={t`Upload to your site`}
               onPress={onUploadClick}
             />
           </View>
         ) : (
           <MediumButton
-            title={t`Please login`}
-            accessibilityHint={t`To upload pending items`}
+            title={t`Log in to upload`}
+            accessibilityHint={t`To upload queued items`}
             onPress={() => props.navigation.navigate('Auth')}
           />
         )}

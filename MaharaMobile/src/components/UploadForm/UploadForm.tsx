@@ -301,7 +301,7 @@ const UploadForm = (props: Props) => {
       <View>
         <SubHeading required={formType !== JOURNAL_ENTRY}>File</SubHeading>
         {fileValid ? (
-          <Text accessibilityLabel={i18n._(t`A file has been added`)}>
+          <Text accessibilityLabel={i18n._(t`A file has been added.`)}>
             {props.pickedFile?.name}
           </Text>
         ) : null}
@@ -313,7 +313,7 @@ const UploadForm = (props: Props) => {
     <View>
       {/* Error messages */}
       {showInvalidFileMessage && (
-        <RequiredWarningText customText={t`A file is required`} />
+        <RequiredWarningText customText={t`A file is required.`} />
       )}
       <SubHeading required={formType === JOURNAL_ENTRY}>
         {formType === JOURNAL_ENTRY && <Trans>Title</Trans>}
@@ -327,7 +327,8 @@ const UploadForm = (props: Props) => {
         onChangeText={(title: string) => updateTitle(title)}
       />
       <SubHeading required={formType === JOURNAL_ENTRY}>
-        <Trans>Description</Trans>
+        {formType === JOURNAL_ENTRY && <Trans>Entry</Trans>}
+        {formType === FILE && <Trans>Description</Trans>}
       </SubHeading>
       {showInvalidDescMessage && <RequiredWarningText />}
       <FormInput
@@ -379,7 +380,7 @@ const UploadForm = (props: Props) => {
   const renderJournalDraftSwitch = () => (
     <View style={{flexDirection: 'row'}}>
       <SubHeading>
-        <Trans>Draft Journal Entry &nbsp;</Trans>
+        <Trans>Draft Journal entry &nbsp;</Trans>
       </SubHeading>
       <Switch
         value={isDraft}
@@ -404,7 +405,11 @@ const UploadForm = (props: Props) => {
     );
 
     if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
-      return <RequiredWarningText customText={t`Error: User has no Blogs`} />;
+      return (
+        <RequiredWarningText
+          customText={t`Error: You do not have any journals on your site.`}
+        />
+      );
     }
     return (
       <View>
@@ -414,7 +419,7 @@ const UploadForm = (props: Props) => {
         </SubHeading>
         <View style={forms.pickerWrapper}>
           <Picker
-            accessibilityLabel={i18n._(t`Select blog`)}
+            accessibilityLabel={i18n._(t`Select a journal`)}
             selectedValue={selectedBlog}
             style={forms.picker}
             onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
@@ -438,7 +443,7 @@ const UploadForm = (props: Props) => {
     <View>
       <View style={uploadFormStyles.tagsContainer}>
         <SubHeading>
-          <Trans>Tags </Trans>
+          <Trans>Tags</Trans>
         </SubHeading>
         {/* Create new tag */}
         {showTagInput && (
@@ -567,7 +572,7 @@ const UploadForm = (props: Props) => {
 
   return (
     <View>
-      <RequiredWarningText customText={t`Fields marked by * are required`} />
+      <RequiredWarningText customText={t`Fields marked by * are required.`} />
       {renderDisplayedFilename()}
       {renderTextInputs()}
       {renderFolderPicker()}

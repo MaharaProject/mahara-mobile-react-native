@@ -56,7 +56,7 @@ const AddAudio = (props: Props) => {
 
   const recordStrings = {
     unrecorded: i18n._(t`Record`),
-    recording: i18n._(t`Stop recording`),
+    recording: i18n._(t`Stop`),
     recorded: i18n._(t`Re-record`)
   };
 
@@ -80,21 +80,21 @@ const AddAudio = (props: Props) => {
         const grantedStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
-            title: props.i18n._(t`Permissions for write access`),
+            title: props.i18n._(t`Permission to save files`),
             message: props.i18n._(
-              t`Give permission to your storage to write a file`
+              t`Give permission to save files on your device.`
             ),
-            buttonPositive: props.i18n._(t`ok`)
+            buttonPositive: props.i18n._(t`OK`)
           }
         );
         const grantedRecord = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
           {
-            title: props.i18n._(t`Permissions for recording audio`),
+            title: props.i18n._(t`Permission to record audio`),
             message: props.i18n._(
-              t`Give permission to your microphone to record a file`
+              t`Allow your microphone to record audo and save the files.`
             ),
-            buttonPositive: props.i18n._(t`ok`)
+            buttonPositive: props.i18n._(t`OK`)
           }
         );
 
