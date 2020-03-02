@@ -9,6 +9,7 @@ import image from '../../assets/images/no_userphoto.png';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import ProfileStyle from '../../components/Profile/Profile.style';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
 import {UserBlog, UserFolder} from '../../models/models';
@@ -181,6 +182,7 @@ PreferencesScreen.navigationOptions = () => ({
     textAlign: 'center'
   },
   headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`Preferences`)
+  headerTitle: i18n._(t`Preferences`),
+  headerLeft: <HeaderMenuButton />
 });
 export default withI18n()(PreferencesScreen);

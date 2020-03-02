@@ -43,6 +43,7 @@ const forms = StyleSheet.create({
     borderRadius: 10,
     marginRight: styles.padding.xs,
     marginTop: styles.padding.xs,
+    marginLeft: styles.padding.xs,
     flexDirection: 'row'
   },
   tagText: {

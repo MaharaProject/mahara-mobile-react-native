@@ -11,13 +11,12 @@ const uploadFormStyes = StyleSheet.create({
   tagsInputContainer: {
     alignSelf: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
-    margin: 0
+    flexDirection: 'row'
   },
   tagsTextInput: {
     width: 200,
     alignSelf: 'center',
-    marginBottom: 0
+    marginLeft: styles.padding.xs
   },
   tagsTitle: {
     marginRight: styles.padding.sm

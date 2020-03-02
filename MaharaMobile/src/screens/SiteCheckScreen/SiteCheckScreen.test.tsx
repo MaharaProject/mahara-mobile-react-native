@@ -1,9 +1,9 @@
+import {I18nProvider} from '@lingui/react';
 import React from 'react';
 import 'react-native';
 import renderer from 'react-test-renderer';
-import {I18nProvider} from '@lingui/react';
+import i18n from '../../i18n';
 import {SiteCheckScreen} from './SiteCheckScreen';
-import {i18n} from '../../i18n';
 
 it('renders correctly', () => {
   const props = {

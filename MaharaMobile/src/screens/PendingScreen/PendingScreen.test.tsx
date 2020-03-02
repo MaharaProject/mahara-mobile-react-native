@@ -1,11 +1,10 @@
-import React from 'react';
-import 'react-native';
-import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
 import {I18nProvider} from '@lingui/react';
+import React from 'react';
+import {Provider} from 'react-redux';
+import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
+import i18n from '../../i18n';
 import PendingScreen from './PendingScreen';
-import {i18n} from '../../i18n';
 // import ShallowRenderer from 'react-test-renderer/shallow';
 
 jest.mock('rn-fetch-blob', () => {

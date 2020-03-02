@@ -9,7 +9,6 @@ import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
 import {Platform} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
   createAppContainer,
   createSwitchNavigator,
@@ -17,20 +16,23 @@ import {
   NavigationScreenProp,
   NavigationState
 } from 'react-navigation';
-import {createDrawerNavigator} from 'react-navigation-drawer';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import styles from '../assets/styles/variables';
-import DrawerContainer from '../components/DrawerContainer/DrawerContainer';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import ContactScreen from '../screens/ContactScreen/ContactScreen';
+import HelpScreen from '../screens/HelpScreen/HelpScreen';
+import LegalScreen from '../screens/LegalScreen/LegalScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import MenuScreen from '../screens/MenuScreen/MenuScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
+import VersionScreen from '../screens/VersionScreen/VersionScreen';
 
 type Props = {
   i18n: I18n;
@@ -64,8 +66,7 @@ const AppNavigator = (props: Props) => {
       navigationOptions: {
         headerTitle: navigatorStrings.ABOUT
       }
-    },
-    Preferences: PreferencesScreen
+    }
   });
 
   const PendingItemsTabNavigator = createStackNavigator({
@@ -77,14 +78,25 @@ const AppNavigator = (props: Props) => {
     }
   });
 
+  const MenuTabNavigator = createStackNavigator({
+    Menu: {
+      screen: MenuScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.MENU
+      }
+    },
+    Contact: ContactScreen,
+    Preferences: PreferencesScreen,
+    Legal: LegalScreen,
+    Help: HelpScreen,
+    Version: VersionScreen
+  });
+
   const tabScreenConfig = {
     PendingScreen: {
       screen: PendingItemsTabNavigator,
       navigationOptions: {
-        // TODO: add number later -> tabBarBadge: true,
         tabBarLabel: navigatorStrings.PENDING,
-        // TODO: add back later for number or can use tabBarBadge
-        // tabBarIcon: () => <IconWithBadge {...props} />,
         tabBarIcon: ({tintColor}) => (
           <FontAwesomeIcon icon={faHistory} color={tintColor} />
         ),
@@ -102,18 +114,13 @@ const AppNavigator = (props: Props) => {
       }
     },
     Menu: {
-      screen: AddItemsTabNavigator, // dummy screen as default handler is ignored
+      screen: MenuTabNavigator,
       navigationOptions: {
         tabBarIcon: () => (
           <FontAwesomeIcon icon={faBars} color={styles.colors.light} />
         ),
         tabBarTestID: 'tabBar',
-        tabBarAccessibilityLabel: navigatorStrings.MENU,
-        tabBarOnPress: ({navigation}) => {
-          navigation.toggleDrawer();
-          // tabBarOnPress: ({navigation, defaultHandler}) => {
-          // defaultHandler(); // TODO: keep for future reference
-        }
+        tabBarAccessibilityLabel: navigatorStrings.MENU
       }
     }
   };
@@ -155,28 +162,7 @@ const AppNavigator = (props: Props) => {
     }
   );
 
-  const DrawerNavigator = createDrawerNavigator(
-    {
-      MaharaMobile: SwitchNavigator,
-      Preferences: {
-        screen: PreferencesScreen,
-        navigationOptions: {
-          drawerIcon: () => <FontAwesome5 name="user" size={20} />
-        }
-      },
-      About: {
-        screen: AboutScreen,
-        navigationOptions: {
-          drawerIcon: () => <FontAwesome5 name="question" size={20} />
-        }
-      }
-    },
-    {
-      contentComponent: navProps => <DrawerContainer {...navProps} />
-    }
-  );
-
-  const Navigation = createAppContainer(DrawerNavigator);
+  const Navigation = createAppContainer(SwitchNavigator);
 
   return <Navigation />;
 };

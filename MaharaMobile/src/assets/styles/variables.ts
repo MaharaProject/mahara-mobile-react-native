@@ -2,7 +2,7 @@
 
 const styles = {
   colors: {
-    primary: '#c4d6a9',
+    primary: '#566D37',
     secondary: '#ba9c53',
     tertiary: '#566d31',
     quaternary: '#1f6c88',

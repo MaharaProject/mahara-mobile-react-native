@@ -1,10 +1,10 @@
-import 'react-native';
-import React from 'react';
-import {Provider} from 'react-redux';
 import {I18nProvider} from '@lingui/react';
-import configureStore from 'redux-mock-store';
+import React from 'react';
+import 'react-native';
+import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
-import {i18n} from '../../i18n';
+import configureStore from 'redux-mock-store';
+import i18n from '../../i18n';
 import UploadForm from './UploadForm';
 
 it('renders correctly', () => {
