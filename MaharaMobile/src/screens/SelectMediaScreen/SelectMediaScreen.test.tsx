@@ -1,12 +1,12 @@
 import 'react-native';
 import React from 'react';
-import { I18nProvider } from '@lingui/react';
-import { i18n } from '../../i18n';
-import SelectMediaScreen from './SelectMediaScreen';
+import {I18nProvider} from '@lingui/react';
 import renderer from 'react-test-renderer';
+import {i18n} from '../../i18n';
+import SelectMediaScreen from './SelectMediaScreen';
 
 it('renders correctly', () => {
-  let props = {
+  const props = {
     navigation: {navigate: () => {}}
   };
 
