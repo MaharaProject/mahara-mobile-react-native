@@ -1,14 +1,14 @@
 import {i18n} from '@lingui/core';
-import {t} from '@lingui/macro';
-import {Trans} from '@lingui/react';
+import {t, Trans} from '@lingui/macro';
 import React from 'react';
 import {Text, View} from 'react-native';
+import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
 
 const HelpScreen = () => (
-  <View>
+  <View style={generic.wrap}>
     <Text>
-      <Trans>Help screen</Trans>
+      <Trans>...</Trans>
     </Text>
   </View>
 );
