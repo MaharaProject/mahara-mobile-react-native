@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
+import React, {Component} from 'react';
 import {Alert, View} from 'react-native';
 import {
   NavigationParams,
@@ -10,13 +10,14 @@ import {
 } from 'react-navigation';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {addToken} from '../../actions/actions';
+import {addToken, updateGuestStatus} from '../../actions/actions';
 import generic from '../../assets/styles/generic';
 import LocalLogin from '../../components/LocalLogin/LocalLogin';
 import SSOLogin from '../../components/SSOLogin/SSOLogin';
 import TokenInput from '../../components/TokenInput/TokenInput';
 import {UserBlog, UserFolder} from '../../models/models';
 import {
+  selectIsGuestStatus,
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
@@ -29,7 +30,8 @@ import {
 } from '../../reducers/userArtefactsReducer';
 import {
   fetchProfilePic,
-  fetchUserOnTokenLogin
+  fetchUserOnTokenLogin,
+  updatePendingItemsOnGuestToUser
 } from '../../utils/authHelperFunctions';
 
 type Props = {
@@ -43,6 +45,7 @@ type Props = {
   userFolders: Array<UserFolder>;
   userBlogs: Array<UserBlog>;
   i18n: I18n;
+  isGuest: boolean;
 };
 
 type State = {
@@ -85,7 +88,7 @@ export class LoginScreen extends Component<Props, State> {
       .then(() => {
         this.props.dispatch(addToken(this.state.token));
         fetchProfilePic(this.props.dispatch, this.state.token, url);
-        this.signInAsync();
+        this.signInGuestToUserAsync();
       })
       .then(() => this.props.navigation.navigate('App'))
       .catch(() => {
@@ -128,13 +131,23 @@ export class LoginScreen extends Component<Props, State> {
     });
   };
 
+  // TODO check this function
   /**
    * Save user token to async storage
    */
-  signInAsync = async () => {
+  signInGuestToUserAsync = async () => {
     if (this.state.token.length < 1) {
       Alert.alert(
         this.props.i18n._(t`You didn't enter anything in this field.`)
+      );
+    } else if (this.props.isGuest) {
+      await this.props.dispatch(updateGuestStatus(false));
+      updatePendingItemsOnGuestToUser(
+        this.props.dispatch,
+        this.props.userBlogs,
+        this.props.userFolders,
+        this.state.token,
+        this.props.url
       );
     }
   };
@@ -169,7 +182,8 @@ const mapStateToProps = (state: RootState) => ({
   ssoLogin: selectSsoLogin(state),
   localLogin: selectLocalLogin(state),
   userBlogs: selectUserBlogs(state),
-  userFolders: selectUserFolders(state)
+  userFolders: selectUserFolders(state),
+  isGuest: selectIsGuestStatus(state)
 });
 
 export default connect(mapStateToProps)(withI18n()(LoginScreen));

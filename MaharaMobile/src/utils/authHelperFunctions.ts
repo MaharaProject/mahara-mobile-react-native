@@ -14,6 +14,7 @@ import {
   clearUserTags,
   setDefaultBlogId,
   setDefaultFolder,
+  updateGuestStatus,
   updateJEntriesOnLogin,
   updateProfilePic,
   updateUploadFilesOnLogin,
@@ -63,7 +64,12 @@ export function fetchUserOnTokenLogin(
           json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
         )
       );
-      dispatch(updateUserFolders(json.folders.folders));
+
+      // Check if user has folders (they can be deleted on Mahara)
+      if (json.folders.folders.length !== 0) {
+        dispatch(updateUserFolders(json.folders.folders));
+      }
+
       dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
       dispatch(setDefaultFolder(json.folders.folders[0].title));
     } catch (e) {
@@ -87,6 +93,7 @@ export const clearReduxData = async (dispatch: Dispatch) => {
 };
 
 export const setUpGuest = async (dispatch: Dispatch) => {
+  await dispatch(updateGuestStatus(true));
   await dispatch(addToken(GUEST_TOKEN));
   await dispatch(updateUserName(GUEST_USERNAME));
   await dispatch(updateUserFolders([GUEST_FOLDER]));
@@ -111,7 +118,7 @@ export const arrayToObject = (array: Array<any>) => {
  * - Existing pending uploadFiles and uploadJEntries once users login
  * - Rerieved Mahara data to replace guest data be able to upload items.
  */
-export const updatePendingItemsOnLogin = async (
+export const updatePendingItemsOnGuestToUser = async (
   dispatch: Dispatch,
   userBlogs: Array<UserBlog>,
   userFolders: Array<UserFolder>,

@@ -82,12 +82,11 @@ const updateJEntriesOnLogin = (
     k => uploadJEntries[k]
   );
   journalEntriesArr.forEach((pendingJEntry: PendingJournalEntry) => {
-    // TODO: add helper function for creating Pending Journal Entry
     const newPendingJEntry: PendingJournalEntry = {
       id: pendingJEntry.id,
       journalEntry: {
         ...pendingJEntry.journalEntry,
-        blogid: userBlogs[1].id,
+        blogid: userBlogs[0].id,
         wstoken: token
       },
       url: urlDomain + pendingJEntry.url

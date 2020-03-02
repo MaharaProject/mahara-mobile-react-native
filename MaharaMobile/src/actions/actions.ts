@@ -29,6 +29,7 @@ import {
   SET_DEFAULT_FOLDER,
   TAGS_IDS,
   TAG_ITEM,
+  UPDATE_GUEST_STATUS,
   UPDATE_J_ENTRIES_ON_LOGIN,
   UPDATE_LOGIN_TYPES,
   UPDATE_PROFILE_ICON,
@@ -84,6 +85,15 @@ export function clearUserTags() {
 }
 
 // loginInfoReducer
+
+/**
+ * When a guest wants to upload items, they must log in as a user.
+ * Manage that state through this action creator.
+ */
+export function updateGuestStatus(isGuest: boolean) {
+  return {type: UPDATE_GUEST_STATUS, isGuest};
+}
+
 export function addToken(token: string) {
   AsyncStorage.setItem('userToken', token);
   return {type: ADD_TOKEN, token};

@@ -7,6 +7,7 @@ export type LoginInfoActions = {
   ssoLogin: boolean;
   tokenLogin: boolean;
   profileIcon: string;
+  isGuest: boolean;
   blogId: number;
   folderTitle: string;
 };

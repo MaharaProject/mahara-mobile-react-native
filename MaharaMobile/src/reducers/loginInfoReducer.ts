@@ -3,6 +3,7 @@ import {
   CLEAR_LOGIN_INFO,
   SET_DEFAULT_BLOG,
   SET_DEFAULT_FOLDER,
+  UPDATE_GUEST_STATUS,
   UPDATE_LOGIN_TYPES,
   UPDATE_PROFILE_ICON,
   UPDATE_SERVER_URL,
@@ -17,6 +18,7 @@ type LoginInfoState = {
   token: string;
   userName: string;
   profileIcon: string;
+  isGuest: boolean;
   // available login methods
   tokenLogin: boolean;
   ssoLogin: boolean;
@@ -37,6 +39,7 @@ const initialState: LoginInfoState = {
   localLogin: false,
   token: '',
   userName: '',
+  isGuest: false,
   profileIcon: '',
   defaultBlogId: userBlogs[0],
   defaultFolderTitle: userFolders[0]
@@ -81,6 +84,12 @@ export const loginInfoReducer = (
         ...state,
         profileIcon: action.profileIcon
       };
+    case UPDATE_GUEST_STATUS:
+      return {
+        ...state,
+        isGuest: action.isGuest
+      };
+
     case SET_DEFAULT_BLOG:
       return {
         ...state,
@@ -116,3 +125,5 @@ export const selectDefaultBlogId = (state: RootState) =>
   state.domainData.loginInfo.defaultBlogId;
 export const selectDefaultFolderTitle = (state: RootState) =>
   state.domainData.loginInfo.defaultFolderTitle;
+export const selectIsGuestStatus = (state: RootState) =>
+  state.domainData.loginInfo.isGuest;
