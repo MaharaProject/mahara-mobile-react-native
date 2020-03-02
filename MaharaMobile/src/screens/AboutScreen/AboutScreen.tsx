@@ -1,6 +1,9 @@
+import {i18n} from '@lingui/core';
+import {t} from '@lingui/macro';
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text, View} from 'react-native';
 import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
 
 const AboutScreen = () => {
   return (
@@ -9,5 +12,17 @@ const AboutScreen = () => {
     </View>
   );
 };
+
+AboutScreen.navigationOptions = () => ({
+  headerStyle: {
+    backgroundColor: styles.colors.primary
+  },
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    flex: 1
+  },
+  headerTintColor: styles.colors.light,
+  headerTitle: i18n._(t`About Mahara Mobile`)
+});
 
 export default AboutScreen;

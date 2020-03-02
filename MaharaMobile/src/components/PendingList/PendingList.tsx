@@ -42,7 +42,7 @@ const PendingList = (props: Props) => {
         //  figure out what to pass in to UploadItem
         if (isMaharaPendingFile(item)) {
           const pendingFile: MaharaPendingFile = item;
-          title = pendingFile.maharaFormData.title;
+          title = pendingFile.maharaFormData.name;
           description = pendingFile.maharaFormData.description;
           mimetype = pendingFile.mimetype;
           thumbnail = {

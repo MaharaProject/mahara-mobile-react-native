@@ -13,7 +13,6 @@ import {Dispatch} from 'redux';
 import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
 import styles from '../../assets/styles/variables';
 import PendingList from '../../components/PendingList/PendingList';
-import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
 import {
@@ -73,16 +72,16 @@ const PendingScreen = (props: Props) => {
    */
   const onRemove = (itemId: string) => {
     Alert.alert(
-      'Are you sure?',
-      'You will not be able to get this information back once removed.',
+      i18n._(t`Are you sure?`),
+      i18n._(t`You will not be able to retrieve this information once removed`),
       [
         {
-          text: 'Cancel',
+          text: i18n._(t`Cancel`),
           onPress: () => null,
           style: 'cancel'
         },
         {
-          text: 'Remove',
+          text: i18n._(t`Remove`),
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
@@ -230,8 +229,7 @@ PendingScreen.navigationOptions = () => ({
     flex: 1,
     textAlign: 'center'
   },
-  headerTintColor: styles.colors.light,
-  headerLeft: <HeaderMenuButton />
+  headerTintColor: styles.colors.light
 });
 
 const mapStateToProps = (state: RootState) => ({

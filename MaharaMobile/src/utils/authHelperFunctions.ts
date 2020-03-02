@@ -1,3 +1,5 @@
+import {i18n} from '@lingui/core';
+import {t} from '@lingui/macro';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Alert} from 'react-native';
 import {Dispatch} from 'redux';
@@ -148,8 +150,9 @@ export const fetchProfilePic = async (
 
 export const signOutAsync = async (navigation, dispatch) => {
   Alert.alert(
-    'Are you sure?',
-    'Items in your upload queue will be removed when you log out.',
+    i18n._(t`Are you sure?`),
+    i18n._(t`Items in upload queue will not be retrievable once logged out.`),
+
     [
       {
         text: 'Cancel',

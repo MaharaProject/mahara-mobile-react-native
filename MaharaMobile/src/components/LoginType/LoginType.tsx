@@ -141,7 +141,7 @@ const LoginType = (props: Props) => {
           )}
           {props.serverPing && props.localLogin && (
             <MediumButton
-              title={t`Login`}
+              title={t`Local`}
               onPress={() => props.setLoginType('basic')}
             />
           )}

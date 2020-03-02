@@ -178,11 +178,9 @@ PreferencesScreen.navigationOptions = () => ({
   },
   headerTitleStyle: {
     fontWeight: 'bold',
-    flex: 1,
-    textAlign: 'center'
+    flex: 1
   },
   headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`Preferences`),
-  headerLeft: <HeaderMenuButton />
+  headerTitle: i18n._(t`Preferences`)
 });
 export default withI18n()(PreferencesScreen);

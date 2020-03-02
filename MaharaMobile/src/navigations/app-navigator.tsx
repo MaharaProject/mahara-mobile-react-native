@@ -23,7 +23,6 @@ import styles from '../assets/styles/variables';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
-import ContactScreen from '../screens/ContactScreen/ContactScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
 import LegalScreen from '../screens/LegalScreen/LegalScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
@@ -85,7 +84,7 @@ const AppNavigator = (props: Props) => {
         headerTitle: navigatorStrings.MENU
       }
     },
-    Contact: ContactScreen,
+    About: AboutScreen,
     Preferences: PreferencesScreen,
     Legal: LegalScreen,
     Help: HelpScreen,

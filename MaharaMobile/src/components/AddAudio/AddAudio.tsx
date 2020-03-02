@@ -80,11 +80,11 @@ const AddAudio = (props: Props) => {
         const grantedStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
-            title: props.i18n._(t`Permission to save files`),
+            title: props.i18n._(t`Access permission`),
             message: props.i18n._(
-              t`Give permission to save files on your device.`
+              t`Allow Mahara Mobile to access photos, media, and files on your device?`
             ),
-            buttonPositive: props.i18n._(t`OK`)
+            buttonPositive: props.i18n._(t`Allow`)
           }
         );
         const grantedRecord = await PermissionsAndroid.request(
@@ -92,9 +92,9 @@ const AddAudio = (props: Props) => {
           {
             title: props.i18n._(t`Permission to record audio`),
             message: props.i18n._(
-              t`Allow your microphone to record audo and save the files.`
+              t`Allow your microphone to record audo and save the files?`
             ),
-            buttonPositive: props.i18n._(t`OK`)
+            buttonPositive: props.i18n._(t`Allow`)
           }
         );
 

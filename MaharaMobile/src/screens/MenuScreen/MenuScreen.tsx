@@ -7,6 +7,7 @@ import {NavigationScreenProp} from 'react-navigation';
 import {useDispatch} from 'react-redux';
 import styles from '../../assets/styles/variables';
 import MenuItem from '../../components/MenuItem/MenuItem';
+import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import {signOutAsync} from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
 
@@ -23,9 +24,9 @@ const MenuScreen = (props: Props) => {
   const dispatch = useDispatch();
 
   const menuStrings = {
+    about: i18n._(t`About`),
     preferences: i18n._(t`Preferences`),
     legal: i18n._(t`Legal`),
-    contact: i18n._(t`Contact us`),
     help: i18n._(t`Help`),
     version: i18n._(t`App version`),
     logout: i18n._(t`Logout`)
@@ -43,7 +44,7 @@ const MenuScreen = (props: Props) => {
   const nav = props.navigation;
 
   const menuItems: Array<MenuItem> = [
-    createMenuItem(menuStrings.contact, () => nav.navigate('Contact')),
+    createMenuItem(menuStrings.about, () => nav.navigate('About')),
     createMenuItem(menuStrings.preferences, () => nav.navigate('Preferences')),
     createMenuItem(menuStrings.legal, () => nav.navigate('Legal')),
     createMenuItem(menuStrings.help, () => nav.navigate('Help')),
@@ -70,7 +71,8 @@ MenuScreen.navigationOptions = () => ({
     textAlign: 'center'
   },
   headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`Menu`)
+  headerTitle: i18n._(t`Menu`),
+  headerLeft: <HeaderMenuButton />
 });
 
 export default withI18n()(MenuScreen);

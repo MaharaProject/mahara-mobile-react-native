@@ -120,8 +120,8 @@ const AddItemScreen = (props: Props) => {
     ImagePicker.launchCamera(options, response => {
       if (response.didCancel) {
         Alert.alert(
-          props.i18n._(t`The photo couldn't be taken.`),
-          props.i18n._(t`You shut down the camera.`)
+          props.i18n._(t`No photo captured`),
+          props.i18n._(t`Camera closed.`)
         );
       } else if (response.error) {
         Alert.alert(props.i18n._(t`ImagePicker Error:${response.error}`));
