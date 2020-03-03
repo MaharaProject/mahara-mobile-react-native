@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>This allows you to upload audio to your Mahara site. It is then deleted from your device.</string>
+	<string>$(PRODUCT_NAME) would like to use your microphone (for videos)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>UILaunchStoryboardName</key>
@@ -74,14 +74,11 @@
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
-	<!-- for react-native-image-picker iOS 10+ permissions -->
 	<key>NSPhotoLibraryUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like access to your photo gallery</string>
-    <key>NSCameraUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like to use your camera</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like to use your microphone (for videos)</string>
+	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to use your camera</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
 </dict>
 </plist>
