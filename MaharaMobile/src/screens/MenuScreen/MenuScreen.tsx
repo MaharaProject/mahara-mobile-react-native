@@ -44,9 +44,9 @@ const MenuScreen = (props: Props) => {
   const nav = props.navigation;
 
   const menuItems: Array<MenuItem> = [
-    createMenuItem(menuStrings.about, () => nav.navigate('About')),
     createMenuItem(menuStrings.preferences, () => nav.navigate('Preferences')),
     createMenuItem(menuStrings.legal, () => nav.navigate('Legal')),
+    createMenuItem(menuStrings.about, () => nav.navigate('About')),
     createMenuItem(menuStrings.help, () => nav.navigate('Help')),
     createMenuItem(menuStrings.version, () => nav.navigate('Version')),
     createMenuItem(menuStrings.logout, () => signOutAsync(nav, dispatch))
