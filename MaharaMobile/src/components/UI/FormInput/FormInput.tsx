@@ -1,6 +1,7 @@
+import {MessageDescriptor} from '@lingui/core';
 import {I18n} from '@lingui/react';
 import React from 'react';
-import {StyleSheet, TextInput, ViewProps} from 'react-native';
+import {StyleSheet, TextInput, TextStyle} from 'react-native';
 
 const validStyle = StyleSheet.create({
   valid: {
@@ -10,8 +11,8 @@ const validStyle = StyleSheet.create({
 
 type Props = {
   valid: boolean;
-  style: ViewProps;
-  placeholder: string;
+  style: TextStyle;
+  placeholder?: MessageDescriptor;
   value: string;
   onChangeText: (text: string) => void;
 };

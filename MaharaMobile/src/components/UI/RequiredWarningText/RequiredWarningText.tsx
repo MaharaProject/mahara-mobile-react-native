@@ -4,7 +4,7 @@ import React from 'react';
 import {Text} from 'react-native';
 import styles from '../../../assets/styles/variables';
 
-const RequiredWarningText = (props: {customText: string}) => (
+const RequiredWarningText = props => (
   <I18n>
     {({i18n}) => (
       <Text style={{color: styles.colors.warn}}>

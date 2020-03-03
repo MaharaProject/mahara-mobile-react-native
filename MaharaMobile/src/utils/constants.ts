@@ -64,7 +64,7 @@ export const GUEST_TOKEN = 'GUEST_TOKEN';
 export const GUEST_BLOG: UserBlog = {
   id: -1,
   title: 'Guest Blog',
-  description: null,
+  description: '',
   locked: false,
   numBlogPosts: -1
 };
@@ -73,3 +73,6 @@ export const GUEST_FOLDER: UserFolder = {
   id: -1,
   title: 'Guest Images'
 };
+
+// URLS
+export const WS_FUNCTION_UPLOAD_BLOGPOST = 'module_mobileapi_upload_blog_post';

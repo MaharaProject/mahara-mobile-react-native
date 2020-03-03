@@ -1,4 +1,11 @@
-import {MaharaFile, MaharaFileFormData, UserTag} from './models';
+import {WS_FUNCTION_UPLOAD_BLOGPOST} from '../utils/constants';
+import {
+  JournalEntry,
+  MaharaFile,
+  MaharaFileFormData,
+  PendingJournalEntry,
+  UserTag
+} from './models';
 
 export const createMaharaFileFormData = (
   webService: string,
@@ -18,10 +25,38 @@ export const createMaharaFileFormData = (
   };
 };
 
-export const newJournalEntry = () => {};
+export const newJournalEntry = (
+  blogId: number,
+  wsToken: string,
+  title: string,
+  body: string,
+  isDraft: boolean
+): JournalEntry => {
+  return {
+    blogid: blogId,
+    wsfunction: WS_FUNCTION_UPLOAD_BLOGPOST,
+    wstoken: wsToken,
+    title,
+    body,
+    isdraft: isDraft
+  };
+};
+
+export const newPendingJournalEntry = (
+  url: string,
+  journalEntry: JournalEntry
+): PendingJournalEntry => {
+  const id = Math.random() * 10 + journalEntry.title;
+
+  return {
+    id,
+    url,
+    journalEntry
+  };
+};
 
 export const newMaharaPendingFile = (
-  itemId: string = null,
+  itemId = '',
   url: string,
   maharaFormData: MaharaFileFormData,
   mimetype: string,
