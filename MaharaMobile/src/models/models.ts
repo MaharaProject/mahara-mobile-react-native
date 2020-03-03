@@ -22,7 +22,7 @@ export type MaharaPendingFile = {
 export type JournalEntry = {
   blogid: number;
   wsfunction: string;
-  wstoken: string; // aka: ws function
+  wstoken: string;
   title: string;
   body: string;
   isdraft: boolean;

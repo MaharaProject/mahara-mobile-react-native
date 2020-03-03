@@ -3,7 +3,6 @@ import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useEffect, useState} from 'react';
 import {Picker, Text, TouchableOpacity, View} from 'react-native';
-import {Switch} from 'react-native-paper';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {
   NavigationParams,
@@ -24,7 +23,6 @@ import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import {
-  JournalEntry,
   MaharaFile,
   MaharaPendingFile,
   PendingJournalEntry,
@@ -34,7 +32,9 @@ import {
 } from '../../models/models';
 import {
   createMaharaFileFormData,
+  newJournalEntry,
   newMaharaPendingFile,
+  newPendingJournalEntry,
   newUserTag
 } from '../../models/typeCreators';
 import {RootState} from '../../reducers/rootReducer';
@@ -56,6 +56,7 @@ import MediumButton from '../UI/MediumButton/MediumButton';
 import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
+import BlogPicker from './UploadFormJournalComponents';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -79,7 +80,7 @@ type State = {
 };
 
 const UploadForm = (props: Props) => {
-  let editItemTags = [];
+  let editItemTags: Array<string> = [];
   if (props.editItem) {
     editItemTags = useSelector((state: RootState) =>
       selectItemTagsStrings(state, props.editItem.id)
@@ -128,7 +129,7 @@ const UploadForm = (props: Props) => {
       if (isMaharaPendingFile(props.editItem)) {
         const {maharaFormData} = props.editItem;
         // The file is set in AddItemScreen as the pickedFile.
-        setTitle(maharaFormData.title);
+        setTitle(maharaFormData.name);
         setDescription(maharaFormData.description);
         setSelectedFolder(maharaFormData.foldername);
         setControlTitleValid(true);
@@ -139,6 +140,7 @@ const UploadForm = (props: Props) => {
         setTitle(journalEntry.title);
         setDescription(journalEntry.body);
         setSelectedBlog(journalEntry.blogid);
+        setIsDraft(journalEntry.isdraft);
         setControlTitleValid(true);
         setControlDescValid(true);
       }
@@ -147,7 +149,7 @@ const UploadForm = (props: Props) => {
 
   const hideTagInput = () => {
     setShowTagInput(false);
-    setSelectedTag(newUserTag('...')); // TOD CHECK
+    setSelectedTag(newUserTag('...')); // TODO CHECK
   };
 
   /**
@@ -210,22 +212,15 @@ const UploadForm = (props: Props) => {
     // Upload Journal Entry
     if (formType === JOURNAL_ENTRY) {
       const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
-      const jEntry: JournalEntry = {
-        blogid: selectedBlog || firstBlog,
-        wsfunction: 'module_mobileapi_upload_blog_post',
-        wstoken: props.token,
-        title: controlTitle,
-        body: controlDesc,
-        isdraft: isDraft
-      };
+      const jEntry = newJournalEntry(
+        selectedBlog || firstBlog,
+        props.token,
+        controlTitle,
+        controlDesc,
+        isDraft
+      );
 
-      pendingJournalEntry = {
-        id: props.editItem
-          ? props.editItem.id
-          : Math.random() * 10 + jEntry.title,
-        journalEntry: jEntry,
-        url: journalUrl
-      };
+      pendingJournalEntry = newPendingJournalEntry(journalUrl, jEntry);
 
       // add journal entry to pending list
       dispatch(addJournalEntryToUploadList(pendingJournalEntry));
@@ -377,67 +372,6 @@ const UploadForm = (props: Props) => {
     );
   };
 
-  const renderJournalDraftSwitch = () => (
-    <View style={{flexDirection: 'row'}}>
-      <SubHeading>
-        <Trans>Draft Journal entry &nbsp;</Trans>
-      </SubHeading>
-      <Switch
-        value={isDraft}
-        accessibilityRole="switch"
-        onValueChange={() => setIsDraft(!isDraft)}
-        color={styles.colors.tertiary}
-      />
-    </View>
-  );
-
-  const renderBlogPicker = () => {
-    if (formType !== JOURNAL_ENTRY) return null;
-
-    // Await the aync retrieving data (default blogs)
-    const matchingBlog = props.userBlogs.find(
-      async (b: UserBlog) => b.id === props.defaultBlogId
-    );
-    const blogs: Array<UserBlog> = putDefaultAtTop(
-      matchingBlog,
-      null,
-      props.userBlogs
-    );
-
-    if (formType === JOURNAL_ENTRY && !checkUserBlogs) {
-      return (
-        <RequiredWarningText
-          customText={t`Error: You do not have any journals on your site.`}
-        />
-      );
-    }
-    return (
-      <View>
-        {renderJournalDraftSwitch()}
-        <SubHeading>
-          <Trans>Journal</Trans>
-        </SubHeading>
-        <View style={forms.pickerWrapper}>
-          <Picker
-            accessibilityLabel={i18n._(t`Select a journal`)}
-            selectedValue={selectedBlog}
-            style={forms.picker}
-            onValueChange={(blogId: number) => setSelectedBlog(blogId)}>
-            {blogs.map((blog: UserBlog) => {
-              const label =
-                blog.id === props.defaultBlogId
-                  ? `${blog.title} - default`
-                  : blog.title;
-              return (
-                <Picker.Item label={label} value={blog.id} key={blog.id} />
-              );
-            })}
-          </Picker>
-        </View>
-      </View>
-    );
-  };
-
   const renderTagsPicker = () => (
     // const displayedSelectedTags = selectedTags.concat(arr);
     <View>
@@ -570,13 +504,33 @@ const UploadForm = (props: Props) => {
     );
   };
 
+  const renderPickers = () => {
+    if (formType === JOURNAL_ENTRY) {
+      return (
+        <View>
+          <BlogPicker
+            userBlogs={props.userBlogs}
+            setSelectedBlog={setSelectedBlog}
+            selectedBlog={selectedBlog}
+            isDraft={isDraft}
+            checkUserBlogs={checkUserBlogs}
+            setIsDraft={setIsDraft}
+          />
+        </View>
+      );
+    }
+
+    // TODO other formTypes
+    return <View />;
+  };
+
   return (
     <View>
       <RequiredWarningText customText={t`Fields marked by * are required.`} />
       {renderDisplayedFilename()}
       {renderTextInputs()}
       {renderFolderPicker()}
-      {renderBlogPicker()}
+      {renderPickers()}
       {renderTagsPicker()}
       {renderButtons()}
     </View>
