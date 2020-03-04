@@ -233,7 +233,7 @@ const UploadForm = (props: Props) => {
         ? sanitize(controlTitle) + extension
         : pickedFile.name;
       const firstFolder = props.userFolders ? props.userFolders[0].title : '';
-      const folder = selectedFolder || firstFolder; // TODO: setting to first folder until we set up preferred default folder functionality
+      const folder = selectedFolder || firstFolder;
       const webService = 'module_mobileapi_upload_file';
 
       const formData = createMaharaFileFormData(

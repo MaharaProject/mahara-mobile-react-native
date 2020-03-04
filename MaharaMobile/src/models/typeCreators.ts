@@ -83,4 +83,4 @@ export const newUserTag = (tagName: string): UserTag => ({
   id: Math.round(Math.random() * 1000),
   tag: tagName
 });
-// TODO: id is just external from Mahara, for structure in this app
+// id is just external from Mahara, for structure in this app

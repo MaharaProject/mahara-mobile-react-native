@@ -22,7 +22,6 @@ import styles from './AddAudio.style';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
-  isEditing: boolean;
   i18n: I18n;
 };
 
@@ -65,11 +64,9 @@ const AddAudio = (props: Props) => {
   }, [pickedFile.size]);
 
   useEffect(() => {
-    if (props.isEditing) {
-      setRecordButtonStatus('recorded');
-      setIsRecorded(true);
-    }
-  }, [props.isEditing]);
+    setRecordButtonStatus('recorded');
+    setIsRecorded(true);
+  }, []);
 
   // Check permissions
   const checkPermissions = async () => {
