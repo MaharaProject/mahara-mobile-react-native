@@ -67,12 +67,25 @@ const PendingScreen = (props: Props) => {
     setSuccessfullyUploadedItemsIds
   ] = useState<string[]>([]);
   const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const url = useSelector((state: RootState) => selectUrl(state));
+
+  const renderSuccessMessage = () => {
+      showMessage({
+        message: (
+          <Text style={messages.errorMessage}>
+            <Trans>Added to upload queue successfully!</Trans>
+          </Text>
+        ),
+        type: 'success',
+        backgroundColor: variables.colors.successbg,
+        color: variables.colors.success
+      });
+    };
+
 
   useEffect(() => {
     if (prevUploadCount < uploadItemsCount && uploadItemsCount !== 0) {
-      setShowSuccessMessage(true);
+      renderSuccessMessage();
     }
   }, [uploadItemsCount]);
 
@@ -223,20 +236,6 @@ const PendingScreen = (props: Props) => {
 
   return (
     <View style={pendingScreenStyles.app}>
-
-      {uploadItemsCount > prevUploadCount ? (
-        showMessage({
-          message: (
-            <Text style={messages.errorMessage}>
-              <Trans>Added to upload queue successfully!</Trans>
-            </Text>
-          ),
-          type: 'success',
-          backgroundColor: variables.colors.successbg,
-          color: variables.colors.success
-        })
-      ) : null}
-
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
       {uploadItemsCount > 0 ? (
         <View style={pendingScreenStyles.buttonContainer}>
