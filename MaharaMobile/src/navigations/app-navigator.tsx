@@ -101,9 +101,13 @@ const AppNavigator = (props: Props) => {
       screen: PendingItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: navigatorStrings.PENDING,
-        tabBarIcon: ({tintColor}) => (
-          <NavUploadSVG />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          if (tintColor === styles.colors.tertiary) {
+            return <NavUploadSVG />
+          } else {
+            return <NavUploadActiveSVG />
+          }
+        },
         tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSIBILITY_LABEL
       }
     },
@@ -111,18 +115,26 @@ const AppNavigator = (props: Props) => {
       screen: AddItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: navigatorStrings.ADD,
-        tabBarIcon: ({tintColor}) => (
-          <NavAddSVG />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          if (tintColor === styles.colors.tertiary) {
+            return <NavAddSVG />
+          } else {
+            return <NavAddActiveSVG />
+          }
+        },
         tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESSIBILITY_LABEL
       }
     },
     Menu: {
       screen: MenuTabNavigator,
       navigationOptions: {
-        tabBarIcon: () => (
-          <NavMenuSVG />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          if (tintColor === styles.colors.tertiary) {
+            return <NavMenuSVG />
+          } else {
+            return <NavMenuActiveSVG />
+          }
+        },
         tabBarTestID: 'tabBar',
         tabBarAccessibilityLabel: navigatorStrings.MENU
       }
@@ -132,7 +144,7 @@ const AppNavigator = (props: Props) => {
   const androidTabConfig = createMaterialBottomTabNavigator(tabScreenConfig, {
     initialRouteName: 'Add',
     activeColor: styles.colors.light,
-    inactiveColor: '#3e2465',
+    inactiveColor: styles.colors.tertiary,
     labeled: false,
     barStyle: {
       backgroundColor: styles.colors.light2
