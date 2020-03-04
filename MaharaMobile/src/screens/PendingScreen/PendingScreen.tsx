@@ -11,7 +11,6 @@ import {connect, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
 import {
   DisplayItems,
@@ -46,8 +45,7 @@ import textStyles from '../../assets/styles/text';
 import messages from '../../assets/styles/messages';
 import variables from '../../assets/styles/variables';
 
-// Font Awesome
-
+// Images
 import UploadSVG from '../../assets/images/upload';
 
 type Props = {
@@ -69,12 +67,24 @@ const PendingScreen = (props: Props) => {
     setSuccessfullyUploadedItemsIds
   ] = useState<string[]>([]);
   const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const url = useSelector((state: RootState) => selectUrl(state));
+
+  const renderSuccessMessage = () => {
+    showMessage({
+      message: (
+        <Text style={messages.errorMessage}>
+          <Trans>Added to upload queue successfully!</Trans>
+        </Text>
+      ),
+      type: 'success',
+      backgroundColor: variables.colors.successbg,
+      color: variables.colors.success
+    });
+  };
 
   useEffect(() => {
     if (prevUploadCount < uploadItemsCount && uploadItemsCount !== 0) {
-      setShowSuccessMessage(true);
+      renderSuccessMessage();
     }
   }, [uploadItemsCount]);
 
@@ -118,6 +128,20 @@ const PendingScreen = (props: Props) => {
 
   const onUploadError = (id: string) => {
     setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
+
+    showMessage({
+      message: (
+        <Text style={messages.errorMessage}>
+          <Trans>
+            Unable to upload to your Mahara. Please check your connection and
+            try again.
+          </Trans>
+        </Text>
+      ),
+      type: 'danger',
+      backgroundColor: variables.colors.warnbg,
+      color: variables.colors.warn
+    });
   };
 
   /**
@@ -171,6 +195,17 @@ const PendingScreen = (props: Props) => {
       const newState = successfullyUploadedItemsIds.filter(item => item !== id);
       setSuccessfullyUploadedItemsIds(newState);
     }, 1000);
+
+    showMessage({
+      message: (
+        <Text style={messages.errorMessage}>
+          <Trans>Files have been uploaded to your Mahara successfully!</Trans>
+        </Text>
+      ),
+      type: 'success',
+      backgroundColor: variables.colors.successbg,
+      color: variables.colors.success
+    });
   };
 
   const onUploadClick = () => {
@@ -180,7 +215,7 @@ const PendingScreen = (props: Props) => {
         .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
         .then((result: UploadResponse) => {
           // an error either returns result = undefined, or result = { error: true }
-          if (result === undefined || result.error) {
+          if (result === undefined || result === null || result.error) {
             onUploadError(file.id);
           } else onSuccessfulUpload(file.id);
         });
@@ -193,7 +228,7 @@ const PendingScreen = (props: Props) => {
           uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)
         )
         .then((result: UploadResponse) => {
-          if (result === undefined || result.error) {
+          if (result === undefined || result === null || result.error) {
             onUploadError(journalEntry.id);
           } else onSuccessfulUpload(journalEntry.id);
         });
@@ -202,24 +237,6 @@ const PendingScreen = (props: Props) => {
 
   return (
     <View style={pendingScreenStyles.app}>
-      {showSuccessMessage
-        ? showMessage({
-            message: (
-              <Text style={messages.errorMessage}>
-                <FontAwesomeIcon
-                  icon={faCheckCircle}
-                  size={variables.font.md}
-                  color={variables.colors.success}
-                />
-                <Trans>Added to upload queue successfully!</Trans>
-              </Text>
-            ),
-            type: 'success',
-            backgroundColor: variables.colors.successbg,
-            color: variables.colors.success
-          })
-        : null}
-
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
       {uploadItemsCount > 0 ? (
         <View style={pendingScreenStyles.buttonContainer}>
