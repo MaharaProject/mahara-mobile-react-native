@@ -14,7 +14,7 @@ type Props = {
 
 const CancelButton = (props: Props) => (
   <I18n>
-    {/* TODO Check translation */}
+    {/* FIXME Check translation */}
     {({i18n}) => (
       <TouchableOpacity
         accessibilityRole="button"

@@ -23,6 +23,7 @@ import styles from '../assets/styles/variables';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import EditItemScreen from '../screens/EditItemScreen/EditItemScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
 import LegalScreen from '../screens/LegalScreen/LegalScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
@@ -59,13 +60,7 @@ const AppNavigator = (props: Props) => {
         headerTitle: navigatorStrings.ADD
       }
     },
-    AddItem: AddItemScreen,
-    About: {
-      screen: AboutScreen,
-      navigationOptions: {
-        headerTitle: navigatorStrings.ABOUT
-      }
-    }
+    AddItem: AddItemScreen
   });
 
   const PendingItemsTabNavigator = createStackNavigator({
@@ -74,6 +69,9 @@ const AppNavigator = (props: Props) => {
       navigationOptions: {
         headerTitle: navigatorStrings.PENDING
       }
+    },
+    EditItem: {
+      screen: EditItemScreen
     }
   });
 

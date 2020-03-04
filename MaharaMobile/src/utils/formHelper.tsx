@@ -2,8 +2,8 @@ import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text} from 'react-native';
-import styles from '../assets/styles/variables';
 import headingStyles from '../assets/styles/headings';
+import styles from '../assets/styles/variables';
 import {UserBlog, UserFolder} from '../models/models';
 import {FILE, JOURNAL_ENTRY, PHOTO} from './constants';
 

@@ -1,7 +1,7 @@
 import {I18n, i18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {
@@ -21,6 +21,7 @@ import UploadForm from '../../components/UploadForm/UploadForm';
 import {
   MaharaFile,
   MaharaPendingFile,
+  PendingJournalEntry,
   UserBlog,
   UserFolder,
   UserTag
@@ -45,6 +46,7 @@ import {
   takePhoto
 } from '../../utils/addEditHelperFunctions';
 import {AUDIO, FILE, PHOTO} from '../../utils/constants';
+import {isMaharaPendingFile} from '../../utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -64,22 +66,38 @@ type Props = {
   defaultBlogId: number;
 };
 
-const AddItemScreen = (props: Props) => {
-  const initialPickedFileState: MaharaFile = {
+const EditItemScreen = (props: Props) => {
+  let editingFile: MaharaFile = {
     name: '',
     size: 0,
     type: '',
     uri: ''
   };
+
+  // Populate Uploadform with existing details and set 'type' so headerTitle is accurate
+  const itemToEdit:
+    | MaharaPendingFile
+    | PendingJournalEntry = props.navigation.getParam('itemToEdit');
+  if (itemToEdit) {
+    if (isMaharaPendingFile(itemToEdit)) {
+      const maharaPendingFile: MaharaPendingFile = itemToEdit;
+      editingFile = maharaPendingFile.maharaFormData.filetoupload;
+    }
+  }
+
   // State
   const formType = props.navigation.getParam('formType');
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(
-    initialPickedFileState
-  );
+  const [pickedFile, setPickedFile] = useState<MaharaFile>(editingFile);
 
   const [filePickerButtonText, setFilePickerButtonText] = useState(
-    props.i18n._(t`Select a file`)
+    props.navigation.getParam('itemToEdit')
+      ? props.i18n._(t`Select a different file`)
+      : props.i18n._(t`Select a file`)
   );
+
+  useEffect(() => {
+    setPickedFile(editingFile);
+  }, []);
 
   return (
     <ScrollView>
@@ -91,7 +109,10 @@ const AddItemScreen = (props: Props) => {
           <View>
             <OutlineButton
               title={t`${filePickerButtonText}`}
-              onPress={() => pickDocument(i18n, setPickedFile)}
+              onPress={() => {
+                pickDocument(i18n, setPickedFile);
+                setFilePickerButtonText(props.i18n._(t`Select different file`));
+              }}
               style={null}
             />
           </View>
@@ -121,7 +142,7 @@ const AddItemScreen = (props: Props) => {
             formType={formType}
             token={props.token}
             url={props.url}
-            editItem={null}
+            editItem={itemToEdit}
             navigation={props.navigation}
             defaultFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
@@ -132,8 +153,8 @@ const AddItemScreen = (props: Props) => {
   );
 };
 
-AddItemScreen.navigationOptions = ({navigation}) => ({
-  headerTitle: `Add ${navigation.getParam('formType')}`,
+EditItemScreen.navigationOptions = ({navigation}) => ({
+  headerTitle: `Editing ${navigation.getParam('formType')}`,
   headerLeft: <CustomVerifyBackButton navigation={navigation} />
 });
 
@@ -149,4 +170,4 @@ const mapStateToProps = (state: RootState) => ({
   defaultBlogId: selectDefaultBlogId(state)
 });
 
-export default connect(mapStateToProps)(withI18n()(AddItemScreen));
+export default connect(mapStateToProps)(withI18n()(EditItemScreen));
