@@ -23,7 +23,8 @@ export default StyleSheet.create({
     backgroundColor: styles.colors.light
   },
   noPending: {
-    marginTop: styles.padding.lg
+    justifyContent: 'center',
+    height: '100%'
   },
   noPendingText: {
     textAlign: 'center',

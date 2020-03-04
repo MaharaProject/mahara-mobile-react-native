@@ -169,6 +169,17 @@ const PendingScreen = (props: Props) => {
       const newState = successfullyUploadedItemsIds.filter(item => item !== id);
       setSuccessfullyUploadedItemsIds(newState);
     }, 1000);
+
+    showMessage({
+      message: (
+        <Text style={messages.errorMessage}>
+          <Trans>Files have been uploaded to your Mahara successfully!</Trans>
+        </Text>
+      ),
+      type: 'success',
+      backgroundColor: variables.colors.successbg,
+      color: variables.colors.success
+    })
   };
 
   const onUploadClick = () => {

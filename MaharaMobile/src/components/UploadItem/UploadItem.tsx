@@ -92,7 +92,6 @@ const UploadItem = (props: Props) => {
     <TouchableOpacity accessibilityLabel={`${props.index + 1}: ${displayName}`}>
       <View style={uploadItemStyles.uploadItem}>
         <Card style={{...uploadItemStyles.pendingCard}}>
-          {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
           {props.showUploadError && (
             <View>
               <Text>
