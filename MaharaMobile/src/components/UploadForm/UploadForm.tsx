@@ -459,7 +459,8 @@ const UploadForm = (props: Props) => {
             <Trans>
               <Text
                 style={{
-                  ...buttons.lg,
+                  ...buttons.md,
+                  ...uploadFormStyles.queueButton,
                   backgroundColor: validButton
                     ? buttons.lg.backgroundColor
                     : styles.colors.darkgrey
@@ -474,15 +475,13 @@ const UploadForm = (props: Props) => {
           {!props.editItem && (
             <Text
               style={{
-                ...buttons.lg,
+                ...buttons.md,
+                ...uploadFormStyles.queueButton,
                 backgroundColor: validButton
                   ? buttons.lg.backgroundColor
                   : styles.colors.darkgrey
               }}>
-              <FontAwesome5Icon name="clock" size={20}>
-                {' '}
                 <Trans>Queue to upload</Trans>
-              </FontAwesome5Icon>
             </Text>
           )}
         </TouchableOpacity>
