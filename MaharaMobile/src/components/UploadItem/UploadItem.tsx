@@ -2,11 +2,21 @@ import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
-import {Button, Image, ImageSourcePropType, Text, View} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  ImageSourcePropType,
+  TouchableOpacity
+} from 'react-native';
+
 import {Icon} from 'react-native-elements';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import styles from '../../assets/styles/variables';
+import {faTrashAlt, faEdit} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+
 import Card from '../UI/Card/Card';
+
+import styles from '../../assets/styles/variables';
 import uploadItemStyles from './UploadItem.style';
 
 type Props = {
@@ -24,11 +34,8 @@ type Props = {
 
 const UploadItem = (props: Props) => {
   const title = props.title ? props.title : '';
-  const description = props.description ? props.description : '';
   const displayName: string =
     title.length > 25 ? `${title.substring(0, 20)}...` : title;
-  const displayDesc: string =
-    description.length > 20 ? `${description.substring(0.2)}...` : description;
   const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
 
   const getMimetypeIcon = (mimetype: string) => {
@@ -64,10 +71,8 @@ const UploadItem = (props: Props) => {
             name={getMimetypeIcon(props.mimetype)}
             size={30}
             type="font-awesome"
-            color={styles.colors.primary}
-            raised
-            reverse
-            reverseColor={styles.colors.secondary}
+            color={styles.colors.light}
+            containerStyle={uploadItemStyles.icon}
           />
         </View>
       );
@@ -104,28 +109,32 @@ const UploadItem = (props: Props) => {
           )}
           <Thumbnail />
           <View style={uploadItemStyles.textContainer}>
-            <Text>{displayName} </Text>
-            <Text>{displayDesc}</Text>
+            <Text style={uploadItemStyles.text}>{displayName} </Text>
           </View>
           <View style={uploadItemStyles.buttonContainer}>
             <View style={uploadItemStyles.button}>
-              <Button
-                title="Remove"
-                onPress={props.onRemove}
-                color={styles.colors.primary}
-                // iOS styles
-                // backgroundColor={styles.colors.primary}
-              />
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel="Remove"
+                onPress={props.onRemove}>
+                <FontAwesomeIcon
+                  icon={faTrashAlt}
+                  style={uploadItemStyles.remove}
+                  size={25}
+                />
+              </TouchableOpacity>
             </View>
-
             <View style={uploadItemStyles.button}>
-              <Button
-                title="Edit"
-                onPress={props.onEdit}
-                color={styles.colors.secondary}
-                // iOS styles
-                // backgroundColor={styles.colors.secondary}
-              />
+              <TouchableOpacity
+                accessibilityRole="button"
+                accessibilityLabel="Edit"
+                onPress={props.onEdit}>
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  style={uploadItemStyles.edit}
+                  size={25}
+                />
+              </TouchableOpacity>
             </View>
           </View>
         </Card>

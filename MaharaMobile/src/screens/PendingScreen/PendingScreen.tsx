@@ -2,7 +2,6 @@ import {i18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import React, {useEffect, useState} from 'react';
 import {Alert, Text, View} from 'react-native';
-import {Icon} from 'react-native-elements';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -10,11 +9,10 @@ import {
 } from 'react-navigation';
 import {connect, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
+import FlashMessage, {showMessage} from 'react-native-flash-message';
+import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
-import styles from '../../assets/styles/variables';
-import PendingList from '../../components/PendingList/PendingList';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import SubHeading from '../../components/UI/SubHeading/SubHeading';
 import {
   DisplayItems,
   MaharaPendingFile,
@@ -37,7 +35,20 @@ import {
   uploadItemToMahara,
   usePreviousProps
 } from '../../utils/helperFunctions';
+
+// components
+import PendingList from '../../components/PendingList/PendingList';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+
+// Styles
 import pendingScreenStyles from './PendingScreen.style';
+import textStyles from '../../assets/styles/text';
+import messages from '../../assets/styles/messages';
+import variables from '../../assets/styles/variables';
+
+// Font Awesome
+
+import UploadSVG from '../../assets/images/upload';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -138,7 +149,14 @@ const PendingScreen = (props: Props) => {
     if (uploadItemsCount > 0) {
       return <View>{renderPendingList(list)}</View>;
     }
-    return <Text>Your upload queue is empty.</Text>;
+    return (
+      <View style={pendingScreenStyles.noPending}>
+        <UploadSVG />
+        <Text style={pendingScreenStyles.noPendingText}>
+          <Trans>Your upload queue is empty</Trans>
+        </Text>
+      </View>
+    );
   };
 
   const onSuccessfulUpload = (id: string) => {
@@ -184,52 +202,62 @@ const PendingScreen = (props: Props) => {
 
   return (
     <View style={pendingScreenStyles.app}>
-      {showSuccessMessage && (
-        <View>
-          <Text>
-            <Trans>Your file was added to the upload queue.</Trans>
-          </Text>
-          <Icon
-            onPress={() => setShowSuccessMessage(false)}
-            accessibilityLabel={i18n._(t`Close success message`)}
-            name="times"
-            type="font-awesome"
-            color={styles.colors.dark}
-          />
-        </View>
-      )}
+      {showSuccessMessage
+        ? showMessage({
+            message: (
+              <Text style={messages.errorMessage}>
+                <FontAwesomeIcon
+                  icon={faCheckCircle}
+                  size={variables.font.md}
+                  color={variables.colors.success}
+                />
+                <Trans>Added to upload queue successfully!</Trans>
+              </Text>
+            ),
+            type: 'success',
+            backgroundColor: variables.colors.successbg,
+            color: variables.colors.success
+          })
+        : null}
+
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
-      <View style={pendingScreenStyles.buttonContainer}>
-        {props.userName !== GUEST_USERNAME ? (
-          <View>
-            <SubHeading style={styles.padding.md}>{`URL: ${url}`}</SubHeading>
+      {uploadItemsCount > 0 ? (
+        <View style={pendingScreenStyles.buttonContainer}>
+          {props.userName !== GUEST_USERNAME ? (
+            <View>
+              <Text style={[pendingScreenStyles.urlText, textStyles.center]}>
+                {`Your site: ${url}`}
+              </Text>
+              <MediumButton
+                title={t`Upload to your site`}
+                onPress={onUploadClick}
+              />
+            </View>
+          ) : (
             <MediumButton
-              title={t`Upload to your site`}
-              onPress={onUploadClick}
+              title={t`Please login`}
+              accessibilityHint={t`To upload pending items`}
+              onPress={() => props.navigation.navigate('Auth')}
             />
-          </View>
-        ) : (
-          <MediumButton
-            title={t`Log in to upload`}
-            accessibilityHint={t`To upload queued items`}
-            onPress={() => props.navigation.navigate('Auth')}
-          />
-        )}
-      </View>
+          )}
+        </View>
+      ) : null}
+
+      <FlashMessage position="top" />
     </View>
   );
 };
 
 PendingScreen.navigationOptions = () => ({
   headerStyle: {
-    backgroundColor: styles.colors.primary
+    backgroundColor: variables.colors.primary
   },
   headerTitleStyle: {
     fontWeight: 'bold',
     flex: 1,
     textAlign: 'center'
   },
-  headerTintColor: styles.colors.light
+  headerTintColor: variables.colors.light
 });
 
 const mapStateToProps = (state: RootState) => ({

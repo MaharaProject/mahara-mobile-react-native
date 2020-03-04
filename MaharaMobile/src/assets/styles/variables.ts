@@ -13,6 +13,7 @@ const styles = {
     dark: '#000',
     dark2: '#2e3a1c',
     lightgrey: '#efefef',
+    midgrey: '#919191',
     darkgrey: '#777',
     warnbg: '#e8c4c4',
     warn: '#aa0500',
@@ -21,7 +22,9 @@ const styles = {
     purple: '#622c46',
     lightbrown: '#763b36',
     darkbrown: '#423017',
-    red: '#76302e'
+    red: '#76302e',
+    successbg: '#cedeb7',
+    success: '#3c4c23'
   },
   padding: {
     xs: 5,
