@@ -34,6 +34,13 @@ import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 import VersionScreen from '../screens/VersionScreen/VersionScreen';
 
+import NavUploadSVG from '../assets/images/nav-upload';
+import NavUploadActiveSVG from '../assets/images/nav-upload-active';
+import NavAddSVG from '../assets/images/nav-add';
+import NavAddActiveSVG from '../assets/images/nav-add-active';
+import NavMenuSVG from '../assets/images/nav-menu';
+import NavMenuActiveSVG from '../assets/images/nav-menu-active';
+
 type Props = {
   i18n: I18n;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -95,7 +102,7 @@ const AppNavigator = (props: Props) => {
       navigationOptions: {
         tabBarLabel: navigatorStrings.PENDING,
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon icon={faHistory} color={tintColor} />
+          <NavUploadSVG />
         ),
         tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSIBILITY_LABEL
       }
@@ -105,7 +112,7 @@ const AppNavigator = (props: Props) => {
       navigationOptions: {
         tabBarLabel: navigatorStrings.ADD,
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon icon={faPlusCircle} color={tintColor} />
+          <NavAddSVG />
         ),
         tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESSIBILITY_LABEL
       }
@@ -114,7 +121,7 @@ const AppNavigator = (props: Props) => {
       screen: MenuTabNavigator,
       navigationOptions: {
         tabBarIcon: () => (
-          <FontAwesomeIcon icon={faBars} color={styles.colors.light} />
+          <NavMenuSVG />
         ),
         tabBarTestID: 'tabBar',
         tabBarAccessibilityLabel: navigatorStrings.MENU
