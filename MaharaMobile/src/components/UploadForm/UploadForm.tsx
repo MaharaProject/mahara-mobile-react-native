@@ -481,7 +481,7 @@ const UploadForm = (props: Props) => {
                   ? buttons.lg.backgroundColor
                   : styles.colors.darkgrey
               }}>
-                <Trans>Queue to upload</Trans>
+              <Trans>Queue to upload</Trans>
             </Text>
           )}
         </TouchableOpacity>

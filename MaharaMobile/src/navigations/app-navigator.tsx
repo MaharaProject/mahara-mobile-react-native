@@ -1,9 +1,3 @@
-import {
-  faBars,
-  faHistory,
-  faPlusCircle
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
@@ -103,10 +97,9 @@ const AppNavigator = (props: Props) => {
         tabBarLabel: navigatorStrings.PENDING,
         tabBarIcon: ({tintColor}) => {
           if (tintColor === styles.colors.tertiary) {
-            return <NavUploadSVG />
-          } else {
-            return <NavUploadActiveSVG />
+            return <NavUploadSVG />;
           }
+          return <NavUploadActiveSVG />;
         },
         tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSIBILITY_LABEL
       }
@@ -117,10 +110,9 @@ const AppNavigator = (props: Props) => {
         tabBarLabel: navigatorStrings.ADD,
         tabBarIcon: ({tintColor}) => {
           if (tintColor === styles.colors.tertiary) {
-            return <NavAddSVG />
-          } else {
-            return <NavAddActiveSVG />
+            return <NavAddSVG />;
           }
+          return <NavAddActiveSVG />;
         },
         tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESSIBILITY_LABEL
       }
@@ -130,10 +122,9 @@ const AppNavigator = (props: Props) => {
       navigationOptions: {
         tabBarIcon: ({tintColor}) => {
           if (tintColor === styles.colors.tertiary) {
-            return <NavMenuSVG />
-          } else {
-            return <NavMenuActiveSVG />
+            return <NavMenuSVG />;
           }
+          return <NavMenuActiveSVG />;
         },
         tabBarTestID: 'tabBar',
         tabBarAccessibilityLabel: navigatorStrings.MENU
