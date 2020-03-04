@@ -70,18 +70,17 @@ const PendingScreen = (props: Props) => {
   const url = useSelector((state: RootState) => selectUrl(state));
 
   const renderSuccessMessage = () => {
-      showMessage({
-        message: (
-          <Text style={messages.errorMessage}>
-            <Trans>Added to upload queue successfully!</Trans>
-          </Text>
-        ),
-        type: 'success',
-        backgroundColor: variables.colors.successbg,
-        color: variables.colors.success
-      });
-    };
-
+    showMessage({
+      message: (
+        <Text style={messages.errorMessage}>
+          <Trans>Added to upload queue successfully!</Trans>
+        </Text>
+      ),
+      type: 'success',
+      backgroundColor: variables.colors.successbg,
+      color: variables.colors.success
+    });
+  };
 
   useEffect(() => {
     if (prevUploadCount < uploadItemsCount && uploadItemsCount !== 0) {
@@ -133,13 +132,16 @@ const PendingScreen = (props: Props) => {
     showMessage({
       message: (
         <Text style={messages.errorMessage}>
-          <Trans>Unable to upload to your Mahara. Please check your connection and try again.</Trans>
+          <Trans>
+            Unable to upload to your Mahara. Please check your connection and
+            try again.
+          </Trans>
         </Text>
       ),
       type: 'danger',
       backgroundColor: variables.colors.warnbg,
       color: variables.colors.warn
-    })
+    });
   };
 
   /**
@@ -203,7 +205,7 @@ const PendingScreen = (props: Props) => {
       type: 'success',
       backgroundColor: variables.colors.successbg,
       color: variables.colors.success
-    })
+    });
   };
 
   const onUploadClick = () => {
@@ -214,7 +216,6 @@ const PendingScreen = (props: Props) => {
         .then((result: UploadResponse) => {
           // an error either returns result = undefined, or result = { error: true }
           if (result === undefined || result === null || result.error) {
-
             onUploadError(file.id);
           } else onSuccessfulUpload(file.id);
         });
