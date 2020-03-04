@@ -11,7 +11,6 @@ import {connect, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
 import {
   DisplayItems,
@@ -46,8 +45,7 @@ import textStyles from '../../assets/styles/text';
 import messages from '../../assets/styles/messages';
 import variables from '../../assets/styles/variables';
 
-// Font Awesome
-
+// Images
 import UploadSVG from '../../assets/images/upload';
 
 type Props = {
@@ -202,23 +200,19 @@ const PendingScreen = (props: Props) => {
 
   return (
     <View style={pendingScreenStyles.app}>
-      {showSuccessMessage
-        ? showMessage({
-            message: (
-              <Text style={messages.errorMessage}>
-                <FontAwesomeIcon
-                  icon={faCheckCircle}
-                  size={variables.font.md}
-                  color={variables.colors.success}
-                />
-                <Trans>Added to upload queue successfully!</Trans>
-              </Text>
-            ),
-            type: 'success',
-            backgroundColor: variables.colors.successbg,
-            color: variables.colors.success
-          })
-        : null}
+
+      {uploadItemsCount > prevUploadCount ? (
+        showMessage({
+          message: (
+            <Text style={messages.errorMessage}>
+              <Trans>Added to upload queue successfully!</Trans>
+            </Text>
+          ),
+          type: 'success',
+          backgroundColor: variables.colors.successbg,
+          color: variables.colors.success
+        })
+      ) : null}
 
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
       {uploadItemsCount > 0 ? (
