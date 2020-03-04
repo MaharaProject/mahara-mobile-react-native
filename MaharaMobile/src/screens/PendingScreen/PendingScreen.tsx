@@ -116,6 +116,17 @@ const PendingScreen = (props: Props) => {
 
   const onUploadError = (id: string) => {
     setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
+
+    showMessage({
+      message: (
+        <Text style={messages.errorMessage}>
+          <Trans>Unable to upload to your Mahara. Please check your connection and try again.</Trans>
+        </Text>
+      ),
+      type: 'danger',
+      backgroundColor: variables.colors.warnbg,
+      color: variables.colors.warn
+    })
   };
 
   /**
@@ -189,7 +200,8 @@ const PendingScreen = (props: Props) => {
         .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
         .then((result: UploadResponse) => {
           // an error either returns result = undefined, or result = { error: true }
-          if (result === undefined || result.error) {
+          if (result === undefined || result === null || result.error) {
+
             onUploadError(file.id);
           } else onSuccessfulUpload(file.id);
         });
@@ -202,7 +214,7 @@ const PendingScreen = (props: Props) => {
           uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)
         )
         .then((result: UploadResponse) => {
-          if (result === undefined || result.error) {
+          if (result === undefined || result === null || result.error) {
             onUploadError(journalEntry.id);
           } else onSuccessfulUpload(journalEntry.id);
         });

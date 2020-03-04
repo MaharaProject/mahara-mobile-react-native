@@ -89,56 +89,40 @@ const UploadItem = (props: Props) => {
   };
 
   return (
-    <TouchableOpacity accessibilityLabel={`${props.index + 1}: ${displayName}`}>
-      <View style={uploadItemStyles.uploadItem}>
-        <Card style={{...uploadItemStyles.pendingCard}}>
-          {props.showUploadError && (
-            <View>
-              <Text>
-                There was an error uploading this file. Please try again.
-              </Text>
-              <Icon
-                onPress={props.onClearError}
-                accessibilityLabel={i18n._(t`Close error message`)}
-                name="times"
-                type="font-awesome"
-                color={styles.colors.dark}
+    <View style={uploadItemStyles.uploadItem}>
+      <Card style={{...uploadItemStyles.pendingCard}}>
+        <Thumbnail />
+        <View style={uploadItemStyles.textContainer}>
+          <Text style={uploadItemStyles.text}>{displayName} </Text>
+        </View>
+        <View style={uploadItemStyles.buttonContainer}>
+          <View style={uploadItemStyles.button}>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Remove"
+              onPress={props.onRemove}>
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+                style={uploadItemStyles.remove}
+                size={25}
               />
-            </View>
-          )}
-          <Thumbnail />
-          <View style={uploadItemStyles.textContainer}>
-            <Text style={uploadItemStyles.text}>{displayName} </Text>
+            </TouchableOpacity>
           </View>
-          <View style={uploadItemStyles.buttonContainer}>
-            <View style={uploadItemStyles.button}>
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityLabel="Remove"
-                onPress={props.onRemove}>
-                <FontAwesomeIcon
-                  icon={faTrashAlt}
-                  style={uploadItemStyles.remove}
-                  size={25}
-                />
-              </TouchableOpacity>
-            </View>
-            <View style={uploadItemStyles.button}>
-              <TouchableOpacity
-                accessibilityRole="button"
-                accessibilityLabel="Edit"
-                onPress={props.onEdit}>
-                <FontAwesomeIcon
-                  icon={faEdit}
-                  style={uploadItemStyles.edit}
-                  size={25}
-                />
-              </TouchableOpacity>
-            </View>
+          <View style={uploadItemStyles.button}>
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Edit"
+              onPress={props.onEdit}>
+              <FontAwesomeIcon
+                icon={faEdit}
+                style={uploadItemStyles.edit}
+                size={25}
+              />
+            </TouchableOpacity>
           </View>
-        </Card>
-      </View>
-    </TouchableOpacity>
+        </View>
+      </Card>
+    </View>
   );
 };
 
