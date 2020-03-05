@@ -1,9 +1,3 @@
-import {
-  faBars,
-  faHistory,
-  faPlusCircle
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
@@ -33,6 +27,13 @@ import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 import VersionScreen from '../screens/VersionScreen/VersionScreen';
+
+import NavUploadSVG from '../assets/images/nav-upload';
+import NavUploadActiveSVG from '../assets/images/nav-upload-active';
+import NavAddSVG from '../assets/images/nav-add';
+import NavAddActiveSVG from '../assets/images/nav-add-active';
+import NavMenuSVG from '../assets/images/nav-menu';
+import NavMenuActiveSVG from '../assets/images/nav-menu-active';
 
 type Props = {
   i18n: I18n;
@@ -94,9 +95,12 @@ const AppNavigator = (props: Props) => {
       screen: PendingItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: navigatorStrings.PENDING,
-        tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon icon={faHistory} color={tintColor} />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          if (tintColor === styles.colors.tertiary) {
+            return <NavUploadSVG />;
+          }
+          return <NavUploadActiveSVG />;
+        },
         tabBarAccessibilityLabel: navigatorStrings.PENDING_ACCESSIBILITY_LABEL
       }
     },
@@ -104,18 +108,24 @@ const AppNavigator = (props: Props) => {
       screen: AddItemsTabNavigator,
       navigationOptions: {
         tabBarLabel: navigatorStrings.ADD,
-        tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon icon={faPlusCircle} color={tintColor} />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          if (tintColor === styles.colors.tertiary) {
+            return <NavAddSVG />;
+          }
+          return <NavAddActiveSVG />;
+        },
         tabBarAccessibilityLabel: navigatorStrings.ADD_ACCESSIBILITY_LABEL
       }
     },
     Menu: {
       screen: MenuTabNavigator,
       navigationOptions: {
-        tabBarIcon: () => (
-          <FontAwesomeIcon icon={faBars} color={styles.colors.light} />
-        ),
+        tabBarIcon: ({tintColor}) => {
+          if (tintColor === styles.colors.tertiary) {
+            return <NavMenuSVG />;
+          }
+          return <NavMenuActiveSVG />;
+        },
         tabBarTestID: 'tabBar',
         tabBarAccessibilityLabel: navigatorStrings.MENU
       }
@@ -125,7 +135,7 @@ const AppNavigator = (props: Props) => {
   const androidTabConfig = createMaterialBottomTabNavigator(tabScreenConfig, {
     initialRouteName: 'Add',
     activeColor: styles.colors.light,
-    inactiveColor: '#3e2465',
+    inactiveColor: styles.colors.tertiary,
     labeled: false,
     barStyle: {
       backgroundColor: styles.colors.light2

@@ -37,6 +37,10 @@ const uploadFormStyes = StyleSheet.create({
   },
   description: {
     height: 300
+  },
+  queueButton: {
+    marginBottom: styles.padding.sm,
+    fontWeight: 'bold'
   }
 });
 
