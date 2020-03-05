@@ -10,7 +10,6 @@ import {
 import {connect, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
-import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
 import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
 import {
   DisplayItems,
@@ -71,12 +70,13 @@ const PendingScreen = (props: Props) => {
 
   const renderSuccessMessage = () => {
     showMessage({
-      message: (
-        <Text style={messages.errorMessage}>
-          <Trans>Added to upload queue successfully!</Trans>
-        </Text>
-      ),
+      message: <Trans>Added to upload queue successfully!</Trans>,
+      icon: {
+        icon: 'auto',
+        position: 'left'
+      },
       type: 'success',
+      titleStyle: messages.errorMessage,
       backgroundColor: variables.colors.successbg,
       color: variables.colors.success
     });
@@ -131,14 +131,17 @@ const PendingScreen = (props: Props) => {
 
     showMessage({
       message: (
-        <Text style={messages.errorMessage}>
-          <Trans>
-            Unable to upload to your Mahara. Please check your connection and
-            try again.
-          </Trans>
-        </Text>
+        <Trans>
+          Unable to upload to your Mahara. Please check your connection and try
+          again.
+        </Trans>
       ),
-      type: 'danger',
+      icon: {
+        icon: 'auto',
+        position: 'left'
+      },
+      type: 'warning',
+      titleStyle: messages.errorMessage,
       backgroundColor: variables.colors.warnbg,
       color: variables.colors.warn
     });
@@ -198,11 +201,14 @@ const PendingScreen = (props: Props) => {
 
     showMessage({
       message: (
-        <Text style={messages.errorMessage}>
-          <Trans>Files have been uploaded to your Mahara successfully!</Trans>
-        </Text>
+        <Trans>Files have been uploaded to your Mahara successfully!</Trans>
       ),
+      icon: {
+        icon: 'auto',
+        position: 'left'
+      },
       type: 'success',
+      titleStyle: messages.errorMessage,
       backgroundColor: variables.colors.successbg,
       color: variables.colors.success
     });
