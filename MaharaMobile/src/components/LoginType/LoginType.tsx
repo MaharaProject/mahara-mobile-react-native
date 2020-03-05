@@ -89,17 +89,13 @@ const LoginType = (props: Props) => {
 
           {props.errorMessage
             ? showMessage({
-                message: (
-                  <Text style={messages.errorMessage}>
-                    <FontAwesomeIcon
-                      icon={faExclamationTriangle}
-                      size={variables.font.md}
-                      color={variables.colors.warn}
-                    />
-                    {props.errorMessage}
-                  </Text>
-                ),
-                type: 'danger',
+                message: props.errorMessage,
+                icon: {
+                  icon: 'auto',
+                  position: 'left'
+                },
+                type: 'warning',
+                titleStyle: messages.errorMessage,
                 backgroundColor: variables.colors.warnbg,
                 color: variables.colors.warn
               })
