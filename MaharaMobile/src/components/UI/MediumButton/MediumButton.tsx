@@ -1,7 +1,7 @@
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
-import {faSignInAlt} from '@fortawesome/free-solid-svg-icons';
+import {faSignInAlt, faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import buttons from '../../../assets/styles/buttons';
 import {MessageDescriptor} from '../../../models/models';
@@ -27,6 +27,9 @@ const MediumButton = (props: Props) => (
         <Text style={[buttons.md, mdButtonStyles.buttons]}>
           {props.icon === 'faSignInAlt' ? (
             <FontAwesomeIcon icon={faSignInAlt} style={mdButtonStyles.icon} />
+          ) : null}
+          {props.icon === 'faCloudUploadAlt' ? (
+            <FontAwesomeIcon icon={faCloudUploadAlt} style={mdButtonStyles.icon} />
           ) : null}
           &nbsp; {i18n._(props.title)}
         </Text>
