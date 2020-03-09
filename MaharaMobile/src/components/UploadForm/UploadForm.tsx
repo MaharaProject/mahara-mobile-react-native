@@ -3,7 +3,6 @@ import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useEffect, useState} from 'react';
 import {Picker, Text, TouchableOpacity, View} from 'react-native';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -39,7 +38,7 @@ import {
 } from '../../models/typeCreators';
 import {RootState} from '../../reducers/rootReducer';
 import {selectItemTagsStrings} from '../../reducers/userTagsReducer';
-import {FILE, JOURNAL_ENTRY} from '../../utils/constants';
+import {JOURNAL_ENTRY} from '../../utils/constants';
 import {
   isValidText,
   putDefaultAtTop,
@@ -312,7 +311,7 @@ const UploadForm = (props: Props) => {
       )}
       <SubHeading required={formType === JOURNAL_ENTRY}>
         {formType === JOURNAL_ENTRY && <Trans>Title</Trans>}
-        {formType === FILE && <Trans>Name</Trans>}
+        {formType !== JOURNAL_ENTRY && <Trans>Name</Trans>}
       </SubHeading>
       {showInvalidTitleMessage && <RequiredWarningText />}
       <FormInput
@@ -323,7 +322,7 @@ const UploadForm = (props: Props) => {
       />
       <SubHeading required={formType === JOURNAL_ENTRY}>
         {formType === JOURNAL_ENTRY && <Trans>Entry</Trans>}
-        {formType === FILE && <Trans>Description</Trans>}
+        {formType !== JOURNAL_ENTRY && <Trans>Description</Trans>}
       </SubHeading>
       {showInvalidDescMessage && <RequiredWarningText />}
       <FormInput
