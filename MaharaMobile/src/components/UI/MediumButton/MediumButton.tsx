@@ -29,7 +29,10 @@ const MediumButton = (props: Props) => (
             <FontAwesomeIcon icon={faSignInAlt} style={mdButtonStyles.icon} />
           ) : null}
           {props.icon === 'faCloudUploadAlt' ? (
-            <FontAwesomeIcon icon={faCloudUploadAlt} style={mdButtonStyles.icon} />
+            <FontAwesomeIcon
+              icon={faCloudUploadAlt}
+              style={mdButtonStyles.icon}
+            />
           ) : null}
           &nbsp; {i18n._(props.title)}
         </Text>
