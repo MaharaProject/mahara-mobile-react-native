@@ -9,12 +9,22 @@ export default StyleSheet.create({
     marginBottom: styles.padding.md,
     marginRight: styles.padding.sm,
     borderRadius: 25,
+    height: 50,
+    minWidth: 50,
+    textAlignVertical: 'center',
+    fontSize: styles.font.md,
     backgroundColor: styles.colors.light,
     borderColor: styles.colors.tertiary,
     borderWidth: 2
   },
   playbackButtonWrapper: {
     flexDirection: 'row'
+  },
+  buttonWrapper: {
+    flexDirection: 'row'
+  },
+  recordButton: {
+    flex: 1
   },
   warning: {
     color: styles.colors.warn,
