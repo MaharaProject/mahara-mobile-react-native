@@ -23,8 +23,8 @@ type Props = {
 };
 
 export default function TokenInput(props: Props) {
-  const [token, setToken] = useState('');    
-   
+  const [token, setToken] = useState('');
+
   return (
     <View style={styles.view}>
       <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
@@ -40,7 +40,7 @@ export default function TokenInput(props: Props) {
             onChangeText={(input) => setToken(input.trim())
             }
           />
-          <MediumButton title={t`Verify token`} onPress={() => props.onUpdateToken(token)} />
+          <MediumButton title={t`Verify token`} icon="faSignInAlt" onPress={() => props.onUpdateToken(token)} />
         </View>
       </LinearGradient>
     </View>

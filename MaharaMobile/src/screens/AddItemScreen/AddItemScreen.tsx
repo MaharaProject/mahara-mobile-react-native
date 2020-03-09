@@ -93,6 +93,7 @@ const AddItemScreen = (props: Props) => {
               title={t`${filePickerButtonText}`}
               onPress={() => pickDocument(i18n, setPickedFile)}
               style={null}
+              icon="faFolderOpen"
             />
           </View>
         )}
@@ -100,7 +101,7 @@ const AddItemScreen = (props: Props) => {
           <TouchableOpacity
             onPress={() => takePhoto(i18n, setPickedFile)}
             accessibilityRole="button">
-            <Text style={[buttons.lg, outlineButtonStyles.buttons]}>
+            <Text style={[buttons.md, outlineButtonStyles.buttons]}>
               <FontAwesome5 name="camera" size={20} />
               &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
               {pickedFile.uri && <Trans>Re-take photo</Trans>}

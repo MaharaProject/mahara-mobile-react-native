@@ -481,7 +481,10 @@ const UploadForm = (props: Props) => {
                   ? buttons.lg.backgroundColor
                   : styles.colors.darkgrey
               }}>
-              <Trans>Queue to upload</Trans>
+              <FontAwesome5Icon name="clock" size={20}>
+                {' '}
+                <Trans>Queue to upload</Trans>
+              </FontAwesome5Icon>
             </Text>
           )}
         </TouchableOpacity>

@@ -1,7 +1,14 @@
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableOpacity, ViewProps} from 'react-native';
+import {
+  faFolderOpen,
+  faMicrophone,
+  faStopCircle
+} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import buttons from '../../../assets/styles/buttons';
+import styles from '../../../assets/styles/variables';
 import {MessageDescriptor} from '../../../models/models';
 import outlineButtonStyles from './OutlineButton.style';
 
@@ -10,6 +17,7 @@ type Props = {
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
   style: ViewProps;
+  icon?: string;
 };
 
 const OutlineButton = (props: Props) => (
@@ -26,7 +34,29 @@ const OutlineButton = (props: Props) => (
             ...outlineButtonStyles.buttons,
             ...props.style
           }}>
-          {i18n._(props.title)}
+          {props.icon === 'faFolderOpen' ? (
+            <FontAwesomeIcon
+              icon={faFolderOpen}
+              size={20}
+              style={outlineButtonStyles.icon}
+            />
+          ) : null}
+          {props.icon === 'faMicrophone' ? (
+            <FontAwesomeIcon
+              icon={faMicrophone}
+              size={20}
+              style={outlineButtonStyles.icon}
+            />
+          ) : null}
+          {props.icon === 'faStopCircle' ? (
+            <FontAwesomeIcon
+              icon={faStopCircle}
+              size={20}
+              color={styles.colors.light}
+              style={outlineButtonStyles.icon}
+            />
+          ) : null}
+          &nbsp; {i18n._(props.title)}
         </Text>
       </TouchableOpacity>
     )}
