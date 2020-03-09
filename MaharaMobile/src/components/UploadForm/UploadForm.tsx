@@ -493,6 +493,7 @@ const UploadForm = (props: Props) => {
         {props.editItem && (
           <MediumButton
             title={t`Cancel`}
+            style={buttons.cancel}
             onPress={() => {
               props.navigation.popToTop();
               props.navigation.navigate('Pending');

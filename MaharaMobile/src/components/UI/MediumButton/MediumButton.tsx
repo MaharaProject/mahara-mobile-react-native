@@ -12,6 +12,7 @@ type Props = {
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
   icon?: string;
+  style: ViewProps;
 };
 
 const MediumButton = (props: Props) => (
@@ -24,7 +25,12 @@ const MediumButton = (props: Props) => (
           props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
         }
         onPress={props.onPress}>
-        <Text style={[buttons.md, mdButtonStyles.buttons]}>
+        <Text
+          style={{
+            ...buttons.md,
+            ...mdButtonStyles.buttons,
+            ...props.style
+          }}>
           {props.icon === 'faSignInAlt' ? (
             <FontAwesomeIcon icon={faSignInAlt} style={mdButtonStyles.icon} />
           ) : null}

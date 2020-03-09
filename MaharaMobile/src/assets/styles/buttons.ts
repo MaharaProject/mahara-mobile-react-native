@@ -41,7 +41,8 @@ const buttons = StyleSheet.create({
     color: styles.colors.light
   },
   cancel: {
-    backgroundColor: styles.colors.lightgrey
+    backgroundColor: styles.colors.lightgrey,
+    fontWeight: 'normal'
   }
 });
 
