@@ -1,6 +1,8 @@
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
+import {faSignInAlt, faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import buttons from '../../../assets/styles/buttons';
 import {MessageDescriptor} from '../../../models/models';
 import mdButtonStyles from './MediumButton.style';
@@ -9,6 +11,7 @@ type Props = {
   onPress: () => void;
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
+  icon?: string;
 };
 
 const MediumButton = (props: Props) => (
@@ -22,7 +25,16 @@ const MediumButton = (props: Props) => (
         }
         onPress={props.onPress}>
         <Text style={[buttons.md, mdButtonStyles.buttons]}>
-          {i18n._(props.title)}
+          {props.icon === 'faSignInAlt' ? (
+            <FontAwesomeIcon icon={faSignInAlt} style={mdButtonStyles.icon} />
+          ) : null}
+          {props.icon === 'faCloudUploadAlt' ? (
+            <FontAwesomeIcon
+              icon={faCloudUploadAlt}
+              style={mdButtonStyles.icon}
+            />
+          ) : null}
+          &nbsp; {i18n._(props.title)}
         </Text>
       </TouchableOpacity>
     )}

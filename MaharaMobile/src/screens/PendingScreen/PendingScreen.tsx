@@ -254,6 +254,7 @@ const PendingScreen = (props: Props) => {
               <MediumButton
                 title={t`Upload to your site`}
                 onPress={onUploadClick}
+                icon="faCloudUploadAlt"
               />
             </View>
           ) : (

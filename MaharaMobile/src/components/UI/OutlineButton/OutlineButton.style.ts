@@ -8,6 +8,9 @@ const outlineButtonStyles = StyleSheet.create({
     backgroundColor: null,
     color: styles.colors.tertiary,
     borderWidth: 2
+  },
+  icon: {
+    color: styles.colors.tertiary
   }
 });
 

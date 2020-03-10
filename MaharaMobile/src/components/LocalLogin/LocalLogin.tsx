@@ -72,7 +72,7 @@ export default function LocalLogin(props: Props) {
             {({i18n}) => (
               <TextInput
                 style={forms.textInput}
-                placeholder={i18n._(t`Enter your username`)}
+                placeholder={i18n._(t`Username`)}
                 onChangeText={usernameInput => setUsername(usernameInput)}
               />
             )}
@@ -82,12 +82,16 @@ export default function LocalLogin(props: Props) {
               <TextInput
                 style={forms.textInput}
                 secureTextEntry
-                placeholder={i18n._(t`Enter your password`)}
+                placeholder={i18n._(t`Password`)}
                 onChangeText={passwordInput => setPassword(passwordInput)}
               />
             )}
           </I18n>
-          <MediumButton title={t` Login`} onPress={() => checkLogins()} />
+          <MediumButton
+            title={t` Login`}
+            icon="faSignInAlt"
+            onPress={() => checkLogins()}
+          />
         </View>
       </LinearGradient>
     </View>

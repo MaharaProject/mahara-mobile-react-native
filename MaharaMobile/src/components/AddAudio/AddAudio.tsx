@@ -241,6 +241,9 @@ const AddAudio = (props: Props) => {
         title={t`${recordStrings[recordButtonStatus]}`}
         style={recordButtonStatus === 'recording' ? styles.recording : ''}
         onPress={() => handleRecord()}
+        icon={
+          recordButtonStatus === 'recording' ? 'faStopCircle' : 'faMicrophone'
+        }
       />
     </View>
   );

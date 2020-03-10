@@ -114,6 +114,7 @@ const EditItemScreen = (props: Props) => {
                 setFilePickerButtonText(props.i18n._(t`Select different file`));
               }}
               style={null}
+              icon="faFolderOpen"
             />
           </View>
         )}
@@ -121,7 +122,7 @@ const EditItemScreen = (props: Props) => {
           <TouchableOpacity
             onPress={() => takePhoto(i18n, setPickedFile)}
             accessibilityRole="button">
-            <Text style={[buttons.lg, outlineButtonStyles.buttons]}>
+            <Text style={[buttons.md, outlineButtonStyles.buttons]}>
               <FontAwesome5 name="camera" size={20} />
               &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
               {pickedFile.uri && <Trans>Re-take photo</Trans>}

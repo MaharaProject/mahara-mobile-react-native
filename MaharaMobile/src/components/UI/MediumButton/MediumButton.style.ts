@@ -5,6 +5,9 @@ const mdButtonStyles = StyleSheet.create({
   buttons: {
     marginBottom: styles.padding.md,
     fontWeight: 'bold'
+  },
+  icon: {
+    marginRight: styles.padding.md
   }
 });
 
