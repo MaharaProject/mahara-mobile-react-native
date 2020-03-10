@@ -11,7 +11,6 @@ import {
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
-import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 
 type Props = {
   i18n: I18n;
@@ -44,8 +43,7 @@ SelectMediaScreen.navigationOptions = () => ({
     flex: 1,
     textAlign: 'center'
   },
-  headerTintColor: styles.colors.light,
-  headerLeft: <HeaderMenuButton />
+  headerTintColor: styles.colors.light
 });
 
 export default withI18n()(SelectMediaScreen);
