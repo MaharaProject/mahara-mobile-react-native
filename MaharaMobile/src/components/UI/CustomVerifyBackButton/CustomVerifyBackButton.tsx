@@ -15,8 +15,8 @@ const CustomVerifyBackButton = ({navigation}) => {
         t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`
       ),
       [
-        {text: 'Okay', onPress: () => navigation.goBack()},
-        {text: 'Cancel', onPress: () => {}}
+        {text: 'Cancel', onPress: () => {}},
+        {text: 'Okay', onPress: () => navigation.goBack()}
       ],
       {cancelable: true}
     );
