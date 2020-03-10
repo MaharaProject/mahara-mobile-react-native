@@ -1,7 +1,11 @@
-import {faPauseCircle, faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import {
+  faPauseCircle,
+  faPlayCircle,
+  faStopCircle
+} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {i18n, I18n} from '@lingui/core';
-import {t, Trans} from '@lingui/macro';
+import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useEffect, useState} from 'react';
 import {
@@ -46,10 +50,18 @@ const AddAudio = (props: Props) => {
 
   const playStrings = {
     playing: (
-      <FontAwesomeIcon icon={faPauseCircle} color={variables.colors.tertiary} />
+      <FontAwesomeIcon
+        icon={faPauseCircle}
+        size={25}
+        color={variables.colors.tertiary}
+      />
     ),
     notplaying: (
-      <FontAwesomeIcon icon={faPlayCircle} color={variables.colors.tertiary} />
+      <FontAwesomeIcon
+        icon={faPlayCircle}
+        size={25}
+        color={variables.colors.tertiary}
+      />
     )
   };
 
@@ -211,7 +223,7 @@ const AddAudio = (props: Props) => {
   };
 
   return (
-    <View>
+    <View style={styles.buttonWrapper}>
       <View style={styles.playbackButtonWrapper}>
         {isRecorded ? (
           <TouchableOpacity
@@ -227,7 +239,11 @@ const AddAudio = (props: Props) => {
             onPress={() => onStopPlay()}
             accessibilityRole="button">
             <Text style={[buttons.sm, styles.smButton]}>
-              <Trans>Stop</Trans>
+              <FontAwesomeIcon
+                icon={faStopCircle}
+                size={25}
+                color={variables.colors.tertiary}
+              />
             </Text>
           </TouchableOpacity>
         ) : null}
@@ -237,14 +253,16 @@ const AddAudio = (props: Props) => {
           </Text>
         ) : null}
       </View>
-      <OutlineButton
-        title={t`${recordStrings[recordButtonStatus]}`}
-        style={recordButtonStatus === 'recording' ? styles.recording : ''}
-        onPress={() => handleRecord()}
-        icon={
-          recordButtonStatus === 'recording' ? 'faStopCircle' : 'faMicrophone'
-        }
-      />
+      <View style={styles.recordButton}>
+        <OutlineButton
+          title={t`${recordStrings[recordButtonStatus]}`}
+          style={recordButtonStatus === 'recording' ? styles.recording : ''}
+          onPress={() => handleRecord()}
+          icon={
+            recordButtonStatus === 'recording' ? 'faStopCircle' : 'faMicrophone'
+          }
+        />
+      </View>
     </View>
   );
 };

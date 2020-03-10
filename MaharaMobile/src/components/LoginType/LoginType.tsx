@@ -1,6 +1,3 @@
-// Font Awesome
-import {faExclamationTriangle} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {t, Trans} from '@lingui/macro';
 import React from 'react';
 import {Text, TextInput, View} from 'react-native';
