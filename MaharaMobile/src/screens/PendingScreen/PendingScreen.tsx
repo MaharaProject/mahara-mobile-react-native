@@ -89,12 +89,12 @@ const PendingScreen = (props: Props) => {
   }, [uploadItemsCount]);
 
   /**
-   * When 'Remove' is pressed, filter out the item with the given id and update the UploadList.
+   * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
    */
   const onRemove = (itemId: string) => {
     Alert.alert(
       i18n._(t`Are you sure?`),
-      i18n._(t`You will not be able to retrieve this information once removed`),
+      i18n._(t`The deletion of this information or file cannot be undone`),
       [
         {
           text: i18n._(t`Cancel`),
@@ -102,7 +102,7 @@ const PendingScreen = (props: Props) => {
           style: 'cancel'
         },
         {
-          text: i18n._(t`Remove`),
+          text: i18n._(t`Delete`),
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
