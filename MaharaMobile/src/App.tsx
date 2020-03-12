@@ -11,8 +11,10 @@ import i18n from './i18n';
 
 global.Buffer = Buffer;
 
-Sentry.init({dsn: Config.SENTRY_DSN});
-Sentry.setTag('mobile-app', '2');
+if (Config.SENTRY_DSN) {
+  Sentry.init({dsn: Config.SENTRY_DSN});
+  Sentry.setTag('mobile-app', '2');  
+}
 
 const App = () => {
   const store = configureStore(undefined, i18n);
