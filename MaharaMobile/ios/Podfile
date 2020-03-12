@@ -55,6 +55,8 @@ target 'MaharaMobile' do
 
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
   target 'MaharaMobileTests' do
     inherit! :search_paths
     # Pods for testing
