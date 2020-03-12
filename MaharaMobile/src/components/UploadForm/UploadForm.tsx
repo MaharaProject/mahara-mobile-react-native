@@ -229,9 +229,12 @@ const UploadForm = (props: Props) => {
       const tagString = selectedTags ? setTagString(selectedTags) : '';
       const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
       const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-      const filename = controlTitle
-        ? sanitize(controlTitle) + extension
+      const checkFileExtension = controlTitle
+        ? sanitize(controlTitle)
         : pickedFile.name;
+      const filename = props.editItem
+        ? checkFileExtension
+        : checkFileExtension + extension;
       const firstFolder = props.userFolders ? props.userFolders[0].title : '';
       const folder = selectedFolder || firstFolder;
       const webService = 'module_mobileapi_upload_file';
