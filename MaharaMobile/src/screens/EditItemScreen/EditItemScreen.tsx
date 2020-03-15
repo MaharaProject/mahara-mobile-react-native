@@ -74,10 +74,11 @@ const EditItemScreen = (props: Props) => {
     uri: ''
   };
 
-  // Populate Uploadform with existing details and set 'type' so headerTitle is accurate
+  // Get item passed in as nav param from Upload Queue
   const itemToEdit:
     | MaharaPendingFile
     | PendingJournalEntry = props.navigation.getParam('itemToEdit');
+
   if (itemToEdit) {
     if (isMaharaPendingFile(itemToEdit)) {
       const maharaPendingFile: MaharaPendingFile = itemToEdit;
@@ -131,7 +132,7 @@ const EditItemScreen = (props: Props) => {
         )}
         {formType === AUDIO && (
           <View>
-            <AddAudio setPickedFile={setPickedFile} />
+            <AddAudio editItem={itemToEdit} setPickedFile={setPickedFile} />
           </View>
         )}
         <View>

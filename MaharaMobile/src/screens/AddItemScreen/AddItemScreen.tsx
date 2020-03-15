@@ -73,9 +73,7 @@ const AddItemScreen = (props: Props) => {
   };
   // State
   const formType = props.navigation.getParam('formType');
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(
-    initialPickedFileState
-  );
+  const [pickedFile, setPickedFile] = useState(initialPickedFileState);
 
   const [filePickerButtonText, setFilePickerButtonText] = useState(
     props.i18n._(t`Select a file`)
