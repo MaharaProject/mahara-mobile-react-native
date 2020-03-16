@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {i18n, I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
+import base64 from 'base-64';
 import React, {useEffect, useState} from 'react';
 import {
   PermissionsAndroid,
@@ -17,15 +18,15 @@ import {
 } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
-import base64 from 'base-64';
 import buttons from '../../assets/styles/buttons';
 import variables from '../../assets/styles/variables';
-import {MaharaFile, Playback} from '../../models/models';
+import {MaharaFile, MaharaPendingFile, Playback} from '../../models/models';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
+  editItem?: MaharaPendingFile;
   i18n: I18n;
 };
 
@@ -35,11 +36,9 @@ const AddAudio = (props: Props) => {
   type PlayStatus = 'playing' | 'notplaying';
   type RecordStatus = 'unrecorded' | 'recording' | 'recorded';
 
-  const initialState = {uri: '', name: '', type: '', size: 0};
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(initialState);
   const [audioFile, setAudioFile] = useState('');
   const [recordButtonStatus, setRecordButtonStatus] = useState<RecordStatus>(
-    'unrecorded'
+    props.editItem ? 'recorded' : 'unrecorded'
   );
   const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>(
     'notplaying'
@@ -70,15 +69,6 @@ const AddAudio = (props: Props) => {
     recording: i18n._(t`Stop`),
     recorded: i18n._(t`Re-record`)
   };
-
-  useEffect(() => {
-    props.setPickedFile(pickedFile);
-  }, [pickedFile.size]);
-
-  useEffect(() => {
-    setRecordButtonStatus('recorded');
-    setIsRecorded(true);
-  }, []);
 
   // Check permissions
   const checkPermissions = async () => {
@@ -158,7 +148,7 @@ const AddAudio = (props: Props) => {
     setRecordButtonStatus('recorded');
     setIsRecorded(true);
     const size = await getFileSize();
-    setPickedFile({
+    props.setPickedFile({
       name: result,
       uri: result,
       type: 'audio/m4a',
