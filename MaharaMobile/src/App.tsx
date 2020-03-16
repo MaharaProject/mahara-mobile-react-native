@@ -1,4 +1,6 @@
 import React from 'react';
+import * as Sentry from '@sentry/react-native';
+import Config from 'react-native-config';
 import {Provider} from 'react-redux';
 import {Buffer} from 'buffer';
 import {I18nProvider} from '@lingui/react';
@@ -8,6 +10,11 @@ import AppNavigator from './navigations/app-navigator';
 import i18n from './i18n';
 
 global.Buffer = Buffer;
+
+if (Config.SENTRY_DSN) {
+  Sentry.init({dsn: Config.SENTRY_DSN});
+  Sentry.setTag('mobile-app', '2');
+}
 
 const App = () => {
   const store = configureStore(undefined, i18n);

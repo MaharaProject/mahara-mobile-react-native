@@ -30,12 +30,16 @@ build/
 local.properties
 *.iml
 android/app/*.jks
+android/sentry.properties
 
 # node.js
 #
 node_modules/
 npm-debug.log
 yarn-error.log
+
+# general project stuff
+.env
 
 # BUCK
 buck-out/
