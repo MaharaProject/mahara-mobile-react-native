@@ -8,9 +8,9 @@ import {
   UPDATE_J_ENTRIES_ON_LOGIN
 } from '../utils/constants';
 import {RootState} from './rootReducer';
-import {UploadJEntriesActions} from './uploadJEntriesTypes';
+import {UploadJEntriesActions} from '../models/uploadJEntriesTypes';
 
-type UploadJEntriesState = {
+export type UploadJEntriesState = {
   uploadJEntries: Record<string, PendingJournalEntry>;
   uploadJEntriesIds: Array<string>;
 };
