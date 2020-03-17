@@ -10,7 +10,7 @@ import {
   UPDATE_URL,
   UPDATE_USERNAME
 } from '../utils/constants';
-import {LoginInfoActions} from './loginInfoTypes';
+import {LoginInfoActions} from '../models/loginInfoTypes';
 import {RootState} from './rootReducer';
 
 type LoginInfoState = {

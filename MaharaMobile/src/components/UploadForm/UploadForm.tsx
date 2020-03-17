@@ -31,7 +31,7 @@ import {
   UserTag
 } from '../../models/models';
 import {
-  createMaharaFileFormData,
+  newMaharaFileFormData,
   newJournalEntry,
   newMaharaPendingFile,
   newPendingJournalEntry,
@@ -236,7 +236,7 @@ const UploadForm = (props: Props) => {
       const folder = selectedFolder || firstFolder;
       const webService = 'module_mobileapi_upload_file';
 
-      const formData = createMaharaFileFormData(
+      const formData = newMaharaFileFormData(
         webService,
         props.token,
         folder,

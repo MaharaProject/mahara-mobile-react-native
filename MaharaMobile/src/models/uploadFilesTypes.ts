@@ -1,4 +1,4 @@
-import {MaharaPendingFile, UserFolder} from '../models/models';
+import {MaharaPendingFile, UserFolder} from './models';
 
 export type UploadFilesActions = {
   type: string;
