@@ -65,7 +65,7 @@ buck-out/
 /ios/Pods/
 
 # Testing stuff
-__snapshots__
+# __snapshots__
 
 # i18n
 locales/_build/
