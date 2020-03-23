@@ -8,9 +8,9 @@ import {
   UPDATE_UPLOAD_FILES_ON_LOGIN
 } from '../utils/constants';
 import {RootState} from './rootReducer';
-import {UploadFilesActions} from './uploadFilesTypes';
+import {UploadFilesActions} from '../models/uploadFilesTypes';
 
-type UploadFilesState = {
+export type UploadFilesState = {
   uploadFiles: Record<string, MaharaPendingFile>;
   uploadFilesIds: Array<string>;
 };
@@ -21,8 +21,12 @@ const initialState: UploadFilesState = {
 };
 
 // Helper functions
-const getFiles = (ids: string[], arr: Record<string, MaharaPendingFile>) =>
-  ids ? ids.map((id: string) => arr[id]) : '';
+const getFiles = (
+  ids: string[] = [],
+  arr: Record<string, MaharaPendingFile>
+): Array<MaharaPendingFile> => {
+  return ids.map((id: string) => arr[id]);
+};
 
 const updateAsyncStorageUploadFiles = (uploadFiles: MaharaPendingFile[]) => {
   AsyncStorage.setItem('uploadFiles', JSON.stringify(uploadFiles));

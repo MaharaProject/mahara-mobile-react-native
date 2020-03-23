@@ -4,10 +4,21 @@ import {
   MaharaFile,
   MaharaFileFormData,
   PendingJournalEntry,
-  UserTag
+  UserTag,
+  UserFolder,
+  UserBlog
 } from './models';
 
-export const createMaharaFileFormData = (
+export const newMaharaFile = (
+  uri: string,
+  type: string,
+  name: string,
+  size: number
+): MaharaFile => {
+  return {uri, type, name, size};
+};
+
+export const newMaharaFileFormData = (
   webService: string,
   token: string,
   folderName: string,
@@ -84,3 +95,25 @@ export const newUserTag = (tagName: string): UserTag => ({
   tag: tagName
 });
 // id is just external from Mahara, for structure in this app
+
+export const newUserFolder = (title: string): UserFolder => {
+  return {
+    id: Math.round(Math.random() * 1000),
+    title
+  };
+};
+
+export const newUserBlog = (
+  desc: string,
+  locked = false,
+  numBlogPosts = 0,
+  title: string
+): UserBlog => {
+  return {
+    description: desc,
+    id: Math.round(Math.random() * 1000),
+    locked,
+    numBlogPosts,
+    title
+  };
+};

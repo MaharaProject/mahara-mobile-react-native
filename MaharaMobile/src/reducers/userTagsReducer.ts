@@ -19,7 +19,7 @@ import {RootState} from './rootReducer';
 /**
  * taggedItems: PendingJournalEntry.id | MaharaPendingFile(s).id -> set of tag ids
  */
-type UserTagInfoState = {
+export type UserTagInfoState = {
   userTags: Array<UserTag>;
   userTagsIds: Array<number>;
   taggedItems: Record<string, Set<number>>;
