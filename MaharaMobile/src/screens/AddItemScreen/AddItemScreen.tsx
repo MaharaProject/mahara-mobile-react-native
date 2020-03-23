@@ -71,30 +71,33 @@ const AddItemScreen = (props: Props) => {
     type: '',
     uri: ''
   };
+
   // State
   const formType = props.navigation.getParam('formType');
   const [pickedFile, setPickedFile] = useState(initialPickedFileState);
 
-  const [filePickerButtonText, setFilePickerButtonText] = useState(
-    props.i18n._(t`Select a file`)
-  );
-
   return (
     <ScrollView>
       <View style={generic.wrap}>
+        {/* select a file button */}
         {pickedFile.name && (formType === FILE || formType === PHOTO)
           ? renderImagePreview(i18n, pickedFile.uri)
           : null}
         {formType === FILE && (
           <View>
             <OutlineButton
-              title={t`${filePickerButtonText}`}
+              title={
+                pickedFile.uri === ''
+                  ? t`Select a file`
+                  : t`Select a different file`
+              }
               onPress={() => pickDocument(i18n, setPickedFile)}
               style={null}
               icon="faFolderOpen"
             />
           </View>
         )}
+        {/* take a photo button */}
         {formType === PHOTO && (
           <TouchableOpacity
             onPress={() => takePhoto(i18n, setPickedFile)}
@@ -106,6 +109,7 @@ const AddItemScreen = (props: Props) => {
             </Text>
           </TouchableOpacity>
         )}
+        {/* record audio button */}
         {formType === AUDIO && (
           <View>
             <AddAudio setPickedFile={setPickedFile} />

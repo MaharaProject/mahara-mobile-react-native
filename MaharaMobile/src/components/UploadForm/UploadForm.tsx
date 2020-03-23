@@ -120,7 +120,7 @@ const UploadForm = (props: Props) => {
   // error messages
   const [showInvalidTitleMessage, setShowInvalidTitleMessage] = useState(false);
   const [showInvalidDescMessage, setShowInvalidDescMessage] = useState(false);
-  const [showInvalidFileMessage, setShowInvalidFileNessage] = useState(
+  const [showInvalidFileMessage, setShowInvalidFileMessage] = useState(
     fileValid
   );
 
@@ -453,7 +453,7 @@ const UploadForm = (props: Props) => {
   const renderUserMessages = () => {
     if (!controlTitleValid) setShowInvalidTitleMessage(true);
     if (!controlDescValid) setShowInvalidDescMessage(true);
-    if (!fileValid) setShowInvalidFileNessage(true);
+    if (!fileValid) setShowInvalidFileMessage(true);
   };
 
   const renderButtons = () => {
