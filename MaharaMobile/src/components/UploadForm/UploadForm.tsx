@@ -11,7 +11,6 @@ import {
   StackActions
 } from 'react-navigation';
 import {useDispatch, useSelector} from 'react-redux';
-import sanitize from 'sanitize-filename';
 import {
   addFileToUploadList,
   addJournalEntryToUploadList,
@@ -31,8 +30,8 @@ import {
   UserTag
 } from '../../models/models';
 import {
-  newMaharaFileFormData,
   newJournalEntry,
+  newMaharaFileFormData,
   newMaharaPendingFile,
   newPendingJournalEntry,
   newUserTag
@@ -43,6 +42,7 @@ import {JOURNAL_ENTRY} from '../../utils/constants';
 import {
   isValidText,
   putDefaultAtTop,
+  removeExtension,
   setTagString
 } from '../../utils/formHelper';
 import {
@@ -129,7 +129,7 @@ const UploadForm = (props: Props) => {
       if (isMaharaPendingFile(props.editItem)) {
         const {maharaFormData} = props.editItem;
         // The file is set in AddItemScreen as the pickedFile.
-        setTitle(maharaFormData.name);
+        setTitle(removeExtension(maharaFormData.name));
         setDescription(maharaFormData.description);
         setSelectedFolder(maharaFormData.foldername);
         setControlTitleValid(true);
@@ -201,7 +201,7 @@ const UploadForm = (props: Props) => {
   };
 
   /**
-   * Add files to uploadList and update new usertags in redux
+   * Add/edit files to uploadList and update new usertags in redux
    */
   const handleForm = () => {
     const {pickedFile} = props;
@@ -229,15 +229,23 @@ const UploadForm = (props: Props) => {
       const tagString = selectedTags ? setTagString(selectedTags) : '';
       const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
       const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-      const checkFileExtension = controlTitle
-        ? sanitize(controlTitle)
+
+      const filename = controlTitle
+        ? controlTitle + extension
         : pickedFile.name;
-      const filename = props.editItem
-        ? checkFileExtension
-        : checkFileExtension + extension;
+
       const firstFolder = props.userFolders ? props.userFolders[0].title : '';
       const folder = selectedFolder || firstFolder;
       const webService = 'module_mobileapi_upload_file';
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      let updatedPickedFile: any = {}; // deliberate any
+      if (filename !== pickedFile.name) {
+        updatedPickedFile = {
+          ...pickedFile,
+          name: filename
+        };
+      }
 
       const formData = newMaharaFileFormData(
         webService,
@@ -245,7 +253,7 @@ const UploadForm = (props: Props) => {
         folder,
         filename,
         controlDesc,
-        pickedFile
+        updatedPickedFile.name ? updatedPickedFile : pickedFile
       );
 
       const id = props.editItem ? props.editItem.id : null;
