@@ -206,6 +206,7 @@ const UploadForm = (props: Props) => {
   const handleForm = () => {
     const {pickedFile} = props;
     const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
+    const id = props.editItem ? props.editItem.id : null;
     let pendingJournalEntry: PendingJournalEntry = null;
     let pendingFileData: MaharaPendingFile = null;
 
@@ -220,7 +221,7 @@ const UploadForm = (props: Props) => {
         isDraft
       );
 
-      pendingJournalEntry = newPendingJournalEntry(journalUrl, jEntry);
+      pendingJournalEntry = newPendingJournalEntry(id, journalUrl, jEntry);
 
       // add journal entry to pending list
       dispatch(addJournalEntryToUploadList(pendingJournalEntry));
@@ -256,7 +257,6 @@ const UploadForm = (props: Props) => {
         updatedPickedFile.name ? updatedPickedFile : pickedFile
       );
 
-      const id = props.editItem ? props.editItem.id : null;
       pendingFileData = newMaharaPendingFile(
         id,
         fileUrl,
