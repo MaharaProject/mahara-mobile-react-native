@@ -54,10 +54,14 @@ export const newJournalEntry = (
 };
 
 export const newPendingJournalEntry = (
+  itemId = '',
   url: string,
   journalEntry: JournalEntry
 ): PendingJournalEntry => {
-  const id = Math.random() * 10 + journalEntry.title;
+  let id = itemId;
+  if (!id) {
+    id = Math.random() * 10 + journalEntry.title;
+  }
 
   return {
     id,
@@ -75,7 +79,7 @@ export const newMaharaPendingFile = (
 ) => {
   let id = itemId;
   if (!id) {
-    id = Math.random() * 10 + url;
+    id = Math.random() * 10 + maharaFormData.name.substring(0, 5);
   }
   return {
     id,
