@@ -9,7 +9,7 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {checkLoginTypes} from '../../actions/actions';
 import generic from '../../assets/styles/generic';
-import LoginType from '../../components/LoginType/LoginType';
+import LoginTypes from '../../components/LoginTypes/LoginTypes';
 import {
   selectLocalLogin,
   selectSsoLogin,
@@ -124,7 +124,7 @@ export class SiteCheckScreen extends Component<Props, State> {
   render() {
     return (
       <View style={generic.view}>
-        <LoginType
+        <LoginTypes
           url={this.state.url}
           isInputHidden={this.state.isInputHidden}
           serverPing={this.state.serverPing}
