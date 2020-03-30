@@ -19,10 +19,10 @@ import messages from '../../assets/styles/messages';
 import textStyles from '../../assets/styles/text';
 import variables from '../../assets/styles/variables';
 
-import LinkButton from '../../components/UI/LinkButton/LinkButton';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import styles from './LoginType.style';
+import LinkButton from '../UI/LinkButton/LinkButton';
+import MediumButton from '../UI/MediumButton/MediumButton';
+import OutlineButton from '../UI/OutlineButton/OutlineButton';
+import styles from './LoginTypes.style';
 
 type Props = {
   url: string;
@@ -40,8 +40,14 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   onSkip: () => void;
 };
-
-const LoginType = (props: Props) => {
+/**
+ * LoginTypes is a dynamic component with many states
+ * - a URL input field with logic and validation
+ * - a list of buttons for available login types
+ * - error message pop ups as well as alerts
+ * @param props
+ */
+const LoginTypes = (props: Props) => {
   return (
     <View style={styles.view}>
       <LinearGradient
@@ -152,4 +158,4 @@ const LoginType = (props: Props) => {
   );
 };
 
-export default LoginType;
+export default LoginTypes;

@@ -290,11 +290,13 @@ export function checkLoginTypes(url: string) {
       // TODO: dispatch loading state for spinner
       const result: LoginInfo = await getJSON(
         serverUrl,
-        i18n._(t`Network Error`)
+        i18n._(t`Network Error. Please check internet connection.`)
       );
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
-        throw new Error(i18n._(t`This is not a Mahara site.`));
+        throw new Error(
+          i18n._(t`This is not a Mahara site. Please re-enter URL.`)
+        );
       }
       // check that webservices is enabled on the Mahara instance
       if (!result.wsenabled) {
@@ -308,8 +310,17 @@ export function checkLoginTypes(url: string) {
       dispatch(updateUrl(url));
     } catch (error) {
       if (error.code === 404) {
-        throw new Error(i18n._(t`This is not a Mahara site.`));
+        throw new Error(
+          i18n._(t`This is not a Mahara site. Please re-enter URL.`)
+        );
       }
+
+      if (error.message === 'Network request failed') {
+        throw new Error(
+          i18n._(t`Network request failed. Please re-enter URL.`)
+        );
+      }
+
       throw error;
     }
   };
