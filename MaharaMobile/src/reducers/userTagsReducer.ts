@@ -195,7 +195,7 @@ export const selectItemTagsStrings = (
   if (tagIds.length === 0) {
     return [];
   }
-  const tagsArr = [];
+  const tagsArr: Array<string> = [];
 
   tagIds.forEach((id: number) =>
     state.domainData.userTagsInfo.userTags.forEach((tag: UserTag) => {
