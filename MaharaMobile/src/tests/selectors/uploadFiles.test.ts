@@ -6,7 +6,7 @@ import {
 } from '../../reducers/uploadFilesReducer';
 import {
   MOCK_MAHARA_PENDING_FILES_ARR,
-  MOCK_MAHARA_PENDING_FILE_1,
+  MOCK_MAHARA_PENDING_FILE_0,
   MOCK_ROOT_STATE,
   MOCK_FILE_IDS
 } from '../mockConstants';
@@ -18,8 +18,8 @@ describe('selectUploadFileById', () => {
   });
 
   it('should return the matching Record for given id', () => {
-    const result = selectUploadFileById(MOCK_ROOT_STATE, {id: 'f1'});
-    expect(result).toEqual(MOCK_MAHARA_PENDING_FILE_1);
+    const result = selectUploadFileById(MOCK_ROOT_STATE, {id: 'f0'});
+    expect(result).toEqual(MOCK_MAHARA_PENDING_FILE_0);
   });
 });
 

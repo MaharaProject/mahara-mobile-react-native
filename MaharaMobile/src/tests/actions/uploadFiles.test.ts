@@ -12,7 +12,7 @@ import {
 } from '../../utils/constants';
 import {
   RAND_STRING,
-  MOCK_MAHARA_PENDING_FILE_1,
+  MOCK_MAHARA_PENDING_FILE_0,
   MOCK_USER_FOLDERS
 } from '../mockConstants';
 
@@ -21,10 +21,10 @@ import {
 describe('UploadFiles reducer action creators', () => {
   describe('addFileToUploadList', () => {
     it('should set up add file to upload list', () => {
-      const action = addFileToUploadList(MOCK_MAHARA_PENDING_FILE_1);
+      const action = addFileToUploadList(MOCK_MAHARA_PENDING_FILE_0);
       expect(action).toEqual({
         type: ADD_UPLOAD_FILE,
-        file: MOCK_MAHARA_PENDING_FILE_1
+        file: MOCK_MAHARA_PENDING_FILE_0
       });
     });
   });
