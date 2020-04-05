@@ -31,7 +31,8 @@ import {
 import {
   fetchProfilePic,
   fetchUserOnTokenLogin,
-  updatePendingItemsOnGuestToUser
+  updatePendingItemsOnGuestToUser,
+  checkValidInitialState
 } from '../../utils/authHelperFunctions';
 
 type Props = {
@@ -88,9 +89,15 @@ export class LoginScreen extends Component<Props, State> {
       .then(() => {
         this.props.dispatch(addToken(this.state.token));
         fetchProfilePic(this.props.dispatch, this.state.token, url);
-        this.signInGuestToUserAsync();
+        this.signInUserAsync();
       })
-      .then(() => this.props.navigation.navigate('App'))
+      .then(() => {
+        if (
+          checkValidInitialState(this.props.userBlogs, this.props.userFolders)
+        ) {
+          this.props.navigation.navigate('App');
+        }
+      })
       .catch(() => {
         const {loginType} = this.props.navigation
           ? this.props.navigation.state.params
@@ -135,7 +142,7 @@ export class LoginScreen extends Component<Props, State> {
   /**
    * Save user token to async storage
    */
-  signInGuestToUserAsync = async () => {
+  signInUserAsync = async () => {
     if (this.state.token.length < 1) {
       Alert.alert(
         this.props.i18n._(t`You didn't enter anything in this field.`)
