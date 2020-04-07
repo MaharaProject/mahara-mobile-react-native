@@ -178,3 +178,22 @@ export const signOutAsync = async (navigation, dispatch) => {
     {cancelable: false}
   );
 };
+
+/**
+ * Check that the state is valid before entering the application:
+ * - minimum of one user blog
+ * - minimum of one user folder
+ *
+ * Reasons that the authentication would bypass could be
+ * - something odd in a site upgrade
+ * - users missing a folder or blog will cause issues
+ */
+export const checkValidInitialState = (
+  blogs: UserBlog[],
+  folders: UserFolder[]
+): boolean => {
+  if (blogs.length === 0 || folders.length === 0) {
+    return false;
+  }
+  return true;
+};
