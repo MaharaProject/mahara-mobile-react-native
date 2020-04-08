@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
+import FlashMessage, {showMessage} from 'react-native-flash-message';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -9,6 +10,8 @@ import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import {checkLoginTypes} from '../../actions/actions';
 import generic from '../../assets/styles/generic';
+import messages from '../../assets/styles/messages';
+import variables from '../../assets/styles/variables';
 import LoginTypes from '../../components/LoginTypes/LoginTypes';
 import {
   selectLocalLogin,
@@ -22,7 +25,6 @@ import {setUpGuest} from '../../utils/authHelperFunctions';
 type Props = {
   dispatch: Dispatch;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
@@ -30,20 +32,18 @@ type Props = {
 
 type State = {
   errorMessage: string;
-  url: string;
   loginType: string;
   serverPing: boolean;
   isInputHidden: boolean;
-  enterUrlWarning: boolean;
+  loading: boolean;
 };
 
 const initialState: State = {
   errorMessage: '',
-  url: '',
   loginType: '',
   serverPing: false,
   isInputHidden: false,
-  enterUrlWarning: false
+  loading: false
 };
 
 export class SiteCheckScreen extends Component<Props, State> {
@@ -59,43 +59,33 @@ export class SiteCheckScreen extends Component<Props, State> {
     });
   };
 
-  checkUrl = (url: string) => {
-    let serverUrl = url.trim();
-
-    if (serverUrl.length === 0) {
-      this.setState({
-        enterUrlWarning: true,
-        url: ''
-      });
-      return;
+  /**
+   * Turns on/off the loading spinner state
+   */
+  switchLoading = (newValue?: boolean) => {
+    if (newValue) {
+      this.setState({loading: newValue});
+    } else {
+      this.setState(prevState => ({loading: !prevState.loading}));
     }
-    this.setState({
-      enterUrlWarning: false
-    });
-
-    if (serverUrl.slice(-1) !== '/') {
-      serverUrl += '/';
-    }
-    if (!/^https?:\/\//.test(serverUrl)) {
-      serverUrl = `https://${serverUrl}`;
-    }
-    this.setState({url: serverUrl});
   };
 
-  checkServer = async () => {
-    const serverUrl = this.state.url;
+  checkServer = async (url: string) => {
+    const serverUrl = url;
 
     if (!serverUrl) {
       return;
     }
 
     try {
+      this.switchLoading();
       await this.props.dispatch(checkLoginTypes(serverUrl));
       if (
         this.props.tokenLogin ||
         this.props.localLogin ||
         this.props.ssoLogin
       ) {
+        this.switchLoading();
         this.setState({
           serverPing: true,
           isInputHidden: true,
@@ -104,7 +94,18 @@ export class SiteCheckScreen extends Component<Props, State> {
       }
     } catch (error) {
       this.setState({errorMessage: error.message});
-      // console.error(error);
+      this.switchLoading();
+      showMessage({
+        message: this.state.errorMessage,
+        icon: {
+          icon: 'auto',
+          position: 'left'
+        },
+        type: 'warning',
+        titleStyle: messages.errorMessage,
+        backgroundColor: variables.colors.warnbg,
+        color: variables.colors.warn
+      });
     }
   };
 
@@ -122,6 +123,8 @@ export class SiteCheckScreen extends Component<Props, State> {
   };
 
   render() {
+    const {loading} = this.state;
+
     return (
       <View style={generic.view}>
         <LoginTypes
@@ -139,7 +142,9 @@ export class SiteCheckScreen extends Component<Props, State> {
           errorMessage={this.state.errorMessage}
           navigation={this.props.navigation}
           onSkip={this.skipLogin}
+          loading={loading}
         />
+        <FlashMessage position="top" />
       </View>
     );
   }

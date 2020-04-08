@@ -264,6 +264,7 @@ export class RequestError extends Error {
 const requestJSON = async (url: string, config: object, error?: string) => {
   try {
     const response = await fetch(url, config);
+
     if (!response.ok) {
       throw new RequestError({
         code: response.status,
@@ -287,11 +288,10 @@ export function checkLoginTypes(url: string) {
   // eslint-disable-next-line func-names
   return async function(dispatch: Function, getState: Function, {i18n}) {
     try {
-      // TODO: dispatch loading state for spinner
-      const result: LoginInfo = await getJSON(
-        serverUrl,
-        i18n._(t`Network Error. Please check internet connection.`)
-      );
+      const result: LoginInfo = await getJSON(serverUrl);
+
+      // TODO: i18n._(t`Network Error. Please check internet connection.`)
+
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
         throw new Error(
@@ -308,17 +308,10 @@ export function checkLoginTypes(url: string) {
       }
       dispatch(updateLoginTypes(result));
       dispatch(updateUrl(url));
+      return true; // for success to turn loading spinner off
     } catch (error) {
-      if (error.code === 404) {
-        throw new Error(
-          i18n._(t`This is not a Mahara site. Please re-enter URL.`)
-        );
-      }
-
-      if (error.message === 'Network request failed') {
-        throw new Error(
-          i18n._(t`Network request failed. Please re-enter URL.`)
-        );
+      if (error.code >= 400 && error.code < 600) {
+        throw new Error(i18n._(t`Invalid Mahara site. Please re-enter URL.`));
       }
 
       throw error;
