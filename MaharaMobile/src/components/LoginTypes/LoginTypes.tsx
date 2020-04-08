@@ -1,6 +1,12 @@
 import {t, Trans} from '@lingui/macro';
-import React from 'react';
-import {Text, TextInput, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  Text,
+  TextInput,
+  View,
+  ActivityIndicator,
+  StatusBar
+} from 'react-native';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -37,6 +43,7 @@ type Props = {
   serverPing: boolean;
   isInputHidden: boolean;
   enterUrlWarning: boolean;
+  loading: boolean;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   onSkip: () => void;
 };
@@ -48,6 +55,43 @@ type Props = {
  * @param props
  */
 const LoginTypes = (props: Props) => {
+  const [controlURL, setControlURL] = useState(
+    'https://master.dev.mahara.org/'
+  );
+
+  const [enterURLWarning, setEnterURLWarning] = useState(false);
+
+  /**
+   * Check that the entered text is valid
+   * @param url
+   */
+  const checkUrl = (url: string) => {
+    const updatedURL = url.trim();
+
+    if (updatedURL.length === 0) {
+      setEnterURLWarning(true);
+      return;
+    }
+    setEnterURLWarning(false);
+    setControlURL(updatedURL);
+  };
+
+  /**
+   * Checks for valid URL by searching for https:// and /
+   * @param url
+   */
+  const addHttpTrims = (url: string): string => {
+    let result = url;
+    if (url.slice(-1) !== '/') {
+      result += '/';
+    }
+
+    if (!/^https?:\/\//.test(result)) {
+      result = `https://${result}`;
+    }
+    return result;
+  };
+
   return (
     <View style={styles.view}>
       <LinearGradient
@@ -62,6 +106,13 @@ const LoginTypes = (props: Props) => {
             <LogoSvg />
           </View>
 
+          {props.loading ? (
+            <View style={styles.container}>
+              <ActivityIndicator />
+              <StatusBar barStyle="default" />
+            </View>
+          ) : null}
+
           {!props.isInputHidden ? (
             <View>
               <Text
@@ -75,40 +126,26 @@ const LoginTypes = (props: Props) => {
               <TextInput
                 style={[
                   forms.textInput,
-                  props.enterUrlWarning ? styles.errorTextInput : null
+                  enterURLWarning ? styles.errorTextInput : null
                 ]}
                 // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
-                defaultValue="https://master.dev.mahara.org/"
-                onChangeText={(url: string) => props.checkUrl(url)}
+                defaultValue={controlURL}
+                onChangeText={(url: string) => checkUrl(url)}
               />
             </View>
           ) : null}
 
-          {props.enterUrlWarning ? (
+          {enterURLWarning ? (
             <Text style={textStyles.errorText}>
               <Trans>Please enter a URL.</Trans>
             </Text>
           ) : null}
 
-          {props.errorMessage
-            ? showMessage({
-                message: props.errorMessage,
-                icon: {
-                  icon: 'auto',
-                  position: 'left'
-                },
-                type: 'warning',
-                titleStyle: messages.errorMessage,
-                backgroundColor: variables.colors.warnbg,
-                color: variables.colors.warn
-              })
-            : null}
-
           {props.serverPing && props.isInputHidden ? (
             <View>
               <Text
                 style={[headingStyles.mainHeading, styles.url, generic.center]}>
-                {props.url}
+                {controlURL}
               </Text>
               <OutlineButton
                 title={t`Enter a different URL`}
@@ -121,7 +158,7 @@ const LoginTypes = (props: Props) => {
             <View style={styles.buttonGroup}>
               <MediumButton
                 title={t`Next`}
-                onPress={() => props.checkServer()}
+                onPress={() => props.checkServer(addHttpTrims(controlURL))}
               />
               <LinkButton title={t`Skip`} onPress={() => props.onSkip()} />
             </View>
