@@ -1,22 +1,17 @@
-import {i18n} from '@lingui/core';
-import {t} from '@lingui/macro';
+import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {withI18n} from '@lingui/react';
 import React from 'react';
 import {
-  View,
-  Text,
   Image,
   ImageSourcePropType,
-  TouchableOpacity
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
-
 import {Icon} from 'react-native-elements';
-import {faTrashAlt, faEdit} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-
-import Card from '../UI/Card/Card';
-
 import styles from '../../assets/styles/variables';
+import Card from '../UI/Card/Card';
 import uploadItemStyles from './UploadItem.style';
 
 type Props = {
@@ -91,6 +86,21 @@ const UploadItem = (props: Props) => {
   return (
     <View style={uploadItemStyles.uploadItem}>
       <Card style={{...uploadItemStyles.pendingCard}}>
+        {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
+        {props.showUploadError && (
+          <View>
+            <Text>
+              There was an error uploading this file. Please try again.
+            </Text>
+            <Icon
+              onPress={props.onClearError}
+              name="times"
+              type="font-awesome"
+              color={styles.colors.dark}
+            />
+          </View>
+        )}
+
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
           <Text style={uploadItemStyles.text}>{displayName} </Text>
