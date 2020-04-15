@@ -98,6 +98,10 @@ export type LoginInfo = {
 export type UploadResponse = {
   error?: object;
   file?: number;
+  error_name: string;
+  error_class: string;
+  error_message: string;
+  error_rendered: string;
 };
 
 export type DisplayItems = Array<PendingJournalEntry | MaharaPendingFile>;

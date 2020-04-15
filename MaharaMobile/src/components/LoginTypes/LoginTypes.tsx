@@ -1,30 +1,26 @@
 import {t, Trans} from '@lingui/macro';
 import React, {useState} from 'react';
 import {
+  ActivityIndicator,
+  StatusBar,
   Text,
   TextInput,
-  View,
-  ActivityIndicator,
-  StatusBar
+  View
 } from 'react-native';
-import FlashMessage, {showMessage} from 'react-native-flash-message';
+import FlashMessage from 'react-native-flash-message';
 import LinearGradient from 'react-native-linear-gradient';
-
 import {
   NavigationParams,
   NavigationScreenProp,
   NavigationState
 } from 'react-navigation';
-
 import LogoSvg from '../../assets/images/Logo-big';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
-import messages from '../../assets/styles/messages';
 import textStyles from '../../assets/styles/text';
 import variables from '../../assets/styles/variables';
-
 import LinkButton from '../UI/LinkButton/LinkButton';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';

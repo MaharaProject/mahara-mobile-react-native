@@ -1,10 +1,8 @@
 import {userTagsReducer} from '../../reducers/userTagsReducer';
-import {TAG_ITEM, TAGS_IDS} from '../../utils/constants';
+import {TAGS_IDS, TAG_ITEM} from '../../utils/constants';
 import {
-  MOCK_JOURNAL_ENTRY_0,
-  MOCK_PENDING_JOURNAL_ENTRY_0,
-  MOCK_PENDING_JOURNAL_ENTRY_1,
   MOCK_MAHARA_PENDING_FILE_0,
+  MOCK_PENDING_JOURNAL_ENTRY_0,
   MOCK_TAGIDS_SET_0
 } from '../mockConstants';
 

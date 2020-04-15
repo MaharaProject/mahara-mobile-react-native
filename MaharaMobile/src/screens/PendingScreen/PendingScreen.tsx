@@ -1,7 +1,7 @@
 import {i18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import React, {useEffect, useState} from 'react';
-import {Alert, Text, View} from 'react-native';
+import {Alert, Text, View, ActivityIndicator, StatusBar} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -58,14 +58,16 @@ type Props = {
 };
 
 const PendingScreen = (props: Props) => {
-  const uploadItemsCount =
-    props.uploadFiles.length + props.uploadJEntries.length;
-  const prevUploadCount = usePreviousProps(uploadItemsCount) || 0;
-  const [
-    successfullyUploadedItemsIds,
-    setSuccessfullyUploadedItemsIds
-  ] = useState<string[]>([]);
+  const numUploadFiles = props.uploadFiles.length;
+  const numUploadJEntries = props.uploadJEntries.length;
+  const numUploadItems = numUploadFiles + numUploadJEntries;
+  const prevUploadCount = usePreviousProps(numUploadItems) || 0;
+
+  const [uploadedItemsIds, setUploadedItemsIds] = useState<string[]>([]);
   const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
+  const [errorMessage, setErrorMessage] = useState('Error message');
+  const [loading, setLoading] = useState(false);
+
   const url = useSelector((state: RootState) => selectUrl(state));
 
   const renderSuccessMessage = () => {
@@ -83,10 +85,10 @@ const PendingScreen = (props: Props) => {
   };
 
   useEffect(() => {
-    if (prevUploadCount < uploadItemsCount && uploadItemsCount !== 0) {
+    if (prevUploadCount < numUploadItems && numUploadItems !== 0) {
       renderSuccessMessage();
     }
-  }, [uploadItemsCount]);
+  }, [numUploadItems]);
 
   /**
    * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
@@ -130,12 +132,7 @@ const PendingScreen = (props: Props) => {
     setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
 
     showMessage({
-      message: (
-        <Trans>
-          Unable to upload to your Mahara. Please check your connection and try
-          again.
-        </Trans>
-      ),
+      message: i18n._(t`${errorMessage}`),
       icon: {
         icon: 'auto',
         position: 'left'
@@ -158,7 +155,7 @@ const PendingScreen = (props: Props) => {
         onRemove={onRemove}
         onEdit={onEdit}
         navigation={props.navigation}
-        successfullyUploadedItemsIds={successfullyUploadedItemsIds}
+        successfullyUploadedItemsIds={uploadedItemsIds}
         uploadErrorItems={uploadErrorItemsIds}
         onClearError={clearUploadError}
       />
@@ -173,7 +170,7 @@ const PendingScreen = (props: Props) => {
       list = list.concat(props.uploadJEntries);
     }
 
-    if (uploadItemsCount > 0) {
+    if (numUploadItems > 0) {
       return <View>{renderPendingList(list)}</View>;
     }
     return (
@@ -186,42 +183,46 @@ const PendingScreen = (props: Props) => {
     );
   };
 
-  const onSuccessfulUpload = (id: string) => {
-    // change class to show upload success
-    setSuccessfullyUploadedItemsIds([...successfullyUploadedItemsIds, id]);
-    // then, card disappears
-    // and remove id from successfullyUploadedItems to clear memory
-    setTimeout(() => {
-      props.dispatch(removeUploadFile(id));
-      props.dispatch(removeUploadJEntry(id));
-
-      const newState = successfullyUploadedItemsIds.filter(item => item !== id);
-      setSuccessfullyUploadedItemsIds(newState);
-    }, 1000);
-
+  const flashSuccessMessage = (text: string) => {
     showMessage({
-      message: (
-        <Trans>Files have been uploaded to your Mahara successfully!</Trans>
-      ),
-      icon: {
-        icon: 'auto',
-        position: 'left'
-      },
-      type: 'success',
+      message: i18n._(t`${text}`),
+      // TODO: safe translation <Trans>Files have been uploaded to your Mahara successfully!</Trans>
+      icon: 'success',
       titleStyle: messages.errorMessage,
       backgroundColor: variables.colors.successbg,
       color: variables.colors.success
     });
   };
 
+  const onSuccessfulUpload = (id: string) => {
+    // change class to show upload success
+    setUploadedItemsIds([...uploadedItemsIds, id]);
+    // then, card disappears
+    // and remove id from successfullyUploadedItems to clear memory
+    setTimeout(() => {
+      props.dispatch(removeUploadFile(id));
+      props.dispatch(removeUploadJEntry(id));
+
+      const newState = uploadedItemsIds.filter(item => item !== id);
+      setUploadedItemsIds(newState);
+    }, 1000);
+
+    flashSuccessMessage(
+      'Files have been uploaded to your Mahara successfully!'
+    );
+  };
+
   const onUploadClick = () => {
+    setLoading(true);
     props.uploadFiles.forEach(async file => {
       clearUploadError(file.id);
       props
         .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
         .then((result: UploadResponse) => {
+          setLoading(false);
           // an error either returns result = undefined, or result = { error: true }
           if (result === undefined || result === null || result.error) {
+            setErrorMessage(result.error_message);
             onUploadError(file.id);
           } else onSuccessfulUpload(file.id);
         });
@@ -234,7 +235,9 @@ const PendingScreen = (props: Props) => {
           uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)
         )
         .then((result: UploadResponse) => {
+          setLoading(false);
           if (result === undefined || result === null || result.error) {
+            setErrorMessage(result.error_message);
             onUploadError(journalEntry.id);
           } else onSuccessfulUpload(journalEntry.id);
         });
@@ -244,7 +247,13 @@ const PendingScreen = (props: Props) => {
   return (
     <View style={pendingScreenStyles.app}>
       <View style={pendingScreenStyles.listContainer}>{pendingDisplay()}</View>
-      {uploadItemsCount > 0 ? (
+      {loading && (
+        <View>
+          <ActivityIndicator />
+          <StatusBar barStyle="default" />
+        </View>
+      )}
+      {numUploadItems > 0 ? (
         <View style={pendingScreenStyles.buttonContainer}>
           {props.userName !== GUEST_USERNAME ? (
             <View>
