@@ -1,3 +1,5 @@
+import {i18n} from '@lingui/core';
+import {t} from '@lingui/macro';
 import {useEffect, useRef} from 'react';
 import {StackActions} from 'react-navigation';
 import {
@@ -9,6 +11,7 @@ import {
   UserBlogJSON,
   UserTag
 } from '../models/models';
+import {newUploadResponse} from '../models/typeCreators';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -67,6 +70,7 @@ export function buildObject(item: object) {
 }
 
 export function uploadItemToMahara(url: string, item: object) {
+  let customResponse = null;
   const uploadObject = buildObject(item);
   return async () => {
     try {
@@ -74,10 +78,19 @@ export function uploadItemToMahara(url: string, item: object) {
         .then(response => response.json())
         .then(result => result);
     } catch (error) {
-      // the way Mahara works, we will always receive a 200 status from the backend on upload
-      // therefore, this catch will never get triggered
+      customResponse = newUploadResponse(
+        '',
+        i18n._(t`Please check internet connection.`),
+        '',
+        '',
+        {},
+        0
+      );
     }
-    return null;
+
+    // the way Mahara works, we will always receive a 200 status from the backend on upload
+    // therefore, this catch will never get triggered
+    return customResponse;
   };
 }
 
@@ -93,4 +106,4 @@ export function usePreviousProps(value: number) {
 }
 
 export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
-  tags.find((t: UserTag) => t.tag === tagString);
+  tags.find((tag: UserTag) => tag.tag === tagString);

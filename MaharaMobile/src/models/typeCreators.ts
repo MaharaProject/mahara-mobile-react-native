@@ -6,7 +6,8 @@ import {
   PendingJournalEntry,
   UserTag,
   UserFolder,
-  UserBlog
+  UserBlog,
+  UploadResponse
 } from './models';
 
 export const newMaharaFile = (
@@ -119,5 +120,23 @@ export const newUserBlog = (
     locked,
     numBlogPosts,
     title
+  };
+};
+
+export const newUploadResponse = (
+  errorClass: string,
+  errorMessage: string,
+  errorRendered: string,
+  errorName: string,
+  error: object,
+  file: number
+): UploadResponse => {
+  return {
+    error_class: errorClass,
+    error_message: errorMessage,
+    error_name: errorName,
+    error_rendered: errorRendered,
+    error,
+    file
   };
 };

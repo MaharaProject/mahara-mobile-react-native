@@ -89,15 +89,16 @@ const UploadItem = (props: Props) => {
         {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
         {props.showUploadError && (
           <View>
-            <Text>
-              There was an error uploading this file. Please try again.
-            </Text>
+            {/* TODO: Error message displayed on item card for failure upload */}
+            {/* 
+            There was an error uploading this file. Please try again.
+          
             <Icon
               onPress={props.onClearError}
               name="times"
               type="font-awesome"
               color={styles.colors.dark}
-            />
+            /> */}
           </View>
         )}
 
