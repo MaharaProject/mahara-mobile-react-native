@@ -4,7 +4,7 @@ import {
   faStopCircle
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {i18n, I18n} from '@lingui/core';
+import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import base64 from 'base-64';
@@ -23,6 +23,7 @@ import variables from '../../assets/styles/variables';
 import {MaharaFile, MaharaPendingFile, Playback} from '../../models/models';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
+import {UNRECORDED, RECORDING, RECORDED} from '../../utils/constants';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
@@ -33,16 +34,11 @@ type Props = {
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AddAudio = (props: Props) => {
-  type PlayStatus = 'playing' | 'notplaying';
-  type RecordStatus = 'unrecorded' | 'recording' | 'recorded';
-
   const [audioFile, setAudioFile] = useState('');
-  const [recordButtonStatus, setRecordButtonStatus] = useState<RecordStatus>(
+  const [recordButtonStatus, setRecordButtonStatus] = useState(
     props.editItem ? 'recorded' : 'unrecorded'
   );
-  const [playButtonStatus, setPlayButtonStatus] = useState<PlayStatus>(
-    'notplaying'
-  );
+  const [playButtonStatus, setPlayButtonStatus] = useState('notplaying');
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
@@ -64,10 +60,17 @@ const AddAudio = (props: Props) => {
     )
   };
 
-  const recordStrings = {
-    unrecorded: i18n._(t`Record`),
-    recording: i18n._(t`Stop`),
-    recorded: i18n._(t`Re-record`)
+  const getRecordStrings = (recordStatus: string) => {
+    switch (recordStatus) {
+      case UNRECORDED:
+        return 'Record';
+      case RECORDING:
+        return 'Stop';
+      case RECORDED:
+        return 'Re-record';
+      default:
+        return '';
+    }
   };
 
   // Check permissions
@@ -91,7 +94,7 @@ const AddAudio = (props: Props) => {
           {
             title: props.i18n._(t`Permission to record audio`),
             message: props.i18n._(
-              t`Allow your microphone to record audo and save the files?`
+              t`Allow your microphone to record audio and save the files?`
             ),
             buttonPositive: props.i18n._(t`Allow`)
           }
@@ -245,7 +248,7 @@ const AddAudio = (props: Props) => {
       </View>
       <View style={styles.recordButton}>
         <OutlineButton
-          title={t`${recordStrings[recordButtonStatus]}`}
+          title={props.i18n._(t`${getRecordStrings(recordButtonStatus)}`)}
           style={recordButtonStatus === 'recording' ? styles.recording : ''}
           onPress={() => handleRecord()}
           icon={

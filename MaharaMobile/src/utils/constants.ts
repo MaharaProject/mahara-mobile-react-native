@@ -76,3 +76,16 @@ export const GUEST_FOLDER: UserFolder = {
 
 // URLS
 export const WS_FUNCTION_UPLOAD_BLOGPOST = 'module_mobileapi_upload_blog_post';
+
+// AUDIO STATES
+// recording
+export const UNRECORDED = 'unrecorded';
+export const RECORDING = 'recording';
+export const RECORDED = 'recorded';
+
+export const RECORD = 'Record';
+export const STOP = 'Stop';
+export const RERECORD = 'Re-record';
+// playback
+export const NOT_PLAYING = 'NOT_PLAYING';
+export const PLAYING = 'PLAYING';

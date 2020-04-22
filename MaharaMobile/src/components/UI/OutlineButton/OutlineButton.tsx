@@ -16,7 +16,7 @@ type Props = {
   onPress: () => void;
   title: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
-  style: ViewProps;
+  style: any;
   icon?: string;
 };
 
@@ -56,7 +56,7 @@ const OutlineButton = (props: Props) => (
               style={outlineButtonStyles.icon}
             />
           ) : null}
-          &nbsp; {i18n._(props.title)}
+          &nbsp; {props.title}
         </Text>
       </TouchableOpacity>
     )}
