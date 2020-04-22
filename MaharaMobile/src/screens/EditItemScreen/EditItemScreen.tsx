@@ -112,7 +112,6 @@ const EditItemScreen = (props: Props) => {
               title={t`${filePickerButtonText}`}
               onPress={() => {
                 pickDocument(i18n, setPickedFile);
-                setFilePickerButtonText(props.i18n._(t`Select different file`));
               }}
               style={null}
               icon="faFolderOpen"

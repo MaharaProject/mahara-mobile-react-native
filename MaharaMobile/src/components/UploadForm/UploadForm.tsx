@@ -467,19 +467,16 @@ const UploadForm = (props: Props) => {
           accessibilityRole="button">
           {/* Editing items */}
           {props.editItem && (
-            <Trans>
-              <Text
-                style={{
-                  ...buttons.md,
-                  ...uploadFormStyles.queueButton,
-                  backgroundColor: validButton
-                    ? buttons.lg.backgroundColor
-                    : styles.colors.darkgrey
-                }}>
-                Confirm edits to
-                {formType}
-              </Text>
-            </Trans>
+            <Text
+              style={{
+                ...buttons.md,
+                ...uploadFormStyles.queueButton,
+                backgroundColor: validButton
+                  ? buttons.lg.backgroundColor
+                  : styles.colors.darkgrey
+              }}>
+              Confirm edits to {formType}
+            </Text>
           )}
 
           {/* Creating items */}
@@ -500,8 +497,7 @@ const UploadForm = (props: Props) => {
           )}
         </TouchableOpacity>
 
-        {/* Allow users to cancel edits - TODO: in future do not hop navigation stacks -
-          pressing the device back button will still remain on the wrong stack: AddScreen not Pending */}
+        {/* Allow users to cancel edits */}
         {props.editItem && (
           <MediumButton
             title={t`Cancel`}
