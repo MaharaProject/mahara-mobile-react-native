@@ -91,9 +91,7 @@ const EditItemScreen = (props: Props) => {
   const [pickedFile, setPickedFile] = useState<MaharaFile>(editingFile);
 
   const [filePickerButtonText, setFilePickerButtonText] = useState(
-    props.navigation.getParam('itemToEdit')
-      ? props.i18n._(t`Select a different file`)
-      : props.i18n._(t`Select a file`)
+    props.i18n._(t`Select a different file`)
   );
 
   useEffect(() => {
