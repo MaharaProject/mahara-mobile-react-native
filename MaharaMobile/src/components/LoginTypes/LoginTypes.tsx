@@ -25,6 +25,7 @@ import LinkButton from '../UI/LinkButton/LinkButton';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './LoginTypes.style';
+import i18n from '../../i18n';
 
 type Props = {
   url: string;
@@ -144,7 +145,7 @@ const LoginTypes = (props: Props) => {
                 {controlURL}
               </Text>
               <OutlineButton
-                title={t`Enter a different URL`}
+                title="Enter a different URL"
                 style={buttons.light}
                 onPress={() => props.resetForm()}
               />

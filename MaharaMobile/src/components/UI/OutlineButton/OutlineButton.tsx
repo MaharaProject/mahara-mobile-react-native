@@ -1,21 +1,21 @@
-import {I18n} from '@lingui/react';
-import React from 'react';
-import {Text, TouchableOpacity, ViewProps} from 'react-native';
 import {
   faFolderOpen,
   faMicrophone,
   faStopCircle
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import {t} from '@lingui/macro';
+import {I18n} from '@lingui/react';
+import React from 'react';
+import {Text, TouchableOpacity} from 'react-native';
 import buttons from '../../../assets/styles/buttons';
 import styles from '../../../assets/styles/variables';
-import {MessageDescriptor} from '../../../models/models';
 import outlineButtonStyles from './OutlineButton.style';
 
 type Props = {
   onPress: () => void;
-  title: MessageDescriptor;
-  accessibilityHint?: MessageDescriptor;
+  title: string;
+  accessibilityHint?: string;
   style: any;
   icon?: string;
 };
@@ -25,7 +25,7 @@ const OutlineButton = (props: Props) => (
     {({i18n}) => (
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel={i18n._(props.title)}
+        accessibilityLabel={props.title}
         accessibilityHint={i18n._(props.accessibilityHint)}
         onPress={props.onPress}>
         <Text
@@ -56,7 +56,7 @@ const OutlineButton = (props: Props) => (
               style={outlineButtonStyles.icon}
             />
           ) : null}
-          &nbsp; {props.title}
+          {` ${props.title}`}
         </Text>
       </TouchableOpacity>
     )}

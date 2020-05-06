@@ -86,7 +86,7 @@ const UploadItem = (props: Props) => {
   return (
     <View style={uploadItemStyles.uploadItem}>
       <Card style={{...uploadItemStyles.pendingCard}}>
-        {props.successfullyUploadedItem && <Text>Upload successful!</Text>}
+        {/* {props.successfullyUploadedItem && <Text>Upload successful!</Text>} */}
         {props.showUploadError && (
           <View>
             {/* TODO: Error message displayed on item card for failure upload */}

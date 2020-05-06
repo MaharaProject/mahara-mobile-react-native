@@ -22,7 +22,7 @@ const App = () => {
   // Render the app container component with the provider around it
   return (
     <Provider store={store}>
-      <I18nProvider i18n={i18n} language="en">
+      <I18nProvider language="en">
         <AppNavigator />
       </I18nProvider>
     </Provider>
