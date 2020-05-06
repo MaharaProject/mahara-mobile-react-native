@@ -85,11 +85,13 @@ const AddItemScreen = (props: Props) => {
           : null}
         {formType === FILE && (
           <View>
+            {/* title={props.i18n._(t`${getRecordStrings(recordButtonStatus)}`)} */}
+
             <OutlineButton
               title={
                 pickedFile.uri === ''
-                  ? t`Select a file`
-                  : t`Select a different file`
+                  ? props.i18n._(t`Select a file`)
+                  : props.i18n._(t`Select a different file`)
               }
               onPress={() => pickDocument(i18n, setPickedFile)}
               style={null}

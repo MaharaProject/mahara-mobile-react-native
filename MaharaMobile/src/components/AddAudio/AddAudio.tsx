@@ -34,10 +34,26 @@ type Props = {
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AddAudio = (props: Props) => {
+  const getButtonText = (recordStatus: string): string => {
+    let buttonText = '';
+    switch (recordStatus) {
+      case UNRECORDED:
+        buttonText = 'Record';
+        break;
+      case RECORDING:
+        buttonText = 'Stop';
+        break;
+      case RECORDED:
+        buttonText = 'Re-record';
+        break;
+      default:
+        break;
+    }
+    return buttonText;
+  };
+
   const [audioFile, setAudioFile] = useState('');
-  const [recordButtonStatus, setRecordButtonStatus] = useState(
-    props.editItem ? 'recorded' : 'unrecorded'
-  );
+  const [recordButtonText, setRecordButtonText] = useState('Record');
   const [playButtonStatus, setPlayButtonStatus] = useState('notplaying');
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -58,19 +74,6 @@ const AddAudio = (props: Props) => {
         color={variables.colors.tertiary}
       />
     )
-  };
-
-  const getRecordStrings = (recordStatus: string) => {
-    switch (recordStatus) {
-      case UNRECORDED:
-        return 'Record';
-      case RECORDING:
-        return 'Stop';
-      case RECORDED:
-        return 'Re-record';
-      default:
-        return '';
-    }
   };
 
   // Check permissions
@@ -137,7 +140,7 @@ const AddAudio = (props: Props) => {
       const result = await audioRecorderPlayer.startRecorder();
       audioRecorderPlayer.addRecordBackListener(() => {
         setAudioFile(result);
-        setRecordButtonStatus('recording');
+        setRecordButtonText(getButtonText(RECORDING));
       });
     } catch (e) {
       // console.log(e);
@@ -148,7 +151,7 @@ const AddAudio = (props: Props) => {
     const result = await audioRecorderPlayer.stopRecorder();
     audioRecorderPlayer.removeRecordBackListener();
     setAudioFile(result);
-    setRecordButtonStatus('recorded');
+    setRecordButtonText(getButtonText(RECORDED));
     setIsRecorded(true);
     const size = await getFileSize();
     props.setPickedFile({
@@ -166,10 +169,7 @@ const AddAudio = (props: Props) => {
       return;
     }
 
-    if (
-      recordButtonStatus === 'unrecorded' ||
-      recordButtonStatus === 'recorded'
-    ) {
+    if (recordButtonText === 'Record' || recordButtonText === 'Re-record') {
       onStartRecord();
       setIsRecorded(false);
     } else {
@@ -248,12 +248,10 @@ const AddAudio = (props: Props) => {
       </View>
       <View style={styles.recordButton}>
         <OutlineButton
-          title={props.i18n._(t`${getRecordStrings(recordButtonStatus)}`)}
-          style={recordButtonStatus === 'recording' ? styles.recording : ''}
+          title={recordButtonText}
+          style={recordButtonText === 'Stop' ? styles.recording : ''}
           onPress={() => handleRecord()}
-          icon={
-            recordButtonStatus === 'recording' ? 'faStopCircle' : 'faMicrophone'
-          }
+          icon={recordButtonText === 'Stop' ? 'faStopCircle' : 'faMicrophone'}
         />
       </View>
     </View>

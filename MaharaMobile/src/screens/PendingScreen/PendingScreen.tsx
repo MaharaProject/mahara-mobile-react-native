@@ -70,7 +70,7 @@ const PendingScreen = (props: Props) => {
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
-  const renderSuccessMessage = () => {
+  const renderAddSuccessMessage = () => {
     showMessage({
       message: <Trans>Added to upload queue successfully!</Trans>,
       icon: {
@@ -86,7 +86,7 @@ const PendingScreen = (props: Props) => {
 
   useEffect(() => {
     if (prevUploadCount < numUploadItems && numUploadItems !== 0) {
-      renderSuccessMessage();
+      renderAddSuccessMessage();
     }
   }, [numUploadItems]);
 
@@ -185,8 +185,8 @@ const PendingScreen = (props: Props) => {
 
   const flashSuccessMessage = (text: string) => {
     showMessage({
-      message: i18n._(t`${text}`),
-      // TODO: safe translation <Trans>Files have been uploaded to your Mahara successfully!</Trans>
+      message: text,
+      // BUG  i18n._(t`${text}`),
       icon: 'success',
       titleStyle: messages.errorMessage,
       backgroundColor: variables.colors.successbg,

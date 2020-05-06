@@ -97,7 +97,7 @@ const PreferencesScreen = (props: Props) => {
             {sortedFolders.map((f: UserFolder) => {
               const label =
                 f.title === defaultFolderTitle
-                  ? `${f.title} - default`
+                  ? `${f.title} - (default)`
                   : f.title;
               return <Picker.Item label={label} value={f.title} key={f.id} />;
             })}
@@ -125,7 +125,7 @@ const PreferencesScreen = (props: Props) => {
             {blogs.map((blog: UserBlog) => {
               const label =
                 blog.id === defaultBlogId
-                  ? `${blog.title} - default`
+                  ? `${blog.title} - (default)`
                   : blog.title;
               return (
                 <Picker.Item label={label} value={blog.id} key={blog.id} />
@@ -168,10 +168,11 @@ const PreferencesScreen = (props: Props) => {
           }
           Alert.alert(
             'Updated Preferences',
-            `Folder: ${selectedFolderTitle}
-            \nBlog: ${
-              userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title
-            }`
+            `Folder: ${selectedFolderTitle || defaultFolderTitle} 
+            \nJournal: ${userBlogs.find(
+              (b: UserBlog) => b.id === selectedBlogId
+            )?.title ||
+              userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title}`
           );
         }}
       />
