@@ -62,7 +62,7 @@ type Props = {
 const JournalDraftSwitch = (props: Props) => (
   <View style={{flexDirection: 'row'}}>
     <SubHeading>
-      <Trans>Draft Journal entry &nbsp;</Trans>
+      <Trans>Draft journal entry &nbsp;</Trans>
     </SubHeading>
     <Switch
       value={props.isDraft}

@@ -107,7 +107,8 @@ const EditItemScreen = (props: Props) => {
         {formType === FILE && (
           <View>
             <OutlineButton
-              title={t`${filePickerButtonText}`}
+              // FIXME title={t`${filePickerButtonText}`}
+              title={filePickerButtonText}
               onPress={() => {
                 pickDocument(i18n, setPickedFile);
               }}
