@@ -30,4 +30,5 @@ test:
   stage: test
   script: 
     - cd MaharaMobile
+    - npm run extract
     - npm run test
