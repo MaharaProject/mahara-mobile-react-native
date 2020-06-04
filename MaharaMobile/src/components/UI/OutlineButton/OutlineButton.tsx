@@ -4,18 +4,18 @@ import {
   faStopCircle
 } from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
+import {MessageDescriptor} from '@lingui/core';
 import buttons from '../../../assets/styles/buttons';
 import styles from '../../../assets/styles/variables';
 import outlineButtonStyles from './OutlineButton.style';
 
 type Props = {
   onPress: () => void;
-  title: string;
-  accessibilityHint?: string;
+  text: MessageDescriptor;
+  accessibilityHint?: MessageDescriptor;
   style: any;
   icon?: string;
 };
@@ -25,8 +25,10 @@ const OutlineButton = (props: Props) => (
     {({i18n}) => (
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel={props.title}
-        accessibilityHint={i18n._(props.accessibilityHint)}
+        accessibilityLabel={i18n._(props.text)}
+        accessibilityHint={
+          props.accessibilityHint ? i18n._(props.accessibilityHint) : ''
+        }
         onPress={props.onPress}>
         <Text
           style={{
@@ -56,7 +58,7 @@ const OutlineButton = (props: Props) => (
               style={outlineButtonStyles.icon}
             />
           ) : null}
-          {` ${props.title}`}
+          {` ${i18n._(props.text)} `}
         </Text>
       </TouchableOpacity>
     )}

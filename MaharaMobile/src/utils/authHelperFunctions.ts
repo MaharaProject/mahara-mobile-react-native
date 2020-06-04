@@ -158,7 +158,9 @@ export const fetchProfilePic = async (
 export const signOutAsync = async (navigation, dispatch) => {
   Alert.alert(
     i18n._(t`Are you sure?`),
-    i18n._(t`Items in upload queue will not be retrievable once logged out.`),
+    i18n._(
+      t`Items in the upload queue will not be retrievable once logged out.`
+    ),
 
     [
       {

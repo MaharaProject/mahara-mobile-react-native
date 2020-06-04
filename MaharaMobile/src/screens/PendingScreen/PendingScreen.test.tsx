@@ -5,7 +5,6 @@ import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import i18n from '../../i18n';
 import PendingScreen from './PendingScreen';
-// import ShallowRenderer from 'react-test-renderer/shallow';
 
 jest.mock('rn-fetch-blob', () => {
   return true;

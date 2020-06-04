@@ -80,7 +80,7 @@ export function uploadItemToMahara(url: string, item: object) {
     } catch (error) {
       customResponse = newUploadResponse(
         '',
-        i18n._(t`Please check internet connection.`),
+        i18n._(t`Please check the internet connection.`),
         '',
         '',
         {},

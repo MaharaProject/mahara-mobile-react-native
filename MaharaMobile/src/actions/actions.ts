@@ -4,7 +4,6 @@ import {
   LoginInfo,
   MaharaPendingFile,
   PendingJournalEntry,
-  RequestErrorPayload,
   UserBlog,
   UserFolder,
   UserTag
@@ -27,8 +26,10 @@ import {
   SAVE_TAGGED_ITEMS_TO_ASYNC,
   SET_DEFAULT_BLOG,
   SET_DEFAULT_FOLDER,
+  SET_LANGUAGE,
   TAGS_IDS,
   TAG_ITEM,
+  TOGGLE_LANGUAGE,
   UPDATE_GUEST_STATUS,
   UPDATE_J_ENTRIES_ON_LOGIN,
   UPDATE_LOGIN_TYPES,
@@ -43,6 +44,7 @@ import {
   UPDATE_USER_TAGS,
   USER_TAGS
 } from '../utils/constants';
+import RequestError from '../utils/RequestError';
 
 // action creators - functions that create actions
 
@@ -170,6 +172,20 @@ export function setDefaultBlogId(blogId: number) {
   return {type: SET_DEFAULT_BLOG, blogId};
 }
 
+// appSettingsReducer
+export function setLanguage(lang: string) {
+  return {
+    type: SET_LANGUAGE,
+    lang
+  };
+}
+
+export function toggleLanguage() {
+  return {
+    type: TOGGLE_LANGUAGE
+  };
+}
+
 // uploadFilesReducer
 export function addFileToUploadList(file: MaharaPendingFile) {
   return {type: ADD_UPLOAD_FILE, file};
@@ -231,34 +247,6 @@ export function updateUserFolders(folders: Array<UserFolder>) {
 export function clearUserBlogs() {
   AsyncStorage.removeItem('userBlogs');
   return {type: CLEAR_USER_BLOGS};
-}
-
-export class RequestError extends Error {
-  code: number;
-
-  name = 'RequestError';
-
-  previousError: Error | null = null;
-
-  constructor({
-    code = 400,
-    message = 'Request Error',
-    previousError
-  }: RequestErrorPayload) {
-    super(String(message) || 'Request Error');
-    this.code = Number(code);
-    if (previousError) {
-      this.previousError = previousError;
-    }
-  }
-
-  static createRequestError(e: RequestError): RequestError {
-    if (e.name === 'RequestError') {
-      return e;
-    }
-
-    return new RequestError({code: 500, message: e.message, previousError: e});
-  }
 }
 
 const requestJSON = async (url: string, config: object, error?: string) => {

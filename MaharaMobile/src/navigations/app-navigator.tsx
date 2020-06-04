@@ -1,6 +1,4 @@
-import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
 import React from 'react';
 import {Platform} from 'react-native';
 import {
@@ -13,7 +11,14 @@ import {
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import NavAddSVG from '../assets/images/nav-add';
+import NavAddActiveSVG from '../assets/images/nav-add-active';
+import NavMenuSVG from '../assets/images/nav-menu';
+import NavMenuActiveSVG from '../assets/images/nav-menu-active';
+import NavUploadSVG from '../assets/images/nav-upload';
+import NavUploadActiveSVG from '../assets/images/nav-upload-active';
 import styles from '../assets/styles/variables';
+import i18n from '../i18n';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
@@ -28,29 +33,23 @@ import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 import VersionScreen from '../screens/VersionScreen/VersionScreen';
 
-import NavUploadSVG from '../assets/images/nav-upload';
-import NavUploadActiveSVG from '../assets/images/nav-upload-active';
-import NavAddSVG from '../assets/images/nav-add';
-import NavAddActiveSVG from '../assets/images/nav-add-active';
-import NavMenuSVG from '../assets/images/nav-menu';
-import NavMenuActiveSVG from '../assets/images/nav-menu-active';
-
 type Props = {
-  i18n: I18n;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
-const AppNavigator = (props: Props) => {
+const AppNavigator = () => {
   const navigatorStrings = {
-    PROFILE: props.i18n._(t`Profile`),
-    PENDING: props.i18n._(t`Upload queue`),
-    ADD: props.i18n._(t`Add`),
-    PROFILE_ACCESSIBILITY_LABEL: props.i18n._(t`Profile page`),
-    ADD_ACCESSIBILITY_LABEL: props.i18n._(t`Add an item`),
-    PENDING_ACCESSIBILITY_LABEL: props.i18n._(t`Upload queue page`),
-    PREFERENCES: props.i18n._(t`Preferences`),
-    ABOUT: props.i18n._(t`About`),
-    MENU: props.i18n._(t`Menu`)
+    PENDING: i18n._(t`Upload queue`),
+    ADD: i18n._(t`Add`),
+    PROFILE_ACCESSIBILITY_LABEL: i18n._(t`Profile page`),
+    ADD_ACCESSIBILITY_LABEL: i18n._(t`Add an item`),
+    PENDING_ACCESSIBILITY_LABEL: i18n._(t`Upload queue page`),
+    PREFERENCES: i18n._(t`Preferences`),
+    ABOUT: i18n._(t`About`),
+    MENU: i18n._(t`Menu`),
+    LEGAL: i18n._(t`Legal`),
+    HELP: i18n._(t`Help`),
+    VERSION: i18n._(t`Version`)
   };
 
   // Home page navigator, all other pages get attached to this  navigation stack.
@@ -83,11 +82,32 @@ const AppNavigator = (props: Props) => {
         headerTitle: navigatorStrings.MENU
       }
     },
-    About: AboutScreen,
-    Preferences: PreferencesScreen,
-    Legal: LegalScreen,
-    Help: HelpScreen,
-    Version: VersionScreen
+    About: {
+      screen: AboutScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.ABOUT
+      }
+    },
+    Preferences: {
+      screen: PreferencesScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.PREFERENCES
+      }
+    },
+    Legal: {
+      screen: LegalScreen,
+      navigationOptions: {
+        headerTitle: navigatorStrings.LEGAL
+      }
+    },
+    Help: {
+      screen: HelpScreen,
+      navigationOptions: {headerTitle: navigatorStrings.HELP}
+    },
+    Version: {
+      screen: VersionScreen,
+      navigationOptions: {headerTitle: navigatorStrings.VERSION}
+    }
   });
 
   const tabScreenConfig = {
@@ -174,4 +194,4 @@ const AppNavigator = (props: Props) => {
   return <Navigation />;
 };
 
-export default withI18n()(AppNavigator);
+export default AppNavigator;

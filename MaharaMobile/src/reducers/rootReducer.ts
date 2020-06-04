@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import {appSettingsReducer} from './appSettingsReducer';
 import {loginInfoReducer} from './loginInfoReducer';
 import {uploadFilesReducer} from './uploadFilesReducer';
 import {uploadJEntriesReducer} from './uploadJEntriesReducer';
@@ -17,6 +18,9 @@ export const rootReducer = combineReducers({
   appState: combineReducers({
     uploadFiles: uploadFilesReducer,
     uploadJEntries: uploadJEntriesReducer
+  }),
+  uiState: combineReducers({
+    appSettings: appSettingsReducer
   })
 });
 

@@ -1,3 +1,5 @@
+import {UserFolder, UserBlog} from '../../models/models';
+
 import {loginInfoReducer} from '../../reducers/loginInfoReducer';
 
 // LOGIN INFO REDUCER
@@ -5,8 +7,8 @@ import {loginInfoReducer} from '../../reducers/loginInfoReducer';
 describe('LoginInfo state ', () => {
   it('should set up default LoginInfo values', () => {
     const state = loginInfoReducer(undefined, {type: ''});
-    const userBlogs = [];
-    const userFolders = [];
+    const userBlogs: UserBlog[] = [];
+    const userFolders: UserFolder[] = [];
     expect(state).toEqual({
       url: '',
       tokenLogin: false,

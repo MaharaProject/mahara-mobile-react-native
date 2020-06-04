@@ -1,14 +1,13 @@
-import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert, Image, View} from 'react-native';
 import {DocumentPicker, DocumentPickerUtil} from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
+import i18n from '../i18n';
 import {MaharaFile} from '../models/models';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
 export const takePhoto = (
-  i18n: I18n,
   setPickedFile: Dispatch<SetStateAction<MaharaFile>>
 ) => {
   const options = {
@@ -40,7 +39,6 @@ export const takePhoto = (
 };
 
 export const pickDocument = async (
-  i18n: I18n,
   setPickedFile: Dispatch<SetStateAction<MaharaFile>>
 ) => {
   // iPhone/Android
@@ -68,7 +66,7 @@ export const pickDocument = async (
   );
 };
 
-export const renderImagePreview = (i18n: I18n, uri: string) => {
+export const renderImagePreview = (uri: string) => {
   return (
     <View style={styles.imageWrap}>
       <Image
