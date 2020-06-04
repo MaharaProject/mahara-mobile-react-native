@@ -53,7 +53,7 @@ type Props = {
  */
 const LoginTypes = (props: Props) => {
   const [controlURL, setControlURL] = useState(
-    'https://master.dev.mahara.org/'
+    'https://'
   );
 
   const [enterURLWarning, setEnterURLWarning] = useState(false);

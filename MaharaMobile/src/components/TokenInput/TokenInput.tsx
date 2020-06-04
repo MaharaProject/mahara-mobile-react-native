@@ -36,7 +36,7 @@ export default function TokenInput(props: Props) {
           <TextInput
             style={forms.textInput}
             // TODO: remove default value for go live
-            defaultValue="1f1fa20d6ced9f281f663a9e6c1a30f8"
+            defaultValue="..."
             onChangeText={(input) => setToken(input.trim())
             }
           />
