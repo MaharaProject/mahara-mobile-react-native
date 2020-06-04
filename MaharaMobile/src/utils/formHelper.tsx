@@ -35,15 +35,8 @@ export const RequiredWarningText = (props: {customText: string}) => (
   </I18n>
 );
 
-export const RedAsterix = () => (
+export const RedAsterisk = () => (
   <Text style={{color: styles.colors.warn}}> *</Text>
-);
-
-export const SubHeading = props => (
-  <Text style={[headingStyles.subHeading2, props.styles]}>
-    {props.children}
-    {props.required ? <RedAsterix /> : null}
-  </Text>
 );
 
 /**

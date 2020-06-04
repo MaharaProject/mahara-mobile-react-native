@@ -20,10 +20,15 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import buttons from '../../assets/styles/buttons';
 import variables from '../../assets/styles/variables';
-import {MaharaFile, MaharaPendingFile, Playback} from '../../models/models';
+import {
+  MaharaFile,
+  MaharaPendingFile,
+  MessageDescriptor,
+  Playback
+} from '../../models/models';
+import {RECORDED, RECORDING, UNRECORDED} from '../../utils/constants';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
-import {UNRECORDED, RECORDING, RECORDED} from '../../utils/constants';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
@@ -34,17 +39,17 @@ type Props = {
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AddAudio = (props: Props) => {
-  const getButtonText = (recordStatus: string): string => {
-    let buttonText = '';
+  const getButtonText = (recordStatus: string): MessageDescriptor => {
+    let buttonText: MessageDescriptor = {id: ''};
     switch (recordStatus) {
       case UNRECORDED:
-        buttonText = 'Record';
+        buttonText = t`Record`;
         break;
       case RECORDING:
-        buttonText = 'Stop';
+        buttonText = t`Stop`;
         break;
       case RECORDED:
-        buttonText = 'Re-record';
+        buttonText = t`Re-record`;
         break;
       default:
         break;
@@ -53,7 +58,7 @@ const AddAudio = (props: Props) => {
   };
 
   const [audioFile, setAudioFile] = useState('');
-  const [recordButtonText, setRecordButtonText] = useState('Record');
+  const [recordButtonText, setRecordButtonText] = useState(t`Record`);
   const [playButtonStatus, setPlayButtonStatus] = useState('notplaying');
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -168,8 +173,10 @@ const AddAudio = (props: Props) => {
     if (!isPermissionGranted) {
       return;
     }
-
-    if (recordButtonText === 'Record' || recordButtonText === 'Re-record') {
+    if (
+      recordButtonText.id === t`Record`.id ||
+      recordButtonText.id === t`Re-record`.id
+    ) {
       onStartRecord();
       setIsRecorded(false);
     } else {
@@ -248,10 +255,12 @@ const AddAudio = (props: Props) => {
       </View>
       <View style={styles.recordButton}>
         <OutlineButton
-          title={recordButtonText}
-          style={recordButtonText === 'Stop' ? styles.recording : ''}
+          text={recordButtonText}
+          style={recordButtonText.id === t`Stop`.id ? styles.recording : ''}
           onPress={() => handleRecord()}
-          icon={recordButtonText === 'Stop' ? 'faStopCircle' : 'faMicrophone'}
+          icon={
+            recordButtonText.id === t`Stop`.id ? 'faStopCircle' : 'faMicrophone'
+          }
         />
       </View>
     </View>

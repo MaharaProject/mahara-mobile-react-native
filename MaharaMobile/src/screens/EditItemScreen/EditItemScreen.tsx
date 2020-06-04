@@ -1,6 +1,5 @@
-import {I18n, i18n} from '@lingui/core';
+import {I18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -14,7 +13,6 @@ import {Dispatch} from 'redux';
 import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
-import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
 import UploadForm from '../../components/UploadForm/UploadForm';
@@ -91,7 +89,7 @@ const EditItemScreen = (props: Props) => {
   const [pickedFile, setPickedFile] = useState<MaharaFile>(editingFile);
 
   const [filePickerButtonText, setFilePickerButtonText] = useState(
-    props.i18n._(t`Select a different file`)
+    t`Select a different file`
   );
 
   useEffect(() => {
@@ -102,15 +100,14 @@ const EditItemScreen = (props: Props) => {
     <ScrollView>
       <View style={generic.wrap}>
         {pickedFile.name && (formType === FILE || formType === PHOTO)
-          ? renderImagePreview(i18n, pickedFile.uri)
+          ? renderImagePreview(pickedFile.uri)
           : null}
         {formType === FILE && (
           <View>
             <OutlineButton
-              // FIXME title={t`${filePickerButtonText}`}
-              title={filePickerButtonText}
+              text={filePickerButtonText}
               onPress={() => {
-                pickDocument(i18n, setPickedFile);
+                pickDocument(setPickedFile);
               }}
               style={null}
               icon="faFolderOpen"
@@ -119,7 +116,7 @@ const EditItemScreen = (props: Props) => {
         )}
         {formType === PHOTO && (
           <TouchableOpacity
-            onPress={() => takePhoto(i18n, setPickedFile)}
+            onPress={() => takePhoto(setPickedFile)}
             accessibilityRole="button">
             <Text style={[buttons.md, outlineButtonStyles.buttons]}>
               <FontAwesome5 name="camera" size={20} />
@@ -153,11 +150,6 @@ const EditItemScreen = (props: Props) => {
   );
 };
 
-EditItemScreen.navigationOptions = ({navigation}) => ({
-  headerTitle: `Editing ${navigation.getParam('formType')}`,
-  headerLeft: <CustomVerifyBackButton navigation={navigation} />
-});
-
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
   token: selectToken(state),
@@ -170,4 +162,4 @@ const mapStateToProps = (state: RootState) => ({
   defaultBlogId: selectDefaultBlogId(state)
 });
 
-export default connect(mapStateToProps)(withI18n()(EditItemScreen));
+export default connect(mapStateToProps)(EditItemScreen);

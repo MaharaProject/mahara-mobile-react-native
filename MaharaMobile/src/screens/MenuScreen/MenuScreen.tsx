@@ -10,6 +10,7 @@ import MenuItem from '../../components/MenuItem/MenuItem';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
 import {signOutAsync} from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
+import {MessageDescriptor} from '../../models/models';
 
 type MenuItem = {
   name: string;
@@ -24,10 +25,10 @@ const MenuScreen = (props: Props) => {
   const dispatch = useDispatch();
 
   const menuStrings = {
-    about: i18n._(t`About`),
-    preferences: i18n._(t`Preferences`),
-    legal: i18n._(t`Legal`),
-    help: i18n._(t`Help`),
+    about: t`About`,
+    preferences: t`Preferences`,
+    legal: t`Legal`,
+    help: t`Help`,
     version: i18n._(t`App version`),
     logout: i18n._(t`Logout`)
   };
@@ -37,7 +38,10 @@ const MenuScreen = (props: Props) => {
    * @param name nane to display on Menu Screen
    * @param path path to navigate to onPressing the item
    */
-  const createMenuItem = (name: string, path: () => void): MenuItem => {
+  const createMenuItem = (
+    name: string | MessageDescriptor,
+    path: () => void
+  ): MenuItem => {
     return {name, path};
   };
 

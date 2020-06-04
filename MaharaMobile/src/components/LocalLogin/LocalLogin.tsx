@@ -88,7 +88,7 @@ export default function LocalLogin(props: Props) {
             )}
           </I18n>
           <MediumButton
-            title={t` Login`}
+            text={t` Login`}
             icon="faSignInAlt"
             onPress={() => checkLogins()}
           />

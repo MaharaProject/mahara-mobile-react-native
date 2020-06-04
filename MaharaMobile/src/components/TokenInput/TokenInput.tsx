@@ -40,7 +40,7 @@ export default function TokenInput(props: Props) {
             onChangeText={(input) => setToken(input.trim())
             }
           />
-          <MediumButton title={t`Verify token`} icon="faSignInAlt" onPress={() => props.onUpdateToken(token)} />
+          <MediumButton text={t`Verify token`} icon="faSignInAlt" onPress={() => props.onUpdateToken(token)} />
         </View>
       </LinearGradient>
     </View>

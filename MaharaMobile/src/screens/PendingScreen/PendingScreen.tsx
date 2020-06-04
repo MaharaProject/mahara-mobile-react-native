@@ -1,4 +1,3 @@
-import {i18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import React, {useEffect, useState} from 'react';
 import {Alert, Text, View, ActivityIndicator, StatusBar} from 'react-native';
@@ -15,7 +14,8 @@ import {
   DisplayItems,
   MaharaPendingFile,
   PendingJournalEntry,
-  UploadResponse
+  UploadResponse,
+  MessageDescriptor
 } from '../../models/models';
 import {selectUrl, selectUserName} from '../../reducers/loginInfoReducer';
 import {RootState} from '../../reducers/rootReducer';
@@ -46,6 +46,7 @@ import variables from '../../assets/styles/variables';
 
 // Images
 import UploadSVG from '../../assets/images/upload';
+import i18n from '../../i18n';
 
 type Props = {
   uploadFiles: Array<MaharaPendingFile>;
@@ -70,14 +71,10 @@ const PendingScreen = (props: Props) => {
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
-  const renderAddSuccessMessage = () => {
+  const flashSuccessMessage = (text: MessageDescriptor) => {
     showMessage({
-      message: <Trans>Added to upload queue successfully!</Trans>,
-      icon: {
-        icon: 'auto',
-        position: 'left'
-      },
-      type: 'success',
+      message: i18n._(text),
+      icon: 'success',
       titleStyle: messages.errorMessage,
       backgroundColor: variables.colors.successbg,
       color: variables.colors.success
@@ -86,7 +83,7 @@ const PendingScreen = (props: Props) => {
 
   useEffect(() => {
     if (prevUploadCount < numUploadItems && numUploadItems !== 0) {
-      renderAddSuccessMessage();
+      flashSuccessMessage(t`Added to upload queue successfully!`);
     }
   }, [numUploadItems]);
 
@@ -183,17 +180,6 @@ const PendingScreen = (props: Props) => {
     );
   };
 
-  const flashSuccessMessage = (text: string) => {
-    showMessage({
-      message: text,
-      // BUG  i18n._(t`${text}`),
-      icon: 'success',
-      titleStyle: messages.errorMessage,
-      backgroundColor: variables.colors.successbg,
-      color: variables.colors.success
-    });
-  };
-
   const onSuccessfulUpload = (id: string) => {
     // change class to show upload success
     setUploadedItemsIds([...uploadedItemsIds, id]);
@@ -208,7 +194,7 @@ const PendingScreen = (props: Props) => {
     }, 1000);
 
     flashSuccessMessage(
-      'Files have been uploaded to your Mahara successfully!'
+      t`Files have been uploaded to your Mahara successfully!`
     );
   };
 
@@ -258,17 +244,17 @@ const PendingScreen = (props: Props) => {
           {props.userName !== GUEST_USERNAME ? (
             <View>
               <Text style={[pendingScreenStyles.urlText, textStyles.center]}>
-                {`Your site: ${url}`}
+                <Trans>Your site: {url}</Trans>
               </Text>
               <MediumButton
-                title={t`Upload to your site`}
+                text={t`Upload to your site`}
                 onPress={onUploadClick}
                 icon="faCloudUploadAlt"
               />
             </View>
           ) : (
             <MediumButton
-              title={t`Please login`}
+              text={t`Please login`}
               accessibilityHint={t`To upload pending items`}
               onPress={() => props.navigation.navigate('Auth')}
             />

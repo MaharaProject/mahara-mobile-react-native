@@ -1,4 +1,5 @@
 import {t, Trans} from '@lingui/macro';
+import {withI18n} from '@lingui/react';
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
@@ -25,7 +26,6 @@ import LinkButton from '../UI/LinkButton/LinkButton';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './LoginTypes.style';
-import i18n from '../../i18n';
 
 type Props = {
   url: string;
@@ -145,7 +145,7 @@ const LoginTypes = (props: Props) => {
                 {controlURL}
               </Text>
               <OutlineButton
-                title="Enter a different URL"
+                text={t`Enter a different URL`}
                 style={buttons.light}
                 onPress={() => props.resetForm()}
               />
@@ -154,10 +154,10 @@ const LoginTypes = (props: Props) => {
           {!props.isInputHidden ? (
             <View style={styles.buttonGroup}>
               <MediumButton
-                title={t`Next`}
+                text={t`Next`}
                 onPress={() => props.checkServer(addHttpTrims(controlURL))}
               />
-              <LinkButton title={t`Skip`} onPress={() => props.onSkip()} />
+              <LinkButton text={t`Skip`} onPress={() => props.onSkip()} />
             </View>
           ) : null}
           {props.serverPing && (
@@ -168,19 +168,19 @@ const LoginTypes = (props: Props) => {
 
           {props.serverPing && props.ssoLogin && (
             <MediumButton
-              title={t`Single sign-on`}
+              text={t`Single sign-on`}
               onPress={() => props.setLoginType('sso')}
             />
           )}
           {props.serverPing && props.localLogin && (
             <MediumButton
-              title={t`Local`}
+              text={t`Local`}
               onPress={() => props.setLoginType('basic')}
             />
           )}
           {props.serverPing && props.tokenLogin && (
             <MediumButton
-              title={t`Access token`}
+              text={t`Access token`}
               onPress={() => props.setLoginType('token')}
             />
           )}
@@ -192,4 +192,4 @@ const LoginTypes = (props: Props) => {
   );
 };
 
-export default LoginTypes;
+export default withI18n()(LoginTypes);

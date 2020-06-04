@@ -132,8 +132,8 @@ android {
         applicationId "com.maharamobile"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "20.06.1"
     }
     splits {
         abi {
@@ -188,6 +188,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-localize')
     implementation project(':react-native-config')
     implementation project(':react-native-device-info')
     implementation project(':@react-native-community_async-storage')

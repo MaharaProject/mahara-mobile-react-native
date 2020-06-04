@@ -1,3 +1,4 @@
+import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableOpacity} from 'react-native';
@@ -20,7 +21,7 @@ const CancelButton = (props: Props) => (
         accessibilityRole="button"
         accessibilityLabel="Cancel"
         onPress={() => props.navigation.goBack()}>
-        <Text style={[buttons.md, buttons.cancel]}>Cancel</Text>
+        <Text style={[buttons.md, buttons.cancel]}>{i18n._(t`Cancel`)}</Text>
       </TouchableOpacity>
     )}
   </I18n>

@@ -83,9 +83,7 @@ const PreferencesScreen = (props: Props) => {
 
     return (
       <View>
-        <SubHeading>
-          <Trans>Destination folder:</Trans>
-        </SubHeading>
+        <SubHeading text={t`Destination folder`} />
         <View style={forms.pickerWrapper}>
           <Picker
             accessibilityLabel={i18n._(t`Select folder`)}
@@ -113,9 +111,7 @@ const PreferencesScreen = (props: Props) => {
     const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
       <View>
-        <SubHeading>
-          <Trans>Destination journal:</Trans>
-        </SubHeading>
+        <SubHeading text={t`Destination journal:`} />
         <View style={forms.pickerWrapper}>
           <Picker
             accessibilityLabel={i18n._(t`Select journal`)}
@@ -153,13 +149,14 @@ const PreferencesScreen = (props: Props) => {
   return (
     <View style={PreferencesScreenStyle.view}>
       {renderProfile()}
-      <SubHeading style={{fontSize: styles.font.xl}}>
-        <Trans>Default options:</Trans>
-      </SubHeading>
+      <SubHeading
+        style={{fontSize: styles.font.xl}}
+        text={t`Default options:`}
+      />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
       <MediumButton
-        title={t`Update preferences`}
+        text={t`Update preferences`}
         style={PreferencesScreenStyle.button}
         onPress={() => {
           if (selectedBlogId) dispatch(setDefaultBlogId(selectedBlogId));

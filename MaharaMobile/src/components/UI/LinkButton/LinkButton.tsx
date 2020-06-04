@@ -7,7 +7,7 @@ import linkButtonStyles from './LinkButton.style';
 
 type Props = {
   onPress: () => void;
-  title: MessageDescriptor;
+  text: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
 };
 
@@ -16,11 +16,13 @@ const LinkButton = (props: Props) => (
     {({i18n}) => (
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel={i18n._(props.title)}
-        accessibilityHint={i18n._(props.accessibilityHint)}
+        accessibilityLabel={i18n._(props.text)}
+        accessibilityHint={
+          props.accessibilityHint ? i18n._(props.accessibilityHint) : ''
+        }
         onPress={props.onPress}>
         <Text style={[buttons.link, linkButtonStyles.buttons]}>
-          {i18n._(props.title)}
+          {i18n._(props.text)}
         </Text>
       </TouchableOpacity>
     )}

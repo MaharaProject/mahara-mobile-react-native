@@ -1,4 +1,3 @@
-import {i18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useEffect, useState} from 'react';
@@ -57,6 +56,7 @@ import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
 import BlogPicker from './UploadFormJournalComponents';
+import i18n from '../../i18n';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -305,7 +305,7 @@ const UploadForm = (props: Props) => {
     if (formType === JOURNAL_ENTRY) return null;
     return (
       <View>
-        <SubHeading required={formType !== JOURNAL_ENTRY}>File</SubHeading>
+        <SubHeading required={formType !== JOURNAL_ENTRY} text={t`File`} />
         {fileValid ? (
           <Text accessibilityLabel={i18n._(t`A file has been added.`)}>
             {props.pickedFile?.name}
@@ -321,10 +321,10 @@ const UploadForm = (props: Props) => {
       {showInvalidFileMessage && (
         <RequiredWarningText customText={t`A file is required.`} />
       )}
-      <SubHeading required={formType === JOURNAL_ENTRY}>
-        {formType === JOURNAL_ENTRY && <Trans>Title</Trans>}
-        {formType !== JOURNAL_ENTRY && <Trans>Name</Trans>}
-      </SubHeading>
+      <SubHeading
+        required={formType === JOURNAL_ENTRY}
+        text={formType === JOURNAL_ENTRY ? t`Title` : t`Name`}
+      />
       {showInvalidTitleMessage && <RequiredWarningText />}
       <FormInput
         valid={controlTitleValid}
@@ -332,10 +332,10 @@ const UploadForm = (props: Props) => {
         value={controlTitle}
         onChangeText={(title: string) => updateTitle(title)}
       />
-      <SubHeading required={formType === JOURNAL_ENTRY}>
-        {formType === JOURNAL_ENTRY && <Trans>Entry</Trans>}
-        {formType !== JOURNAL_ENTRY && <Trans>Description</Trans>}
-      </SubHeading>
+      <SubHeading
+        required={formType === JOURNAL_ENTRY}
+        text={formType === JOURNAL_ENTRY ? t`Entry` : t`Description`}
+      />
       {showInvalidDescMessage && <RequiredWarningText />}
       <FormInput
         valid={controlDescValid}
@@ -360,9 +360,7 @@ const UploadForm = (props: Props) => {
 
     return (
       <View>
-        <SubHeading>
-          <Trans>Folder</Trans>
-        </SubHeading>
+        <SubHeading text={t`Folder`} />
         <View style={forms.pickerWrapper}>
           <Picker
             accessibilityLabel={i18n._(t`Select folder`)}
@@ -387,9 +385,7 @@ const UploadForm = (props: Props) => {
     // const displayedSelectedTags = selectedTags.concat(arr);
     <View>
       <View style={uploadFormStyles.tagsContainer}>
-        <SubHeading>
-          <Trans>Tags</Trans>
-        </SubHeading>
+        <SubHeading text={t`Tags`} />
         {/* Create new tag */}
         {showTagInput && (
           <View style={uploadFormStyles.tagsInputContainer}>
@@ -415,7 +411,7 @@ const UploadForm = (props: Props) => {
             onPress={() => removeTag(value)}
             accessibilityRole="button"
             accessibilityLabel={value}
-            accessibilityHint={i18n._(t`Click to remove tag`)}>
+            accessibilityHint={i18n._(t`Tap to remove tag`)}>
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
               <Text style={forms.tagClose} accessibilityLabel="">
@@ -475,7 +471,7 @@ const UploadForm = (props: Props) => {
                   ? buttons.lg.backgroundColor
                   : styles.colors.darkgrey
               }}>
-              Confirm edits to {formType}
+              <Trans>Confirm edits to {formType}</Trans>
             </Text>
           )}
 
@@ -500,7 +496,7 @@ const UploadForm = (props: Props) => {
         {/* Allow users to cancel edits */}
         {props.editItem && (
           <MediumButton
-            title={t`Cancel`}
+            text={t`Cancel`}
             style={buttons.cancel}
             onPress={() => {
               props.navigation.popToTop();

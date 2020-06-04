@@ -32,9 +32,7 @@ export const BlogPicker = props => {
         setIsDraft={props.setIsDraft}
         isDraft={props.isDraft}
       />
-      <SubHeading>
-        <Trans>Journal</Trans>
-      </SubHeading>
+      <SubHeading text={t`Journal`} />
       <View style={forms.pickerWrapper}>
         <Picker
           accessibilityLabel={i18n._(t`Select a journal`)}
@@ -61,9 +59,7 @@ type Props = {
 
 const JournalDraftSwitch = (props: Props) => (
   <View style={{flexDirection: 'row'}}>
-    <SubHeading>
-      <Trans>Draft journal entry &nbsp;</Trans>
-    </SubHeading>
+    <SubHeading text={t`Draft journal entry `} />
     <Switch
       value={props.isDraft}
       accessibilityRole="switch"

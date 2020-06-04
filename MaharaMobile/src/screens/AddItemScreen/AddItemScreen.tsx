@@ -1,4 +1,4 @@
-import {I18n, i18n} from '@lingui/core';
+import {I18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useState} from 'react';
@@ -45,6 +45,7 @@ import {
   takePhoto
 } from '../../utils/addEditHelperFunctions';
 import {AUDIO, FILE, PHOTO} from '../../utils/constants';
+import i18n from '../../i18n';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -81,19 +82,19 @@ const AddItemScreen = (props: Props) => {
       <View style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name && (formType === FILE || formType === PHOTO)
-          ? renderImagePreview(i18n, pickedFile.uri)
+          ? renderImagePreview(pickedFile.uri)
           : null}
         {formType === FILE && (
           <View>
             {/* title={props.i18n._(t`${getRecordStrings(recordButtonStatus)}`)} */}
 
             <OutlineButton
-              title={
+              text={
                 pickedFile.uri === ''
-                  ? props.i18n._(t`Select a file`)
-                  : props.i18n._(t`Select a different file`)
+                  ? t`Select a file`
+                  : t`Select a different file`
               }
-              onPress={() => pickDocument(i18n, setPickedFile)}
+              onPress={() => pickDocument(setPickedFile)}
               style={null}
               icon="faFolderOpen"
             />
@@ -102,7 +103,7 @@ const AddItemScreen = (props: Props) => {
         {/* take a photo button */}
         {formType === PHOTO && (
           <TouchableOpacity
-            onPress={() => takePhoto(i18n, setPickedFile)}
+            onPress={() => takePhoto(setPickedFile)}
             accessibilityRole="button">
             <Text style={[buttons.md, outlineButtonStyles.buttons]}>
               <FontAwesome5 name="camera" size={20} />
@@ -137,10 +138,12 @@ const AddItemScreen = (props: Props) => {
   );
 };
 
-AddItemScreen.navigationOptions = ({navigation}) => ({
-  headerTitle: `Add ${navigation.getParam('formType')}`,
-  headerLeft: <CustomVerifyBackButton navigation={navigation} />
-});
+AddItemScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerTitle: i18n._(t`Add ${navigation.getParam('formType')}`),
+    headerLeft: <CustomVerifyBackButton navigation={navigation} />
+  };
+};
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),

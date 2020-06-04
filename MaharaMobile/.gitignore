@@ -69,7 +69,7 @@ buck-out/
 
 # i18n
 locales/_build/
-locales/**/*.js
+# locales/**/*.js
 
 # IDEs VS Code
 .vscode/*

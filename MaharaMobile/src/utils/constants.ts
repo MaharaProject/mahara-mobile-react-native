@@ -1,3 +1,4 @@
+import {t} from '@lingui/macro';
 import {UserBlog, UserFolder} from '../models/models';
 
 // action types - payloads of information that send data from your application to your store
@@ -29,6 +30,7 @@ export const UPDATE_PROFILE_ICON = 'UPDATE_PROFILE_ICON';
 export const UPDATE_GUEST_STATUS = 'UPDATE_GUEST_STATUS';
 export const SET_DEFAULT_FOLDER = 'SET_DEFAULT_FOLDER';
 export const SET_DEFAULT_BLOG = 'SET_DEFAULT_BLOG';
+
 // userArtefactsReducer
 export const UPDATE_USER_BLOGS = 'UPDATE_USER_BLOGS';
 export const UPDATE_USER_FOLDERS = 'UPDATE_USER_FOLDERS';
@@ -56,6 +58,11 @@ export const AUDIO = 'audio';
 // AsyncStorage keys
 export const DEFAULT_BLOG_ID = 'DEFAULT_BLOG_ID';
 export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';
+
+// UI STATE
+export const SET_LANGUAGE = 'SET_LANGUAGE';
+export const SET_CATALOGS = 'SET_CATALOGS';
+export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 
 // OTHER DATA
 // guest blog and folder objects
@@ -89,3 +96,10 @@ export const RERECORD = 'Re-record';
 // playback
 export const NOT_PLAYING = 'NOT_PLAYING';
 export const PLAYING = 'PLAYING';
+
+// Internationalisation message descriptors
+
+export const md_JOURNAL_ENTRY = t`journal entry`;
+export const md_FILE = t`file`;
+export const md_PHOTO = t`photo`;
+export const md_AUDIO = t`audio`;
