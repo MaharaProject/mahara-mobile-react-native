@@ -52,9 +52,7 @@ type Props = {
  * @param props
  */
 const LoginTypes = (props: Props) => {
-  const [controlURL, setControlURL] = useState(
-    'https://master.dev.mahara.org/'
-  );
+  const [controlURL, setControlURL] = useState('https://');
 
   const [enterURLWarning, setEnterURLWarning] = useState(false);
 

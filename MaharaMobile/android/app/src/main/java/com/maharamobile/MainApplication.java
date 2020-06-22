@@ -1,4 +1,4 @@
-package com.maharamobile;
+package org.mahara.mobile.app;
 
 import android.app.Application;
 import android.content.Context;

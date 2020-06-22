@@ -1,4 +1,4 @@
-package com.maharamobile;
+package org.mahara.mobile.app;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
