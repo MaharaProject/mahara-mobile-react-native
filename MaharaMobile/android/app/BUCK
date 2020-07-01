@@ -45,10 +45,10 @@ android_resource(
 )
 
 android_binary(
-    name = "app",
-    keystore = "//android/keystores:debug",
+    name = "mahara-mobile",
+    keystore = "//android/keystores:keystore",
     manifest = "src/main/AndroidManifest.xml",
-    package_type = "debug",
+    package_type = "release",
     deps = [
         ":app-code",
     ],

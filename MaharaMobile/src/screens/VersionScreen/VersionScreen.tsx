@@ -8,7 +8,7 @@ import styles from '../../assets/styles/variables';
 const VersionScreen = () => (
   <View style={generic.wrap}>
     <Text>
-      <Trans>...</Trans>
+      <Trans>The current version you are using is 20.07.01</Trans>
     </Text>
   </View>
 );

@@ -132,8 +132,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "20.06.1"
+        versionCode 4
+        versionName "20.07.1"
     }
     splits {
         abi {
