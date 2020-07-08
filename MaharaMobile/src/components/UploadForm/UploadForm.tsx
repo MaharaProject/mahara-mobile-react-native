@@ -1,7 +1,8 @@
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useEffect, useState} from 'react';
-import {Picker, Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
+import {Picker} from 'native-base';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {
   NavigationParams,
