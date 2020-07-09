@@ -25,7 +25,16 @@ module.exports = {
     "no-unused-expressions": ["error", { "allowTernary": true }],
     "no-unused-vars": 0,
     "max-len": ["error", 140],
-    "comma-dangle": ["error", "never"]
+    "comma-dangle": ["error", "never"],
+    // config needed after npm upgrade
+    'import/extensions': ['error', 'ignorePackages', {
+      js: 'never',
+      mjs: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never',
+    }],
+
   },
   "parserOptions": {
     "ecmaVersion": 6,
@@ -39,5 +48,13 @@ module.exports = {
     "node": true,
     "jasmine": true,
     "jest": true
-  }
+  },
+  // settings config needed after npm upgrade
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+      }
+    },
+  },
 };
