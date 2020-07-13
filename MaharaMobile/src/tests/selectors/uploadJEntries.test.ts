@@ -6,7 +6,9 @@ import {
 } from '../mockConstants';
 
 describe('uploadJEntrieReducers', () => {
-  it('should select journal entry by id ', () => {});
+  it('should select journal entry by id ', () => {
+    // do nothing
+  });
   const result = selectJEntryById(MOCK_ROOT_STATE, {id: MOCK_JENTRY_IDS[0]});
   expect(result).toEqual(MOCK_PENDING_JOURNAL_ENTRY_0);
 });

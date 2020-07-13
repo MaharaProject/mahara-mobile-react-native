@@ -34,7 +34,6 @@ module.exports = {
       ts: 'never',
       tsx: 'never',
     }],
-
   },
   "parserOptions": {
     "ecmaVersion": 6,

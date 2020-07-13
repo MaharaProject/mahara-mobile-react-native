@@ -1,0 +1,8 @@
++ webpack@4.43.0
+added 165 packages from 135 contributors and audited 1760 packages in 13.367s
+
+61 packages are looking for funding
+  run `npm fund` for details
+
+found 6067 low severity vulnerabilities
+  run `npm audit fix` to fix them, or `npm audit` for details

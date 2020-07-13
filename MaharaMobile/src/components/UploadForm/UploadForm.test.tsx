@@ -13,7 +13,11 @@ it('renders correctly', () => {
     formType: '',
     token: '',
     url: '',
-    navigation: {navigate: () => {}},
+    navigation: {
+      navigate: () => {
+        // do nothing
+      }
+    },
     defaultFolderTitle: '',
     defaultBlogId: 0,
     userFolders: [],

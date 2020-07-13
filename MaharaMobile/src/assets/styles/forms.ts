@@ -25,7 +25,7 @@ const forms = StyleSheet.create({
     backgroundColor: styles.colors.light
   },
   picker: {
-    color: styles.colors.dark,
+    backgroundColor: styles.colors.dark,
     height: 40
   },
   pickerWrapper: {

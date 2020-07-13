@@ -47,6 +47,10 @@ const initialState: State = {
 };
 
 export class SiteCheckScreen extends Component<Props, State> {
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props: Props) {
     super(props);
 
@@ -116,10 +120,6 @@ export class SiteCheckScreen extends Component<Props, State> {
 
   resetForm = () => {
     this.setState(initialState);
-  };
-
-  static navigationOptions = {
-    header: null
   };
 
   render() {
