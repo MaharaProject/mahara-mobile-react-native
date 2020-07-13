@@ -7,7 +7,11 @@ import SelectMediaScreen from './SelectMediaScreen';
 
 it('renders correctly', () => {
   const props = {
-    navigation: {navigate: () => {}}
+    navigation: {
+      navigate: () => {
+        // do nothing
+      }
+    }
   };
 
   renderer.create(

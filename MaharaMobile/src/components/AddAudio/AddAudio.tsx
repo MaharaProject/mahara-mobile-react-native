@@ -190,7 +190,9 @@ const AddAudio = (props: Props) => {
     setIsPlaying(true);
     audioRecorderPlayer.addPlayBackListener((e: Playback) => {
       if (e.current_position === e.duration) {
-        audioRecorderPlayer.stopPlayer().catch(() => {});
+        audioRecorderPlayer.stopPlayer().catch(() => {
+          // do nothing
+        });
         setIsPlaying(false);
         setPlayButtonStatus('notplaying');
       }

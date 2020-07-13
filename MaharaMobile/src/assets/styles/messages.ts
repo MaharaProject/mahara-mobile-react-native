@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import styles from '../../assets/styles/variables';
+import styles from './variables';
 
 export default StyleSheet.create({
   errorMessage: {

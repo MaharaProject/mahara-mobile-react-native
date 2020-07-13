@@ -54,6 +54,10 @@ type State = {
 };
 
 export class LoginScreen extends Component<Props, State> {
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props: Props) {
     super(props);
 
@@ -157,10 +161,6 @@ export class LoginScreen extends Component<Props, State> {
         this.props.url
       );
     }
-  };
-
-  static navigationOptions = {
-    header: null
   };
 
   render() {
