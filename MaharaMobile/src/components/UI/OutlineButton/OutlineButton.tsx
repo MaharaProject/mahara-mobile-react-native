@@ -1,66 +1,38 @@
-import {
-  faFolderOpen,
-  faMicrophone,
-  faStopCircle
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {I18n} from '@lingui/react';
-import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
 import {MessageDescriptor} from '@lingui/core';
-import buttons from '../../../assets/styles/buttons';
-import styles from '../../../assets/styles/variables';
-import outlineButtonStyles from './OutlineButton.style';
+import {I18n} from '@lingui/react';
+import {Button, Icon, Text} from 'native-base';
+import React from 'react';
+import {View} from 'react-native';
 
 type Props = {
   onPress: () => void;
-  text: MessageDescriptor;
+  text?: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
-  style: any;
+  style?: any;
   icon?: string;
+  light?: boolean;
 };
 
 const OutlineButton = (props: Props) => (
   <I18n>
     {({i18n}) => (
-      <TouchableOpacity
-        accessibilityRole="button"
-        accessibilityLabel={i18n._(props.text)}
-        accessibilityHint={
-          props.accessibilityHint ? i18n._(props.accessibilityHint) : ''
-        }
-        onPress={props.onPress}>
-        <Text
-          style={{
-            ...buttons.md,
-            ...outlineButtonStyles.buttons,
-            ...props.style
-          }}>
-          {props.icon === 'faFolderOpen' ? (
-            <FontAwesomeIcon
-              icon={faFolderOpen}
-              size={20}
-              style={outlineButtonStyles.icon}
-            />
-          ) : null}
-          {props.icon === 'faMicrophone' ? (
-            <FontAwesomeIcon
-              icon={faMicrophone}
-              size={20}
-              style={outlineButtonStyles.icon}
-            />
-          ) : null}
-          {props.icon === 'faStopCircle' ? (
-            <FontAwesomeIcon
-              icon={faStopCircle}
-              size={20}
-              color={styles.colors.light}
-              style={outlineButtonStyles.icon}
-            />
-          ) : null}
-          {` ${i18n._(props.text)} `}
-        </Text>
-      </TouchableOpacity>
+      <View>
+        <Button
+          iconLeft
+          bordered
+          full
+          light={props.light}
+          rounded
+          accessibilityRole="button"
+          accessibilityLabel={i18n._(props.text)}
+          accessibilityHint={props.accessibilityHint}
+          onPress={props.onPress}
+          // style={{ borderColor: styles.colors.green }}
+        >
+          <Icon name={props.icon} />
+          <Text>{i18n._(props.text)}</Text>
+        </Button>
+      </View>
     )}
   </I18n>
 );

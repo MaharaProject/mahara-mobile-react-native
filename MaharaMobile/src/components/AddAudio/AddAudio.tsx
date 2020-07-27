@@ -1,24 +1,12 @@
-import {
-  faPauseCircle,
-  faPlayCircle,
-  faStopCircle
-} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import base64 from 'base-64';
+import {Button, Icon} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {
-  PermissionsAndroid,
-  Platform,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import {PermissionsAndroid, Platform, Text, View} from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
-import buttons from '../../assets/styles/buttons';
 import variables from '../../assets/styles/variables';
 import {
   MaharaFile,
@@ -27,6 +15,7 @@ import {
   Playback
 } from '../../models/models';
 import {RECORDED, RECORDING, UNRECORDED} from '../../utils/constants';
+import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
@@ -57,29 +46,23 @@ const AddAudio = (props: Props) => {
     return buttonText;
   };
 
+  const PLAY_BUTTON_STATUSES = {
+    NOT_PLAYING: 'not playing',
+    PLAYING: 'playing'
+  };
+
   const [audioFile, setAudioFile] = useState('');
   const [recordButtonText, setRecordButtonText] = useState(t`Record`);
-  const [playButtonStatus, setPlayButtonStatus] = useState('notplaying');
+  const [playButtonStatus, setPlayButtonStatus] = useState(
+    PLAY_BUTTON_STATUSES.NOT_PLAYING
+  );
   const [isRecorded, setIsRecorded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
-  const playStrings = {
-    playing: (
-      <FontAwesomeIcon
-        icon={faPauseCircle}
-        size={25}
-        color={variables.colors.tertiary}
-      />
-    ),
-    notplaying: (
-      <FontAwesomeIcon
-        icon={faPlayCircle}
-        size={25}
-        color={variables.colors.tertiary}
-      />
-    )
-  };
+  const PLAY_ICON = 'play-circle';
+  const PAUSE_ICON = 'pause-circle';
+  const STOP_ICON = 'stop-circle';
 
   // Check permissions
   const checkPermissions = async () => {
@@ -194,7 +177,7 @@ const AddAudio = (props: Props) => {
           // do nothing
         });
         setIsPlaying(false);
-        setPlayButtonStatus('notplaying');
+        setPlayButtonStatus(PLAY_BUTTON_STATUSES.NOT_PLAYING);
       }
     });
   };
@@ -208,11 +191,11 @@ const AddAudio = (props: Props) => {
   };
 
   const handlePlay = () => {
-    if (playButtonStatus === 'notplaying') {
-      setPlayButtonStatus('playing');
+    if (playButtonStatus === PLAY_BUTTON_STATUSES.NOT_PLAYING) {
+      setPlayButtonStatus(PLAY_BUTTON_STATUSES.PLAYING);
       onStartPlay();
-    } else if (playButtonStatus === 'playing') {
-      setPlayButtonStatus('notplaying');
+    } else if (playButtonStatus === PLAY_BUTTON_STATUSES.PLAYING) {
+      setPlayButtonStatus(PLAY_BUTTON_STATUSES.NOT_PLAYING);
       onPausePlay();
     }
   };
@@ -220,7 +203,7 @@ const AddAudio = (props: Props) => {
   const onStopPlay = async () => {
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
-    setPlayButtonStatus('notplaying');
+    setPlayButtonStatus(PLAY_BUTTON_STATUSES.NOT_PLAYING);
     setIsPlaying(false);
   };
 
@@ -228,26 +211,17 @@ const AddAudio = (props: Props) => {
     <View style={styles.buttonWrapper}>
       <View style={styles.playbackButtonWrapper}>
         {isRecorded ? (
-          <TouchableOpacity
+          <AudioPlayButton
+            iconName={
+              playButtonStatus === PLAY_BUTTON_STATUSES.NOT_PLAYING
+                ? PLAY_ICON
+                : PAUSE_ICON
+            }
             onPress={() => handlePlay()}
-            accessibilityRole="button">
-            <Text style={[buttons.sm, styles.smButton]}>
-              {playStrings[playButtonStatus]}
-            </Text>
-          </TouchableOpacity>
+          />
         ) : null}
         {isPlaying ? (
-          <TouchableOpacity
-            onPress={() => onStopPlay()}
-            accessibilityRole="button">
-            <Text style={[buttons.sm, styles.smButton]}>
-              <FontAwesomeIcon
-                icon={faStopCircle}
-                size={25}
-                color={variables.colors.tertiary}
-              />
-            </Text>
-          </TouchableOpacity>
+          <AudioPlayButton iconName={STOP_ICON} onPress={() => onStopPlay()} />
         ) : null}
         {!isPermissionGranted ? (
           <Text style={styles.warning}>
@@ -256,17 +230,34 @@ const AddAudio = (props: Props) => {
         ) : null}
       </View>
       <View style={styles.recordButton}>
-        <OutlineButton
-          text={recordButtonText}
-          style={recordButtonText.id === t`Stop`.id ? styles.recording : ''}
-          onPress={() => handleRecord()}
-          icon={
-            recordButtonText.id === t`Stop`.id ? 'faStopCircle' : 'faMicrophone'
-          }
-        />
+        {recordButtonText.id === t`Stop`.id ? (
+          <MediumButton
+            dark
+            style={{backgroundColor: variables.colors.red}}
+            text={t`Stop`}
+            onPress={() => handleRecord()}
+            icon={STOP_ICON}
+          />
+        ) : (
+          <OutlineButton
+            text={t`Record`}
+            onPress={() => handleRecord()}
+            icon="mic"
+          />
+        )}
       </View>
     </View>
   );
 };
+
+type AudioPlayButtonProps = {
+  onPress: () => void;
+  iconName: string;
+};
+const AudioPlayButton = (props: AudioPlayButtonProps) => (
+  <Button bordered rounded onPress={props.onPress}>
+    <Icon name={props.iconName} />
+  </Button>
+);
 
 export default withI18n()(AddAudio);

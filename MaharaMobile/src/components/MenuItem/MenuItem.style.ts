@@ -3,16 +3,13 @@ import styles from '../../assets/styles/variables';
 
 const menuItemStyles = StyleSheet.create({
   listItem: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 20
+    padding: styles.padding.md,
+    alignSelf: 'stretch'
   },
   listItemText: {
-    marginLeft: 10,
-    fontSize: 20,
-    color: styles.colors.contrast,
-    width: '90%'
+    marginLeft: styles.padding.sm,
+    fontSize: styles.font.md,
+    color: styles.colors.contrast
   }
 });
 

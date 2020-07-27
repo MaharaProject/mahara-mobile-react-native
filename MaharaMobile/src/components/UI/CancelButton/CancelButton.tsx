@@ -1,7 +1,7 @@
 import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
+import {Button, Text} from 'native-base';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -17,12 +17,16 @@ const CancelButton = (props: Props) => (
   <I18n>
     {/* FIXME Check translation */}
     {({i18n}) => (
-      <TouchableOpacity
+      <Button
+        light
+        full
+        rounded
         accessibilityRole="button"
         accessibilityLabel="Cancel"
-        onPress={() => props.navigation.goBack()}>
-        <Text style={[buttons.md, buttons.cancel]}>{i18n._(t`Cancel`)}</Text>
-      </TouchableOpacity>
+        onPress={() => props.navigation.goBack()}
+        style={[buttons.md, buttons.cancel]}>
+        <Text>{i18n._(t`Cancel`)}</Text>
+      </Button>
     )}
   </I18n>
 );

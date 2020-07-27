@@ -15,21 +15,11 @@ const buttons = StyleSheet.create({
   },
   md: {
     backgroundColor: styles.colors.secondary,
-    color: styles.colors.dark,
-    paddingBottom: styles.padding.sm,
-    paddingTop: styles.padding.sm,
-    fontSize: styles.font.md,
-    textAlign: 'center',
-    width: '100%',
-    borderRadius: 25
+    color: styles.colors.dark
   },
   sm: {
     backgroundColor: styles.colors.secondary,
-    color: styles.colors.dark,
-    padding: styles.padding.sm,
-    fontSize: styles.font.md,
-    textAlign: 'center',
-    alignSelf: 'flex-start'
+    color: styles.colors.dark
   },
   link: {
     fontSize: styles.font.md,

@@ -129,6 +129,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -188,20 +189,20 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-localize')
+    implementation 'com.android.support:multidex:1.0.3' // For MultiDex
+    implementation "com.facebook.react:react-native:0.62.2 "  // From node_modules
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':react-native-audio-recorder-player')
     implementation project(':react-native-config')
     implementation project(':react-native-device-info')
-    implementation project(':@react-native-community_async-storage')
-    implementation project(':react-native-linear-gradient')
-    implementation project(':react-native-audio-recorder-player')
+    implementation project(':react-native-gesture-handler')
     implementation project(':react-native-image-picker')
+    implementation project(':react-native-linear-gradient')
+    implementation project(':react-native-localize')
+    implementation project(':react-native-reanimated')
+    implementation project(':react-native-vector-icons')
     implementation project(':react-native-webview')
     implementation project(':rn-fetch-blob')
-    implementation project(':react-native-vector-icons')
-    implementation project(':react-native-gesture-handler')
-    implementation project(':react-native-reanimated')
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:+"  // From node_modules
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
@@ -223,6 +224,6 @@ apply from: file("../../node_modules/@react-native-community/cli-platform-androi
 
 // for react-native-vector-icons
 project.ext.vectoricons = [
-    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf' ] // Name of the font files you want to copy
+    iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', 'Ionicons.ttf' ] // Name of the font files you want to copy
 ]
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

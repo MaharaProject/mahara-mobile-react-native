@@ -15,24 +15,19 @@ msgstr ""
 
 #: src/screens/AboutScreen/AboutScreen.tsx:10
 #: src/screens/HelpScreen/HelpScreen.tsx:9
-#: src/screens/VersionScreen/VersionScreen.tsx:9
 msgid "..."
 msgstr ""
 
-#: src/components/UI/SubHeading/SubHeading.tsx:6
-#~ msgid "<0>{0} {1} {2}</0>"
-#~ msgstr ""
-
-#: src/components/UploadForm/UploadForm.tsx:198
+#: src/components/UploadForm/UploadForm.tsx:197
 msgid "A file has been added."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:205
+#: src/components/UploadForm/UploadForm.tsx:204
 msgid "A file is required."
 msgstr ""
 
 #: src/navigations/app-navigator.tsx:37
-#: src/screens/MenuScreen/MenuScreen.tsx:15
+#: src/screens/MenuScreen/MenuScreen.tsx:16
 msgid "About"
 msgstr ""
 
@@ -49,7 +44,7 @@ msgstr ""
 msgid "Access token"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:245
+#: src/components/UploadForm/UploadForm.tsx:242
 #: src/navigations/app-navigator.tsx:32
 #: src/screens/SelectMediaScreen/SelectMediaScreen.tsx:12
 msgid "Add"
@@ -59,18 +54,14 @@ msgstr ""
 msgid "Add an item"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:242
-#: src/components/UploadForm/UploadForm.tsx:263
+#: src/components/UploadForm/UploadForm.tsx:239
+#: src/components/UploadForm/UploadForm.tsx:260
 msgid "Add new tag +"
 msgstr ""
 
 #: src/screens/AddItemScreen/AddItemScreen.tsx:65
 msgid "Add {0}"
 msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:84
-#~ msgid "Add {i18nFormType}"
-#~ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:53
 msgid "Added to upload queue successfully!"
@@ -101,7 +92,7 @@ msgstr ""
 msgid "App Version"
 msgstr ""
 
-#: src/screens/MenuScreen/MenuScreen.tsx:19
+#: src/screens/MenuScreen/MenuScreen.tsx:20
 msgid "App version"
 msgstr ""
 
@@ -125,7 +116,7 @@ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:9
 #: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:12
-#: src/components/UploadForm/UploadForm.tsx:302
+#: src/components/UploadForm/UploadForm.tsx:292
 #: src/screens/PendingScreen/PendingScreen.tsx:62
 msgid "Cancel"
 msgstr ""
@@ -138,11 +129,8 @@ msgstr ""
 msgid "Collection of personal information"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:287
-#~ msgid "Confirm edits to"
-#~ msgstr ""
-
-#: src/components/UploadForm/UploadForm.tsx:287
+#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/UploadForm.tsx:283
 msgid "Confirm edits to {formType}"
 msgstr ""
 
@@ -158,17 +146,13 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:209
+#: src/components/UploadForm/UploadForm.tsx:208
 msgid "Description"
 msgstr ""
 
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:59
 msgid "Destination folder"
 msgstr ""
-
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:60
-#~ msgid "Destination folder:"
-#~ msgstr ""
 
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:79
 msgid "Destination journal:"
@@ -178,19 +162,11 @@ msgstr ""
 msgid "Draft journal entry"
 msgstr ""
 
-#: src/screens/EditItemScreen/EditItemScreen.tsx:73
-#~ msgid "Editing"
-#~ msgstr ""
-
-#: src/screens/EditItemScreen/EditItemScreen.tsx:73
-#~ msgid "Editing {0}"
-#~ msgstr ""
-
 #: src/components/LoginTypes/LoginTypes.tsx:95
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:209
+#: src/components/UploadForm/UploadForm.tsx:208
 msgid "Entry"
 msgstr ""
 
@@ -198,12 +174,12 @@ msgstr ""
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:320
+#: src/components/UploadForm/UploadForm.tsx:310
 msgid "Fields marked by * are required."
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:15
-#: src/components/UploadForm/UploadForm.tsx:197
+#: src/components/UploadForm/UploadForm.tsx:196
 msgid "File"
 msgstr ""
 
@@ -211,13 +187,13 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:219
+#: src/components/UploadForm/UploadForm.tsx:218
 msgid "Folder"
 msgstr ""
 
 #: src/navigations/app-navigator.tsx:40
 #: src/screens/HelpScreen/HelpScreen.tsx:21
-#: src/screens/MenuScreen/MenuScreen.tsx:18
+#: src/screens/MenuScreen/MenuScreen.tsx:19
 msgid "Help"
 msgstr ""
 
@@ -261,10 +237,6 @@ msgstr ""
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
-#: src/utils/authHelperFunctions.ts:108
-#~ msgid "Items in upload queue will not be retrievable once logged out."
-#~ msgstr ""
-
 #: src/components/UploadForm/UploadFormJournalComponents.tsx:29
 msgid "Journal"
 msgstr ""
@@ -275,7 +247,7 @@ msgstr ""
 
 #: src/navigations/app-navigator.tsx:39
 #: src/screens/LegalScreen/LegalScreen.tsx:116
-#: src/screens/MenuScreen/MenuScreen.tsx:17
+#: src/screens/MenuScreen/MenuScreen.tsx:18
 msgid "Legal"
 msgstr ""
 
@@ -301,16 +273,16 @@ msgstr ""
 msgid "Login failed"
 msgstr ""
 
-#: src/screens/MenuScreen/MenuScreen.tsx:20
+#: src/screens/MenuScreen/MenuScreen.tsx:21
 msgid "Logout"
 msgstr ""
 
 #: src/navigations/app-navigator.tsx:38
-#: src/screens/MenuScreen/MenuScreen.tsx:53
+#: src/screens/MenuScreen/MenuScreen.tsx:54
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:206
+#: src/components/UploadForm/UploadForm.tsx:205
 msgid "Name"
 msgstr ""
 
@@ -344,10 +316,6 @@ msgid "Photo"
 msgstr ""
 
 #: src/utils/helperFunctions.ts:76
-#~ msgid "Please check internet connection."
-#~ msgstr ""
-
-#: src/utils/helperFunctions.ts:76
 msgid "Please check the internet connection."
 msgstr ""
 
@@ -368,7 +336,7 @@ msgid "Please try again."
 msgstr ""
 
 #: src/navigations/app-navigator.tsx:36
-#: src/screens/MenuScreen/MenuScreen.tsx:16
+#: src/screens/MenuScreen/MenuScreen.tsx:17
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:126
 msgid "Preferences"
 msgstr ""
@@ -376,10 +344,6 @@ msgstr ""
 #: src/screens/LegalScreen/LegalScreen.tsx:10
 msgid "Privacy statement"
 msgstr ""
-
-#: src/navigations/app-navigator.tsx:31
-#~ msgid "Profile"
-#~ msgstr ""
 
 #: src/navigations/app-navigator.tsx:33
 msgid "Profile page"
@@ -389,8 +353,9 @@ msgstr ""
 msgid "Profile settings"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:282
-#: src/components/UploadForm/UploadForm.tsx:296
+#: src/components/UploadForm/UploadForm.tsx:278
+#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/UploadForm.tsx:287
 msgid "Queue to upload"
 msgstr ""
 
@@ -423,7 +388,7 @@ msgstr ""
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:221
+#: src/components/UploadForm/UploadForm.tsx:220
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:61
 msgid "Select folder"
 msgstr ""
@@ -440,7 +405,8 @@ msgstr ""
 msgid "Select login type"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:261
+#: src/components/UploadForm/UploadForm.tsx:258
+#: src/components/UploadForm/UploadForm.tsx:258
 msgid "Select tags"
 msgstr ""
 
@@ -462,7 +428,7 @@ msgstr ""
 msgid "Storage and security of your personal information"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:239
+#: src/components/UploadForm/UploadForm.tsx:236
 msgid "Tags"
 msgstr ""
 
@@ -471,8 +437,12 @@ msgstr ""
 msgid "Take photo"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:250
+#: src/components/UploadForm/UploadForm.tsx:247
 msgid "Tap to remove tag"
+msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:9
+msgid "The current version you are using is 20.07.01"
 msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:60
@@ -488,7 +458,7 @@ msgstr ""
 msgid "This is not a Mahara site. Please re-enter URL."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:206
+#: src/components/UploadForm/UploadForm.tsx:205
 msgid "Title"
 msgstr ""
 
@@ -579,34 +549,6 @@ msgstr ""
 #: src/utils/constants.ts:87
 msgid "photo"
 msgstr ""
-
-#: src/components/AddAudio/AddAudio.tsx:190
-#~ msgid "recordButtonText"
-#~ msgstr ""
-
-#: src/screens/PendingScreen/PendingScreen.tsx:44
-#~ msgid "text"
-#~ msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:64
-#~ msgid "{0}"
-#~ msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:74
-#~ msgid "{AUDIO}"
-#~ msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:77
-#~ msgid "{FILE}"
-#~ msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:68
-#~ msgid "{JOURNAL_ENTRY}"
-#~ msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:71
-#~ msgid "{PHOTO}"
-#~ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:89
 msgid "{errorMessage}"

@@ -1,9 +1,8 @@
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
+import {Picker, Text} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
-import {Picker} from 'native-base';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import {TouchableOpacity, View} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -20,7 +19,7 @@ import {
 } from '../../actions/actions';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
-import styles from '../../assets/styles/variables';
+import i18n from '../../i18n';
 import {
   MaharaFile,
   MaharaPendingFile,
@@ -57,7 +56,6 @@ import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
 import BlogPicker from './UploadFormJournalComponents';
-import i18n from '../../i18n';
 
 type Props = {
   pickedFile?: MaharaFile;
@@ -111,7 +109,9 @@ const UploadForm = (props: Props) => {
   const [controlDescValid, setControlDescValid] = useState(
     props.formType !== JOURNAL_ENTRY
   );
-  const [selectedFolder, setSelectedFolder] = useState('');
+  const [selectedFolder, setSelectedFolder] = useState(
+    props.defaultFolderTitle
+  );
   const [selectedBlog, setSelectedBlog] = useState(0);
   const [selectedTags, setSelectedTags] = useState<State['selectedTags']>(
     editItemTags
@@ -353,6 +353,7 @@ const UploadForm = (props: Props) => {
     const matchingFolder = props.userFolders.find(
       f => f.title === props.defaultFolderTitle
     );
+
     const folders: Array<UserFolder> = putDefaultAtTop(
       null,
       matchingFolder,
@@ -364,6 +365,7 @@ const UploadForm = (props: Props) => {
         <SubHeading text={t`Folder`} />
         <View style={forms.pickerWrapper}>
           <Picker
+            placeholder={props.defaultFolderTitle}
             accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolder}
             style={forms.picker}
@@ -425,6 +427,7 @@ const UploadForm = (props: Props) => {
       {/* Display drop down of existing tags */}
       <View style={forms.pickerWrapper}>
         <Picker
+          placeholder={i18n._(t`Select tags`)}
           accessibilityLabel={i18n._(t`Select tags`)}
           selectedValue={selectedTag}
           style={forms.picker}
@@ -458,41 +461,17 @@ const UploadForm = (props: Props) => {
     const validButton = controlTitleValid && controlDescValid && fileValid;
     return (
       <View>
-        <TouchableOpacity
+        <MediumButton
           onPress={() => (validButton ? handleForm() : renderUserMessages())}
           accessibilityLabel={i18n._(t`Queue to upload`)}
-          accessibilityRole="button">
-          {/* Editing items */}
-          {props.editItem && (
-            <Text
-              style={{
-                ...buttons.md,
-                ...uploadFormStyles.queueButton,
-                backgroundColor: validButton
-                  ? buttons.lg.backgroundColor
-                  : styles.colors.darkgrey
-              }}>
-              <Trans>Confirm edits to {formType}</Trans>
-            </Text>
-          )}
-
-          {/* Creating items */}
-          {!props.editItem && (
-            <Text
-              style={{
-                ...buttons.md,
-                ...uploadFormStyles.queueButton,
-                backgroundColor: validButton
-                  ? buttons.lg.backgroundColor
-                  : styles.colors.darkgrey
-              }}>
-              <FontAwesome5Icon name="clock" size={20}>
-                {' '}
-                <Trans>Queue to upload</Trans>
-              </FontAwesome5Icon>
-            </Text>
-          )}
-        </TouchableOpacity>
+          invalid={!validButton}
+          icon="time-outline"
+          text={
+            props.editItem
+              ? t`Confirm edits to ${formType}`
+              : t`Queue to upload`
+          }
+        />
 
         {/* Allow users to cancel edits */}
         {props.editItem && (

@@ -11,6 +11,7 @@ import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
 import variables from '../../assets/styles/variables';
+import {LOG_IN_ICON} from '../../utils/constants';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import styles from './LocalLogin.style';
 
@@ -88,8 +89,8 @@ export default function LocalLogin(props: Props) {
             )}
           </I18n>
           <MediumButton
-            text={t` Login`}
-            icon="faSignInAlt"
+            text={t`Login`}
+            icon={LOG_IN_ICON}
             onPress={() => checkLogins()}
           />
         </View>

@@ -11,9 +11,10 @@ import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuBut
 import {signOutAsync} from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
 import {MessageDescriptor} from '../../models/models';
+import menuItemStyles from '../../components/MenuItem/MenuItem.style';
 
-type MenuItem = {
-  name: string;
+type MenuItemObject = {
+  name: MessageDescriptor;
   path: () => void;
 };
 
@@ -29,25 +30,25 @@ const MenuScreen = (props: Props) => {
     preferences: t`Preferences`,
     legal: t`Legal`,
     help: t`Help`,
-    version: i18n._(t`App version`),
-    logout: i18n._(t`Logout`)
+    version: t`App version`,
+    logout: t`Logout`
   };
 
   /**
    * Create instance of Menu Item
-   * @param name nane to display on Menu Screen
+   * @param name name to display on Menu Screen
    * @param path path to navigate to onPressing the item
    */
   const createMenuItem = (
-    name: string | MessageDescriptor,
+    name: MessageDescriptor,
     path: () => void
-  ): MenuItem => {
+  ): MenuItemObject => {
     return {name, path};
   };
 
   const nav = props.navigation;
 
-  const menuItems: Array<MenuItem> = [
+  const menuItems: Array<MenuItemObject> = [
     createMenuItem(menuStrings.preferences, () => nav.navigate('Preferences')),
     createMenuItem(menuStrings.legal, () => nav.navigate('Legal')),
     createMenuItem(menuStrings.about, () => nav.navigate('About')),
@@ -58,8 +59,13 @@ const MenuScreen = (props: Props) => {
 
   return (
     <View style={menuScreenStyles.view}>
-      {menuItems.map(item => (
-        <MenuItem key={item.name} title={item.name} path={item.path} />
+      {menuItems.map((item: MenuItemObject) => (
+        <MenuItem
+          style={menuItemStyles.listItem}
+          title={item.name}
+          path={item.path}
+          key={item.name.id}
+        />
       ))}
     </View>
   );

@@ -143,6 +143,7 @@ const LoginTypes = (props: Props) => {
                 {controlURL}
               </Text>
               <OutlineButton
+                light
                 text={t`Enter a different URL`}
                 style={buttons.light}
                 onPress={() => props.resetForm()}

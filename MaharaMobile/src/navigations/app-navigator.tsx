@@ -163,9 +163,17 @@ const AppNavigator = () => {
   });
 
   const iOSTabConfig = createBottomTabNavigator(tabScreenConfig, {
+    initialRouteName: 'Add',
     tabBarOptions: {
-      activeBackgroundColor: styles.colors.secondary,
-      activeTintColor: styles.colors.light
+      showLabel: false,
+      activeTintColor: styles.colors.light,
+      inactiveTintColor: styles.colors.tertiary,
+      style: {
+        backgroundColor: styles.colors.light2
+      },
+      tabStyle: {
+        alignContent: 'space-between'
+      }
     }
   });
 

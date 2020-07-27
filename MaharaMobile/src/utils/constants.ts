@@ -103,3 +103,6 @@ export const md_JOURNAL_ENTRY = t`journal entry`;
 export const md_FILE = t`file`;
 export const md_PHOTO = t`photo`;
 export const md_AUDIO = t`audio`;
+
+// Icons
+export const LOG_IN_ICON = 'log-in-outline';

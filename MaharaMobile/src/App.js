@@ -1,12 +1,16 @@
-import {I18nProvider} from '@lingui/react';
+import { I18nProvider } from '@lingui/react';
 import * as Sentry from '@sentry/react-native';
-import {Buffer} from 'buffer';
-import React, {useEffect, useState} from 'react';
+import { Buffer } from 'buffer';
+import { Root } from 'native-base';
+import React, { useEffect, useState } from 'react';
 import Config from 'react-native-config';
+import {Button, Icon, StyleProvider, Text} from 'native-base';
+import getTheme from '../native-base-theme/components'
+import commonColor from '../native-base-theme/variables/commonColor';
 import 'react-native-gesture-handler';
-import {Provider} from 'react-redux';
 import * as RNLocalize from 'react-native-localize';
-import i18n, {changeActiveLanguage} from './i18n';
+import { Provider } from 'react-redux';
+import i18n, { changeActiveLanguage } from './i18n';
 import AppNavigator from './navigations/app-navigator';
 import configureStore from './store/store';
 
@@ -22,11 +26,15 @@ const App = () => {
 
   // Render the app container component with the provider around it
   return (
-    <Provider store={store}>
-      <I18nProviderWrapper>
-        <AppNavigator />
-      </I18nProviderWrapper>
-    </Provider>
+    <Root>
+      <Provider store={store}>
+        <StyleProvider style={getTheme(commonColor)}>
+        <I18nProviderWrapper>
+          <AppNavigator />
+        </I18nProviderWrapper>
+        </StyleProvider>
+      </Provider>
+    </Root>
   );
 };
 

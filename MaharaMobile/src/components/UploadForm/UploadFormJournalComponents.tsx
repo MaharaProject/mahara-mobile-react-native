@@ -59,7 +59,7 @@ type Props = {
 
 const JournalDraftSwitch = (props: Props) => (
   <View style={{flexDirection: 'row'}}>
-    <SubHeading text={t`Draft journal entry `} />
+    <SubHeading text={t`Draft journal entry`} />
     <Switch
       value={props.isDraft}
       accessibilityRole="switch"
