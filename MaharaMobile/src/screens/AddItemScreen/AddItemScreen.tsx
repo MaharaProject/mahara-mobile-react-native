@@ -1,9 +1,8 @@
 import {I18n} from '@lingui/core';
-import {t, Trans} from '@lingui/macro';
+import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {useState} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {ScrollView, View} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -11,13 +10,12 @@ import {
 } from 'react-navigation';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
 import UploadForm from '../../components/UploadForm/UploadForm';
+import i18n from '../../i18n';
 import {
   MaharaFile,
   MaharaPendingFile,
@@ -45,7 +43,6 @@ import {
   takePhoto
 } from '../../utils/addEditHelperFunctions';
 import {AUDIO, FILE, PHOTO} from '../../utils/constants';
-import i18n from '../../i18n';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -96,21 +93,17 @@ const AddItemScreen = (props: Props) => {
               }
               onPress={() => pickDocument(setPickedFile)}
               style={null}
-              icon="faFolderOpen"
+              icon="folder-open"
             />
           </View>
         )}
         {/* take a photo button */}
         {formType === PHOTO && (
-          <TouchableOpacity
+          <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
-            accessibilityRole="button">
-            <Text style={[buttons.md, outlineButtonStyles.buttons]}>
-              <FontAwesome5 name="camera" size={20} />
-              &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
-              {pickedFile.uri && <Trans>Re-take photo</Trans>}
-            </Text>
-          </TouchableOpacity>
+            icon="camera"
+            text={pickedFile.uri === '' ? t`Take photo` : t``}
+          />
         )}
         {/* record audio button */}
         {formType === AUDIO && (

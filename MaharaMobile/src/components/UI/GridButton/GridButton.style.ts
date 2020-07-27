@@ -4,7 +4,9 @@ import styles from '../../../assets/styles/variables';
 const gridButtonStyles = StyleSheet.create({
   button: {
     margin: styles.padding.xs,
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    borderRadius: 25
   },
   buttonText: {
     textAlign: 'center',
@@ -14,6 +16,7 @@ const gridButtonStyles = StyleSheet.create({
     marginBottom: styles.padding.md
   },
   imageWrapper: {
+    height: '35%',
     marginTop: styles.padding.lg,
     marginBottom: styles.padding.lg
   },

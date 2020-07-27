@@ -1,48 +1,58 @@
-import {faCloudUploadAlt, faSignInAlt} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {I18n} from '@lingui/react';
+import {Button, Icon, Text} from 'native-base';
 import React from 'react';
-import {Text, TouchableOpacity} from 'react-native';
-import buttons from '../../../assets/styles/buttons';
+import {StyleSheet} from 'react-native';
+import styles from '../../../assets/styles/variables';
 import {MessageDescriptor} from '../../../models/models';
-import mdButtonStyles from './MediumButton.style';
 
 type Props = {
   onPress: () => void;
-  text: MessageDescriptor;
+  text?: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
   icon?: string;
+  unbold?: boolean;
+  invalid?: boolean;
   style?: any;
+  dark?: boolean;
 };
+
+const MediumButtonStyles = StyleSheet.create({
+  dark: {
+    color: styles.colors.light
+  },
+  light: {
+    color: '#433113'
+  }
+});
 
 const MediumButton = (props: Props) => (
   <I18n>
     {({i18n}) => (
-      <TouchableOpacity
+      <Button
+        full
+        light={!props.dark}
+        dark={!!props.dark}
+        disabled={!!props.invalid}
+        iconLeft
+        rounded
+        info
         accessibilityRole="button"
         accessibilityLabel={i18n._(props.text)}
         accessibilityHint={
           props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
         }
-        onPress={props.onPress}>
-        <Text
-          style={{
-            ...buttons.md,
-            ...mdButtonStyles.buttons,
-            ...props.style
-          }}>
-          {props.icon === 'faSignInAlt' ? (
-            <FontAwesomeIcon icon={faSignInAlt} style={mdButtonStyles.icon} />
-          ) : null}
-          {props.icon === 'faCloudUploadAlt' ? (
-            <FontAwesomeIcon
-              icon={faCloudUploadAlt}
-              style={mdButtonStyles.icon}
-            />
-          ) : null}
-          &nbsp; {i18n._(props.text)}
+        onPress={props.onPress}
+        style={props.style}>
+        <Icon
+          name={props.icon}
+          style={
+            props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light
+          }
+        />
+        <Text style={props.unbold ? {} : {fontWeight: 'bold'}}>
+          {i18n._(props.text)}
         </Text>
-      </TouchableOpacity>
+      </Button>
     )}
   </I18n>
 );

@@ -249,13 +249,14 @@ const PendingScreen = (props: Props) => {
               <MediumButton
                 text={t`Upload to your site`}
                 onPress={onUploadClick}
-                icon="faCloudUploadAlt"
+                icon="cloud-upload"
               />
             </View>
           ) : (
             <MediumButton
               text={t`Please login`}
               accessibilityHint={t`To upload pending items`}
+              icon="log-in-outline"
               onPress={() => props.navigation.navigate('Auth')}
             />
           )}

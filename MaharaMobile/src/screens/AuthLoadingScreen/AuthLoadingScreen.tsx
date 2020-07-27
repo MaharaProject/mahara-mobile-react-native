@@ -52,34 +52,38 @@ const AuthLoadingScreen = (props: Props) => {
         dispatch(addToken(result));
       });
 
-      await AsyncStorage.getItem('profileIcon').then((result: string) => {
-        dispatch(updateProfilePic(result));
-      });
+      await AsyncStorage.getItem('profileIcon').then(
+        (result: string | null) => {
+          result != null
+            ? dispatch(updateProfilePic(result))
+            : dispatch(updateProfilePic(''));
+        }
+      );
 
       let localLogin = false;
       let tokenLogin = false;
       let ssoLogin = false;
 
-      await AsyncStorage.getItem('localLogin').then((result: string) => {
+      await AsyncStorage.getItem('localLogin').then((result: string | null) => {
         if (result) localLogin = JSON.parse(result);
       });
 
-      await AsyncStorage.getItem('tokenLogin').then((result: string) => {
+      await AsyncStorage.getItem('tokenLogin').then((result: string | null) => {
         if (result) tokenLogin = JSON.parse(result);
       });
 
-      await AsyncStorage.getItem('ssoLogin').then((result: string) => {
+      await AsyncStorage.getItem('ssoLogin').then((result: string | null) => {
         if (result) ssoLogin = JSON.parse(result);
       });
 
       dispatch(updateLoginTypes(null, localLogin, tokenLogin, ssoLogin));
 
-      await AsyncStorage.getItem('url').then((result: string) => {
-        dispatch(updateUrl(result));
+      await AsyncStorage.getItem('url').then((result: string | null) => {
+        result != null ? dispatch(updateUrl(result)) : dispatch(updateUrl(''));
       });
 
       await AsyncStorage.getItem(DEFAULT_FOLDER_TITLE).then(
-        (result: string) => {
+        (result: string | null) => {
           if (result) {
             dispatch(setDefaultFolder(result));
           }
@@ -87,7 +91,7 @@ const AuthLoadingScreen = (props: Props) => {
       );
 
       // Sort data objects
-      await AsyncStorage.getItem(USER_TAGS).then((result: string) => {
+      await AsyncStorage.getItem(USER_TAGS).then((result: string | null) => {
         if (result) {
           dispatch(updateUserTags(parseJSON(result)));
         }
@@ -97,49 +101,57 @@ const AuthLoadingScreen = (props: Props) => {
         dispatch(updateUserTagsIds(parseJSON(result)));
       });
 
-      await AsyncStorage.getItem(TAGGED_ITEMS).then((result: string) => {
+      await AsyncStorage.getItem(TAGGED_ITEMS).then((result: string | null) => {
         if (result) {
           dispatch(updateTaggedItemsFromAsync(parseJSON(result)));
         }
       });
 
-      await AsyncStorage.getItem('userFolders').then((result: string) => {
-        if (result) {
-          dispatch(updateUserFolders(parseJSON(result)));
+      await AsyncStorage.getItem('userFolders').then(
+        (result: string | null) => {
+          if (result) {
+            dispatch(updateUserFolders(parseJSON(result)));
+          }
         }
-      });
+      );
 
-      await AsyncStorage.getItem('userBlogs').then((result: string) => {
+      await AsyncStorage.getItem('userBlogs').then((result: string | null) => {
         if (result) {
           dispatch(updateUserBlogs(parseJSON(result)));
         }
       });
 
-      await AsyncStorage.getItem('uploadFiles').then((result: string) => {
-        if (result) {
-          const uploadFilesList = parseJSON(result);
-          uploadFilesList.forEach((uploadFile: MaharaPendingFile) => {
-            dispatch(addFileToUploadList(uploadFile));
-          });
+      await AsyncStorage.getItem('uploadFiles').then(
+        (result: string | null) => {
+          if (result) {
+            const uploadFilesList = parseJSON(result);
+            uploadFilesList.forEach((uploadFile: MaharaPendingFile) => {
+              dispatch(addFileToUploadList(uploadFile));
+            });
+          }
         }
-      });
+      );
 
-      await AsyncStorage.getItem('uploadJEntries').then((result: string) => {
-        if (result) {
-          const uploadJEntries = parseJSON(result);
-          uploadJEntries.forEach((jEntry: PendingJournalEntry) => {
-            dispatch(addJournalEntryToUploadList(jEntry));
-          });
+      await AsyncStorage.getItem('uploadJEntries').then(
+        (result: string | null) => {
+          if (result) {
+            const uploadJEntries = parseJSON(result);
+            uploadJEntries.forEach((jEntry: PendingJournalEntry) => {
+              dispatch(addJournalEntryToUploadList(jEntry));
+            });
+          }
         }
-      });
+      );
 
       // TODO ? Object - because blogId is a number TODO
-      await AsyncStorage.getItem(DEFAULT_BLOG_ID).then((result: string) => {
-        if (result) {
-          const defaultBlogId = parseJSON(result);
-          dispatch(setDefaultBlogId(defaultBlogId));
+      await AsyncStorage.getItem(DEFAULT_BLOG_ID).then(
+        (result: string | null) => {
+          if (result) {
+            const defaultBlogId = parseJSON(result);
+            dispatch(setDefaultBlogId(defaultBlogId));
+          }
         }
-      });
+      );
     } catch (error) {
       // console.log(`Error getting items from AsyncStorage: ${error}`);
     }

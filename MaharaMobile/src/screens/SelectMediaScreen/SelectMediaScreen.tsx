@@ -2,7 +2,7 @@ import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
-import {ScrollView, View} from 'react-native';
+import {View} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -26,11 +26,9 @@ const SelectMediaScreen = (props: Props) => {
   };
 
   return (
-    <ScrollView>
-      <View style={generic.wrap}>
-        <SelectMediaType selectMediaType={selectMediaType} />
-      </View>
-    </ScrollView>
+    <View style={generic.wrap}>
+      <SelectMediaType selectMediaType={selectMediaType} />
+    </View>
   );
 };
 

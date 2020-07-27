@@ -26,14 +26,10 @@ module.exports = {
     "no-unused-vars": 0,
     "max-len": ["error", 140],
     "comma-dangle": ["error", "never"],
-    // config needed after npm upgrade
-    'import/extensions': ['error', 'ignorePackages', {
-      js: 'never',
-      mjs: 'never',
-      jsx: 'never',
-      ts: 'never',
-      tsx: 'never',
-    }],
+
+    "import/extensions": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "react/sort-comp": "warn"
   },
   "parserOptions": {
     "ecmaVersion": 6,
@@ -48,12 +44,5 @@ module.exports = {
     "jasmine": true,
     "jest": true
   },
-  // settings config needed after npm upgrade
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
-      }
-    },
-  },
+  
 };

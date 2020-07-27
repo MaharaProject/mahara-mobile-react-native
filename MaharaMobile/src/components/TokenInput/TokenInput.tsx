@@ -17,6 +17,7 @@ import generic from '../../assets/styles/generic';
 import LogoSvg from '../../assets/images/Logo-big';
 
 import MediumButton from '../UI/MediumButton/MediumButton';
+import { LOG_IN_ICON } from '../../utils/constants';
 
 type Props = {
   onUpdateToken: Function;
@@ -40,7 +41,7 @@ export default function TokenInput(props: Props) {
             onChangeText={(input) => setToken(input.trim())
             }
           />
-          <MediumButton text={t`Verify token`} icon="faSignInAlt" onPress={() => props.onUpdateToken(token)} />
+          <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onUpdateToken(token)} />
         </View>
       </LinearGradient>
     </View>
