@@ -102,7 +102,7 @@ const AddItemScreen = (props: Props) => {
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
             icon="camera"
-            text={pickedFile.uri === '' ? t`Take photo` : t``}
+            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
           />
         )}
         {/* record audio button */}

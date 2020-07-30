@@ -22,11 +22,11 @@ msgstr ""
 #~ msgid "<0>{0} {1} {2}</0>"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:197
+#: src/components/UploadForm/UploadForm.tsx:196
 msgid "A file has been added."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:204
+#: src/components/UploadForm/UploadForm.tsx:203
 msgid "A file is required."
 msgstr ""
 
@@ -39,8 +39,8 @@ msgstr ""
 msgid "About Mahara Mobile"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:59
-#: src/components/AddAudio/AddAudio.tsx:59
+#: src/components/AddAudio/AddAudio.tsx:61
+#: src/components/AddAudio/AddAudio.tsx:61
 msgid "Access permission"
 msgstr ""
 
@@ -59,11 +59,11 @@ msgid "Add an item"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:239
-#: src/components/UploadForm/UploadForm.tsx:260
+#: src/components/UploadForm/UploadForm.tsx:263
 msgid "Add new tag +"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:65
+#: src/screens/AddItemScreen/AddItemScreen.tsx:56
 msgid "Add {0}"
 msgstr ""
 
@@ -79,20 +79,20 @@ msgstr ""
 msgid "Address of your Mahara site"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:61
-#: src/components/AddAudio/AddAudio.tsx:66
-#: src/components/AddAudio/AddAudio.tsx:61
-#: src/components/AddAudio/AddAudio.tsx:66
+#: src/components/AddAudio/AddAudio.tsx:63
+#: src/components/AddAudio/AddAudio.tsx:68
+#: src/components/AddAudio/AddAudio.tsx:63
+#: src/components/AddAudio/AddAudio.tsx:68
 msgid "Allow"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:60
-#: src/components/AddAudio/AddAudio.tsx:60
+#: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:62
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:65
-#: src/components/AddAudio/AddAudio.tsx:65
+#: src/components/AddAudio/AddAudio.tsx:67
+#: src/components/AddAudio/AddAudio.tsx:67
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
@@ -123,8 +123,8 @@ msgid "Camera closed."
 msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:9
-#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:12
-#: src/components/UploadForm/UploadForm.tsx:292
+#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:13
+#: src/components/UploadForm/UploadForm.tsx:286
 #: src/screens/PendingScreen/PendingScreen.tsx:62
 msgid "Cancel"
 msgstr ""
@@ -141,8 +141,7 @@ msgstr ""
 #~ msgid "Confirm edits to"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:280
-#: src/components/UploadForm/UploadForm.tsx:283
+#: src/components/UploadForm/UploadForm.tsx:282
 msgid "Confirm edits to {formType}"
 msgstr ""
 
@@ -158,7 +157,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:208
+#: src/components/UploadForm/UploadForm.tsx:207
 msgid "Description"
 msgstr ""
 
@@ -174,7 +173,7 @@ msgstr ""
 msgid "Destination journal:"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:43
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:44
 msgid "Draft journal entry"
 msgstr ""
 
@@ -190,20 +189,20 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:208
+#: src/components/UploadForm/UploadForm.tsx:207
 msgid "Entry"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:25
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:26
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:304
 msgid "Fields marked by * are required."
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:15
-#: src/components/UploadForm/UploadForm.tsx:196
+#: src/components/UploadForm/UploadForm.tsx:195
 msgid "File"
 msgstr ""
 
@@ -211,7 +210,7 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:218
+#: src/components/UploadForm/UploadForm.tsx:217
 msgid "Folder"
 msgstr ""
 
@@ -265,7 +264,7 @@ msgstr ""
 #~ msgid "Items in upload queue will not be retrievable once logged out."
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:29
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:30
 msgid "Journal"
 msgstr ""
 
@@ -283,15 +282,15 @@ msgstr ""
 msgid "Local"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:24
+#: src/components/TokenInput/TokenInput.tsx:25
 msgid "Log in via an access token"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:64
+#: src/components/LocalLogin/LocalLogin.tsx:65
 msgid "Log in via username and password"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:72
+#: src/components/LocalLogin/LocalLogin.tsx:73
 msgid "Login"
 msgstr ""
 
@@ -310,7 +309,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:205
+#: src/components/UploadForm/UploadForm.tsx:204
 msgid "Name"
 msgstr ""
 
@@ -326,16 +325,16 @@ msgstr ""
 msgid "No photo captured"
 msgstr ""
 
-#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:13
+#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:18
 msgid "Okay"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:70
+#: src/components/LocalLogin/LocalLogin.tsx:71
 msgid "Password"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:64
-#: src/components/AddAudio/AddAudio.tsx:64
+#: src/components/AddAudio/AddAudio.tsx:66
+#: src/components/AddAudio/AddAudio.tsx:66
 msgid "Permission to record audio"
 msgstr ""
 
@@ -361,6 +360,10 @@ msgstr ""
 
 #: src/utils/addEditHelperFunctions.tsx:53
 msgid "Please select a file."
+msgstr ""
+
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:32
+msgid "Please select a journal"
 msgstr ""
 
 #: src/screens/LoginScreen/LoginScreen.tsx:69
@@ -389,42 +392,42 @@ msgstr ""
 msgid "Profile settings"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:278
-#: src/components/UploadForm/UploadForm.tsx:280
-#: src/components/UploadForm/UploadForm.tsx:287
+#: src/components/UploadForm/UploadForm.tsx:281
+#: src/components/UploadForm/UploadForm.tsx:283
 msgid "Queue to upload"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:36
-#: src/components/AddAudio/AddAudio.tsx:130
+#: src/components/AddAudio/AddAudio.tsx:35
+#: src/components/AddAudio/AddAudio.tsx:132
 msgid "Re-record"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:50
+#: src/screens/AddItemScreen/AddItemScreen.tsx:43
 #: src/screens/EditItemScreen/EditItemScreen.tsx:56
 msgid "Re-take photo"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:30
-#: src/components/AddAudio/AddAudio.tsx:44
-#: src/components/AddAudio/AddAudio.tsx:129
+#: src/components/AddAudio/AddAudio.tsx:29
+#: src/components/AddAudio/AddAudio.tsx:47
+#: src/components/AddAudio/AddAudio.tsx:131
+#: src/components/AddAudio/AddAudio.tsx:189
 msgid "Record"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:43
+#: src/screens/AddItemScreen/AddItemScreen.tsx:40
 #: src/screens/EditItemScreen/EditItemScreen.tsx:38
 msgid "Select a different file"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:42
+#: src/screens/AddItemScreen/AddItemScreen.tsx:39
 msgid "Select a file"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:31
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:32
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:220
+#: src/components/UploadForm/UploadForm.tsx:219
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:61
 msgid "Select folder"
 msgstr ""
@@ -441,8 +444,8 @@ msgstr ""
 msgid "Select login type"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:258
-#: src/components/UploadForm/UploadForm.tsx:258
+#: src/components/UploadForm/UploadForm.tsx:261
+#: src/components/UploadForm/UploadForm.tsx:261
 msgid "Select tags"
 msgstr ""
 
@@ -454,9 +457,9 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:33
-#: src/components/AddAudio/AddAudio.tsx:191
-#: src/components/AddAudio/AddAudio.tsx:191
+#: src/components/AddAudio/AddAudio.tsx:32
+#: src/components/AddAudio/AddAudio.tsx:189
+#: src/components/AddAudio/AddAudio.tsx:189
 msgid "Stop"
 msgstr ""
 
@@ -464,16 +467,16 @@ msgstr ""
 msgid "Storage and security of your personal information"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:236
+#: src/components/UploadForm/UploadForm.tsx:235
 msgid "Tags"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:49
+#: src/screens/AddItemScreen/AddItemScreen.tsx:43
 #: src/screens/EditItemScreen/EditItemScreen.tsx:55
 msgid "Take photo"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:247
+#: src/components/UploadForm/UploadForm.tsx:250
 msgid "Tap to remove tag"
 msgstr ""
 
@@ -494,7 +497,7 @@ msgstr ""
 msgid "This is not a Mahara site. Please re-enter URL."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:205
+#: src/components/UploadForm/UploadForm.tsx:204
 msgid "Title"
 msgstr ""
 
@@ -518,11 +521,11 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:67
+#: src/components/LocalLogin/LocalLogin.tsx:68
 msgid "Username"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:28
+#: src/components/TokenInput/TokenInput.tsx:29
 msgid "Verify token"
 msgstr ""
 

@@ -32,10 +32,10 @@ const MediumButton = (props: Props) => (
         full
         light={!props.dark}
         dark={!!props.dark}
-        disabled={!!props.invalid}
+        disabled={props.invalid}
         iconLeft
         rounded
-        info
+        info={!props.invalid}
         accessibilityRole="button"
         accessibilityLabel={i18n._(props.text)}
         accessibilityHint={

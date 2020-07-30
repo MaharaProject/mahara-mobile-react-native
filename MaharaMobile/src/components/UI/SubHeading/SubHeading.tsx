@@ -9,7 +9,7 @@ const SubHeading = props => (
     {({i18n}) => (
       // <img src="..." alt={i18n._(props.caption)} />
       <Text style={[headingStyles.subHeading1, props.style]}>
-        {i18n._(props.text)}
+        {`${i18n._(props.text)}:`}
         {props.children}
         {props.required ? <RedAsterisk /> : null}
       </Text>

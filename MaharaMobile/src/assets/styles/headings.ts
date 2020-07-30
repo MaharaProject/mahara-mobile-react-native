@@ -11,7 +11,7 @@ const headingStyles = StyleSheet.create({
   },
   subHeading1: {
     fontSize: styles.font.md,
-    color: styles.colors.tertiary,
+    color: styles.colors.dark,
     fontWeight: 'bold',
     marginBottom: styles.padding.sm,
     marginTop: styles.padding.sm

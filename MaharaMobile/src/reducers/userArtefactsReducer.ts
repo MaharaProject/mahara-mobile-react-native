@@ -57,3 +57,5 @@ export const userBlogsReducer = (
 
 // UserBlogs Selectors
 export const selectUserBlogs = (state: RootState) => state.domainData.userBlogs;
+export const selectUserBlogById = (state: RootState, blogId: number) =>
+  state.domainData.userBlogs.find((b: UserBlog) => b.id === blogId);

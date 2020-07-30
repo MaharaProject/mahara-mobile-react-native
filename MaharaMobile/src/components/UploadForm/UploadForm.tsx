@@ -1,8 +1,20 @@
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import {Picker, Text} from 'native-base';
+import {
+  Button,
+  Input,
+  Item,
+  Picker,
+  Text,
+  View,
+  InputGroup,
+  Icon,
+  Content,
+  Container,
+  Header
+} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -112,7 +124,7 @@ const UploadForm = (props: Props) => {
   const [selectedFolder, setSelectedFolder] = useState(
     props.defaultFolderTitle
   );
-  const [selectedBlog, setSelectedBlog] = useState(0);
+  const [selectedBlog, setSelectedBlog] = useState(props.defaultBlogId);
   const [selectedTags, setSelectedTags] = useState<State['selectedTags']>(
     editItemTags
   );
@@ -329,7 +341,6 @@ const UploadForm = (props: Props) => {
       {showInvalidTitleMessage && <RequiredWarningText />}
       <FormInput
         valid={controlTitleValid}
-        style={forms.textInput}
         value={controlTitle}
         onChangeText={(title: string) => updateTitle(title)}
       />
@@ -339,8 +350,8 @@ const UploadForm = (props: Props) => {
       />
       {showInvalidDescMessage && <RequiredWarningText />}
       <FormInput
+        multiline
         valid={controlDescValid}
-        style={isMultiLine}
         value={controlDesc}
         onChangeText={(desc: string) => updateDescription(desc)}
       />
@@ -363,12 +374,11 @@ const UploadForm = (props: Props) => {
     return (
       <View>
         <SubHeading text={t`Folder`} />
-        <View style={forms.pickerWrapper}>
+        <Item regular>
           <Picker
             placeholder={props.defaultFolderTitle}
             accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolder}
-            style={forms.picker}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
             {folders &&
               folders.map((f: UserFolder) => {
@@ -379,7 +389,7 @@ const UploadForm = (props: Props) => {
                 return <Picker.Item label={label} value={f.title} key={f.id} />;
               })}
           </Picker>
-        </View>
+        </Item>
       </View>
     );
   };
@@ -389,24 +399,7 @@ const UploadForm = (props: Props) => {
     <View>
       <View style={uploadFormStyles.tagsContainer}>
         <SubHeading text={t`Tags`} />
-        {/* Create new tag */}
-        {showTagInput && (
-          <View style={uploadFormStyles.tagsInputContainer}>
-            <FormInput
-              style={[forms.textInput, uploadFormStyles.tagsTextInput]}
-              placeholder={t`Add new tag +`}
-              onChangeText={(text: string) => setNewTagText(text)}
-            />
-            <TouchableOpacity
-              accessibilityRole="button"
-              style={uploadFormStyles.addButton}
-              onPress={() => selectTagHandler(newTagText)}>
-              <Text style={uploadFormStyles.addButtonText}>
-                <Trans>Add</Trans>
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
+
         {/* Display selected tags */}
         {selectedTags?.map((value: string, index: number) => (
           <TouchableOpacity
@@ -423,29 +416,51 @@ const UploadForm = (props: Props) => {
             </View>
           </TouchableOpacity>
         ))}
+        {/* Create new tag */}
+        {showTagInput && (
+          <Item regular>
+            <Input
+              placeholder={i18n._(t`New tag...`)}
+              onChangeText={(text: string) => setNewTagText(text)}
+            />
+
+            <Icon
+              onPress={() => selectTagHandler(newTagText)}
+              name="add-outline"
+            />
+            <Icon onPress={() => setShowTagInput(false)} name="close-outline" />
+          </Item>
+        )}
       </View>
       {/* Display drop down of existing tags */}
-      <View style={forms.pickerWrapper}>
-        <Picker
-          placeholder={i18n._(t`Select tags`)}
-          accessibilityLabel={i18n._(t`Select tags`)}
-          selectedValue={selectedTag}
-          style={forms.picker}
-          onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
-          <Picker.Item label="..." value="" color="#556d32" />
-          <Picker.Item
-            label={i18n._(t`Add new tag +`)}
-            value="Add new tag +"
-            color="#556d32"
-          />
-          {props.userTags.map((value: UserTag, index: number) => (
+      <View>
+        <Item regular>
+          <Picker
+            mode="dropdown"
+            iosHeader="Select tagsM"
+            placeholder={i18n._(t`Select tags`)}
+            accessibilityLabel={i18n._(t`Select tags`)}
+            selectedValue={selectedTag}
+            onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
             <Picker.Item
-              label={value.tag}
-              value={value.tag}
-              key={props.userTags[index].id}
+              label={i18n._(t`Pick a tag...`)}
+              value=""
+              color="#556d32"
             />
-          ))}
-        </Picker>
+            <Picker.Item
+              label={i18n._(t`Add new tag +`)}
+              value="Add new tag +"
+              color="#556d32"
+            />
+            {props.userTags.map((value: UserTag, index: number) => (
+              <Picker.Item
+                label={value.tag}
+                value={value.tag}
+                key={props.userTags[index].id}
+              />
+            ))}
+          </Picker>
+        </Item>
       </View>
     </View>
   );
@@ -490,7 +505,7 @@ const UploadForm = (props: Props) => {
     );
   };
 
-  const renderPickers = () => {
+  const renderJournalPickerSwitch = () => {
     if (formType === JOURNAL_ENTRY) {
       return (
         <View>
@@ -516,7 +531,7 @@ const UploadForm = (props: Props) => {
       {renderDisplayedFilename()}
       {renderTextInputs()}
       {renderFolderPicker()}
-      {renderPickers()}
+      {renderJournalPickerSwitch()}
       {renderTagsPicker()}
       {renderButtons()}
     </View>
