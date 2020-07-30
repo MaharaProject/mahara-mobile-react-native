@@ -1,7 +1,6 @@
-import {MessageDescriptor} from '@lingui/core';
-import {I18n} from '@lingui/react';
+import {Input, Item} from 'native-base';
 import React from 'react';
-import {StyleSheet, TextInput, TextStyle} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const validStyle = StyleSheet.create({
   valid: {
@@ -11,25 +10,21 @@ const validStyle = StyleSheet.create({
 
 type Props = {
   valid: boolean;
-  style: TextStyle;
-  placeholder?: MessageDescriptor;
   value: string;
+  multiline?: boolean;
   onChangeText: (text: string) => void;
 };
 
 const FormInput = (props: Props) => {
-  const defaultInputStyles = props.valid ? validStyle.valid : null;
+  // const defaultInputStyles = props.valid ? validStyle.valid : null;
   return (
-    <I18n>
-      {({i18n}) => (
-        <TextInput
-          style={[props.style, defaultInputStyles]}
-          placeholder={i18n._(props.placeholder)}
-          value={props.value}
-          onChangeText={props.onChangeText}
-        />
-      )}
-    </I18n>
+    <Item success={props.valid} regular>
+      <Input
+        value={props.value}
+        onChangeText={props.onChangeText}
+        multiline={props.multiline}
+      />
+    </Item>
   );
 };
 

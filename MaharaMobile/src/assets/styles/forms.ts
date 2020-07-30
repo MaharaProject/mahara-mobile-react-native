@@ -25,7 +25,7 @@ const forms = StyleSheet.create({
     backgroundColor: styles.colors.light
   },
   picker: {
-    backgroundColor: styles.colors.dark,
+    backgroundColor: styles.colors.light,
     height: 40
   },
   pickerWrapper: {
@@ -40,7 +40,7 @@ const forms = StyleSheet.create({
     backgroundColor: styles.colors.quaternary,
     paddingLeft: styles.padding.sm,
     paddingRight: styles.padding.sm,
-    borderRadius: 10,
+    borderRadius: 5,
     marginRight: styles.padding.xs,
     marginTop: styles.padding.xs,
     marginLeft: styles.padding.xs,

@@ -1,11 +1,11 @@
 // @flow
 
-import variable from './../variables/platform';
-import { PLATFORM } from './../variables/commonColor';
+import variable from '../variables/platform';
+import {PLATFORM} from '../variables/commonColor';
 
 export default (variables /* : * */ = variable) => {
-  const platformStyle = variables.platformStyle;
-  const platform = variables.platform;
+  const {platformStyle} = variables;
+  const {platform} = variables;
   const darkCommon = {
     'NativeBase.Text': {
       color: variables.brandDark
@@ -243,25 +243,25 @@ export default (variables /* : * */ = variable) => {
       shadowOpacity: null,
       ...primaryCommon,
       '.dark': {
-        ...darkCommon,
+        ...darkCommon
       },
       '.danger': {
-        ...dangerCommon,
+        ...dangerCommon
       },
       '.warning': {
-        ...warningCommon,
+        ...warningCommon
       },
       '.info': {
-        ...infoCommon,
+        ...infoCommon
       },
       '.primary': {
-        ...primaryCommon,
+        ...primaryCommon
       },
       '.success': {
-        ...successCommon,
+        ...successCommon
       },
       '.light': {
-        ...lightCommon,
+        ...lightCommon
       },
       '.disabled': {
         backgroundColor: 'transparent',
@@ -367,7 +367,7 @@ export default (variables /* : * */ = variable) => {
     },
     paddingVertical: variables.buttonPadding,
     backgroundColor: variables.buttonPrimaryBg,
-    marginBottom: 10,
+    marginTop: 10,
     borderRadius: variables.borderRadiusBase,
     borderColor: variables.buttonPrimaryBg,
     borderWidth: null,
@@ -377,7 +377,7 @@ export default (variables /* : * */ = variable) => {
     shadowColor:
       platformStyle === PLATFORM.MATERIAL ? variables.brandDark : undefined,
     shadowOffset:
-      platformStyle === PLATFORM.MATERIAL ? { width: 0, height: 2 } : undefined,
+      platformStyle === PLATFORM.MATERIAL ? {width: 0, height: 2} : undefined,
     shadowOpacity: platformStyle === PLATFORM.MATERIAL ? 0.2 : undefined,
     shadowRadius: platformStyle === PLATFORM.MATERIAL ? 1.2 : undefined,
     alignItems: 'center',

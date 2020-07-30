@@ -18,11 +18,11 @@ msgstr ""
 msgid "..."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:197
+#: src/components/UploadForm/UploadForm.tsx:196
 msgid "A file has been added."
 msgstr "파일이 추가되었습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:204
+#: src/components/UploadForm/UploadForm.tsx:203
 msgid "A file is required."
 msgstr "파일이 필요합니다."
 
@@ -35,8 +35,8 @@ msgstr "정보"
 msgid "About Mahara Mobile"
 msgstr "Mahara Mobile에 대하여"
 
-#: src/components/AddAudio/AddAudio.tsx:59
-#: src/components/AddAudio/AddAudio.tsx:59
+#: src/components/AddAudio/AddAudio.tsx:61
+#: src/components/AddAudio/AddAudio.tsx:61
 msgid "Access permission"
 msgstr "액세스 권한"
 
@@ -55,11 +55,11 @@ msgid "Add an item"
 msgstr "아이템 추가"
 
 #: src/components/UploadForm/UploadForm.tsx:239
-#: src/components/UploadForm/UploadForm.tsx:260
+#: src/components/UploadForm/UploadForm.tsx:263
 msgid "Add new tag +"
 msgstr "새 태그 추가 +"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:65
+#: src/screens/AddItemScreen/AddItemScreen.tsx:56
 msgid "Add {0}"
 msgstr "{0} 추가"
 
@@ -71,20 +71,20 @@ msgstr "업로드 대기열에 성공적으로 추가되었습니다!"
 msgid "Address of your Mahara site"
 msgstr "Mahara 웹 사이트"
 
-#: src/components/AddAudio/AddAudio.tsx:61
-#: src/components/AddAudio/AddAudio.tsx:66
-#: src/components/AddAudio/AddAudio.tsx:61
-#: src/components/AddAudio/AddAudio.tsx:66
+#: src/components/AddAudio/AddAudio.tsx:63
+#: src/components/AddAudio/AddAudio.tsx:68
+#: src/components/AddAudio/AddAudio.tsx:63
+#: src/components/AddAudio/AddAudio.tsx:68
 msgid "Allow"
 msgstr "허용하다"
 
-#: src/components/AddAudio/AddAudio.tsx:60
-#: src/components/AddAudio/AddAudio.tsx:60
+#: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:62
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하도록 허용 하시겠습니까?"
 
-#: src/components/AddAudio/AddAudio.tsx:65
-#: src/components/AddAudio/AddAudio.tsx:65
+#: src/components/AddAudio/AddAudio.tsx:67
+#: src/components/AddAudio/AddAudio.tsx:67
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 하시겠습니까?"
 
@@ -115,8 +115,8 @@ msgid "Camera closed."
 msgstr "카메라가 닫혔습니다."
 
 #: src/components/UI/CancelButton/CancelButton.tsx:9
-#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:12
-#: src/components/UploadForm/UploadForm.tsx:292
+#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:13
+#: src/components/UploadForm/UploadForm.tsx:286
 #: src/screens/PendingScreen/PendingScreen.tsx:62
 msgid "Cancel"
 msgstr "취소"
@@ -129,8 +129,7 @@ msgstr "이 개인 정보 보호 정책의 변경"
 msgid "Collection of personal information"
 msgstr "개인 정보 수집"
 
-#: src/components/UploadForm/UploadForm.tsx:280
-#: src/components/UploadForm/UploadForm.tsx:283
+#: src/components/UploadForm/UploadForm.tsx:282
 msgid "Confirm edits to {formType}"
 msgstr "{formType} 편집을 확인하십시오."
 
@@ -146,7 +145,7 @@ msgstr "개인 정보 수집"
 msgid "Delete"
 msgstr "삭제"
 
-#: src/components/UploadForm/UploadForm.tsx:208
+#: src/components/UploadForm/UploadForm.tsx:207
 msgid "Description"
 msgstr "설명"
 
@@ -158,7 +157,7 @@ msgstr "대상 폴더 "
 msgid "Destination journal:"
 msgstr "대상 저널 :"
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:43
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:44
 msgid "Draft journal entry"
 msgstr "초안 분개"
 
@@ -166,20 +165,20 @@ msgstr "초안 분개"
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:208
+#: src/components/UploadForm/UploadForm.tsx:207
 msgid "Entry"
 msgstr "분개"
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:25
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:26
 msgid "Error: You do not have any journals on your site."
 msgstr "오류 : 사이트에 저널이 없습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:304
 msgid "Fields marked by * are required."
 msgstr "*로 표시된 필드는 필수입니다."
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:15
-#: src/components/UploadForm/UploadForm.tsx:196
+#: src/components/UploadForm/UploadForm.tsx:195
 msgid "File"
 msgstr "파일"
 
@@ -187,7 +186,7 @@ msgstr "파일"
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
-#: src/components/UploadForm/UploadForm.tsx:218
+#: src/components/UploadForm/UploadForm.tsx:217
 msgid "Folder"
 msgstr "볼더"
 
@@ -237,7 +236,7 @@ msgstr "편집중인 것 같습니다. 저장하기 전에 나가면 변경 사�
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr "로그 아웃 한 후에 업로드 대기열의 항목을 검색 할 수 없습니다."
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:29
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:30
 msgid "Journal"
 msgstr "저널"
 
@@ -255,15 +254,15 @@ msgstr "적법한"
 msgid "Local"
 msgstr "로컬"
 
-#: src/components/TokenInput/TokenInput.tsx:24
+#: src/components/TokenInput/TokenInput.tsx:25
 msgid "Log in via an access token"
 msgstr "액세스 토큰을 통해 로그인"
 
-#: src/components/LocalLogin/LocalLogin.tsx:64
+#: src/components/LocalLogin/LocalLogin.tsx:65
 msgid "Log in via username and password"
 msgstr "사용자 이름과 비밀번호를 통해 로그인하십시오."
 
-#: src/components/LocalLogin/LocalLogin.tsx:72
+#: src/components/LocalLogin/LocalLogin.tsx:73
 msgid "Login"
 msgstr "로그인"
 
@@ -282,7 +281,7 @@ msgstr "로그인 실패"
 msgid "Menu"
 msgstr "메뉴"
 
-#: src/components/UploadForm/UploadForm.tsx:205
+#: src/components/UploadForm/UploadForm.tsx:204
 msgid "Name"
 msgstr "이름"
 
@@ -298,16 +297,16 @@ msgstr "다음"
 msgid "No photo captured"
 msgstr "사진이 촬영되지 않았습니다"
 
-#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:13
+#: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:18
 msgid "Okay"
 msgstr "확실한"
 
-#: src/components/LocalLogin/LocalLogin.tsx:70
+#: src/components/LocalLogin/LocalLogin.tsx:71
 msgid "Password"
 msgstr "암호"
 
-#: src/components/AddAudio/AddAudio.tsx:64
-#: src/components/AddAudio/AddAudio.tsx:64
+#: src/components/AddAudio/AddAudio.tsx:66
+#: src/components/AddAudio/AddAudio.tsx:66
 msgid "Permission to record audio"
 msgstr "오디오 녹음 권한"
 
@@ -331,6 +330,10 @@ msgstr "로그인 해주세요"
 msgid "Please select a file."
 msgstr "파일을 선택하십시오"
 
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:32
+msgid "Please select a journal"
+msgstr ""
+
 #: src/screens/LoginScreen/LoginScreen.tsx:69
 msgid "Please try again."
 msgstr "다시 시도하십시오."
@@ -353,42 +356,42 @@ msgstr "프로필 페이지"
 msgid "Profile settings"
 msgstr "프로필 설정"
 
-#: src/components/UploadForm/UploadForm.tsx:278
-#: src/components/UploadForm/UploadForm.tsx:280
-#: src/components/UploadForm/UploadForm.tsx:287
+#: src/components/UploadForm/UploadForm.tsx:281
+#: src/components/UploadForm/UploadForm.tsx:283
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
-#: src/components/AddAudio/AddAudio.tsx:36
-#: src/components/AddAudio/AddAudio.tsx:130
+#: src/components/AddAudio/AddAudio.tsx:35
+#: src/components/AddAudio/AddAudio.tsx:132
 msgid "Re-record"
 msgstr "다시 녹음"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:50
+#: src/screens/AddItemScreen/AddItemScreen.tsx:43
 #: src/screens/EditItemScreen/EditItemScreen.tsx:56
 msgid "Re-take photo"
 msgstr "사진을 다시 찍습니다."
 
-#: src/components/AddAudio/AddAudio.tsx:30
-#: src/components/AddAudio/AddAudio.tsx:44
-#: src/components/AddAudio/AddAudio.tsx:129
+#: src/components/AddAudio/AddAudio.tsx:29
+#: src/components/AddAudio/AddAudio.tsx:47
+#: src/components/AddAudio/AddAudio.tsx:131
+#: src/components/AddAudio/AddAudio.tsx:189
 msgid "Record"
 msgstr "녹음"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:43
+#: src/screens/AddItemScreen/AddItemScreen.tsx:40
 #: src/screens/EditItemScreen/EditItemScreen.tsx:38
 msgid "Select a different file"
 msgstr "다른 파일을 선택하십시오"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:42
+#: src/screens/AddItemScreen/AddItemScreen.tsx:39
 msgid "Select a file"
 msgstr "파일을 선택하십시오"
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:31
+#: src/components/UploadForm/UploadFormJournalComponents.tsx:32
 msgid "Select a journal"
 msgstr "저널을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:220
+#: src/components/UploadForm/UploadForm.tsx:219
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:61
 msgid "Select folder"
 msgstr "폴더 선택"
@@ -405,8 +408,8 @@ msgstr "저널 선택"
 msgid "Select login type"
 msgstr "로그인 유형을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:258
-#: src/components/UploadForm/UploadForm.tsx:258
+#: src/components/UploadForm/UploadForm.tsx:261
+#: src/components/UploadForm/UploadForm.tsx:261
 msgid "Select tags"
 msgstr "태그 선택"
 
@@ -418,9 +421,9 @@ msgstr "싱글 사인온"
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
-#: src/components/AddAudio/AddAudio.tsx:33
-#: src/components/AddAudio/AddAudio.tsx:191
-#: src/components/AddAudio/AddAudio.tsx:191
+#: src/components/AddAudio/AddAudio.tsx:32
+#: src/components/AddAudio/AddAudio.tsx:189
+#: src/components/AddAudio/AddAudio.tsx:189
 msgid "Stop"
 msgstr "녹화 중지"
 
@@ -428,16 +431,16 @@ msgstr "녹화 중지"
 msgid "Storage and security of your personal information"
 msgstr "개인 정보의 보관 및 보안"
 
-#: src/components/UploadForm/UploadForm.tsx:236
+#: src/components/UploadForm/UploadForm.tsx:235
 msgid "Tags"
 msgstr "태그"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:49
+#: src/screens/AddItemScreen/AddItemScreen.tsx:43
 #: src/screens/EditItemScreen/EditItemScreen.tsx:55
 msgid "Take photo"
 msgstr "사진을 찍다"
 
-#: src/components/UploadForm/UploadForm.tsx:247
+#: src/components/UploadForm/UploadForm.tsx:250
 msgid "Tap to remove tag"
 msgstr "태그를 제거하려면 탭하세요"
 
@@ -458,7 +461,7 @@ msgstr "이 필드는 필수입니다."
 msgid "This is not a Mahara site. Please re-enter URL."
 msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십시오."
 
-#: src/components/UploadForm/UploadForm.tsx:205
+#: src/components/UploadForm/UploadForm.tsx:204
 msgid "Title"
 msgstr "표제"
 
@@ -482,11 +485,11 @@ msgstr "대기열 페이지 업로드"
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
-#: src/components/LocalLogin/LocalLogin.tsx:67
+#: src/components/LocalLogin/LocalLogin.tsx:68
 msgid "Username"
 msgstr "사용자 이름"
 
-#: src/components/TokenInput/TokenInput.tsx:28
+#: src/components/TokenInput/TokenInput.tsx:29
 msgid "Verify token"
 msgstr "토큰 확인"
 

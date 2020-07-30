@@ -1,8 +1,8 @@
 import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
+import {Item, Left, Picker, Right, Switch} from 'native-base';
 import React from 'react';
-import {Picker, View} from 'react-native';
-import {Switch} from 'react-native-paper';
+import {View} from 'react-native';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import {UserBlog} from '../../models/models';
@@ -33,11 +33,13 @@ export const BlogPicker = props => {
         isDraft={props.isDraft}
       />
       <SubHeading text={t`Journal`} />
-      <View style={forms.pickerWrapper}>
+      <Item regular>
         <Picker
+          mode="dropdown"
+          placeholder={i18n._(t`Please select a journal`)}
           accessibilityLabel={i18n._(t`Select a journal`)}
           selectedValue={props.selectedBlog}
-          style={forms.picker}
+          // style={forms.picker}
           onValueChange={(blogId: number) => props.setSelectedBlog(blogId)}>
           {blogs.map((blog: UserBlog) => {
             const label =
@@ -47,7 +49,7 @@ export const BlogPicker = props => {
             return <Picker.Item label={label} value={blog.id} key={blog.id} />;
           })}
         </Picker>
-      </View>
+      </Item>
     </View>
   );
 };
@@ -58,15 +60,18 @@ type Props = {
 };
 
 const JournalDraftSwitch = (props: Props) => (
-  <View style={{flexDirection: 'row'}}>
-    <SubHeading text={t`Draft journal entry`} />
-    <Switch
-      value={props.isDraft}
-      accessibilityRole="switch"
-      onValueChange={() => props.setIsDraft(!props.isDraft)}
-      color={styles.colors.tertiary}
-    />
-  </View>
+  <Item style={{borderColor: styles.colors.light}}>
+    <Left>
+      <SubHeading text={t`Draft journal entry`} />
+    </Left>
+    <Right>
+      <Switch
+        trackColor={{false: '', true: styles.colors.green}}
+        value={props.isDraft}
+        onValueChange={() => props.setIsDraft(!props.isDraft)}
+      />
+    </Right>
+  </Item>
 );
 
 export default BlogPicker;
