@@ -28,7 +28,7 @@ export default () => {
           marginLeft: null
         },
         'NativeBase.Icon': {
-          marginTop: 36
+          // marginTop: 36
         },
         marginLeft: 15
       },

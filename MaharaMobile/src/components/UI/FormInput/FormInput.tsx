@@ -1,12 +1,5 @@
-import {Input, Item} from 'native-base';
+import {Input, Item, Textarea} from 'native-base';
 import React from 'react';
-import {StyleSheet} from 'react-native';
-
-const validStyle = StyleSheet.create({
-  valid: {
-    backgroundColor: '#eff2ee'
-  }
-});
 
 type Props = {
   valid: boolean;
@@ -19,11 +12,17 @@ const FormInput = (props: Props) => {
   // const defaultInputStyles = props.valid ? validStyle.valid : null;
   return (
     <Item success={props.valid} regular>
-      <Input
-        value={props.value}
-        onChangeText={props.onChangeText}
-        multiline={props.multiline}
-      />
+      {props.multiline === true ? (
+        <Textarea
+          underline={false}
+          rowSpan={2}
+          value={props.value}
+          onChangeText={props.onChangeText}
+          bordered={false}
+        />
+      ) : (
+        <Input value={props.value} onChangeText={props.onChangeText} />
+      )}
     </Item>
   );
 };

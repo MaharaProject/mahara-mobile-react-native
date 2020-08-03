@@ -3,7 +3,6 @@ import {t} from '@lingui/macro';
 import {Item, Left, Picker, Right, Switch} from 'native-base';
 import React from 'react';
 import {View} from 'react-native';
-import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import {UserBlog} from '../../models/models';
 import {putDefaultAtTop} from '../../utils/formHelper';
