@@ -454,7 +454,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-config: f2c2ae45625a068c35681a16b9bfb1ca58b0adc7
   react-native-document-picker: c5752781fbc0c126c627c1549b037c139444a4cf
-  react-native-image-picker: a6c3d644751a388b0fc8b56822ff7cbd398a3008
+  react-native-image-picker: 21dfd898395b663680e987496f6c3431eea49fdb
   react-native-safe-area-context: 042dfc9d4db17196841df962ba9497f6e7a5bd02
   react-native-webview: d3cf75764f98fd433f1222f5a7ca8e355ada2a15
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c

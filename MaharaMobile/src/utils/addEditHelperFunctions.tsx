@@ -1,6 +1,6 @@
 import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
-import {Alert, Image, Platform, View} from 'react-native';
+import {Alert, Image, View} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
 import i18n from '../i18n';
@@ -50,22 +50,40 @@ export const takePhoto = (
   });
 };
 
-export const pickDocument = onSetPickedFile => {
+export const pickDocument = async (
+  setPickedFile: Dispatch<SetStateAction<MaharaFile>>
+) => {
   try {
-    DocumentPicker.pick({
+    const res = await DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
-    }).then(res =>
-      onSetPickedFile(newMaharaFile(res.uri, res.type, res.name, res.size))
-    );
+    });
+
+    console.log(res.name, res.type, res.name, res.type);
   } catch (err) {
-    if (DocumentPicker.isCancel(err)) {
-      Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
-        {text: 'Okay', style: 'destructive'}
-      ]);
-    } else {
-      Alert.alert(JSON.stringify(err));
-    }
+    // error
   }
+  // // iPhone/Android
+  // DocumentPicker.show(
+  //   {
+  //     filetype: [DocumentPickerUtil.allFiles()]
+  //   },
+  //   (error, res) => {
+  //     // No file picked
+  //     if (!res) {
+  //       Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
+  //         {text: 'Okay', style: 'destructive'}
+  //       ]);
+  //       return;
+  //     }
+  //     // Android
+  //     setPickedFile({
+  //       name: res.fileName,
+  //       uri: res.uri,
+  //       type: res.type,
+  //       size: Number(res.fileSize)
+  //     });
+  //   }
+  // );
 };
 
 export const renderImagePreview = (uri: string) => {
