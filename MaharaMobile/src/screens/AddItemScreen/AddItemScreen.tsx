@@ -91,7 +91,7 @@ const AddItemScreen = (props: Props) => {
                   ? t`Select a file`
                   : t`Select a different file`
               }
-              onPress={() => pickDocument(setPickedFile)}
+              onPress={() => setPickedFile(pickDocument())}
               style={null}
               icon="folder-open"
             />
