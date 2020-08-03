@@ -5,6 +5,7 @@ import DocumentPicker from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
 import i18n from '../i18n';
 import {MaharaFile} from '../models/models';
+import {newMaharaFile} from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
 export const takePhoto = (
@@ -38,18 +39,21 @@ export const takePhoto = (
   });
 };
 
-export const pickDocument = async (
-  setPickedFile: Dispatch<SetStateAction<MaharaFile>>
-) => {
+export const pickDocument = async () => {
   try {
     const res = await DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
     });
 
+    const maharaFile = newMaharaFile(res.uri, res.type, res.name, res.size);
+    return maharaFile;
     console.log(res.name, res.type, res.name, res.type);
   } catch (err) {
-    // error
+    Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
+      {text: 'Okay', style: 'destructive'}
+    ]);
   }
+
   // // iPhone/Android
   // DocumentPicker.show(
   //   {
