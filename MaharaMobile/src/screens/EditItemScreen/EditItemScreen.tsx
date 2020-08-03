@@ -13,9 +13,11 @@ import {Dispatch} from 'redux';
 import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
+import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
 import UploadForm from '../../components/UploadForm/UploadForm';
+import i18n from '../../i18n';
 import {
   MaharaFile,
   MaharaPendingFile,
@@ -110,20 +112,16 @@ const EditItemScreen = (props: Props) => {
                 pickDocument(setPickedFile);
               }}
               style={null}
-              icon="faFolderOpen"
+              icon="folder-open"
             />
           </View>
         )}
         {formType === PHOTO && (
-          <TouchableOpacity
+          <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
-            accessibilityRole="button">
-            <Text style={[buttons.md, outlineButtonStyles.buttons]}>
-              <FontAwesome5 name="camera" size={20} />
-              &nbsp; {pickedFile.uri === '' && <Trans>Take photo</Trans>}
-              {pickedFile.uri && <Trans>Re-take photo</Trans>}
-            </Text>
-          </TouchableOpacity>
+            icon="camera"
+            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+          />
         )}
         {formType === AUDIO && (
           <View>
@@ -148,6 +146,13 @@ const EditItemScreen = (props: Props) => {
       </View>
     </ScrollView>
   );
+};
+
+EditItemScreen.navigationOptions = ({navigation}) => {
+  return {
+    headerTitle: i18n._(t`Edit ${navigation.getParam('formType')}`),
+    headerLeft: <CustomVerifyBackButton navigation={navigation} />
+  };
 };
 
 const mapStateToProps = (state: RootState) => ({
