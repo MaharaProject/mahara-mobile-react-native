@@ -367,7 +367,6 @@ export default (variables /* : * */ = variable) => {
     },
     paddingVertical: variables.buttonPadding,
     backgroundColor: variables.buttonPrimaryBg,
-    marginTop: 10,
     borderRadius: variables.borderRadiusBase,
     borderColor: variables.buttonPrimaryBg,
     borderWidth: null,

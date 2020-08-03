@@ -3,6 +3,7 @@ import {I18n} from '@lingui/react';
 import {Button, Icon, Text} from 'native-base';
 import React from 'react';
 import {View} from 'react-native';
+import buttons from '../../../assets/styles/buttons';
 
 type Props = {
   onPress: () => void;
@@ -26,9 +27,7 @@ const OutlineButton = (props: Props) => (
           accessibilityRole="button"
           accessibilityLabel={i18n._(props.text)}
           accessibilityHint={props.accessibilityHint}
-          onPress={props.onPress}
-          // style={{ borderColor: styles.colors.green }}
-        >
+          onPress={props.onPress}>
           <Icon name={props.icon} />
           <Text>{i18n._(props.text)}</Text>
         </Button>

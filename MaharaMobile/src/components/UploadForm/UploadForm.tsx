@@ -1,18 +1,6 @@
-import {t, Trans} from '@lingui/macro';
+import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import {
-  Button,
-  Input,
-  Item,
-  Picker,
-  Text,
-  View,
-  InputGroup,
-  Icon,
-  Content,
-  Container,
-  Header
-} from 'native-base';
+import {Icon, Input, Item, Picker, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {
@@ -434,10 +422,10 @@ const UploadForm = (props: Props) => {
       </View>
       {/* Display drop down of existing tags */}
       <View>
-        <Item regular>
+        <Item regular style={buttons.default}>
           <Picker
             mode="dropdown"
-            iosHeader="Select tagsM"
+            iosHeader="Select tags"
             placeholder={i18n._(t`Select tags`)}
             accessibilityLabel={i18n._(t`Select tags`)}
             selectedValue={selectedTag}

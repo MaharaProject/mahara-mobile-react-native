@@ -1,7 +1,7 @@
 import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
+import {Label} from 'native-base';
 import React from 'react';
-import {Label, Item} from 'native-base';
 import styles from '../assets/styles/variables';
 import {UserBlog, UserFolder} from '../models/models';
 import {FILE, JOURNAL_ENTRY, PHOTO} from './constants';
