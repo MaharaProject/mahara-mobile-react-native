@@ -21,16 +21,16 @@ const gridButtonStyles = StyleSheet.create({
     marginBottom: styles.padding.lg
   },
   green: {
-    backgroundColor: styles.colors.green
+    backgroundColor: styles.colors.green_grid_button
   },
   purple: {
-    backgroundColor: styles.colors.purple
+    backgroundColor: styles.colors.berry_grid_button
   },
   lightbrown: {
-    backgroundColor: styles.colors.lightbrown
+    backgroundColor: styles.colors.lightbrown_grid_button
   },
   darkbrown: {
-    backgroundColor: styles.colors.darkbrown
+    backgroundColor: styles.colors.darkbrown_grid_button
   }
 });
 

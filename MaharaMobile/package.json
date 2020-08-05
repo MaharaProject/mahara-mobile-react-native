@@ -8,7 +8,6 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint src/**/*.{ts,tsx}",
-
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",

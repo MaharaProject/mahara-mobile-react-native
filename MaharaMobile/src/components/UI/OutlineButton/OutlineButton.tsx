@@ -3,7 +3,6 @@ import {I18n} from '@lingui/react';
 import {Button, Icon, Text} from 'native-base';
 import React from 'react';
 import {View} from 'react-native';
-import buttons from '../../../assets/styles/buttons';
 
 type Props = {
   onPress: () => void;
