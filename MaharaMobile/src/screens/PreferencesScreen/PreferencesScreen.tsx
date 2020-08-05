@@ -1,11 +1,13 @@
 import {I18n, i18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
+import {Item, Picker} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {Alert, Image, Picker, Text, View} from 'react-native';
+import {Alert, Image, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {setDefaultBlogId, setDefaultFolder} from '../../actions/actions';
 import image from '../../assets/images/no_userphoto.png';
+import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
@@ -55,8 +57,10 @@ const PreferencesScreen = (props: Props) => {
   );
 
   const userBlogs = useSelector((state: RootState) => selectUserBlogs(state));
-  const [selectedFolderTitle, setSelectedFolderTitle] = useState('');
-  const [selectedBlogId, setSelectedBlogId] = useState(0);
+  const [selectedFolderTitle, setSelectedFolderTitle] = useState(
+    defaultFolderTitle
+  );
+  const [selectedBlogId, setSelectedBlogId] = useState(defaultBlogId);
 
   useEffect(() => {
     props.navigation.setParams({
@@ -84,7 +88,7 @@ const PreferencesScreen = (props: Props) => {
     return (
       <View>
         <SubHeading text={t`Destination folder`} />
-        <View style={forms.pickerWrapper}>
+        <Item regular>
           <Picker
             accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolderTitle}
@@ -100,7 +104,7 @@ const PreferencesScreen = (props: Props) => {
               return <Picker.Item label={label} value={f.title} key={f.id} />;
             })}
           </Picker>
-        </View>
+        </Item>
       </View>
     );
   };
@@ -111,8 +115,8 @@ const PreferencesScreen = (props: Props) => {
     const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
       <View>
-        <SubHeading text={t`Destination journal:`} />
-        <View style={forms.pickerWrapper}>
+        <SubHeading text={t`Destination journal`} />
+        <Item regular style={buttons.default}>
           <Picker
             accessibilityLabel={i18n._(t`Select journal`)}
             selectedValue={selectedBlogId}
@@ -128,7 +132,7 @@ const PreferencesScreen = (props: Props) => {
               );
             })}
           </Picker>
-        </View>
+        </Item>
       </View>
     );
   };
@@ -151,7 +155,7 @@ const PreferencesScreen = (props: Props) => {
       {renderProfile()}
       <SubHeading
         style={{fontSize: styles.font.xl}}
-        text={t`Default options:`}
+        text={t`Default options`}
       />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
