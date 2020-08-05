@@ -1,6 +1,6 @@
 import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
-import {Alert, Image, View} from 'react-native';
+import {Alert, Image, Platform, View} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
 import i18n from '../i18n';
