@@ -130,7 +130,7 @@ export default {
   checkboxTickColor: '#fff',
 
   // Color
-  brandPrimary: platform === PLATFORM.IOS ? '#4c762c' : '#4c762c',
+  brandPrimary: platform === '#4c762c',
   brandInfo: '#b9a34b',
   brandSuccess: '#3c4c23',
   brandDanger: '#d9534f',
