@@ -50,43 +50,22 @@ export const takePhoto = (
   });
 };
 
-export const pickDocument = async () => {
+export const pickDocument = onSetPickedFile => {
   try {
-    const res = await DocumentPicker.pick({
+    DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
-    });
-
-    const maharaFile = newMaharaFile(res.uri, res.type, res.name, res.size);
-    return maharaFile;
-    console.log(res.name, res.type, res.name, res.type);
+    }).then(res =>
+      onSetPickedFile(newMaharaFile(res.uri, res.type, res.name, res.size))
+    );
   } catch (err) {
-    Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
-      {text: 'Okay', style: 'destructive'}
-    ]);
+    if (DocumentPicker.isCancel(err)) {
+      Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
+        {text: 'Okay', style: 'destructive'}
+      ]);
+    } else {
+      Alert.alert(JSON.stringify(err));
+    }
   }
-
-  // // iPhone/Android
-  // DocumentPicker.show(
-  //   {
-  //     filetype: [DocumentPickerUtil.allFiles()]
-  //   },
-  //   (error, res) => {
-  //     // No file picked
-  //     if (!res) {
-  //       Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
-  //         {text: 'Okay', style: 'destructive'}
-  //       ]);
-  //       return;
-  //     }
-  //     // Android
-  //     setPickedFile({
-  //       name: res.fileName,
-  //       uri: res.uri,
-  //       type: res.type,
-  //       size: Number(res.fileSize)
-  //     });
-  //   }
-  // );
 };
 
 export const renderImagePreview = (uri: string) => {
