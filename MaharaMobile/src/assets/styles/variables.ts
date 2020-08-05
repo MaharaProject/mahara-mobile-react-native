@@ -1,11 +1,13 @@
 // Variables for stles
 
+import {text} from '@fortawesome/fontawesome-svg-core';
+
 const styles = {
   colors: {
-    primary: '#566D37',
-    secondary: '#ba9c53',
-    tertiary: '#566d31',
-    quaternary: '#1f6c88',
+    primary: '#4c762c',
+    secondary: '#b9a34b', // husk
+    tertiary: '#92Bf72',
+    quaternary: '#d4e6c7',
     contrast: '#eff4e7',
     text: '#000',
     light: '#fff',
@@ -18,10 +20,12 @@ const styles = {
     warnbg: '#e8c4c4',
     warn: '#aa0500',
     border: '#cfcfcf',
-    green: '#295934',
-    purple: '#622c46',
-    lightbrown: '#763b36',
-    darkbrown: '#423017',
+    green_grid_button: '#006032',
+    green_tag_text: '#293d1a',
+    green_tag_close: '#6d9a4c',
+    berry_grid_button: '#681946',
+    lightbrown_grid_button: '#7b3434',
+    darkbrown_grid_button: '#433113',
     red: '#76302e',
     successbg: '#cedeb7',
     success: '#3c4c23'

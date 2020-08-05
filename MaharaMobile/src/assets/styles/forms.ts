@@ -47,13 +47,13 @@ const forms = StyleSheet.create({
     flexDirection: 'row'
   },
   tagText: {
-    color: styles.colors.light,
+    color: styles.colors.green_tag_text,
     paddingTop: styles.padding.xs,
     paddingBottom: styles.padding.xs,
     fontSize: styles.font.sm
   },
   tagClose: {
-    color: styles.colors.light,
+    color: styles.colors.green_tag_close,
     paddingLeft: styles.padding.xs,
     paddingTop: 3
   }
