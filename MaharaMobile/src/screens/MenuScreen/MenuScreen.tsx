@@ -73,7 +73,8 @@ const MenuScreen = (props: Props) => {
 
 MenuScreen.navigationOptions = () => ({
   headerStyle: {
-    backgroundColor: styles.colors.primary
+    backgroundColor: styles.colors.primary,
+    borderBottomWidth: 0
   },
   headerTitleStyle: {
     fontWeight: 'bold',
