@@ -86,6 +86,7 @@ export default function LocalLogin(props: Props) {
                 secureTextEntry
                 placeholder={i18n._(t`Password`)}
                 onChangeText={passwordInput => setPassword(passwordInput)}
+                autoCapitalize="none"
               />
             )}
           </I18n>
