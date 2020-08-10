@@ -19,7 +19,6 @@ import {
 } from '../../actions/actions';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
-import styles from '../../assets/styles/variables';
 import i18n from '../../i18n';
 import {
   MaharaFile,
@@ -432,13 +431,14 @@ const UploadForm = (props: Props) => {
             selectedValue={selectedTag}
             onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
             <Picker.Item
-              label={i18n._(t`Select tags...`)}
+              label={i18n._(t`Pick a tag...`)}
               value=""
-              color={styles.colors.darkgrey}
+              color="#556d32"
             />
             <Picker.Item
               label={i18n._(t`Add new tag +`)}
               value="Add new tag +"
+              color="#556d32"
             />
             {props.userTags.map((value: UserTag, index: number) => (
               <Picker.Item
