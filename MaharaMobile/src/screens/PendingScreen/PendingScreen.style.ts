@@ -9,11 +9,11 @@ export default StyleSheet.create({
   },
   listContainer: {
     backgroundColor: styles.colors.light,
-    height: '75%'
+    height: '85%'
   },
   buttonContainer: {
-    justifyContent: 'flex-end',
-    height: '25%'
+    justifyContent: 'space-around',
+    height: '15%'
   },
   container: {
     flex: 1,
