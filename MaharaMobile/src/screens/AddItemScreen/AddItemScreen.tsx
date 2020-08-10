@@ -17,12 +17,12 @@ import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
 import {
-  MaharaFile,
   MaharaPendingFile,
   UserBlog,
   UserFolder,
   UserTag
 } from '../../models/models';
+import {newMaharaFile} from '../../models/typeCreators';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
@@ -63,16 +63,9 @@ type Props = {
 };
 
 const AddItemScreen = (props: Props) => {
-  const initialPickedFileState: MaharaFile = {
-    name: '',
-    size: 0,
-    type: '',
-    uri: ''
-  };
-
   // State
   const formType = props.navigation.getParam('formType');
-  const [pickedFile, setPickedFile] = useState(initialPickedFileState);
+  const [pickedFile, setPickedFile] = useState(newMaharaFile('', '', '', 0));
 
   return (
     <ScrollView>
@@ -83,8 +76,6 @@ const AddItemScreen = (props: Props) => {
           : null}
         {formType === FILE && (
           <View>
-            {/* title={props.i18n._(t`${getRecordStrings(recordButtonStatus)}`)} */}
-
             <OutlineButton
               text={
                 pickedFile.uri === ''
