@@ -75,6 +75,7 @@ export default function LocalLogin(props: Props) {
                 style={forms.textInput}
                 placeholder={i18n._(t`Username`)}
                 onChangeText={usernameInput => setUsername(usernameInput)}
+                autoCapitalize="none"
               />
             )}
           </I18n>
