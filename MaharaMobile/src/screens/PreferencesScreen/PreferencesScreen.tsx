@@ -161,7 +161,6 @@ const PreferencesScreen = (props: Props) => {
       {defaultBlogPicker()}
       <MediumButton
         text={t`Update preferences`}
-        style={PreferencesScreenStyle.button}
         onPress={() => {
           if (selectedBlogId) dispatch(setDefaultBlogId(selectedBlogId));
           if (selectedFolderTitle) {
