@@ -415,7 +415,7 @@ const UploadForm = (props: Props) => {
 
             <Icon
               onPress={() => selectTagHandler(newTagText)}
-              name="add-outline"
+              name="checkmark-outline"
             />
             <Icon onPress={() => setShowTagInput(false)} name="close-outline" />
           </Item>
