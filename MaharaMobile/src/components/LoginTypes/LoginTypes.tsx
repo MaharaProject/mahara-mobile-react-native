@@ -90,6 +90,7 @@ const LoginTypes = (props: Props) => {
   return (
     <View style={styles.view}>
       <LinearGradient
+        locations={[0, 0.7, 1]}
         colors={[
           variables.colors.dark2,
           variables.colors.tertiary,
