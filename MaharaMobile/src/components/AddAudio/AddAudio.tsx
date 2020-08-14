@@ -255,7 +255,7 @@ type AudioPlayButtonProps = {
   iconName: string;
 };
 const AudioPlayButton = (props: AudioPlayButtonProps) => (
-  <Button bordered rounded onPress={props.onPress}>
+  <Button bordered rounded onPress={props.onPress} style={{marginEnd: variables.padding.sm}}>
     <Icon name={props.iconName} />
   </Button>
 );
