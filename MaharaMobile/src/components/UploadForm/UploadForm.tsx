@@ -485,6 +485,11 @@ const UploadForm = (props: Props) => {
     const intlItemType = getUploadTypeIntlStrings(itemType);
     return (
       <View>
+        {!validButton && (
+          <RequiredWarningText customText={t`Please double check fields.`} />
+        )}
+        {/* TODO: native-base icons on disabled doesn't allow pressing, to renderUserMessages
+         */}
         <MediumButton
           onPress={() => handleForm()}
           accessibilityLabel={i18n._(t`Queue to upload`)}
