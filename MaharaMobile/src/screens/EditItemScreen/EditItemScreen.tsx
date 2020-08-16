@@ -1,8 +1,7 @@
 import {I18n} from '@lingui/core';
-import {t, Trans} from '@lingui/macro';
+import {t} from '@lingui/macro';
 import React, {useEffect, useState} from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import {ScrollView, View} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -10,12 +9,10 @@ import {
 } from 'react-navigation';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import buttons from '../../assets/styles/buttons';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import outlineButtonStyles from '../../components/UI/OutlineButton/OutlineButton.style';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
 import {
