@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View} from 'react-native';
+import {View, Platform} from 'react-native';
 import FlashMessage, {showMessage} from 'react-native-flash-message';
 import {
   NavigationParams,
@@ -8,6 +8,7 @@ import {
 } from 'react-navigation';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
+import {Toast, Icon, Content, Item, Text} from 'native-base';
 import {checkLoginTypes} from '../../actions/actions';
 import generic from '../../assets/styles/generic';
 import messages from '../../assets/styles/messages';
@@ -21,6 +22,7 @@ import {
 } from '../../reducers/loginInfoReducer';
 import {RootState} from '../../reducers/rootReducer';
 import {setUpGuest} from '../../utils/authHelperFunctions';
+import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 
 type Props = {
   dispatch: Dispatch;
@@ -99,16 +101,30 @@ export class SiteCheckScreen extends Component<Props, State> {
     } catch (error) {
       this.setState({errorMessage: error.message});
       this.switchLoading();
-      showMessage({
-        message: this.state.errorMessage,
-        icon: {
-          icon: 'auto',
-          position: 'left'
+
+      Toast.show({
+        text: (
+          <Text
+            style={{
+              fontSize: variables.font.md,
+              color: variables.colors.red
+            }}>
+            <Icon
+              style={{
+                color: variables.colors.red
+              }}
+              name="home"
+            />
+            &nbsp;&nbsp;{this.state.errorMessage}
+          </Text>
+        ),
+        type: 'danger',
+        style: {
+          backgroundColor: variables.colors.warnbg,
+          paddingBottom: variables.padding.md
         },
-        type: 'warning',
-        titleStyle: messages.errorMessage,
-        backgroundColor: variables.colors.warnbg,
-        color: variables.colors.warn
+        position: 'center',
+        duration: 3000
       });
     }
   };
