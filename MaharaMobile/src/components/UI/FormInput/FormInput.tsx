@@ -9,7 +9,6 @@ type Props = {
 };
 
 const FormInput = (props: Props) => {
-  // const defaultInputStyles = props.valid ? validStyle.valid : null;
   return (
     <Item success={props.valid} regular>
       {props.multiline === true ? (

@@ -41,7 +41,7 @@ const uploadItemStyles = StyleSheet.create({
   },
   icon: {
     height: '100%',
-    backgroundColor: styles.colors.lightbrown,
+    backgroundColor: styles.colors.lightbrown_grid_button,
     justifyContent: 'center'
   },
   thumbnail: {
@@ -63,7 +63,7 @@ const uploadItemStyles = StyleSheet.create({
     color: styles.colors.red
   },
   edit: {
-    color: styles.colors.green
+    color: styles.colors.green_grid_button
   }
 });
 

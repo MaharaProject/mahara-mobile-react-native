@@ -6,7 +6,7 @@ import {View} from 'react-native';
 
 type Props = {
   onPress: () => void;
-  text?: MessageDescriptor;
+  text: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
   style?: any;
   icon?: string;

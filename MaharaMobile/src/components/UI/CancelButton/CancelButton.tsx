@@ -15,7 +15,6 @@ type Props = {
 
 const CancelButton = (props: Props) => (
   <I18n>
-    {/* FIXME Check translation */}
     {({i18n}) => (
       <Button
         light

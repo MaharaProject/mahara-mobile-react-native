@@ -8,7 +8,7 @@ import {MessageDescriptor} from '../../../models/models';
 
 type Props = {
   onPress: () => void;
-  text?: MessageDescriptor;
+  text: MessageDescriptor;
   accessibilityHint?: MessageDescriptor;
   icon?: string;
   unbold?: boolean;

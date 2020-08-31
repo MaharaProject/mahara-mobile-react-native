@@ -4,8 +4,9 @@ import React from 'react';
 import {Text} from 'react-native';
 import {Item} from 'native-base';
 import styles from '../../../assets/styles/variables';
+import {MessageDescriptor} from '../../../models/models';
 
-const RequiredWarningText = props => (
+const RequiredWarningText = (props: {customText: MessageDescriptor}) => (
   <I18n>
     {({i18n}) => (
       <Item

@@ -19,7 +19,6 @@ export default StyleSheet.create({
     marginBottom: styles.padding.md
   },
   errorTextInput: {
-    marginBottom: null, // Get rid of margin thats usually on text inputs
     borderColor: styles.colors.warn,
     borderWidth: 2
   }

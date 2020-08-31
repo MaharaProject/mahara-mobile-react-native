@@ -87,10 +87,6 @@ const EditItemScreen = (props: Props) => {
   const formType = props.navigation.getParam('formType');
   const [pickedFile, setPickedFile] = useState<MaharaFile>(editingFile);
 
-  const [filePickerButtonText, setFilePickerButtonText] = useState(
-    t`Select a different file`
-  );
-
   useEffect(() => {
     setPickedFile(editingFile);
   }, []);
@@ -104,7 +100,7 @@ const EditItemScreen = (props: Props) => {
         {formType === FILE && (
           <View>
             <OutlineButton
-              text={filePickerButtonText}
+              text={t`Select a different file`}
               onPress={() => {
                 pickDocument(setPickedFile);
               }}

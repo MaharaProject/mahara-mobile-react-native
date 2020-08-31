@@ -9,7 +9,15 @@ import {putDefaultAtTop} from '../../utils/formHelper';
 import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 
-export const BlogPicker = props => {
+export const BlogPicker = (props: {
+  userBlogs: any[];
+  defaultBlogId: number;
+  checkUserBlogs: any;
+  setIsDraft: (arg0: boolean) => void;
+  isDraft: boolean;
+  selectedBlog: any;
+  setSelectedBlog: (arg0: number) => void;
+}) => {
   // Await the async retrieving data (default blogs)
   const matchingBlog = props.userBlogs.find(
     async (b: UserBlog) => b.id === props.defaultBlogId

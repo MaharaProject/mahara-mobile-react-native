@@ -36,7 +36,6 @@ export default function TokenInput(props: Props) {
           <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Log in via an access token</Trans></Text>
           <TextInput
             style={forms.textInput}
-            // TODO: remove default value for go live
             defaultValue="..."
             onChangeText={(input) => setToken(input.trim())
             }

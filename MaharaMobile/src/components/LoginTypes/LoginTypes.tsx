@@ -103,7 +103,7 @@ const LoginTypes = (props: Props) => {
           </View>
 
           {props.loading ? (
-            <View style={styles.container}>
+            <View>
               <ActivityIndicator />
               <StatusBar barStyle="default" />
             </View>
@@ -139,8 +139,7 @@ const LoginTypes = (props: Props) => {
 
           {props.serverPing && props.isInputHidden ? (
             <View>
-              <Text
-                style={[headingStyles.mainHeading, styles.url, generic.center]}>
+              <Text style={[headingStyles.mainHeading, generic.center]}>
                 {controlURL}
               </Text>
               <OutlineButton
