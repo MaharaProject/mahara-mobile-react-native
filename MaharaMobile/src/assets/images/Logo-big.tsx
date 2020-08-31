@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import Svg, {Circle, G, Path} from 'react-native-svg';
+import Svg, {Path} from 'react-native-svg';
 
 const LogoSvg = () => {
   return (

@@ -1,6 +1,7 @@
+import {Icon, Text, Toast} from 'native-base';
 import React, {Component} from 'react';
-import {View, Platform} from 'react-native';
-import FlashMessage, {showMessage} from 'react-native-flash-message';
+import {View} from 'react-native';
+import FlashMessage from 'react-native-flash-message';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -8,10 +9,8 @@ import {
 } from 'react-navigation';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {Toast, Icon, Content, Item, Text} from 'native-base';
 import {checkLoginTypes} from '../../actions/actions';
 import generic from '../../assets/styles/generic';
-import messages from '../../assets/styles/messages';
 import variables from '../../assets/styles/variables';
 import LoginTypes from '../../components/LoginTypes/LoginTypes';
 import {
@@ -22,7 +21,6 @@ import {
 } from '../../reducers/loginInfoReducer';
 import {RootState} from '../../reducers/rootReducer';
 import {setUpGuest} from '../../utils/authHelperFunctions';
-import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 
 type Props = {
   dispatch: Dispatch;

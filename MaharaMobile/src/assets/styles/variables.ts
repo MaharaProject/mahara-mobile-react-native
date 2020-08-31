@@ -1,7 +1,5 @@
 // Variables for stles
 
-import {text} from '@fortawesome/fontawesome-svg-core';
-
 const styles = {
   colors: {
     primary: '#4c762c',
