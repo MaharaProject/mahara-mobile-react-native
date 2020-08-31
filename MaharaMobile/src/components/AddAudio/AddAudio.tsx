@@ -1,20 +1,14 @@
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import base64 from 'base-64';
 import {Button, Icon} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {PermissionsAndroid, Platform, Text, View} from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import variables from '../../assets/styles/variables';
-import {
-  MaharaFile,
-  MaharaPendingFile,
-  MessageDescriptor,
-  Playback
-} from '../../models/models';
-import {RECORDED, RECORDING, UNRECORDED} from '../../utils/constants';
+import {MaharaFile, MaharaPendingFile, Playback} from '../../models/models';
+import {newMaharaFile} from '../../models/typeCreators';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
@@ -25,45 +19,29 @@ type Props = {
   i18n: I18n;
 };
 
+type RecordStatus = 'recording' | 'recorded' | 'not-recorded';
+type PlayStatus = 'playing' | 'not-playing';
+
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AddAudio = (props: Props) => {
-  const getButtonText = (recordStatus: string): MessageDescriptor => {
-    let buttonText: MessageDescriptor = {id: ''};
-    switch (recordStatus) {
-      case UNRECORDED:
-        buttonText = t`Record`;
-        break;
-      case RECORDING:
-        buttonText = t`Stop`;
-        break;
-      case RECORDED:
-        buttonText = t`Re-record`;
-        break;
-      default:
-        break;
-    }
-    return buttonText;
-  };
-
-  const PLAY_BUTTON_STATUSES = {
-    NOT_PLAYING: 'not playing',
-    PLAYING: 'playing'
-  };
+  const [recordStatus, setRecordStat] = useState<RecordStatus>('not-recorded');
 
   const [audioFile, setAudioFile] = useState('');
-  const [recordButtonText, setRecordButtonText] = useState(t`Record`);
-  const [playButtonStatus, setPlayButtonStatus] = useState(
-    PLAY_BUTTON_STATUSES.NOT_PLAYING
-  );
-  const [isRecorded, setIsRecorded] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [playStatus, setPlayStatus] = useState<PlayStatus>('not-playing');
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
   const PLAY_ICON = 'play-circle';
   const PAUSE_ICON = 'pause-circle';
   const STOP_ICON = 'stop-circle';
 
+  const checkIOS = (filename: string): string => {
+    let checkedURI = filename;
+    if (Platform.OS === 'ios') {
+      checkedURI = filename.replace('file:', '');
+    }
+    return checkedURI;
+  };
   // Check permissions
   const checkPermissions = async () => {
     // let permission = true;
@@ -113,22 +91,12 @@ const AddAudio = (props: Props) => {
     checkPermissions();
   });
 
-  // Handling recording
-  const getFileSize = () => {
-    const fileSize = RNFetchBlob.fs.readFile(audioFile, 'base64').then(data => {
-      const decodedData = base64.decode(data);
-      const bytes = decodedData.length;
-      return bytes;
-    });
-    return fileSize;
-  };
-
   const onStartRecord = async () => {
     try {
       const result = await audioRecorderPlayer.startRecorder();
       audioRecorderPlayer.addRecordBackListener(() => {
         setAudioFile(result);
-        setRecordButtonText(getButtonText(RECORDING));
+        setRecordStat('recording');
       });
     } catch (e) {
       // console.log(e);
@@ -136,17 +104,22 @@ const AddAudio = (props: Props) => {
   };
 
   const onStopRecord = async () => {
-    const result = await audioRecorderPlayer.stopRecorder();
+    const fileURI = await audioRecorderPlayer.stopRecorder();
     audioRecorderPlayer.removeRecordBackListener();
-    setAudioFile(result);
-    setRecordButtonText(getButtonText(RECORDED));
-    setIsRecorded(true);
-    const size = await getFileSize();
-    props.setPickedFile({
-      name: result,
-      uri: result,
-      type: 'audio/m4a',
-      size
+
+    setAudioFile(fileURI);
+    setRecordStat('recorded');
+
+    RNFetchBlob.fs.stat(checkIOS(fileURI)).then(stats => {
+      props.setPickedFile(
+        newMaharaFile(
+          stats.path,
+          'audio/m4a',
+          stats.filename,
+          parseInt(stats.size, 10)
+        )
+      );
+      console.log(stats);
     });
   };
 
@@ -156,12 +129,8 @@ const AddAudio = (props: Props) => {
     if (!isPermissionGranted) {
       return;
     }
-    if (
-      recordButtonText.id === t`Record`.id ||
-      recordButtonText.id === t`Re-record`.id
-    ) {
+    if (recordStatus !== 'recording') {
       onStartRecord();
-      setIsRecorded(false);
     } else {
       onStopRecord();
     }
@@ -170,14 +139,12 @@ const AddAudio = (props: Props) => {
   // Handling playing
   const onStartPlay = async () => {
     await audioRecorderPlayer.startPlayer(audioFile);
-    setIsPlaying(true);
     audioRecorderPlayer.addPlayBackListener((e: Playback) => {
       if (e.current_position === e.duration) {
         audioRecorderPlayer.stopPlayer().catch(() => {
           // do nothing
         });
-        setIsPlaying(false);
-        setPlayButtonStatus(PLAY_BUTTON_STATUSES.NOT_PLAYING);
+        setPlayStatus('not-playing');
       }
     });
   };
@@ -191,11 +158,11 @@ const AddAudio = (props: Props) => {
   };
 
   const handlePlay = () => {
-    if (playButtonStatus === PLAY_BUTTON_STATUSES.NOT_PLAYING) {
-      setPlayButtonStatus(PLAY_BUTTON_STATUSES.PLAYING);
+    if (playStatus === 'not-playing') {
+      setPlayStatus('playing');
       onStartPlay();
-    } else if (playButtonStatus === PLAY_BUTTON_STATUSES.PLAYING) {
-      setPlayButtonStatus(PLAY_BUTTON_STATUSES.NOT_PLAYING);
+    } else if (playStatus === 'playing') {
+      setPlayStatus('not-playing');
       onPausePlay();
     }
   };
@@ -203,24 +170,19 @@ const AddAudio = (props: Props) => {
   const onStopPlay = async () => {
     audioRecorderPlayer.stopPlayer();
     audioRecorderPlayer.removePlayBackListener();
-    setPlayButtonStatus(PLAY_BUTTON_STATUSES.NOT_PLAYING);
-    setIsPlaying(false);
+    setPlayStatus('not-playing');
   };
 
   return (
     <View style={styles.buttonWrapper}>
       <View style={styles.playbackButtonWrapper}>
-        {isRecorded ? (
+        {recordStatus === 'recorded' ? (
           <AudioPlayButton
-            iconName={
-              playButtonStatus === PLAY_BUTTON_STATUSES.NOT_PLAYING
-                ? PLAY_ICON
-                : PAUSE_ICON
-            }
+            iconName={playStatus === 'not-playing' ? PLAY_ICON : PAUSE_ICON}
             onPress={() => handlePlay()}
           />
         ) : null}
-        {isPlaying ? (
+        {playStatus === 'playing' ? (
           <AudioPlayButton iconName={STOP_ICON} onPress={() => onStopPlay()} />
         ) : null}
         {!isPermissionGranted ? (
@@ -230,7 +192,7 @@ const AddAudio = (props: Props) => {
         ) : null}
       </View>
       <View style={styles.recordButton}>
-        {recordButtonText.id === t`Stop`.id ? (
+        {recordStatus === 'recording' ? (
           <MediumButton
             dark
             style={{backgroundColor: variables.colors.red}}
@@ -240,7 +202,7 @@ const AddAudio = (props: Props) => {
           />
         ) : (
           <OutlineButton
-            text={t`Record`}
+            text={recordStatus === 'recorded' ? t`Re-record` : t`Record`}
             onPress={() => handleRecord()}
             icon="mic"
           />
