@@ -38,6 +38,7 @@ npm run extract
 npm run compile # then refresh refresh environment
 
 To extract the strings into a PO file under /locales.
+```
 
 ## Troubleshooting
 
