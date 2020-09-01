@@ -35,7 +35,7 @@ Follow documentation on how to wrap strings so they get picked up then run:
 # update catalog
 npm run extract
 # uppdate translations
-npm run compile # then refresh refresh environment
+npm run compile # then refresh environment
 
 To extract the strings into a PO file under /locales.
 ```
