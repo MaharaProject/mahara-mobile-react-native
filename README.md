@@ -32,8 +32,10 @@ We are using linguiJS for translation <https://lingui.js.org/>
 Follow documentation on how to wrap strings so they get picked up then run:
 
 ```bash
+# update catalog
 npm run extract
-```
+# uppdate translations
+npm run compile # then refresh refresh environment
 
 To extract the strings into a PO file under /locales.
 
