@@ -10,7 +10,7 @@ import UploadForm from './UploadForm';
 it('renders correctly', () => {
   const props = {
     userTags: [],
-    formType: '',
+    itemType: '',
     token: '',
     url: '',
     navigation: {

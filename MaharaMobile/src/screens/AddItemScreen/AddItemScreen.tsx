@@ -18,6 +18,7 @@ import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
 import {
   MaharaPendingFile,
+  UploadItemType,
   UserBlog,
   UserFolder,
   UserTag
@@ -42,7 +43,7 @@ import {
   renderImagePreview,
   takePhoto
 } from '../../utils/addEditHelperFunctions';
-import {AUDIO, FILE, PHOTO} from '../../utils/constants';
+import {getUploadTypeIntlStrings} from '../../utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -55,7 +56,7 @@ type Props = {
   uploadList: {
     files: Array<MaharaPendingFile>;
   };
-  formType: string;
+  itemType: string;
   userBlogs: Array<UserBlog>;
   i18n: I18n;
   defaultFolderTitle: string;
@@ -64,17 +65,17 @@ type Props = {
 
 const AddItemScreen = (props: Props) => {
   // State
-  const formType = props.navigation.getParam('formType');
+  const itemType: UploadItemType = props.navigation.getParam('itemType');
   const [pickedFile, setPickedFile] = useState(newMaharaFile('', '', '', 0));
 
   return (
     <ScrollView>
       <View style={generic.wrap}>
         {/* select a file button */}
-        {pickedFile.name && (formType === FILE || formType === PHOTO)
+        {pickedFile.name && (itemType === 'FILE' || itemType === 'PHOTO')
           ? renderImagePreview(pickedFile.uri)
           : null}
-        {formType === FILE && (
+        {itemType === 'FILE' && (
           <View>
             <OutlineButton
               text={
@@ -89,7 +90,7 @@ const AddItemScreen = (props: Props) => {
           </View>
         )}
         {/* take a photo button */}
-        {formType === PHOTO && (
+        {itemType === 'PHOTO' && (
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
             icon="camera"
@@ -97,7 +98,7 @@ const AddItemScreen = (props: Props) => {
           />
         )}
         {/* record audio button */}
-        {formType === AUDIO && (
+        {itemType === 'AUDIO' && (
           <View>
             <AddAudio setPickedFile={setPickedFile} />
           </View>
@@ -108,7 +109,7 @@ const AddItemScreen = (props: Props) => {
             userFolders={props.userFolders}
             userTags={props.userTags}
             userBlogs={props.userBlogs}
-            formType={formType}
+            itemType={itemType}
             token={props.token}
             url={props.url}
             editItem={null}
@@ -124,7 +125,9 @@ const AddItemScreen = (props: Props) => {
 
 AddItemScreen.navigationOptions = ({navigation}) => {
   return {
-    headerTitle: i18n._(t`Add ${navigation.getParam('formType')}`),
+    headerTitle: i18n._(
+      t`Add ${getUploadTypeIntlStrings(navigation.getParam('itemType'))}`
+    ),
     headerLeft: <CustomVerifyBackButton navigation={navigation} />
   };
 };

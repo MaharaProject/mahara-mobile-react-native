@@ -1,12 +1,13 @@
-import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {useEffect, useRef} from 'react';
 import {StackActions} from 'react-navigation';
+import i18n from '../i18n';
 import {
   JournalEntry,
   MaharaFileFormData,
   MaharaPendingFile,
   PendingJournalEntry,
+  UploadItemType,
   UserBlog,
   UserBlogJSON,
   UserTag
@@ -107,3 +108,18 @@ export function usePreviousProps(value: number) {
 
 export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
   tags.find((tag: UserTag) => tag.tag === tagString);
+
+export const getUploadTypeIntlStrings = (itemType: UploadItemType) => {
+  switch (itemType) {
+    case 'AUDIO':
+      return i18n._(t`Audio`);
+    case 'FILE':
+      return i18n._(t`File`);
+    case 'J_ENTRY':
+      return i18n._(t`Journal entry`);
+    case 'PHOTO':
+      return i18n._(t`Photo`);
+    default:
+      return i18n._(t`Invalid type`);
+  }
+};

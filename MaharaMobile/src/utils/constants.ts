@@ -49,12 +49,6 @@ export const REMOVE_UPLOAD_JOURNAL_ENTRY = 'REMOVE_UPLOAD_JOURNAL_ENTRY';
 export const CLEAR_UPLOAD_J_ENTRIES = 'CLEAR_UPLOAD_J_ENTRIES';
 export const UPDATE_J_ENTRIES_ON_LOGIN = 'UPDATE_J_ENTRIES_ON_LOGIN';
 
-// form types
-export const JOURNAL_ENTRY = 'journal entry';
-export const FILE = 'file';
-export const PHOTO = 'photo';
-export const AUDIO = 'audio';
-
 // AsyncStorage keys
 export const DEFAULT_BLOG_ID = 'DEFAULT_BLOG_ID';
 export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';

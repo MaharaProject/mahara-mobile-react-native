@@ -1,19 +1,18 @@
-import React from 'react';
-import {View} from 'react-native';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import GridButton from '../UI/GridButton/GridButton';
-import {FILE, PHOTO, JOURNAL_ENTRY, AUDIO} from '../../utils/constants';
-import styles from './SelectMediaType.style';
-
+import React from 'react';
+import {View} from 'react-native';
+import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
 // Images
 import PickFileSvg from '../../assets/images/PickFile';
-import TakePhotoSvg from '../../assets/images/TakePhoto';
-import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
 import RecordAudioSvg from '../../assets/images/RecordAudio';
+import TakePhotoSvg from '../../assets/images/TakePhoto';
+import {UploadItemType} from '../../models/models';
+import GridButton from '../UI/GridButton/GridButton';
+import styles from './SelectMediaType.style';
 
 type Props = {
-  selectMediaType: Function;
+  selectMediaType: (type: UploadItemType) => void;
 };
 
 const SelectMediaType = (props: Props) => (
@@ -23,13 +22,13 @@ const SelectMediaType = (props: Props) => (
         image={<PickFileSvg />}
         title={t`File`}
         color="green"
-        onPress={() => props.selectMediaType(FILE)}
+        onPress={() => props.selectMediaType('FILE')}
       />
       <GridButton
         image={<TakePhotoSvg />}
         title={t`Photo`}
         color="purple"
-        onPress={() => props.selectMediaType(PHOTO)}
+        onPress={() => props.selectMediaType('PHOTO')}
       />
     </View>
     <View style={styles.row}>
@@ -37,13 +36,13 @@ const SelectMediaType = (props: Props) => (
         image={<AddJournalEntrySvg />}
         title={t`Journal entry`}
         color="lightbrown"
-        onPress={() => props.selectMediaType(JOURNAL_ENTRY)}
+        onPress={() => props.selectMediaType('J_ENTRY')}
       />
       <GridButton
         image={<RecordAudioSvg />}
         title={t`Audio`}
         color="darkbrown"
-        onPress={() => props.selectMediaType(AUDIO)}
+        onPress={() => props.selectMediaType('AUDIO')}
       />
     </View>
   </View>

@@ -1,4 +1,3 @@
-import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Alert} from 'react-native';
@@ -33,6 +32,7 @@ import {
   GUEST_USERNAME
 } from './constants';
 import {userBlogJSONtoUserBlog} from './helperFunctions';
+import i18n from '../i18n';
 
 export function fetchUserOnTokenLogin(
   serverUrl: string,

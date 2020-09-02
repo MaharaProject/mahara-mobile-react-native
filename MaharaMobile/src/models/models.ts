@@ -4,6 +4,8 @@ export type RequestErrorPayload = {
   previousError?: Error;
 };
 
+export type UploadItemType = 'FILE' | 'PHOTO' | 'AUDIO' | 'J_ENTRY';
+
 export type MaharaFile = {
   uri: string;
   type: string;
