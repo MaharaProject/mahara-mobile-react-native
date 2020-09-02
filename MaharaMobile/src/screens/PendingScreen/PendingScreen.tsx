@@ -116,7 +116,7 @@ const PendingScreen = (props: Props) => {
     const type = isPendingJournalEntry(item) ? 'journal entry' : item.type;
     props.navigation.navigate({
       routeName: 'EditItem',
-      params: {itemToEdit: item, formType: type}
+      params: {itemToEdit: item, itemType: type}
     });
   };
 

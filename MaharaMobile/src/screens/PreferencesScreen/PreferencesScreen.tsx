@@ -1,4 +1,4 @@
-import {I18n, i18n} from '@lingui/core';
+import {I18n} from '@lingui/core';
 import {t, Trans} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import {Item, Picker} from 'native-base';
@@ -30,6 +30,7 @@ import {fetchProfilePic} from '../../utils/authHelperFunctions';
 import {GUEST_TOKEN} from '../../utils/constants';
 import {putDefaultAtTop} from '../../utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
+import i18n from '../../i18n';
 
 type Props = {
   navigation;
@@ -99,7 +100,7 @@ const PreferencesScreen = (props: Props) => {
             {sortedFolders.map((f: UserFolder) => {
               const label =
                 f.title === defaultFolderTitle
-                  ? `${f.title} - (default)`
+                  ? `${f.title} - ${i18n._(t`default`)}`
                   : f.title;
               return <Picker.Item label={label} value={f.title} key={f.id} />;
             })}
@@ -125,7 +126,7 @@ const PreferencesScreen = (props: Props) => {
             {blogs.map((blog: UserBlog) => {
               const label =
                 blog.id === defaultBlogId
-                  ? `${blog.title} - (default)`
+                  ? `${blog.title} - ${i18n._(t`default`)}`
                   : blog.title;
               return (
                 <Picker.Item label={label} value={blog.id} key={blog.id} />
@@ -150,6 +151,12 @@ const PreferencesScreen = (props: Props) => {
     </View>
   );
 
+  const intl = {
+    updatedPref: t`Updated preferences`,
+    fldr: t`Folder`,
+    jrnl: t`Journal`
+  };
+
   return (
     <View style={PreferencesScreenStyle.view}>
       {renderProfile()}
@@ -167,9 +174,9 @@ const PreferencesScreen = (props: Props) => {
             dispatch(setDefaultFolder(selectedFolderTitle));
           }
           Alert.alert(
-            'Updated Preferences',
-            `Folder: ${selectedFolderTitle || defaultFolderTitle} 
-            \nJournal: ${userBlogs.find(
+            `${i18n._(intl.updatedPref)}`,
+            `${i18n._(intl.fldr)}: ${selectedFolderTitle || defaultFolderTitle} 
+            \n${i18n._(intl.jrnl)}: ${userBlogs.find(
               (b: UserBlog) => b.id === selectedBlogId
             )?.title ||
               userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title}`

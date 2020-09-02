@@ -3,8 +3,7 @@ import {I18n} from '@lingui/react';
 import {Label} from 'native-base';
 import React from 'react';
 import styles from '../assets/styles/variables';
-import {UserBlog, UserFolder} from '../models/models';
-import {FILE, JOURNAL_ENTRY, PHOTO} from './constants';
+import {UploadItemType, UserBlog, UserFolder} from '../models/models';
 
 export const setTagString = (tags: Array<string>) => {
   const tagsArray = tags.map(
@@ -16,9 +15,12 @@ export const setTagString = (tags: Array<string>) => {
   return string;
 };
 
-export const isValidText = (formType: string, text: string): boolean => {
-  if (formType === JOURNAL_ENTRY && text.length === 0) return false;
-  if (formType === FILE || formType === PHOTO) return true;
+export const isValidText = (
+  itemType: UploadItemType,
+  text: string
+): boolean => {
+  if (itemType === 'J_ENTRY' && text.length === 0) return false;
+  if (itemType === 'FILE' || itemType === 'PHOTO') return true;
   return true;
 };
 

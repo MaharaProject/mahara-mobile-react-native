@@ -19,6 +19,7 @@ import {
   MaharaFile,
   MaharaPendingFile,
   PendingJournalEntry,
+  UploadItemType,
   UserBlog,
   UserFolder,
   UserTag
@@ -42,8 +43,10 @@ import {
   renderImagePreview,
   takePhoto
 } from '../../utils/addEditHelperFunctions';
-import {AUDIO, FILE, PHOTO} from '../../utils/constants';
-import {isMaharaPendingFile} from '../../utils/helperFunctions';
+import {
+  getUploadTypeIntlStrings,
+  isMaharaPendingFile
+} from '../../utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -56,7 +59,7 @@ type Props = {
   uploadList: {
     files: Array<MaharaPendingFile>;
   };
-  formType: string;
+  itemType: string;
   userBlogs: Array<UserBlog>;
   i18n: I18n;
   defaultFolderTitle: string;
@@ -84,7 +87,7 @@ const EditItemScreen = (props: Props) => {
   }
 
   // State
-  const formType = props.navigation.getParam('formType');
+  const itemType: UploadItemType = props.navigation.getParam('itemType');
   const [pickedFile, setPickedFile] = useState<MaharaFile>(editingFile);
 
   useEffect(() => {
@@ -94,10 +97,10 @@ const EditItemScreen = (props: Props) => {
   return (
     <ScrollView>
       <View style={generic.wrap}>
-        {pickedFile.name && (formType === FILE || formType === PHOTO)
+        {pickedFile.name && (itemType === 'FILE' || itemType === 'PHOTO')
           ? renderImagePreview(pickedFile.uri)
           : null}
-        {formType === FILE && (
+        {itemType === 'FILE' && (
           <View>
             <OutlineButton
               text={t`Select a different file`}
@@ -109,14 +112,14 @@ const EditItemScreen = (props: Props) => {
             />
           </View>
         )}
-        {formType === PHOTO && (
+        {itemType === 'PHOTO' && (
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
             icon="camera"
             text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
           />
         )}
-        {formType === AUDIO && (
+        {itemType === 'AUDIO' && (
           <View>
             <AddAudio editItem={itemToEdit} setPickedFile={setPickedFile} />
           </View>
@@ -127,7 +130,7 @@ const EditItemScreen = (props: Props) => {
             userFolders={props.userFolders}
             userTags={props.userTags}
             userBlogs={props.userBlogs}
-            formType={formType}
+            itemType={itemType}
             token={props.token}
             url={props.url}
             editItem={itemToEdit}
@@ -143,7 +146,9 @@ const EditItemScreen = (props: Props) => {
 
 EditItemScreen.navigationOptions = ({navigation}) => {
   return {
-    headerTitle: i18n._(t`Edit ${navigation.getParam('formType')}`),
+    headerTitle: i18n._(
+      t`Edit ${getUploadTypeIntlStrings(navigation.getParam('itemType'))}`
+    ),
     headerLeft: <CustomVerifyBackButton navigation={navigation} />
   };
 };

@@ -25,6 +25,7 @@ import {
   MaharaFile,
   MaharaPendingFile,
   PendingJournalEntry,
+  UploadItemType,
   UserBlog,
   UserFolder,
   UserTag
@@ -38,7 +39,6 @@ import {
 } from '../../models/typeCreators';
 import {RootState} from '../../reducers/rootReducer';
 import {selectItemTagsStrings} from '../../reducers/userTagsReducer';
-import {JOURNAL_ENTRY} from '../../utils/constants';
 import {
   isValidText,
   putDefaultAtTop,
@@ -47,6 +47,7 @@ import {
 } from '../../utils/formHelper';
 import {
   findUserTagByString,
+  getUploadTypeIntlStrings,
   isMaharaPendingFile,
   isPendingJournalEntry
 } from '../../utils/helperFunctions';
@@ -63,7 +64,7 @@ type Props = {
   userFolders?: Array<UserFolder>;
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
-  formType: string;
+  itemType: UploadItemType;
   token: string;
   url: string;
   editItem?: MaharaPendingFile | PendingJournalEntry;
@@ -89,11 +90,11 @@ const UploadForm = (props: Props) => {
 
   const dispatch = useDispatch();
   const isMultiLine =
-    props.formType !== JOURNAL_ENTRY
+    props.itemType !== 'J_ENTRY'
       ? forms.multiLine
       : [forms.multiLine, uploadFormStyles.description];
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
-  const {formType} = props;
+  const {itemType} = props;
   let fileValid = props.pickedFile ? props.pickedFile.size > 0 : false;
 
   // STATE
@@ -105,10 +106,10 @@ const UploadForm = (props: Props) => {
   const [controlTitle, setTitle] = useState('');
   const [controlDesc, setDescription] = useState('');
   const [controlTitleValid, setControlTitleValid] = useState(
-    props.formType !== JOURNAL_ENTRY
+    props.itemType !== 'J_ENTRY'
   );
   const [controlDescValid, setControlDescValid] = useState(
-    props.formType !== JOURNAL_ENTRY
+    props.itemType !== 'J_ENTRY'
   );
   const [selectedFolder, setSelectedFolder] = useState(
     props.defaultFolderTitle
@@ -213,7 +214,7 @@ const UploadForm = (props: Props) => {
     let pendingFileData: MaharaPendingFile = null;
 
     // Upload Journal Entry
-    if (formType === JOURNAL_ENTRY) {
+    if (itemType === 'J_ENTRY') {
       const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
       const jEntry = newJournalEntry(
         selectedBlog || firstBlog,
@@ -264,7 +265,7 @@ const UploadForm = (props: Props) => {
         fileUrl,
         formData,
         pickedFile.type,
-        formType
+        itemType
       );
 
       dispatch(addFileToUploadList(pendingFileData));
@@ -293,21 +294,21 @@ const UploadForm = (props: Props) => {
 
   const updateTitle = (title: string) => {
     if (showInvalidTitleMessage) setShowInvalidTitleMessage(false);
-    setControlTitleValid(isValidText(formType, title));
+    setControlTitleValid(isValidText(itemType, title));
     setTitle(title);
   };
 
   const updateDescription = (desc: string) => {
     if (showInvalidDescMessage) setShowInvalidDescMessage(false);
-    setControlDescValid(isValidText(formType, desc));
+    setControlDescValid(isValidText(itemType, desc));
     setDescription(desc);
   };
 
   const renderDisplayedFilename = () => {
-    if (formType === JOURNAL_ENTRY) return null;
+    if (itemType === 'J_ENTRY') return null;
     return (
       <View>
-        <SubHeading required={formType !== JOURNAL_ENTRY} text={t`File`} />
+        <SubHeading required text={t`File`} />
         {fileValid ? (
           <Text accessibilityLabel={i18n._(t`A file has been added.`)}>
             {props.pickedFile?.name}
@@ -324,8 +325,8 @@ const UploadForm = (props: Props) => {
         <RequiredWarningText customText={t`A file is required.`} />
       )}
       <SubHeading
-        required={formType === JOURNAL_ENTRY}
-        text={formType === JOURNAL_ENTRY ? t`Title` : t`Name`}
+        required={itemType === 'J_ENTRY'}
+        text={itemType === 'J_ENTRY' ? t`Title` : t`Name`}
       />
       {showInvalidTitleMessage && <RequiredWarningText />}
       <FormInput
@@ -334,8 +335,8 @@ const UploadForm = (props: Props) => {
         onChangeText={(title: string) => updateTitle(title)}
       />
       <SubHeading
-        required={formType === JOURNAL_ENTRY}
-        text={formType === JOURNAL_ENTRY ? t`Entry` : t`Description`}
+        required={itemType === 'J_ENTRY'}
+        text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
       />
       {showInvalidDescMessage && <RequiredWarningText />}
       <FormInput
@@ -348,7 +349,7 @@ const UploadForm = (props: Props) => {
   );
 
   const renderFolderPicker = () => {
-    if (formType === JOURNAL_ENTRY) return null;
+    if (itemType === 'J_ENTRY') return null;
 
     const matchingFolder = props.userFolders.find(
       f => f.title === props.defaultFolderTitle
@@ -373,7 +374,7 @@ const UploadForm = (props: Props) => {
               folders.map((f: UserFolder) => {
                 const label =
                   f.title === props.defaultFolderTitle
-                    ? `${f.title} - default`
+                    ? `${f.title} - ${i18n._(t`default`)}`
                     : f.title;
                 return <Picker.Item label={label} value={f.title} key={f.id} />;
               })}
@@ -460,8 +461,10 @@ const UploadForm = (props: Props) => {
   };
 
   const renderButtons = () => {
-    if (formType === JOURNAL_ENTRY) fileValid = true;
+    if (itemType === 'J_ENTRY') fileValid = true;
+
     const validButton = controlTitleValid && controlDescValid && fileValid;
+    const intlItemType = getUploadTypeIntlStrings(itemType);
     return (
       <View>
         <MediumButton
@@ -471,7 +474,7 @@ const UploadForm = (props: Props) => {
           icon="time-outline"
           text={
             props.editItem
-              ? t`Confirm edits to ${formType}`
+              ? t`Confirm edits to ${intlItemType}`
               : t`Queue to upload`
           }
         />
@@ -494,7 +497,7 @@ const UploadForm = (props: Props) => {
   };
 
   const renderJournalPickerSwitch = () => {
-    if (formType === JOURNAL_ENTRY) {
+    if (itemType === 'J_ENTRY') {
       return (
         <View>
           <BlogPicker
@@ -509,7 +512,7 @@ const UploadForm = (props: Props) => {
       );
     }
 
-    // TODO other formTypes
+    // TODO other itemTypes
     return <View />;
   };
 
