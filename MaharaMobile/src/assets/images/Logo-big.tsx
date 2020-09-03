@@ -9,10 +9,8 @@ const LogoSvg = () => {
       style={[
         StyleSheet.absoluteFill,
         {
-          alignItems: 'flex-start',
-          justifyContent: 'center',
-          padding: 15,
-          paddingLeft: 40
+          alignItems: 'center',
+          justifyContent: 'center'
         }
       ]}>
       <Svg width="240" height="126" viewBox="0 0 95.47 50.25">

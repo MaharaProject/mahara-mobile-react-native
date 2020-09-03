@@ -5,10 +5,7 @@ export default StyleSheet.create({
   view: {
     flex: 1
   },
-  wrapper: {
-    flex: 1.4
-  },
-  imageWrapper: {
+  logoWrapper: {
     flex: 1
   },
   buttonGroup: {
