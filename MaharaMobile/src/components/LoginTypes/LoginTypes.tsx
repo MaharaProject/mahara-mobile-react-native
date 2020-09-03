@@ -97,93 +97,91 @@ const LoginTypes = (props: Props) => {
           variables.colors.light2
         ]}
         style={generic.linearGradient}>
-        <View style={styles.wrapper}>
-          <View style={styles.imageWrapper}>
-            <LogoSvg />
-          </View>
-
-          {props.loading ? (
-            <View>
-              <ActivityIndicator />
-              <StatusBar barStyle="default" />
-            </View>
-          ) : null}
-
-          {!props.isInputHidden ? (
-            <View>
-              <Text
-                style={[
-                  headingStyles.subHeading1,
-                  textStyles.textWhite,
-                  textStyles.center
-                ]}>
-                <Trans>Address of your Mahara site</Trans>
-              </Text>
-              <TextInput
-                style={[
-                  forms.textInput,
-                  enterURLWarning ? styles.errorTextInput : null
-                ]}
-                // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
-                defaultValue={controlURL}
-                onChangeText={(url: string) => checkUrl(url)}
-              />
-            </View>
-          ) : null}
-
-          {enterURLWarning ? (
-            <Text style={textStyles.errorText}>
-              <Trans>Please enter a URL.</Trans>
-            </Text>
-          ) : null}
-
-          {props.serverPing && props.isInputHidden ? (
-            <View>
-              <Text style={[headingStyles.mainHeading, generic.center]}>
-                {controlURL}
-              </Text>
-              <OutlineButton
-                light
-                text={t`Enter a different URL`}
-                style={buttons.light}
-                onPress={() => props.resetForm()}
-              />
-            </View>
-          ) : null}
-          {!props.isInputHidden ? (
-            <View style={styles.buttonGroup}>
-              <MediumButton
-                text={t`Next`}
-                onPress={() => props.checkServer(addHttpTrims(controlURL))}
-              />
-              <LinkButton text={t`Skip`} onPress={() => props.onSkip()} />
-            </View>
-          ) : null}
-          {props.serverPing && (
-            <Text style={[headingStyles.mainHeading, generic.center]}>
-              <Trans>Select login type</Trans>
-            </Text>
-          )}
-
-          {props.serverPing && props.ssoLogin && (
-            <MediumButton
-              text={t`Single sign-on`}
-              onPress={() => props.setLoginType('sso')}
-            />
-          )}
-          {props.serverPing && props.localLogin && (
-            <MediumButton
-              text={t`Local`}
-              onPress={() => props.setLoginType('basic')}
-            />
-          )}
-          {props.serverPing && props.tokenLogin && (
-            <MediumButton
-              text={t`Access token`}
-              onPress={() => props.setLoginType('token')}
-            />
-          )}
+        <View style={styles.logoWrapper}>
+          <LogoSvg />
         </View>
+
+        {props.loading ? (
+          <View>
+            <ActivityIndicator />
+            <StatusBar barStyle="default" />
+          </View>
+        ) : null}
+
+        {!props.isInputHidden ? (
+          <View>
+            <Text
+              style={[
+                headingStyles.subHeading1,
+                textStyles.textWhite,
+                textStyles.center
+              ]}>
+              <Trans>Address of your Mahara site</Trans>
+            </Text>
+            <TextInput
+              style={[
+                forms.textInput,
+                enterURLWarning ? styles.errorTextInput : null
+              ]}
+              // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
+              defaultValue={controlURL}
+              onChangeText={(url: string) => checkUrl(url)}
+            />
+          </View>
+        ) : null}
+
+        {enterURLWarning ? (
+          <Text style={textStyles.errorText}>
+            <Trans>Please enter a URL.</Trans>
+          </Text>
+        ) : null}
+
+        {props.serverPing && props.isInputHidden ? (
+          <View>
+            <Text style={[headingStyles.mainHeading, generic.center]}>
+              {controlURL}
+            </Text>
+            <OutlineButton
+              light
+              text={t`Enter a different URL`}
+              style={buttons.light}
+              onPress={() => props.resetForm()}
+            />
+          </View>
+        ) : null}
+        {!props.isInputHidden ? (
+          <View style={styles.buttonGroup}>
+            <MediumButton
+              text={t`Next`}
+              onPress={() => props.checkServer(addHttpTrims(controlURL))}
+            />
+            <LinkButton text={t`Skip`} onPress={() => props.onSkip()} />
+          </View>
+        ) : null}
+        {props.serverPing && (
+          <Text style={[headingStyles.mainHeading, generic.center]}>
+            <Trans>Select login type</Trans>
+          </Text>
+        )}
+
+        {props.serverPing && props.ssoLogin && (
+          <MediumButton
+            text={t`Single sign-on`}
+            onPress={() => props.setLoginType('sso')}
+          />
+        )}
+        {props.serverPing && props.localLogin && (
+          <MediumButton
+            text={t`Local`}
+            onPress={() => props.setLoginType('basic')}
+          />
+        )}
+        {props.serverPing && props.tokenLogin && (
+          <MediumButton
+            text={t`Access token`}
+            onPress={() => props.setLoginType('token')}
+          />
+        )}
       </LinearGradient>
 
       <FlashMessage position="top" />
