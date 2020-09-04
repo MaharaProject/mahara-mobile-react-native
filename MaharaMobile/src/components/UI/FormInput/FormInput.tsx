@@ -18,6 +18,7 @@ const FormInput = (props: Props) => {
           value={props.value}
           onChangeText={props.onChangeText}
           bordered={false}
+          style={{flex: 1}}
         />
       ) : (
         <Input value={props.value} onChangeText={props.onChangeText} />
