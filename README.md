@@ -42,7 +42,7 @@ To extract the strings into a PO file under /locales.
 
 ## Troubleshooting
 
-See GitLab WiKi page for some specific troubleshooting team members might have run into.
+See [GitLab Wiki page](https://gitlab.wgtn.cat-it.co.nz/elearning/mahara-mobile-react-native/-/wikis/home) for some specific troubleshooting team members might have run into.
 
 ## Architecture
 
