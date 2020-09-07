@@ -1,13 +1,8 @@
-import {
-  MaharaPendingFile,
-  PendingJournalEntry,
-  UserBlog,
-  UserTag
-} from '../models/models';
+import {PendingMFile, PendingJEntry, UserBlog, UserTag} from '../models/models';
 import {
   newJournalEntry,
+  newFile,
   newMaharaFile,
-  newMaharaFileFormData,
   newUserFolder
 } from '../models/typeCreators';
 import {RootState} from '../reducers/rootReducer';
@@ -111,19 +106,19 @@ export const MOCK_JOURNAL_ENTRY_2 = newJournalEntry(
   false
 );
 
-export const MOCK_PENDING_JOURNAL_ENTRY_0: PendingJournalEntry = {
+export const MOCK_PENDING_JOURNAL_ENTRY_0: PendingJEntry = {
   id: MOCK_JENTRY_IDS[0],
   journalEntry: MOCK_JOURNAL_ENTRY_0,
   url: MOCK_URL
 };
 
-export const MOCK_PENDING_JOURNAL_ENTRY_1: PendingJournalEntry = {
+export const MOCK_PENDING_JOURNAL_ENTRY_1: PendingJEntry = {
   id: MOCK_JENTRY_IDS[1],
   journalEntry: MOCK_JOURNAL_ENTRY_1,
   url: MOCK_URL
 };
 
-export const MOCK_PENDING_JOURNAL_ENTRY_2: PendingJournalEntry = {
+export const MOCK_PENDING_JOURNAL_ENTRY_2: PendingJEntry = {
   id: MOCK_JENTRY_IDS[2],
   journalEntry: MOCK_JOURNAL_ENTRY_2,
   url: MOCK_URL
@@ -137,14 +132,14 @@ export const MOCK_TYPES = {
   app: 'application'
 };
 
-export const MOCK_MAHARA_FILE = newMaharaFile(
+export const MOCK_MAHARA_FILE = newFile(
   MOCK_URI,
   MOCK_TYPE,
   'maharaFile',
   MOCK_SIZE_ZERO
 );
 
-export const MOCK_MAHARA_FORM_DATA_0 = newMaharaFileFormData(
+export const MOCK_MAHARA_FORM_DATA_0 = newMaharaFile(
   MOCK_WEB_SERVICE,
   MOCK_TOKEN,
   MOCK_FOLDERNAME,
@@ -153,7 +148,7 @@ export const MOCK_MAHARA_FORM_DATA_0 = newMaharaFileFormData(
   MOCK_MAHARA_FILE
 );
 
-export const MOCK_MAHARA_FORM_DATA_1 = newMaharaFileFormData(
+export const MOCK_MAHARA_FORM_DATA_1 = newMaharaFile(
   MOCK_WEB_SERVICE,
   MOCK_TOKEN,
   MOCK_FOLDERNAME,
@@ -162,7 +157,7 @@ export const MOCK_MAHARA_FORM_DATA_1 = newMaharaFileFormData(
   MOCK_MAHARA_FILE
 );
 
-export const MOCK_MAHARA_FORM_DATA_2 = newMaharaFileFormData(
+export const MOCK_MAHARA_FORM_DATA_2 = newMaharaFile(
   MOCK_WEB_SERVICE,
   MOCK_TOKEN,
   MOCK_FOLDERNAME,
@@ -171,7 +166,7 @@ export const MOCK_MAHARA_FORM_DATA_2 = newMaharaFileFormData(
   MOCK_MAHARA_FILE
 );
 
-export const MOCK_MAHARA_PENDING_FILE_0: MaharaPendingFile = {
+export const MOCK_MAHARA_PENDING_FILE_0: PendingMFile = {
   id: MOCK_FILE_IDS[0],
   url: MOCK_URL,
   maharaFormData: MOCK_MAHARA_FORM_DATA_1,
@@ -179,7 +174,7 @@ export const MOCK_MAHARA_PENDING_FILE_0: MaharaPendingFile = {
   type: MOCK_TYPES.image
 };
 
-export const MOCK_MAHARA_PENDING_FILE_1: MaharaPendingFile = {
+export const MOCK_MAHARA_PENDING_FILE_1: PendingMFile = {
   id: MOCK_FILE_IDS[1],
   url: MOCK_URL,
   maharaFormData: MOCK_MAHARA_FORM_DATA_1,
@@ -187,7 +182,7 @@ export const MOCK_MAHARA_PENDING_FILE_1: MaharaPendingFile = {
   type: MOCK_TYPES.audio
 };
 
-export const MOCK_MAHARA_PENDING_FILE_2: MaharaPendingFile = {
+export const MOCK_MAHARA_PENDING_FILE_2: PendingMFile = {
   id: MOCK_FILE_IDS[2],
   url: MOCK_URL,
   maharaFormData: MOCK_MAHARA_FORM_DATA_2,

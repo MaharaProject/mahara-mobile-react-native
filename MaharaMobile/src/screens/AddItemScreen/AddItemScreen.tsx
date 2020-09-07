@@ -17,13 +17,13 @@ import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
 import {
-  MaharaPendingFile,
+  PendingMFile,
   UploadItemType,
   UserBlog,
   UserFolder,
   UserTag
 } from '../../models/models';
-import {newMaharaFile} from '../../models/typeCreators';
+import {newFile} from '../../models/typeCreators';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
@@ -54,7 +54,7 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   uploadList: {
-    files: Array<MaharaPendingFile>;
+    files: Array<PendingMFile>;
   };
   itemType: string;
   userBlogs: Array<UserBlog>;
@@ -66,7 +66,7 @@ type Props = {
 const AddItemScreen = (props: Props) => {
   // State
   const itemType: UploadItemType = props.navigation.getParam('itemType');
-  const [pickedFile, setPickedFile] = useState(newMaharaFile('', '', '', 0));
+  const [pickedFile, setPickedFile] = useState(newFile('', '', '', 0));
 
   return (
     <ScrollView>

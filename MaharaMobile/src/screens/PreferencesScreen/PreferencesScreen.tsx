@@ -112,7 +112,9 @@ const PreferencesScreen = (props: Props) => {
 
   const defaultBlogPicker = () => {
     // Find matching blog to the default blog
-    const match = userBlogs.find(b => b.id === defaultBlogId);
+    const match: UserBlog =
+      userBlogs.find(b => b.id === defaultBlogId) ?? userBlogs[0];
+
     const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
       <View>

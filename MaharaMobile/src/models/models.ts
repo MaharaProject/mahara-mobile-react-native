@@ -6,20 +6,35 @@ export type RequestErrorPayload = {
 
 export type UploadItemType = 'FILE' | 'PHOTO' | 'AUDIO' | 'J_ENTRY';
 
-export type MaharaFile = {
+export type MessageInfoType = 'success' | 'warning' | 'error';
+
+// Mahara file creation and for uploading
+
+export type File = {
   uri: string;
   type: string;
   name: string;
   size: number; // Not used in upload
 };
 
-export type MaharaPendingFile = {
+export type MaharaFile = {
+  webservice: string;
+  wstoken: string;
+  foldername: string;
+  name: string;
+  description: string;
+  filetoupload: File;
+};
+
+export type PendingMFile = {
   id: string;
   url: string; // for files, this url includes tags
-  maharaFormData: MaharaFileFormData;
+  maharaFormData: MaharaFile;
   mimetype: string;
-  type: string;
+  type: UploadItemType;
 };
+
+// Journal entry creation and for uploading
 
 export type JournalEntry = {
   blogid: number;
@@ -30,7 +45,7 @@ export type JournalEntry = {
   isdraft: boolean;
 };
 
-export type PendingJournalEntry = {
+export type PendingJEntry = {
   id: string;
   url: string;
   journalEntry: JournalEntry;
@@ -69,15 +84,6 @@ export type UserBlogJSON = {
   numblogposts: number;
 };
 
-export type MaharaFileFormData = {
-  webservice: string;
-  wstoken: string;
-  foldername: string;
-  name: string;
-  description: string;
-  filetoupload: MaharaFile;
-};
-
 // as stated in LinguiJS docs: https://lingui.js.org/ref/macro.html#usage
 export type MessageDescriptor = {
   id: string;
@@ -106,6 +112,6 @@ export type UploadResponse = {
   error_rendered: string;
 };
 
-export type DisplayItems = Array<PendingJournalEntry | MaharaPendingFile>;
+export type DisplayItems = Array<PendingJEntry | PendingMFile>;
 
 export type Playback = {current_position: number; duration: number};

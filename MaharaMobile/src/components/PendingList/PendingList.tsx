@@ -5,11 +5,7 @@ import {
   NavigationScreenProp,
   NavigationState
 } from 'react-navigation';
-import {
-  DisplayItems,
-  MaharaPendingFile,
-  PendingJournalEntry
-} from '../../models/models';
+import {DisplayItems, PendingMFile, PendingJEntry} from '../../models/models';
 import {
   isMaharaPendingFile,
   isPendingJournalEntry
@@ -41,7 +37,7 @@ const PendingList = (props: Props) => {
         let mimetype = '';
         //  figure out what to pass in to UploadItem
         if (isMaharaPendingFile(item)) {
-          const pendingFile: MaharaPendingFile = item;
+          const pendingFile: PendingMFile = item;
           title = pendingFile.maharaFormData.name;
           description = pendingFile.maharaFormData.description;
           mimetype = pendingFile.mimetype;
@@ -51,7 +47,7 @@ const PendingList = (props: Props) => {
               : ''
           };
         } else if (isPendingJournalEntry(item)) {
-          const pendingJEntry: PendingJournalEntry = item;
+          const pendingJEntry: PendingJEntry = item;
           title = pendingJEntry.journalEntry.title;
           description = pendingJEntry.journalEntry.body;
           mimetype = 'journalEntry';

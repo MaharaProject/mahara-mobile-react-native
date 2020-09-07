@@ -7,15 +7,15 @@ import {PermissionsAndroid, Platform, Text, View} from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import variables from '../../assets/styles/variables';
-import {MaharaFile, MaharaPendingFile, Playback} from '../../models/models';
-import {newMaharaFile} from '../../models/typeCreators';
+import {File, PendingMFile, Playback} from '../../models/models';
+import {newFile} from '../../models/typeCreators';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
 type Props = {
-  setPickedFile: React.Dispatch<React.SetStateAction<MaharaFile>>;
-  editItem?: MaharaPendingFile;
+  setPickedFile: React.Dispatch<React.SetStateAction<File>>;
+  editItem?: PendingMFile;
   i18n: I18n;
 };
 
@@ -112,7 +112,7 @@ const AddAudio = (props: Props) => {
 
     RNFetchBlob.fs.stat(checkIOS(fileURI)).then(stats => {
       props.setPickedFile(
-        newMaharaFile(
+        newFile(
           stats.path,
           'audio/m4a',
           stats.filename,

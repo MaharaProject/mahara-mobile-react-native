@@ -25,8 +25,12 @@ const styles = {
     lightbrown_grid_button: '#7b3434',
     darkbrown_grid_button: '#433113',
     red: '#76302e',
-    successbg: '#cedeb7',
-    success: '#3c4c23'
+    messageSuccessBg: '#cfdeba',
+    messageSuccessText: '#3c4c27',
+    messageSuccessIcon: '#75A63F',
+    messageErrorText: '#B0000D',
+    messageErrorIcon: '#d9292f',
+    messageErrorBg: '#ebc4c4'
   },
   padding: {
     xs: 5,

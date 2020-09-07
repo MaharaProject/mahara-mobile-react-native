@@ -8,7 +8,6 @@ import {
   TextInput,
   View
 } from 'react-native';
-import FlashMessage from 'react-native-flash-message';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   NavigationParams,
@@ -52,6 +51,7 @@ type Props = {
  * @param props
  */
 const LoginTypes = (props: Props) => {
+  // https://yoursite.edu/
   const [controlURL, setControlURL] = useState('https://');
 
   const [enterURLWarning, setEnterURLWarning] = useState(false);
@@ -119,11 +119,12 @@ const LoginTypes = (props: Props) => {
               <Trans>Address of your Mahara site</Trans>
             </Text>
             <TextInput
+              keyboardType="url"
               style={[
                 forms.textInput,
                 enterURLWarning ? styles.errorTextInput : null
               ]}
-              // placeholder={'https://yoursite.edu/'} TODO: put this back in and remove default value for go live
+              placeholder="https://yoursite.edu/"
               defaultValue={controlURL}
               onChangeText={(url: string) => checkUrl(url)}
             />
@@ -183,8 +184,6 @@ const LoginTypes = (props: Props) => {
           />
         )}
       </LinearGradient>
-
-      <FlashMessage position="top" />
     </View>
   );
 };

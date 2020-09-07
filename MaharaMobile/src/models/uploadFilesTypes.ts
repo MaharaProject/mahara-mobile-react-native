@@ -1,8 +1,8 @@
-import {MaharaPendingFile, UserFolder} from './models';
+import {PendingMFile, UserFolder} from './models';
 
 export type UploadFilesActions = {
   type: string;
-  file: MaharaPendingFile;
+  file: PendingMFile;
   id: string;
   token: string;
   urlDomain: string;
