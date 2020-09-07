@@ -16,9 +16,9 @@ import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
 import {
-  MaharaFile,
-  MaharaPendingFile,
-  PendingJournalEntry,
+  File,
+  PendingMFile as PendingFile,
+  PendingJEntry,
   UploadItemType,
   UserBlog,
   UserFolder,
@@ -57,7 +57,7 @@ type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
   uploadList: {
-    files: Array<MaharaPendingFile>;
+    files: Array<PendingFile>;
   };
   itemType: string;
   userBlogs: Array<UserBlog>;
@@ -67,7 +67,8 @@ type Props = {
 };
 
 const EditItemScreen = (props: Props) => {
-  let editingFile: MaharaFile = {
+  console.log(props.navigation.getParam('itemType'));
+  let editingFile: File = {
     name: '',
     size: 0,
     type: '',
@@ -75,20 +76,20 @@ const EditItemScreen = (props: Props) => {
   };
 
   // Get item passed in as nav param from Upload Queue
-  const itemToEdit:
-    | MaharaPendingFile
-    | PendingJournalEntry = props.navigation.getParam('itemToEdit');
+  const itemToEdit: PendingFile | PendingJEntry = props.navigation.getParam(
+    'itemToEdit'
+  );
 
   if (itemToEdit) {
     if (isMaharaPendingFile(itemToEdit)) {
-      const maharaPendingFile: MaharaPendingFile = itemToEdit;
+      const maharaPendingFile: PendingFile = itemToEdit;
       editingFile = maharaPendingFile.maharaFormData.filetoupload;
     }
   }
 
   // State
   const itemType: UploadItemType = props.navigation.getParam('itemType');
-  const [pickedFile, setPickedFile] = useState<MaharaFile>(editingFile);
+  const [pickedFile, setPickedFile] = useState<File>(editingFile);
 
   useEffect(() => {
     setPickedFile(editingFile);

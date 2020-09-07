@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {PendingJournalEntry, UserBlog} from '../models/models';
+import {PendingJEntry, UserBlog} from '../models/models';
 import {arrayToObject} from '../utils/authHelperFunctions';
 import {
   ADD_UPLOAD_JOURNAL_ENTRY,
@@ -11,7 +11,7 @@ import {RootState} from './rootReducer';
 import {UploadJEntriesActions} from '../models/uploadJEntriesTypes';
 
 export type UploadJEntriesState = {
-  uploadJEntries: Record<string, PendingJournalEntry>;
+  uploadJEntries: Record<string, PendingJEntry>;
   uploadJEntriesIds: Array<string>;
 };
 
@@ -21,16 +21,16 @@ const initialState: UploadJEntriesState = {
 };
 
 // Helper functions
-const getJEntries = (ids: string[], arr: Record<string, PendingJournalEntry>) =>
+const getJEntries = (ids: string[], arr: Record<string, PendingJEntry>) =>
   ids.map((id: string) => arr[id]);
 
-const updateAsyncStorageJEntries = (jEntries: PendingJournalEntry[]) => {
+const updateAsyncStorageJEntries = (jEntries: PendingJEntry[]) => {
   AsyncStorage.setItem('uploadJEntries', JSON.stringify(jEntries));
 };
 
 const addJEntryToUploadList = (
   state: UploadJEntriesState,
-  journalEntry: PendingJournalEntry
+  journalEntry: PendingJEntry
 ) => {
   const updatedJEntries = {
     ...state.uploadJEntries,
@@ -77,12 +77,12 @@ const updateJEntriesOnLogin = (
   userBlogs: Array<UserBlog>
 ): UploadJEntriesState => {
   const {uploadJEntries} = state;
-  const newJournalEntries: Array<PendingJournalEntry> = [];
+  const newJournalEntries: Array<PendingJEntry> = [];
   const journalEntriesArr = Object.keys(uploadJEntries).map(
     k => uploadJEntries[k]
   );
-  journalEntriesArr.forEach((pendingJEntry: PendingJournalEntry) => {
-    const newPendingJEntry: PendingJournalEntry = {
+  journalEntriesArr.forEach((pendingJEntry: PendingJEntry) => {
+    const newPendingJEntry: PendingJEntry = {
       id: pendingJEntry.id,
       journalEntry: {
         ...pendingJEntry.journalEntry,
@@ -131,9 +131,7 @@ export const uploadJEntriesReducer = (
 // Selectors
 const uploadJEntriesState = (state: RootState) => state.appState.uploadJEntries;
 
-export const selectAllJEntries = (
-  state: RootState
-): Array<PendingJournalEntry> => {
+export const selectAllJEntries = (state: RootState): Array<PendingJEntry> => {
   const {uploadJEntries} = uploadJEntriesState(state);
   const {uploadJEntriesIds} = uploadJEntriesState(state);
   const jEntries = uploadJEntriesIds.map((id: string) => uploadJEntries[id]);
@@ -147,7 +145,7 @@ export const selectAllJEntriesIds = (state: RootState) => [
 export const selectJEntryById = (
   state: RootState,
   {id}: {id: string}
-): PendingJournalEntry => {
+): PendingJEntry => {
   const {uploadJEntries} = uploadJEntriesState(state);
   return uploadJEntries[id];
 };

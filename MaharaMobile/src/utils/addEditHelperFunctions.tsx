@@ -4,13 +4,11 @@ import {Alert, Image, Platform, View} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
 import ImagePicker from 'react-native-image-picker';
 import i18n from '../i18n';
-import {MaharaFile} from '../models/models';
-import {newMaharaFile} from '../models/typeCreators';
+import {File} from '../models/models';
+import {newFile} from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
-export const takePhoto = (
-  setPickedFile: Dispatch<SetStateAction<MaharaFile>>
-) => {
+export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
   const options = {
     title: i18n._(t`Select image`),
     storageOptions: {
@@ -38,7 +36,7 @@ export const takePhoto = (
         response.fileName = path.split('/').pop();
       }
 
-      const maharaFile = newMaharaFile(
+      const maharaFile = newFile(
         response.uri,
         response.type,
         response.fileName,
@@ -55,7 +53,7 @@ export const pickDocument = onSetPickedFile => {
     DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
     }).then(res =>
-      onSetPickedFile(newMaharaFile(res.uri, res.type, res.name, res.size))
+      onSetPickedFile(newFile(res.uri, res.type, res.name, res.size))
     );
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {

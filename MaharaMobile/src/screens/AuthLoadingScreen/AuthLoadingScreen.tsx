@@ -23,7 +23,7 @@ import {
   updateUserTags,
   updateUserTagsIds
 } from '../../actions/actions';
-import {MaharaPendingFile, PendingJournalEntry} from '../../models/models';
+import {PendingMFile, PendingJEntry} from '../../models/models';
 import {
   DEFAULT_BLOG_ID,
   DEFAULT_FOLDER_TITLE,
@@ -125,7 +125,7 @@ const AuthLoadingScreen = (props: Props) => {
         (result: string | null) => {
           if (result) {
             const uploadFilesList = parseJSON(result);
-            uploadFilesList.forEach((uploadFile: MaharaPendingFile) => {
+            uploadFilesList.forEach((uploadFile: PendingMFile) => {
               dispatch(addFileToUploadList(uploadFile));
             });
           }
@@ -136,7 +136,7 @@ const AuthLoadingScreen = (props: Props) => {
         (result: string | null) => {
           if (result) {
             const uploadJEntries = parseJSON(result);
-            uploadJEntries.forEach((jEntry: PendingJournalEntry) => {
+            uploadJEntries.forEach((jEntry: PendingJEntry) => {
               dispatch(addJournalEntryToUploadList(jEntry));
             });
           }

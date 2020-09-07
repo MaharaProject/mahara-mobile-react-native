@@ -1,32 +1,35 @@
+import {MimeType} from 'react-native-document-picker';
 import {WS_FUNCTION_UPLOAD_BLOGPOST} from '../utils/constants';
 import {
   JournalEntry,
+  File,
   MaharaFile,
-  MaharaFileFormData,
-  PendingJournalEntry,
+  PendingJEntry,
   UserTag,
   UserFolder,
   UserBlog,
   UploadResponse
 } from './models';
 
-export const newMaharaFile = (
+// Mahara file creation
+
+export const newFile = (
   uri: string,
-  type: string,
+  mimetype: MimeType,
   name: string,
   size: number
-): MaharaFile => {
-  return {uri, type, name, size};
+): File => {
+  return {uri, type: mimetype, name, size};
 };
 
-export const newMaharaFileFormData = (
+export const newMaharaFile = (
   webService: string,
   token: string,
   folderName: string,
   fileName: string,
   desc: string,
-  file: MaharaFile
-): MaharaFileFormData => {
+  file: File
+): MaharaFile => {
   return {
     description: desc,
     name: fileName,
@@ -36,6 +39,28 @@ export const newMaharaFileFormData = (
     wstoken: token
   };
 };
+
+export const newMaharaPendingFile = (
+  itemId = '',
+  url: string,
+  maharaFormData: MaharaFile,
+  mimetype: string,
+  type: string
+) => {
+  let id = itemId;
+  if (!id) {
+    id = Math.random() * 10 + maharaFormData.name.substring(0, 5);
+  }
+  return {
+    id,
+    url,
+    maharaFormData,
+    mimetype,
+    type
+  };
+};
+
+// Journal entry creation
 
 export const newJournalEntry = (
   blogId: number,
@@ -54,11 +79,11 @@ export const newJournalEntry = (
   };
 };
 
-export const newPendingJournalEntry = (
+export const newPendingJEntry = (
   itemId = '',
   url: string,
   journalEntry: JournalEntry
-): PendingJournalEntry => {
+): PendingJEntry => {
   let id = itemId;
   if (!id) {
     id = Math.random() * 10 + journalEntry.title;
@@ -68,26 +93,6 @@ export const newPendingJournalEntry = (
     id,
     url,
     journalEntry
-  };
-};
-
-export const newMaharaPendingFile = (
-  itemId = '',
-  url: string,
-  maharaFormData: MaharaFileFormData,
-  mimetype: string,
-  type: string
-) => {
-  let id = itemId;
-  if (!id) {
-    id = Math.random() * 10 + maharaFormData.name.substring(0, 5);
-  }
-  return {
-    id,
-    url,
-    maharaFormData,
-    mimetype,
-    type
   };
 };
 

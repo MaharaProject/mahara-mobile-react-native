@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {MaharaPendingFile, UserFolder} from '../models/models';
+import {PendingMFile, UserFolder} from '../models/models';
 import {arrayToObject} from '../utils/authHelperFunctions';
 import {
   ADD_UPLOAD_FILE,
@@ -11,7 +11,7 @@ import {RootState} from './rootReducer';
 import {UploadFilesActions} from '../models/uploadFilesTypes';
 
 export type UploadFilesState = {
-  uploadFiles: Record<string, MaharaPendingFile>;
+  uploadFiles: Record<string, PendingMFile>;
   uploadFilesIds: Array<string>;
 };
 
@@ -23,19 +23,16 @@ const initialState: UploadFilesState = {
 // Helper functions
 const getFiles = (
   ids: string[] = [],
-  arr: Record<string, MaharaPendingFile>
-): Array<MaharaPendingFile> => {
+  arr: Record<string, PendingMFile>
+): Array<PendingMFile> => {
   return ids.map((id: string) => arr[id]);
 };
 
-const updateAsyncStorageUploadFiles = (uploadFiles: MaharaPendingFile[]) => {
+const updateAsyncStorageUploadFiles = (uploadFiles: PendingMFile[]) => {
   AsyncStorage.setItem('uploadFiles', JSON.stringify(uploadFiles));
 };
 
-const addFileToUploadList = (
-  state: UploadFilesState,
-  file: MaharaPendingFile
-) => {
+const addFileToUploadList = (state: UploadFilesState, file: PendingMFile) => {
   const updatedFilesIdsSet = new Set([...state.uploadFilesIds, file.id]);
   const updatedFiles = {
     ...state.uploadFiles,
@@ -80,10 +77,10 @@ const updateUploadFilesOnLogin = (
     ...state.uploadFiles
   };
 
-  const updatedFiles: Array<MaharaPendingFile> = [];
+  const updatedFiles: Array<PendingMFile> = [];
   const filesArray = Object.keys(uploadJEntries).map(k => uploadJEntries[k]);
-  filesArray.forEach((file: MaharaPendingFile) => {
-    const newFile: MaharaPendingFile = {
+  filesArray.forEach((file: PendingMFile) => {
+    const newFile: PendingMFile = {
       ...file,
       maharaFormData: {
         ...file.maharaFormData,
@@ -131,9 +128,7 @@ export const uploadFilesReducer = (
 const uploadFilesState = (state: RootState) => state.appState.uploadFiles;
 
 // Selectors
-export const selectAllUploadFiles = (
-  state: RootState
-): Array<MaharaPendingFile> => {
+export const selectAllUploadFiles = (state: RootState): Array<PendingMFile> => {
   const {uploadFiles} = uploadFilesState(state);
   const {uploadFilesIds} = uploadFilesState(state);
   return getFiles(uploadFilesIds, uploadFiles);
@@ -146,7 +141,7 @@ export const selectAllUploadFilesIds = (state: RootState) => [
 export const selectUploadFileById = (
   state: RootState,
   {id}: {id: string}
-): MaharaPendingFile => {
+): PendingMFile => {
   const {uploadFiles} = uploadFilesState(state);
   return uploadFiles[id];
 };

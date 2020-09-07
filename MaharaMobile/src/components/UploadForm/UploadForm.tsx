@@ -22,9 +22,9 @@ import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import i18n from '../../i18n';
 import {
-  MaharaFile,
-  MaharaPendingFile,
-  PendingJournalEntry,
+  File,
+  PendingMFile,
+  PendingJEntry,
   UploadItemType,
   UserBlog,
   UserFolder,
@@ -32,9 +32,9 @@ import {
 } from '../../models/models';
 import {
   newJournalEntry,
-  newMaharaFileFormData,
+  newMaharaFile,
   newMaharaPendingFile,
-  newPendingJournalEntry,
+  newPendingJEntry,
   newUserTag
 } from '../../models/typeCreators';
 import {RootState} from '../../reducers/rootReducer';
@@ -60,14 +60,14 @@ import uploadFormStyles from './UploadForm.style';
 import BlogPicker from './UploadFormJournalComponents';
 
 type Props = {
-  pickedFile?: MaharaFile;
+  pickedFile?: File;
   userFolders?: Array<UserFolder>;
   userTags: Array<UserTag>;
   userBlogs: Array<UserBlog>;
   itemType: UploadItemType;
   token: string;
   url: string;
-  editItem?: MaharaPendingFile | PendingJournalEntry;
+  editItem?: PendingMFile | PendingJEntry;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   defaultFolderTitle: string;
   defaultBlogId: number;
@@ -210,8 +210,8 @@ const UploadForm = (props: Props) => {
     const {pickedFile} = props;
     const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
     const id = props.editItem ? props.editItem.id : null;
-    let pendingJournalEntry: PendingJournalEntry = null;
-    let pendingFileData: MaharaPendingFile = null;
+    let pendingJournalEntry: PendingJEntry = null;
+    let pendingFileData: PendingMFile = null;
 
     // Upload Journal Entry
     if (itemType === 'J_ENTRY') {
@@ -224,7 +224,7 @@ const UploadForm = (props: Props) => {
         isDraft
       );
 
-      pendingJournalEntry = newPendingJournalEntry(id, journalUrl, jEntry);
+      pendingJournalEntry = newPendingJEntry(id, journalUrl, jEntry);
 
       // add journal entry to pending list
       dispatch(addJournalEntryToUploadList(pendingJournalEntry));
@@ -251,7 +251,7 @@ const UploadForm = (props: Props) => {
         };
       }
 
-      const formData = newMaharaFileFormData(
+      const formData = newMaharaFile(
         webService,
         props.token,
         folder,

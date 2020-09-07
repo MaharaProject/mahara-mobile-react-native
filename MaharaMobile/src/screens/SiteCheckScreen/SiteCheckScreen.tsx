@@ -1,7 +1,6 @@
 import {Icon, Text, Toast} from 'native-base';
 import React, {Component} from 'react';
 import {View} from 'react-native';
-import FlashMessage from 'react-native-flash-message';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -105,11 +104,12 @@ export class SiteCheckScreen extends Component<Props, State> {
           <Text
             style={{
               fontSize: variables.font.md,
-              color: variables.colors.red
+              color: variables.colors.messageErrorText,
+              flexDirection: 'row'
             }}>
             <Icon
               style={{
-                color: variables.colors.red
+                color: variables.colors.messageErrorIcon
               }}
               name="home"
             />
@@ -118,10 +118,10 @@ export class SiteCheckScreen extends Component<Props, State> {
         ),
         type: 'danger',
         style: {
-          backgroundColor: variables.colors.warnbg,
+          backgroundColor: variables.colors.messageErrorBg,
           paddingBottom: variables.padding.md
         },
-        position: 'center',
+        position: 'top',
         duration: 3000
       });
     }
@@ -158,7 +158,6 @@ export class SiteCheckScreen extends Component<Props, State> {
           onSkip={this.skipLogin}
           loading={loading}
         />
-        <FlashMessage position="top" />
       </View>
     );
   }

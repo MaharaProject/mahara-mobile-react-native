@@ -4,9 +4,9 @@ import {StackActions} from 'react-navigation';
 import i18n from '../i18n';
 import {
   JournalEntry,
-  MaharaFileFormData,
-  MaharaPendingFile,
-  PendingJournalEntry,
+  MaharaFile,
+  PendingMFile,
+  PendingJEntry,
   UploadItemType,
   UserBlog,
   UserBlogJSON,
@@ -20,17 +20,17 @@ export function isJournalEntry(x: any): x is JournalEntry {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isPendingJournalEntry(x: any): x is PendingJournalEntry {
-  return (x as PendingJournalEntry).journalEntry !== undefined;
+export function isPendingJournalEntry(x: any): x is PendingJEntry {
+  return (x as PendingJEntry).journalEntry !== undefined;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isMaharaFileFormData(x: any): x is MaharaFileFormData {
-  return (x as MaharaFileFormData).filetoupload !== undefined;
+export function isMaharaFileFormData(x: any): x is MaharaFile {
+  return (x as MaharaFile).filetoupload !== undefined;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isMaharaPendingFile(x: any): x is MaharaPendingFile {
-  return (x as MaharaPendingFile).maharaFormData !== undefined;
+export function isMaharaPendingFile(x: any): x is PendingMFile {
+  return (x as PendingMFile).maharaFormData !== undefined;
 }
 
 export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {

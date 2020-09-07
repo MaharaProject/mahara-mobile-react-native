@@ -2,8 +2,8 @@ import {t} from '@lingui/macro';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
   LoginInfo,
-  MaharaPendingFile,
-  PendingJournalEntry,
+  PendingMFile,
+  PendingJEntry,
   UserBlog,
   UserFolder,
   UserTag
@@ -187,7 +187,7 @@ export function toggleLanguage() {
 }
 
 // uploadFilesReducer
-export function addFileToUploadList(file: MaharaPendingFile) {
+export function addFileToUploadList(file: PendingMFile) {
   return {type: ADD_UPLOAD_FILE, file};
 }
 
@@ -208,7 +208,7 @@ export function updateUploadFilesOnLogin(
 }
 
 // uploadJEntriesReducer
-export function addJournalEntryToUploadList(journalEntry: PendingJournalEntry) {
+export function addJournalEntryToUploadList(journalEntry: PendingJEntry) {
   return {type: ADD_UPLOAD_JOURNAL_ENTRY, journalEntry};
 }
 

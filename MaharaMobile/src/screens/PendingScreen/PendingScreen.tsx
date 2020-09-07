@@ -1,6 +1,8 @@
 import {t, Trans} from '@lingui/macro';
+import {Icon, Toast} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {Alert, Text, View, ActivityIndicator, StatusBar} from 'react-native';
+import {ActivityIndicator, Alert, StatusBar, Text, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -8,14 +10,24 @@ import {
 } from 'react-navigation';
 import {connect, useSelector} from 'react-redux';
 import {Dispatch} from 'redux';
-import FlashMessage, {showMessage} from 'react-native-flash-message';
 import {removeUploadFile, removeUploadJEntry} from '../../actions/actions';
+// Images
+import UploadSVG from '../../assets/images/upload';
+import messages from '../../assets/styles/messages';
+import textStyles from '../../assets/styles/text';
+import variables from '../../assets/styles/variables';
+// components
+import PendingList from '../../components/PendingList/PendingList';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import i18n from '../../i18n';
 import {
   DisplayItems,
-  MaharaPendingFile,
-  PendingJournalEntry,
+  PendingMFile,
+  MessageDescriptor,
+  PendingJEntry,
   UploadResponse,
-  MessageDescriptor
+  MessageInfoType,
+  UploadItemType
 } from '../../models/models';
 import {selectUrl, selectUserName} from '../../reducers/loginInfoReducer';
 import {RootState} from '../../reducers/rootReducer';
@@ -33,24 +45,12 @@ import {
   uploadItemToMahara,
   usePreviousProps
 } from '../../utils/helperFunctions';
-
-// components
-import PendingList from '../../components/PendingList/PendingList';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
-import textStyles from '../../assets/styles/text';
-import messages from '../../assets/styles/messages';
-import variables from '../../assets/styles/variables';
-
-// Images
-import UploadSVG from '../../assets/images/upload';
-import i18n from '../../i18n';
 
 type Props = {
-  uploadFiles: Array<MaharaPendingFile>;
-  uploadJEntries: Array<PendingJournalEntry>;
+  uploadFiles: Array<PendingMFile>;
+  uploadJEntries: Array<PendingJEntry>;
   uploadFilesIds: Array<string>;
   uploadJEntriesIds: Array<string>;
   dispatch: Dispatch;
@@ -71,19 +71,47 @@ const PendingScreen = (props: Props) => {
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
-  const flashSuccessMessage = (text: MessageDescriptor) => {
-    showMessage({
-      message: i18n._(text),
-      icon: 'success',
-      titleStyle: messages.errorMessage,
-      backgroundColor: variables.colors.successbg,
-      color: variables.colors.success
+  const flashMessage = (
+    text: MessageDescriptor,
+    messageType: MessageInfoType
+  ) => {
+    // showMessage({
+    //   message: i18n._(text),
+    //   icon: 'success',
+    //   titleStyle: messages.errorMessage,
+    //   backgroundColor: variables.colors.successbg,
+    //   color: variables.colors.success
+    // });
+
+    Toast.show({
+      text: (
+        <Text
+          style={{
+            fontSize: variables.font.md,
+            color: variables.colors.messageSuccessText
+          }}>
+          <Icon
+            style={{
+              color: variables.colors.messageSuccessIcon
+            }}
+            name="md-checkmark-circle"
+          />
+          &nbsp;&nbsp;{i18n._(text)}
+        </Text>
+      ),
+      type: messageType,
+      style: {
+        backgroundColor: variables.colors.messageSuccessBg,
+        paddingBottom: variables.padding.md
+      },
+      position: 'top',
+      duration: 3000
     });
   };
 
   useEffect(() => {
     if (prevUploadCount < numUploadItems && numUploadItems !== 0) {
-      flashSuccessMessage(t`Added to upload queue successfully!`);
+      flashMessage(t`Added to upload queue successfully!`, 'success');
     }
   }, [numUploadItems]);
 
@@ -112,8 +140,8 @@ const PendingScreen = (props: Props) => {
     );
   };
 
-  const onEdit = (item: MaharaPendingFile | PendingJournalEntry) => {
-    const type = isPendingJournalEntry(item) ? 'journal entry' : item.type;
+  const onEdit = (item: PendingMFile | PendingJEntry) => {
+    const type: UploadItemType = item.type ?? 'J_ENTRY';
     props.navigation.navigate({
       routeName: 'EditItem',
       params: {itemToEdit: item, itemType: type}
@@ -193,8 +221,9 @@ const PendingScreen = (props: Props) => {
       setUploadedItemsIds(newState);
     }, 1000);
 
-    flashSuccessMessage(
-      t`Files have been uploaded to your Mahara successfully!`
+    flashMessage(
+      t`Files have been uploaded to your Mahara successfully!`,
+      'success'
     );
   };
 
@@ -262,8 +291,6 @@ const PendingScreen = (props: Props) => {
           )}
         </View>
       ) : null}
-
-      <FlashMessage position="top" />
     </View>
   );
 };
