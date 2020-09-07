@@ -6,10 +6,7 @@ import {
   NavigationState
 } from 'react-navigation';
 import {DisplayItems, PendingMFile, PendingJEntry} from '../../models/models';
-import {
-  isMaharaPendingFile,
-  isPendingJournalEntry
-} from '../../utils/helperFunctions';
+import {isPendingMFile, isPendingJEntry} from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
@@ -36,7 +33,7 @@ const PendingList = (props: Props) => {
         const itemId = item.id;
         let mimetype = '';
         //  figure out what to pass in to UploadItem
-        if (isMaharaPendingFile(item)) {
+        if (isPendingMFile(item)) {
           const pendingFile: PendingMFile = item;
           title = pendingFile.maharaFormData.name;
           description = pendingFile.maharaFormData.description;
@@ -46,7 +43,7 @@ const PendingList = (props: Props) => {
               ? pendingFile.maharaFormData.filetoupload.uri
               : ''
           };
-        } else if (isPendingJournalEntry(item)) {
+        } else if (isPendingJEntry(item)) {
           const pendingJEntry: PendingJEntry = item;
           title = pendingJEntry.journalEntry.title;
           description = pendingJEntry.journalEntry.body;

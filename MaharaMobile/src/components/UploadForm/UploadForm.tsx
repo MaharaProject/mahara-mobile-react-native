@@ -48,8 +48,8 @@ import {
 import {
   findUserTagByString,
   getUploadTypeIntlStrings,
-  isMaharaPendingFile,
-  isPendingJournalEntry
+  isPendingMFile,
+  isPendingJEntry
 } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
@@ -67,7 +67,7 @@ type Props = {
   itemType: UploadItemType;
   token: string;
   url: string;
-  editItem?: PendingMFile | PendingJEntry;
+  editItem: PendingMFile | PendingJEntry;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   defaultFolderTitle: string;
   defaultBlogId: number;
@@ -89,13 +89,14 @@ const UploadForm = (props: Props) => {
   }
 
   const dispatch = useDispatch();
-  const isMultiLine =
-    props.itemType !== 'J_ENTRY'
-      ? forms.multiLine
-      : [forms.multiLine, uploadFormStyles.description];
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
   const {itemType} = props;
-  let fileValid = props.pickedFile ? props.pickedFile.size > 0 : false;
+  let fileValid = () => {
+    if (itemType === 'J_ENTRY' || props.editItem) {
+      return true;
+    }
+    return props.pickedFile && props.pickedFile.size > 0;
+  };
 
   // STATE
   const [newTagText, setNewTagText] = useState('');
@@ -124,12 +125,12 @@ const UploadForm = (props: Props) => {
   const [showInvalidTitleMessage, setShowInvalidTitleMessage] = useState(false);
   const [showInvalidDescMessage, setShowInvalidDescMessage] = useState(false);
   const [showInvalidFileMessage, setShowInvalidFileMessage] = useState(
-    fileValid
+    !fileValid()
   );
 
   useEffect(() => {
     if (props.editItem) {
-      if (isMaharaPendingFile(props.editItem)) {
+      if (isPendingMFile(props.editItem)) {
         const {maharaFormData} = props.editItem;
         // The file is set in AddItemScreen as the pickedFile.
         setTitle(removeExtension(maharaFormData.name));
@@ -138,7 +139,7 @@ const UploadForm = (props: Props) => {
         setControlTitleValid(true);
         setControlDescValid(true);
       }
-      if (isPendingJournalEntry(props.editItem)) {
+      if (isPendingJEntry(props.editItem)) {
         const {journalEntry} = props.editItem;
         setTitle(journalEntry.title);
         setDescription(journalEntry.body);
@@ -507,6 +508,7 @@ const UploadForm = (props: Props) => {
             isDraft={isDraft}
             checkUserBlogs={checkUserBlogs}
             setIsDraft={setIsDraft}
+            defaultBlogId={props.defaultBlogId}
           />
         </View>
       );

@@ -45,7 +45,7 @@ import {
 } from '../../utils/addEditHelperFunctions';
 import {
   getUploadTypeIntlStrings,
-  isMaharaPendingFile
+  isPendingMFile
 } from '../../utils/helperFunctions';
 
 type Props = {
@@ -67,7 +67,6 @@ type Props = {
 };
 
 const EditItemScreen = (props: Props) => {
-  console.log(props.navigation.getParam('itemType'));
   let editingFile: File = {
     name: '',
     size: 0,
@@ -81,7 +80,7 @@ const EditItemScreen = (props: Props) => {
   );
 
   if (itemToEdit) {
-    if (isMaharaPendingFile(itemToEdit)) {
+    if (isPendingMFile(itemToEdit)) {
       const maharaPendingFile: PendingFile = itemToEdit;
       editingFile = maharaPendingFile.maharaFormData.filetoupload;
     }

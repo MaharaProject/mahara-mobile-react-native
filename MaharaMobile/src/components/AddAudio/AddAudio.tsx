@@ -119,7 +119,6 @@ const AddAudio = (props: Props) => {
           parseInt(stats.size, 10)
         )
       );
-      console.log(stats);
     });
   };
 
