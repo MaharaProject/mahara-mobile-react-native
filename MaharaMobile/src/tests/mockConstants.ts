@@ -20,7 +20,7 @@ export const MOCK_DESCRIPTION = 'description abcdefghijkl...';
 export const MOCK_FILE_IDS = ['f0', 'f1', 'f2'];
 export const MOCK_FILE_TITLES = ['cat photo', 'dog photo', 'turtle photo'];
 export const MOCK_FOLDERNAME = 'foldernameA';
-export const MOCK_SIZE_ZERO = 0;
+export const MOCK_SIZE_MINUS = -1;
 export const MOCK_TOKEN = 'token';
 export const MOCK_TYPE = 'mock type';
 export const MOCK_URI = '/file';
@@ -136,7 +136,7 @@ export const MOCK_MAHARA_FILE = newFile(
   MOCK_URI,
   MOCK_TYPE,
   'maharaFile',
-  MOCK_SIZE_ZERO
+  MOCK_SIZE_MINUS
 );
 
 export const MOCK_MAHARA_FORM_DATA_0 = newMaharaFile(

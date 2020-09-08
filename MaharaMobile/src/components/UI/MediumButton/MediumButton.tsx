@@ -43,7 +43,7 @@ const MediumButton = (props: Props) => (
           props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
         }
         onPress={props.onPress}
-        style={{...props.style, ...buttons.default}}>
+        style={(props.style, buttons.default)}>
         <Icon
           name={props.icon}
           style={
@@ -57,5 +57,11 @@ const MediumButton = (props: Props) => (
     )}
   </I18n>
 );
+
+StyleSheet.create({
+  disabled: {
+    color: '#a9a9a9'
+  }
+});
 
 export default MediumButton;

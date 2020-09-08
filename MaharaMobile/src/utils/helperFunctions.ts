@@ -20,16 +20,16 @@ export function isJournalEntry(x: any): x is JournalEntry {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isPendingJournalEntry(x: any): x is PendingJEntry {
+export function isPendingJEntry(x: any): x is PendingJEntry {
   return (x as PendingJEntry).journalEntry !== undefined;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isMaharaFileFormData(x: any): x is MaharaFile {
+export function isMaharaFile(x: any): x is MaharaFile {
   return (x as MaharaFile).filetoupload !== undefined;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function isMaharaPendingFile(x: any): x is PendingMFile {
+export function isPendingMFile(x: any): x is PendingMFile {
   return (x as PendingMFile).maharaFormData !== undefined;
 }
 
@@ -54,7 +54,7 @@ export function buildObject(item: object) {
       body: JSON.stringify(item)
     };
   }
-  if (isMaharaFileFormData(item)) {
+  if (isMaharaFile(item)) {
     const sendFormData = new FormData();
     sendFormData.append('wsfunction', item.webservice);
     sendFormData.append('wstoken', item.wstoken);

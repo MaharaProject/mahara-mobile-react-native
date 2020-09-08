@@ -66,7 +66,7 @@ type Props = {
 const AddItemScreen = (props: Props) => {
   // State
   const itemType: UploadItemType = props.navigation.getParam('itemType');
-  const [pickedFile, setPickedFile] = useState(newFile('', '', '', 0));
+  const [pickedFile, setPickedFile] = useState(newFile('', '', '', -1));
 
   return (
     <ScrollView>

@@ -1,4 +1,4 @@
-import {MimeType} from 'react-native-document-picker';
+import {MimeType, Types} from 'react-native-document-picker';
 import {WS_FUNCTION_UPLOAD_BLOGPOST} from '../utils/constants';
 import {
   JournalEntry,
@@ -15,7 +15,7 @@ import {
 
 export const newFile = (
   uri: string,
-  mimetype: MimeType,
+  mimetype: string,
   name: string,
   size: number
 ): File => {

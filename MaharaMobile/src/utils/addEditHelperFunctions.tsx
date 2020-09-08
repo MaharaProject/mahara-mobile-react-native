@@ -2,11 +2,40 @@ import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert, Image, Platform, View} from 'react-native';
 import DocumentPicker from 'react-native-document-picker';
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker, {ImagePickerResponse} from 'react-native-image-picker';
 import i18n from '../i18n';
 import {File} from '../models/models';
 import {newFile} from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
+
+const setPickedFileCallback = (
+  response: ImagePickerResponse,
+  setPickedFile: Dispatch<SetStateAction<File>>
+) => {
+  if (response.didCancel) {
+    Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
+  } else if (response.error) {
+    Alert.alert(i18n._(t`ImagePicker Error:${response.error}`));
+  } else {
+    let path = response.uri;
+    if (Platform.OS === 'ios') {
+      path = `˜${path.substring(path.indexOf('/Documents'))}`;
+    }
+
+    if (!response.fileName) {
+      response.fileName = path.split('/').pop();
+    }
+
+    const maharaFile = newFile(
+      response.uri,
+      response.type,
+      response.fileName,
+      response.fileSize
+    );
+
+    setPickedFile(maharaFile);
+  }
+};
 
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
   const options = {
@@ -21,31 +50,14 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
    * The first arg is the options object for customization (it can also be null or omitted for default options),
    * The second arg is the callback which sends object: response (more info in the API Reference)
    */
-  ImagePicker.showImagePicker(options, response => {
-    if (response.didCancel) {
-      Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
-    } else if (response.error) {
-      Alert.alert(i18n._(t`ImagePicker Error:${response.error}`));
-    } else {
-      let path = response.uri;
-      if (Platform.OS === 'ios') {
-        path = `˜${path.substring(path.indexOf('/Documents'))}`;
-      }
 
-      if (!response.fileName) {
-        response.fileName = path.split('/').pop();
-      }
-
-      const maharaFile = newFile(
-        response.uri,
-        response.type,
-        response.fileName,
-        response.fileSize
-      );
-
-      setPickedFile(maharaFile);
-    }
-  });
+  Platform.OS === 'ios'
+    ? ImagePicker.showImagePicker(options, response => {
+        setPickedFileCallback(response, setPickedFile);
+      })
+    : ImagePicker.launchCamera(options, response => {
+        setPickedFileCallback(response, setPickedFile);
+      });
 };
 
 export const pickDocument = onSetPickedFile => {

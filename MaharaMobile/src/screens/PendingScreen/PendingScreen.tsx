@@ -41,7 +41,7 @@ import {
 } from '../../reducers/uploadJEntriesReducer';
 import {GUEST_USERNAME} from '../../utils/constants';
 import {
-  isPendingJournalEntry,
+  isPendingJEntry,
   uploadItemToMahara,
   usePreviousProps
 } from '../../utils/helperFunctions';
