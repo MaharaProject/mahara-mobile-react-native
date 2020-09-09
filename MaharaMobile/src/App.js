@@ -1,15 +1,15 @@
 import {I18nProvider} from '@lingui/react';
 import * as Sentry from '@sentry/react-native';
 import {Buffer} from 'buffer';
-import {Root, Button, Icon, StyleProvider, Text} from 'native-base';
+import {Root, StyleProvider} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import Config from 'react-native-config';
-
+import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize';
 import {Provider} from 'react-redux';
+import SplashScreen from 'react-native-splash-screen';
 import getTheme from '../native-base-theme/components';
 import commonColor from '../native-base-theme/variables/commonColor';
-import 'react-native-gesture-handler';
 import i18n, {changeActiveLanguage} from './i18n';
 import AppNavigator from './navigations/app-navigator';
 import configureStore from './store/store';
@@ -23,6 +23,10 @@ if (Config.SENTRY_DSN) {
 
 const App = () => {
   const store = configureStore(undefined, i18n);
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   // Render the app container component with the provider around it
   return (
