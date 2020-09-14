@@ -32,7 +32,8 @@ const buttons = StyleSheet.create({
   },
   cancel: {
     backgroundColor: styles.colors.lightgrey,
-    fontWeight: 'normal'
+    fontWeight: 'normal',
+    marginTop: styles.padding.sm
   },
   default: {
     marginBottom: styles.padding.sm

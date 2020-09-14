@@ -11,6 +11,7 @@ import buttons from '../../../assets/styles/buttons';
 
 type Props = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  onPress?: () => any;
 };
 
 const CancelButton = (props: Props) => (
@@ -22,7 +23,7 @@ const CancelButton = (props: Props) => (
         rounded
         accessibilityRole="button"
         accessibilityLabel="Cancel"
-        onPress={() => props.navigation.goBack()}
+        onPress={props.onPress || props.navigation.goBack}
         style={[buttons.md, buttons.cancel]}>
         <Text>{i18n._(t`Cancel`)}</Text>
       </Button>
