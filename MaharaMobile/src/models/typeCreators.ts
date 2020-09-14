@@ -1,14 +1,13 @@
-import {MimeType, Types} from 'react-native-document-picker';
 import {WS_FUNCTION_UPLOAD_BLOGPOST} from '../utils/constants';
 import {
-  JournalEntry,
   File,
+  JournalEntry,
   MaharaFile,
   PendingJEntry,
-  UserTag,
-  UserFolder,
+  UploadResponse,
   UserBlog,
-  UploadResponse
+  UserFolder,
+  UserTag
 } from './models';
 
 // Mahara file creation
