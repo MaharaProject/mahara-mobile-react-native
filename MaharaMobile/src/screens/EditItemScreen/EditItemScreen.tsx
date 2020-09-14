@@ -135,7 +135,7 @@ const EditItemScreen = (props: Props) => {
             url={props.url}
             editItem={itemToEdit}
             navigation={props.navigation}
-            defaultFolderTitle={props.defaultFolderTitle}
+            defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
           />
         </View>
