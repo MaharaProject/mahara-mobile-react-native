@@ -293,7 +293,7 @@ const UploadForm = (props: Props) => {
 
   const updateTitle = (newTitle: string) => {
     setTitleValid(isValidText(itemType, newTitle));
-    setTitle(title);
+    setTitle(newTitle);
   };
 
   const updateDescription = (desc: string) => {
