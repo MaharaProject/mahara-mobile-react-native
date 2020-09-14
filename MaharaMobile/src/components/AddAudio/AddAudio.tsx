@@ -91,6 +91,10 @@ const AddAudio = (props: Props) => {
     checkPermissions();
   });
 
+  useEffect(() => {
+    setRecordStat('recorded');
+  }, [props.editItem]);
+
   const onStartRecord = async () => {
     try {
       const result = await audioRecorderPlayer.startRecorder();
