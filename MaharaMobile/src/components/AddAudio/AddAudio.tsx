@@ -92,7 +92,9 @@ const AddAudio = (props: Props) => {
   });
 
   useEffect(() => {
-    setRecordStat('recorded');
+    if (props.editItem) {
+      setRecordStat('recorded');
+    }
   }, [props.editItem]);
 
   const onStartRecord = async () => {
