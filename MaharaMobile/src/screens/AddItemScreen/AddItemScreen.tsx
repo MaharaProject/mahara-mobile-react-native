@@ -72,7 +72,9 @@ const AddItemScreen = (props: Props) => {
     <ScrollView>
       <View style={generic.wrap}>
         {/* select a file button */}
-        {pickedFile.name && (itemType === 'FILE' || itemType === 'PHOTO')
+        {pickedFile.name &&
+        ((itemType === 'FILE' && pickedFile.type.includes('video')) ||
+          itemType === 'PHOTO')
           ? renderImagePreview(pickedFile.uri)
           : null}
         {itemType === 'FILE' && (
