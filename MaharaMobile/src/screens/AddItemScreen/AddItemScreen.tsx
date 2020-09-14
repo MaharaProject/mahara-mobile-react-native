@@ -73,8 +73,8 @@ const AddItemScreen = (props: Props) => {
       <View style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
-        ((itemType === 'FILE' && pickedFile.type.includes('video')) ||
-          itemType === 'PHOTO')
+        (pickedFile.type.startsWith('image') ||
+          pickedFile.type.startsWith('video'))
           ? renderImagePreview(pickedFile.uri)
           : null}
         {itemType === 'FILE' && (

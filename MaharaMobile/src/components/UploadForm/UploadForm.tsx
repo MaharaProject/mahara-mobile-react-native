@@ -327,7 +327,7 @@ const UploadForm = (props: Props) => {
       />
       {/* {!titleValid && <RequiredWarningText />} */}
       <FormInput
-        valid={titleValid}
+        valid={itemType === 'J_ENTRY' && titleValid}
         value={title}
         onChangeText={(text: string) => updateTitle(text)}
       />
@@ -338,7 +338,7 @@ const UploadForm = (props: Props) => {
       {/* {!descValid && <RequiredWarningText />} */}
       <FormInput
         multiline
-        valid={descValid}
+        valid={itemType === 'J_ENTRY' && descValid}
         value={description}
         onChangeText={(desc: string) => updateDescription(desc)}
       />
@@ -470,9 +470,7 @@ const UploadForm = (props: Props) => {
 
         {/* Allow users to cancel edits */}
         {props.editItem && (
-          <MediumButton
-            text={t`Cancel`}
-            style={buttons.cancel}
+          <CancelButton
             onPress={() => {
               props.navigation.popToTop();
               props.navigation.navigate('Pending');
