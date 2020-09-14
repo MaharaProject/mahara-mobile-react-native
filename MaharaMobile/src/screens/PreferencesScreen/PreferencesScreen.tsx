@@ -93,7 +93,6 @@ const PreferencesScreen = (props: Props) => {
           <Picker
             accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolderTitle}
-            style={forms.picker}
             onValueChange={(folder: string) => {
               setSelectedFolderTitle(folder);
             }}>
@@ -123,7 +122,6 @@ const PreferencesScreen = (props: Props) => {
           <Picker
             accessibilityLabel={i18n._(t`Select journal`)}
             selectedValue={selectedBlogId}
-            style={forms.picker}
             onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
             {blogs.map((blog: UserBlog) => {
               const label =

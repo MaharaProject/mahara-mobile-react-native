@@ -43,7 +43,7 @@ const MediumButton = (props: Props) => (
           props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
         }
         onPress={props.onPress}
-        style={(buttons.default, props.style)}>
+        style={{...buttons.default, ...props.style}}>
         <Icon
           name={props.icon}
           style={

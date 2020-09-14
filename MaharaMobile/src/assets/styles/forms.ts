@@ -24,18 +24,6 @@ const forms = StyleSheet.create({
     marginBottom: styles.padding.md,
     backgroundColor: styles.colors.light
   },
-  picker: {
-    backgroundColor: styles.colors.light,
-    height: 40
-  },
-  pickerWrapper: {
-    height: 40,
-    width: '100%',
-    borderColor: styles.colors.border,
-    borderWidth: 1,
-    borderRadius: 5,
-    marginBottom: styles.padding.md
-  },
   tag: {
     backgroundColor: styles.colors.quaternary,
     paddingLeft: styles.padding.sm,
