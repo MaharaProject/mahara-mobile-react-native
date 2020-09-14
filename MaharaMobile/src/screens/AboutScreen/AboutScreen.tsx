@@ -1,17 +1,65 @@
 import {i18n} from '@lingui/core';
-import {t, Trans} from '@lingui/macro';
+import {t} from '@lingui/macro';
+import {List, ListItem} from 'native-base';
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Linking, ScrollView} from 'react-native';
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
+import MediumText from '../../components/UI/CustomText/MediumText';
 
 const AboutScreen = () => {
   return (
-    <View style={generic.wrap}>
-      <Text>
-        <Trans>...</Trans>
-      </Text>
-    </View>
+    <ScrollView style={generic.wrap}>
+      <List>
+        <ListItem>
+          <MediumText>
+            Mahara Mobile is an open source project created by the Mahara
+            Project Team. To contribute or report bugs, see&nbsp;
+            <MediumText
+              style={{color: styles.colors.primary}}
+              onPress={() =>
+                Linking.openURL(
+                  'https://github.com/MaharaProject/mahara-mobile'
+                )
+              }>
+              our Mahara project.
+            </MediumText>
+          </MediumText>
+        </ListItem>
+        <ListItem>
+          <MediumText>
+            Mahara Mobile allows you to connect your mobile device to your
+            Mahara site. You can create and collect your content on your mobile
+            device and use the app to upload it to your Mahara site. You can any
+            file available for uploading via Android and create journal entries.
+          </MediumText>
+        </ListItem>
+        <ListItem>
+          <MediumText>
+            Mahara is an open source ePortfolio system designed for social
+            learning. An ePortfolio is a system in which learners can record
+            evidence of their learning, e.g. essays, artwork, certificates,
+            reflections or other such things they produce that can be stored
+            digitally.
+          </MediumText>
+        </ListItem>
+        <ListItem>
+          <MediumText>
+            Mahara Mobile allows you to collect your evidence on your mobile
+            device and also when you are offline. You can then upload it to
+            Mahara and put into your portfolios.
+          </MediumText>
+        </ListItem>
+        <ListItem>
+          <MediumText>
+            In order to push content to Mahara from Mahara Mobile, you require
+            an account on a Mahara site that allows mobile uploads. Typically,
+            the institution that you are affiliated with will make a Mahara
+            instance available to you to use if you are working with portfolios.
+          </MediumText>
+        </ListItem>
+      </List>
+    </ScrollView>
   );
 };
 

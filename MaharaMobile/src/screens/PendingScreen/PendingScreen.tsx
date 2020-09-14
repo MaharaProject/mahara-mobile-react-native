@@ -22,12 +22,12 @@ import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import i18n from '../../i18n';
 import {
   DisplayItems,
-  PendingMFile,
   MessageDescriptor,
-  PendingJEntry,
-  UploadResponse,
   MessageInfoType,
-  UploadItemType
+  PendingJEntry,
+  PendingMFile,
+  UploadItemType,
+  UploadResponse
 } from '../../models/models';
 import {selectUrl, selectUserName} from '../../reducers/loginInfoReducer';
 import {RootState} from '../../reducers/rootReducer';
@@ -41,7 +41,6 @@ import {
 } from '../../reducers/uploadJEntriesReducer';
 import {GUEST_USERNAME} from '../../utils/constants';
 import {
-  isPendingJEntry,
   uploadItemToMahara,
   usePreviousProps
 } from '../../utils/helperFunctions';
