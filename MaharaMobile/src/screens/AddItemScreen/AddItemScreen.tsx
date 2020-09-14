@@ -116,7 +116,7 @@ const AddItemScreen = (props: Props) => {
             url={props.url}
             editItem={null}
             navigation={props.navigation}
-            defaultFolderTitle={props.defaultFolderTitle}
+            defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
           />
         </View>
