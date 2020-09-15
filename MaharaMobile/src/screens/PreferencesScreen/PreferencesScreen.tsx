@@ -8,10 +8,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {setDefaultBlogId, setDefaultFolder} from '../../actions/actions';
 import image from '../../assets/images/no_userphoto.png';
 import buttons from '../../assets/styles/buttons';
-import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
+import i18n from '../../i18n';
 import {UserBlog, UserFolder} from '../../models/models';
 import {
   selectDefaultBlogId,
@@ -30,7 +30,6 @@ import {fetchProfilePic} from '../../utils/authHelperFunctions';
 import {GUEST_TOKEN} from '../../utils/constants';
 import {putDefaultAtTop} from '../../utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
-import i18n from '../../i18n';
 
 type Props = {
   navigation;

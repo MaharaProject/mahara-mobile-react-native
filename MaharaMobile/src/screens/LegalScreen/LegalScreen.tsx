@@ -1,8 +1,8 @@
 import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
-import {Body, List, ListItem, Text} from 'native-base';
+import {Body, List, ListItem} from 'native-base';
 import React from 'react';
-import {Linking, ScrollView} from 'react-native';
+import {ScrollView} from 'react-native';
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
 import LinkText from '../../components/UI/CustomText/LinkText';

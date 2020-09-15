@@ -21,7 +21,7 @@ const LinkText = (props: Props) => (
         ...props.style
       }}
       onPress={() => Linking.openURL(props.url ?? 'mahara.org')}>
-      &nbsp; {props.text}
+      &nbsp; {props.text}&nbsp;
     </Text>
   </Trans>
 );

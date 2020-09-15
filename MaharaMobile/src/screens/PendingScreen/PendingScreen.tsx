@@ -61,7 +61,6 @@ const PendingScreen = (props: Props) => {
   const numUploadFiles = props.uploadFiles.length;
   const numUploadJEntries = props.uploadJEntries.length;
   const numUploadItems = numUploadFiles + numUploadJEntries;
-  const prevUploadCount = usePreviousProps(numUploadItems) || 0;
 
   const [uploadedItemsIds, setUploadedItemsIds] = useState<string[]>([]);
   const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
@@ -74,14 +73,6 @@ const PendingScreen = (props: Props) => {
     text: MessageDescriptor,
     messageType: MessageInfoType
   ) => {
-    // showMessage({
-    //   message: i18n._(text),
-    //   icon: 'success',
-    //   titleStyle: messages.errorMessage,
-    //   backgroundColor: variables.colors.successbg,
-    //   color: variables.colors.success
-    // });
-
     Toast.show({
       text: (
         <Text

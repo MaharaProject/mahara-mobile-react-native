@@ -1,9 +1,8 @@
 import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
-import {List, ListItem, Text} from 'native-base';
+import {List, ListItem} from 'native-base';
 import React from 'react';
-import {Linking, ScrollView} from 'react-native';
-import {color} from 'react-native-reanimated';
+import {ScrollView} from 'react-native';
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
 import LinkText from '../../components/UI/CustomText/LinkText';
@@ -19,7 +18,7 @@ const AboutScreen = () => {
             Project Team. To contribute or report bugs, see our
             <LinkText
               url="https://github.com/MaharaProject/mahara-mobile"
-              text="Mahara Project"
+              text="Mahara Project."
             />
           </MediumText>
         </ListItem>

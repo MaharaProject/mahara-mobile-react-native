@@ -1,10 +1,9 @@
 import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
+import {Item} from 'native-base';
 import React from 'react';
 import {Text} from 'react-native';
-import {Item} from 'native-base';
 import styles from '../../../assets/styles/variables';
-import {MessageDescriptor} from '../../../models/models';
 
 const RequiredWarningText = props => (
   <I18n>
