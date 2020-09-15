@@ -1,29 +1,26 @@
 import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
-import {List, ListItem} from 'native-base';
+import {List, ListItem, Text} from 'native-base';
 import React from 'react';
 import {Linking, ScrollView} from 'react-native';
+import {color} from 'react-native-reanimated';
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
+import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 
 const AboutScreen = () => {
   return (
     <ScrollView style={generic.wrap}>
       <List>
-        <ListItem>
-          <MediumText>
+        <ListItem style={{flexDirection: 'column'}}>
+          <MediumText pureText={false}>
             Mahara Mobile is an open source project created by the Mahara
-            Project Team. To contribute or report bugs, see&nbsp;
-            <MediumText
-              style={{color: styles.colors.primary}}
-              onPress={() =>
-                Linking.openURL(
-                  'https://github.com/MaharaProject/mahara-mobile'
-                )
-              }>
-              our Mahara project.
-            </MediumText>
+            Project Team. To contribute or report bugs, see our
+            <LinkText
+              url="https://github.com/MaharaProject/mahara-mobile"
+              text="Mahara Project"
+            />
           </MediumText>
         </ListItem>
         <ListItem>

@@ -1,10 +1,11 @@
 import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
-import {Body, List, ListItem} from 'native-base';
+import {Body, List, ListItem, Text} from 'native-base';
 import React from 'react';
 import {Linking, ScrollView} from 'react-native';
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
+import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
 
@@ -95,15 +96,12 @@ const LegalScreen = () => (
       <ListItem>
         <Body>
           <SubHeading text="Contact" />
-          <MediumText>
-            If you have any questions regarding this Statement or believe we
-            have not adhered to the above criteria, please&nbsp;
-            <MediumText
-              note
-              style={{color: styles.colors.primary}}
-              onPress={() => Linking.openURL('https://mahara.org/contact.php')}>
-              contact us&nbsp;
+          <MediumText pureText={false}>
+            <MediumText>
+              If you have any questions regarding this Statement or believe we
+              have not adhered to the above criteria, please
             </MediumText>
+            <LinkText url="https://mahara.org/contact.php" text="contact us" />
             and we will use all reasonable efforts to remedy the issue.
           </MediumText>
         </Body>
