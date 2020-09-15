@@ -30,7 +30,7 @@ it('renders correctly', () => {
   renderer.create(
     <Provider store={mockStore(initialState)}>
       <I18nProvider i18n={i18n} language="en">
-        <PendingScreen />
+        <PendingScreen navigation={{getParam: jest.fn()}} />
       </I18nProvider>
     </Provider>
   );

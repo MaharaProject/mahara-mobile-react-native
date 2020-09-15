@@ -109,10 +109,10 @@ const PendingScreen = (props: Props) => {
   };
 
   useEffect(() => {
-    if (prevUploadCount < numUploadItems && numUploadItems !== 0) {
+    if (props.navigation.getParam('added') === true) {
       flashMessage(t`Added to upload queue successfully!`, 'success');
     }
-  }, [numUploadItems]);
+  }, [props.navigation.getParam('added')]);
 
   /**
    * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
