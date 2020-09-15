@@ -6,6 +6,7 @@ import React, {useEffect, useState} from 'react';
 import {PermissionsAndroid, Platform, Text, View} from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
+import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 import variables from '../../assets/styles/variables';
 import {File, PendingMFile, Playback} from '../../models/models';
 import {newFile} from '../../models/typeCreators';
@@ -99,7 +100,9 @@ const AddAudio = (props: Props) => {
 
   const onStartRecord = async () => {
     try {
-      const result = await audioRecorderPlayer.startRecorder();
+      const result = await audioRecorderPlayer.startRecorder(
+        'sdcard/sound.mp3'
+      );
       audioRecorderPlayer.addRecordBackListener(() => {
         setAudioFile(result);
         setRecordStat('recording');
@@ -120,7 +123,7 @@ const AddAudio = (props: Props) => {
       props.setPickedFile(
         newFile(
           stats.path,
-          'audio/m4a',
+          `audio/${Platform.OS === PLATFORM.IOS ? 'm4a' : 'mp3'}`,
           stats.filename,
           parseInt(stats.size, 10)
         )

@@ -98,8 +98,8 @@ const EditItemScreen = (props: Props) => {
     <ScrollView>
       <View style={generic.wrap}>
         {pickedFile.name &&
-        (pickedFile.mimeType.startsWith('image') ||
-          pickedFile.mimeType.startsWith('video'))
+        (pickedFile.type.startsWith('image') ||
+          pickedFile.type.startsWith('video'))
           ? renderImagePreview(pickedFile.uri)
           : null}
         {itemType === 'FILE' && (
