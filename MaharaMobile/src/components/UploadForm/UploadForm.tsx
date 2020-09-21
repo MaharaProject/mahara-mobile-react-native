@@ -454,8 +454,20 @@ const UploadForm = (props: Props) => {
     </View>
   );
 
+  const getFormValidation = () => {
+    console.log(itemType);
+    if (itemType !== 'J_ENTRY' && !fileValid) {
+      return false;
+    }
+
+    if (itemType === 'J_ENTRY' && (!descValid || !titleValid)) {
+      return false;
+    }
+    return true;
+  };
+
   const renderButtons = () => {
-    const validButton = titleValid && descValid && fileValid;
+    const validButton = getFormValidation();
     const intlItemType = getUploadTypeIntlStrings(itemType);
     return (
       <View>
