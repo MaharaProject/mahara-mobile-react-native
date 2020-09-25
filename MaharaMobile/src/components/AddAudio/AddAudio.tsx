@@ -1,22 +1,22 @@
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import {Button, Icon} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {PermissionsAndroid, Platform, Text, View} from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 import variables from '../../assets/styles/variables';
-import {File, PendingMFile, Playback} from '../../models/models';
+import {File, Playback} from '../../models/models';
 import {newFile} from '../../models/typeCreators';
+import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<File>>;
-  editItem?: PendingMFile;
+  audioFileToEdit: File;
   i18n: I18n;
 };
 
@@ -27,8 +27,10 @@ const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const AddAudio = (props: Props) => {
   const [recordStatus, setRecordStat] = useState<RecordStatus>('not-recorded');
+  const [uri, setURI] = useState(
+    props.audioFileToEdit ? props.audioFileToEdit.uri : ''
+  );
 
-  const [audioFile, setAudioFile] = useState('');
   const [playStatus, setPlayStatus] = useState<PlayStatus>('not-playing');
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
@@ -59,6 +61,17 @@ const AddAudio = (props: Props) => {
             buttonPositive: props.i18n._(t`Allow`)
           }
         );
+
+        if (grantedStorage !== PermissionsAndroid.RESULTS.GRANTED) {
+          setIsPermissionGranted(false);
+          return;
+        }
+      } catch (e) {
+        console.warn(e);
+        setIsPermissionGranted(false);
+      }
+
+      try {
         const grantedRecord = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
           {
@@ -69,19 +82,13 @@ const AddAudio = (props: Props) => {
             buttonPositive: props.i18n._(t`Allow`)
           }
         );
-
-        if (!(grantedStorage === PermissionsAndroid.RESULTS.GRANTED)) {
+        if (grantedRecord !== PermissionsAndroid.RESULTS.GRANTED) {
           setIsPermissionGranted(false);
           return;
         }
-        if (!(grantedRecord === PermissionsAndroid.RESULTS.GRANTED)) {
-          setIsPermissionGranted(false);
-          return;
-        }
-      } catch (err) {
+      } catch (e) {
+        console.warn(e);
         setIsPermissionGranted(false);
-        // permission = false;
-        // return permission;
       }
       setIsPermissionGranted(true);
       // return permission;
@@ -93,47 +100,49 @@ const AddAudio = (props: Props) => {
   });
 
   useEffect(() => {
-    if (props.editItem) {
+    if (props.audioFileToEdit) {
       setRecordStat('recorded');
     }
-  }, [props.editItem]);
+  }, [props.audioFileToEdit]);
 
   const onStartRecord = async () => {
-    try {
-      const result = await audioRecorderPlayer.startRecorder(
-        'sdcard/sound.mp3'
-      );
-      audioRecorderPlayer.addRecordBackListener(() => {
-        setAudioFile(result);
-        setRecordStat('recording');
-      });
-    } catch (e) {
-      // console.log(e);
-    }
-  };
+    const rand = Math.round(Math.random() * 1000);
+    const path =
+      Platform.select({
+        ios: `${rand}recording.m4a`,
+        android: `sdcard/${rand}recording.mp3`
+      }) ?? `${rand}recording.m4a`;
 
-  const onStopRecord = async () => {
-    const fileURI = await audioRecorderPlayer.stopRecorder();
-    audioRecorderPlayer.removeRecordBackListener();
+    setURI(path);
 
-    setAudioFile(fileURI);
-    setRecordStat('recorded');
-
-    RNFetchBlob.fs.stat(checkIOS(fileURI)).then(stats => {
-      props.setPickedFile(
-        newFile(
-          stats.path,
-          `audio/${Platform.OS === PLATFORM.IOS ? 'm4a' : 'mp3'}`,
-          stats.filename,
-          parseInt(stats.size, 10)
-        )
-      );
+    const resultURI = await audioRecorderPlayer.startRecorder(path);
+    audioRecorderPlayer.addRecordBackListener((e: any) => {
+      setURI(resultURI);
+      setRecordStat('recording');
     });
   };
 
-  const handleRecord = async () => {
-    // const permission = await checkPermissions();
+  const onStopRecord = async () => {
+    const result = await audioRecorderPlayer.stopRecorder();
+    audioRecorderPlayer.removeRecordBackListener();
+    setRecordStat('recorded');
 
+    let fileSize = 0;
+    let filename = '';
+
+    await RNFetchBlob.fs.stat(checkIOS(result)).then(stats => {
+      filename = stats.filename;
+      fileSize = parseInt(stats.size, 10);
+    });
+
+    const mime = `audio/${Platform.OS === PLATFORM.IOS ? 'm4a' : 'mp3'}`;
+
+    const file = newFile(uri, mime, filename, fileSize);
+
+    props.setPickedFile(file);
+  };
+
+  const handleRecord = async () => {
     if (!isPermissionGranted) {
       return;
     }
@@ -146,23 +155,24 @@ const AddAudio = (props: Props) => {
 
   // Handling playing
   const onStartPlay = async () => {
-    await audioRecorderPlayer.startPlayer(audioFile);
+    await audioRecorderPlayer.startPlayer(uri);
     audioRecorderPlayer.addPlayBackListener((e: Playback) => {
       if (e.current_position === e.duration) {
-        audioRecorderPlayer.stopPlayer().catch(() => {
-          // do nothing
-        });
-        setPlayStatus('not-playing');
+        audioRecorderPlayer
+          .stopPlayer()
+          .then(() => {
+            setPlayStatus('not-playing');
+          })
+          .catch(stopErr => {
+            // audio reached end
+            setPlayStatus('not-playing');
+          });
       }
     });
   };
 
   const onPausePlay = async () => {
-    try {
-      await audioRecorderPlayer.pausePlayer();
-    } catch (e) {
-      // console.log(e);
-    }
+    await audioRecorderPlayer.pausePlayer();
   };
 
   const handlePlay = () => {
@@ -219,19 +229,5 @@ const AddAudio = (props: Props) => {
     </View>
   );
 };
-
-type AudioPlayButtonProps = {
-  onPress: () => void;
-  iconName: string;
-};
-const AudioPlayButton = (props: AudioPlayButtonProps) => (
-  <Button
-    bordered
-    rounded
-    onPress={props.onPress}
-    style={{marginEnd: variables.padding.sm}}>
-    <Icon name={props.iconName} />
-  </Button>
-);
 
 export default withI18n()(AddAudio);

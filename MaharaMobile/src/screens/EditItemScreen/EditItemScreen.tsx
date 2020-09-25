@@ -16,7 +16,7 @@ import i18n from '../../i18n';
 import {
   File,
   PendingJEntry,
-  PendingMFile as PendingFile,
+  PendingMFile,
   UploadItemType,
   UserBlog,
   UserFolder,
@@ -41,10 +41,7 @@ import {
   renderImagePreview,
   takePhoto
 } from '../../utils/addEditHelperFunctions';
-import {
-  getUploadTypeIntlStrings,
-  isPendingMFile
-} from '../../utils/helperFunctions';
+import {getUploadTypeIntlStrings} from '../../utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -58,31 +55,25 @@ type Props = {
 };
 
 const EditItemScreen = (props: Props) => {
-  let editingFile: File = {
-    name: '',
-    size: 0,
-    type: '',
-    uri: ''
-  };
+  // State
+  const itemType: UploadItemType = props.navigation.getParam('itemType');
+  const [pendingFile, setPendingFile] = useState<PendingMFile>(
+    props.navigation.getParam('itemToEdit')
+  );
+  const [pendingJEntry, setPendingJEntry] = useState<PendingJEntry>(
+    props.navigation.getParam('itemToEdit')
+  );
+  const [pickedFile, setPickedFile] = useState<File>(
+    pendingFile.maharaFormData.filetoupload
+  );
 
   // Get item passed in as nav param from Upload Queue
-  const itemToEdit: PendingFile | PendingJEntry = props.navigation.getParam(
+  const itemToEdit: PendingMFile | PendingJEntry = props.navigation.getParam(
     'itemToEdit'
   );
 
-  if (itemToEdit) {
-    if (isPendingMFile(itemToEdit)) {
-      const maharaPendingFile: PendingFile = itemToEdit;
-      editingFile = maharaPendingFile.maharaFormData.filetoupload;
-    }
-  }
-
-  // State
-  const itemType: UploadItemType = props.navigation.getParam('itemType');
-  const [pickedFile, setPickedFile] = useState<File>(editingFile);
-
   useEffect(() => {
-    setPickedFile(editingFile);
+    setPickedFile(pickedFile);
   }, []);
 
   return (
@@ -114,7 +105,10 @@ const EditItemScreen = (props: Props) => {
         )}
         {itemType === 'AUDIO' && (
           <View>
-            <AddAudio editItem={itemToEdit} setPickedFile={setPickedFile} />
+            <AddAudio
+              audioFileToEdit={pickedFile}
+              setPickedFile={setPickedFile}
+            />
           </View>
         )}
         <View>

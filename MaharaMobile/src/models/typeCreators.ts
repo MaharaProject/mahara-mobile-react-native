@@ -4,6 +4,7 @@ import {
   JournalEntry,
   MaharaFile,
   PendingJEntry,
+  UploadItemType,
   UploadResponse,
   UserBlog,
   UserFolder,
@@ -28,23 +29,21 @@ export const newMaharaFile = (
   fileName: string,
   desc: string,
   file: File
-): MaharaFile => {
-  return {
-    description: desc,
-    name: fileName,
-    filetoupload: file,
-    foldername: folderName,
-    webservice: webService,
-    wstoken: token
-  };
-};
+): MaharaFile => ({
+  description: desc,
+  name: fileName,
+  filetoupload: file,
+  foldername: folderName,
+  webservice: webService,
+  wstoken: token
+});
 
-export const newMaharaPendingFile = (
+export const newPendingMFile = (
   itemId = '',
   url: string,
   maharaFormData: MaharaFile,
   mimetype: string,
-  type: string
+  type: UploadItemType
 ) => {
   let id = itemId;
   if (!id) {

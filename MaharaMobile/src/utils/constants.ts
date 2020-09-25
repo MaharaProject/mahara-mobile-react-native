@@ -1,5 +1,13 @@
 import {t} from '@lingui/macro';
-import {UserBlog, UserFolder} from '../models/models';
+import {
+  File,
+  JournalEntry,
+  MaharaFile,
+  PendingJEntry,
+  PendingMFile,
+  UserBlog,
+  UserFolder
+} from '../models/models';
 
 // action types - payloads of information that send data from your application to your store
 
@@ -100,3 +108,36 @@ export const md_AUDIO = t`audio`;
 
 // Icons
 export const LOG_IN_ICON = 'log-in-outline';
+
+// SINGLETON EMPTY
+
+export const emptyFile: File = {uri: '', type: '', name: '', size: 0};
+export const emptyMFile: MaharaFile = {
+  webservice: '',
+  wstoken: '',
+  foldername: '',
+  name: '',
+  description: '',
+  filetoupload: emptyFile
+};
+export const emptyPendingMFile: PendingMFile = {
+  id: '',
+  url: '',
+  maharaFormData: emptyMFile,
+  mimetype: '',
+  type: 'FILE'
+};
+
+export const emptyJEntry: JournalEntry = {
+  wstoken: '',
+  blogid: -1,
+  wsfunction: '',
+  title: '',
+  body: '',
+  isdraft: false
+};
+export const emptyPendingJEntry: PendingJEntry = {
+  id: '',
+  url: '',
+  journalEntry: emptyJEntry
+};
