@@ -1,19 +1,13 @@
 import React from 'react';
 import {FlatList} from 'react-native-gesture-handler';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
-import {DisplayItems, PendingMFile, PendingJEntry} from '../../models/models';
-import {isPendingMFile, isPendingJEntry} from '../../utils/helperFunctions';
+import {DisplayItems, PendingJEntry, PendingMFile} from '../../models/models';
+import {isPendingJEntry, isPendingMFile} from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
   dataList: DisplayItems;
   onRemove: Function;
   onEdit: Function;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   successfullyUploadedItemsIds: Array<string>;
   uploadErrorItems: Array<string>;
   onClearError: Function;

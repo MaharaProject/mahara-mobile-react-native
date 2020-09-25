@@ -14,6 +14,7 @@ module.exports = {
     "react/jsx-props-no-spreading": 0,
     "react/prop-types": 0,
     "react/self-closing-comp": 1,
+    "react/require-default-props":0, // TODO: fix and add back in or ask Alexey
     "react/jsx-filename-extension": [
       1,
       {

@@ -1,4 +1,3 @@
-import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, View} from 'react-native';
@@ -8,7 +7,6 @@ import {
   NavigationState
 } from 'react-navigation';
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
@@ -17,8 +15,8 @@ import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
 import {
   File,
-  PendingMFile as PendingFile,
   PendingJEntry,
+  PendingMFile as PendingFile,
   UploadItemType,
   UserBlog,
   UserFolder,
@@ -51,17 +49,10 @@ import {
 type Props = {
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
-  userName: string;
   token: string;
-  dispatch: Dispatch;
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   url: string;
-  uploadList: {
-    files: Array<PendingFile>;
-  };
-  itemType: string;
   userBlogs: Array<UserBlog>;
-  i18n: I18n;
   defaultFolderTitle: string;
   defaultBlogId: number;
 };
