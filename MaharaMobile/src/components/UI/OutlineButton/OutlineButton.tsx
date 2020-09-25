@@ -23,6 +23,7 @@ const OutlineButton = (props: Props) => (
           full
           light={props.light}
           rounded
+          textStyle={props.style}
           accessibilityRole="button"
           accessibilityLabel={i18n._(props.text)}
           accessibilityHint={props.accessibilityHint}

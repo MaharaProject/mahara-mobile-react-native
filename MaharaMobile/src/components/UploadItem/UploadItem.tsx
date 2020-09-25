@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unused-prop-types */
 import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {withI18n} from '@lingui/react';

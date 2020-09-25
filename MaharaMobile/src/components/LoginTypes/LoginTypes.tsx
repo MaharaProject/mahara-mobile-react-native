@@ -9,11 +9,6 @@ import {
   View
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
 import LogoSvg from '../../assets/images/Logo-big';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
@@ -27,20 +22,15 @@ import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './LoginTypes.style';
 
 type Props = {
-  url: string;
-  errorMessage: string;
   setLoginType: Function;
   resetForm: Function;
   checkServer: Function;
-  checkUrl: Function;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
   serverPing: boolean;
   isInputHidden: boolean;
-  enterUrlWarning: boolean;
   loading: boolean;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
   onSkip: () => void;
 };
 /**
