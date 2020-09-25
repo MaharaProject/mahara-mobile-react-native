@@ -2,16 +2,10 @@ import {t} from '@lingui/macro';
 import {I18n} from '@lingui/react';
 import {Button, Text} from 'native-base';
 import React from 'react';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
 import buttons from '../../../assets/styles/buttons';
 
 type Props = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  onPress?: () => any;
+  onPress: () => any;
 };
 
 const CancelButton = (props: Props) => (
@@ -23,7 +17,7 @@ const CancelButton = (props: Props) => (
         rounded
         accessibilityRole="button"
         accessibilityLabel="Cancel"
-        onPress={props.onPress || props.navigation.goBack}
+        onPress={props.onPress}
         style={[buttons.md, buttons.cancel]}>
         <Text>{i18n._(t`Cancel`)}</Text>
       </Button>

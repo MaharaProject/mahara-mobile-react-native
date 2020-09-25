@@ -80,7 +80,7 @@ const updateUploadFilesOnLogin = (
   const updatedFiles: Array<PendingMFile> = [];
   const filesArray = Object.keys(uploadJEntries).map(k => uploadJEntries[k]);
   filesArray.forEach((file: PendingMFile) => {
-    const newFile: PendingMFile = {
+    const newPendingMFile: PendingMFile = {
       ...file,
       maharaFormData: {
         ...file.maharaFormData,
@@ -89,7 +89,7 @@ const updateUploadFilesOnLogin = (
       },
       url: urlDomain + file.url
     };
-    updatedFiles.push(newFile);
+    updatedFiles.push(newPendingMFile);
   });
 
   const updatedFilesObj = arrayToObject(updatedFiles);

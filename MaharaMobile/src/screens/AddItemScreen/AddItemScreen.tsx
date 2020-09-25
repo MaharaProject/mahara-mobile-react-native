@@ -20,7 +20,6 @@ import {
   UserFolder,
   UserTag
 } from '../../models/models';
-import {newFile} from '../../models/typeCreators';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
@@ -40,6 +39,7 @@ import {
   renderImagePreview,
   takePhoto
 } from '../../utils/addEditHelperFunctions';
+import {emptyFile} from '../../utils/constants';
 import {getUploadTypeIntlStrings} from '../../utils/helperFunctions';
 
 type Props = {
@@ -56,7 +56,7 @@ type Props = {
 const AddItemScreen = (props: Props) => {
   // State
   const itemType: UploadItemType = props.navigation.getParam('itemType');
-  const [pickedFile, setPickedFile] = useState(newFile('', '', '', -1));
+  const [pickedFile, setPickedFile] = useState(emptyFile);
 
   return (
     <ScrollView>

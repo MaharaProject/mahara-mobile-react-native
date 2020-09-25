@@ -23,8 +23,8 @@ import styles from '../../assets/styles/variables';
 import i18n from '../../i18n';
 import {
   File,
-  PendingMFile,
   PendingJEntry,
+  PendingMFile,
   UploadItemType,
   UserBlog,
   UserFolder,
@@ -33,12 +33,13 @@ import {
 import {
   newJournalEntry,
   newMaharaFile,
-  newMaharaPendingFile,
   newPendingJEntry,
+  newPendingMFile,
   newUserTag
 } from '../../models/typeCreators';
 import {RootState} from '../../reducers/rootReducer';
 import {selectItemTagsStrings} from '../../reducers/userTagsReducer';
+import {emptyPendingJEntry, emptyPendingMFile} from '../../utils/constants';
 import {
   isValidText,
   putDefaultAtTop,
@@ -48,8 +49,8 @@ import {
 import {
   findUserTagByString,
   getUploadTypeIntlStrings,
-  isPendingMFile,
-  isPendingJEntry
+  isPendingJEntry,
+  isPendingMFile
 } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
@@ -100,9 +101,9 @@ const UploadForm = (props: Props) => {
   // form values
   const [isDraft, setIsDraft] = useState(false);
   const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size > 0);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(''); // title and filename
   const [titleValid, setTitleValid] = useState(props.itemType !== 'J_ENTRY');
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState(''); // description and journal entry
   const [descValid, setDescValid] = useState(props.itemType !== 'J_ENTRY');
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
@@ -206,68 +207,87 @@ const UploadForm = (props: Props) => {
   };
 
   /**
+   * Creates PendingJEntry, adds to upload queue
+   * Updates the id if needed and returns the id
+   * @param id
+   */
+  const addJEntryToUpload = (id: string): string => {
+    const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
+    let pendingJournalEntry: PendingJEntry = emptyPendingJEntry;
+
+    const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
+    const jEntry = newJournalEntry(
+      selectedBlog || firstBlog,
+      props.token,
+      title,
+      description,
+      isDraft
+    );
+
+    pendingJournalEntry = newPendingJEntry(id, journalUrl, jEntry);
+
+    // add journal entry to pending list
+    dispatch(addJournalEntryToUploadList(pendingJournalEntry));
+    return pendingJournalEntry.id;
+  };
+
+  /**
+   * Creates PendingMFile, adds to upload queue
+   * Updates the id if needed and returns the id
+   * @param file
+   * @param id
+   */
+  const addFileToUpload = (file: File, id: string): string => {
+    let pendingFileData: PendingMFile = emptyPendingMFile;
+    const tagString = selectedTags ? setTagString(selectedTags) : '';
+    const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
+    const extension = file.name.match(/\.[0-9a-z]+$/i) ?? '';
+
+    const filename = title ? title + extension : file.name;
+
+    const firstFolder = props.userFolders ? props.userFolders[0].title : '';
+    const folder = selectedFolder || firstFolder;
+    const webService = 'module_mobileapi_upload_file';
+
+    const updatedFile = {
+      ...file,
+      name: filename
+    };
+
+    const formData = newMaharaFile(
+      webService,
+      props.token,
+      folder,
+      filename,
+      description,
+      updatedFile
+    );
+
+    pendingFileData = newPendingMFile(
+      id,
+      fileUrl,
+      formData,
+      file.type,
+      itemType
+    );
+
+    dispatch(addFileToUploadList(pendingFileData));
+    return pendingFileData.id;
+  };
+
+  /**
    * Add/edit files to uploadList and update new usertags in redux
    */
   const handleForm = () => {
-    const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
-    const id = props.editItem ? props.editItem.id : null;
-    let pendingJournalEntry: PendingJEntry = null;
-    let pendingFileData: PendingMFile = null;
+    let id = props.editItem ? props.editItem.id : '';
 
     // Upload Journal Entry
     if (itemType === 'J_ENTRY') {
-      const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
-      const jEntry = newJournalEntry(
-        selectedBlog || firstBlog,
-        props.token,
-        title,
-        description,
-        isDraft
-      );
-
-      pendingJournalEntry = newPendingJEntry(id, journalUrl, jEntry);
-
-      // add journal entry to pending list
-      dispatch(addJournalEntryToUploadList(pendingJournalEntry));
+      id = addJEntryToUpload(id);
     } else if (pickedFile) {
       // Upload File
-      const tagString = selectedTags ? setTagString(selectedTags) : '';
-      const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
-      const extension = pickedFile.name.match(/\.[0-9a-z]+$/i);
-
-      const filename = title ? title + extension : pickedFile.name;
-
-      const firstFolder = props.userFolders ? props.userFolders[0].title : '';
-      const folder = selectedFolder || firstFolder;
-      const webService = 'module_mobileapi_upload_file';
-
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let updatedPickedFile: any = {}; // deliberate any
-      if (filename !== pickedFile.name) {
-        updatedPickedFile = {
-          ...pickedFile,
-          name: filename
-        };
-      }
-
-      const formData = newMaharaFile(
-        webService,
-        props.token,
-        folder,
-        filename,
-        description,
-        updatedPickedFile.name ? updatedPickedFile : pickedFile
-      );
-
-      pendingFileData = newMaharaPendingFile(
-        id,
-        fileUrl,
-        formData,
-        pickedFile.type,
-        itemType
-      );
-
-      dispatch(addFileToUploadList(pendingFileData));
+      const file: File = pickedFile;
+      id = addFileToUpload(file, id);
     }
 
     // Update tags in redux
@@ -276,12 +296,7 @@ const UploadForm = (props: Props) => {
     }
     // Attach tags to item on queue to pending
     if (selectedTags.length > 0) {
-      dispatch(
-        addTagsToItem(
-          pendingFileData?.id || pendingJournalEntry?.id,
-          itemTagIds
-        )
-      );
+      dispatch(addTagsToItem(id, itemTagIds));
       dispatch(saveTaggedItemsToAsync());
     }
 
@@ -455,7 +470,6 @@ const UploadForm = (props: Props) => {
   );
 
   const getFormValidation = () => {
-    console.log(itemType);
     if (itemType !== 'J_ENTRY' && !fileValid) {
       return false;
     }
