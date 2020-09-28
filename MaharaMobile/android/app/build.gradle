@@ -133,8 +133,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
-        versionName "20.07.1"
+        versionCode 5
+        versionName "20.10.1"
     }
     splits {
         abi {
@@ -160,6 +160,7 @@ android {
             keyPassword 'android'
         }
     }
+    buildToolsVersion '29.0.2'
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
