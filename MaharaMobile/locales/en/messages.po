@@ -11,9 +11,13 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#: src/components/UI/CustomText/LinkText.tsx:6
-msgid "<0> </0><1>{0} </1>"
-msgstr ""
+#: src/screens/AboutScreen/AboutScreen.tsx:17
+#~ msgid "\"Mahara Project."
+#~ msgstr ""
+
+#: src/components/UI/CustomText/LinkText.tsx:7
+#~ msgid "<0> </0><1>{0} </1>"
+#~ msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:216
 msgid "A file has been added."
@@ -24,7 +28,7 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:64
+#: src/screens/AboutScreen/AboutScreen.tsx:56
 msgid "About Mahara Mobile"
 msgstr ""
 
@@ -79,7 +83,7 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:22
+#: src/screens/VersionScreen/VersionScreen.tsx:23
 msgid "App Version"
 msgstr ""
 
@@ -98,6 +102,10 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
+#: src/screens/LegalScreen/LegalScreen.tsx:27
+msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
+msgstr ""
+
 #: src/utils/addEditHelperFunctions.tsx:11
 msgid "Camera closed."
 msgstr ""
@@ -108,11 +116,11 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:84
+#: src/screens/LegalScreen/LegalScreen.tsx:74
 msgid "Changes to this Privacy Statement"
 msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:28
+#: src/screens/LegalScreen/LegalScreen.tsx:26
 msgid "Collection of personal information"
 msgstr ""
 
@@ -120,7 +128,7 @@ msgstr ""
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:96
+#: src/screens/LegalScreen/LegalScreen.tsx:84
 msgid "Contact"
 msgstr ""
 
@@ -183,8 +191,12 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
+#: src/screens/HelpScreen/HelpScreen.tsx:9
+msgid "For help, contact the support team of the Mahara instance that you are using. Typically, you can find a 'Contact us' link in the footer of the Mahara site to which you log in."
+msgstr ""
+
 #: src/navigations/app-navigator.tsx:40
-#: src/screens/HelpScreen/HelpScreen.tsx:29
+#: src/screens/HelpScreen/HelpScreen.tsx:25
 #: src/screens/MenuScreen/MenuScreen.tsx:19
 msgid "Help"
 msgstr ""
@@ -193,12 +205,24 @@ msgstr ""
 msgid "Hi"
 msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:47
+#: src/screens/LegalScreen/LegalScreen.tsx:41
 msgid "How we use your personal information"
+msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:86
+msgid "If you have any questions regarding this Statement or believe we have not adhered to the above criteria, please"
+msgstr ""
+
+#: src/screens/HelpScreen/HelpScreen.tsx:13
+msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr ""
 
 #: src/utils/addEditHelperFunctions.tsx:14
 msgid "ImagePicker Error:{0}"
+msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:39
+msgid "In order to push content to Mahara from Mahara Mobile, you require an account on a Mahara site that allows mobile uploads. Typically, the institution that you are affiliated with will make a Mahara instance available to you to use if you are working with portfolios."
 msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:15
@@ -244,7 +268,7 @@ msgstr ""
 msgid "Legal"
 msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:118
+#: src/screens/LegalScreen/LegalScreen.tsx:104
 msgid "Legal - Privacy statement"
 msgstr ""
 
@@ -274,6 +298,26 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+#: src/screens/AboutScreen/AboutScreen.tsx:34
+msgid "Mahara Mobile allows you to collect your evidence on your mobile device and also when you are offline. You can then upload it to Mahara and put into your portfolios."
+msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:21
+msgid "Mahara Mobile allows you to connect your mobile device to your Mahara site. You can create and collect your content on your mobile device and use the app to upload it to your Mahara site. You can any file available for uploading via Android and create journal entries."
+msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:15
+msgid "Mahara Mobile is an open source project created by the Mahara Project Team. To contribute or report bugs, see our"
+msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:17
+msgid "Mahara Project."
+msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:27
+msgid "Mahara is an open source ePortfolio system designed for social learning. An ePortfolio is a system in which learners can record evidence of their learning, e.g. essays, artwork, certificates, reflections or other such things they produce that can be stored digitally."
+msgstr ""
+
 #: src/navigations/app-navigator.tsx:38
 #: src/screens/MenuScreen/MenuScreen.tsx:55
 msgid "Menu"
@@ -281,6 +325,10 @@ msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:224
 msgid "Name"
+msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:42
+msgid "Neither the Mahara project nor Catalyst have access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:268
@@ -420,7 +468,7 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:59
+#: src/screens/LegalScreen/LegalScreen.tsx:51
 msgid "Storage and security of your personal information"
 msgstr ""
 
@@ -448,6 +496,10 @@ msgstr ""
 
 #: src/actions/actions.ts:199
 msgid "This is not a Mahara site. Please re-enter URL."
+msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:11
+msgid "This version of Mahara Mobile is 20.10.1"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:224
@@ -490,12 +542,28 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
+#: src/screens/LegalScreen/LegalScreen.tsx:16
+msgid "We are committed to protecting your privacy and providing you with a safe and functional personal learning and development environment. This Statement of Privacy applies to the app 'Mahara Mobile ' as provided by Catalyst IT on behalf of the Mahara community and governs data collection and usage."
+msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:75
+msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such we suggest you check the Privacy Statement each time you visit this app."
+msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:52
+msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT are responsible though for maintaining the Mahara site that you connect to or keeping your installation of Mahara Mobile up to date on your mobile device. It is the responsibility of the organization providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username or password to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile. Once content has been uploaded, file names, descriptions, and journal entries are not available via the app anymore. Images and videos will still be stored in their original location on your device. Audio recordings are not stored outside of Mahara Mobile."
+msgstr ""
+
 #: src/actions/actions.ts:203
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
 msgstr ""
 
 #: src/screens/LoginScreen/LoginScreen.tsx:90
 msgid "You didn't enter anything in this field."
+msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:32
+msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:191
@@ -510,8 +578,16 @@ msgstr ""
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 
+#: src/screens/LegalScreen/LegalScreen.tsx:89
+msgid "and we will use all reasonable efforts to remedy the issue."
+msgstr ""
+
 #: src/utils/constants.ts:83
 msgid "audio"
+msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:88
+msgid "contact us"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:243
@@ -536,9 +612,13 @@ msgstr ""
 msgid "photo"
 msgstr ""
 
-#: src/components/UI/CustomText/MediumText.tsx:16
-msgid "{0}"
-msgstr ""
+#: src/screens/LegalScreen/LegalScreen.tsx:42
+#~ msgid "tNeither the Mahara project nor Catalyst have access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
+#~ msgstr ""
+
+#: src/components/UI/CustomText/MediumText.tsx:14
+#~ msgid "{0}"
+#~ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:101
 msgid "{errorMessage}"

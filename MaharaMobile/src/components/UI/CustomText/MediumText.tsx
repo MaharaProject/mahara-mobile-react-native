@@ -1,4 +1,4 @@
-import {t} from '@lingui/macro';
+import {MessageDescriptor} from '@lingui/core';
 import {Text} from 'native-base';
 import React from 'react';
 import styles from '../../../assets/styles/variables';
@@ -6,7 +6,7 @@ import i18n from '../../../i18n';
 
 type Props = {
   children?: React.ReactNode;
-  text?: string;
+  text?: MessageDescriptor;
   style?: any;
 };
 
@@ -21,11 +21,10 @@ const MediumText = (props: Props) => {
     <Text
       style={{
         fontSize: styles.font.md,
-        flex: 1,
         flexWrap: 'wrap',
         ...props.style
       }}>
-      {props.text ? i18n._(t`${props.text}`) : props.children}
+      {props.text ? i18n._(props.text) : props.children}
     </Text>
   );
 };

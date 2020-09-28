@@ -16,11 +16,11 @@ const LegalScreen = () => (
         <Body>
           <SubHeading text={t`Introduction`} />
           <MediumText
-            text="We are committed to protecting your privacy and providing you with a
+            text={t`We are committed to protecting your privacy and providing you with a
             safe and functional personal learning and development environment.
             This Statement of Privacy applies to the app 'Mahara Mobile
             ' as provided by Catalyst IT on behalf of the Mahara community
-            and governs data collection and usage."
+            and governs data collection and usage.`}
           />
         </Body>
       </ListItem>
@@ -29,17 +29,17 @@ const LegalScreen = () => (
         <Body>
           <SubHeading text={t`Collection of personal information`} />
           <MediumText
-            text="By using the full potential of the application, you will need to log
+            text={t`By using the full potential of the application, you will need to log
             into the Mahara site that you are using for your portfolio work. The
             login form for internal Mahara or LDAP accounts sits in the mobile
-            app whereas single sign-on takes you to your Mahara site."
+            app whereas single sign-on takes you to your Mahara site.`}
           />
 
           <MediumText
-            text="Your own name is displayed in the app once you are logged in, and
+            text={t`Your own name is displayed in the app once you are logged in, and
             you are connected to your Mahara account via an access token that is
             stored in the app as well as on Mahara itself so the two can
-            communicate with each other."
+            communicate with each other.`}
           />
         </Body>
       </ListItem>
@@ -48,10 +48,10 @@ const LegalScreen = () => (
         <Body>
           <SubHeading text={t`How we use your personal information`} />
           <MediumText
-            text="Neither the Mahara project nor Catalyst have access to any of the
+            text={t`Neither the Mahara project nor Catalyst have access to any of the
             data that you enter on Mahara Mobile. The institution that hosts the
             Mahara site that you connect to cannot access data in your Mahara
-            Mobile app either."
+            Mobile app either.`}
           />
         </Body>
       </ListItem>
@@ -62,7 +62,7 @@ const LegalScreen = () => (
             text={t`Storage and security of your personal information`}
           />
           <MediumText
-            text="We will take all reasonable steps to ensure that the connection
+            text={t`We will take all reasonable steps to ensure that the connection
             between Mahara Mobile and a Mahara site you connect to is secure
             from the app perspective and that your access information is not
             disclosed. Neither the Mahara project nor Catalyst IT are
@@ -77,7 +77,7 @@ const LegalScreen = () => (
             descriptions, and journal entries are not available via the app
             anymore. Images and videos will still be stored in their original
             location on your device. Audio recordings are not stored outside of
-            Mahara Mobile."
+            Mahara Mobile.`}
           />
         </Body>
       </ListItem>
@@ -87,10 +87,10 @@ const LegalScreen = () => (
         <Body>
           <SubHeading text={t`Changes to this Privacy Statement`} />
           <MediumText
-            text=" We may occasionally make adjustments to our Privacy Statement to
+            text={t`We may occasionally make adjustments to our Privacy Statement to
             reflect changes to the system and in response to feedback. As such
             we suggest you check the Privacy Statement each time you visit this
-            app."
+            app.`}
           />
         </Body>
       </ListItem>
@@ -100,11 +100,16 @@ const LegalScreen = () => (
           <SubHeading text={t`Contact`} />
           <MediumText>
             <MediumText
-              text="If you have any questions regarding this Statement or believe we
-              have not adhered to the above criteria, please"
+              text={t`If you have any questions regarding this Statement or believe we
+              have not adhered to the above criteria, please`}
             />
-            <LinkText url="https://mahara.org/contact.php" text="contact us" />
-            and we will use all reasonable efforts to remedy the issue.
+            <LinkText
+              url="https://mahara.org/contact.php"
+              text={t`contact us`}
+            />
+            <MediumText
+              text={t`and we will use all reasonable efforts to remedy the issue.`}
+            />
           </MediumText>
         </Body>
       </ListItem>
