@@ -13,34 +13,33 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/screens/AboutScreen/AboutScreen.tsx:10
-#: src/screens/HelpScreen/HelpScreen.tsx:9
-msgid "..."
-msgstr "KO ...."
+#: src/components/UI/CustomText/LinkText.tsx:6
+msgid "<0> </0><1>{0} </1>"
+msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:196
+#: src/components/UploadForm/UploadForm.tsx:216
 msgid "A file has been added."
 msgstr "파일이 추가되었습니다."
 
 #: src/components/UploadForm/UploadForm.tsx:203
-msgid "A file is required."
-msgstr "파일이 필요합니다."
+#~ msgid "A file is required."
+#~ msgstr "파일이 필요합니다."
 
 #: src/navigations/app-navigator.tsx:37
 #: src/screens/MenuScreen/MenuScreen.tsx:16
 msgid "About"
 msgstr "정보"
 
-#: src/screens/AboutScreen/AboutScreen.tsx:23
+#: src/screens/AboutScreen/AboutScreen.tsx:64
 msgid "About Mahara Mobile"
 msgstr "Mahara Mobile에 대하여"
 
-#: src/components/AddAudio/AddAudio.tsx:44
-#: src/components/AddAudio/AddAudio.tsx:44
+#: src/components/AddAudio/AddAudio.tsx:45
+#: src/components/AddAudio/AddAudio.tsx:45
 msgid "Access permission"
 msgstr "액세스 권한"
 
-#: src/components/LoginTypes/LoginTypes.tsx:107
+#: src/components/LoginTypes/LoginTypes.tsx:104
 msgid "Access token"
 msgstr "액세스 토큰 :D"
 
@@ -53,40 +52,40 @@ msgstr "추가"
 msgid "Add an item"
 msgstr "아이템 추가"
 
-#: src/components/UploadForm/UploadForm.tsx:259
+#: src/components/UploadForm/UploadForm.tsx:279
 msgid "Add new tag +"
 msgstr "새 태그 추가 +"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:49
+#: src/screens/AddItemScreen/AddItemScreen.tsx:51
 msgid "Add {0}"
 msgstr "{0} 추가"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:53
+#: src/screens/PendingScreen/PendingScreen.tsx:64
 msgid "Added to upload queue successfully!"
 msgstr "업로드 대기열에 성공적으로 추가되었습니다!"
 
-#: src/components/LoginTypes/LoginTypes.tsx:77
+#: src/components/LoginTypes/LoginTypes.tsx:76
 msgid "Address of your Mahara site"
 msgstr "Mahara 웹 사이트"
 
-#: src/components/AddAudio/AddAudio.tsx:46
-#: src/components/AddAudio/AddAudio.tsx:51
-#: src/components/AddAudio/AddAudio.tsx:46
-#: src/components/AddAudio/AddAudio.tsx:51
+#: src/components/AddAudio/AddAudio.tsx:47
+#: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:47
+#: src/components/AddAudio/AddAudio.tsx:62
 msgid "Allow"
 msgstr "허용하다"
 
-#: src/components/AddAudio/AddAudio.tsx:45
-#: src/components/AddAudio/AddAudio.tsx:45
+#: src/components/AddAudio/AddAudio.tsx:46
+#: src/components/AddAudio/AddAudio.tsx:46
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하도록 허용 하시겠습니까?"
 
-#: src/components/AddAudio/AddAudio.tsx:50
-#: src/components/AddAudio/AddAudio.tsx:50
+#: src/components/AddAudio/AddAudio.tsx:61
+#: src/components/AddAudio/AddAudio.tsx:61
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 하시겠습니까?"
 
-#: src/screens/VersionScreen/VersionScreen.tsx:21
+#: src/screens/VersionScreen/VersionScreen.tsx:22
 msgid "App Version"
 msgstr "앱 버전"
 
@@ -95,7 +94,7 @@ msgid "App version"
 msgstr "앱 버전"
 
 #: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:11
-#: src/screens/PendingScreen/PendingScreen.tsx:60
+#: src/screens/PendingScreen/PendingScreen.tsx:71
 #: src/utils/authHelperFunctions.ts:108
 msgid "Are you sure?"
 msgstr "확실해?"
@@ -106,33 +105,36 @@ msgid "Audio"
 msgstr "오디오"
 
 #: src/screens/LegalScreen/LegalScreen.tsx:29
-msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
-msgstr "응용 프로그램의 잠재력을 최대한 활용하려면 포트폴리오 작업에 사용중인 Mahara 사이트에 로그인해야합니다. 내부 Mahara 또는 LDAP 계정의 로그인 양식은 모바일 앱에 있으며 싱글 사인온은 Mahara 사이트로 이동합니다."
+#~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
+#~ msgstr "응용 프로그램의 잠재력을 최대한 활용하려면 포트폴리오 작업에 사용중인 Mahara 사이트에 로그인해야합니다. 내부 Mahara 또는 LDAP 계정의 로그인 양식은 모바일 앱에 있으며 싱글 사인온은 Mahara 사이트로 이동합니다."
 
-#: src/utils/addEditHelperFunctions.tsx:23
+#: src/utils/addEditHelperFunctions.tsx:11
 msgid "Camera closed."
 msgstr "카메라가 닫혔습니다."
 
 #: src/components/UI/CancelButton/CancelButton.tsx:8
 #: src/components/UI/CustomVerifyBackButton/CustomVerifyBackButton.tsx:13
-#: src/components/UploadForm/UploadForm.tsx:284
-#: src/screens/PendingScreen/PendingScreen.tsx:62
+#: src/screens/PendingScreen/PendingScreen.tsx:73
 msgid "Cancel"
 msgstr "취소"
 
-#: src/screens/LegalScreen/LegalScreen.tsx:82
-msgid "Changes to this privacy statement"
-msgstr "이 개인 정보 보호 정책의 변경"
+#: src/screens/LegalScreen/LegalScreen.tsx:84
+msgid "Changes to this Privacy Statement"
+msgstr ""
 
-#: src/screens/LegalScreen/LegalScreen.tsx:26
+#: src/screens/LegalScreen/LegalScreen.tsx:82
+#~ msgid "Changes to this privacy statement"
+#~ msgstr "이 개인 정보 보호 정책의 변경"
+
+#: src/screens/LegalScreen/LegalScreen.tsx:28
 msgid "Collection of personal information"
 msgstr "개인 정보 수집"
 
-#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Confirm edits to {intlItemType}"
 msgstr "{intlItemType} 편집을 확인하십시오."
 
-#: src/screens/LegalScreen/LegalScreen.tsx:95
+#: src/screens/LegalScreen/LegalScreen.tsx:96
 msgid "Contact"
 msgstr "접촉"
 
@@ -140,15 +142,15 @@ msgstr "접촉"
 msgid "Default options"
 msgstr "개인 정보 수집"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:67
+#: src/screens/PendingScreen/PendingScreen.tsx:78
 msgid "Delete"
 msgstr "삭제"
 
-#: src/components/UploadForm/UploadForm.tsx:207
+#: src/components/UploadForm/UploadForm.tsx:227
 msgid "Description"
 msgstr "설명"
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:61
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:60
 msgid "Destination folder"
 msgstr "대상 폴더"
 
@@ -160,15 +162,15 @@ msgstr "대상 저널"
 msgid "Draft journal entry"
 msgstr "초안 분개"
 
-#: src/screens/EditItemScreen/EditItemScreen.tsx:61
+#: src/screens/EditItemScreen/EditItemScreen.tsx:53
 msgid "Edit {0}"
 msgstr "편집 {0}"
 
-#: src/components/LoginTypes/LoginTypes.tsx:95
+#: src/components/LoginTypes/LoginTypes.tsx:92
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:207
+#: src/components/UploadForm/UploadForm.tsx:227
 msgid "Entry"
 msgstr "분개"
 
@@ -176,27 +178,27 @@ msgstr "분개"
 msgid "Error: You do not have any journals on your site."
 msgstr "오류 : 사이트에 저널이 없습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:302
+#: src/components/UploadForm/UploadForm.tsx:321
 msgid "Fields marked by * are required."
 msgstr "*로 표시된 필드는 필수입니다."
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:14
-#: src/components/UploadForm/UploadForm.tsx:195
+#: src/components/UploadForm/UploadForm.tsx:215
 #: src/utils/helperFunctions.ts:98
 msgid "File"
 msgstr "파일"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:136
+#: src/screens/PendingScreen/PendingScreen.tsx:148
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
-#: src/components/UploadForm/UploadForm.tsx:217
+#: src/components/UploadForm/UploadForm.tsx:237
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:104
 msgid "Folder"
 msgstr "볼더"
 
 #: src/navigations/app-navigator.tsx:40
-#: src/screens/HelpScreen/HelpScreen.tsx:21
+#: src/screens/HelpScreen/HelpScreen.tsx:29
 #: src/screens/MenuScreen/MenuScreen.tsx:19
 msgid "Help"
 msgstr "도움"
@@ -210,14 +212,14 @@ msgid "How we use your personal information"
 msgstr "개인 정보를 사용하는 방법"
 
 #: src/screens/LegalScreen/LegalScreen.tsx:98
-msgid "If you have any questions regarding this Statement or believe we have not adhered to the above criteria, please contact us at https://mahara.org/contact.php and we will use all reasonable efforts to remedy the issue."
-msgstr "본 성명서에 관해 궁금한 점이 있거나 위의 기준을 준수하지 않았다고 생각되면 https://mahara.org/contact.php로 문의하십시오. 당사는 문제를 해결하기 위해 모든 합리적인 노력을 다할 것입니다."
+#~ msgid "If you have any questions regarding this Statement or believe we have not adhered to the above criteria, please contact us at https://mahara.org/contact.php and we will use all reasonable efforts to remedy the issue."
+#~ msgstr "본 성명서에 관해 궁금한 점이 있거나 위의 기준을 준수하지 않았다고 생각되면 https://mahara.org/contact.php로 문의하십시오. 당사는 문제를 해결하기 위해 모든 합리적인 노력을 다할 것입니다."
 
-#: src/utils/addEditHelperFunctions.tsx:26
+#: src/utils/addEditHelperFunctions.tsx:14
 msgid "ImagePicker Error:{0}"
 msgstr "ImagePicker 오류 : {0}"
 
-#: src/screens/LegalScreen/LegalScreen.tsx:13
+#: src/screens/LegalScreen/LegalScreen.tsx:15
 msgid "Introduction"
 msgstr "소개"
 
@@ -225,7 +227,7 @@ msgstr "소개"
 msgid "Invalid Mahara site. Please re-enter URL."
 msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 
-#: src/utils/addEditHelperFunctions.tsx:49
+#: src/utils/addEditHelperFunctions.tsx:56
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
@@ -256,12 +258,15 @@ msgid "Journal entry"
 msgstr "분개"
 
 #: src/navigations/app-navigator.tsx:39
-#: src/screens/LegalScreen/LegalScreen.tsx:116
 #: src/screens/MenuScreen/MenuScreen.tsx:18
 msgid "Legal"
 msgstr "적법한"
 
-#: src/components/LoginTypes/LoginTypes.tsx:106
+#: src/screens/LegalScreen/LegalScreen.tsx:118
+msgid "Legal - Privacy statement"
+msgstr ""
+
+#: src/components/LoginTypes/LoginTypes.tsx:103
 msgid "Local"
 msgstr "로컬"
 
@@ -292,23 +297,23 @@ msgstr "로그인 실패"
 msgid "Menu"
 msgstr "메뉴"
 
-#: src/components/UploadForm/UploadForm.tsx:204
+#: src/components/UploadForm/UploadForm.tsx:224
 msgid "Name"
 msgstr "이름"
 
 #: src/screens/LegalScreen/LegalScreen.tsx:50
-msgid "Neither the Mahara project nor Catalyst has access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
-msgstr "Mahara 프로젝트 나 Catalyst 모두 Mahara Mobile에 입력 한 데이터에 액세스 할 수 없습니다. 연결하는 Mahara 사이트를 호스팅하는 기관은 Mahara Mobile 앱의 데이터에도 액세스 할 수 없습니다."
+#~ msgid "Neither the Mahara project nor Catalyst has access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
+#~ msgstr "Mahara 프로젝트 나 Catalyst 모두 Mahara Mobile에 입력 한 데이터에 액세스 할 수 없습니다. 연결하는 Mahara 사이트를 호스팅하는 기관은 Mahara Mobile 앱의 데이터에도 액세스 할 수 없습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:248
+#: src/components/UploadForm/UploadForm.tsx:268
 msgid "New tag..."
 msgstr "KO new tag..."
 
-#: src/components/LoginTypes/LoginTypes.tsx:98
+#: src/components/LoginTypes/LoginTypes.tsx:95
 msgid "Next"
 msgstr "다음"
 
-#: src/utils/addEditHelperFunctions.tsx:23
+#: src/utils/addEditHelperFunctions.tsx:11
 msgid "No photo captured"
 msgstr "사진이 촬영되지 않았습니다"
 
@@ -320,8 +325,8 @@ msgstr "확실한"
 msgid "Password"
 msgstr "암호"
 
-#: src/components/AddAudio/AddAudio.tsx:49
-#: src/components/AddAudio/AddAudio.tsx:49
+#: src/components/AddAudio/AddAudio.tsx:60
+#: src/components/AddAudio/AddAudio.tsx:60
 msgid "Permission to record audio"
 msgstr "오디오 녹음 권한"
 
@@ -334,15 +339,15 @@ msgstr "사진"
 msgid "Please check the internet connection."
 msgstr "인터넷 연결을 확인하십시오."
 
-#: src/components/LoginTypes/LoginTypes.tsx:88
+#: src/components/LoginTypes/LoginTypes.tsx:85
 msgid "Please enter a URL."
 msgstr "URL을 입력하십시오."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:182
+#: src/screens/PendingScreen/PendingScreen.tsx:194
 msgid "Please login"
 msgstr "로그인 해주세요"
 
-#: src/utils/addEditHelperFunctions.tsx:49
+#: src/utils/addEditHelperFunctions.tsx:56
 msgid "Please select a file."
 msgstr "파일을 선택하십시오"
 
@@ -361,41 +366,41 @@ msgid "Preferences"
 msgstr "환경 설정"
 
 #: src/screens/LegalScreen/LegalScreen.tsx:10
-msgid "Privacy statement"
-msgstr "개인 정보 보호 정책"
+#~ msgid "Privacy statement"
+#~ msgstr "개인 정보 보호 정책"
 
 #: src/navigations/app-navigator.tsx:33
 msgid "Profile page"
 msgstr "프로필 페이지"
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:46
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:45
 msgid "Profile settings"
 msgstr "프로필 설정"
 
-#: src/components/UploadForm/UploadForm.tsx:279
-#: src/components/UploadForm/UploadForm.tsx:281
+#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:300
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
-#: src/components/AddAudio/AddAudio.tsx:152
+#: src/components/AddAudio/AddAudio.tsx:168
 msgid "Re-record"
 msgstr "다시 녹음"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:36
-#: src/screens/EditItemScreen/EditItemScreen.tsx:49
+#: src/screens/AddItemScreen/AddItemScreen.tsx:38
+#: src/screens/EditItemScreen/EditItemScreen.tsx:41
 msgid "Re-take photo"
 msgstr "사진을 다시 찍습니다."
 
-#: src/components/AddAudio/AddAudio.tsx:152
+#: src/components/AddAudio/AddAudio.tsx:168
 msgid "Record"
 msgstr "녹음"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:33
-#: src/screens/EditItemScreen/EditItemScreen.tsx:45
+#: src/screens/AddItemScreen/AddItemScreen.tsx:35
+#: src/screens/EditItemScreen/EditItemScreen.tsx:37
 msgid "Select a different file"
 msgstr "다른 파일을 선택하십시오"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:32
+#: src/screens/AddItemScreen/AddItemScreen.tsx:34
 msgid "Select a file"
 msgstr "파일을 선택하십시오"
 
@@ -403,12 +408,12 @@ msgstr "파일을 선택하십시오"
 msgid "Select a journal"
 msgstr "저널을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:219
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:63
+#: src/components/UploadForm/UploadForm.tsx:239
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:62
 msgid "Select folder"
 msgstr "폴더 선택"
 
-#: src/utils/addEditHelperFunctions.tsx:11
+#: src/utils/addEditHelperFunctions.tsx:30
 msgid "Select image"
 msgstr "이미지 선택"
 
@@ -416,53 +421,53 @@ msgstr "이미지 선택"
 msgid "Select journal"
 msgstr "저널 선택"
 
-#: src/components/LoginTypes/LoginTypes.tsx:102
+#: src/components/LoginTypes/LoginTypes.tsx:99
 msgid "Select login type"
 msgstr "로그인 유형을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:257
-#: src/components/UploadForm/UploadForm.tsx:257
+#: src/components/UploadForm/UploadForm.tsx:277
+#: src/components/UploadForm/UploadForm.tsx:277
 msgid "Select tags"
 msgstr "태그 선택"
 
-#: src/components/UploadForm/UploadForm.tsx:258
+#: src/components/UploadForm/UploadForm.tsx:278
 msgid "Select tags..."
 msgstr "태그 선택..."
 
-#: src/components/LoginTypes/LoginTypes.tsx:105
+#: src/components/LoginTypes/LoginTypes.tsx:102
 msgid "Single sign-on"
 msgstr "싱글 사인온"
 
-#: src/components/LoginTypes/LoginTypes.tsx:99
+#: src/components/LoginTypes/LoginTypes.tsx:96
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
-#: src/components/AddAudio/AddAudio.tsx:152
+#: src/components/AddAudio/AddAudio.tsx:168
 msgid "Stop"
 msgstr "녹화 중지"
 
-#: src/screens/LegalScreen/LegalScreen.tsx:60
+#: src/screens/LegalScreen/LegalScreen.tsx:59
 msgid "Storage and security of your personal information"
 msgstr "개인 정보의 보관 및 보안"
 
-#: src/components/UploadForm/UploadForm.tsx:235
+#: src/components/UploadForm/UploadForm.tsx:255
 msgid "Tags"
 msgstr "태그"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:36
-#: src/screens/EditItemScreen/EditItemScreen.tsx:49
+#: src/screens/AddItemScreen/AddItemScreen.tsx:38
+#: src/screens/EditItemScreen/EditItemScreen.tsx:41
 msgid "Take photo"
 msgstr "사진을 찍다"
 
-#: src/components/UploadForm/UploadForm.tsx:238
+#: src/components/UploadForm/UploadForm.tsx:258
 msgid "Tap to remove tag"
 msgstr "태그를 제거하려면 탭하세요"
 
 #: src/screens/VersionScreen/VersionScreen.tsx:9
-msgid "The current version you are using is 20.07.01"
-msgstr "KO  20.07.01"
+#~ msgid "The current version you are using is 20.07.01"
+#~ msgstr "KO  20.07.01"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:60
+#: src/screens/PendingScreen/PendingScreen.tsx:71
 msgid "The deletion of this information or file cannot be undone"
 msgstr "이 정보 또는 파일 삭제를 취소 할 수 없습니다."
 
@@ -475,11 +480,11 @@ msgstr "이 필드는 필수입니다."
 msgid "This is not a Mahara site. Please re-enter URL."
 msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십시오."
 
-#: src/components/UploadForm/UploadForm.tsx:204
+#: src/components/UploadForm/UploadForm.tsx:224
 msgid "Title"
 msgstr "표제"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:182
+#: src/screens/PendingScreen/PendingScreen.tsx:194
 msgid "To upload pending items"
 msgstr "보류중인 항목을 업로드하려면"
 
@@ -499,7 +504,7 @@ msgstr "업로드 대기열"
 msgid "Upload queue page"
 msgstr "대기열 페이지 업로드"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:181
+#: src/screens/PendingScreen/PendingScreen.tsx:193
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
@@ -516,16 +521,16 @@ msgid "Version"
 msgstr "버전"
 
 #: src/screens/LegalScreen/LegalScreen.tsx:16
-msgid "We are committed to protecting your privacy and providing users with a safe and functional personal learning and development environment. This Statement of Privacy applies to the app Mahara Mobile as provided by Catalyst IT Limited and governs data collection and usage."
-msgstr "우리는 귀하의 개인 정보를 보호하고 사용자에게 안전하고 기능적인 개인 학습 및 개발 환경을 제공하기 위해 노력하고 있습니다. 이 개인 정보 보호 정책은 Catalyst IT Limited에서 제공하는 앱 Mahara Mobile에 적용되며 데이터 수집 및 사용을 관리합니다."
+#~ msgid "We are committed to protecting your privacy and providing users with a safe and functional personal learning and development environment. This Statement of Privacy applies to the app Mahara Mobile as provided by Catalyst IT Limited and governs data collection and usage."
+#~ msgstr "우리는 귀하의 개인 정보를 보호하고 사용자에게 안전하고 기능적인 개인 학습 및 개발 환경을 제공하기 위해 노력하고 있습니다. 이 개인 정보 보호 정책은 Catalyst IT Limited에서 제공하는 앱 Mahara Mobile에 적용되며 데이터 수집 및 사용을 관리합니다."
 
 #: src/screens/LegalScreen/LegalScreen.tsx:85
-msgid "We may occasionally make adjustments to our privacy statement to reflect changes to the system and in response to customer feedback. As such we suggest you check the Privacy Statement each time you visit this app."
-msgstr "당사는 때때로 시스템 변경 사항을 반영하고 고객 피드백에 따라 개인 정보 보호 정책을 조정할 수 있습니다. 따라서이 앱을 방문 할 때마다 개인 정보 취급 방침을 확인하는 것이 좋습니다."
+#~ msgid "We may occasionally make adjustments to our privacy statement to reflect changes to the system and in response to customer feedback. As such we suggest you check the Privacy Statement each time you visit this app."
+#~ msgstr "당사는 때때로 시스템 변경 사항을 반영하고 고객 피드백에 따라 개인 정보 보호 정책을 조정할 수 있습니다. 따라서이 앱을 방문 할 때마다 개인 정보 취급 방침을 확인하는 것이 좋습니다."
 
 #: src/screens/LegalScreen/LegalScreen.tsx:63
-msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT Limited are responsible though for maintaining the Mahara site that you connect to. It is the responsibility of the organization providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username or password to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile. Once content has been uploaded, file names, descriptions and journal titles and entries are not available via the app anymore. Files will still be stored in their original location of your app."
-msgstr "우리는 Mahara Mobile과 귀하가 연결하는 Mahara 사이트 간의 연결이 앱 관점에서 안전하고 액세스 정보가 공개되지 않도록 모든 합리적인 조치를 취할 것입니다. Mahara 프로젝트 나 Catalyst IT Limited는 연결 한 Mahara 사이트를 유지 관리 할 책임이 없습니다. 사이트와 콘텐츠의 보안을 유지하기 위해 Mahara 서비스를 제공하는 것은 조직의 책임입니다. 개인 정보를 보호하기 위해 다른 사람에게 사용자 이름 또는 비밀번호를 공개하거나 Mahara Mobile을 통해 Mahara 사이트에 업로드 할 컨텐츠를 보도록 허용하지 마십시오. 컨텐츠가 업로드되면 파일 이름, 설명 및 저널 제목 및 항목을 더 이상 앱을 통해 사용할 수 없습니다. 파일은 여전히 ​​앱의 원래 위치에 저장됩니다."
+#~ msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT Limited are responsible though for maintaining the Mahara site that you connect to. It is the responsibility of the organization providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username or password to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile. Once content has been uploaded, file names, descriptions and journal titles and entries are not available via the app anymore. Files will still be stored in their original location of your app."
+#~ msgstr "우리는 Mahara Mobile과 귀하가 연결하는 Mahara 사이트 간의 연결이 앱 관점에서 안전하고 액세스 정보가 공개되지 않도록 모든 합리적인 조치를 취할 것입니다. Mahara 프로젝트 나 Catalyst IT Limited는 연결 한 Mahara 사이트를 유지 관리 할 책임이 없습니다. 사이트와 콘텐츠의 보안을 유지하기 위해 Mahara 서비스를 제공하는 것은 조직의 책임입니다. 개인 정보를 보호하기 위해 다른 사람에게 사용자 이름 또는 비밀번호를 공개하거나 Mahara Mobile을 통해 Mahara 사이트에 업로드 할 컨텐츠를 보도록 허용하지 마십시오. 컨텐츠가 업로드되면 파일 이름, 설명 및 저널 제목 및 항목을 더 이상 앱을 통해 사용할 수 없습니다. 파일은 여전히 ​​앱의 원래 위치에 저장됩니다."
 
 #: src/actions/actions.ts:203
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
@@ -536,14 +541,14 @@ msgid "You didn't enter anything in this field."
 msgstr "이 입력란에 아무 것도 입력하지 않았습니다."
 
 #: src/screens/LegalScreen/LegalScreen.tsx:37
-msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
-msgstr "로그인하면 자신의 이름이 앱에 표시되고 앱과 Mahara 자체에 저장된 액세스 토큰을 통해 Mahara 계정에 연결되므로 두 사람이 서로 통신 할 수 있습니다."
+#~ msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
+#~ msgstr "로그인하면 자신의 이름이 앱에 표시되고 앱과 Mahara 자체에 저장된 액세스 토큰을 통해 Mahara 계정에 연결되므로 두 사람이 서로 통신 할 수 있습니다."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:179
+#: src/screens/PendingScreen/PendingScreen.tsx:191
 msgid "Your site: {url}"
 msgstr "마하라 URL: {url}"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:121
+#: src/screens/PendingScreen/PendingScreen.tsx:133
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
@@ -555,8 +560,8 @@ msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도�
 msgid "audio"
 msgstr "오디오"
 
-#: src/components/UploadForm/UploadForm.tsx:223
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
+#: src/components/UploadForm/UploadForm.tsx:243
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:67
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:86
 msgid "default"
 msgstr "기본"
@@ -565,7 +570,7 @@ msgstr "기본"
 msgid "file"
 msgstr "파일"
 
-#: src/utils/addEditHelperFunctions.tsx:60
+#: src/utils/addEditHelperFunctions.tsx:67
 msgid "image preview"
 msgstr "이미지 미리보기"
 
@@ -577,6 +582,10 @@ msgstr "분개"
 msgid "photo"
 msgstr "사진"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:89
+#: src/components/UI/CustomText/MediumText.tsx:16
+msgid "{0}"
+msgstr ""
+
+#: src/screens/PendingScreen/PendingScreen.tsx:101
 msgid "{errorMessage}"
 msgstr "{errorMessage}"

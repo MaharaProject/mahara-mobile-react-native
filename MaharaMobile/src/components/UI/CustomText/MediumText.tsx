@@ -1,12 +1,13 @@
-import {Trans} from '@lingui/macro';
+import {t} from '@lingui/macro';
 import {Text} from 'native-base';
 import React from 'react';
 import styles from '../../../assets/styles/variables';
+import i18n from '../../../i18n';
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  text?: string;
   style?: any;
-  pureText?: boolean;
 };
 
 /**
@@ -16,7 +17,6 @@ type Props = {
  * @param props
  */
 const MediumText = (props: Props) => {
-  const pureText = props.pureText ?? true;
   return (
     <Text
       style={{
@@ -25,7 +25,7 @@ const MediumText = (props: Props) => {
         flexWrap: 'wrap',
         ...props.style
       }}>
-      {pureText ? <Trans>{props.children}</Trans> : props.children}
+      {props.text ? i18n._(t`${props.text}`) : props.children}
     </Text>
   );
 };
