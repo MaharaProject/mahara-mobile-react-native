@@ -1,17 +1,16 @@
 import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
+import {List, ListItem} from 'native-base';
 import React from 'react';
-import {View} from 'react-native';
-import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
 import MediumText from '../../components/UI/CustomText/MediumText';
 
 const VersionScreen = () => (
-  <View style={generic.wrap}>
-    <MediumText>
-      The current version of Mahara Mobile you are using is 20.09.01.
-    </MediumText>
-  </View>
+  <List>
+    <ListItem noBorder>
+      <MediumText text={t`This version of Mahara Mobile is 20.10.1`} />
+    </ListItem>
+  </List>
 );
 
 VersionScreen.navigationOptions = () => ({

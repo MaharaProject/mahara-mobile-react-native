@@ -44,7 +44,13 @@ const addTags = (
   state: UserTagInfoState,
   tags: Array<UserTag>
 ): UserTagInfoState => {
-  AsyncStorage.setItem(USER_TAGS, JSON.stringify(state.userTags.concat(tags)));
+  const updatedTags = new Set([...state.userTags]);
+
+  tags.forEach(t => {
+    updatedTags.add(t);
+  });
+
+  AsyncStorage.setItem(USER_TAGS, JSON.stringify(Array.from(updatedTags)));
   AsyncStorage.setItem(
     TAGS_IDS,
     JSON.stringify([...state.userTagsIds, ...tags.map((t: UserTag) => t.id)])
