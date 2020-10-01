@@ -6,25 +6,11 @@ import {Alert} from 'react-native';
 import {t} from '@lingui/macro';
 import styles from '../../../assets/styles/variables';
 import i18n from '../../../i18n';
+import {onCancelAlert} from '../../../utils/addEditHelperFunctions';
 
 const CustomVerifyBackButton = ({navigation}) => {
   const onBackPress = () => {
-    Alert.alert(
-      i18n._(t`Are you sure?`),
-      i18n._(
-        t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`
-      ),
-      [
-        {
-          text: i18n._(t`Cancel`),
-          onPress: () => {
-            // do nothing
-          }
-        },
-        {text: i18n._(t`Okay`), onPress: () => navigation.goBack()}
-      ],
-      {cancelable: true}
-    );
+    onCancelAlert(navigation);
     // }
 
     // Return true to enable back button over ride.

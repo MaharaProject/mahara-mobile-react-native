@@ -3,10 +3,10 @@ import {I18n} from '@lingui/react';
 import {Button, Text} from 'native-base';
 import React from 'react';
 import buttons from '../../../assets/styles/buttons';
+import {onCancelAlert} from '../../../utils/addEditHelperFunctions';
 
 type Props = {
-  onPress: () => any;
-  navigation;
+  navigation: {goBack: () => void} | undefined;
 };
 
 const CancelButton = (props: Props) => (
@@ -18,7 +18,7 @@ const CancelButton = (props: Props) => (
         rounded
         accessibilityRole="button"
         accessibilityLabel="Cancel"
-        onPress={() => props.navigation.goBack()}
+        onPress={() => onCancelAlert(props.navigation)}
         style={[buttons.md, buttons.cancel]}>
         <Text>{i18n._(t`Cancel`)}</Text>
       </Button>

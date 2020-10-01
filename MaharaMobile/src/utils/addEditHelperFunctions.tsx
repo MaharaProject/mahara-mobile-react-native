@@ -78,6 +78,25 @@ export const pickDocument = onSetPickedFile => {
   }
 };
 
+export const onCancelAlert = (navigation: {goBack: () => void} | undefined) => {
+  Alert.alert(
+    i18n._(t`Are you sure?`),
+    i18n._(
+      t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`
+    ),
+    [
+      {
+        text: i18n._(t`Cancel`),
+        onPress: () => {
+          // do nothing
+        }
+      },
+      {text: i18n._(t`Okay`), onPress: () => navigation.goBack()}
+    ],
+    {cancelable: true}
+  );
+};
+
 export const renderImagePreview = (uri: string) => {
   return (
     <View style={styles.imageWrap}>
