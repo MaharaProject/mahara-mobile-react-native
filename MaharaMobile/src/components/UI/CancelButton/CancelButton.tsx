@@ -6,7 +6,7 @@ import buttons from '../../../assets/styles/buttons';
 import {onCancelAlert} from '../../../utils/addEditHelperFunctions';
 
 type Props = {
-  navigation: {goBack: () => void} | undefined;
+  navigation: {goBack: () => void};
 };
 
 const CancelButton = (props: Props) => (

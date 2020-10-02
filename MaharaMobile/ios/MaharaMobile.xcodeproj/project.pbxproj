@@ -39,7 +39,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* MaharaMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaharaMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MaharaMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaharaMobileTests.m; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		D65E2A9D3C634ADFA0E68332 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		DA0CA05436ED40B0A445DF64 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		DC4DFDB677A699C0ECBF6770 /* Pods-MaharaMobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-tvOS/Pods-MaharaMobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E54EE54B2524229000ADED22 /* no_userphoto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = no_userphoto.png; path = ../src/assets/images/no_userphoto.png; sourceTree = "<group>"; };
 		EB204EF7254C20772D090F4F /* Pods-MaharaMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		EBF7B61D50D94E30A537A07F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -161,7 +161,6 @@
 			isa = PBXGroup;
 			children = (
 				122EECCE24B53D1000388BF5 /* MaharaMobile.entitlements */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -210,6 +209,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E54EE54B2524229000ADED22 /* no_userphoto.png */,
 				13B07FAE1A68108700A75B9A /* MaharaMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MaharaMobileTests */,
@@ -774,6 +774,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mahara.mobile.app;
 				PRODUCT_NAME = MaharaMobile;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -798,6 +799,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mahara.mobile.app;
 				PRODUCT_NAME = MaharaMobile;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
