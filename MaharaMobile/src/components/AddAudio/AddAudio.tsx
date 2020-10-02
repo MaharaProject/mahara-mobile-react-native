@@ -106,6 +106,12 @@ const AddAudio = (props: Props) => {
   }, [props.audioFileToEdit]);
 
   const onStartRecord = async () => {
+    // check not playing recording
+    if (playStatus === 'playing') {
+      setPlayStatus('not-playing');
+      audioRecorderPlayer.pausePlayer();
+    }
+
     const rand = Math.round(Math.random() * 1000);
     const path =
       Platform.select({
