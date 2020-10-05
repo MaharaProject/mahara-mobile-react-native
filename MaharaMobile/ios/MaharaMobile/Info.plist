@@ -38,15 +38,15 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to use your camera</string>
+	<string>$(PRODUCT_NAME) would like to use your camera to take photos and videos to collect evidence for your Mahara.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like to use your microphone (for videos)</string>
+	<string>$(PRODUCT_NAME) would like to use your microphone to record audios/video to upload to your Mahara.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to save photos to your photo gallery</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>$(PRODUCT_NAME) would like access to your photo gallery</string>
+	<string>$(PRODUCT_NAME) would like access to your photo gallery to upload files to your Mahara.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
