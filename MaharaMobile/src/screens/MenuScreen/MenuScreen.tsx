@@ -1,4 +1,3 @@
-import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
@@ -7,11 +6,12 @@ import {NavigationScreenProp} from 'react-navigation';
 import {useDispatch} from 'react-redux';
 import styles from '../../assets/styles/variables';
 import MenuItem from '../../components/MenuItem/MenuItem';
+import menuItemStyles from '../../components/MenuItem/MenuItem.style';
 import HeaderMenuButton from '../../components/UI/HeaderMenuButton/HeaderMenuButton';
+import i18n from '../../i18n';
+import {MessageDescriptor} from '../../models/models';
 import {signOutAsync} from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
-import {MessageDescriptor} from '../../models/models';
-import menuItemStyles from '../../components/MenuItem/MenuItem.style';
 
 type MenuItemObject = {
   name: MessageDescriptor;
@@ -28,9 +28,10 @@ const MenuScreen = (props: Props) => {
   const menuStrings = {
     about: t`About`,
     preferences: t`Preferences`,
-    privacy: t`Privacy`,
     help: t`Help`,
     version: t`App version`,
+    terms: t`Terms and conditions`,
+    privacy: t`Privacy statement`,
     logout: t`Logout`
   };
 
@@ -46,15 +47,18 @@ const MenuScreen = (props: Props) => {
     return {name, path};
   };
 
-  const nav = props.navigation;
+  const navigateTo = (key: string) => () => props.navigation.navigate(key);
 
   const menuItems: Array<MenuItemObject> = [
-    createMenuItem(menuStrings.preferences, () => nav.navigate('Preferences')),
-    createMenuItem(menuStrings.privacy, () => nav.navigate('Privacy')),
-    createMenuItem(menuStrings.about, () => nav.navigate('About')),
-    createMenuItem(menuStrings.help, () => nav.navigate('Help')),
-    createMenuItem(menuStrings.version, () => nav.navigate('Version')),
-    createMenuItem(menuStrings.logout, () => signOutAsync(nav, dispatch))
+    createMenuItem(menuStrings.preferences, () => navigateTo('Preferences')),
+    createMenuItem(menuStrings.help, navigateTo('Help')),
+    createMenuItem(menuStrings.about, () => navigateTo('About')),
+    createMenuItem(menuStrings.terms, () => navigateTo('Terms')),
+    createMenuItem(menuStrings.privacy, () => navigateTo('Privacy')),
+    createMenuItem(menuStrings.version, () => navigateTo('Version')),
+    createMenuItem(menuStrings.logout, () =>
+      signOutAsync(props.navigation, dispatch)
+    )
   ];
 
   return (
