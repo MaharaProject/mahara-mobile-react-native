@@ -33,6 +33,7 @@
     "core-js": "^3.6.5",
     "jetifier": "^1.6.6",
     "link": "^0.1.5",
+    "metro-react-native-babel-transformer": "^0.63.0",
     "native-base": "^2.13.14",
     "react": "16.9.0",
     "react-native": "^0.62.2",
