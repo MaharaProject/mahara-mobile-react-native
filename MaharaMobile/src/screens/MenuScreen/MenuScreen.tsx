@@ -28,7 +28,7 @@ const MenuScreen = (props: Props) => {
   const menuStrings = {
     about: t`About`,
     preferences: t`Preferences`,
-    legal: t`Legal`,
+    privacy: t`Privacy`,
     help: t`Help`,
     version: t`App version`,
     logout: t`Logout`
@@ -50,7 +50,7 @@ const MenuScreen = (props: Props) => {
 
   const menuItems: Array<MenuItemObject> = [
     createMenuItem(menuStrings.preferences, () => nav.navigate('Preferences')),
-    createMenuItem(menuStrings.legal, () => nav.navigate('Legal')),
+    createMenuItem(menuStrings.privacy, () => nav.navigate('Privacy')),
     createMenuItem(menuStrings.about, () => nav.navigate('About')),
     createMenuItem(menuStrings.help, () => nav.navigate('Help')),
     createMenuItem(menuStrings.version, () => nav.navigate('Version')),
