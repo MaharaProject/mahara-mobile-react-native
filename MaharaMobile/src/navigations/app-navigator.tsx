@@ -24,7 +24,7 @@ import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import EditItemScreen from '../screens/EditItemScreen/EditItemScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
-import LegalScreen from '../screens/LegalScreen/LegalScreen';
+import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
@@ -47,7 +47,7 @@ const AppNavigator = () => {
     PREFERENCES: i18n._(t`Preferences`),
     ABOUT: i18n._(t`About`),
     MENU: i18n._(t`Menu`),
-    LEGAL: i18n._(t`Legal`),
+    PRIVACY: i18n._(t`Privacy`),
     HELP: i18n._(t`Help`),
     VERSION: i18n._(t`Version`)
   };
@@ -94,10 +94,10 @@ const AppNavigator = () => {
         headerTitle: navigatorStrings.PREFERENCES
       }
     },
-    Legal: {
-      screen: LegalScreen,
+    Privacy: {
+      screen: PrivacyScreen,
       navigationOptions: {
-        headerTitle: navigatorStrings.LEGAL
+        headerTitle: navigatorStrings.PRIVACY
       }
     },
     Help: {
