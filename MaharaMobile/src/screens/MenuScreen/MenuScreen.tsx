@@ -26,9 +26,9 @@ const MenuScreen = (props: Props) => {
   const dispatch = useDispatch();
 
   const menuStrings = {
-    about: t`About`,
     preferences: t`Preferences`,
     help: t`Help`,
+    about: t`About`,
     version: t`App version`,
     terms: t`Terms and conditions (unfinished)`, // TODO: REMOVE
     privacy: t`Privacy statement`,
