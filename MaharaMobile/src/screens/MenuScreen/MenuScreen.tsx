@@ -30,7 +30,7 @@ const MenuScreen = (props: Props) => {
     preferences: t`Preferences`,
     help: t`Help`,
     version: t`App version`,
-    terms: t`Terms and conditions`,
+    terms: t`Terms and conditions (unfinished)`, // TODO: REMOVE
     privacy: t`Privacy statement`,
     logout: t`Logout`
   };
@@ -50,12 +50,12 @@ const MenuScreen = (props: Props) => {
   const navigateTo = (key: string) => () => props.navigation.navigate(key);
 
   const menuItems: Array<MenuItemObject> = [
-    createMenuItem(menuStrings.preferences, () => navigateTo('Preferences')),
+    createMenuItem(menuStrings.preferences, navigateTo('Preferences')),
     createMenuItem(menuStrings.help, navigateTo('Help')),
-    createMenuItem(menuStrings.about, () => navigateTo('About')),
-    createMenuItem(menuStrings.terms, () => navigateTo('Terms')),
-    createMenuItem(menuStrings.privacy, () => navigateTo('Privacy')),
-    createMenuItem(menuStrings.version, () => navigateTo('Version')),
+    createMenuItem(menuStrings.about, navigateTo('About')),
+    createMenuItem(menuStrings.terms, navigateTo('Terms')),
+    createMenuItem(menuStrings.privacy, navigateTo('Privacy')),
+    createMenuItem(menuStrings.version, navigateTo('Version')),
     createMenuItem(menuStrings.logout, () =>
       signOutAsync(props.navigation, dispatch)
     )

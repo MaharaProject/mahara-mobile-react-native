@@ -49,7 +49,8 @@ const AppNavigator = () => {
     MENU: i18n._(t`Menu`),
     PRIVACY: i18n._(t`Privacy`),
     HELP: i18n._(t`Help`),
-    VERSION: i18n._(t`Version`)
+    VERSION: i18n._(t`Version`),
+    TERMS: i18n._(t`Terms and conditions`)
   };
 
   // Home page navigator, all other pages get attached to this  navigation stack.
@@ -92,6 +93,12 @@ const AppNavigator = () => {
       screen: PreferencesScreen,
       navigationOptions: {
         headerTitle: navigatorStrings.PREFERENCES
+      }
+    },
+    Terms: {
+      screen: PreferencesScreen, // TODO: add correct screen
+      navigationOptions: {
+        headerTitle: navigatorStrings.TERMS
       }
     },
     Privacy: {
