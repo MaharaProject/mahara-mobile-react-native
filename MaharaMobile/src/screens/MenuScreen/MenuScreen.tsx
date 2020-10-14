@@ -30,7 +30,7 @@ const MenuScreen = (props: Props) => {
     help: t`Help`,
     about: t`About`,
     version: t`App version`,
-    terms: t`Terms and conditions (unfinished)`, // TODO: REMOVE
+    terms: t`Terms and conditions`,
     privacy: t`Privacy statement`,
     logout: t`Logout`
   };

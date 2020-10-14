@@ -8,7 +8,9 @@ import i18n from '../../../i18n';
 type Props = {
   style?: any;
   text: MessageDescriptor;
-  url: string;
+  url?: string;
+  onPress?: any;
+  noStartSpace?: boolean;
 };
 
 const LinkText = (props: Props) => (
@@ -18,8 +20,13 @@ const LinkText = (props: Props) => (
       fontSize: styles.font.md,
       ...props.style
     }}
-    onPress={() => Linking.openURL(props.url ?? 'mahara.org')}>
-    &nbsp; {i18n._(props.text)}&nbsp;
+    onPress={
+      props.url
+        ? () => Linking.openURL(props.url ?? 'mahara.org')
+        : props.onPress
+    }>
+    {props.noStartSpace ? '' : ' '}
+    {i18n._(props.text)}&nbsp;
   </Text>
 );
 
