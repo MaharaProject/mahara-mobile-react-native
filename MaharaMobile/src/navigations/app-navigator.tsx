@@ -24,13 +24,14 @@ import AddItemScreen from '../screens/AddItemScreen/AddItemScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import EditItemScreen from '../screens/EditItemScreen/EditItemScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
-import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
 import LoginScreen from '../screens/LoginScreen/LoginScreen';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
+import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
 import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
+import TermsScreen from '../screens/TermsScreen/TermsScreen';
 import VersionScreen from '../screens/VersionScreen/VersionScreen';
 
 type Props = {
@@ -96,7 +97,7 @@ const AppNavigator = () => {
       }
     },
     Terms: {
-      screen: PreferencesScreen, // TODO: add correct screen
+      screen: TermsScreen,
       navigationOptions: {
         headerTitle: navigatorStrings.TERMS
       }
