@@ -826,7 +826,11 @@
 				CODE_SIGN_ENTITLEMENTS = MaharaMobile/MaharaMobile.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
+				CURRENT_PROJECT_VERSION = 3;
+=======
 				CURRENT_PROJECT_VERSION = 1;
+>>>>>>> master
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
@@ -858,7 +862,11 @@
 				CODE_SIGN_ENTITLEMENTS = MaharaMobile/MaharaMobile.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
+				CURRENT_PROJECT_VERSION = 3;
+=======
 				CURRENT_PROJECT_VERSION = 1;
+>>>>>>> master
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
