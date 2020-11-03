@@ -1,4 +1,4 @@
-import {selectItemTagsStrings} from '../../reducers/userTagsReducer';
+import {selectItemTagsStrings} from '../../store/reducers/userTagsReducer';
 import {MOCK_FILE_IDS, MOCK_ROOT_STATE} from '../mockConstants';
 
 describe('userTagsReducer selectors', () => {

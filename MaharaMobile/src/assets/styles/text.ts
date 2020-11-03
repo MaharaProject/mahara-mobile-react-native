@@ -9,7 +9,7 @@ const textStyles = StyleSheet.create({
     textAlign: 'center'
   },
   errorText: {
-    color: styles.colors.warn,
+    color: styles.colors.siteCheckErrorTextPink,
     fontSize: styles.font.sm,
     padding: styles.padding.sm
   }

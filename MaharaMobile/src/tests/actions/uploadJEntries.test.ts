@@ -3,7 +3,7 @@ import {
   clearUploadJEntires,
   removeUploadJEntry,
   updateJEntriesOnLogin
-} from '../../actions/actions';
+} from '../../store/actions/uploadJEntries';
 import {
   ADD_UPLOAD_JOURNAL_ENTRY,
   CLEAR_UPLOAD_J_ENTRIES,

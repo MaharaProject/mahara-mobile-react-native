@@ -1,28 +1,18 @@
-import {I18n} from '@lingui/core';
-import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
 import {View} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
 import generic from '../../assets/styles/generic';
-import styles from '../../assets/styles/variables';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
 import {UploadItemType} from '../../models/models';
 
 type Props = {
-  i18n: I18n;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: any;
 };
 
 const SelectMediaScreen = (props: Props) => {
   const selectMediaType = (type: UploadItemType) => {
-    props.navigation.navigate({
-      routeName: 'AddItem',
-      params: {itemType: type, title: props.i18n._(t`Add`)}
+    props.navigation.navigate('AddItem', {
+      itemType: type
     });
   };
 
@@ -32,17 +22,5 @@ const SelectMediaScreen = (props: Props) => {
     </View>
   );
 };
-
-SelectMediaScreen.navigationOptions = () => ({
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    flex: 1,
-    textAlign: 'center'
-  },
-  headerTintColor: styles.colors.light
-});
 
 export default withI18n()(SelectMediaScreen);

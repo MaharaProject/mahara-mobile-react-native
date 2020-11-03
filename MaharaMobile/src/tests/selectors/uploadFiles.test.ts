@@ -3,7 +3,7 @@ import {
   selectUploadFileById,
   selectNumOfFiles,
   selectAllUploadFilesIds
-} from '../../reducers/uploadFilesReducer';
+} from '../../store/reducers/uploadFilesReducer';
 import {
   MOCK_MAHARA_PENDING_FILES_ARR,
   MOCK_MAHARA_PENDING_FILE_0,

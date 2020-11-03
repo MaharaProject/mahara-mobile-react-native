@@ -1,14 +1,14 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import {PendingJEntry, UserBlog} from '../models/models';
-import {arrayToObject} from '../utils/authHelperFunctions';
+import {PendingJEntry, UserBlog} from '../../models/models';
+import {arrayToObject} from '../../utils/authHelperFunctions';
 import {
   ADD_UPLOAD_JOURNAL_ENTRY,
   CLEAR_UPLOAD_J_ENTRIES,
   REMOVE_UPLOAD_JOURNAL_ENTRY,
   UPDATE_J_ENTRIES_ON_LOGIN
-} from '../utils/constants';
+} from '../../utils/constants';
 import {RootState} from './rootReducer';
-import {UploadJEntriesActions} from '../models/uploadJEntriesTypes';
+import {UploadJEntriesActions} from '../../models/uploadJEntriesTypes';
 
 export type UploadJEntriesState = {
   uploadJEntries: Record<string, PendingJEntry>;

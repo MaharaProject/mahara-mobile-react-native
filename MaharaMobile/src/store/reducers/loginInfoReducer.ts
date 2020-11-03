@@ -1,5 +1,5 @@
-import {LoginInfoActions} from '../models/loginInfoTypes';
 import {
+  SET_DID_TRY_AL,
   ADD_TOKEN,
   CLEAR_LOGIN_INFO,
   SET_DEFAULT_BLOG,
@@ -10,7 +10,9 @@ import {
   UPDATE_SERVER_URL,
   UPDATE_URL,
   UPDATE_USERNAME
-} from '../utils/constants';
+} from '../../utils/constants';
+import {LoginInfoActions} from '../../models/loginInfoTypes';
+
 import {RootState} from './rootReducer';
 
 type LoginInfoState = {
@@ -19,6 +21,7 @@ type LoginInfoState = {
   userName: string;
   profileIcon: string;
   isGuest: boolean;
+  didTryAutoLogin: boolean;
   // available login methods
   tokenLogin: boolean;
   ssoLogin: boolean;
@@ -29,8 +32,6 @@ type LoginInfoState = {
 };
 
 // Helpers
-const userBlogs = (state: RootState) => state.domainData.userBlogs;
-const userFolders = (state: RootState) => state.domainData.userFolders;
 
 const initialState: LoginInfoState = {
   url: '',
@@ -40,9 +41,10 @@ const initialState: LoginInfoState = {
   token: '',
   userName: '',
   isGuest: false,
+  didTryAutoLogin: false,
   profileIcon: '',
-  defaultBlogId: userBlogs[0],
-  defaultFolderTitle: userFolders[0]
+  defaultBlogId: 0,
+  defaultFolderTitle: ''
 };
 
 export const loginInfoReducer = (
@@ -89,7 +91,11 @@ export const loginInfoReducer = (
         ...state,
         isGuest: action.isGuest
       };
-
+    case SET_DID_TRY_AL:
+      return {
+        ...state,
+        didTryAutoLogin: true
+      };
     case SET_DEFAULT_BLOG:
       return {
         ...state,

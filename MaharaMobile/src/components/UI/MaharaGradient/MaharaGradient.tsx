@@ -1,16 +1,20 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import generic from '../../../assets/styles/generic';
-import variables from '../../../assets/styles/variables';
+import styles from '../../../assets/styles/variables';
+
+export const MaharaGradientColours = [
+  styles.colors.dark2,
+  styles.colors.dark2,
+  styles.colors.gradientEndGreen
+];
+
+export const MaharaGradientLocations = [0, 0.5, 1];
 
 const MaharaGradient = (props: any) => (
   <LinearGradient
-    locations={[0, 0.7, 1]}
-    colors={[
-      variables.colors.dark2,
-      variables.colors.tertiary,
-      variables.colors.light2
-    ]}
+    locations={MaharaGradientLocations}
+    colors={MaharaGradientColours}
     style={generic.linearGradient}>
     {props.children}
   </LinearGradient>

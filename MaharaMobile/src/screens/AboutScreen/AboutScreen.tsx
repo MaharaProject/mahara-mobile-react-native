@@ -1,10 +1,8 @@
-import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {List, ListItem} from 'native-base';
 import React from 'react';
 import {ScrollView} from 'react-native';
 import generic from '../../assets/styles/generic';
-import styles from '../../assets/styles/variables';
 import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 
@@ -66,17 +64,5 @@ const AboutScreen = () => {
     </ScrollView>
   );
 };
-
-AboutScreen.navigationOptions = () => ({
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    flex: 1
-  },
-  headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`About Mahara Mobile`)
-});
 
 export default AboutScreen;

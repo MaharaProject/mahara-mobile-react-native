@@ -37,6 +37,7 @@ export const UPDATE_URL = 'UPDATE_URL';
 export const UPDATE_PROFILE_ICON = 'UPDATE_PROFILE_ICON';
 export const UPDATE_GUEST_STATUS = 'UPDATE_GUEST_STATUS';
 export const SET_DEFAULT_FOLDER = 'SET_DEFAULT_FOLDER';
+export const SET_DID_TRY_AL = 'SET_DID_TRY_AL';
 export const SET_DEFAULT_BLOG = 'SET_DEFAULT_BLOG';
 
 // userArtefactsReducer

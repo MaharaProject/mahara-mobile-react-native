@@ -5,7 +5,10 @@ import {Item, Picker} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {Alert, Image, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setDefaultBlogId, setDefaultFolder} from '../../actions/actions';
+import {
+  setDefaultBlogId,
+  setDefaultFolder
+} from '../../store/actions/loginInfo';
 import image from '../../assets/images/no_userphoto.png';
 import buttons from '../../assets/styles/buttons';
 import styles from '../../assets/styles/variables';
@@ -20,12 +23,12 @@ import {
   selectToken,
   selectUrl,
   selectUserName
-} from '../../reducers/loginInfoReducer';
-import {RootState} from '../../reducers/rootReducer';
+} from '../../store/reducers/loginInfoReducer';
+import {RootState} from '../../store/reducers/rootReducer';
 import {
   selectUserBlogs,
   selectUserFolders
-} from '../../reducers/userArtefactsReducer';
+} from '../../store/reducers/userArtefactsReducer';
 import {fetchProfilePic} from '../../utils/authHelperFunctions';
 import {GUEST_TOKEN} from '../../utils/constants';
 import {putDefaultAtTop} from '../../utils/formHelper';
@@ -95,13 +98,14 @@ const PreferencesScreen = (props: Props) => {
             onValueChange={(folder: string) => {
               setSelectedFolderTitle(folder);
             }}>
-            {sortedFolders.map((f: UserFolder) => {
-              const label =
-                f.title === defaultFolderTitle
-                  ? `${f.title} - ${i18n._(t`default`)}`
-                  : f.title;
-              return <Picker.Item label={label} value={f.title} key={f.id} />;
-            })}
+            {sortedFolders &&
+              sortedFolders.map((f: UserFolder) => {
+                const label =
+                  f.title === defaultFolderTitle
+                    ? `${f.title} - ${i18n._(t`default`)}`
+                    : f.title;
+                return <Picker.Item label={label} value={f.title} key={f.id} />;
+              })}
           </Picker>
         </Item>
       </View>
@@ -122,15 +126,16 @@ const PreferencesScreen = (props: Props) => {
             accessibilityLabel={i18n._(t`Select journal`)}
             selectedValue={selectedBlogId}
             onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
-            {blogs.map((blog: UserBlog) => {
-              const label =
-                blog.id === defaultBlogId
-                  ? `${blog.title} - ${i18n._(t`default`)}`
-                  : blog.title;
-              return (
-                <Picker.Item label={label} value={blog.id} key={blog.id} />
-              );
-            })}
+            {blogs &&
+              blogs.map((blog: UserBlog) => {
+                const label =
+                  blog.id === defaultBlogId
+                    ? `${blog.title} - ${i18n._(t`default`)}`
+                    : blog.title;
+                return (
+                  <Picker.Item label={label} value={blog.id} key={blog.id} />
+                );
+              })}
           </Picker>
         </Item>
       </View>
@@ -186,15 +191,4 @@ const PreferencesScreen = (props: Props) => {
   );
 };
 
-PreferencesScreen.navigationOptions = () => ({
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    flex: 1
-  },
-  headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`Preferences`)
-});
 export default withI18n()(PreferencesScreen);

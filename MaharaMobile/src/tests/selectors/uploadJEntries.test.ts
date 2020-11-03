@@ -1,4 +1,4 @@
-import {selectJEntryById} from '../../reducers/uploadJEntriesReducer';
+import {selectJEntryById} from '../../store/reducers/uploadJEntriesReducer';
 import {
   MOCK_JENTRY_IDS,
   MOCK_PENDING_JOURNAL_ENTRY_0,

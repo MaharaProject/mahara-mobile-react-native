@@ -1,23 +1,22 @@
 /* eslint-disable prettier/prettier */
+import { t, Trans } from '@lingui/macro';
 import React, { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { t, Trans } from '@lingui/macro';
-
-// Linear gradient
-import LinearGradient from 'react-native-linear-gradient';
-
-// Styles
-import styles from './TokenInput.style';
-import variables from '../../assets/styles/variables';
-import forms from '../../assets/styles/forms';
-import headingStyles from '../../assets/styles/headings';
-import generic from '../../assets/styles/generic';
-
 // Images
 import LogoSvg from '../../assets/images/Logo-big';
-
-import MediumButton from '../UI/MediumButton/MediumButton';
+import forms from '../../assets/styles/forms';
+import generic from '../../assets/styles/generic';
+import headingStyles from '../../assets/styles/headings';
+import variables from '../../assets/styles/variables';
 import { LOG_IN_ICON } from '../../utils/constants';
+import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
+import MediumButton from '../UI/MediumButton/MediumButton';
+// Styles
+import styles from './TokenInput.style';
+
+
+
+
 
 type Props = {
   onUpdateToken: Function;
@@ -28,7 +27,7 @@ export default function TokenInput(props: Props) {
 
   return (
     <View style={styles.view}>
-      <LinearGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
+      <MaharaGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
         <View style={styles.wrapper}>
           <View style={styles.imageWrapper}>
             <LogoSvg />
@@ -42,7 +41,7 @@ export default function TokenInput(props: Props) {
           />
           <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onUpdateToken(token)} />
         </View>
-      </LinearGradient>
+      </MaharaGradient>
     </View>
   );
 }

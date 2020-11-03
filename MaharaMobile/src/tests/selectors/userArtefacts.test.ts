@@ -1,4 +1,4 @@
-import {selectUserBlogs} from '../../reducers/userArtefactsReducer';
+import {selectUserBlogs} from '../../store/reducers/userArtefactsReducer';
 import {MOCK_BLOGS, MOCK_ROOT_STATE} from '../mockConstants';
 
 describe('userArtefactsReducer selectors', () => {

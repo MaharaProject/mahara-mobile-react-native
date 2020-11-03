@@ -1,10 +1,8 @@
-import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {Body, List, ListItem} from 'native-base';
 import React from 'react';
 import {ScrollView} from 'react-native';
 import generic from '../../assets/styles/generic';
-import styles from '../../assets/styles/variables';
 import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
@@ -110,17 +108,5 @@ const PrivacyScreen = () => (
     </List>
   </ScrollView>
 );
-
-PrivacyScreen.navigationOptions = () => ({
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    flex: 1
-  },
-  headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`Legal - Privacy statement`)
-});
 
 export default PrivacyScreen;

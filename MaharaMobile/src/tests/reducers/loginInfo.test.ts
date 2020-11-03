@@ -1,14 +1,10 @@
-import {UserFolder, UserBlog} from '../../models/models';
-
-import {loginInfoReducer} from '../../reducers/loginInfoReducer';
+import {loginInfoReducer} from '../../store/reducers/loginInfoReducer';
 
 // LOGIN INFO REDUCER
 
 describe('LoginInfo state ', () => {
   it('should set up default LoginInfo values', () => {
     const state = loginInfoReducer(undefined, {type: ''});
-    const userBlogs: UserBlog[] = [];
-    const userFolders: UserFolder[] = [];
     expect(state).toEqual({
       url: '',
       tokenLogin: false,
@@ -17,9 +13,10 @@ describe('LoginInfo state ', () => {
       token: '',
       userName: '',
       isGuest: false,
+      didTryAutoLogin: false,
       profileIcon: '',
-      defaultBlogId: userBlogs[0],
-      defaultFolderTitle: userFolders[0]
+      defaultBlogId: 0,
+      defaultFolderTitle: ''
     });
   });
 });

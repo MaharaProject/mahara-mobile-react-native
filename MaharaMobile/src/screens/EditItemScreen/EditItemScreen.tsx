@@ -1,11 +1,7 @@
 import {t} from '@lingui/macro';
+import {CommonActions} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, View} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
 import {connect} from 'react-redux';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
@@ -13,41 +9,35 @@ import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/C
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
 import i18n from '../../i18n';
-import {
-  File,
-  PendingJEntry,
-  PendingMFile,
-  UploadItemType,
-  UserBlog,
-  UserFolder,
-  UserTag
-} from '../../models/models';
+import {PendingMFile, UserBlog, UserFolder, UserTag} from '../../models/models';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
   selectToken,
   selectUrl
-} from '../../reducers/loginInfoReducer';
-import {RootState} from '../../reducers/rootReducer';
-import {selectAllUploadFiles} from '../../reducers/uploadFilesReducer';
-import {selectAllJEntries} from '../../reducers/uploadJEntriesReducer';
+} from '../../store/reducers/loginInfoReducer';
+import {RootState} from '../../store/reducers/rootReducer';
+import {selectAllUploadFiles} from '../../store/reducers/uploadFilesReducer';
+import {selectAllJEntries} from '../../store/reducers/uploadJEntriesReducer';
 import {
   selectUserBlogs,
   selectUserFolders
-} from '../../reducers/userArtefactsReducer';
-import {selectUserTags} from '../../reducers/userTagsReducer';
+} from '../../store/reducers/userArtefactsReducer';
+import {selectUserTags} from '../../store/reducers/userTagsReducer';
 import {
   pickDocument,
   renderImagePreview,
   takePhoto
 } from '../../utils/addEditHelperFunctions';
+import {emptyFile} from '../../utils/constants';
 import {getUploadTypeIntlStrings} from '../../utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   token: string;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: any;
+  route: any;
   url: string;
   userBlogs: Array<UserBlog>;
   defaultFolderTitle: string;
@@ -55,22 +45,18 @@ type Props = {
 };
 
 const EditItemScreen = (props: Props) => {
-  // State
-  const itemType: UploadItemType = props.navigation.getParam('itemType');
-  const [pendingFile, setPendingFile] = useState<PendingMFile>(
-    props.navigation.getParam('itemToEdit')
-  );
-  const [pendingJEntry, setPendingJEntry] = useState<PendingJEntry>(
-    props.navigation.getParam('itemToEdit')
-  );
-  const [pickedFile, setPickedFile] = useState<File>(
-    pendingFile.maharaFormData.filetoupload
+  // ItemType is type UploadItemType ensures from the navigate in selectMediaScreen
+  const {itemType} = props.route.params;
+  const pendingFile: PendingMFile = props.route.params.itemToEdit;
+
+  const [pickedFile, setPickedFile] = useState(
+    pendingFile.maharaFormData
+      ? pendingFile.maharaFormData.filetoupload
+      : emptyFile
   );
 
   // Get item passed in as nav param from Upload Queue
-  const itemToEdit: PendingMFile | PendingJEntry = props.navigation.getParam(
-    'itemToEdit'
-  );
+  const {itemToEdit} = props.route.params;
 
   useEffect(() => {
     setPickedFile(pickedFile);
@@ -131,12 +117,18 @@ const EditItemScreen = (props: Props) => {
   );
 };
 
-EditItemScreen.navigationOptions = ({navigation}) => {
+export const EditItemScreenOptions = navData => {
   return {
     headerTitle: i18n._(
-      t`Edit ${getUploadTypeIntlStrings(navigation.getParam('itemType'))}`
+      t`Edit ${getUploadTypeIntlStrings(
+        navData.route.params.itemType
+      ).toLowerCase()}`
     ),
-    headerLeft: <CustomVerifyBackButton navigation={navigation} />
+    headerLeft: () => (
+      <CustomVerifyBackButton
+        goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
+      />
+    )
   };
 };
 

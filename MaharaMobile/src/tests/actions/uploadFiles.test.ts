@@ -3,7 +3,7 @@ import {
   clearUploadFiles,
   removeUploadFile,
   updateUploadFilesOnLogin
-} from '../../actions/actions';
+} from '../../store/actions/uploadFiles';
 import {
   ADD_UPLOAD_FILE,
   CLEAR_UPLOAD_FILES,

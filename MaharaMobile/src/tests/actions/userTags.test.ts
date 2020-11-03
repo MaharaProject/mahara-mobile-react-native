@@ -2,13 +2,13 @@ import {
   addTagsToItem,
   addUserTags,
   clearUserTags,
-  removeUploadFile,
-  removeUploadJEntry,
   saveTaggedItemsToAsync,
   updateTaggedItemsFromAsync,
   updateUserTags,
   updateUserTagsIds
-} from '../../actions/actions';
+} from '../../store/actions/actions';
+import {removeUploadJEntry} from '../../store/actions/uploadJEntries';
+import {removeUploadFile} from '../../store/actions/uploadFiles';
 import {
   ADD_USER_TAGS,
   CLEAR_USER_TAGS,

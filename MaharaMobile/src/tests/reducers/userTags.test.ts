@@ -1,4 +1,4 @@
-import {userTagsReducer} from '../../reducers/userTagsReducer';
+import {userTagsReducer} from '../../store/reducers/userTagsReducer';
 import {TAGS_IDS, TAG_ITEM} from '../../utils/constants';
 import {
   MOCK_MAHARA_PENDING_FILE_0,

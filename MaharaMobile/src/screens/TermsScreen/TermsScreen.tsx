@@ -1,21 +1,14 @@
-import {i18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {Body, List, ListItem} from 'native-base';
 import React from 'react';
 import {ScrollView} from 'react-native';
-import {
-  NavigationScreenProp,
-  NavigationState,
-  NavigationParams
-} from 'react-navigation';
 import generic from '../../assets/styles/generic';
-import styles from '../../assets/styles/variables';
 import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
 
 type Props = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: {navigate: (arg0: string) => any};
 };
 const TermsScreen = (props: Props) => (
   <ScrollView style={generic.wrap}>
@@ -34,7 +27,8 @@ const TermsScreen = (props: Props) => (
             <LinkText
               noStartSpace
               onPress={() => props.navigation.navigate('Privacy')}
-              text={t`The Privacy Statement`}></LinkText>
+              text={t`The Privacy Statement`}
+            />
 
             <MediumText
               text={t`forms part of these terms and conditions and is hereby incorporated by reference.`}
@@ -145,8 +139,8 @@ const TermsScreen = (props: Props) => (
         <Body>
           <SubHeading text={t`Changes to these Terms and Conditions`} />
           <MediumText
-            text={t`We may occasionally make adjustments to our Terms 
-          and Conditions to reflect changes to the system and in response to
+            text={t`We may occasionally make adjustments to our Terms and 
+          Conditions to reflect changes to the system and in response to
           feedback. As such, we suggest you check the Terms and Conditions
           each time you visit this app.`}
           />
@@ -171,17 +165,5 @@ const TermsScreen = (props: Props) => (
     </List>
   </ScrollView>
 );
-
-TermsScreen.navigationOptions = () => ({
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    flex: 1
-  },
-  headerTintColor: styles.colors.light,
-  headerTitle: i18n._(t`Legal - Terms and Conditions`)
-});
 
 export default TermsScreen;

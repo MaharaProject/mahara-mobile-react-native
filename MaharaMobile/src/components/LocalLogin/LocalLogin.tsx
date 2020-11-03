@@ -3,15 +3,13 @@ import {I18n} from '@lingui/react';
 import React, {useState} from 'react';
 import {Platform, Text, TextInput, View} from 'react-native';
 import {getManufacturer, getModel} from 'react-native-device-info';
-import LinearGradient from 'react-native-linear-gradient';
 import uuid from 'react-native-uuid';
-
 import LogoSvg from '../../assets/images/Logo-big';
 import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
-import variables from '../../assets/styles/variables';
 import {LOG_IN_ICON} from '../../utils/constants';
+import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import styles from './LocalLogin.style';
 
@@ -55,13 +53,7 @@ export default function LocalLogin(props: Props) {
 
   return (
     <View style={styles.view}>
-      <LinearGradient
-        colors={[
-          variables.colors.dark2,
-          variables.colors.tertiary,
-          variables.colors.light2
-        ]}
-        style={generic.linearGradient}>
+      <MaharaGradient style={generic.linearGradient}>
         <View style={styles.wrapper}>
           <View style={styles.imageWrapper}>
             <LogoSvg />
@@ -96,7 +88,7 @@ export default function LocalLogin(props: Props) {
             onPress={() => checkLogins()}
           />
         </View>
-      </LinearGradient>
+      </MaharaGradient>
     </View>
   );
 }

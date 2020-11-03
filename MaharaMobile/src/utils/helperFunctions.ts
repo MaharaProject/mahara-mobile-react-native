@@ -1,12 +1,12 @@
 import {t} from '@lingui/macro';
+import {StackActions} from '@react-navigation/native';
 import {useEffect, useRef} from 'react';
-import {StackActions} from 'react-navigation';
 import i18n from '../i18n';
 import {
   JournalEntry,
   MaharaFile,
-  PendingMFile,
   PendingJEntry,
+  PendingMFile,
   UploadItemType,
   UserBlog,
   UserBlogJSON,
@@ -122,4 +122,20 @@ export const getUploadTypeIntlStrings = (itemType: UploadItemType) => {
     default:
       return i18n._(t`Invalid type`);
   }
+};
+
+/**
+ * Checks for valid URL by searching for https:// and /
+ * @param url
+ */
+export const addHttpTrims = (url: string): string => {
+  let result = url.trim().toLowerCase();
+  if (url.length > 0 && url.slice(-1) !== '/') {
+    result += '/';
+  }
+
+  if (!/^https?:\/\//.test(result)) {
+    result = `https://${result}`;
+  }
+  return result;
 };

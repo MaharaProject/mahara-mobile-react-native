@@ -78,7 +78,7 @@ export const pickDocument = onSetPickedFile => {
   }
 };
 
-export const onCancelAlert = (navigation: {goBack: () => void} | undefined) => {
+export const onCancelAlert = goBack => {
   Alert.alert(
     i18n._(t`Are you sure?`),
     i18n._(
@@ -91,7 +91,10 @@ export const onCancelAlert = (navigation: {goBack: () => void} | undefined) => {
           // do nothing
         }
       },
-      {text: i18n._(t`Okay`), onPress: () => navigation.goBack()}
+      {
+        text: i18n._(t`Okay`),
+        onPress: () => goBack()
+      }
     ],
     {cancelable: true}
   );

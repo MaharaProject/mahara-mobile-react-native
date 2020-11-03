@@ -1,14 +1,15 @@
+import {updateLoginTypes} from '../../store/actions/actions';
 import {
-  addToken,
   clearLoginInfo,
   setDefaultBlogId,
   setDefaultFolder,
+  addToken,
   updateGuestStatus,
-  updateLoginTypes,
   updateProfilePic,
   updateUrl,
   updateUserName
-} from '../../actions/actions';
+} from '../../store/actions/loginInfo';
+
 import {LoginInfo} from '../../models/models';
 import {
   ADD_TOKEN,
