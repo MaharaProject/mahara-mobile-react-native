@@ -1,4 +1,4 @@
-import {uploadJEntriesReducer} from '../../reducers/uploadJEntriesReducer';
+import {uploadJEntriesReducer} from '../../store/reducers/uploadJEntriesReducer';
 
 // UPLOAD J ENTRIES REDUCER
 

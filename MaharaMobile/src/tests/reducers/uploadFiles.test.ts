@@ -1,5 +1,5 @@
 import {UserFolder} from '../../models/models';
-import {uploadFilesReducer} from '../../reducers/uploadFilesReducer';
+import {uploadFilesReducer} from '../../store/reducers/uploadFilesReducer';
 import {
   ADD_UPLOAD_FILE,
   UPDATE_UPLOAD_FILES_ON_LOGIN

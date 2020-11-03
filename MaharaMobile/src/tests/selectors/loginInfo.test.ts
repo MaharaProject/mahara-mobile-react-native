@@ -1,4 +1,4 @@
-import {selectUrl} from '../../reducers/loginInfoReducer';
+import {selectUrl} from '../../store/reducers/loginInfoReducer';
 import {MOCK_ROOT_STATE, MOCK_URL} from '../mockConstants';
 
 // TODO: only one selector tested

@@ -5,14 +5,14 @@ import {
   newMaharaFile,
   newUserFolder
 } from '../models/typeCreators';
-import {RootState} from '../reducers/rootReducer';
-import {UploadFilesState} from '../reducers/uploadFilesReducer';
-import {UploadJEntriesState} from '../reducers/uploadJEntriesReducer';
+import {RootState} from '../store/reducers/rootReducer';
+import {UploadFilesState} from '../store/reducers/uploadFilesReducer';
+import {UploadJEntriesState} from '../store/reducers/uploadJEntriesReducer';
 import {
   UserBlogsState,
   UserFoldersState
-} from '../reducers/userArtefactsReducer';
-import {UserTagInfoState} from '../reducers/userTagsReducer';
+} from '../store/reducers/userArtefactsReducer';
+import {UserTagInfoState} from '../store/reducers/userTagsReducer';
 
 // General constants
 

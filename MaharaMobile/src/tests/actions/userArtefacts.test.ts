@@ -3,7 +3,7 @@ import {
   clearUserFolders,
   updateUserBlogs,
   updateUserFolders
-} from '../../actions/actions';
+} from '../../store/actions/userArtefacts';
 import {
   CLEAR_USER_BLOGS,
   CLEAR_USER_FOLDERS,

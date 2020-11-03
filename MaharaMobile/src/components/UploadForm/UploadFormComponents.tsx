@@ -26,20 +26,18 @@ export const BlogPicker = (props: {
     UserBlog
   >;
 
-  if (!props.checkUserBlogs) {
-    return (
-      <RequiredWarningText
-        customText={t`Error: You do not have any journals on your site.`}
-      />
-    );
-  }
   return (
     <View>
       <JournalDraftSwitch
         setIsDraft={props.setIsDraft}
         isDraft={props.isDraft}
       />
-      <SubHeading text={t`Journal`} />
+      <SubHeading required text={t`Journal`} />
+      {!props.checkUserBlogs && (
+        <RequiredWarningText
+          customText={t`Error: You do not have any journals on your site.`}
+        />
+      )}
       <Item regular>
         <Picker
           mode="dropdown"
@@ -48,13 +46,16 @@ export const BlogPicker = (props: {
           selectedValue={props.selectedBlog}
           // style={forms.picker}
           onValueChange={(blogId: number) => props.setSelectedBlog(blogId)}>
-          {blogs.map((blog: UserBlog) => {
-            const label =
-              blog.id === props.defaultBlogId
-                ? `${blog.title} - default`
-                : blog.title;
-            return <Picker.Item label={label} value={blog.id} key={blog.id} />;
-          })}
+          {blogs &&
+            blogs.map((blog: UserBlog) => {
+              const label =
+                blog.id === props.defaultBlogId
+                  ? `${blog.title} - default`
+                  : blog.title;
+              return (
+                <Picker.Item label={label} value={blog.id} key={blog.id} />
+              );
+            })}
         </Picker>
       </Item>
     </View>
@@ -73,7 +74,8 @@ const JournalDraftSwitch = (props: Props) => (
     </Left>
     <Right>
       <Switch
-        trackColor={{false: '', true: styles.colors.green}}
+        trackColor={{false: '', true: styles.colors.navBarGreen}}
+        thumbColor={false ? '' : styles.colors.primary}
         value={props.isDraft}
         onValueChange={() => props.setIsDraft(!props.isDraft)}
       />

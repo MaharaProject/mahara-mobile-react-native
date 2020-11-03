@@ -3,31 +3,26 @@ import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {Component} from 'react';
 import {Alert, View} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {addToken, updateGuestStatus} from '../../actions/actions';
+import {addToken, updateGuestStatus} from '../../store/actions/loginInfo';
 import generic from '../../assets/styles/generic';
 import LocalLogin from '../../components/LocalLogin/LocalLogin';
 import SSOLogin from '../../components/SSOLogin/SSOLogin';
 import TokenInput from '../../components/TokenInput/TokenInput';
-import {UserBlog, UserFolder} from '../../models/models';
+import {LoginType, UserBlog, UserFolder} from '../../models/models';
 import {
   selectIsGuestStatus,
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
   selectUrl
-} from '../../reducers/loginInfoReducer';
-import {RootState} from '../../reducers/rootReducer';
+} from '../../store/reducers/loginInfoReducer';
+import {RootState} from '../../store/reducers/rootReducer';
 import {
   selectUserBlogs,
   selectUserFolders
-} from '../../reducers/userArtefactsReducer';
+} from '../../store/reducers/userArtefactsReducer';
 import {
   fetchProfilePic,
   fetchUserOnTokenLogin,
@@ -37,12 +32,12 @@ import {
 
 type Props = {
   dispatch: Dispatch;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  navigation: any;
+  route: {params: {loginType: LoginType}};
   url: string;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
-  loginType: boolean;
   userFolders: Array<UserFolder>;
   userBlogs: Array<UserBlog>;
   i18n: I18n;
@@ -99,13 +94,12 @@ export class LoginScreen extends Component<Props, State> {
         if (
           checkValidInitialState(this.props.userBlogs, this.props.userFolders)
         ) {
-          this.props.navigation.navigate('App');
+          // this.props.navigation.navigate('App');
         }
       })
       .catch(() => {
-        const {loginType} = this.props.navigation
-          ? this.props.navigation.state.params
-          : '';
+        const {loginType} = this.props.route.params;
+
         switch (loginType) {
           case 'basic':
             Alert.alert(
@@ -152,7 +146,7 @@ export class LoginScreen extends Component<Props, State> {
         this.props.i18n._(t`You didn't enter anything in this field.`)
       );
     } else if (this.props.isGuest) {
-      await this.props.dispatch(updateGuestStatus(false));
+      this.props.dispatch(updateGuestStatus(false));
       updatePendingItemsOnGuestToUser(
         this.props.dispatch,
         this.props.userBlogs,
@@ -160,12 +154,12 @@ export class LoginScreen extends Component<Props, State> {
         this.state.token,
         this.props.url
       );
+      console.log('updatedGuestDetailsToProvidedUser');
     }
   };
 
   render() {
-    const {params} = this.props.navigation ? this.props.navigation.state : '';
-    const {loginType} = params || '';
+    const {loginType} = this.props.route.params;
 
     return (
       <View style={generic.view}>

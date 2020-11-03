@@ -1,29 +1,29 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState
-} from 'react-navigation';
 import {useDispatch} from 'react-redux';
+import {PendingJEntry, PendingMFile} from '../../models/models';
 import {
-  addFileToUploadList,
-  addJournalEntryToUploadList,
+  updateLoginTypes,
+  updateTaggedItemsFromAsync,
+  updateUserTags,
+  updateUserTagsIds
+} from '../../store/actions/actions';
+import {
   addToken,
   setDefaultBlogId,
   setDefaultFolder,
-  updateLoginTypes,
+  setDidTryAL,
   updateProfilePic,
-  updateTaggedItemsFromAsync,
   updateUrl,
+  updateUserName
+} from '../../store/actions/loginInfo';
+import {addFileToUploadList} from '../../store/actions/uploadFiles';
+import {addJournalEntryToUploadList} from '../../store/actions/uploadJEntries';
+import {
   updateUserBlogs,
-  updateUserFolders,
-  updateUserName,
-  updateUserTags,
-  updateUserTagsIds
-} from '../../actions/actions';
-import {PendingMFile, PendingJEntry} from '../../models/models';
+  updateUserFolders
+} from '../../store/actions/userArtefacts';
 import {
   DEFAULT_BLOG_ID,
   DEFAULT_FOLDER_TITLE,
@@ -32,11 +32,7 @@ import {
   USER_TAGS
 } from '../../utils/constants';
 
-type Props = {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-};
-
-const AuthLoadingScreen = (props: Props) => {
+const AuthLoadingScreen = () => {
   const dispatch = useDispatch();
 
   const parseJSON = (jsonString: string) => JSON.parse(jsonString);
@@ -163,8 +159,14 @@ const AuthLoadingScreen = (props: Props) => {
     // This will switch to the App screen or Auth screen and this loading
     // screen will be unmounted and thrown away.
     if (userToken !== null) {
-      retrieveAsyncData().then(() => props.navigation.navigate('App'));
-    } else props.navigation.navigate('SiteCheck');
+      retrieveAsyncData()
+        .then
+        // () => props.navigation.navigate('App')
+        ();
+    } else {
+      // props.navigation.navigate('SiteCheck')
+      dispatch(setDidTryAL());
+    }
   };
 
   useEffect(() => {

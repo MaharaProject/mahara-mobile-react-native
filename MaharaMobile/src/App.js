@@ -11,8 +11,8 @@ import SplashScreen from 'react-native-splash-screen';
 import getTheme from '../native-base-theme/components';
 import commonColor from '../native-base-theme/variables/commonColor';
 import i18n, {changeActiveLanguage} from './i18n';
-import AppNavigator from './navigations/app-navigator';
 import configureStore from './store/store';
+import AppNavigator from './navigation/AppNavigator';
 
 global.Buffer = Buffer;
 

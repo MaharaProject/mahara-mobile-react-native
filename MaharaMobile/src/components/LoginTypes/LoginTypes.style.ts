@@ -5,9 +5,6 @@ export default StyleSheet.create({
   view: {
     flex: 1
   },
-  logoWrapper: {
-    flex: 1
-  },
   buttonGroup: {
     justifyContent: 'space-between',
     flex: 1

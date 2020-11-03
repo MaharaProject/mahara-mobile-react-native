@@ -46,7 +46,7 @@ export default {
   touchableTextColor: '#757575',
 
   // Android
-  androidRipple: true,
+  androidRipple: false,
   androidRippleColor: 'rgba(256, 256, 256, 0.3)',
   androidRippleColorDark: 'rgba(0, 0, 0, 0.15)',
   buttonUppercaseAndroidText: true,
@@ -130,11 +130,11 @@ export default {
   checkboxTickColor: '#fff',
 
   // Color
-  brandPrimary: '#4c762c',
-  brandInfo: '#b9a34b',
+  brandPrimary: '#576c36',
+  brandInfo: '#ba9b59',
   brandSuccess: '#3c4c23',
-  brandDanger: '#d9534f',
-  brandWarning: '#f0ad4e',
+  brandDanger: '#a9000d',
+  brandWarning: '#b9a34b',
   brandDark: '#000',
   brandLight: '#FFF',
 

@@ -92,6 +92,8 @@ export type MessageDescriptor = {
   formats?: object;
 };
 
+export type LoginType = 'basic' | 'sso' | 'token';
+
 export type LoginInfo = {
   maharaversion: string;
   wwwroot: string;

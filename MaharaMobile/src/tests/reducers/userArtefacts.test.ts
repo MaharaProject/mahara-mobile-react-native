@@ -1,7 +1,7 @@
 import {
   userBlogsReducer,
   userFoldersReducer
-} from '../../reducers/userArtefactsReducer';
+} from '../../store/reducers/userArtefactsReducer';
 
 // USER ARTEFACTS REDUCER
 

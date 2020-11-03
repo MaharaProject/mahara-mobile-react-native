@@ -1,22 +1,10 @@
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
+import {StackActions} from '@react-navigation/native';
 import {Icon, Input, Item, Picker, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-  StackActions
-} from 'react-navigation';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  addFileToUploadList,
-  addJournalEntryToUploadList,
-  addTagsToItem,
-  addUserTags,
-  saveTaggedItemsToAsync
-} from '../../actions/actions';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
@@ -37,8 +25,15 @@ import {
   newPendingMFile,
   newUserTag
 } from '../../models/typeCreators';
-import {RootState} from '../../reducers/rootReducer';
-import {selectItemTagsStrings} from '../../reducers/userTagsReducer';
+import {
+  addTagsToItem,
+  addUserTags,
+  saveTaggedItemsToAsync
+} from '../../store/actions/actions';
+import {addFileToUploadList} from '../../store/actions/uploadFiles';
+import {addJournalEntryToUploadList} from '../../store/actions/uploadJEntries';
+import {RootState} from '../../store/reducers/rootReducer';
+import {selectItemTagsStrings} from '../../store/reducers/userTagsReducer';
 import {emptyPendingJEntry, emptyPendingMFile} from '../../utils/constants';
 import {
   isValidText,
@@ -58,7 +53,7 @@ import MediumButton from '../UI/MediumButton/MediumButton';
 import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
-import BlogPicker from './UploadFormJournalComponents';
+import BlogPicker from './UploadFormComponents';
 
 type Props = {
   pickedFile?: File;
@@ -68,8 +63,8 @@ type Props = {
   itemType: UploadItemType;
   token: string;
   url: string;
-  editItem: PendingMFile | PendingJEntry;
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  editItem?: PendingMFile | PendingJEntry;
+  navigation: any;
   defFolderTitle: string;
   defaultBlogId: number;
 };
@@ -84,8 +79,9 @@ type State = {
 const UploadForm = (props: Props) => {
   let editItemTags: Array<string> = [];
   if (props.editItem) {
+    const pendingItem = props.editItem;
     editItemTags = useSelector((state: RootState) =>
-      selectItemTagsStrings(state, props.editItem.id)
+      selectItemTagsStrings(state, pendingItem.id)
     );
   }
 
@@ -303,10 +299,7 @@ const UploadForm = (props: Props) => {
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate({
-      routeName: 'Pending',
-      params: {added: true}
-    });
+    props.navigation.navigate('PendingScreen', {added: true});
   };
 
   const updateTitle = (newTitle: string) => {
@@ -378,7 +371,12 @@ const UploadForm = (props: Props) => {
 
     return (
       <View>
-        <SubHeading text={t`Folder`} />
+        <SubHeading required text={t`Folder`} />
+        {props.defFolderTitle === undefined && (
+          <RequiredWarningText
+            customText={t`Error: You do not have any folders on your site.`}
+          />
+        )}
         <Item regular>
           <Picker
             placeholder={props.defFolderTitle}
@@ -438,46 +436,40 @@ const UploadForm = (props: Props) => {
         )}
       </View>
       {/* Display drop down of existing tags */}
-      <View>
-        <Item regular style={buttons.default}>
-          <Picker
-            mode="dropdown"
-            iosHeader="Select tags"
-            placeholder={i18n._(t`Select tags`)}
-            accessibilityLabel={i18n._(t`Select tags`)}
-            selectedValue={selectedTag}
-            onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
+      <Item regular style={[buttons.default]}>
+        <Picker
+          mode="dropdown"
+          iosHeader="Select tags"
+          placeholder={i18n._(t`Select tags`)}
+          accessibilityLabel={i18n._(t`Select tags`)}
+          selectedValue={selectedTag}
+          onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
+          <Picker.Item
+            label={i18n._(t`Select tags...`)}
+            value=""
+            color={styles.colors.darkgrey}
+          />
+          <Picker.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" />
+          {props.userTags.map((value: UserTag, index: number) => (
             <Picker.Item
-              label={i18n._(t`Select tags...`)}
-              value=""
-              color={styles.colors.darkgrey}
+              label={value.tag}
+              value={value.tag}
+              key={props.userTags[index].id}
             />
-            <Picker.Item
-              label={i18n._(t`Add new tag +`)}
-              value="Add new tag +"
-            />
-            {props.userTags.map((value: UserTag, index: number) => (
-              <Picker.Item
-                label={value.tag}
-                value={value.tag}
-                key={props.userTags[index].id}
-              />
-            ))}
-          </Picker>
-        </Item>
-      </View>
+          ))}
+        </Picker>
+      </Item>
     </View>
   );
 
   const getFormValidation = () => {
-    if (itemType !== 'J_ENTRY' && !fileValid) {
-      return false;
-    }
+    const fileFormIsValid = fileValid && !!selectedFolder;
+    const journalFormIsValid = descValid && titleValid && selectedBlog !== 0;
 
-    if (itemType === 'J_ENTRY' && (!descValid || !titleValid)) {
-      return false;
+    if (itemType !== 'J_ENTRY') {
+      return fileFormIsValid;
     }
-    return true;
+    return journalFormIsValid;
   };
 
   const renderButtons = () => {
@@ -486,8 +478,7 @@ const UploadForm = (props: Props) => {
     return (
       <View>
         <MediumButton
-          onPress={() => handleForm()}
-          accessibilityLabel={i18n._(t`Queue to upload`)}
+          onPress={handleForm}
           invalid={!validButton}
           icon="time-outline"
           text={
@@ -500,6 +491,7 @@ const UploadForm = (props: Props) => {
         {/* Allow users to cancel edits */}
         {props.editItem && (
           <CancelButton
+            navigation={props.navigation}
             onPress={() => {
               props.navigation.popToTop();
               props.navigation.navigate('Pending');

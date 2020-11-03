@@ -2,7 +2,7 @@ import {I18n} from '@lingui/core';
 import {applyMiddleware, compose, createStore} from 'redux';
 import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
-import {rootReducer} from '../reducers/rootReducer';
+import {rootReducer} from './reducers/rootReducer';
 
 export default function configureStore(preloadedState, i18n: I18n) {
   const middleware = [thunk];

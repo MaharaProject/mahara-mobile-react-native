@@ -4,25 +4,35 @@ import {Alert} from 'react-native';
 import {Dispatch} from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
 import {
-  addToken,
-  clearLoginInfo,
-  clearUploadFiles,
-  clearUploadJEntires,
-  clearUserBlogs,
-  clearUserFolders,
   clearUserTags,
-  setDefaultBlogId,
-  setDefaultFolder,
-  updateGuestStatus,
-  updateJEntriesOnLogin,
-  updateProfilePic,
-  updateUploadFilesOnLogin,
-  updateUserBlogs,
-  updateUserFolders,
-  updateUserName,
   updateUserTags,
   updateUserTagsIds
-} from '../actions/actions';
+} from '../store/actions/actions';
+import {
+  clearLoginInfo,
+  setDefaultBlogId,
+  setDefaultFolder,
+  addToken,
+  updateGuestStatus,
+  updateProfilePic,
+  updateUserName
+} from '../store/actions/loginInfo';
+import {
+  clearUserBlogs,
+  clearUserFolders,
+  updateUserBlogs,
+  updateUserFolders
+} from '../store/actions/userArtefacts';
+import {
+  clearUploadJEntires,
+  updateJEntriesOnLogin
+} from '../store/actions/uploadJEntries';
+import {
+  clearUploadFiles,
+  updateUploadFilesOnLogin
+} from '../store/actions/uploadFiles';
+
+import i18n from '../i18n';
 import {UserBlog, UserBlogJSON, UserFolder, UserTag} from '../models/models';
 import {newUserTag} from '../models/typeCreators';
 import {
@@ -32,8 +42,15 @@ import {
   GUEST_USERNAME
 } from './constants';
 import {userBlogJSONtoUserBlog} from './helperFunctions';
-import i18n from '../i18n';
 
+/**
+ * Attempt to fetch user info based on given token
+
+ * @param serverUrl
+ * @param requestOptions
+ * @returns true if successful log in and data loading
+ * @returns Promise.reject() on fail
+ */
 export function fetchUserOnTokenLogin(
   serverUrl: string,
   requestOptions: RequestInit
@@ -93,13 +110,13 @@ export const clearReduxData = async (dispatch: Dispatch) => {
 };
 
 export const setUpGuest = async (dispatch: Dispatch) => {
-  await dispatch(updateGuestStatus(true));
-  await dispatch(addToken(GUEST_TOKEN));
-  await dispatch(updateUserName(GUEST_USERNAME));
-  await dispatch(updateUserFolders([GUEST_FOLDER]));
-  await dispatch(updateUserBlogs([GUEST_BLOG]));
-  await dispatch(setDefaultBlogId(GUEST_BLOG.id));
-  await dispatch(setDefaultFolder(GUEST_FOLDER.title));
+  dispatch(updateGuestStatus(true));
+  dispatch(addToken(GUEST_TOKEN));
+  dispatch(updateUserName(GUEST_USERNAME));
+  dispatch(updateUserFolders([GUEST_FOLDER]));
+  dispatch(updateUserBlogs([GUEST_BLOG]));
+  dispatch(setDefaultBlogId(GUEST_BLOG.id));
+  dispatch(setDefaultFolder(GUEST_FOLDER.title));
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -125,8 +142,8 @@ export const updatePendingItemsOnGuestToUser = async (
   token: string,
   urlDomain: string
 ) => {
-  await dispatch(updateJEntriesOnLogin(token, urlDomain, userBlogs));
-  await dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
+  dispatch(updateJEntriesOnLogin(token, urlDomain, userBlogs));
+  dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
 };
 
 export const fetchProfilePic = async (
@@ -171,7 +188,7 @@ export const signOutAsync = async (navigation, dispatch) => {
       {
         text: 'Logout',
         onPress: async () => {
-          navigation.navigate('SiteCheck');
+          // navigation.navigate('SiteCheck');
           await AsyncStorage.clear();
           clearReduxData(dispatch);
         }

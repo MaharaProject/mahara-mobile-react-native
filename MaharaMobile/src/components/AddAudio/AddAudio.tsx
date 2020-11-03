@@ -16,7 +16,7 @@ import styles from './AddAudio.style';
 
 type Props = {
   setPickedFile: React.Dispatch<React.SetStateAction<File>>;
-  audioFileToEdit: File;
+  audioFileToEdit?: File;
   i18n: I18n;
 };
 
@@ -122,7 +122,7 @@ const AddAudio = (props: Props) => {
     setURI(path);
 
     const resultURI = await audioRecorderPlayer.startRecorder(path);
-    audioRecorderPlayer.addRecordBackListener((e: any) => {
+    audioRecorderPlayer.addRecordBackListener(() => {
       setURI(resultURI);
       setRecordStat('recording');
     });
@@ -169,7 +169,7 @@ const AddAudio = (props: Props) => {
           .then(() => {
             setPlayStatus('not-playing');
           })
-          .catch(stopErr => {
+          .catch(() => {
             // audio reached end
             setPlayStatus('not-playing');
           });
@@ -219,7 +219,7 @@ const AddAudio = (props: Props) => {
         {recordStatus === 'recording' ? (
           <MediumButton
             dark
-            style={{backgroundColor: variables.colors.red}}
+            style={{backgroundColor: variables.colors.recordingStopButtonRed}}
             text={t`Stop`}
             onPress={() => handleRecord()}
             icon={STOP_ICON}
