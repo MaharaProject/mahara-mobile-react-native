@@ -23,7 +23,7 @@ const MaharaMobileNavigator = () => (
       keyboardHidesTabBar: true,
       activeTintColor: styles.colors.navActiveGreenTint,
       inactiveTintColor: styles.colors.quaternary,
-      style: {backgroundColor: styles.colors.navBarGreen},
+      style: {backgroundColor: styles.colors.navBarGreen, borderTopWidth: 0},
       showLabel: false
     }}>
     <BottomTabsNavigator.Screen
