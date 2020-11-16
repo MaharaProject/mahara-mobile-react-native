@@ -134,7 +134,7 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 8
+        versionCode 12
         versionName "20.10.1"
         ndk { debugSymbolLevel 'FULL' }
     }
@@ -148,6 +148,8 @@ android {
     }
     signingConfigs {
         release {
+            keyAlias 'upload'
+            storeFile file('maharamobile-keystore.jks')
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD
@@ -204,9 +206,12 @@ dependencies {
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-localize')
     implementation project(':react-native-reanimated')
-    implementation project(':react-native-vector-icons')
+//    implementation project(':react-native-vector-icons')
     implementation project(':react-native-webview')
     implementation project(':rn-fetch-blob')
+    implementation project(path: ':@react-native-community_async-storage')
+    implementation project(path: ':@react-native-community_async-storage')
+    implementation project(path: ':@react-native-community_async-storage')
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
