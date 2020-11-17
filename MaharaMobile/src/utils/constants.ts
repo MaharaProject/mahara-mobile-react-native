@@ -69,7 +69,7 @@ export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 
 // OTHER DATA
 // guest blog and folder objects
-export const GUEST_USERNAME = 'GUEST_USERNAME';
+export const GUEST_USERNAME = 'Guest';
 export const GUEST_TOKEN = 'GUEST_TOKEN';
 export const GUEST_BLOG: UserBlog = {
   id: -1,
