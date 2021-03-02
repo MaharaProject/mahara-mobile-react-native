@@ -1,7 +1,7 @@
 import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert, Image, Platform, View} from 'react-native';
-import DocumentPicker from 'react-native-document-picker';
+// import DocumentPicker from 'react-native-document-picker';
 import ImagePicker, {ImagePickerResponse} from 'react-native-image-picker';
 import i18n from '../i18n';
 import {File} from '../models/models';
@@ -61,6 +61,7 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
 };
 
 export const pickDocument = onSetPickedFile => {
+  const DocumentPicker = require('react-native-document-picker').default; // eslint-disable-line global-require
   try {
     DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
