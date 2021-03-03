@@ -3,6 +3,8 @@
 Mahara Mobile is built using TypeScript, Redux, LinguiJS, and React/React Native.
 It uses Metro, the JavaScript bundler for React Native to join the code and all its dependencies together.
 
+**For community contributions head over to <https://github.com/MaharaProject/mahara-mobile-react-native/>**
+
 ## Setup
 
 This project uses React Native. For first time set up, inside the `/MaharaMobile` folder, run:
