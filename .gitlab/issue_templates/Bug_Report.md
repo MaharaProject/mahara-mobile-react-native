@@ -24,6 +24,6 @@
 
 > If you can, link to the line of code that might be responsible for the problem
 > ~ ACTIONS  ~
-> /label ~bug ~reproduced ~needs-investigation  
-> /cc @project-manager  
+> /label ~bug ~reproduced ~needs-investigation
+> /cc @project-manager
 > /assign @qa-tester
