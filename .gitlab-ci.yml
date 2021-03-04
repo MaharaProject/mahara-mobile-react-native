@@ -29,7 +29,7 @@ lint:
 
 test:
   stage: test
-  script: 
+  script:
     - cd MaharaMobile
     - npm run extract
     - npm run test
