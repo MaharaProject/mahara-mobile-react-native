@@ -18,7 +18,7 @@ msgstr ""
 #: src/screens/AboutScreen/AboutScreen.tsx:10
 #: src/screens/HelpScreen/HelpScreen.tsx:9
 #~ msgid "..."
-#~ msgstr ""
+#~ msgstr "⚡translation here⚡"
 
 #: src/components/UI/CustomText/LinkText.tsx:7
 #~ msgid "<0> </0><1>{0} </1>"
