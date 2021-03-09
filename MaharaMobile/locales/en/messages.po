@@ -23,7 +23,7 @@ msgstr ""
 msgid "A file has been added."
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:27
+#: src/navigation/StackNavigators.tsx:29
 #: src/screens/MenuScreen/MenuScreen.tsx:15
 msgid "About"
 msgstr ""
@@ -37,34 +37,34 @@ msgstr ""
 msgid "Access permission"
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:104
+#: src/components/LoginTypes/LoginTypes.tsx:24
 msgid "Access token"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:22
-#: src/screens/SelectMediaScreen/SelectMediaScreen.tsx:11
+#: src/navigation/StackNavigators.tsx:24
+#: src/screens/AddItemScreen/AddItemScreen.tsx:56
 msgid "Add"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:24
+#: src/navigation/StackNavigators.tsx:26
 msgid "Add an item"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/UploadForm.tsx:279
 msgid "Add new tag +"
 msgstr ""
 
 #: src/screens/AddItemScreen/AddItemScreen.tsx:53
-msgid "Add {0}"
-msgstr ""
+#~ msgid "Add {0}"
+#~ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:68
 msgid "Added to upload queue successfully!"
 msgstr ""
 
 #: src/components/LoginTypes/LoginTypes.tsx:76
-msgid "Address of your Mahara site"
-msgstr ""
+#~ msgid "Address of your Mahara site"
+#~ msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:51
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
@@ -114,11 +114,11 @@ msgstr ""
 msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app, whereas single sign-on takes you to your Mahara site. You may also generate an access token manually on your Mahara site if that feature is enabled."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:12
+#: src/utils/addEditHelperFunctions.tsx:11
 msgid "Camera closed."
 msgstr ""
 
-#: src/components/UI/CancelButton/CancelButton.tsx:9
+#: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:77
 #: src/utils/addEditHelperFunctions.tsx:69
 msgid "Cancel"
@@ -136,7 +136,7 @@ msgstr ""
 #~ msgid "Collection of personal information"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:297
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
@@ -165,15 +165,15 @@ msgstr ""
 msgid "Destination journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:44
+#: src/components/UploadForm/UploadFormComponents.tsx:44
 msgid "Draft journal entry"
 msgstr ""
 
-#: src/screens/EditItemScreen/EditItemScreen.tsx:53
+#: src/screens/EditItemScreen/EditItemScreen.tsx:56
 msgid "Edit {0}"
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:92
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:138
 msgid "Enter a different URL"
 msgstr ""
 
@@ -185,11 +185,11 @@ msgstr ""
 msgid "Error: You do not have any folders on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:26
+#: src/components/UploadForm/UploadFormComponents.tsx:26
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:321
+#: src/components/UploadForm/UploadForm.tsx:319
 msgid "Fields marked by * are required."
 msgstr ""
 
@@ -216,7 +216,7 @@ msgstr ""
 msgid "Governing Law"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:30
+#: src/navigation/StackNavigators.tsx:32
 #: src/screens/MenuScreen/MenuScreen.tsx:14
 msgid "Help"
 msgstr ""
@@ -245,7 +245,7 @@ msgstr ""
 msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:15
+#: src/utils/addEditHelperFunctions.tsx:14
 msgid "ImagePicker Error:{0}"
 msgstr ""
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:25
+#: src/components/UploadForm/UploadFormComponents.tsx:25
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:107
 msgid "Journal"
 msgstr ""
@@ -309,19 +309,19 @@ msgstr ""
 msgid "Liability"
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:103
+#: src/components/LoginTypes/LoginTypes.tsx:23
 msgid "Local"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:25
+#: src/components/TokenInput/TokenInput.tsx:24
 msgid "Log in via an access token"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:65
+#: src/components/LocalLogin/LocalLogin.tsx:60
 msgid "Log in via username and password"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:73
+#: src/components/LocalLogin/LocalLogin.tsx:68
 msgid "Login"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgstr ""
 #~ msgid "Mahara is an open source ePortfolio system designed for social learning. An ePortfolio is a system in which learners can record evidence of their learning, e.g. essays, artwork, certificates, reflections or other such things they produce that can be stored digitally."
 #~ msgstr ""
 
-#: src/navigation/StackNavigators.tsx:28
+#: src/navigation/StackNavigators.tsx:30
 msgid "Menu"
 msgstr ""
 
@@ -395,11 +395,11 @@ msgstr ""
 msgid "New tag..."
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:95
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:146
 msgid "Next"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:12
+#: src/utils/addEditHelperFunctions.tsx:11
 msgid "No photo captured"
 msgstr ""
 
@@ -415,7 +415,7 @@ msgstr ""
 msgid "Our obligations"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:71
+#: src/components/LocalLogin/LocalLogin.tsx:66
 msgid "Password"
 msgstr ""
 
@@ -433,11 +433,11 @@ msgstr ""
 msgid "Please check the internet connection."
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:85
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:131
 msgid "Please enter a URL."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:199
+#: src/screens/PendingScreen/PendingScreen.tsx:197
 msgid "Please login"
 msgstr ""
 
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Please select a file."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:28
+#: src/components/UploadForm/UploadFormComponents.tsx:28
 msgid "Please select a journal"
 msgstr ""
 
@@ -453,12 +453,12 @@ msgstr ""
 msgid "Please try again."
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:26
+#: src/navigation/StackNavigators.tsx:28
 #: src/screens/MenuScreen/MenuScreen.tsx:13
 msgid "Preferences"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:29
+#: src/navigation/StackNavigators.tsx:31
 msgid "Privacy"
 msgstr ""
 
@@ -466,7 +466,7 @@ msgstr ""
 msgid "Privacy statement"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:23
+#: src/navigation/StackNavigators.tsx:25
 msgid "Profile page"
 msgstr ""
 
@@ -479,7 +479,6 @@ msgid "Purpose of Mahara Mobile"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:298
-#: src/components/UploadForm/UploadForm.tsx:300
 msgid "Queue to upload"
 msgstr ""
 
@@ -487,8 +486,8 @@ msgstr ""
 msgid "Re-record"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:40
-#: src/screens/EditItemScreen/EditItemScreen.tsx:40
+#: src/screens/AddItemScreen/AddItemScreen.tsx:41
+#: src/screens/EditItemScreen/EditItemScreen.tsx:44
 msgid "Re-take photo"
 msgstr ""
 
@@ -496,16 +495,16 @@ msgstr ""
 msgid "Record"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:37
-#: src/screens/EditItemScreen/EditItemScreen.tsx:36
+#: src/screens/AddItemScreen/AddItemScreen.tsx:38
+#: src/screens/EditItemScreen/EditItemScreen.tsx:40
 msgid "Select a different file"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:36
+#: src/screens/AddItemScreen/AddItemScreen.tsx:37
 msgid "Select a file"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormJournalComponents.tsx:28
+#: src/components/UploadForm/UploadFormComponents.tsx:28
 msgid "Select a journal"
 msgstr ""
 
@@ -514,7 +513,7 @@ msgstr ""
 msgid "Select folder"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:31
+#: src/utils/addEditHelperFunctions.tsx:30
 msgid "Select image"
 msgstr ""
 
@@ -522,24 +521,24 @@ msgstr ""
 msgid "Select journal"
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:99
+#: src/components/LoginTypes/LoginTypes.tsx:19
 msgid "Select login type"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:278
-#: src/components/UploadForm/UploadForm.tsx:278
+#: src/components/UploadForm/UploadForm.tsx:277
+#: src/components/UploadForm/UploadForm.tsx:277
 msgid "Select tags"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:279
+#: src/components/UploadForm/UploadForm.tsx:278
 msgid "Select tags..."
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:102
+#: src/components/LoginTypes/LoginTypes.tsx:22
 msgid "Single sign-on"
 msgstr ""
 
-#: src/components/LoginTypes/LoginTypes.tsx:96
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:151
 msgid "Skip"
 msgstr ""
 
@@ -555,8 +554,8 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:40
-#: src/screens/EditItemScreen/EditItemScreen.tsx:40
+#: src/screens/AddItemScreen/AddItemScreen.tsx:41
+#: src/screens/EditItemScreen/EditItemScreen.tsx:44
 msgid "Take photo"
 msgstr ""
 
@@ -564,7 +563,7 @@ msgstr ""
 msgid "Tap to remove tag"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:32
+#: src/navigation/StackNavigators.tsx:34
 #: src/screens/MenuScreen/MenuScreen.tsx:17
 msgid "Terms and conditions"
 msgstr ""
@@ -606,7 +605,7 @@ msgstr ""
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:199
+#: src/screens/PendingScreen/PendingScreen.tsx:197
 msgid "To upload pending items"
 msgstr ""
 
@@ -618,27 +617,27 @@ msgstr ""
 msgid "Updated preferences"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:21
+#: src/navigation/StackNavigators.tsx:23
 msgid "Upload queue"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:25
+#: src/navigation/StackNavigators.tsx:27
 msgid "Upload queue page"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:198
+#: src/screens/PendingScreen/PendingScreen.tsx:196
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:68
+#: src/components/LocalLogin/LocalLogin.tsx:63
 msgid "Username"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:27
+#: src/components/TokenInput/TokenInput.tsx:26
 msgid "Verify token"
 msgstr ""
 
-#: src/navigation/StackNavigators.tsx:31
+#: src/navigation/StackNavigators.tsx:33
 msgid "Version"
 msgstr ""
 
@@ -686,6 +685,10 @@ msgstr ""
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
 msgstr ""
 
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:117
+msgid "What is the address of your Mahara?"
+msgstr ""
+
 #: src/screens/TermsScreen/TermsScreen.tsx:73
 msgid "You agree to defend, indemnify and save us, our affiliated and subsidiary corporations, our officers, directors, employees, agents, successors, shareholders and assigns harm from and against all liability, loss, expense, fines, penalties, or damages (including legal costs) to the extent that such claim arises out of or is in any way connected with the non-performance or breach of any obligation imposed on you by this agreement or other general laws and obligations or by reason of and to the extent of your fraud, negligence or wilful misconduct or that of or any of your agents or employees."
 msgstr ""
@@ -706,7 +709,7 @@ msgstr ""
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:196
+#: src/screens/PendingScreen/PendingScreen.tsx:194
 msgid "Your site: {url}"
 msgstr ""
 
