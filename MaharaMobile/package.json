@@ -15,8 +15,9 @@
     "postinstall": "npx jetify"
   },
   "dependencies": {
+    "@babel/eslint-parser": "^7.13.10",
     "@babel/runtime": "7.6.2",
-    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-native-fontawesome": "^0.1.0",
     "@lingui/conf": "^2.9.2",
