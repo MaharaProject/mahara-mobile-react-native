@@ -17,8 +17,8 @@ const AboutScreen = () => {
                 Mahara Project Team. To contribute or report bugs, see our`}
             />
             <LinkText
-              url="https://github.com/MaharaProject/mahara-mobile"
-              text={t`Mahara Project`}
+              url="https://github.com/MaharaProject/mahara-mobile-react-native/"
+              text={t`Mahara Mobile`}
             />
             <MediumText text={t`repository on GitHub.`} />
           </MediumText>
