@@ -406,7 +406,7 @@ const UploadForm = (props: Props) => {
         {/* Display selected tags */}
         {selectedTags?.map((value: string, index: number) => (
           <TouchableOpacity
-            key={index}
+            key={value + Math.random() * 10}
             onPress={() => removeTag(value)}
             accessibilityRole="button"
             accessibilityLabel={value}
