@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 android/app/*.jks
+android/*.jks
 android/sentry.properties
 
 # node.js

@@ -12,7 +12,8 @@
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
     "compile": "lingui compile",
-    "postinstall": "npx jetify"
+    "postinstall": "npx jetify",
+    "release": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.13.10",
