@@ -1,9 +1,10 @@
 {
   "name": "mahara-mobile",
-  "version": "20.10.1",
+  "version": "21.04.1",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
+    "release": "cd android && ./gradlew assembleRelease",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -12,8 +13,7 @@
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",
     "compile": "lingui compile",
-    "postinstall": "npx jetify",
-    "release": "cd android && ./gradlew assembleRelease"
+    "postinstall": "npx jetify"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.13.10",
