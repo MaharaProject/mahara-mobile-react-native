@@ -9,6 +9,11 @@ const HelpScreen = () => (
   <View style={generic.wrap}>
     <ListItem>
       <MediumText
+      text={t `Access token - to authenticate with this method, please ask your administrator
+      to generate an access token for you through.`}/>
+    </ListItem>
+    <ListItem>
+      <MediumText
         text={t`For help, contact the support team of the Mahara instance that you are
       using. Typically, you can find a 'Contact us' link in the footer
       of the Mahara site to which you log in.`}

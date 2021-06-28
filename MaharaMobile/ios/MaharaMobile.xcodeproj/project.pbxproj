@@ -319,6 +319,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				AEBE5E34FDAE24C3B9302D76 /* [CP] Copy Pods Resources */,
+				E508122526112EB400A18A68 /* Run script to set build number :) */,
 			);
 			buildRules = (
 			);
@@ -400,10 +401,9 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MaharaMobile" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -627,6 +627,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E508122526112EB400A18A68 /* Run script to set build number :) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run script to set build number :)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Generate the build number using current date and time\nbuildNum=$(date \"+%Y%m.%d.%H%M\")\n## Set the build number in plist file\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNum\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n";
+		};
 		F224446EB72DBAAD2D2EEB3E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -828,7 +846,7 @@
 				CODE_SIGN_ENTITLEMENTS = MaharaMobile/MaharaMobile.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
@@ -860,7 +878,7 @@
 				CODE_SIGN_ENTITLEMENTS = MaharaMobile/MaharaMobile.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
