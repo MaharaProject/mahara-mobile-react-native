@@ -15,7 +15,7 @@ import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
 type Props = {
-  setPickedFile: React.Dispatch<React.SetStateAction<File>>;
+  setPickedFile: any;
   audioFileToEdit?: File;
   i18n: I18n;
 };
@@ -149,6 +149,7 @@ const AddAudio = (props: Props) => {
   };
 
   const handleRecord = async () => {
+    console.log('recording');
     if (!isPermissionGranted) {
       return;
     }
