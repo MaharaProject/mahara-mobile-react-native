@@ -161,8 +161,9 @@ const AddAudio = (props: Props) => {
 
   // Handling playing
   const onStartPlay = async () => {
-    await audioRecorderPlayer.startPlayer(uri);
-    audioRecorderPlayer.addPlayBackListener((e: Playback) => {
+    const msg = await audioRecorderPlayer.startPlayer(uri);
+    console.log(msg);
+    audioRecorderPlayer.addPlayBackListener((e: any) => {
       if (e.current_position === e.duration) {
         audioRecorderPlayer
           .stopPlayer()
