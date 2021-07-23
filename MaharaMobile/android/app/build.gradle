@@ -209,8 +209,6 @@ dependencies {
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-audio-recorder-player')
     implementation project(path: ':@react-native-async-storage_async-storage')
-    implementation project(path: ':@react-native-async-storage_async-storage')
-    implementation project(path: ':@react-native-async-storage_async-storage')
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
