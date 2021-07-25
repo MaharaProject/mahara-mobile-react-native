@@ -832,7 +832,7 @@
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 20.10.1;
+				MARKETING_VERSION = 20.10.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -864,7 +864,7 @@
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 20.10.1;
+				MARKETING_VERSION = 20.10.2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
