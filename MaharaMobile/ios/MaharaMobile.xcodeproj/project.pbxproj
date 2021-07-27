@@ -18,9 +18,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* MaharaMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MaharaMobileTests.m */; };
 		694693FF789AF25875AF55B4 /* libPods-MaharaMobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80CECA611FBDCD021EEF9DB7 /* libPods-MaharaMobile-tvOS.a */; };
 		E55B602C26AFAD3F00659F69 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55B602B26AFAD3F00659F69 /* File.swift */; };
-		E55B602D26AFAD3F00659F69 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55B602B26AFAD3F00659F69 /* File.swift */; };
-		E55B602E26AFAD3F00659F69 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55B602B26AFAD3F00659F69 /* File.swift */; };
-		E55B602F26AFAD3F00659F69 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55B602B26AFAD3F00659F69 /* File.swift */; };
 		E5A87937252AA25C00445D4D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5A87936252AA25C00445D4D /* CloudKit.framework */; };
 		ECE4FF3DD1AF116279FECC9D /* libPods-MaharaMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23212FD96B53AAD83DFAD70A /* libPods-MaharaMobile.a */; };
 		F463263ED2546ACBD4863C47 /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D594D56166253607068ED1B /* libPods-MaharaMobile-MaharaMobileTests.a */; };
@@ -763,7 +760,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00E356F31AD99517003FC87E /* MaharaMobileTests.m in Sources */,
-				E55B602D26AFAD3F00659F69 /* File.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -782,7 +778,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
-				E55B602E26AFAD3F00659F69 /* File.swift in Sources */,
 				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -792,7 +787,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DCD954D1E0B4F2C00145EB5 /* MaharaMobileTests.m in Sources */,
-				E55B602F26AFAD3F00659F69 /* File.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -885,7 +879,7 @@
 				CODE_SIGN_ENTITLEMENTS = MaharaMobile/MaharaMobile.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
@@ -917,7 +911,7 @@
 				CODE_SIGN_ENTITLEMENTS = MaharaMobile/MaharaMobile.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
@@ -1006,7 +1000,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A2571C20DC64FD935AA9D376 /* Pods-MaharaMobile-tvOSTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1038,7 +1031,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A83CCBB33A450057731CD42F /* Pods-MaharaMobile-tvOSTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ENABLE_MODULES = YES;
