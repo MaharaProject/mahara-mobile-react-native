@@ -615,7 +615,7 @@ msgid "This is not a Mahara site. Please re-enter URL."
 msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:7
-msgid "This version of Mahara Mobile is 20.10.2"
+msgid "This version of Mahara Mobile is 21.04.2"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:224

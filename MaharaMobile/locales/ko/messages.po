@@ -559,8 +559,8 @@ msgid "This is not a Mahara site. Please re-enter URL."
 msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십시오."
 
 #: src/screens/VersionScreen/VersionScreen.tsx:7
-msgid "This version of Mahara Mobile is 20.10.2"
-msgstr "이 Mahara Mobile 버전은 20.10.2입니다."
+msgid "This version of Mahara Mobile is 21.04.2"
+msgstr "이 Mahara Mobile 버전은 21.04.2입니다."
 
 #: src/components/UploadForm/UploadForm.tsx:224
 msgid "Title"

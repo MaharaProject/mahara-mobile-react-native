@@ -6,7 +6,7 @@ import MediumText from '../../components/UI/CustomText/MediumText';
 const VersionScreen = () => (
   <List>
     <ListItem noBorder>
-      <MediumText text={t`This version of Mahara Mobile is 20.10.2`} />
+      <MediumText text={t`This version of Mahara Mobile is 21.04.2`} />
     </ListItem>
   </List>
 );
