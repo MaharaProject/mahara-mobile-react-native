@@ -33,6 +33,7 @@ type Props = {
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
+  url: string;
 };
 
 type State = {
@@ -193,7 +194,15 @@ const SiteCheckScreen = (props: Props) => {
           <View style={{justifyContent: 'space-between', flex: 1}}>
             <MediumButton
               text={t`Next`}
-              onPress={() => checkServer(addHttpTrims(controlURL))}
+              onPress={() => {
+                const url = addHttpTrims(controlURL);
+                if (url !== props.url) {
+                  checkServer(url);
+                } else {
+                  setServerPing(true);
+                  setIsInputHidden(true);
+                }
+              }}
             />
           </View>
         ) : null}

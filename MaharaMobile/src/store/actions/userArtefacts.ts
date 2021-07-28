@@ -1,5 +1,5 @@
 import {t} from '@lingui/macro';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   CLEAR_USER_BLOGS,
   CLEAR_USER_FOLDERS,

@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
 import {useDispatch} from 'react-redux';

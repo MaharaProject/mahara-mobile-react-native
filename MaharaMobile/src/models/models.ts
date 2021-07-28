@@ -116,4 +116,14 @@ export type UploadResponse = {
 
 export type DisplayItems = Array<PendingJEntry | PendingMFile>;
 
-export type Playback = {current_position: number; duration: number};
+export type PlayBackType = {
+  isMuted?: boolean;
+  currentPosition: number;
+  duration: number;
+};
+
+export type RecordBackType = {
+  isRecording?: boolean;
+  currentPosition: number;
+  currentMetering?: number;
+};

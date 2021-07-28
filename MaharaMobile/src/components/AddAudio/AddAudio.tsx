@@ -7,7 +7,7 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 import variables from '../../assets/styles/variables';
-import {File, Playback} from '../../models/models';
+import {File, PlayBackType, RecordBackType} from '../../models/models';
 import {newFile} from '../../models/typeCreators';
 import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
 import MediumButton from '../UI/MediumButton/MediumButton';
@@ -15,7 +15,7 @@ import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
 type Props = {
-  setPickedFile: React.Dispatch<React.SetStateAction<File>>;
+  setPickedFile: any;
   audioFileToEdit?: File;
   i18n: I18n;
 };
@@ -149,6 +149,7 @@ const AddAudio = (props: Props) => {
   };
 
   const handleRecord = async () => {
+    console.log('recording');
     if (!isPermissionGranted) {
       return;
     }
@@ -161,9 +162,10 @@ const AddAudio = (props: Props) => {
 
   // Handling playing
   const onStartPlay = async () => {
-    await audioRecorderPlayer.startPlayer(uri);
-    audioRecorderPlayer.addPlayBackListener((e: Playback) => {
-      if (e.current_position === e.duration) {
+    console.log('start play');
+    const msg = await audioRecorderPlayer.startPlayer(uri);
+    audioRecorderPlayer.addPlayBackListener((e: PlayBackType) => {
+      if (e.currentPosition === e.duration) {
         audioRecorderPlayer
           .stopPlayer()
           .then(() => {
