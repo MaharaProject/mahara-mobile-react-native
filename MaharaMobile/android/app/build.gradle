@@ -134,8 +134,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "20.10.1"
+        versionCode 16
+        versionName "21.04.2"
         ndk { debugSymbolLevel 'FULL' }
     }
     splits {
@@ -164,7 +164,6 @@ android {
             keyPassword 'android'
         }
     }
-    buildToolsVersion '29.0.2'
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -206,12 +205,10 @@ dependencies {
     implementation project(':react-native-linear-gradient')
     implementation project(':react-native-localize')
     implementation project(':react-native-reanimated')
-//    implementation project(':react-native-vector-icons')
     implementation project(':react-native-webview')
     implementation project(':rn-fetch-blob')
-    implementation project(path: ':@react-native-community_async-storage')
-    implementation project(path: ':@react-native-community_async-storage')
-    implementation project(path: ':@react-native-community_async-storage')
+    implementation project(':react-native-audio-recorder-player')
+    implementation project(path: ':@react-native-async-storage_async-storage')
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
