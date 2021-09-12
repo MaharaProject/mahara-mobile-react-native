@@ -1,6 +1,6 @@
 import {I18nProvider} from '@lingui/react';
 import React from 'react';
-import {Provider} from 'react-redux';
+import {Provider} from 'react-native-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import i18n from '../../i18n';

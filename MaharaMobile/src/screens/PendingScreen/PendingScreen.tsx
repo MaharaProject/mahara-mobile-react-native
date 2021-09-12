@@ -3,7 +3,7 @@ import {Icon, Toast} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Alert, Text, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
-import {connect, useSelector} from 'react-redux';
+import {connect, useSelector} from 'react-native-redux';
 import {Dispatch} from 'redux';
 // Images
 import UploadSVG from '../../assets/images/upload';

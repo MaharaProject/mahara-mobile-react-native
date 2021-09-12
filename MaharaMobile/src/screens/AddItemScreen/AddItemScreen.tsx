@@ -3,7 +3,7 @@ import {withI18n} from '@lingui/react';
 import {CommonActions} from '@react-navigation/native';
 import {Content, View} from 'native-base';
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import {connect} from 'react-native-redux';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';

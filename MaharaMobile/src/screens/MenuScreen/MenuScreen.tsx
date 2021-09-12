@@ -2,7 +2,7 @@ import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
 import {View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch} from 'react-native-redux';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import menuItemStyles from '../../components/MenuItem/MenuItem.style';
 import {MessageDescriptor} from '../../models/models';

@@ -4,7 +4,7 @@ import {StackActions} from '@react-navigation/native';
 import {Icon, Input, Item, Picker, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {TouchableOpacity} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-native-redux';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';

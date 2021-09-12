@@ -2,7 +2,7 @@ import {t} from '@lingui/macro';
 import {CommonActions} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {ScrollView, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect} from 'react-native-redux';
 import generic from '../../assets/styles/generic';
 import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';

@@ -30,9 +30,14 @@ export default function SSOLogin(props: Props) {
     )}&clientguid=${id}#sso`;
 
   // Function to watch window until it has obtained maharatoken
-  const GET_TOKEN = `(function() {
-    window.ReactNativeWebView.postMessage(maharatoken);
-  })();`;
+  const GET_TOKEN = `
+    (
+      function() {
+        window.ReactNativeWebView.postMessage(maharatoken);
+      }
+    )
+    ();
+  `;
 
   useEffect(() => {
     if (token) {

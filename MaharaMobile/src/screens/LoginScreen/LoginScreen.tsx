@@ -3,7 +3,7 @@ import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React, {Component} from 'react';
 import {Alert, View} from 'react-native';
-import {connect} from 'react-redux';
+import {connect} from 'react-native-redux';
 import {Dispatch} from 'redux';
 import {addToken, updateGuestStatus} from '../../store/actions/loginInfo';
 import generic from '../../assets/styles/generic';

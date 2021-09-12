@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch} from 'react-native-redux';
 import {PendingJEntry, PendingMFile} from '../../models/models';
 import {
   updateLoginTypes,

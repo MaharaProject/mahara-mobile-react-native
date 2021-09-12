@@ -6,7 +6,7 @@ import React, {useEffect, useState} from 'react';
 import Config from 'react-native-config';
 import 'react-native-gesture-handler';
 import * as RNLocalize from 'react-native-localize';
-import {Provider} from 'react-redux';
+import {Provider} from 'react-native-redux';
 import SplashScreen from 'react-native-splash-screen';
 import getTheme from '../native-base-theme/components';
 import commonColor from '../native-base-theme/variables/commonColor';

@@ -4,7 +4,7 @@ import {withI18n} from '@lingui/react';
 import {Item, Picker} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {Alert, Image, Text, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-native-redux';
 import {
   setDefaultBlogId,
   setDefaultFolder
