@@ -1,6 +1,6 @@
 {
   "name": "mahara-mobile",
-  "version": "21.04.2",
+  "version": "21.4.3",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
@@ -13,7 +13,8 @@
     "extract": "lingui extract",
     "compile": "lingui compile",
     "postinstall": "npx jetify",
-    "release": "cd android && ./gradlew assembleRelease"
+    "release": "cd android && ./gradlew assembleRelease",
+    "postversion": "react-native-version"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.13.10",
@@ -43,6 +44,7 @@
     "core-js": "^3.7.0",
     "eslint": "^7.31.0",
     "eslint-plugin-react-native": "^3.10.0",
+    "fastlane": "^0.1.0",
     "i": "^0.3.6",
     "link": "^0.1.5",
     "lodash": "^4.17.21",
@@ -109,6 +111,7 @@
     "prettier": "^1.19.1",
     "prettier-loader": "^3.3.0",
     "react-native-testing-library": "^1.14.0",
+    "react-native-version": "^4.0.0",
     "react-test-renderer": "16.9.0",
     "redux-mock-store": "^1.5.4",
     "tslint": "^5.20.1",
