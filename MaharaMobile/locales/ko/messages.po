@@ -320,6 +320,10 @@ msgstr "로그인 실패"
 msgid "Logout"
 msgstr "로그인 실패"
 
+#: src/screens/AboutScreen/AboutScreen.tsx:15
+msgid "Mahara Mobile"
+msgstr ""
+
 #: src/screens/AboutScreen/AboutScreen.tsx:36
 msgid "Mahara Mobile allows you to collect your evidence on your mobile device, including when you are offline. You can then upload your photos, videos, journal entries, etc. to your Mahara instance and add them your portfolios."
 msgstr "Mahara Mobile을 사용하면 모바일 장치에서..."
@@ -337,8 +341,8 @@ msgid "Mahara Mobile is an open source project created by the Mahara Project Tea
 msgstr "Mahara Mobile은 Mahara 프로젝트 팀에서 만든 오픈 소스 프로젝트입니다. 버그에 기여하거나 신고하려면"
 
 #: src/screens/AboutScreen/AboutScreen.tsx:15
-msgid "Mahara Project"
-msgstr "마하라 프로젝트"
+#~ msgid "Mahara Project"
+#~ msgstr "마하라 프로젝트"
 
 #: src/screens/AboutScreen/AboutScreen.tsx:27
 msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
@@ -447,7 +451,7 @@ msgstr "Mahara Mobile의 목적"
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
-#: src/components/AddAudio/AddAudio.tsx:173
+#: src/components/AddAudio/AddAudio.tsx:175
 msgid "Re-record"
 msgstr "다시 녹음"
 
@@ -456,7 +460,7 @@ msgstr "다시 녹음"
 msgid "Re-take photo"
 msgstr "사진을 다시 찍습니다."
 
-#: src/components/AddAudio/AddAudio.tsx:173
+#: src/components/AddAudio/AddAudio.tsx:175
 msgid "Record"
 msgstr "녹음"
 
@@ -503,11 +507,11 @@ msgstr "태그 선택..."
 msgid "Single sign-on"
 msgstr "싱글 사인온"
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:151
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:160
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
-#: src/components/AddAudio/AddAudio.tsx:173
+#: src/components/AddAudio/AddAudio.tsx:175
 msgid "Stop"
 msgstr "녹화 중지"
 
@@ -559,8 +563,16 @@ msgid "This is not a Mahara site. Please re-enter URL."
 msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십시오."
 
 #: src/screens/VersionScreen/VersionScreen.tsx:7
-msgid "This version of Mahara Mobile is 21.04.2"
-msgstr "이 Mahara Mobile 버전은 21.04.2입니다."
+#~ msgid "This version of Mahara Mobile is"
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:7
+#~ msgid "This version of Mahara Mobile is 21.04.2"
+#~ msgstr "이 Mahara Mobile 버전은 21.04.2입니다."
+
+#: src/screens/VersionScreen/VersionScreen.tsx:8
+msgid "This version of Mahara Mobile is {MAHARAVERSION}"
+msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:224
 msgid "Title"
@@ -678,7 +690,7 @@ msgstr "업로드 대기열이 비어 있습니다"
 msgid "Your username or password was incorrect. Please try again."
 msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도하십시오."
 
-#: src/utils/constants.ts:84
+#: src/utils/constants.ts:85
 msgid "audio"
 msgstr "오디오"
 
@@ -693,7 +705,7 @@ msgstr "문의하기"
 msgid "default"
 msgstr "기본"
 
-#: src/utils/constants.ts:82
+#: src/utils/constants.ts:83
 msgid "file"
 msgstr "파일"
 
@@ -705,11 +717,11 @@ msgstr "이 이용 약관의 일부를 구성합니다..."
 msgid "image preview"
 msgstr "이미지 미리보기"
 
-#: src/utils/constants.ts:81
+#: src/utils/constants.ts:82
 msgid "journal entry"
 msgstr "분개"
 
-#: src/utils/constants.ts:83
+#: src/utils/constants.ts:84
 msgid "photo"
 msgstr "사진"
 
