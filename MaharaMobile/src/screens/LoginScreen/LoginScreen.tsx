@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import {Alert, View} from 'react-native';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
+import WebView from 'react-native-webview';
 import {addToken, updateGuestStatus} from '../../store/actions/loginInfo';
 import generic from '../../assets/styles/generic';
 import LocalLogin from '../../components/LocalLogin/LocalLogin';
@@ -29,6 +30,7 @@ import {
   updatePendingItemsOnGuestToUser,
   checkValidInitialState
 } from '../../utils/authHelperFunctions';
+import { Button } from 'native-base';
 
 type Props = {
   dispatch: Dispatch;
@@ -127,12 +129,12 @@ export class LoginScreen extends Component<Props, State> {
       });
   };
 
-  updateToken = (token: string, webview?: {stopLoading: () => void}) => {
+  updateToken = (token: string, webview?: WebView) => {
     this.setState({token}, () => {
       this.login();
-      if (webview) {
-        webview.stopLoading();
-      }
+      // if (webview) {
+      //   webview.stopLoading();
+      // }
     });
   };
 
@@ -172,6 +174,7 @@ export class LoginScreen extends Component<Props, State> {
         {loginType === 'basic' ? (
           <LocalLogin url={this.props.url} onUpdateToken={this.updateToken} />
         ) : null}
+        {/* <Button onPress></Button> */}
       </View>
     );
   }

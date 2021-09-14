@@ -127,3 +127,11 @@ export type RecordBackType = {
   currentPosition: number;
   currentMetering?: number;
 };
+
+export type WebViewNavState = {
+  url?: string;
+  title?: string;
+  loading?: boolean;
+  canGoBack?: boolean;
+  canGoForward?: boolean;
+};

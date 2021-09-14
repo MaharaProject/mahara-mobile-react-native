@@ -3,15 +3,17 @@ import {Platform} from 'react-native';
 import {getManufacturer, getModel} from 'react-native-device-info';
 import uuid from 'react-native-uuid';
 import {WebView} from 'react-native-webview';
+import {WebViewNavState} from '../../models/models';
 
 type Props = {
   onUpdateToken: Function;
   url: string;
 };
 
-export default function SSOLogin(props: Props) {
-  let webref = useRef(null);
+const SSOLogin = (props: Props) => {
+  const webref = useRef(null);
   const [token, setToken] = useState('');
+  let webview: WebView;
 
   // Params for SSO login to retain authentication
   const service = 'maharamobile';
@@ -19,7 +21,7 @@ export default function SSOLogin(props: Props) {
   const manufacturer = getManufacturer();
   const model = getModel();
   const id = uuid.v4();
-  const url =
+  const maharaURL =
     `${props.url}module/mobileapi/tokenform.php` +
     `?service=${service}&component=${encodeURIComponent(
       component
@@ -34,22 +36,33 @@ export default function SSOLogin(props: Props) {
     window.ReactNativeWebView.postMessage(maharatoken);
   })();`;
 
-  useEffect(() => {
-    if (token) {
-      props.onUpdateToken(token, webref);
+  // useEffect(() => {
+  //   if (token) {
+  //     props.onUpdateToken(token, webref);
+  //   }
+  // }, [token]);
+
+  const handleWebViewNavigationStateChange = (newNavState: WebViewNavState) => {
+    const {url} = newNavState;
+    if (url) {
+      webview.stopLoading();
     }
-  }, [token]);
+  };
 
   return (
     <WebView
       ref={ref => {
-        webref = ref;
+        webview = ref;
       }}
-      source={{uri: url}}
+      source={{uri: maharaURL}}
       injectedJavaScript={GET_TOKEN}
       onMessage={event => {
+        console.log(event);
         setToken(event.nativeEvent.data);
       }}
+      onNavigationStateChange={handleWebViewNavigationStateChange}
     />
   );
-}
+};
+
+export default SSOLogin;
