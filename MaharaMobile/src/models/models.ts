@@ -127,3 +127,8 @@ export type RecordBackType = {
   currentPosition: number;
   currentMetering?: number;
 };
+
+export type FetchedTag = {
+  tag: string;
+  usage: number;
+};

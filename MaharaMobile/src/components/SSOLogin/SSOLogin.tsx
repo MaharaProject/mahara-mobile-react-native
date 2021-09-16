@@ -2,16 +2,16 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Platform} from 'react-native';
 import {getManufacturer, getModel} from 'react-native-device-info';
 import uuid from 'react-native-uuid';
-import {WebView} from 'react-native-webview';
+import {WebView, WebViewMessageEvent} from 'react-native-webview';
 
 type Props = {
   onUpdateToken: Function;
   url: string;
 };
 
-export default function SSOLogin(props: Props) {
-  let webref = useRef(null);
-  const [token, setToken] = useState('');
+const SSOLogin = (props: Props) => {
+  let webref: WebView = null;
+  const [newToken, setNewToken] = useState('');
 
   // Params for SSO login to retain authentication
   const service = 'maharamobile';
@@ -30,15 +30,29 @@ export default function SSOLogin(props: Props) {
     )}&clientguid=${id}#sso`;
 
   // Function to watch window until it has obtained maharatoken
-  const GET_TOKEN = `(function() {
+  const GET_TOKEN_JS = `(
+    function() {
     window.ReactNativeWebView.postMessage(maharatoken);
-  })();`;
+    }
+  )();`;
 
   useEffect(() => {
-    if (token) {
-      props.onUpdateToken(token, webref);
+    if (newToken !== '') {
+      props.onUpdateToken(newToken);
     }
-  }, [token]);
+  }, [newToken]);
+
+  const handleWebViewNavigationStateChange = newNavState => {
+    const newURL = newNavState.url;
+
+    if (newURL) {
+      if (newToken !== '') {
+        console.log(`we have a token: ${newToken}`);
+        webref.stopLoading();
+        console.log('stopped loading');
+      }
+    }
+  };
 
   return (
     <WebView
@@ -46,10 +60,16 @@ export default function SSOLogin(props: Props) {
         webref = ref;
       }}
       source={{uri: url}}
-      injectedJavaScript={GET_TOKEN}
-      onMessage={event => {
-        setToken(event.nativeEvent.data);
+      onNavigationStateChange={handleWebViewNavigationStateChange}
+      injectedJavaScript={GET_TOKEN_JS}
+      incognito
+      onMessage={(event: WebViewMessageEvent) => {
+        if (event.nativeEvent.data) {
+          setNewToken(event.nativeEvent.data);
+        }
       }}
     />
   );
-}
+};
+
+export default SSOLogin;

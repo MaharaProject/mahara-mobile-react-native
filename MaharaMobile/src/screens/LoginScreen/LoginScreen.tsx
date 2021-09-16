@@ -1,7 +1,7 @@
 import {I18n} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {Alert, View} from 'react-native';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
@@ -44,25 +44,12 @@ type Props = {
   isGuest: boolean;
 };
 
-type State = {
-  token: string;
-};
+const LoginScreen = (props: Props) => {
+  const {loginType} = props.route.params;
 
-export class LoginScreen extends Component<Props, State> {
-  static navigationOptions = {
-    header: null
-  };
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      token: ''
-    };
-  }
-
-  login = () => {
-    const {url} = this.props;
+  const login = (token: string) => {
+    const {url} = props;
+    console.log(url);
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
 
     const body = {
@@ -72,8 +59,10 @@ export class LoginScreen extends Component<Props, State> {
       userprofile: {},
       userprofileicon: {},
       wsfunction: 'module_mobileapi_sync',
-      wstoken: this.state.token
+      wstoken: token
     };
+
+    console.log(body);
 
     const requestOptions = {
       method: 'POST',
@@ -83,42 +72,63 @@ export class LoginScreen extends Component<Props, State> {
       body: JSON.stringify(body)
     };
 
-    this.props
-      .dispatch(fetchUserOnTokenLogin(serverUrl, requestOptions))
+    // TODO check this function
+    /**
+     * Save user token to async storage
+     */
+    const signInAndStore = async token => {
+      if (token.length < 1) {
+        Alert.alert(props.i18n._(t`You didn't enter anything in this field.`));
+      } else if (props.isGuest) {
+        console.log('a guest');
+        props.dispatch(updateGuestStatus(false));
+        updatePendingItemsOnGuestToUser(
+          props.dispatch,
+          props.userBlogs,
+          props.userFolders,
+          token,
+          props.url
+        );
+        console.log('updatedGuestDetailsToProvidedUser');
+      }
+    };
+
+    props
+      .dispatch(
+        fetchUserOnTokenLogin(serverUrl, requestOptions, props.dispatch)
+      )
       .then(() => {
-        this.props.dispatch(addToken(this.state.token));
-        fetchProfilePic(this.props.dispatch, this.state.token, url);
-        this.signInUserAsync();
+        // props.dispatch(addToken(token));
+        signInAndStore(token);
+        fetchProfilePic(props.dispatch, token, url);
       })
       .then(() => {
-        if (
-          checkValidInitialState(this.props.userBlogs, this.props.userFolders)
-        ) {
-          // this.props.navigation.navigate('App');
+        if (checkValidInitialState(props.userBlogs, props.userFolders)) {
+          // props.navigation.navigate('App');
         }
       })
       .catch(() => {
-        const {loginType} = this.props.route.params;
+        const {loginType} = props.route.params;
 
         switch (loginType) {
           case 'basic':
             Alert.alert(
-              this.props.i18n._(t`Login failed`),
-              this.props.i18n._(
+              props.i18n._(t`Login failed`),
+              props.i18n._(
                 t`Your username or password was incorrect. Please try again.`
               )
             );
             break;
           case 'token':
             Alert.alert(
-              this.props.i18n._(t`Login failed`),
-              this.props.i18n._(t`Invalid token: please try again.`)
+              props.i18n._(t`Login failed`),
+              props.i18n._(t`Invalid token: please try again.`)
             );
             break;
           case 'SSO':
             Alert.alert(
-              this.props.i18n._(t`Login failed`),
-              this.props.i18n._(t`Please try again.`)
+              props.i18n._(t`Login failed`),
+              props.i18n._(t`Please try again.`)
             );
             break;
           default:
@@ -127,55 +137,30 @@ export class LoginScreen extends Component<Props, State> {
       });
   };
 
-  updateToken = (token: string, webview?: {stopLoading: () => void}) => {
-    this.setState({token}, () => {
-      this.login();
-      if (webview) {
-        webview.stopLoading();
-      }
-    });
+  const updateToken = (token: string) => {
+    // setState({token}, () => {
+    // login();
+    // });
+    login(token);
   };
 
-  // TODO check this function
-  /**
-   * Save user token to async storage
-   */
-  signInUserAsync = async () => {
-    if (this.state.token.length < 1) {
-      Alert.alert(
-        this.props.i18n._(t`You didn't enter anything in this field.`)
-      );
-    } else if (this.props.isGuest) {
-      this.props.dispatch(updateGuestStatus(false));
-      updatePendingItemsOnGuestToUser(
-        this.props.dispatch,
-        this.props.userBlogs,
-        this.props.userFolders,
-        this.state.token,
-        this.props.url
-      );
-      console.log('updatedGuestDetailsToProvidedUser');
-    }
-  };
-
-  render() {
-    const {loginType} = this.props.route.params;
-
-    return (
-      <View style={generic.view}>
-        {loginType === 'token' ? (
-          <TokenInput onUpdateToken={this.updateToken} />
-        ) : null}
-        {loginType === 'sso' ? (
-          <SSOLogin url={this.props.url} onUpdateToken={this.updateToken} />
-        ) : null}
-        {loginType === 'basic' ? (
-          <LocalLogin url={this.props.url} onUpdateToken={this.updateToken} />
-        ) : null}
-      </View>
-    );
-  }
-}
+  return (
+    <View style={generic.view}>
+      {loginType === 'token' ? (
+        <TokenInput onUpdateToken={token => updateToken(token)} />
+      ) : null}
+      {loginType === 'sso' ? (
+        <SSOLogin url={props.url} onUpdateToken={token => updateToken(token)} />
+      ) : null}
+      {loginType === 'basic' ? (
+        <LocalLogin
+          url={props.url}
+          onUpdateToken={token => updateToken(token)}
+        />
+      ) : null}
+    </View>
+  );
+};
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),

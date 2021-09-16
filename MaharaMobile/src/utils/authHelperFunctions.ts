@@ -33,7 +33,13 @@ import {
 } from '../store/actions/uploadFiles';
 
 import i18n from '../i18n';
-import {UserBlog, UserBlogJSON, UserFolder, UserTag} from '../models/models';
+import {
+  FetchedTag,
+  UserBlog,
+  UserBlogJSON,
+  UserFolder,
+  UserTag
+} from '../models/models';
 import {newUserTag} from '../models/typeCreators';
 import {
   GUEST_BLOG,
@@ -42,6 +48,56 @@ import {
   GUEST_USERNAME
 } from './constants';
 import {userBlogJSONtoUserBlog} from './helperFunctions';
+
+function resolveAfterFetch() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, 2000);
+  });
+}
+
+function updateLocalData(json, dispatch) {
+  dispatch(updateUserName(json.userprofile.myname));
+  dispatch(updateUserName(json.userprofile.myname));
+
+  // Create UserTags with id and string.
+  const newUserTags: Array<UserTag> = json.tags.tags.map((tag: FetchedTag) =>
+    newUserTag(tag.tag)
+  );
+
+  dispatch(updateUserTags(newUserTags));
+  dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
+  dispatch(
+    updateUserBlogs(
+      json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
+    )
+  );
+  // Check if user has folders (they can be deleted on Mahara)
+  if (json.folders.folders.length !== 0) {
+    dispatch(updateUserFolders(json.folders.folders));
+  }
+
+  dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
+  dispatch(setDefaultFolder(json.folders.folders[0].title));
+}
+
+export async function asyncCallToGetUserData(
+  serverUrl,
+  requestOptions,
+  dispatch
+) {
+  console.log('calling');
+  const result = await resolveAfterFetch();
+  console.log(result);
+  const response = await fetch(serverUrl, requestOptions); // resolve after fetch
+  console.log(response);
+  const json = await response.json(); // resolve after response
+  console.log(json);
+
+  await updateLocalData(json, dispatch);
+  // expected output: "resolved"
+}
 
 /**
  * Attempt to fetch user info based on given token
@@ -53,47 +109,10 @@ import {userBlogJSONtoUserBlog} from './helperFunctions';
  */
 export function fetchUserOnTokenLogin(
   serverUrl: string,
-  requestOptions: RequestInit
+  requestOptions: RequestInit,
+  dispatch: Dispatch
 ) {
-  return async function(dispatch: Dispatch) {
-    try {
-      const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
-      if (json.error) {
-        return Promise.reject();
-      }
-      dispatch(updateUserName(json.userprofile.myname));
-
-      type FetchedTag = {
-        tag: string;
-        usage: number;
-      };
-
-      // Create UserTags with id and string.
-      const newUserTags: Array<UserTag> = json.tags.tags.map(
-        (tag: FetchedTag) => newUserTag(tag.tag)
-      );
-      dispatch(updateUserTags(newUserTags));
-      dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
-
-      dispatch(
-        updateUserBlogs(
-          json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
-        )
-      );
-
-      // Check if user has folders (they can be deleted on Mahara)
-      if (json.folders.folders.length !== 0) {
-        dispatch(updateUserFolders(json.folders.folders));
-      }
-
-      dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
-      dispatch(setDefaultFolder(json.folders.folders[0].title));
-    } catch (e) {
-      //
-    }
-    return null;
-  };
+  const json = asyncCallToGetUserData(serverUrl, requestOptions, dispatch);
 }
 
 export const clearReduxData = async (dispatch: Dispatch) => {

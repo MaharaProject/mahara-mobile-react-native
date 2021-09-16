@@ -2,6 +2,7 @@ import {t, Trans} from '@lingui/macro';
 import {Icon, Text, Toast, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, TextInput} from 'react-native';
+import WebView from 'react-native-webview';
 import {connect, useDispatch} from 'react-redux';
 import {Dispatch} from 'redux';
 import LogoSvg from '../../assets/images/Logo-big';

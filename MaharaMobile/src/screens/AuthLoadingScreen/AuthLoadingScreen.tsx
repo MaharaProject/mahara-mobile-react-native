@@ -38,6 +38,7 @@ const AuthLoadingScreen = () => {
   const parseJSON = (jsonString: string) => JSON.parse(jsonString);
 
   const retrieveAsyncData = async () => {
+    console.log('retrieveAsyncData');
     try {
       // Sort data strings
       await AsyncStorage.getItem('username').then((result: string) => {
