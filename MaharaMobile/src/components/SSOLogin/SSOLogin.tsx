@@ -38,7 +38,9 @@ const SSOLogin = (props: Props) => {
 
   useEffect(() => {
     if (newToken !== '') {
+      console.log(`token: ${newToken}`);
       props.onUpdateToken(newToken);
+      webref.stopLoading();
     }
   }, [newToken]);
 
@@ -46,11 +48,8 @@ const SSOLogin = (props: Props) => {
     const newURL = newNavState.url;
 
     if (newURL) {
-      if (newToken !== '') {
-        console.log(`we have a token: ${newToken}`);
-        webref.stopLoading();
-        console.log('stopped loading');
-      }
+      console.log(`new url: ${newURL}`);
+      // webref.stopLoading();
     }
   };
 

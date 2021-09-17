@@ -49,8 +49,8 @@ const LoginScreen = (props: Props) => {
 
   const login = (token: string) => {
     const {url} = props;
-    console.log(url);
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
+    console.log(`serverUrl: ${serverUrl}`);
 
     const body = {
       blogs: {},
@@ -62,8 +62,6 @@ const LoginScreen = (props: Props) => {
       wstoken: token
     };
 
-    console.log(body);
-
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -72,14 +70,17 @@ const LoginScreen = (props: Props) => {
       body: JSON.stringify(body)
     };
 
-    // TODO check this function
+    console.log(JSON.stringify(body));
     /**
      * Save user token to async storage
      */
-    const signInAndStore = async token => {
+    const validate = async token => {
       if (token.length < 1) {
         Alert.alert(props.i18n._(t`You didn't enter anything in this field.`));
-      } else if (props.isGuest) {
+        return;
+      }
+
+      if (props.isGuest) {
         console.log('a guest');
         props.dispatch(updateGuestStatus(false));
         updatePendingItemsOnGuestToUser(
@@ -89,58 +90,57 @@ const LoginScreen = (props: Props) => {
           token,
           props.url
         );
-        console.log('updatedGuestDetailsToProvidedUser');
       }
     };
 
-    props
-      .dispatch(
-        fetchUserOnTokenLogin(serverUrl, requestOptions, props.dispatch)
-      )
-      .then(() => {
-        // props.dispatch(addToken(token));
-        signInAndStore(token);
-        fetchProfilePic(props.dispatch, token, url);
-      })
-      .then(() => {
-        if (checkValidInitialState(props.userBlogs, props.userFolders)) {
-          // props.navigation.navigate('App');
-        }
-      })
-      .catch(() => {
-        const {loginType} = props.route.params;
+    validate(token);
+    console.log('fetch user on token login');
+    fetchUserOnTokenLogin(serverUrl, requestOptions, props.dispatch, token);
+    // props
+    //   .dispatch(
+    //     fetchUserOnTokenLogin(serverUrl, requestOptions, props.dispatch)
+    //   )
+    //   .then(() => {
+    // props.dispatch(addToken(token));
+    // onLogin(token);
+    // fetchProfilePic(props.dispatch, token, url);
+    // })
+    // .then(() => {
+    //   if (checkValidInitialState(props.userBlogs, props.userFolders)) {
+    //     // props.navigation.navigate('App');
+    //   }
+    // })
+    // .catch(() => {
+    //   const {loginType} = props.route.params;
 
-        switch (loginType) {
-          case 'basic':
-            Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(
-                t`Your username or password was incorrect. Please try again.`
-              )
-            );
-            break;
-          case 'token':
-            Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(t`Invalid token: please try again.`)
-            );
-            break;
-          case 'SSO':
-            Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(t`Please try again.`)
-            );
-            break;
-          default:
-            break;
-        }
-      });
+    //   switch (loginType) {
+    //     case 'basic':
+    //       Alert.alert(
+    //         props.i18n._(t`Login failed`),
+    //         props.i18n._(
+    //           t`Your username or password was incorrect. Please try again.`
+    //         )
+    //       );
+    //       break;
+    //     case 'token':
+    //       Alert.alert(
+    //         props.i18n._(t`Login failed`),
+    //         props.i18n._(t`Invalid token: please try again.`)
+    //       );
+    //       break;
+    //     case 'SSO':
+    //       Alert.alert(
+    //         props.i18n._(t`Login failed`),
+    //         props.i18n._(t`Please try again.`)
+    //       );
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // });
   };
 
   const updateToken = (token: string) => {
-    // setState({token}, () => {
-    // login();
-    // });
     login(token);
   };
 

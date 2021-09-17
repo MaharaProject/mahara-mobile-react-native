@@ -49,15 +49,15 @@ import {
 } from './constants';
 import {userBlogJSONtoUserBlog} from './helperFunctions';
 
-function resolveAfterFetch() {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve('resolved');
-    }, 2000);
-  });
-}
+// function resolveAfterFetch() {
+//   return new Promise(resolve => {
+//     resolve('happy resolve after fetch');
+//   });
+// }
 
-function updateLocalData(json, dispatch) {
+function updateLocalData(json, dispatch, token) {
+  console.log('update local data');
+  console.log(json);
   dispatch(updateUserName(json.userprofile.myname));
   dispatch(updateUserName(json.userprofile.myname));
 
@@ -78,25 +78,9 @@ function updateLocalData(json, dispatch) {
     dispatch(updateUserFolders(json.folders.folders));
   }
 
+  dispatch(addToken(token));
   dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
   dispatch(setDefaultFolder(json.folders.folders[0].title));
-}
-
-export async function asyncCallToGetUserData(
-  serverUrl,
-  requestOptions,
-  dispatch
-) {
-  console.log('calling');
-  const result = await resolveAfterFetch();
-  console.log(result);
-  const response = await fetch(serverUrl, requestOptions); // resolve after fetch
-  console.log(response);
-  const json = await response.json(); // resolve after response
-  console.log(json);
-
-  await updateLocalData(json, dispatch);
-  // expected output: "resolved"
 }
 
 /**
@@ -107,12 +91,20 @@ export async function asyncCallToGetUserData(
  * @returns true if successful log in and data loading
  * @returns Promise.reject() on fail
  */
-export function fetchUserOnTokenLogin(
+export async function fetchUserOnTokenLogin(
   serverUrl: string,
   requestOptions: RequestInit,
-  dispatch: Dispatch
+  dispatch: Dispatch,
+  token: string
 ) {
-  const json = asyncCallToGetUserData(serverUrl, requestOptions, dispatch);
+  const response = await fetch(serverUrl, requestOptions);
+  console.log('response');
+  console.log(response);
+  const json = await response.json().catch(e => console.error(e));
+
+  console.log(json);
+  updateLocalData(json, dispatch, token);
+  console.log('fetchuserontoken done');
 }
 
 export const clearReduxData = async (dispatch: Dispatch) => {
