@@ -1,17 +1,16 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {Platform} from 'react-native';
 import {getManufacturer, getModel} from 'react-native-device-info';
 import uuid from 'react-native-uuid';
 import {WebView} from 'react-native-webview';
 
 type Props = {
-  onUpdateToken: Function;
   url: string;
+  onGetToken: Function;
 };
 
 export default function SSOLogin(props: Props) {
   let webref = useRef(null);
-  const [token, setToken] = useState('');
 
   // Params for SSO login to retain authentication
   const service = 'maharamobile';
@@ -30,15 +29,9 @@ export default function SSOLogin(props: Props) {
     )}&clientguid=${id}#sso`;
 
   // Function to watch window until it has obtained maharatoken
-  const GET_TOKEN = `(function() {
+  const GET_TOKEN_JS = `(function() {
     window.ReactNativeWebView.postMessage(maharatoken);
   })();`;
-
-  useEffect(() => {
-    if (token) {
-      props.onUpdateToken(token, webref);
-    }
-  }, [token]);
 
   return (
     <WebView
@@ -46,9 +39,15 @@ export default function SSOLogin(props: Props) {
         webref = ref;
       }}
       source={{uri: url}}
-      injectedJavaScript={GET_TOKEN}
+      incognito
+      injectedJavaScript={GET_TOKEN_JS}
       onMessage={event => {
-        setToken(event.nativeEvent.data);
+        // check for token inside event.nativeEvent.data
+        if (!event.data && event.data !== '') {
+          const token = event.nativeEvent.data;
+          webref.stopLoading();
+          props.onGetToken(token);
+        }
       }}
     />
   );

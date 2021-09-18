@@ -43,6 +43,10 @@ type State = {
   loading: boolean;
 };
 
+/**
+ * This screen holds the URL input and verifies whether a site
+ * is a Mahara site with webservices connected.
+ */
 const SiteCheckScreen = (props: Props) => {
   const [serverPing, setServerPing] = useState(false);
   const [isInputHidden, setIsInputHidden] = useState(false);
@@ -52,7 +56,7 @@ const SiteCheckScreen = (props: Props) => {
 
   const dispatch = useDispatch();
   const goToLoginType = (type: string) => {
-    props.navigation.navigate('LoginScreen', {loginType: type});
+    props.navigation.navigate('LoginMethodScreen', {loginType: type});
   };
 
   useEffect(() => {
