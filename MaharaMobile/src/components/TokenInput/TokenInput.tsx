@@ -19,7 +19,7 @@ import styles from './TokenInput.style';
 
 
 type Props = {
-  onUpdateToken: Function;
+  onGetToken: Function;
 };
 
 export default function TokenInput(props: Props) {
@@ -39,7 +39,7 @@ export default function TokenInput(props: Props) {
             onChangeText={(input) => setToken(input.trim())
             }
           />
-          <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onUpdateToken(token)} />
+          <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onGetToken(token)} />
         </View>
       </MaharaGradient>
     </View>

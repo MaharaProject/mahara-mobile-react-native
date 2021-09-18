@@ -3,11 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 import {Dispatch} from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import {
-  clearUserTags,
-  updateUserTags,
-  updateUserTagsIds
-} from '../store/actions/actions';
+import {clearUserTags} from '../store/actions/actions';
 import {
   clearLoginInfo,
   setDefaultBlogId,
@@ -33,15 +29,13 @@ import {
 } from '../store/actions/uploadFiles';
 
 import i18n from '../i18n';
-import {UserBlog, UserBlogJSON, UserFolder, UserTag} from '../models/models';
-import {newUserTag} from '../models/typeCreators';
+import {UserBlog, UserFolder} from '../models/models';
 import {
   GUEST_BLOG,
   GUEST_FOLDER,
   GUEST_TOKEN,
   GUEST_USERNAME
 } from './constants';
-import {userBlogJSONtoUserBlog} from './helperFunctions';
 
 /**
  * Attempt to fetch user info based on given token
@@ -51,49 +45,21 @@ import {userBlogJSONtoUserBlog} from './helperFunctions';
  * @returns true if successful log in and data loading
  * @returns Promise.reject() on fail
  */
-export function fetchUserOnTokenLogin(
+export async function fetchUserWithToken(
   serverUrl: string,
   requestOptions: RequestInit
 ) {
-  return async function(dispatch: Dispatch) {
-    try {
-      const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
-      if (json.error) {
-        return Promise.reject();
-      }
-      dispatch(updateUserName(json.userprofile.myname));
-
-      type FetchedTag = {
-        tag: string;
-        usage: number;
-      };
-
-      // Create UserTags with id and string.
-      const newUserTags: Array<UserTag> = json.tags.tags.map(
-        (tag: FetchedTag) => newUserTag(tag.tag)
-      );
-      dispatch(updateUserTags(newUserTags));
-      dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
-
-      dispatch(
-        updateUserBlogs(
-          json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
-        )
-      );
-
-      // Check if user has folders (they can be deleted on Mahara)
-      if (json.folders.folders.length !== 0) {
-        dispatch(updateUserFolders(json.folders.folders));
-      }
-
-      dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
-      dispatch(setDefaultFolder(json.folders.folders[0].title));
-    } catch (e) {
-      //
-    }
-    return null;
-  };
+  const response = await fetch(serverUrl, requestOptions);
+  const json = await response.json().catch(e => {
+    console.warn(
+      `Expected ERROR:  because we have been auto logged out and cannot retrieve any data${e}`
+    );
+  });
+  if (json != null) {
+    console.log(json);
+    return Promise.resolve(json);
+  }
+  return null;
 }
 
 export const clearReduxData = async (dispatch: Dispatch) => {
