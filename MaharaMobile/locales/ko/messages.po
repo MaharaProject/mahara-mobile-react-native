@@ -95,7 +95,7 @@ msgstr "앱 버전"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:75
 #: src/utils/addEditHelperFunctions.tsx:67
-#: src/utils/authHelperFunctions.ts:120
+#: src/utils/authHelperFunctions.ts:107
 msgid "Are you sure?"
 msgstr "확실해?"
 
@@ -175,7 +175,7 @@ msgstr "초안 분개"
 msgid "Edit {0}"
 msgstr "편집 {0}"
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:138
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:142
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
@@ -264,7 +264,7 @@ msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
-#: src/screens/LoginScreen/LoginScreen.tsx:64
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
 msgid "Invalid token: please try again."
 msgstr "잘못된 토큰 : 다시 시도하십시오."
 
@@ -276,7 +276,7 @@ msgstr "잘못된 유형"
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr "편집중인 것 같습니다. 저장하기 전에 나가면 변경 사항이 손실됩니다."
 
-#: src/utils/authHelperFunctions.ts:120
+#: src/utils/authHelperFunctions.ts:107
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr "로그 아웃 한 후에 업로드 대기열의 항목을 검색 할 수 없습니다."
 
@@ -302,17 +302,17 @@ msgstr "로컬"
 msgid "Log in via an access token"
 msgstr "액세스 토큰을 통해 로그인"
 
-#: src/components/LocalLogin/LocalLogin.tsx:60
+#: src/components/LocalLogin/LocalLogin.tsx:73
 msgid "Log in via username and password"
 msgstr "사용자 이름과 비밀번호를 통해 로그인하십시오."
 
-#: src/components/LocalLogin/LocalLogin.tsx:68
+#: src/components/LocalLogin/LocalLogin.tsx:81
 msgid "Login"
 msgstr "로그인"
 
-#: src/screens/LoginScreen/LoginScreen.tsx:61
-#: src/screens/LoginScreen/LoginScreen.tsx:64
-#: src/screens/LoginScreen/LoginScreen.tsx:67
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
 msgid "Login failed"
 msgstr "로그인 실패"
 
@@ -364,7 +364,7 @@ msgstr "Mahara 프로젝트 나 Catalyst는 Mahara Mobile에 ..."
 msgid "New tag..."
 msgstr "새 태그 ..."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:146
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:150
 msgid "Next"
 msgstr "다음"
 
@@ -384,7 +384,7 @@ msgstr "합법적으로 제한되는 모든 것에 대한 당사의 최대 총 �
 msgid "Our obligations"
 msgstr "우리의 의무"
 
-#: src/components/LocalLogin/LocalLogin.tsx:66
+#: src/components/LocalLogin/LocalLogin.tsx:79
 msgid "Password"
 msgstr "암호"
 
@@ -402,7 +402,7 @@ msgstr "사진"
 msgid "Please check the internet connection."
 msgstr "인터넷 연결을 확인하십시오."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:131
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:135
 msgid "Please enter a URL."
 msgstr "URL을 입력하십시오."
 
@@ -418,7 +418,7 @@ msgstr "파일을 선택하십시오"
 msgid "Please select a journal"
 msgstr "저널을 선택하세요"
 
-#: src/screens/LoginScreen/LoginScreen.tsx:67
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
 msgid "Please try again."
 msgstr "다시 시도하십시오."
 
@@ -507,7 +507,7 @@ msgstr "태그 선택..."
 msgid "Single sign-on"
 msgstr "싱글 사인온"
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:160
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:164
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
@@ -606,7 +606,7 @@ msgstr "대기열 페이지 업로드"
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
-#: src/components/LocalLogin/LocalLogin.tsx:63
+#: src/components/LocalLogin/LocalLogin.tsx:76
 msgid "Username"
 msgstr "사용자 이름"
 
@@ -654,7 +654,7 @@ msgstr "우리는 Mahara Mobile과 귀하가 연결하는 Mahara..."
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
 msgstr "Mahara 사이트에서 웹 서비스를 사용할 수 없습니다. 활성화하려면 사이트 관리자에게 문의하십시오."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:117
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:121
 msgid "What is the address of your Mahara?"
 msgstr ""
 
@@ -662,7 +662,7 @@ msgstr ""
 msgid "You agree to defend, indemnify and save us, our affiliated and subsidiary corporations, our officers, directors, employees, agents, successors, shareholders and assigns harm from and against all liability, loss, expense, fines, penalties, or damages (including legal costs) to the extent that such claim arises out of or is in any way connected with the non-performance or breach of any obligation imposed on you by this agreement or other general laws and obligations or by reason of and to the extent of your fraud, negligence or wilful misconduct or that of or any of your agents or employees."
 msgstr "귀하는 우리를 방어, 면책 및 구하는 데 동의합니다 ..."
 
-#: src/screens/LoginScreen/LoginScreen.tsx:88
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:122
 msgid "You didn't enter anything in this field."
 msgstr "이 입력란에 아무 것도 입력하지 않았습니다."
 
@@ -686,7 +686,7 @@ msgstr "마하라 URL: {url}"
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
-#: src/screens/LoginScreen/LoginScreen.tsx:61
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
 msgid "Your username or password was incorrect. Please try again."
 msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도하십시오."
 

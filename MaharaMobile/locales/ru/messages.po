@@ -106,7 +106,7 @@ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:75
 #: src/utils/addEditHelperFunctions.tsx:67
-#: src/utils/authHelperFunctions.ts:120
+#: src/utils/authHelperFunctions.ts:107
 msgid "Are you sure?"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Edit {0}"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:138
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:142
 msgid "Enter a different URL"
 msgstr ""
 
@@ -283,7 +283,7 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:64
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
 msgid "Invalid token: please try again."
 msgstr ""
 
@@ -295,7 +295,7 @@ msgstr ""
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr ""
 
-#: src/utils/authHelperFunctions.ts:120
+#: src/utils/authHelperFunctions.ts:107
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
@@ -330,17 +330,17 @@ msgstr ""
 msgid "Log in via an access token"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:60
+#: src/components/LocalLogin/LocalLogin.tsx:73
 msgid "Log in via username and password"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:68
+#: src/components/LocalLogin/LocalLogin.tsx:81
 msgid "Login"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:61
-#: src/screens/LoginScreen/LoginScreen.tsx:64
-#: src/screens/LoginScreen/LoginScreen.tsx:67
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
 msgid "Login failed"
 msgstr ""
 
@@ -416,7 +416,7 @@ msgstr ""
 msgid "New tag..."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:146
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:150
 msgid "Next"
 msgstr ""
 
@@ -436,7 +436,7 @@ msgstr ""
 msgid "Our obligations"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:66
+#: src/components/LocalLogin/LocalLogin.tsx:79
 msgid "Password"
 msgstr ""
 
@@ -454,7 +454,7 @@ msgstr ""
 msgid "Please check the internet connection."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:131
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:135
 msgid "Please enter a URL."
 msgstr ""
 
@@ -470,7 +470,7 @@ msgstr ""
 msgid "Please select a journal"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:67
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
 msgid "Please try again."
 msgstr ""
 
@@ -559,7 +559,7 @@ msgstr ""
 msgid "Single sign-on"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:160
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:164
 msgid "Skip"
 msgstr ""
 
@@ -662,7 +662,7 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:63
+#: src/components/LocalLogin/LocalLogin.tsx:76
 msgid "Username"
 msgstr ""
 
@@ -730,7 +730,7 @@ msgstr ""
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:117
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:121
 msgid "What is the address of your Mahara?"
 msgstr ""
 
@@ -738,7 +738,7 @@ msgstr ""
 msgid "You agree to defend, indemnify and save us, our affiliated and subsidiary corporations, our officers, directors, employees, agents, successors, shareholders and assigns harm from and against all liability, loss, expense, fines, penalties, or damages (including legal costs) to the extent that such claim arises out of or is in any way connected with the non-performance or breach of any obligation imposed on you by this agreement or other general laws and obligations or by reason of and to the extent of your fraud, negligence or wilful misconduct or that of or any of your agents or employees."
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:88
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:122
 msgid "You didn't enter anything in this field."
 msgstr ""
 
@@ -762,7 +762,7 @@ msgstr ""
 msgid "Your upload queue is empty"
 msgstr ""
 
-#: src/screens/LoginScreen/LoginScreen.tsx:61
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 
