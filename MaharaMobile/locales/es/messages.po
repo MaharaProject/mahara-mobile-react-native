@@ -539,8 +539,16 @@ msgstr ""
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:8
-msgid "This version of Mahara Mobile is {MAHARAVERSION}"
+#~ msgid "This version of Mahara Mobile is {MAHARAVERSION}"
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:12
+msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:9
+#~ msgid "This version supporteds up to Android 10"
+#~ msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:224
 msgid "Title"
