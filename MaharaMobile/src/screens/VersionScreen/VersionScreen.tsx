@@ -1,12 +1,12 @@
 import {t} from '@lingui/macro';
 import {List, ListItem} from 'native-base';
 import React from 'react';
+import DeviceInfo from 'react-native-device-info';
 import MediumText from '../../components/UI/CustomText/MediumText';
-import {MAHARAVERSION} from '../../utils/constants';
 import i18n from '../../i18n';
 
 const VersionScreen = () => {
-  const version = MAHARAVERSION;
+  const version = DeviceInfo.getVersion();
   const android = '10';
   const ios = '14';
   return (
@@ -14,7 +14,7 @@ const VersionScreen = () => {
       <ListItem noBorder>
         <MediumText
           textTranslated={i18n._(
-            t`This version of Mahara Mobile is ${version}, supporting up to Android ${android}, and iOS ${ios}.`
+            t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`
           )}
         />
       </ListItem>
