@@ -6,7 +6,8 @@ import i18n from '../../../i18n';
 
 type Props = {
   children?: React.ReactNode;
-  text?: MessageDescriptor;
+  text?: MessageDescriptor; //  not yet translated
+  textTranslated?: string; // translated
   style?: any;
 };
 
@@ -25,6 +26,7 @@ const MediumText = (props: Props) => {
         ...props.style
       }}>
       {props.text ? i18n._(props.text) : props.children}
+      {props.textTranslated ? props.textTranslated : props.children}
     </Text>
   );
 };

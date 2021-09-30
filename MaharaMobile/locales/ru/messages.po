@@ -42,7 +42,9 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:45
+#: src/components/AddAudio/AddAudio.tsx:60
 #: src/components/AddAudio/AddAudio.tsx:45
+#: src/components/AddAudio/AddAudio.tsx:60
 msgid "Access permission"
 msgstr ""
 
@@ -81,8 +83,10 @@ msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:77
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:77
 msgid "Allow"
 msgstr ""
 
@@ -93,6 +97,11 @@ msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
+msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
+msgstr ""
+
+#: src/components/AddAudio/AddAudio.tsx:76
+#: src/components/AddAudio/AddAudio.tsx:76
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
@@ -440,8 +449,8 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:60
-#: src/components/AddAudio/AddAudio.tsx:60
+#: src/components/AddAudio/AddAudio.tsx:75
+#: src/components/AddAudio/AddAudio.tsx:75
 msgid "Permission to record audio"
 msgstr ""
 
@@ -503,7 +512,7 @@ msgstr ""
 msgid "Queue to upload"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:175
+#: src/components/AddAudio/AddAudio.tsx:191
 msgid "Re-record"
 msgstr ""
 
@@ -512,7 +521,7 @@ msgstr ""
 msgid "Re-take photo"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:175
+#: src/components/AddAudio/AddAudio.tsx:191
 msgid "Record"
 msgstr ""
 
@@ -563,7 +572,7 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:175
+#: src/components/AddAudio/AddAudio.tsx:191
 msgid "Stop"
 msgstr ""
 
@@ -630,7 +639,7 @@ msgstr ""
 #~ msgid "This version of Mahara Mobile is {MAHARAVERSION}"
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:12
+#: src/screens/VersionScreen/VersionScreen.tsx:13
 msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 msgstr ""
 
