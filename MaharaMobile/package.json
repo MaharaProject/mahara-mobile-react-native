@@ -1,6 +1,6 @@
 {
   "name": "mahara-mobile",
-  "version": "21.4.3",
+  "version": "21.10.0",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
