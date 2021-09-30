@@ -584,7 +584,11 @@ msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십�
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:13
-msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
+#~ msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:13
+msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:9
@@ -707,7 +711,7 @@ msgstr "업로드 대기열이 비어 있습니다"
 msgid "Your username or password was incorrect. Please try again."
 msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도하십시오."
 
-#: src/utils/constants.ts:85
+#: src/utils/constants.ts:84
 msgid "audio"
 msgstr "오디오"
 
@@ -722,7 +726,7 @@ msgstr "문의하기"
 msgid "default"
 msgstr "기본"
 
-#: src/utils/constants.ts:83
+#: src/utils/constants.ts:82
 msgid "file"
 msgstr "파일"
 
@@ -734,11 +738,11 @@ msgstr "이 이용 약관의 일부를 구성합니다..."
 msgid "image preview"
 msgstr "이미지 미리보기"
 
-#: src/utils/constants.ts:82
+#: src/utils/constants.ts:81
 msgid "journal entry"
 msgstr "분개"
 
-#: src/utils/constants.ts:84
+#: src/utils/constants.ts:83
 msgid "photo"
 msgstr "사진"
 

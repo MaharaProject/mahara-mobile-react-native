@@ -10,7 +10,6 @@ import {
 } from '../models/models';
 // action types - payloads of information that send data from your application to your store
 
-export const MAHARAVERSION = '21.4.2';
 // DOMAIN DATA
 // userTagsReducer
 export const ADD_USER_TAGS = 'ADD_USER_TAGS';
