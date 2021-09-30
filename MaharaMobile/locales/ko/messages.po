@@ -31,7 +31,9 @@ msgstr "정보"
 #~ msgstr "Mahara Mobile에 대하여"
 
 #: src/components/AddAudio/AddAudio.tsx:45
+#: src/components/AddAudio/AddAudio.tsx:60
 #: src/components/AddAudio/AddAudio.tsx:45
+#: src/components/AddAudio/AddAudio.tsx:60
 msgid "Access permission"
 msgstr "액세스 권한"
 
@@ -70,8 +72,10 @@ msgstr "KO All files and content..."
 
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:77
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
+#: src/components/AddAudio/AddAudio.tsx:77
 msgid "Allow"
 msgstr "허용하다"
 
@@ -82,6 +86,11 @@ msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하�
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
+msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
+msgstr ""
+
+#: src/components/AddAudio/AddAudio.tsx:76
+#: src/components/AddAudio/AddAudio.tsx:76
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 하시겠습니까?"
 
@@ -388,8 +397,8 @@ msgstr "우리의 의무"
 msgid "Password"
 msgstr "암호"
 
-#: src/components/AddAudio/AddAudio.tsx:60
-#: src/components/AddAudio/AddAudio.tsx:60
+#: src/components/AddAudio/AddAudio.tsx:75
+#: src/components/AddAudio/AddAudio.tsx:75
 msgid "Permission to record audio"
 msgstr "오디오 녹음 권한"
 
@@ -451,7 +460,7 @@ msgstr "Mahara Mobile의 목적"
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
-#: src/components/AddAudio/AddAudio.tsx:175
+#: src/components/AddAudio/AddAudio.tsx:191
 msgid "Re-record"
 msgstr "다시 녹음"
 
@@ -460,7 +469,7 @@ msgstr "다시 녹음"
 msgid "Re-take photo"
 msgstr "사진을 다시 찍습니다."
 
-#: src/components/AddAudio/AddAudio.tsx:175
+#: src/components/AddAudio/AddAudio.tsx:191
 msgid "Record"
 msgstr "녹음"
 
@@ -511,7 +520,7 @@ msgstr "싱글 사인온"
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
-#: src/components/AddAudio/AddAudio.tsx:175
+#: src/components/AddAudio/AddAudio.tsx:191
 msgid "Stop"
 msgstr "녹화 중지"
 
@@ -574,7 +583,7 @@ msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십�
 #~ msgid "This version of Mahara Mobile is {MAHARAVERSION}"
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:12
+#: src/screens/VersionScreen/VersionScreen.tsx:13
 msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 msgstr ""
 
