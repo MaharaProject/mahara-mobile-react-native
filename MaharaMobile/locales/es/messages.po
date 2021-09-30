@@ -552,7 +552,11 @@ msgstr ""
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:13
-msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
+#~ msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:13
+msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:9
@@ -667,7 +671,7 @@ msgstr ""
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 
-#: src/utils/constants.ts:85
+#: src/utils/constants.ts:84
 msgid "audio"
 msgstr ""
 
@@ -682,7 +686,7 @@ msgstr ""
 msgid "default"
 msgstr ""
 
-#: src/utils/constants.ts:83
+#: src/utils/constants.ts:82
 msgid "file"
 msgstr ""
 
@@ -694,11 +698,11 @@ msgstr ""
 msgid "image preview"
 msgstr ""
 
-#: src/utils/constants.ts:82
+#: src/utils/constants.ts:81
 msgid "journal entry"
 msgstr ""
 
-#: src/utils/constants.ts:84
+#: src/utils/constants.ts:83
 msgid "photo"
 msgstr ""
 
