@@ -134,8 +134,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 24
-        versionName "21.4.3"
+        versionCode 25
+        versionName "21.10.0"
         ndk { debugSymbolLevel 'FULL' }
     }
     splits {
@@ -175,6 +175,9 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             shrinkResources true
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            ndk {
+                debugSymbolLevel 'SYMBOL_TABLE'
+            }
         }
     }
     // applicationVariants are e.g. debug, release
