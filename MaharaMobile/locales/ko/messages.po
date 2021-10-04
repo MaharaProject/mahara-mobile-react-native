@@ -104,7 +104,7 @@ msgstr "앱 버전"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:75
 #: src/utils/addEditHelperFunctions.tsx:67
-#: src/utils/authHelperFunctions.ts:107
+#: src/utils/authHelperFunctions.ts:102
 msgid "Are you sure?"
 msgstr "확실해?"
 
@@ -273,7 +273,7 @@ msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
 msgid "Invalid token: please try again."
 msgstr "잘못된 토큰 : 다시 시도하십시오."
 
@@ -285,7 +285,7 @@ msgstr "잘못된 유형"
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr "편집중인 것 같습니다. 저장하기 전에 나가면 변경 사항이 손실됩니다."
 
-#: src/utils/authHelperFunctions.ts:107
+#: src/utils/authHelperFunctions.ts:102
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr "로그 아웃 한 후에 업로드 대기열의 항목을 검색 할 수 없습니다."
 
@@ -311,17 +311,17 @@ msgstr "로컬"
 msgid "Log in via an access token"
 msgstr "액세스 토큰을 통해 로그인"
 
-#: src/components/LocalLogin/LocalLogin.tsx:73
+#: src/components/LocalLogin/LocalLogin.tsx:72
 msgid "Log in via username and password"
 msgstr "사용자 이름과 비밀번호를 통해 로그인하십시오."
 
-#: src/components/LocalLogin/LocalLogin.tsx:81
+#: src/components/LocalLogin/LocalLogin.tsx:80
 msgid "Login"
 msgstr "로그인"
 
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
 msgid "Login failed"
 msgstr "로그인 실패"
 
@@ -393,7 +393,7 @@ msgstr "합법적으로 제한되는 모든 것에 대한 당사의 최대 총 �
 msgid "Our obligations"
 msgstr "우리의 의무"
 
-#: src/components/LocalLogin/LocalLogin.tsx:79
+#: src/components/LocalLogin/LocalLogin.tsx:78
 msgid "Password"
 msgstr "암호"
 
@@ -427,7 +427,7 @@ msgstr "파일을 선택하십시오"
 msgid "Please select a journal"
 msgstr "저널을 선택하세요"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
 msgid "Please try again."
 msgstr "다시 시도하십시오."
 
@@ -627,7 +627,7 @@ msgstr "대기열 페이지 업로드"
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
-#: src/components/LocalLogin/LocalLogin.tsx:76
+#: src/components/LocalLogin/LocalLogin.tsx:75
 msgid "Username"
 msgstr "사용자 이름"
 
@@ -684,8 +684,8 @@ msgid "You agree to defend, indemnify and save us, our affiliated and subsidiary
 msgstr "귀하는 우리를 방어, 면책 및 구하는 데 동의합니다 ..."
 
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:122
-msgid "You didn't enter anything in this field."
-msgstr "이 입력란에 아무 것도 입력하지 않았습니다."
+#~ msgid "You didn't enter anything in this field."
+#~ msgstr "이 입력란에 아무 것도 입력하지 않았습니다."
 
 #: src/screens/TermsScreen/TermsScreen.tsx:49
 msgid "You must meet the minimum age requirements of the Mahara site to which you want to connect."
@@ -707,7 +707,7 @@ msgstr "마하라 URL: {url}"
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
 msgid "Your username or password was incorrect. Please try again."
 msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도하십시오."
 
