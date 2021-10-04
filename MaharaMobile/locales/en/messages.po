@@ -106,7 +106,7 @@ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:75
 #: src/utils/addEditHelperFunctions.tsx:67
-#: src/utils/authHelperFunctions.ts:107
+#: src/utils/authHelperFunctions.ts:102
 msgid "Are you sure?"
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
 msgid "Invalid token: please try again."
 msgstr ""
 
@@ -291,7 +291,7 @@ msgstr ""
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr ""
 
-#: src/utils/authHelperFunctions.ts:107
+#: src/utils/authHelperFunctions.ts:102
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
@@ -326,17 +326,17 @@ msgstr ""
 msgid "Log in via an access token"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:73
+#: src/components/LocalLogin/LocalLogin.tsx:72
 msgid "Log in via username and password"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:81
+#: src/components/LocalLogin/LocalLogin.tsx:80
 msgid "Login"
 msgstr ""
 
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
 msgid "Login failed"
 msgstr ""
 
@@ -428,7 +428,7 @@ msgstr ""
 msgid "Our obligations"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:79
+#: src/components/LocalLogin/LocalLogin.tsx:78
 msgid "Password"
 msgstr ""
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "Please select a journal"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:108
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
 msgid "Please try again."
 msgstr ""
 
@@ -662,7 +662,7 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:76
+#: src/components/LocalLogin/LocalLogin.tsx:75
 msgid "Username"
 msgstr ""
 
@@ -727,8 +727,8 @@ msgid "You agree to defend, indemnify and save us, our affiliated and subsidiary
 msgstr ""
 
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:122
-msgid "You didn't enter anything in this field."
-msgstr ""
+#~ msgid "You didn't enter anything in this field."
+#~ msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:49
 msgid "You must meet the minimum age requirements of the Mahara site to which you want to connect."
@@ -750,7 +750,7 @@ msgstr ""
 msgid "Your upload queue is empty"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 
