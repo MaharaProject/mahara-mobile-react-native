@@ -7,7 +7,7 @@ import i18n from '../../i18n';
 
 const VersionScreen = () => {
   const version = DeviceInfo.getVersion();
-  const android = '10';
+  const android = '11';
   const ios = '14';
   return (
     <List>
