@@ -15,7 +15,7 @@ import EditItemScreen, {
   EditItemScreenOptions
 } from '../screens/EditItemScreen/EditItemScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
-import LoginScreen from '../screens/LoginScreen/LoginScreen';
+import LoginMethodScreen from '../screens/LoginMethodScreen/LoginMethodScreen';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
@@ -147,7 +147,10 @@ const AuthStackNavigator = createStackNavigator();
 export const AuthNavigator = () => (
   <AuthStackNavigator.Navigator initialRouteName="AuthLoad" headerMode="none">
     <AuthStackNavigator.Screen name="SiteCheck" component={SiteCheckScreen} />
-    <AuthStackNavigator.Screen name="LoginScreen" component={LoginScreen} />
+    <AuthStackNavigator.Screen
+      name="LoginMethodScreen"
+      component={LoginMethodScreen}
+    />
   </AuthStackNavigator.Navigator>
 );
 

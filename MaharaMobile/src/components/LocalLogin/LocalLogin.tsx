@@ -15,14 +15,14 @@ import styles from './LocalLogin.style';
 
 type Props = {
   url: string;
-  onUpdateToken: Function;
+  onGetToken: Function;
 };
 
 export default function LocalLogin(props: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const checkLogins = async () => {
+  const checkLoginForToken = async () => {
     const manufacturer = getManufacturer();
     const model = getModel();
     const id = uuid.v4();
@@ -45,10 +45,23 @@ export default function LocalLogin(props: Props) {
     try {
       const request = await fetch(url, config);
       const json = await request.json();
-      props.onUpdateToken(json.token);
+
+      if (json) {
+        if (json.error) {
+          console.log('error');
+          console.log(json);
+          props.onGetToken(null);
+        }
+        if (json.token != null) {
+          console.log('success');
+          console.log(json.token);
+          props.onGetToken(json.token);
+        }
+      }
     } catch (e) {
-      // console.log(e);
+      console.log(`error:${e}`);
     }
+    return null;
   };
 
   return (
@@ -85,7 +98,7 @@ export default function LocalLogin(props: Props) {
           <MediumButton
             text={t`Login`}
             icon={LOG_IN_ICON}
-            onPress={() => checkLogins()}
+            onPress={checkLoginForToken}
           />
         </View>
       </MaharaGradient>
