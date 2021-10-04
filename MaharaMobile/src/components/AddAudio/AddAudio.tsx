@@ -7,7 +7,7 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 import variables from '../../assets/styles/variables';
-import {File, PlayBackType, RecordBackType} from '../../models/models';
+import {File, PlayBackType} from '../../models/models';
 import {newFile} from '../../models/typeCreators';
 import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
 import MediumButton from '../UI/MediumButton/MediumButton';

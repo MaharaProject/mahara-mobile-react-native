@@ -77,7 +77,7 @@ const removeTag = (state: UserTagInfoState, tag: UserTag) => {
 
 /**
  * Updates/Create the entries (if there are no tags) in the set for the given itemId
- * in the taggiedItems object in state. Once updated, sets the 'taggedItems' in AyncStorage
+ * in the taggiedItems object in state. Once updated, sets the 'taggedItems' in AsyncStorage
  * @param state RootState
  * @param tagIds Set of tag ids to add to item
  * @param itemId The item id for tags to be added to

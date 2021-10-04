@@ -35,7 +35,7 @@ const AboutScreen = () => {
         <ListItem>
           <MediumText
             text={t`Mahara is an open source ePortfolio platform designed for
-              reflecing on what you have learned and for supporting social
+              reflecting on what you have learned and for supporting social
               learning. An ePortfolio is a tool and method to record your
               evidence of their learning, e.g. essays, artwork, and
               certificates, and reflect on them to learn from your experiences
