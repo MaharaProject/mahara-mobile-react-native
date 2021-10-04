@@ -14,6 +14,7 @@
     "compile": "lingui compile",
     "postinstall": "npx jetify",
     "release": "cd android && ./gradlew assembleRelease",
+    "bundlerelease": "cd android && ./gradlew bundleRelease",
     "postversion": "react-native-version"
   },
   "dependencies": {
