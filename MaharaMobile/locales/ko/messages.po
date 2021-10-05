@@ -354,8 +354,12 @@ msgstr "Mahara Mobile은 Mahara 프로젝트 팀에서 만든 오픈 소스 프�
 #~ msgstr "마하라 프로젝트"
 
 #: src/screens/AboutScreen/AboutScreen.tsx:27
-msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
-msgstr "Mahara는 소셜 학습을 위해 설계된 오픈 소스 ePortfolio..."
+#~ msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
+#~ msgstr "Mahara는 소셜 학습을 위해 설계된 오픈 소스 ePortfolio..."
+
+#: src/screens/AboutScreen/AboutScreen.tsx:27
+msgid "Mahara is an open source ePortfolio platform designed for reflecting on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
+msgstr ""
 
 #: src/navigation/StackNavigators.tsx:30
 msgid "Menu"
