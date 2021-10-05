@@ -322,7 +322,11 @@ msgstr ""
 #~ msgstr ""
 
 #: src/screens/AboutScreen/AboutScreen.tsx:27
-msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
+#~ msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
+#~ msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:27
+msgid "Mahara is an open source ePortfolio platform designed for reflecting on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
 msgstr ""
 
 #: src/navigation/StackNavigators.tsx:30
