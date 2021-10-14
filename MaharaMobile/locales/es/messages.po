@@ -60,12 +60,19 @@ msgstr ""
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
 #: src/components/AddAudio/AddAudio.tsx:77
+#: src/components/TakePhoto/TakePhoto.tsx:47
+#: src/components/TakePhoto/TakePhoto.tsx:47
 msgid "Allow"
 msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:46
 #: src/components/AddAudio/AddAudio.tsx:46
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
+msgstr ""
+
+#: src/components/TakePhoto/TakePhoto.tsx:46
+#: src/components/TakePhoto/TakePhoto.tsx:46
+msgid "Allow Mahara Mobile to access the camera?"
 msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:61
@@ -99,6 +106,11 @@ msgstr ""
 
 #: src/utils/addEditHelperFunctions.tsx:11
 msgid "Camera closed."
+msgstr ""
+
+#: src/components/TakePhoto/TakePhoto.tsx:45
+#: src/components/TakePhoto/TakePhoto.tsx:45
+msgid "Camera persmission"
 msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12

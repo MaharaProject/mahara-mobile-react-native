@@ -76,6 +76,8 @@ msgstr "KO All files and content..."
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
 #: src/components/AddAudio/AddAudio.tsx:77
+#: src/components/TakePhoto/TakePhoto.tsx:47
+#: src/components/TakePhoto/TakePhoto.tsx:47
 msgid "Allow"
 msgstr "허용하다"
 
@@ -83,6 +85,11 @@ msgstr "허용하다"
 #: src/components/AddAudio/AddAudio.tsx:46
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하도록 허용 하시겠습니까?"
+
+#: src/components/TakePhoto/TakePhoto.tsx:46
+#: src/components/TakePhoto/TakePhoto.tsx:46
+msgid "Allow Mahara Mobile to access the camera?"
+msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
@@ -124,6 +131,11 @@ msgstr "KO By using the full potential of the application ... "
 #: src/utils/addEditHelperFunctions.tsx:11
 msgid "Camera closed."
 msgstr "카메라가 닫혔습니다."
+
+#: src/components/TakePhoto/TakePhoto.tsx:45
+#: src/components/TakePhoto/TakePhoto.tsx:45
+msgid "Camera persmission"
+msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:77
