@@ -87,8 +87,6 @@ msgstr ""
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
 #: src/components/AddAudio/AddAudio.tsx:77
-#: src/components/TakePhoto/TakePhoto.tsx:47
-#: src/components/TakePhoto/TakePhoto.tsx:47
 msgid "Allow"
 msgstr ""
 
@@ -99,8 +97,8 @@ msgstr ""
 
 #: src/components/TakePhoto/TakePhoto.tsx:46
 #: src/components/TakePhoto/TakePhoto.tsx:46
-msgid "Allow Mahara Mobile to access the camera?"
-msgstr ""
+#~ msgid "Allow Mahara Mobile to access the camera?"
+#~ msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
@@ -139,14 +137,14 @@ msgstr ""
 msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app, whereas single sign-on takes you to your Mahara site. You may also generate an access token manually on your Mahara site if that feature is enabled."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:11
+#: src/utils/addEditHelperFunctions.tsx:13
 msgid "Camera closed."
 msgstr ""
 
 #: src/components/TakePhoto/TakePhoto.tsx:45
 #: src/components/TakePhoto/TakePhoto.tsx:45
-msgid "Camera persmission"
-msgstr ""
+#~ msgid "Camera persmission"
+#~ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:77
@@ -279,7 +277,7 @@ msgstr ""
 msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:14
+#: src/utils/addEditHelperFunctions.tsx:16
 msgid "ImagePicker Error:{0}"
 msgstr ""
 
@@ -445,7 +443,7 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:11
+#: src/utils/addEditHelperFunctions.tsx:13
 msgid "No photo captured"
 msgstr ""
 
@@ -559,7 +557,7 @@ msgstr ""
 msgid "Select folder"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:30
+#: src/utils/addEditHelperFunctions.tsx:29
 msgid "Select image"
 msgstr ""
 
