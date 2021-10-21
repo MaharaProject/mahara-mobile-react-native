@@ -76,8 +76,6 @@ msgstr "KO All files and content..."
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
 #: src/components/AddAudio/AddAudio.tsx:77
-#: src/components/TakePhoto/TakePhoto.tsx:47
-#: src/components/TakePhoto/TakePhoto.tsx:47
 msgid "Allow"
 msgstr "허용하다"
 
@@ -88,8 +86,8 @@ msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하�
 
 #: src/components/TakePhoto/TakePhoto.tsx:46
 #: src/components/TakePhoto/TakePhoto.tsx:46
-msgid "Allow Mahara Mobile to access the camera?"
-msgstr ""
+#~ msgid "Allow Mahara Mobile to access the camera?"
+#~ msgstr ""
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
@@ -128,14 +126,14 @@ msgstr "오디오"
 msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app, whereas single sign-on takes you to your Mahara site. You may also generate an access token manually on your Mahara site if that feature is enabled."
 msgstr "KO By using the full potential of the application ... "
 
-#: src/utils/addEditHelperFunctions.tsx:11
+#: src/utils/addEditHelperFunctions.tsx:13
 msgid "Camera closed."
 msgstr "카메라가 닫혔습니다."
 
 #: src/components/TakePhoto/TakePhoto.tsx:45
 #: src/components/TakePhoto/TakePhoto.tsx:45
-msgid "Camera persmission"
-msgstr ""
+#~ msgid "Camera persmission"
+#~ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:77
@@ -264,7 +262,7 @@ msgstr "본 성명서에 관해 궁금한 점이 있거나 위의 기준을 준�
 msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr "일반적인 질문이 있거나 문제를보고하려면 Mahara Mobile의 GitHub '문제'페이지에서 할 수 있습니다."
 
-#: src/utils/addEditHelperFunctions.tsx:14
+#: src/utils/addEditHelperFunctions.tsx:16
 msgid "ImagePicker Error:{0}"
 msgstr "ImagePicker 오류 : {0}"
 
@@ -393,7 +391,7 @@ msgstr "새 태그 ..."
 msgid "Next"
 msgstr "다음"
 
-#: src/utils/addEditHelperFunctions.tsx:11
+#: src/utils/addEditHelperFunctions.tsx:13
 msgid "No photo captured"
 msgstr "사진이 촬영되지 않았습니다"
 
@@ -507,7 +505,7 @@ msgstr "저널을 선택하십시오"
 msgid "Select folder"
 msgstr "폴더 선택"
 
-#: src/utils/addEditHelperFunctions.tsx:30
+#: src/utils/addEditHelperFunctions.tsx:29
 msgid "Select image"
 msgstr "이미지 선택"
 
