@@ -2,37 +2,38 @@ import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert, Image, Platform, View} from 'react-native';
 // import DocumentPicker from 'react-native-document-picker';
-import ImagePicker, {ImagePickerResponse} from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import i18n from '../i18n';
-import {File} from '../models/models';
+import {
+  File,
+  ReactNativeImagePickerAsset,
+  ReactNativeImagePickerResponse
+} from '../models/models';
 import {newFile} from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
 const setPickedFileCallback = (
-  response: ImagePickerResponse,
+  response: unknown,
   setPickedFile: Dispatch<SetStateAction<File>>
 ) => {
-  if (response.didCancel) {
+  const asset = response as ReactNativeImagePickerAsset;
+  const resp = response as ReactNativeImagePickerResponse;
+  if (resp.didCancel) {
     Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
-  } else if (response.error) {
-    Alert.alert(i18n._(t`ImagePicker Error:${response.error}`));
+  } else if (resp.errorCode) {
+    Alert.alert(i18n._(t`ImagePicker Error:${resp.errorMessage}`));
   } else {
-    let path = response.uri;
+    let path = asset.uri;
     if (Platform.OS === 'ios') {
       path = `˜${path.substring(path.indexOf('/Documents'))}`;
     }
 
-    if (!response.fileName) {
-      response.fileName = path.split('/').pop();
-    }
-
     const maharaFile = newFile(
-      response.uri,
-      response.type,
-      response.fileName,
-      response.fileSize
+      asset.uri,
+      asset.type,
+      asset.fileName,
+      asset.fileSize
     );
-
     setPickedFile(maharaFile);
   }
 };
@@ -40,6 +41,7 @@ const setPickedFileCallback = (
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
   const options = {
     title: i18n._(t`Select image`),
+    mediaType: 'photo',
     storageOptions: {
       skipBackup: true,
       path: 'images'
@@ -52,10 +54,12 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
    */
 
   Platform.OS === 'ios'
-    ? ImagePicker.showImagePicker(options, response => {
-        setPickedFileCallback(response, setPickedFile);
-      })
-    : ImagePicker.launchCamera(options, response => {
+    ? // TODO: this will not work rn image picker > 3, use rn action sheet.
+      console.warn(
+        'Fix this up as new react-native-image-picker dont have it anymmore, use action sheet'
+      )
+    : // setPickedFileCallback(response, setPickedFile);
+      launchCamera(options, response => {
         setPickedFileCallback(response, setPickedFile);
       });
 };
