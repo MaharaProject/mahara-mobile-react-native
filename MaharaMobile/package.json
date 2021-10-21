@@ -1,6 +1,6 @@
 {
   "name": "mahara-mobile",
-  "version": "21.10.1",
+  "version": "21.10.0",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
@@ -62,7 +62,7 @@
     "react-native-elements": "^1.2.7",
     "react-native-flash-message": "^0.1.17",
     "react-native-gesture-handler": "^1.8.0",
-    "react-native-image-picker": "^2.3.4",
+    "react-native-image-picker": "^3.8.1",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-localize": "^1.4.3",
     "react-native-permissions": "^2.2.2",

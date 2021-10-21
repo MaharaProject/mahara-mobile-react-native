@@ -127,3 +127,30 @@ export type RecordBackType = {
   currentPosition: number;
   currentMetering?: number;
 };
+
+// libraries
+
+// react native image-picker
+export type ReactNativeImagePickerResponse = {
+  didCancel?: boolean;
+  errorCode?: any;
+  errorMessage?: string;
+  assets?: ReactNativeImagePickerAsset;
+};
+
+export type ReactNativeImagePickerAsset = {
+  fileName: string;
+  fileSize: number;
+  height: number;
+  type: string;
+  uri: string;
+  width: number;
+  base64?: string;
+  duration?: any;
+};
+
+export type ReactNativeImagePickerErrorCode = {
+  camera_unavailable?: any;
+  permission?: any;
+  others?: any;
+};
