@@ -2,7 +2,11 @@ import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
 import {Alert, Image, Platform, View} from 'react-native';
 // import DocumentPicker from 'react-native-document-picker';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import {
+  ImageLibraryOptions,
+  launchCamera,
+  launchImageLibrary // for ios?
+} from 'react-native-image-picker';
 import i18n from '../i18n';
 import {
   File,
@@ -12,7 +16,7 @@ import {
 import {newFile} from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
-const setPickedFileCallback = (
+const setSelectedImageCallback = (
   response: unknown,
   setPickedFile: Dispatch<SetStateAction<File>>
 ) => {
@@ -39,13 +43,9 @@ const setPickedFileCallback = (
 };
 
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
-  const options = {
-    title: i18n._(t`Select image`),
-    mediaType: 'photo',
-    storageOptions: {
-      skipBackup: true,
-      path: 'images'
-    }
+  const options: ImageLibraryOptions = {
+    // title: i18n._(t`Select image`),
+    mediaType: 'photo'
   };
 
   /**
@@ -56,11 +56,11 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
   Platform.OS === 'ios'
     ? // TODO: this will not work rn image picker > 3, use rn action sheet.
       console.warn(
-        'Fix this up as new react-native-image-picker dont have it anymmore, use action sheet'
+        'Fix this up as new react-native-image-picker dont have it anymore, use action sheet'
       )
-    : // setPickedFileCallback(response, setPickedFile);
+    : // setSelectedImageCallback(response, setPickedFile);
       launchCamera(options, response => {
-        setPickedFileCallback(response, setPickedFile);
+        setSelectedImageCallback(response, setPickedFile);
       });
 };
 
