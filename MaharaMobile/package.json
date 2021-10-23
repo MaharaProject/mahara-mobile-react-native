@@ -87,7 +87,7 @@
     "@lingui/macro": "^2.9.2",
     "@lingui/react": "^2.9.2",
     "@react-native-community/eslint-config": "0.0.3",
-    "@types/jest": "^26.0.0",
+    "@types/jest": "^24.9.1",
     "@types/lingui__core": "^2.7.1",
     "@types/lingui__macro": "^2.7.4",
     "@types/lingui__react": "^2.8.3",
@@ -103,7 +103,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
-    "jest": "^26.0.0",
+    "jest": "24.9.0",
     "jetifier": "^1.6.6",
     "metro-react-native-babel-preset": "0.51.1",
     "prettier": "^1.19.1",
@@ -114,5 +114,25 @@
     "tslint": "^5.20.1",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.9.9"
+  },
+  "jest": {
+    "preset": "@testing-library/react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./jest-setup.js"
+    ],
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "modulePaths": [
+      "<rootDir>"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|react-navigation|@react-navigation|@react-native-community/.*))",
+      "/node_modules/(?!react-native|native-base-shoutem-theme|react-navigation-stack|@react-navigation|react-navigation-fluid-transitions)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
