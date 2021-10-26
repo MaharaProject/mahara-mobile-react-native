@@ -79,7 +79,7 @@ const updateJEntriesOnLogin = (
   const {uploadJEntries} = state;
   const newJournalEntries: Array<PendingJEntry> = [];
   const journalEntriesArr = Object.keys(uploadJEntries).map(
-    k => uploadJEntries[k]
+    (k) => uploadJEntries[k]
   );
   journalEntriesArr.forEach((pendingJEntry: PendingJEntry) => {
     const newPendingJEntry: PendingJEntry = {

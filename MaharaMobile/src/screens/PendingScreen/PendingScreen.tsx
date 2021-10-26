@@ -131,7 +131,7 @@ const PendingScreen = (props: Props) => {
   };
 
   const clearUploadError = (id: string) => {
-    const newState = uploadErrorItemsIds.filter(item => item !== id);
+    const newState = uploadErrorItemsIds.filter((item) => item !== id);
     setUploadErrorItemsIds(newState);
   };
 
@@ -198,7 +198,7 @@ const PendingScreen = (props: Props) => {
       props.dispatch(removeUploadFile(id));
       props.dispatch(removeUploadJEntry(id));
 
-      const newState = uploadedItemsIds.filter(item => item !== id);
+      const newState = uploadedItemsIds.filter((item) => item !== id);
       setUploadedItemsIds(newState);
     }, 1000);
 
@@ -210,7 +210,7 @@ const PendingScreen = (props: Props) => {
 
   const onUploadClick = () => {
     setLoading(true);
-    props.uploadFiles.forEach(async file => {
+    props.uploadFiles.forEach(async (file) => {
       clearUploadError(file.id);
       props
         .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
@@ -224,7 +224,7 @@ const PendingScreen = (props: Props) => {
         });
     });
 
-    props.uploadJEntries.forEach(async journalEntry => {
+    props.uploadJEntries.forEach(async (journalEntry) => {
       clearUploadError(journalEntry.id);
       props
         .dispatch(

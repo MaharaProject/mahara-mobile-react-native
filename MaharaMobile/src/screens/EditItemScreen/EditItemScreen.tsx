@@ -117,7 +117,7 @@ const EditItemScreen = (props: Props) => {
   );
 };
 
-export const EditItemScreenOptions = navData => {
+export const EditItemScreenOptions = (navData) => {
   return {
     headerTitle: i18n._(
       t`Edit ${getUploadTypeIntlStrings(

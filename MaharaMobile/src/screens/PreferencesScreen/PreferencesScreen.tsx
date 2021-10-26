@@ -60,9 +60,8 @@ const PreferencesScreen = (props: Props) => {
   );
 
   const userBlogs = useSelector((state: RootState) => selectUserBlogs(state));
-  const [selectedFolderTitle, setSelectedFolderTitle] = useState(
-    defaultFolderTitle
-  );
+  const [selectedFolderTitle, setSelectedFolderTitle] =
+    useState(defaultFolderTitle);
   const [selectedBlogId, setSelectedBlogId] = useState(defaultBlogId);
 
   useEffect(() => {
@@ -81,7 +80,7 @@ const PreferencesScreen = (props: Props) => {
   }, []);
 
   const defaultFolderPicker = () => {
-    const match = userFolders.find(f => f.title === defaultFolderTitle);
+    const match = userFolders.find((f) => f.title === defaultFolderTitle);
     const sortedFolders: Array<UserFolder> = putDefaultAtTop(
       null,
       match,
@@ -115,7 +114,7 @@ const PreferencesScreen = (props: Props) => {
   const defaultBlogPicker = () => {
     // Find matching blog to the default blog
     const match: UserBlog =
-      userBlogs.find(b => b.id === defaultBlogId) ?? userBlogs[0];
+      userBlogs.find((b) => b.id === defaultBlogId) ?? userBlogs[0];
 
     const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
@@ -180,10 +179,10 @@ const PreferencesScreen = (props: Props) => {
           Alert.alert(
             `${i18n._(intl.updatedPref)}`,
             `${i18n._(intl.fldr)}: ${selectedFolderTitle || defaultFolderTitle} 
-            \n${i18n._(intl.jrnl)}: ${userBlogs.find(
-              (b: UserBlog) => b.id === selectedBlogId
-            )?.title ||
-              userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title}`
+            \n${i18n._(intl.jrnl)}: ${
+              userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title ||
+              userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title
+            }`
           );
         }}
       />

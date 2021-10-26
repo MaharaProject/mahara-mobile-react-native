@@ -79,7 +79,7 @@ export default function LocalLogin(props: Props) {
               <TextInput
                 style={forms.textInput}
                 placeholder={i18n._(t`Username`)}
-                onChangeText={usernameInput => setUsername(usernameInput)}
+                onChangeText={(usernameInput) => setUsername(usernameInput)}
                 autoCapitalize="none"
               />
             )}
@@ -90,7 +90,7 @@ export default function LocalLogin(props: Props) {
                 style={forms.textInput}
                 secureTextEntry
                 placeholder={i18n._(t`Password`)}
-                onChangeText={passwordInput => setPassword(passwordInput)}
+                onChangeText={(passwordInput) => setPassword(passwordInput)}
                 autoCapitalize="none"
               />
             )}

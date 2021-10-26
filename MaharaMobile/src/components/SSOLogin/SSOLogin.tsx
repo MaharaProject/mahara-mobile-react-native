@@ -30,18 +30,20 @@ export default function SSOLogin(props: Props) {
 
   // Function to watch window until it has obtained maharatoken
   const GET_TOKEN_JS = `(function() {
+    setTimeout(function() {
     window.ReactNativeWebView.postMessage(maharatoken);
+    }, 500);
   })();`;
 
   return (
     <WebView
-      ref={ref => {
+      ref={(ref) => {
         webref = ref;
       }}
       source={{uri: url}}
       incognito
       injectedJavaScript={GET_TOKEN_JS}
-      onMessage={event => {
+      onMessage={(event) => {
         // check for token inside event.nativeEvent.data
         if (!event.data && event.data !== '') {
           const token = event.nativeEvent.data;
