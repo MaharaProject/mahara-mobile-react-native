@@ -108,7 +108,7 @@ const AddItemScreen = (props: Props) => {
   );
 };
 
-export const AddItemScreenOptions = navData => {
+export const AddItemScreenOptions = (navData) => {
   const itemType = navData.route.params?.itemType ?? 'FILE';
   const intlStringOfItemType = getUploadTypeIntlStrings(itemType).toLowerCase();
   const addString = i18n._(t`Add`);

@@ -46,7 +46,7 @@ const addTags = (
 ): UserTagInfoState => {
   const updatedTags = new Set([...state.userTags]);
 
-  tags.forEach(t => {
+  tags.forEach((t) => {
     updatedTags.add(t);
   });
 

@@ -104,9 +104,8 @@ const UploadForm = (props: Props) => {
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
   const [selectedBlog, setSelectedBlog] = useState(props.defaultBlogId);
-  const [selectedTags, setSelectedTags] = useState<State['selectedTags']>(
-    editItemTags
-  );
+  const [selectedTags, setSelectedTags] =
+    useState<State['selectedTags']>(editItemTags);
   const [newTags, setNewTags] = useState<State['newTags']>([]);
   const [itemTagIds, setItemTagIds] = useState<State['itemTagIds']>(new Set());
   // error messages
@@ -360,7 +359,7 @@ const UploadForm = (props: Props) => {
     if (itemType === 'J_ENTRY') return null;
 
     const matchingFolder = props.userFolders.find(
-      f => f.title === props.defFolderTitle
+      (f) => f.title === props.defFolderTitle
     );
 
     const folders: Array<UserFolder> = putDefaultAtTop(

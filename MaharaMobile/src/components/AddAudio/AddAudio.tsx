@@ -158,7 +158,7 @@ const AddAudio = (props: Props) => {
     let fileSize = 0;
     let filename = '';
 
-    await RNFetchBlob.fs.stat(checkIOS(result)).then(stats => {
+    await RNFetchBlob.fs.stat(checkIOS(result)).then((stats) => {
       filename = stats.filename;
       fileSize = parseInt(stats.size, 10);
     });

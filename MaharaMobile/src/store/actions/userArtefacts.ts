@@ -56,7 +56,7 @@ export function checkLoginTypes(url: string) {
 
   // TODO: eslint-disable-next-line func-names
   // eslint-disable-next-line func-names
-  return async function(dispatch: Function, getState: Function, {i18n}) {
+  return async function (dispatch: Function, getState: Function, {i18n}) {
     try {
       const result: LoginInfo = await getJSON(serverUrl);
 

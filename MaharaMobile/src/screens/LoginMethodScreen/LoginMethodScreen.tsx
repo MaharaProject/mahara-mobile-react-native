@@ -103,7 +103,7 @@ export const LoginMethodScreen = (props: Props) => {
     };
 
     fetchUserWithToken(serverUrl, requestOptions)
-      .then(json => {
+      .then((json) => {
         props.dispatch(updateUserName(json.userprofile.myname));
 
         type FetchedTag = {
@@ -141,7 +141,7 @@ export const LoginMethodScreen = (props: Props) => {
           onGuestToUser();
         }
       })
-      .catch(e => {
+      .catch((e) => {
         console.warn(`Error on fetchUserTokenLogin :) ${e}`);
       });
   };

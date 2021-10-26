@@ -3,7 +3,7 @@ import React from 'react';
 import styles from '../../../assets/styles/variables';
 import {onCancelAlert} from '../../../utils/addEditHelperFunctions';
 
-const CustomVerifyBackButton = props => {
+const CustomVerifyBackButton = (props) => {
   const onBackPress = () => {
     onCancelAlert(() => props.goBack());
     return true;
