@@ -50,7 +50,7 @@ export async function fetchUserWithToken(
   requestOptions: RequestInit
 ) {
   const response = await fetch(serverUrl, requestOptions);
-  const json = await response.json().catch(e => {
+  const json = await response.json().catch((e) => {
     console.warn(
       `Expected ERROR:  because we have been auto logged out and cannot retrieve any data${e}`
     );
@@ -127,7 +127,7 @@ export const fetchProfilePic = async (
     fileCache: true
   })
     .fetch('GET', serverUrl)
-    .then(res => {
+    .then((res) => {
       profilePic = `file://${res.path()}`;
       dispatch(updateProfilePic(profilePic));
     })

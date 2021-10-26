@@ -78,7 +78,7 @@ const updateUploadFilesOnLogin = (
   };
 
   const updatedFiles: Array<PendingMFile> = [];
-  const filesArray = Object.keys(uploadJEntries).map(k => uploadJEntries[k]);
+  const filesArray = Object.keys(uploadJEntries).map((k) => uploadJEntries[k]);
   filesArray.forEach((file: PendingMFile) => {
     const newPendingMFile: PendingMFile = {
       ...file,

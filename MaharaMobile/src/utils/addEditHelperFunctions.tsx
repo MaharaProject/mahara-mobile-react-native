@@ -59,17 +59,17 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
         'Fix this up as new react-native-image-picker dont have it anymore, use action sheet'
       )
     : // setSelectedImageCallback(response, setPickedFile);
-      launchCamera(options, response => {
+      launchCamera(options, (response) => {
         setSelectedImageCallback(response, setPickedFile);
       });
 };
 
-export const pickDocument = onSetPickedFile => {
+export const pickDocument = (onSetPickedFile) => {
   const DocumentPicker = require('react-native-document-picker').default; // eslint-disable-line global-require
   try {
     DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
-    }).then(res =>
+    }).then((res) =>
       onSetPickedFile(newFile(res.uri, res.type, res.name, res.size))
     );
   } catch (err) {
@@ -83,7 +83,7 @@ export const pickDocument = onSetPickedFile => {
   }
 };
 
-export const onCancelAlert = goBack => {
+export const onCancelAlert = (goBack) => {
   Alert.alert(
     i18n._(t`Are you sure?`),
     i18n._(
