@@ -25,17 +25,12 @@ import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
 import TermsScreen from '../screens/TermsScreen/TermsScreen';
 import VersionScreen from '../screens/VersionScreen/VersionScreen';
 
-type Props = {
-  navigation: any;
-  isGuest: boolean;
-  userName: string;
-};
-
 // must make it a functional component to get lingui to trigger the translation
 export const navigatorStrings = () => {
   return {
     PENDING: i18n._(t`Upload queue`),
-    ADD: i18n._(t`Add`),
+    CREATE: i18n._(t`Create`),
+    ADDITEM: i18n._(t`Add item`),
     PROFILE_ACCESSIBILITY_LABEL: i18n._(t`Profile page`),
     ADD_ACCESSIBILITY_LABEL: i18n._(t`Add an item`),
     PENDING_ACCESSIBILITY_LABEL: i18n._(t`Upload queue page`),
@@ -55,45 +50,44 @@ const headerConfigForTabStacks: StackNavigationOptions = {
   headerTitleAlign: 'center'
 };
 
-const AddItemsStackNavigator = createStackNavigator();
-export const AddItemsNavigator = () => (
-  <AddItemsStackNavigator.Navigator screenOptions={headerConfigForTabStacks}>
-    <AddItemsStackNavigator.Screen
-      name="Add"
+const AddItems = createStackNavigator();
+export const CreateNavigator = () => (
+  <AddItems.Navigator screenOptions={headerConfigForTabStacks}>
+    <AddItems.Screen
+      name="Create"
       component={SelectMediaScreen}
-      options={{title: navigatorStrings().ADD}}
+      options={{title: navigatorStrings().CREATE}}
     />
-    <AddItemsStackNavigator.Screen
+    <AddItems.Screen
       name="AddItem"
       component={AddItemScreen}
       options={AddItemScreenOptions}
     />
-  </AddItemsStackNavigator.Navigator>
+  </AddItems.Navigator>
 );
 
-const PendingItemsStackNavigator = createStackNavigator();
+const PendingItems = createStackNavigator();
 export const PendingItemsNavigator = () => (
-  <PendingItemsStackNavigator.Navigator
-    screenOptions={headerConfigForTabStacks}>
-    <PendingItemsStackNavigator.Screen
+  <PendingItems.Navigator screenOptions={headerConfigForTabStacks}>
+    <PendingItems.Screen
       name="Pending"
       component={PendingScreen}
       options={{
         title: navigatorStrings().PENDING
       }}
     />
-    <PendingItemsStackNavigator.Screen
+    <PendingItems.Screen
       name="EditItem"
       component={EditItemScreen}
       options={EditItemScreenOptions}
     />
-  </PendingItemsStackNavigator.Navigator>
+  </PendingItems.Navigator>
 );
 
-const MenuStackNavigator = createStackNavigator();
+const Menu = createStackNavigator();
 export const MenuNavigator = () => (
-  <MenuStackNavigator.Navigator screenOptions={{...headerConfigForTabStacks}}>
-    <MenuStackNavigator.Screen
+  <Menu.Navigator screenOptions={{...headerConfigForTabStacks}}>
+    <Menu.Screen
       name="Menu"
       component={MenuScreen}
       options={{
@@ -106,52 +100,53 @@ export const MenuNavigator = () => (
         title: navigatorStrings().MENU
       }}
     />
-    <MenuStackNavigator.Screen
+    <Menu.Screen
       name="About"
       component={AboutScreen}
       options={{
         headerTitle: navigatorStrings().ABOUT
       }}
     />
-    <MenuStackNavigator.Screen
+    <Menu.Screen
       name="Preferences"
       component={PreferencesScreen}
       options={{headerTitle: navigatorStrings().PREFERENCES}}
     />
-    <MenuStackNavigator.Screen
+    <Menu.Screen
       name="Terms"
       component={TermsScreen}
       options={{headerTitle: navigatorStrings().TERMS}}
     />
-    <MenuStackNavigator.Screen
+    <Menu.Screen
       name="Privacy"
       component={PrivacyScreen}
       options={{headerTitle: navigatorStrings().PRIVACY}}
     />
-    <MenuStackNavigator.Screen
+    <Menu.Screen
       name="Help"
       component={HelpScreen}
       options={{headerTitle: navigatorStrings().HELP}}
     />
-    <MenuStackNavigator.Screen
+    <Menu.Screen
       name="Version"
       component={VersionScreen}
       options={{headerTitle: navigatorStrings().VERSION}}
     />
-  </MenuStackNavigator.Navigator>
+  </Menu.Navigator>
 );
 
 // TODO: test tab config on iOS to see if matches Android
 
-const AuthStackNavigator = createStackNavigator();
+const Auth = createStackNavigator();
 export const AuthNavigator = () => (
-  <AuthStackNavigator.Navigator initialRouteName="AuthLoad" headerMode="none">
-    <AuthStackNavigator.Screen name="SiteCheck" component={SiteCheckScreen} />
-    <AuthStackNavigator.Screen
-      name="LoginMethodScreen"
-      component={LoginMethodScreen}
+  <Auth.Navigator initialRouteName="AuthLoad">
+    <Auth.Screen
+      name="SiteCheck"
+      component={SiteCheckScreen}
+      options={{headerShown: false}}
     />
-  </AuthStackNavigator.Navigator>
+    <Auth.Screen name="LoginMethodScreen" component={LoginMethodScreen} />
+  </Auth.Navigator>
 );
 
 // const androidTabConfig = createMaterialBottomTabNavigator(tabScreenConfig, {
