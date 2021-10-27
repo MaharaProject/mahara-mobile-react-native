@@ -117,6 +117,7 @@ export const AddItemScreenOptions = (navData) => {
   return {
     headerTitle,
     headerLeft: () => (
+      // TODO: use the HeaderBackButton in the future for better accessibility (default)
       <CustomVerifyBackButton
         goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
       />
