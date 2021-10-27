@@ -1,9 +1,10 @@
 import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
-import {Alert, Image, Platform, View} from 'react-native';
+import {ActionSheetIOS, Alert, Image, Platform, View} from 'react-native';
 // import DocumentPicker from 'react-native-document-picker';
 import {
   ImageLibraryOptions,
+  ImagePickerResponse,
   launchCamera,
   launchImageLibrary // for ios?
 } from 'react-native-image-picker';
@@ -55,16 +56,33 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
 
   Platform.OS === 'ios'
     ? // TODO: this will not work rn image picker > 3, use rn action sheet.
-      console.warn(
-        'Fix this up as new react-native-image-picker dont have it anymore, use action sheet'
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Cancel', 'Open Photos', 'Open Camera'],
+          destructiveButtonIndex: 3,
+          cancelButtonIndex: 0
+        },
+        (buttonIndex: number) => {
+          if (buttonIndex === 0) {
+            // cancel action
+          } else if (buttonIndex === 1) {
+            launchImageLibrary(options, (response: ImagePickerResponse) => {
+              setSelectedImageCallback(response, setPickedFile);
+            });
+          } else if (buttonIndex === 2) {
+            launchCamera(options, (response: ImagePickerResponse) => {
+              setSelectedImageCallback(response, setPickedFile);
+            });
+          }
+        }
       )
     : // setSelectedImageCallback(response, setPickedFile);
-      launchCamera(options, (response) => {
+      launchCamera(options, (response: ImagePickerResponse) => {
         setSelectedImageCallback(response, setPickedFile);
       });
 };
 
-export const pickDocument = (onSetPickedFile) => {
+export const pickDocument = (onSetPickedFile: any) => {
   const DocumentPicker = require('react-native-document-picker').default; // eslint-disable-line global-require
   try {
     DocumentPicker.pick({
