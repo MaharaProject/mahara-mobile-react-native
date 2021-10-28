@@ -15,7 +15,9 @@ import EditItemScreen, {
   EditItemScreenOptions
 } from '../screens/EditItemScreen/EditItemScreen';
 import HelpScreen from '../screens/HelpScreen/HelpScreen';
-import LoginMethodScreen from '../screens/LoginMethodScreen/LoginMethodScreen';
+import LoginMethodScreen, {
+  LoginMethodScreenOptions
+} from '../screens/LoginMethodScreen/LoginMethodScreen';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
 import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
@@ -139,13 +141,17 @@ export const MenuNavigator = () => (
 
 const Auth = createStackNavigator();
 export const AuthNavigator = () => (
-  <Auth.Navigator initialRouteName="AuthLoad">
+  <Auth.Navigator screenOptions={{...headerConfigForTabStacks}}>
     <Auth.Screen
       name="SiteCheck"
       component={SiteCheckScreen}
       options={{headerShown: false}}
     />
-    <Auth.Screen name="LoginMethodScreen" component={LoginMethodScreen} />
+    <Auth.Screen
+      name="LoginMethodScreen"
+      component={LoginMethodScreen}
+      options={LoginMethodScreenOptions}
+    />
   </Auth.Navigator>
 );
 

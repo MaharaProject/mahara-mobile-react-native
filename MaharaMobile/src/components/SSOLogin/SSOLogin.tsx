@@ -47,7 +47,9 @@ export default function SSOLogin(props: Props) {
         // check for token inside event.nativeEvent.data
         if (!event.data && event.data !== '') {
           const token = event.nativeEvent.data;
-          webref.stopLoading();
+          if (webref) {
+            webref.stopLoading();
+          }
           props.onGetToken(token);
         }
       }}

@@ -1,5 +1,4 @@
 import {t, Trans} from '@lingui/macro';
-import {Icon, Toast} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Alert, Text, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
@@ -10,14 +9,13 @@ import UploadSVG from '../../assets/images/upload';
 import messages from '../../assets/styles/messages';
 import textStyles from '../../assets/styles/text';
 import styles from '../../assets/styles/variables';
+import flashMessage from '../../components/FlashMessage/FlashMessage';
 // components
 import PendingList from '../../components/PendingList/PendingList';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import i18n from '../../i18n';
 import {
   DisplayItems,
-  MessageDescriptor,
-  MessageInfoType,
   PendingJEntry,
   PendingMFile,
   UploadItemType,
@@ -63,36 +61,6 @@ const PendingScreen = (props: Props) => {
   const [loading, setLoading] = useState(false);
 
   const url = useSelector((state: RootState) => selectUrl(state));
-
-  const flashMessage = (
-    text: MessageDescriptor,
-    messageType: MessageInfoType
-  ) => {
-    Toast.show({
-      text: (
-        <Text
-          style={{
-            fontSize: styles.font.md,
-            color: styles.colors.messageSuccessText
-          }}>
-          <Icon
-            style={{
-              color: styles.colors.messageSuccessIcon
-            }}
-            name="md-checkmark-circle"
-          />
-          &nbsp;&nbsp;{i18n._(text)}
-        </Text>
-      ),
-      type: messageType,
-      style: {
-        backgroundColor: styles.colors.messageSuccessBg,
-        paddingBottom: styles.padding.md
-      },
-      position: 'top',
-      duration: 3000
-    });
-  };
 
   useEffect(() => {
     if (props.route.params?.added === true) {
