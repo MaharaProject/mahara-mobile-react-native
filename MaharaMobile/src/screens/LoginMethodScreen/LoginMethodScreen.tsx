@@ -46,6 +46,8 @@ import {
   updateUserFolders
 } from '../../store/actions/userArtefacts';
 import {userBlogJSONtoUserBlog} from '../../utils/helperFunctions';
+import flashMessage from '../../components/FlashMessage/FlashMessage';
+import styles from '../../assets/styles/variables';
 
 type Props = {
   dispatch: Dispatch;
@@ -134,6 +136,7 @@ export const LoginMethodScreen = (props: Props) => {
         props.dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
         props.dispatch(setDefaultFolder(json.folders.folders[0].title));
         props.dispatch(addToken(token));
+        flashMessage(t`Logged in: ${json.userprofile.myname}`, 'success');
 
         // checkValidInitialState(props.userBlogs, props.userFolders)
 
@@ -203,6 +206,19 @@ export const LoginMethodScreen = (props: Props) => {
       ) : null}
     </View>
   );
+};
+
+export const LoginMethodScreenOptions = (navData) => {
+  const headerTitle = navData.route.params?.loginType;
+
+  if (headerTitle === 'sso') {
+    return {
+      headerTitle: 'SSO'
+    };
+  }
+  return {
+    headerShown: false
+  };
 };
 
 const mapStateToProps = (state: RootState) => ({

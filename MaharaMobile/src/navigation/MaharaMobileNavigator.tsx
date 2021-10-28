@@ -28,7 +28,7 @@ const tabOptions = {
 };
 
 const MaharaMobileNavigator = () => (
-  <BottomTab.Navigator initialRouteName="Create">
+  <BottomTab.Navigator initialRouteName="Create tab">
     <BottomTab.Screen
       name="Upload queue tab"
       component={PendingItemsNavigator}
