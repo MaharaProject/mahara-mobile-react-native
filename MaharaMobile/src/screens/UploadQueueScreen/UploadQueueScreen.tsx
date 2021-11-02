@@ -37,7 +37,7 @@ import {
 import {GUEST_USERNAME} from '../../utils/constants';
 import {uploadItemToMahara} from '../../utils/helperFunctions';
 // Styles
-import pendingScreenStyles from './PendingScreen.style';
+import pendingScreenStyles from './UploadQueueScreen.style';
 
 type Props = {
   uploadFiles: Array<PendingMFile>;
@@ -50,7 +50,7 @@ type Props = {
   route: {params: {added: boolean}};
 };
 
-const PendingScreen = (props: Props) => {
+const UploadQueueScreen = (props: Props) => {
   const numUploadFiles = props.uploadFiles.length;
   const numUploadJEntries = props.uploadJEntries.length;
   const numUploadItems = numUploadFiles + numUploadJEntries;
@@ -255,4 +255,4 @@ const mapStateToProps = (state: RootState) => ({
   userName: selectUserName(state)
 });
 
-export default connect(mapStateToProps)(PendingScreen);
+export default connect(mapStateToProps)(UploadQueueScreen);
