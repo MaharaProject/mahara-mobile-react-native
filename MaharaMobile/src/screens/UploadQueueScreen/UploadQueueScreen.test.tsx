@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 import i18n from '../../i18n';
-import PendingScreen from './PendingScreen';
+import UploadQueueScreen from './UploadQueueScreen';
 
 jest.mock('rn-fetch-blob', () => {
   return true;
@@ -30,7 +30,7 @@ it('renders correctly', () => {
   renderer.create(
     <Provider store={mockStore(initialState)}>
       <I18nProvider i18n={i18n} language="en">
-        <PendingScreen route={() => jest.mock('route', () => {})} />
+        <UploadQueueScreen route={() => jest.mock('route', () => {})} />
       </I18nProvider>
     </Provider>
   );

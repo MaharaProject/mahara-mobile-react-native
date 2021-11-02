@@ -297,8 +297,8 @@ const UploadForm = (props: Props) => {
 
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
-    // then take user to PendingScreen
-    props.navigation.navigate('Pending', {added: true});
+    // then take user to Upload queue screen
+    props.navigation.navigate('Upload queue tab', {added: true});
   };
 
   const updateTitle = (newTitle: string) => {
@@ -493,7 +493,7 @@ const UploadForm = (props: Props) => {
             navigation={props.navigation}
             onPress={() => {
               props.navigation.popToTop();
-              props.navigation.navigate('Pending');
+              props.navigation.navigate('Upload queue tab');
             }}
           />
         )}
