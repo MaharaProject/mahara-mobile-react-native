@@ -61,7 +61,7 @@ msgstr "새 태그 추가 +"
 #~ msgid "Add {0}"
 #~ msgstr "{0} 추가"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:68
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:48
 msgid "Added to upload queue successfully!"
 msgstr "업로드 대기열에 성공적으로 추가되었습니다!"
 
@@ -110,7 +110,7 @@ msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 
 msgid "App version"
 msgstr "앱 버전"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:75
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:55
 #: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:102
 msgid "Are you sure?"
@@ -139,7 +139,7 @@ msgstr "카메라가 닫혔습니다."
 #~ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
-#: src/screens/PendingScreen/PendingScreen.tsx:77
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:57
 #: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
 msgstr "취소"
@@ -177,7 +177,7 @@ msgstr ""
 msgid "Default options"
 msgstr "개인 정보 수집"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:82
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:62
 msgid "Delete"
 msgstr "삭제"
 
@@ -227,7 +227,7 @@ msgstr "*로 표시된 필드는 필수입니다."
 msgid "File"
 msgstr "파일"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:149
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:129
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
@@ -290,7 +290,7 @@ msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:112
 msgid "Invalid token: please try again."
 msgstr "잘못된 토큰 : 다시 시도하십시오."
 
@@ -332,13 +332,17 @@ msgstr "액세스 토큰을 통해 로그인"
 msgid "Log in via username and password"
 msgstr "사용자 이름과 비밀번호를 통해 로그인하십시오."
 
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:87
+msgid "Logged in: {0}"
+msgstr ""
+
 #: src/components/LocalLogin/LocalLogin.tsx:80
 msgid "Login"
 msgstr "로그인"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:109
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:112
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:115
 msgid "Login failed"
 msgstr "로그인 실패"
 
@@ -436,7 +440,7 @@ msgstr "인터넷 연결을 확인하십시오."
 msgid "Please enter a URL."
 msgstr "URL을 입력하십시오."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:197
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:177
 msgid "Please login"
 msgstr "로그인 해주세요"
 
@@ -448,7 +452,7 @@ msgstr "파일을 선택하십시오"
 msgid "Please select a journal"
 msgstr "저널을 선택하세요"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:115
 msgid "Please try again."
 msgstr "다시 시도하십시오."
 
@@ -571,7 +575,7 @@ msgstr "이용 약관"
 msgid "The Privacy Statement"
 msgstr "개인 정보 보호 정책"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:75
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:55
 msgid "The deletion of this information or file cannot be undone"
 msgstr "이 정보 또는 파일 삭제를 취소 할 수 없습니다."
 
@@ -624,7 +628,7 @@ msgstr "표제"
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr "허용되는 최대 범위까지 ..."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:197
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:177
 msgid "To upload pending items"
 msgstr "보류중인 항목을 업로드하려면"
 
@@ -644,7 +648,7 @@ msgstr "업로드 대기열"
 msgid "Upload queue page"
 msgstr "대기열 페이지 업로드"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:196
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:176
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
@@ -720,15 +724,15 @@ msgstr "귀하의 의무"
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr "로그인하면 자신의 이름이 앱에 표시되고 앱과 Mahara 자체에 저장된 액세스 토큰을 통해 Mahara 계정에 연결되므로 두 사람이 서로 통신 할 수 있습니다."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:194
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:174
 msgid "Your site: {url}"
 msgstr "마하라 URL: {url}"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:134
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:114
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:109
 msgid "Your username or password was incorrect. Please try again."
 msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도하십시오."
 
@@ -771,6 +775,6 @@ msgstr "사진"
 msgid "repository on GitHub."
 msgstr "GitHub의 저장소"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:102
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:82
 msgid "{errorMessage}"
 msgstr "{errorMessage}"
