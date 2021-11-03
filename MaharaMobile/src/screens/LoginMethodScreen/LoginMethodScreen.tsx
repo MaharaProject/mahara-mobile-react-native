@@ -106,17 +106,32 @@ export const LoginMethodScreen = (props: Props) => {
       console.log('updatedGuestDetailsToProvidedUser');
     };
 
+    let userData: any = null;
+
     fetchUserWithToken(serverUrl, requestOptions)
       .then((json) => {
-        props.dispatch(updateUserName(json.userprofile.myname));
+        userData = json;
+
+        if (props.isGuest) {
+          onGuestToUser();
+        }
+      })
+      .catch((e) => {
+        // We expect the error when use has been logged out, but dispatch continues because
+        // if we catch too early, not all the items won't dispatch ^
+        console.warn(`Error on fetchUserTokenLogin :) ${e}`);
+      })
+      .finally(() => {
+        props.dispatch(updateUserName(userData.userprofile.myname));
 
         type FetchedTag = {
           tag: string;
           usage: number;
         };
+        props.dispatch(addToken(token));
 
         // Create UserTags with id and string.
-        const newUserTags: Array<UserTag> = json.tags.tags.map(
+        const newUserTags: Array<UserTag> = userData.tags.tags.map(
           (tag: FetchedTag) => newUserTag(tag.tag)
         );
         props.dispatch(updateUserTags(newUserTags));
@@ -126,28 +141,22 @@ export const LoginMethodScreen = (props: Props) => {
 
         props.dispatch(
           updateUserBlogs(
-            json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
+            userData.blogs.blogs.map((b: UserBlogJSON) =>
+              userBlogJSONtoUserBlog(b)
+            )
           )
         );
 
         // Check if user has folders (they can be deleted on Mahara)
-        if (json.folders.folders.length !== 0) {
-          props.dispatch(updateUserFolders(json.folders.folders));
+        if (userData.folders.folders.length !== 0) {
+          props.dispatch(updateUserFolders(userData.folders.folders));
         }
 
-        props.dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
-        props.dispatch(setDefaultFolder(json.folders.folders[0].title));
-        props.dispatch(addToken(token));
-        flashMessage(t`Logged in: ${json.userprofile.myname}`, 'success');
+        props.dispatch(setDefaultBlogId(userData.blogs.blogs[0].id));
+        props.dispatch(setDefaultFolder(userData.folders.folders[0].title));
+        flashMessage(t`Logged in: ${userData.userprofile.myname}`, 'success');
 
         // checkValidInitialState(props.userBlogs, props.userFolders)
-
-        if (props.isGuest) {
-          onGuestToUser();
-        }
-      })
-      .catch((e) => {
-        console.warn(`Error on fetchUserTokenLogin :) ${e}`);
       });
   };
 
