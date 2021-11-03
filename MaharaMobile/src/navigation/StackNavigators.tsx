@@ -19,7 +19,7 @@ import LoginMethodScreen, {
   LoginMethodScreenOptions
 } from '../screens/LoginMethodScreen/LoginMethodScreen';
 import MenuScreen from '../screens/MenuScreen/MenuScreen';
-import UploadQueueScreen from '../screens/UploadQueueScreen/UploadQueueScreen';
+import PendingScreen from '../screens/PendingScreen/PendingScreen';
 import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
 import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
 import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
@@ -73,7 +73,7 @@ export const PendingItemsNavigator = () => (
   <PendingItems.Navigator screenOptions={headerConfigForTabStacks}>
     <PendingItems.Screen
       name="Pending"
-      component={UploadQueueScreen}
+      component={PendingScreen}
       options={{
         title: navigatorStrings().PENDING
       }}
