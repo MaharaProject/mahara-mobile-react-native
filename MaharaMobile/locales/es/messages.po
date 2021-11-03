@@ -49,7 +49,7 @@ msgstr ""
 msgid "Add new tag +"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:68
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:48
 msgid "Added to upload queue successfully!"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 msgid "App version"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:75
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:55
 #: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:102
 msgid "Are you sure?"
@@ -115,7 +115,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
-#: src/screens/PendingScreen/PendingScreen.tsx:77
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:57
 #: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
 msgstr ""
@@ -145,7 +145,7 @@ msgstr ""
 msgid "Default options"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:82
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:62
 msgid "Delete"
 msgstr ""
 
@@ -195,7 +195,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:149
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:129
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
@@ -258,7 +258,7 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:112
 msgid "Invalid token: please try again."
 msgstr ""
 
@@ -300,13 +300,17 @@ msgstr ""
 msgid "Log in via username and password"
 msgstr ""
 
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:87
+msgid "Logged in: {0}"
+msgstr ""
+
 #: src/components/LocalLogin/LocalLogin.tsx:80
 msgid "Login"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:102
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:109
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:112
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:115
 msgid "Login failed"
 msgstr ""
 
@@ -404,7 +408,7 @@ msgstr ""
 msgid "Please enter a URL."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:197
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:177
 msgid "Please login"
 msgstr ""
 
@@ -416,7 +420,7 @@ msgstr ""
 msgid "Please select a journal"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:105
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:115
 msgid "Please try again."
 msgstr ""
 
@@ -539,7 +543,7 @@ msgstr ""
 msgid "The Privacy Statement"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:75
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:55
 msgid "The deletion of this information or file cannot be undone"
 msgstr ""
 
@@ -592,7 +596,7 @@ msgstr ""
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:197
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:177
 msgid "To upload pending items"
 msgstr ""
 
@@ -612,7 +616,7 @@ msgstr ""
 msgid "Upload queue page"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:196
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:176
 msgid "Upload to your site"
 msgstr ""
 
@@ -680,15 +684,15 @@ msgstr ""
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:194
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:174
 msgid "Your site: {url}"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:134
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:114
 msgid "Your upload queue is empty"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:99
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:109
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 
@@ -731,6 +735,6 @@ msgstr ""
 msgid "repository on GitHub."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:102
+#: src/screens/UploadQueueScreen/UploadQueueScreen.tsx:82
 msgid "{errorMessage}"
 msgstr ""
