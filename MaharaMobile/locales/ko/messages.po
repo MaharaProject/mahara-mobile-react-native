@@ -290,7 +290,7 @@ msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
 msgid "Invalid token: please try again."
 msgstr "잘못된 토큰 : 다시 시도하십시오."
 
@@ -324,25 +324,25 @@ msgstr "책임"
 msgid "Local"
 msgstr "로컬"
 
-#: src/components/TokenInput/TokenInput.tsx:24
+#: src/components/TokenInput/TokenInput.tsx:25
 msgid "Log in via an access token"
 msgstr "액세스 토큰을 통해 로그인"
 
-#: src/components/LocalLogin/LocalLogin.tsx:72
+#: src/components/LocalLogin/LocalLogin.tsx:74
 msgid "Log in via username and password"
 msgstr "사용자 이름과 비밀번호를 통해 로그인하십시오."
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:85
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:88
 msgid "Logged in: {0}"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:80
+#: src/components/LocalLogin/LocalLogin.tsx:82
 msgid "Login"
 msgstr "로그인"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:107
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:116
 msgid "Login failed"
 msgstr "로그인 실패"
 
@@ -418,7 +418,7 @@ msgstr "합법적으로 제한되는 모든 것에 대한 당사의 최대 총 �
 msgid "Our obligations"
 msgstr "우리의 의무"
 
-#: src/components/LocalLogin/LocalLogin.tsx:78
+#: src/components/LocalLogin/LocalLogin.tsx:80
 msgid "Password"
 msgstr "암호"
 
@@ -452,7 +452,7 @@ msgstr "파일을 선택하십시오"
 msgid "Please select a journal"
 msgstr "저널을 선택하세요"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:116
 msgid "Please try again."
 msgstr "다시 시도하십시오."
 
@@ -652,11 +652,11 @@ msgstr "대기열 페이지 업로드"
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
-#: src/components/LocalLogin/LocalLogin.tsx:75
+#: src/components/LocalLogin/LocalLogin.tsx:77
 msgid "Username"
 msgstr "사용자 이름"
 
-#: src/components/TokenInput/TokenInput.tsx:26
+#: src/components/TokenInput/TokenInput.tsx:27
 msgid "Verify token"
 msgstr "토큰 확인"
 
@@ -732,7 +732,7 @@ msgstr "마하라 URL: {url}"
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:107
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
 msgid "Your username or password was incorrect. Please try again."
 msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도하십시오."
 

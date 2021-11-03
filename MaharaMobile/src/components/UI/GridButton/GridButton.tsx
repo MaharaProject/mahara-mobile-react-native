@@ -1,8 +1,8 @@
+import {MessageDescriptor} from '@lingui/core';
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 import buttons from '../../../assets/styles/buttons';
-import {MessageDescriptor} from '../../../models/models';
 import gridButtonStyles from './GridButton.style';
 
 type Props = {

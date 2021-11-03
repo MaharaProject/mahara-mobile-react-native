@@ -309,7 +309,7 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
 msgid "Invalid token: please try again."
 msgstr ""
 
@@ -352,25 +352,25 @@ msgstr ""
 msgid "Local"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:24
+#: src/components/TokenInput/TokenInput.tsx:25
 msgid "Log in via an access token"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:72
+#: src/components/LocalLogin/LocalLogin.tsx:74
 msgid "Log in via username and password"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:85
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:88
 msgid "Logged in: {0}"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:80
+#: src/components/LocalLogin/LocalLogin.tsx:82
 msgid "Login"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:107
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:116
 msgid "Login failed"
 msgstr ""
 
@@ -470,7 +470,7 @@ msgstr ""
 msgid "Our obligations"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:78
+#: src/components/LocalLogin/LocalLogin.tsx:80
 msgid "Password"
 msgstr ""
 
@@ -504,7 +504,7 @@ msgstr ""
 msgid "Please select a journal"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:116
 msgid "Please try again."
 msgstr ""
 
@@ -708,11 +708,11 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:75
+#: src/components/LocalLogin/LocalLogin.tsx:77
 msgid "Username"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:26
+#: src/components/TokenInput/TokenInput.tsx:27
 msgid "Verify token"
 msgstr ""
 
@@ -808,7 +808,7 @@ msgstr ""
 msgid "Your upload queue is empty"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:107
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 

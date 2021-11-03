@@ -1,3 +1,4 @@
+import {MessageDescriptor} from '@lingui/core';
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import React from 'react';
@@ -5,7 +6,6 @@ import {View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import menuItemStyles from '../../components/MenuItem/MenuItem.style';
-import {MessageDescriptor} from '../../models/models';
 import {signOutAsync} from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
 

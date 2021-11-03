@@ -1,9 +1,10 @@
+import {MessageDescriptor} from '@lingui/core';
 import {Icon, Toast} from 'native-base';
 import React from 'react';
 import {Text} from 'react-native';
 import styles from '../../assets/styles/variables';
 import i18n from '../../i18n';
-import {MessageDescriptor, MessageInfoType} from '../../models/models';
+import {MessageInfoType} from '../../models/models';
 
 const flashMessage = (
   text: MessageDescriptor,
