@@ -5,7 +5,6 @@ import React, {useEffect, useState} from 'react';
 import {Alert, View} from 'react-native';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {CommonActions} from '@react-navigation/routers';
 import {
   addToken,
   setDefaultBlogId,
@@ -49,7 +48,6 @@ import {
 import {userBlogJSONtoUserBlog} from '../../utils/helperFunctions';
 import flashMessage from '../../components/FlashMessage/FlashMessage';
 import styles from '../../assets/styles/variables';
-import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 
 type Props = {
   dispatch: Dispatch;
@@ -224,11 +222,6 @@ export const LoginMethodScreenOptions = (navData) => {
 
   if (headerTitle === 'sso') {
     return {
-      headerLeft: (
-        <CustomVerifyBackButton
-          goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
-        />
-      ),
       headerTitle: 'SSO'
     };
   }
