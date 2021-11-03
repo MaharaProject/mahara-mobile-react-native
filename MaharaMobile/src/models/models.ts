@@ -85,12 +85,13 @@ export type UserBlogJSON = {
 };
 
 // as stated in LinguiJS docs: https://lingui.js.org/ref/macro.html#usage
-export type MessageDescriptor = {
-  id: string;
-  defaults?: string;
-  values?: object;
-  formats?: object;
-};
+// replaced with updated in in library
+// export type MessageDescriptor = {
+//   id: string;
+//   defaults?: string;
+//   values?: object;
+//   formats?: object;
+// };
 
 export type LoginType = 'basic' | 'sso' | 'token';
 

@@ -47,7 +47,6 @@ import {
 } from '../../store/actions/userArtefacts';
 import {userBlogJSONtoUserBlog} from '../../utils/helperFunctions';
 import flashMessage from '../../components/FlashMessage/FlashMessage';
-import styles from '../../assets/styles/variables';
 
 type Props = {
   dispatch: Dispatch;
@@ -61,10 +60,12 @@ type Props = {
 
 type State = {
   token: string;
+  loading: boolean;
 };
 
 export const LoginMethodScreen = (props: Props) => {
   const [token, setToken] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const login = () => {
     const {url} = props;
@@ -105,7 +106,7 @@ export const LoginMethodScreen = (props: Props) => {
     };
 
     let userData: any = null;
-
+    setLoading(true);
     fetchUserWithToken(serverUrl, requestOptions)
       .then((json) => {
         userData = json;
@@ -152,6 +153,7 @@ export const LoginMethodScreen = (props: Props) => {
 
         props.dispatch(setDefaultBlogId(userData.blogs.blogs[0].id));
         props.dispatch(setDefaultFolder(userData.folders.folders[0].title));
+        setLoading(false);
         flashMessage(t`Logged in: ${userData.userprofile.myname}`, 'success');
 
         // checkValidInitialState(props.userBlogs, props.userFolders)
@@ -206,12 +208,18 @@ export const LoginMethodScreen = (props: Props) => {
 
   return (
     <View style={generic.view}>
-      {loginType === 'token' ? <TokenInput onGetToken={updateToken} /> : null}
+      {loginType === 'token' ? (
+        <TokenInput isLoading={loading} onGetToken={updateToken} />
+      ) : null}
       {loginType === 'sso' ? (
         <SSOLogin url={props.url} onGetToken={updateToken} />
       ) : null}
       {loginType === 'basic' ? (
-        <LocalLogin url={props.url} onGetToken={updateToken} />
+        <LocalLogin
+          url={props.url}
+          isLoading={loading}
+          onGetToken={updateToken}
+        />
       ) : null}
     </View>
   );

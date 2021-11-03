@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { t, Trans } from '@lingui/macro';
 import React, { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Text, TextInput, View } from 'react-native';
 // Images
 import LogoSvg from '../../assets/images/Logo-big';
 import forms from '../../assets/styles/forms';
@@ -14,12 +14,9 @@ import MediumButton from '../UI/MediumButton/MediumButton';
 // Styles
 import styles from './TokenInput.style';
 
-
-
-
-
 type Props = {
   onGetToken: Function;
+  isLoading: boolean;
 };
 
 export default function TokenInput(props: Props) {
@@ -32,6 +29,9 @@ export default function TokenInput(props: Props) {
           <View style={styles.imageWrapper}>
             <LogoSvg />
           </View>
+          {props.isLoading ? (
+        <ActivityIndicator size="small" color={variables.colors.light} />
+      ) : null}
           <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Log in via an access token</Trans></Text>
           <TextInput
             style={forms.textInput}

@@ -1,8 +1,8 @@
+import {MessageDescriptor} from '@lingui/core';
 import React from 'react';
 import {Text} from 'react-native';
 import headingStyles from '../../../assets/styles/headings';
 import i18n from '../../../i18n';
-import {MessageDescriptor} from '../../../models/models';
 import {RedAsterisk} from '../../../utils/formHelper';
 
 type Props = {
