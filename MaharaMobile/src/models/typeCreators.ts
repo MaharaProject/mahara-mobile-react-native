@@ -84,7 +84,7 @@ export const newPendingJEntry = (
 ): PendingJEntry => {
   let id = itemId;
   if (!id) {
-    id = Math.random() * 10 + journalEntry.title;
+    id = Math.floor(Math.random() * 100) + journalEntry.title;
   }
 
   return {

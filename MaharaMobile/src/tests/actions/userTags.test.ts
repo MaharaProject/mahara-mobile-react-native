@@ -1,5 +1,5 @@
 import {
-  addTagsToItem,
+  updateItemTags,
   addUserTags,
   clearUserTags,
   saveTaggedItemsToAsync,
@@ -15,7 +15,7 @@ import {
   REMOVE_UPLOAD_FILE,
   REMOVE_UPLOAD_JOURNAL_ENTRY,
   SAVE_TAGGED_ITEMS_TO_ASYNC,
-  TAG_ITEM,
+  UPDATE_ITEM_TAGS,
   UPDATE_TAGGED_ITEMS,
   UPDATE_TAGS_IDS,
   UPDATE_USER_TAGS
@@ -70,13 +70,23 @@ describe('UserTags reducer action creators', () => {
 
   describe('addTagsToItem', () => {
     it('should set up add tags to item', () => {
-      const tagsIdsSet = new Set<number>(NUMBERS_ARR);
-      const action = addTagsToItem(RAND_STRING, tagsIdsSet);
-      expect(action).toEqual({
-        type: TAG_ITEM,
-        tagIds: tagsIdsSet,
+      const tagsIdsArray = new Array<number>(...NUMBERS_ARR);
+      const action = updateItemTags(RAND_STRING, tagsIdsArray);
+      const target = {
+        type: UPDATE_ITEM_TAGS,
+        tagsIds: tagsIdsArray,
         itemId: RAND_STRING
-      });
+      };
+      expect(action).toEqual(target);
+    });
+  });
+
+  describe('removeTagsFromItem', () => {
+    it('should remove a tag from an item', () => {
+      const tagsIdsArray = new Array<number>(...NUMBERS_ARR);
+      tagsIdsArray.pop();
+      const action = updateItemTags(RAND_STRING, tagsIdsArray);
+      expect(action.tagsIds.length).toEqual(NUMBERS_ARR.length - 1);
     });
   });
 
