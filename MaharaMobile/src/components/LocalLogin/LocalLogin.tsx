@@ -9,6 +9,7 @@ import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
 import variables from '../../assets/styles/variables';
+import {onCheckAuthJSON} from '../../utils/authHelperFunctions';
 import {LOG_IN_ICON} from '../../utils/constants';
 import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../UI/MediumButton/MediumButton';
@@ -48,20 +49,13 @@ export default function LocalLogin(props: Props) {
       const request = await fetch(url, config);
       const json = await request.json();
 
-      if (json) {
-        if (json.error) {
-          console.log('error');
-          console.log(json);
-          props.onGetToken(null);
-        }
-        if (json.token != null) {
-          console.log('success');
-          console.log(json.token);
-          props.onGetToken(json.token);
-        }
-      }
+      onCheckAuthJSON(
+        json,
+        () => props.onGetToken(json.token),
+        () => props.onGetToken(null)
+      );
     } catch (e) {
-      console.log(`error:${e}`);
+      console.error(`Unexpected error:${e}`);
     }
     return null;
   };

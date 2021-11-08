@@ -56,7 +56,9 @@ export async function fetchUserWithToken(
     );
   });
   if (json != null) {
-    console.log(json);
+    // if json.error is true, meaning failed to log in, we don't reject the promise
+    // and instead use the information inside i.e. the Mahara error message inside
+    // onCheckAuthJSON() to decide on next the next action
     return Promise.resolve(json);
   }
   return null;
@@ -181,4 +183,27 @@ export const checkValidInitialState = (
     return false;
   }
   return true;
+};
+
+/**
+ *
+ * @param json JSON returned from Mahara API
+ * @param successCallback e.g. props.onGetToken(json.token);
+ * @param failCallback e.g. props.onGetToken(null);
+ */
+export const onCheckAuthJSON = (
+  json: any,
+  successCallback: Function,
+  failCallback: Function
+) => {
+  if (json) {
+    if (json.error) {
+      console.warn('Failed to log in: ', json.error);
+      failCallback();
+    }
+    if (json.token != null) {
+      console.warn('success! token received: ', json.token);
+      successCallback();
+    }
+  }
 };

@@ -37,6 +37,7 @@ import {
 } from '../../store/reducers/userArtefactsReducer';
 import {
   fetchUserWithToken,
+  onCheckAuthJSON,
   updatePendingItemsOnGuestToUser
 } from '../../utils/authHelperFunctions';
 import {newUserTag} from '../../models/typeCreators';
@@ -66,6 +67,43 @@ type State = {
 export const LoginMethodScreen = (props: Props) => {
   const [token, setToken] = useState('');
   const [loading, setLoading] = useState(false);
+
+  /**
+   * Validate the new token
+   */
+  const updateToken = (newToken: string | null) => {
+    if (newToken !== null) {
+      setToken(newToken);
+    } else {
+      const {loginType} = props.route.params;
+      if (newToken == null) {
+        switch (loginType) {
+          case 'basic':
+            Alert.alert(
+              props.i18n._(t`Login failed`),
+              props.i18n._(
+                t`Your username or password was incorrect. Please try again.`
+              )
+            );
+            break;
+          case 'token':
+            Alert.alert(
+              props.i18n._(t`Login failed`),
+              props.i18n._(t`Invalid token: please try again.`)
+            );
+            break;
+          case 'sso':
+            Alert.alert(
+              props.i18n._(t`Login failed`),
+              props.i18n._(t`Please try again.`)
+            );
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  };
 
   const login = () => {
     const {url} = props;
@@ -109,6 +147,15 @@ export const LoginMethodScreen = (props: Props) => {
     setLoading(true);
     fetchUserWithToken(serverUrl, requestOptions)
       .then((json) => {
+        onCheckAuthJSON(
+          json,
+          () => updateToken(json.token),
+          () => {
+            updateToken(null);
+            setLoading(false);
+          }
+        );
+
         userData = json;
 
         if (props.isGuest) {
@@ -119,8 +166,14 @@ export const LoginMethodScreen = (props: Props) => {
         // We expect the error when use has been logged out, but dispatch continues because
         // if we catch too early, not all the items won't dispatch ^
         console.warn(`Error on fetchUserTokenLogin :) ${e}`);
+        // other failures e.g. failed to login are not caught because we want to use the
+        // information at onCheckAuthJSON()
       })
       .finally(() => {
+        // failed to log in
+        if (!userData.userprofile) {
+          return;
+        }
         props.dispatch(updateUserName(userData.userprofile.myname));
 
         type FetchedTag = {
@@ -162,47 +215,9 @@ export const LoginMethodScreen = (props: Props) => {
 
   useEffect(() => {
     if (token !== '' && token !== null) {
-      console.log(`token changed...${token}`);
       login();
     }
   }, [token]);
-
-  /**
-   * Validate the new token
-   */
-  const updateToken = (newToken: string) => {
-    if (newToken !== null) {
-      setToken(newToken);
-    } else {
-      const {loginType} = props.route.params;
-      if (newToken == null) {
-        switch (loginType) {
-          case 'basic':
-            Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(
-                t`Your username or password was incorrect. Please try again.`
-              )
-            );
-            break;
-          case 'token':
-            Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(t`Invalid token: please try again.`)
-            );
-            break;
-          case 'sso':
-            Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(t`Please try again.`)
-            );
-            break;
-          default:
-            break;
-        }
-      }
-    }
-  };
 
   const {loginType} = props.route.params;
 
