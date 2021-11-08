@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/UploadForm/UploadForm.tsx:216
+#: src/components/UploadForm/UploadForm.tsx:161
 msgid "A file has been added."
 msgstr "파일이 추가되었습니다."
 
@@ -53,7 +53,7 @@ msgstr "아이템 추가"
 msgid "Add item"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:281
+#: src/components/UploadForm/TagsPicker.tsx:119
 msgid "Add new tag +"
 msgstr "새 태그 추가 +"
 
@@ -160,7 +160,7 @@ msgstr "이 개인 정보 보호 정책의 변경"
 #~ msgid "Collection of personal information"
 #~ msgstr "개인 정보 수집"
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:216
 msgid "Confirm edits to {intlItemType}"
 msgstr "{intlItemType} 편집을 확인하십시오."
 
@@ -181,7 +181,7 @@ msgstr "개인 정보 수집"
 msgid "Delete"
 msgstr "삭제"
 
-#: src/components/UploadForm/UploadForm.tsx:229
+#: src/components/UploadForm/UploadForm.tsx:174
 msgid "Description"
 msgstr "설명"
 
@@ -205,11 +205,11 @@ msgstr "편집 {0}"
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:229
+#: src/components/UploadForm/UploadForm.tsx:174
 msgid "Entry"
 msgstr "분개"
 
-#: src/components/UploadForm/UploadForm.tsx:240
+#: src/components/UploadForm/UploadForm.tsx:185
 msgid "Error: You do not have any folders on your site."
 msgstr "KO Error: You have no folders"
 
@@ -217,12 +217,12 @@ msgstr "KO Error: You have no folders"
 msgid "Error: You do not have any journals on your site."
 msgstr "오류 : 사이트에 저널이 없습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:321
+#: src/components/UploadForm/UploadForm.tsx:238
 msgid "Fields marked by * are required."
 msgstr "*로 표시된 필드는 필수입니다."
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:14
-#: src/components/UploadForm/UploadForm.tsx:215
+#: src/components/UploadForm/UploadForm.tsx:160
 #: src/utils/helperFunctions.ts:98
 msgid "File"
 msgstr "파일"
@@ -231,7 +231,7 @@ msgstr "파일"
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
-#: src/components/UploadForm/UploadForm.tsx:239
+#: src/components/UploadForm/UploadForm.tsx:184
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:106
 msgid "Folder"
 msgstr "볼더"
@@ -386,7 +386,7 @@ msgstr ""
 msgid "Menu"
 msgstr "메뉴"
 
-#: src/components/UploadForm/UploadForm.tsx:226
+#: src/components/UploadForm/UploadForm.tsx:171
 msgid "Name"
 msgstr "이름"
 
@@ -394,7 +394,7 @@ msgstr "이름"
 msgid "Neither the Mahara project nor Catalyst IT have access to any of the data that you enter on Mahara Mobile nor access to any data analytics. The institution that hosts the Mahara site to which you connect cannot access data in your Mahara Mobile app either. The institution will have a certain amount of access to data that you upload to the institution's Mahara site via Mahara Mobile. Please refer to the privacy statement on the Mahara site that you are using for more information."
 msgstr "Mahara 프로젝트 나 Catalyst는 Mahara Mobile에 ..."
 
-#: src/components/UploadForm/UploadForm.tsx:271
+#: src/components/UploadForm/TagsPicker.tsx:109
 msgid "New tag..."
 msgstr "새 태그 ..."
 
@@ -481,7 +481,7 @@ msgstr "프로필 설정"
 msgid "Purpose of Mahara Mobile"
 msgstr "Mahara Mobile의 목적"
 
-#: src/components/UploadForm/UploadForm.tsx:300
+#: src/components/UploadForm/UploadForm.tsx:217
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
@@ -511,7 +511,7 @@ msgstr "파일을 선택하십시오"
 msgid "Select a journal"
 msgstr "저널을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:242
+#: src/components/UploadForm/UploadForm.tsx:187
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:62
 msgid "Select folder"
 msgstr "폴더 선택"
@@ -528,12 +528,12 @@ msgstr "저널 선택"
 msgid "Select login type"
 msgstr "로그인 유형을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:279
-#: src/components/UploadForm/UploadForm.tsx:279
+#: src/components/UploadForm/TagsPicker.tsx:117
+#: src/components/UploadForm/TagsPicker.tsx:117
 msgid "Select tags"
 msgstr "태그 선택"
 
-#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/TagsPicker.tsx:118
 msgid "Select tags..."
 msgstr "태그 선택..."
 
@@ -553,7 +553,7 @@ msgstr "녹화 중지"
 msgid "Storage and security of your personal information"
 msgstr "개인 정보의 보관 및 보안"
 
-#: src/components/UploadForm/UploadForm.tsx:258
+#: src/components/UploadForm/TagsPicker.tsx:96
 msgid "Tags"
 msgstr "태그"
 
@@ -562,7 +562,7 @@ msgstr "태그"
 msgid "Take photo"
 msgstr "사진을 찍다"
 
-#: src/components/UploadForm/UploadForm.tsx:261
+#: src/components/UploadForm/TagsPicker.tsx:99
 msgid "Tap to remove tag"
 msgstr "태그를 제거하려면 탭하세요"
 
@@ -612,7 +612,7 @@ msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십�
 #~ msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:13
+#: src/screens/VersionScreen/VersionScreen.tsx:16
 msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
@@ -620,7 +620,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:226
+#: src/components/UploadForm/UploadForm.tsx:171
 msgid "Title"
 msgstr "표제"
 
@@ -745,7 +745,7 @@ msgstr "오디오"
 msgid "contact us."
 msgstr "문의하기"
 
-#: src/components/UploadForm/UploadForm.tsx:246
+#: src/components/UploadForm/UploadForm.tsx:191
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:88
 msgid "default"

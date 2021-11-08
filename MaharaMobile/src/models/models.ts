@@ -51,11 +51,16 @@ export type PendingJEntry = {
   journalEntry: JournalEntry;
 };
 
+export type Tags = Array<UserTag>;
+export type Folders = Array<UserFolder>;
+export type Blogs = Array<UserBlog>;
+export type Username = Array<UserFolder>;
+
 export type User = {
-  userName: string;
-  userFolders: Array<UserFolder>;
-  userTags: Array<UserTag>;
-  userBlogs: Array<UserBlog>;
+  userName: Username;
+  userFolders: Folders;
+  userTags: Tags;
+  userBlogs: Blogs;
 };
 
 export type UserFolder = {
@@ -129,6 +134,11 @@ export type RecordBackType = {
   currentMetering?: number;
 };
 
+export type ItemId = string;
+export type TagId = number;
+export type TagsIds = Array<number>;
+export type TaggedItems = Record<ItemId, Set<TagId>>;
+export type TaggedItemKeys = Array<ItemId>;
 // libraries
 
 // react native image-picker
