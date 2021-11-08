@@ -4,7 +4,7 @@ import {
   CLEAR_USER_TAGS,
   SAVE_TAGGED_ITEMS_TO_ASYNC,
   TAGS_IDS,
-  TAG_ITEM,
+  UPDATE_ITEM_TAGS,
   UPDATE_LOGIN_TYPES,
   UPDATE_TAGGED_ITEMS,
   UPDATE_TAGS_IDS,
@@ -31,9 +31,9 @@ export function updateUserTagsIds(userTagsIds: Array<number>) {
   return {type: UPDATE_TAGS_IDS, userTagsIds};
 }
 
-export function addTagsToItem(itemId: string, tagIds: Set<number>) {
+export function updateItemTags(itemId: string, tagsIds: Array<number>) {
   // saved to async storage inside reducer
-  return {type: TAG_ITEM, tagIds, itemId};
+  return {type: UPDATE_ITEM_TAGS, tagsIds, itemId};
 }
 
 /**

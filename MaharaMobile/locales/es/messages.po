@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/UploadForm/UploadForm.tsx:216
+#: src/components/UploadForm/UploadForm.tsx:161
 msgid "A file has been added."
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Add item"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:281
+#: src/components/UploadForm/TagsPicker.tsx:119
 msgid "Add new tag +"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr ""
 msgid "Changes to this Privacy Statement"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:216
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:229
+#: src/components/UploadForm/UploadForm.tsx:174
 msgid "Description"
 msgstr ""
 
@@ -173,11 +173,11 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:229
+#: src/components/UploadForm/UploadForm.tsx:174
 msgid "Entry"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:240
+#: src/components/UploadForm/UploadForm.tsx:185
 msgid "Error: You do not have any folders on your site."
 msgstr ""
 
@@ -185,12 +185,12 @@ msgstr ""
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:321
+#: src/components/UploadForm/UploadForm.tsx:238
 msgid "Fields marked by * are required."
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:14
-#: src/components/UploadForm/UploadForm.tsx:215
+#: src/components/UploadForm/UploadForm.tsx:160
 #: src/utils/helperFunctions.ts:98
 msgid "File"
 msgstr ""
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:239
+#: src/components/UploadForm/UploadForm.tsx:184
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:106
 msgid "Folder"
 msgstr ""
@@ -354,7 +354,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:226
+#: src/components/UploadForm/UploadForm.tsx:171
 msgid "Name"
 msgstr ""
 
@@ -362,7 +362,7 @@ msgstr ""
 msgid "Neither the Mahara project nor Catalyst IT have access to any of the data that you enter on Mahara Mobile nor access to any data analytics. The institution that hosts the Mahara site to which you connect cannot access data in your Mahara Mobile app either. The institution will have a certain amount of access to data that you upload to the institution's Mahara site via Mahara Mobile. Please refer to the privacy statement on the Mahara site that you are using for more information."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:271
+#: src/components/UploadForm/TagsPicker.tsx:109
 msgid "New tag..."
 msgstr ""
 
@@ -449,7 +449,7 @@ msgstr ""
 msgid "Purpose of Mahara Mobile"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:300
+#: src/components/UploadForm/UploadForm.tsx:217
 msgid "Queue to upload"
 msgstr ""
 
@@ -479,7 +479,7 @@ msgstr ""
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:242
+#: src/components/UploadForm/UploadForm.tsx:187
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:62
 msgid "Select folder"
 msgstr ""
@@ -496,12 +496,12 @@ msgstr ""
 msgid "Select login type"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:279
-#: src/components/UploadForm/UploadForm.tsx:279
+#: src/components/UploadForm/TagsPicker.tsx:117
+#: src/components/UploadForm/TagsPicker.tsx:117
 msgid "Select tags"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/TagsPicker.tsx:118
 msgid "Select tags..."
 msgstr ""
 
@@ -521,7 +521,7 @@ msgstr ""
 msgid "Storage and security of your personal information"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:258
+#: src/components/UploadForm/TagsPicker.tsx:96
 msgid "Tags"
 msgstr ""
 
@@ -530,7 +530,7 @@ msgstr ""
 msgid "Take photo"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:261
+#: src/components/UploadForm/TagsPicker.tsx:99
 msgid "Tap to remove tag"
 msgstr ""
 
@@ -580,7 +580,7 @@ msgstr ""
 #~ msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:13
+#: src/screens/VersionScreen/VersionScreen.tsx:16
 msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
@@ -588,7 +588,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:226
+#: src/components/UploadForm/UploadForm.tsx:171
 msgid "Title"
 msgstr ""
 
@@ -705,7 +705,7 @@ msgstr ""
 msgid "contact us."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:246
+#: src/components/UploadForm/UploadForm.tsx:191
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:88
 msgid "default"

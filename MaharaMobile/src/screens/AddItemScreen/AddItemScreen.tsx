@@ -24,7 +24,7 @@ import {
   selectUserBlogs,
   selectUserFolders
 } from '../../store/reducers/userArtefactsReducer';
-import {selectUserTags} from '../../store/reducers/userTagsReducer';
+import {getUserTags} from '../../store/reducers/userTagsReducer';
 import {
   pickDocument,
   renderImagePreview,
@@ -128,7 +128,7 @@ export const AddItemScreenOptions = (navData) => {
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
   token: selectToken(state),
-  userTags: selectUserTags(state),
+  userTags: getUserTags(state),
   userFolders: selectUserFolders(state),
   userBlogs: selectUserBlogs(state),
   uploadJournals: selectAllJEntries(state),
