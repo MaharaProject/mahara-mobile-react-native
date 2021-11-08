@@ -31,3 +31,5 @@ jest.mock('react-navigation', () => {
     getParam: jest.fn()
   };
 });
+
+jest.mock('react-native/Libraries/LogBox/LogBox');
