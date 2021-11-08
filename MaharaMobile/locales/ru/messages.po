@@ -123,7 +123,7 @@ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:55
 #: src/utils/addEditHelperFunctions.tsx:82
-#: src/utils/authHelperFunctions.ts:102
+#: src/utils/authHelperFunctions.ts:104
 msgid "Are you sure?"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "Invalid file"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:46
 msgid "Invalid token: please try again."
 msgstr ""
 
@@ -321,7 +321,7 @@ msgstr ""
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr ""
 
-#: src/utils/authHelperFunctions.ts:102
+#: src/utils/authHelperFunctions.ts:104
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
@@ -356,21 +356,21 @@ msgstr ""
 msgid "Log in via an access token"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:74
+#: src/components/LocalLogin/LocalLogin.tsx:64
 msgid "Log in via username and password"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:88
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:124
 msgid "Logged in: {0}"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:82
+#: src/components/LocalLogin/LocalLogin.tsx:72
 msgid "Login"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:113
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:116
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:43
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:46
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:49
 msgid "Login failed"
 msgstr ""
 
@@ -470,7 +470,7 @@ msgstr ""
 msgid "Our obligations"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:80
+#: src/components/LocalLogin/LocalLogin.tsx:70
 msgid "Password"
 msgstr ""
 
@@ -504,7 +504,7 @@ msgstr ""
 msgid "Please select a journal"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:116
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:49
 msgid "Please try again."
 msgstr ""
 
@@ -668,7 +668,7 @@ msgstr ""
 #~ msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:16
+#: src/screens/VersionScreen/VersionScreen.tsx:15
 msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
@@ -708,7 +708,7 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:77
+#: src/components/LocalLogin/LocalLogin.tsx:67
 msgid "Username"
 msgstr ""
 
@@ -808,7 +808,7 @@ msgstr ""
 msgid "Your upload queue is empty"
 msgstr ""
 
-#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:110
+#: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:43
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
 

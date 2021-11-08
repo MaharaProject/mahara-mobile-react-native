@@ -9,7 +9,7 @@ import i18n from '../../i18n';
 const VersionScreen = () => {
   const version = DeviceInfo.getVersion();
   const versionCode = DeviceInfo.getReadableVersion();
-  flashMessage(versionCode, 'warning');
+  // flashMessage(versionCode, 'warning');
   const android = '11';
   const ios = '14';
   return (
