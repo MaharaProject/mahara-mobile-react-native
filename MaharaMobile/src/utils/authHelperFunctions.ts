@@ -36,6 +36,7 @@ import {
   GUEST_TOKEN,
   GUEST_USERNAME
 } from './constants';
+import flashMessage from '../components/FlashMessage/FlashMessage';
 
 /**
  * Attempt to fetch user info based on given token
@@ -133,8 +134,9 @@ export const fetchProfilePic = async (
       profilePic = `file://${res.path()}`;
       dispatch(updateProfilePic(profilePic));
     })
-    .catch(() => {
-      // TODO error handling
+    .catch((e) => {
+      console.error(e.error_message);
+      flashMessage(e.error_class, 'warning');
     });
 
   return profilePic;
