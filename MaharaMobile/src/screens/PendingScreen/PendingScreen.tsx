@@ -15,6 +15,10 @@ import PendingList from '../../components/PendingList/PendingList';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import i18n from '../../i18n';
 import {
+  updateItemTags as updateItemTagsIds,
+  saveTaggedItemsToAsync
+} from '../../store/actions/actions';
+import {
   DisplayItems,
   PendingJEntry,
   PendingMFile,
@@ -86,6 +90,9 @@ const PendingScreen = (props: Props) => {
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
+            // TODO: update related tags
+            props.dispatch(updateItemTagsIds(itemId, []));
+            props.dispatch(saveTaggedItemsToAsync());
           }
         }
       ],
