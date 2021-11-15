@@ -15,8 +15,8 @@ describe('userTags state ', () => {
     expect(state).toEqual({
       userTags: [],
       userTagsIds: [],
-      taggedItems: {},
-      taggedItemsKeys: []
+      taggedItems: {}
+      // taggedItemsKeys: []
     });
   });
 
@@ -30,10 +30,6 @@ describe('userTags state ', () => {
     expect(oneTagState.taggedItems).toEqual({
       [MOCK_PENDING_JOURNAL_ENTRY_0.id]: new Set([MOCK_TAG_IDS[0]])
     });
-
-    expect(oneTagState.taggedItemsKeys).toEqual([
-      MOCK_PENDING_JOURNAL_ENTRY_0.id
-    ]);
   });
 
   // After adding a teg to item
@@ -52,9 +48,6 @@ describe('userTags state ', () => {
     };
 
     expect(twoTagsState.taggedItems).toEqual(targetTaggedItems);
-    expect(twoTagsState.taggedItemsKeys).toEqual([
-      MOCK_PENDING_JOURNAL_ENTRY_0.id
-    ]);
   });
 
   const threeTagsState = userTagsReducer(twoTagsState, {
@@ -70,9 +63,5 @@ describe('userTags state ', () => {
       ]),
       [MOCK_MAHARA_PENDING_FILE_0.id]: new Set(MOCK_TAGIDS_SET_0)
     });
-    expect(threeTagsState.taggedItemsKeys).toEqual([
-      MOCK_PENDING_JOURNAL_ENTRY_0.id,
-      MOCK_MAHARA_PENDING_FILE_0.id
-    ]);
   });
 });

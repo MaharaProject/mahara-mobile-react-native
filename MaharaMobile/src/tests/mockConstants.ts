@@ -278,8 +278,8 @@ export const MOCK_STATE_USER_TAGS_INFO: UserTagInfoState = {
   userTagsIds: MOCK_TAGIDS_SET_0,
   taggedItems: {
     [MOCK_MAHARA_PENDING_FILE_0.id]: new Set(MOCK_TAGIDS_SET_0)
-  },
-  taggedItemsKeys: [MOCK_MAHARA_PENDING_FILE_0.id]
+  }
+  // taggedItemsKeys: [MOCK_MAHARA_PENDING_FILE_0.id]
 };
 
 export const MOCK_ROOT_STATE: RootState = {
