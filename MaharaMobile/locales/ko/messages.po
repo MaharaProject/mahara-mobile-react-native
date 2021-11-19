@@ -112,7 +112,7 @@ msgstr "앱 버전"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:55
 #: src/utils/addEditHelperFunctions.tsx:82
-#: src/utils/authHelperFunctions.ts:104
+#: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
 msgstr "확실해?"
 
@@ -302,7 +302,7 @@ msgstr "잘못된 유형"
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr "편집중인 것 같습니다. 저장하기 전에 나가면 변경 사항이 손실됩니다."
 
-#: src/utils/authHelperFunctions.ts:104
+#: src/utils/authHelperFunctions.ts:106
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr "로그 아웃 한 후에 업로드 대기열의 항목을 검색 할 수 없습니다."
 

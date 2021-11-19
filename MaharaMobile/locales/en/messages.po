@@ -114,7 +114,7 @@ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:55
 #: src/utils/addEditHelperFunctions.tsx:82
-#: src/utils/authHelperFunctions.ts:104
+#: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
 msgstr ""
 
@@ -308,7 +308,7 @@ msgstr ""
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr ""
 
-#: src/utils/authHelperFunctions.ts:104
+#: src/utils/authHelperFunctions.ts:106
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
