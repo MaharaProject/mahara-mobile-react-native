@@ -5,51 +5,15 @@ It uses Metro, the JavaScript bundler for React Native to join the code and all 
 
 Our **main codebase** lives at [git.mahara.org](https://git.mahara.org/mahara-mobile/mahara-mobile-react-native)
 
-## [Wiki 📝](https://git.mahara.org/mahara-mobile/mahara-mobile-react-native/-/wikis/home)
+## Developer area
 
-Our wiki lives at <https://git.mahara.org/mahara-mobile/mahara-mobile-react-native/-/wikis/home>.
-Seek the wiki for information about our updates, contributing, and more.
-
-## Setup
-
-This project uses React Native. For first time set up, inside the `/MaharaMobile` folder, run:
-
- ```bash
- npm install && npm start
- ```
-
-To start project run the below. You will additionally need a device (real or virtual), and run either the Android or iOS commands below to view the app. Note you will also need an Apple device to do iOS testing and deployment.
-
-To generate and run Android:
-
-```bash
-npm run android
-```
-
-To generate and run iOS:
-
-```bash
-npm run ios
-```
+Please see our [wiki](https://git.mahara.org/mahara-mobile/mahara-mobile-react-native/-/wikis/home) for information about our updates, contributing, translating, testing, and more.
 
 ## Translations
 
-We are using linguiJS for translation <https://lingui.js.org/>
+We are using [linguiJS](https://lingui.js.org) for translation.
 
-Follow documentation on how to wrap strings so they get picked up then run:
-
-```bash
-# update catalog
-npm run extract
-# update translations
-npm run compile # then refresh environment
-
-To extract the strings into a PO file under /locales.
-```
-
-## Troubleshooting
-
-See [GitLab Wiki page](https://gitlab.wgtn.cat-it.co.nz/elearning/mahara-mobile-react-native/-/wikis/home) for some specific troubleshooting team members might have run into.
+Follow the instructions in our wiki for [steps on how to add translations](https://git.mahara.org/mahara-mobile/mahara-mobile-react-native/-/wikis/Translation-strings) to the app.
 
 ## Architecture
 
