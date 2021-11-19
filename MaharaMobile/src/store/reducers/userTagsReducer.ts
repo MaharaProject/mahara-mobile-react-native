@@ -1,18 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  ItemId,
-  TaggedItemKeys,
-  TaggedItems,
-  TagsIds,
-  UserTag
-} from '../../models/models';
+import {ItemId, TaggedItems, TagsIds, UserTag} from '../../models/models';
 import {
   ADD_USER_TAGS,
   CLEAR_USER_TAGS,
   REMOVE_USER_TAG,
   SAVE_TAGGED_ITEMS_TO_ASYNC,
   TAGGED_ITEMS,
-  TAGGED_ITEMS_IDS,
   TAGS_IDS,
   UPDATE_ITEM_TAGS,
   UPDATE_TAGGED_ITEMS,
@@ -29,14 +22,12 @@ export type UserTagInfoState = {
   userTags: Array<UserTag>;
   userTagsIds: TagsIds;
   taggedItems: TaggedItems;
-  taggedItemsKeys: TaggedItemKeys;
 };
 
 const initialState: UserTagInfoState = {
   userTags: [],
   userTagsIds: [],
-  taggedItems: {},
-  taggedItemsKeys: []
+  taggedItems: {}
 };
 
 // Helper functions
@@ -96,26 +87,22 @@ const updateItemTags = (
   itemId: ItemId
 ): UserTagInfoState => {
   // Update tags for this item
-  let updatedTaggedItems: TaggedItems = {};
-  const updatedTaggedItemsKeysSet = new Set<ItemId>(state.taggedItemsKeys);
+  let updatedTaggedItems: TaggedItems = {...state.taggedItems};
 
   // Remove all tags from this item and reference
   if (tagsIds.length === 0) {
-    updatedTaggedItems[itemId] = new Set();
-    updatedTaggedItemsKeysSet.delete(itemId);
+    delete updatedTaggedItems[itemId];
   } else {
     // Overriding the tags of an item with new updated ones
     updatedTaggedItems = {
       ...state.taggedItems,
       [itemId]: new Set(tagsIds)
     };
-    updatedTaggedItemsKeysSet.add(itemId);
   }
 
   const newState: UserTagInfoState = {
     ...state,
-    taggedItems: updatedTaggedItems,
-    taggedItemsKeys: Array.from(updatedTaggedItemsKeysSet)
+    taggedItems: updatedTaggedItems
   };
   return newState;
 };
@@ -126,14 +113,10 @@ const updateItemTags = (
  * it and save to AsyncStorage.
  */
 const saveTaggedItemsToAsync = (state: UserTagInfoState) => {
-  AsyncStorage.setItem(
-    TAGGED_ITEMS_IDS,
-    JSON.stringify(Array.from(state.taggedItemsKeys))
-  );
-
   let asyncObject = {};
-  state.taggedItemsKeys.forEach((id: string) => {
-    const tagIdSet = state.taggedItems[id];
+  const taggedItemsKeys = Object.keys(state.taggedItems);
+  taggedItemsKeys.forEach((id: string) => {
+    const tagIdSet = state.taggedItems[id] || new Set();
     const tagIdArr = Array.from(tagIdSet);
     asyncObject = {...asyncObject, [id]: tagIdArr};
   });
@@ -150,8 +133,7 @@ const updateTaggedItemsFromAsync = (
   state: UserTagInfoState,
   asyncTaggedItemsData: Record<number, Array<string>>
 ): UserTagInfoState => {
-  const updatedTaggedItemIds: TaggedItemKeys =
-    Object.keys(asyncTaggedItemsData);
+  const updatedTaggedItemIds: Array<ItemId> = Object.keys(asyncTaggedItemsData);
   const updatedTaggeditems: TaggedItems = {};
   updatedTaggedItemIds.forEach((itemId: ItemId) => {
     updatedTaggeditems[itemId] = new Set(asyncTaggedItemsData[itemId]);
@@ -159,7 +141,6 @@ const updateTaggedItemsFromAsync = (
 
   return {
     ...state,
-    taggedItemsKeys: updatedTaggedItemIds,
     taggedItems: updatedTaggeditems
   };
 };
@@ -203,7 +184,7 @@ export const getItemTags = (
   itemId: string
 ): Array<UserTag> => {
   // Check itemId exists
-  if (!state.domainData.userTagsInfo.taggedItemsKeys.includes(itemId)) {
+  if (!state.domainData.userTagsInfo.taggedItems[itemId]) {
     return [];
   }
   // Check if there are tags attached to matched item
@@ -225,10 +206,6 @@ export const getItemTagsIds = (
   state: RootState,
   itemId: string
 ): Array<number> => {
-  // Check itemId exists
-  if (!state.domainData.userTagsInfo.taggedItemsKeys.includes(itemId)) {
-    return [];
-  }
   // Check if there are tags attached to matched item
   const tagIds = Array.from(state.domainData.userTagsInfo.taggedItems[itemId]);
   if (tagIds.length === 0) {
@@ -249,13 +226,13 @@ export const getItemTagsStrings = (
   state: RootState,
   itemId: string
 ): Array<string> => {
-  // check if this item is in the list of tagged items
-  if (!state.domainData.userTagsInfo.taggedItemsKeys.includes(itemId)) {
-    return [];
-  }
   // Check if there are tags attached to matched item
-  const tagIds = Array.from(state.domainData.userTagsInfo.taggedItems[itemId]);
   const tagsArr: Array<string> = [];
+  if (!state.domainData.userTagsInfo.taggedItems[itemId]) {
+    return tagsArr;
+  }
+
+  const tagIds = Array.from(state.domainData.userTagsInfo.taggedItems[itemId]);
 
   tagIds.forEach((id: number) =>
     state.domainData.userTagsInfo.userTags.forEach((tag: UserTag) => {

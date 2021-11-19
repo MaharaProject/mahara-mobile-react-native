@@ -47,7 +47,7 @@ export const newPendingMFile = (
 ) => {
   let id = itemId;
   if (!id) {
-    id = Math.random() * 10 + maharaFormData.name.substring(0, 5);
+    id = `F${Math.floor(Math.random() * 1000)}`;
   }
   return {
     id,
@@ -84,7 +84,7 @@ export const newPendingJEntry = (
 ): PendingJEntry => {
   let id = itemId;
   if (!id) {
-    id = Math.floor(Math.random() * 100) + journalEntry.title;
+    id = `JE${Math.floor(Math.random() * 100)}`;
   }
 
   return {
@@ -106,7 +106,7 @@ export const newUserTag = (tagName: string): UserTag => ({
 
 export const newUserFolder = (title: string): UserFolder => {
   return {
-    id: Math.round(Math.random() * 1000),
+    id: `${Math.floor(Math.random() * 100)}`,
     title
   };
 };
