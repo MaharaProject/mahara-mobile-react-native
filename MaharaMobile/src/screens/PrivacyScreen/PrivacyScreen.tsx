@@ -86,7 +86,7 @@ const PrivacyScreen = () => (
           <SubHeading text={t`Deleting your data`} />
           <MediumText
             text={t`Once you have uploaded data to your Mahara account,
-            it is no longer stored on the app.
+            it is no longer stored in the app.
             Log into your account on the Mahara website you use to manage or delete uploaded data there.
             Logging out of the app deletes all app data. This excludes files not created through the app.`}
           />
