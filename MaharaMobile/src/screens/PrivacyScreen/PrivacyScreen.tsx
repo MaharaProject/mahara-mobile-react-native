@@ -83,6 +83,19 @@ const PrivacyScreen = () => (
 
       <ListItem>
         <Body>
+          <SubHeading text={t`Deleting your data`} />
+          <MediumText
+            text={t`Once you have uploaded data to your Mahara account, it is no longer stored in the app.
+            Log into your account on the Mahara website you use to manage or delete uploaded data there.
+            When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone.
+            Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading
+             to your Mahara account will still be available on your device unless you deleted them yourself.`}
+          />
+        </Body>
+      </ListItem>
+
+      <ListItem>
+        <Body>
           <SubHeading text={t`Changes to this Privacy Statement`} />
           <MediumText
             text={t`We may occasionally make adjustments to our Privacy
