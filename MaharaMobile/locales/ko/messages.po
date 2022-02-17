@@ -61,7 +61,7 @@ msgstr "새 태그 추가 +"
 #~ msgid "Add {0}"
 #~ msgstr "{0} 추가"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:48
+#: src/screens/PendingScreen/PendingScreen.tsx:49
 msgid "Added to upload queue successfully!"
 msgstr "업로드 대기열에 성공적으로 추가되었습니다!"
 
@@ -110,7 +110,7 @@ msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 
 msgid "App version"
 msgstr "앱 버전"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:55
+#: src/screens/PendingScreen/PendingScreen.tsx:56
 #: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
@@ -139,7 +139,7 @@ msgstr "카메라가 닫혔습니다."
 #~ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
-#: src/screens/PendingScreen/PendingScreen.tsx:57
+#: src/screens/PendingScreen/PendingScreen.tsx:58
 #: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
 msgstr "취소"
@@ -148,7 +148,7 @@ msgstr "취소"
 msgid "Changes to these Terms and Conditions"
 msgstr "KO Changes to these terms and conditions"
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:72
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:83
 msgid "Changes to this Privacy Statement"
 msgstr "이 개인 정보 보호 정책의 변경"
 
@@ -164,7 +164,7 @@ msgstr "이 개인 정보 보호 정책의 변경"
 msgid "Confirm edits to {intlItemType}"
 msgstr "{intlItemType} 편집을 확인하십시오."
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:82
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:93
 #: src/screens/TermsScreen/TermsScreen.tsx:119
 msgid "Contact"
 msgstr "접촉"
@@ -177,9 +177,13 @@ msgstr ""
 msgid "Default options"
 msgstr "개인 정보 수집"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:62
+#: src/screens/PendingScreen/PendingScreen.tsx:63
 msgid "Delete"
 msgstr "삭제"
+
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:72
+msgid "Deleting your data"
+msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:174
 msgid "Description"
@@ -227,7 +231,7 @@ msgstr "*로 표시된 필드는 필수입니다."
 msgid "File"
 msgstr "파일"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:129
+#: src/screens/PendingScreen/PendingScreen.tsx:133
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
@@ -261,7 +265,7 @@ msgstr "개인 정보를 사용하는 방법"
 msgid "If you have any questions regarding these terms and conditions, please"
 msgstr "만약 질문이 있다면..."
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:84
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:95
 msgid "If you have any questions regarding this Statement, please"
 msgstr "본 성명서에 관해 궁금한 점이 있거나 위의 기준을 준수하지 않았..."
 
@@ -410,6 +414,10 @@ msgstr "사진이 촬영되지 않았습니다"
 msgid "Okay"
 msgstr "확실한"
 
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:73
+msgid "Once you have uploaded data to your Mahara account, it is no longer stored in the app. Log into your account on the Mahara website you use to manage or delete uploaded data there. When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone. Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading to your Mahara account will still be available on your device unless you deleted them yourself."
+msgstr ""
+
 #: src/screens/TermsScreen/TermsScreen.tsx:69
 msgid "Our maximum aggregate liability for all lawfully limitable claims under or in connection with this agreement (whether arising from negligence, breach of contract or otherwise) will be NZ$0."
 msgstr "합법적으로 제한되는 모든 것에 대한 당사의 최대 총 책임 ..."
@@ -440,7 +448,7 @@ msgstr "인터넷 연결을 확인하십시오."
 msgid "Please enter a URL."
 msgstr "URL을 입력하십시오."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:177
+#: src/screens/PendingScreen/PendingScreen.tsx:181
 msgid "Please login"
 msgstr "로그인 해주세요"
 
@@ -575,7 +583,7 @@ msgstr "이용 약관"
 msgid "The Privacy Statement"
 msgstr "개인 정보 보호 정책"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:55
+#: src/screens/PendingScreen/PendingScreen.tsx:56
 msgid "The deletion of this information or file cannot be undone"
 msgstr "이 정보 또는 파일 삭제를 취소 할 수 없습니다."
 
@@ -628,7 +636,7 @@ msgstr "표제"
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr "허용되는 최대 범위까지 ..."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:177
+#: src/screens/PendingScreen/PendingScreen.tsx:181
 msgid "To upload pending items"
 msgstr "보류중인 항목을 업로드하려면"
 
@@ -648,7 +656,7 @@ msgstr "업로드 대기열"
 msgid "Upload queue page"
 msgstr "대기열 페이지 업로드"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:176
+#: src/screens/PendingScreen/PendingScreen.tsx:180
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
@@ -680,7 +688,7 @@ msgstr "우리는 귀하의 개인 정보를 보호하기 위해 최선을 다�
 msgid "We make no representations and give no warranties, guarantees or undertakings concerning our provision or administration of the mobile app, or your use thereof, except as expressly set out in this agreement. Other warranties, express or implied, by statute or otherwise (including but not limited to the warranties of merchantability, fitness for a particular purpose, and satisfactory quality) are excluded from this agreement. It is intended that this clause will apply only to the maximum extent permitted by law: the clause is not intended to exclude the application of the New Zealand Consumer Guarantees Act 1993 or similar law where we are providing services to consumers."
 msgstr "우리는 어떠한 진술도하지 않으며 보증도하지 않습니다 ..."
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:73
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:84
 msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such, we suggest you check the Privacy Statement each time you visit this app."
 msgstr "시스템 변경 사항을 반영하고 피드백에 응답하기 위해 때때로 개인 정보 보호 정책을 조정할 수..."
 
@@ -724,11 +732,11 @@ msgstr "귀하의 의무"
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr "로그인하면 자신의 이름이 앱에 표시되고 앱과 Mahara 자체에 저장된 액세스 토큰을 통해 Mahara 계정에 연결되므로 두 사람이 서로 통신 할 수 있습니다."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:174
+#: src/screens/PendingScreen/PendingScreen.tsx:178
 msgid "Your site: {url}"
 msgstr "마하라 URL: {url}"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:114
+#: src/screens/PendingScreen/PendingScreen.tsx:118
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
@@ -740,7 +748,7 @@ msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도�
 msgid "audio"
 msgstr "오디오"
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:86
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:97
 #: src/screens/TermsScreen/TermsScreen.tsx:123
 msgid "contact us."
 msgstr "문의하기"
@@ -775,6 +783,6 @@ msgstr "사진"
 msgid "repository on GitHub."
 msgstr "GitHub의 저장소"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:82
+#: src/screens/PendingScreen/PendingScreen.tsx:86
 msgid "{errorMessage}"
 msgstr "{errorMessage}"
