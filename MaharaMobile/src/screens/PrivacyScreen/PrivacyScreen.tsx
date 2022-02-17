@@ -83,6 +83,18 @@ const PrivacyScreen = () => (
 
       <ListItem>
         <Body>
+          <SubHeading text={t`Deleting your data`} />
+          <MediumText
+            text={t`Once you have uploaded data to your Mahara account,
+            it is no longer stored on the app.
+            Log into your Mahara account online to manage/delete uploaded data there.
+            Logging out of the app deletes all app data. This excludes files not created through the app.`}
+          />
+        </Body>
+      </ListItem>
+
+      <ListItem>
+        <Body>
           <SubHeading text={t`Changes to this Privacy Statement`} />
           <MediumText
             text={t`We may occasionally make adjustments to our Privacy
