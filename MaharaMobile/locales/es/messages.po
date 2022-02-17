@@ -49,7 +49,7 @@ msgstr ""
 msgid "Add new tag +"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:48
+#: src/screens/PendingScreen/PendingScreen.tsx:49
 msgid "Added to upload queue successfully!"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr ""
 msgid "App version"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:55
+#: src/screens/PendingScreen/PendingScreen.tsx:56
 #: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
@@ -115,7 +115,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
-#: src/screens/PendingScreen/PendingScreen.tsx:57
+#: src/screens/PendingScreen/PendingScreen.tsx:58
 #: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
 msgstr ""
@@ -124,7 +124,7 @@ msgstr ""
 msgid "Changes to these Terms and Conditions"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:72
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:83
 msgid "Changes to this Privacy Statement"
 msgstr ""
 
@@ -132,7 +132,7 @@ msgstr ""
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:82
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:93
 #: src/screens/TermsScreen/TermsScreen.tsx:119
 msgid "Contact"
 msgstr ""
@@ -145,8 +145,12 @@ msgstr ""
 msgid "Default options"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:62
+#: src/screens/PendingScreen/PendingScreen.tsx:63
 msgid "Delete"
+msgstr ""
+
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:72
+msgid "Deleting your data"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:174
@@ -195,7 +199,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:129
+#: src/screens/PendingScreen/PendingScreen.tsx:133
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
@@ -229,7 +233,7 @@ msgstr ""
 msgid "If you have any questions regarding these terms and conditions, please"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:84
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:95
 msgid "If you have any questions regarding this Statement, please"
 msgstr ""
 
@@ -378,6 +382,10 @@ msgstr ""
 msgid "Okay"
 msgstr ""
 
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:73
+msgid "Once you have uploaded data to your Mahara account, it is no longer stored in the app. Log into your account on the Mahara website you use to manage or delete uploaded data there. When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone. Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading to your Mahara account will still be available on your device unless you deleted them yourself."
+msgstr ""
+
 #: src/screens/TermsScreen/TermsScreen.tsx:69
 msgid "Our maximum aggregate liability for all lawfully limitable claims under or in connection with this agreement (whether arising from negligence, breach of contract or otherwise) will be NZ$0."
 msgstr ""
@@ -408,7 +416,7 @@ msgstr ""
 msgid "Please enter a URL."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:177
+#: src/screens/PendingScreen/PendingScreen.tsx:181
 msgid "Please login"
 msgstr ""
 
@@ -543,7 +551,7 @@ msgstr ""
 msgid "The Privacy Statement"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:55
+#: src/screens/PendingScreen/PendingScreen.tsx:56
 msgid "The deletion of this information or file cannot be undone"
 msgstr ""
 
@@ -596,7 +604,7 @@ msgstr ""
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:177
+#: src/screens/PendingScreen/PendingScreen.tsx:181
 msgid "To upload pending items"
 msgstr ""
 
@@ -616,7 +624,7 @@ msgstr ""
 msgid "Upload queue page"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:176
+#: src/screens/PendingScreen/PendingScreen.tsx:180
 msgid "Upload to your site"
 msgstr ""
 
@@ -640,7 +648,7 @@ msgstr ""
 msgid "We make no representations and give no warranties, guarantees or undertakings concerning our provision or administration of the mobile app, or your use thereof, except as expressly set out in this agreement. Other warranties, express or implied, by statute or otherwise (including but not limited to the warranties of merchantability, fitness for a particular purpose, and satisfactory quality) are excluded from this agreement. It is intended that this clause will apply only to the maximum extent permitted by law: the clause is not intended to exclude the application of the New Zealand Consumer Guarantees Act 1993 or similar law where we are providing services to consumers."
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:73
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:84
 msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such, we suggest you check the Privacy Statement each time you visit this app."
 msgstr ""
 
@@ -684,11 +692,11 @@ msgstr ""
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:174
+#: src/screens/PendingScreen/PendingScreen.tsx:178
 msgid "Your site: {url}"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:114
+#: src/screens/PendingScreen/PendingScreen.tsx:118
 msgid "Your upload queue is empty"
 msgstr ""
 
@@ -700,7 +708,7 @@ msgstr ""
 msgid "audio"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:86
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:97
 #: src/screens/TermsScreen/TermsScreen.tsx:123
 msgid "contact us."
 msgstr ""
@@ -735,6 +743,6 @@ msgstr ""
 msgid "repository on GitHub."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:82
+#: src/screens/PendingScreen/PendingScreen.tsx:86
 msgid "{errorMessage}"
 msgstr ""
