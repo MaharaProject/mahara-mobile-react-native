@@ -72,11 +72,7 @@ const PrivacyScreen = () => (
               and its content secure. In order to help protect your personal
               information, please do not disclose your username, password, or
               access token to anybody or allow them to view content you are
-              planning to upload to your Mahara site via Mahara Mobile. Once
-              content has been uploaded, file names, descriptions, and journal
-              entries are not available via the app anymore. Images and videos
-              will still be stored in their original location on your device.
-              Audio recordings are not stored outside of Mahara Mobile.`}
+              planning to upload to your Mahara site via Mahara Mobile.`}
           />
         </Body>
       </ListItem>
