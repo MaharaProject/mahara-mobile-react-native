@@ -150,7 +150,7 @@ msgstr ""
 msgid "Changes to these Terms and Conditions"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:83
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:79
 msgid "Changes to this Privacy Statement"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:93
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:89
 #: src/screens/TermsScreen/TermsScreen.tsx:119
 msgid "Contact"
 msgstr ""
@@ -179,7 +179,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:72
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:68
 msgid "Deleting your data"
 msgstr ""
 
@@ -267,7 +267,7 @@ msgstr ""
 #~ msgid "If you have any questions regarding this Statement or believe we have not adhered to the above criteria, please"
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:95
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:91
 msgid "If you have any questions regarding this Statement, please"
 msgstr ""
 
@@ -449,7 +449,7 @@ msgstr ""
 msgid "Okay"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:73
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:69
 msgid "Once you have uploaded data to your Mahara account, it is no longer stored in the app. Log into your account on the Mahara website you use to manage or delete uploaded data there. When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone. Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading to your Mahara account will still be available on your device unless you deleted them yourself."
 msgstr ""
 
@@ -723,7 +723,7 @@ msgstr ""
 #~ msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such we suggest you check the Privacy Statement each time you visit this app."
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:84
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:80
 msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such, we suggest you check the Privacy Statement each time you visit this app."
 msgstr ""
 
@@ -740,8 +740,12 @@ msgid "We provide a secure environment that allows you to upload your content to
 msgstr ""
 
 #: src/screens/PrivacyScreen/PrivacyScreen.tsx:51
-msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT are responsible though for maintaining the Mahara site that you connect to or keeping your installation of Mahara Mobile up to date on your mobile device. It is the responsibility of the organisation providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username, password, or access token to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile. Once content has been uploaded, file names, descriptions, and journal entries are not available via the app anymore. Images and videos will still be stored in their original location on your device. Audio recordings are not stored outside of Mahara Mobile."
+msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT are responsible though for maintaining the Mahara site that you connect to or keeping your installation of Mahara Mobile up to date on your mobile device. It is the responsibility of the organisation providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username, password, or access token to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile."
 msgstr ""
+
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:51
+#~ msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT are responsible though for maintaining the Mahara site that you connect to or keeping your installation of Mahara Mobile up to date on your mobile device. It is the responsibility of the organisation providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username, password, or access token to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile. Once content has been uploaded, file names, descriptions, and journal entries are not available via the app anymore. Images and videos will still be stored in their original location on your device. Audio recordings are not stored outside of Mahara Mobile."
+#~ msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:52
 #~ msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT are responsible though for maintaining the Mahara site that you connect to or keeping your installation of Mahara Mobile up to date on your mobile device. It is the responsibility of the organization providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username or password to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile. Once content has been uploaded, file names, descriptions, and journal entries are not available via the app anymore. Images and videos will still be stored in their original location on your device. Audio recordings are not stored outside of Mahara Mobile."
@@ -799,7 +803,7 @@ msgstr ""
 #~ msgid "contact us"
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:97
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:93
 #: src/screens/TermsScreen/TermsScreen.tsx:123
 msgid "contact us."
 msgstr ""

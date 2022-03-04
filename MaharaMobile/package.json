@@ -1,6 +1,6 @@
 {
   "name": "mahara-mobile",
-  "version": "21.10.1",
+  "version": "21.10.2",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
@@ -16,7 +16,8 @@
     "postinstall": "npx jetify",
     "release": "cd android && ./gradlew assembleRelease",
     "bundlerelease": "cd android && ./gradlew bundleRelease",
-    "postversion": "react-native-version"
+    "postversion": "react-native-version",
+    "devices": "adb devices"
   },
   "dependencies": {
     "@babel/eslint-parser": "^7.15.8",
