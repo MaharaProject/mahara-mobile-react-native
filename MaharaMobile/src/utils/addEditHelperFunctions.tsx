@@ -1,49 +1,52 @@
 import {t} from '@lingui/macro';
 import React, {Dispatch, SetStateAction} from 'react';
-import {Alert, Image, Platform, View} from 'react-native';
+import {ActionSheetIOS, Alert, Image, Platform, View} from 'react-native';
 // import DocumentPicker from 'react-native-document-picker';
-import ImagePicker, {ImagePickerResponse} from 'react-native-image-picker';
+import {
+  ImageLibraryOptions,
+  ImagePickerResponse,
+  launchCamera,
+  launchImageLibrary // for ios?
+} from 'react-native-image-picker';
 import i18n from '../i18n';
-import {File} from '../models/models';
+import {
+  File,
+  ReactNativeImagePickerAsset,
+  ReactNativeImagePickerResponse
+} from '../models/models';
 import {newFile} from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
-const setPickedFileCallback = (
-  response: ImagePickerResponse,
+const setSelectedImageCallback = (
+  response: unknown,
   setPickedFile: Dispatch<SetStateAction<File>>
 ) => {
-  if (response.didCancel) {
+  const asset = response as ReactNativeImagePickerAsset;
+  const resp = response as ReactNativeImagePickerResponse;
+  if (resp.didCancel) {
     Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
-  } else if (response.error) {
-    Alert.alert(i18n._(t`ImagePicker Error:${response.error}`));
+  } else if (resp.errorCode) {
+    Alert.alert(i18n._(t`ImagePicker Error:${resp.errorMessage}`));
   } else {
-    let path = response.uri;
+    let path = asset.uri;
     if (Platform.OS === 'ios') {
       path = `˜${path.substring(path.indexOf('/Documents'))}`;
     }
 
-    if (!response.fileName) {
-      response.fileName = path.split('/').pop();
-    }
-
     const maharaFile = newFile(
-      response.uri,
-      response.type,
-      response.fileName,
-      response.fileSize
+      asset.uri,
+      asset.type,
+      asset.fileName,
+      asset.fileSize
     );
-
     setPickedFile(maharaFile);
   }
 };
 
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
-  const options = {
-    title: i18n._(t`Select image`),
-    storageOptions: {
-      skipBackup: true,
-      path: 'images'
-    }
+  const options: ImageLibraryOptions = {
+    // title: i18n._(t`Select image`),
+    mediaType: 'photo'
   };
 
   /**
@@ -52,20 +55,39 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
    */
 
   Platform.OS === 'ios'
-    ? ImagePicker.showImagePicker(options, response => {
-        setPickedFileCallback(response, setPickedFile);
-      })
-    : ImagePicker.launchCamera(options, response => {
-        setPickedFileCallback(response, setPickedFile);
+    ? // TODO: this will not work rn image picker > 3, use rn action sheet.
+      ActionSheetIOS.showActionSheetWithOptions(
+        {
+          options: ['Cancel', 'Open Photos', 'Open Camera'],
+          destructiveButtonIndex: 3,
+          cancelButtonIndex: 0
+        },
+        (buttonIndex: number) => {
+          if (buttonIndex === 0) {
+            // cancel action
+          } else if (buttonIndex === 1) {
+            launchImageLibrary(options, (response: ImagePickerResponse) => {
+              setSelectedImageCallback(response, setPickedFile);
+            });
+          } else if (buttonIndex === 2) {
+            launchCamera(options, (response: ImagePickerResponse) => {
+              setSelectedImageCallback(response, setPickedFile);
+            });
+          }
+        }
+      )
+    : // setSelectedImageCallback(response, setPickedFile);
+      launchCamera(options, (response: ImagePickerResponse) => {
+        setSelectedImageCallback(response, setPickedFile);
       });
 };
 
-export const pickDocument = onSetPickedFile => {
+export const pickDocument = (onSetPickedFile: any) => {
   const DocumentPicker = require('react-native-document-picker').default; // eslint-disable-line global-require
   try {
     DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles]
-    }).then(res =>
+    }).then((res) =>
       onSetPickedFile(newFile(res.uri, res.type, res.name, res.size))
     );
   } catch (err) {
@@ -79,7 +101,7 @@ export const pickDocument = onSetPickedFile => {
   }
 };
 
-export const onCancelAlert = goBack => {
+export const onCancelAlert = (goBack) => {
   Alert.alert(
     i18n._(t`Are you sure?`),
     i18n._(

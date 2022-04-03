@@ -1,4 +1,12 @@
-import {PendingMFile, PendingJEntry, UserBlog, UserTag} from '../models/models';
+import {
+  PendingMFile,
+  PendingJEntry,
+  UserBlog,
+  UserTag,
+  TagsIds,
+  ItemId,
+  ItemIds
+} from '../models/models';
 import {
   newJournalEntry,
   newFile,
@@ -201,6 +209,7 @@ export const MOCK_MAHARA_PENDING_FILES_ARR = [
 export const MOCK_STATE_LOGIN_INFO = {
   defaultBlogId: MOCK_BLOG_IDS[0],
   defaultFolderTitle: MOCK_BLOG_TITLES[0],
+  didTryAutoLogin: false,
   isGuest: false,
   localLogin: false,
   profileIcon: MOCK_URI,
@@ -236,7 +245,7 @@ export const MOCK_STATE_USER_BLOGS: UserBlogsState = MOCK_BLOGS;
 // Items with tags
 
 // Tag constants
-export const MOCK_TAG_IDS = NUMBERS_ARR;
+export const MOCK_TAG_IDS: TagsIds = NUMBERS_ARR;
 
 export const MOCK_TAGS: Array<UserTag> = [
   {id: MOCK_TAG_IDS[0], tag: 'tag0'},
@@ -244,27 +253,33 @@ export const MOCK_TAGS: Array<UserTag> = [
   {id: MOCK_TAG_IDS[2], tag: 'tag2'}
 ];
 
-export const MOCK_TAGIDS_SET_0 = new Set<number>();
-MOCK_TAGIDS_SET_0.add(MOCK_TAGS[2].id);
+export const MOCK_TAGIDS_SET_0 = [
+  MOCK_TAG_IDS[0],
+  MOCK_TAG_IDS[1],
+  MOCK_TAG_IDS[2]
+];
 
-export const MOCK_TAGIDS_SET_1 = new Set<number>();
-MOCK_TAGIDS_SET_1.add(MOCK_TAGS[0].id);
-MOCK_TAGIDS_SET_1.add(MOCK_TAGS[1].id);
+export const MOCK_ITEMIDS_SET_1: ItemIds = new Set(MOCK_FILE_IDS);
 
-export const MOCK_TAGIDS_SET_2 = new Set<number>();
-MOCK_TAGIDS_SET_2.add(MOCK_TAGS[1].id);
-MOCK_TAGIDS_SET_2.add(MOCK_TAGS[2].id);
+export const MOCK_TAGIDS_SET_1 = new Set<number>([
+  MOCK_TAGS[0].id,
+  MOCK_TAGS[1].id
+]);
+
+export const MOCK_TAGIDS_SET_2 = new Set<number>([
+  MOCK_TAGS[1].id,
+  MOCK_TAGS[2].id
+]);
 
 export const TAGGED_ITEMS_IDS = [MOCK_FILE_IDS[0], MOCK_JENTRY_IDS[1]];
 
 export const MOCK_STATE_USER_TAGS_INFO: UserTagInfoState = {
-  taggedItems: {
-    [MOCK_FILE_IDS[0]]: MOCK_TAGIDS_SET_0,
-    [MOCK_JENTRY_IDS[1]]: MOCK_TAGIDS_SET_1
-  },
-  taggedItemsIds: TAGGED_ITEMS_IDS,
   userTags: MOCK_TAGS,
-  userTagsIds: MOCK_TAG_IDS
+  userTagsIds: MOCK_TAGIDS_SET_0,
+  taggedItems: {
+    [MOCK_MAHARA_PENDING_FILE_0.id]: new Set(MOCK_TAGIDS_SET_0)
+  }
+  // taggedItemsKeys: [MOCK_MAHARA_PENDING_FILE_0.id]
 };
 
 export const MOCK_ROOT_STATE: RootState = {
@@ -277,5 +292,11 @@ export const MOCK_ROOT_STATE: RootState = {
     userBlogs: MOCK_STATE_USER_BLOGS,
     userFolders: MOCK_STATE_USER_FOLDERS,
     userTagsInfo: MOCK_STATE_USER_TAGS_INFO
+  },
+  uiState: {
+    appSettings: {
+      language: 'en',
+      catalogs: {}
+    }
   }
 };

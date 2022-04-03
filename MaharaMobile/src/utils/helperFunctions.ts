@@ -61,7 +61,7 @@ export function buildObject(item: object) {
     sendFormData.append('foldername', item.foldername);
     sendFormData.append('title', item.name);
     sendFormData.append('description', item.description);
-    sendFormData.append('filetoupload', (item.filetoupload as unknown) as Blob);
+    sendFormData.append('filetoupload', item.filetoupload as unknown as Blob);
     return {
       method: 'POST',
       body: sendFormData
@@ -76,8 +76,8 @@ export function uploadItemToMahara(url: string, item: object) {
   return async () => {
     try {
       return await fetch(url, uploadObject)
-        .then(response => response.json())
-        .then(result => result);
+        .then((response) => response.json())
+        .then((result) => result);
     } catch (error) {
       customResponse = newUploadResponse(
         '',

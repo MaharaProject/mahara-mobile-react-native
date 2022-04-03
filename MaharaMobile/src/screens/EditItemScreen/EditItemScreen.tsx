@@ -23,7 +23,7 @@ import {
   selectUserBlogs,
   selectUserFolders
 } from '../../store/reducers/userArtefactsReducer';
-import {selectUserTags} from '../../store/reducers/userTagsReducer';
+import {getUserTags} from '../../store/reducers/userTagsReducer';
 import {
   pickDocument,
   renderImagePreview,
@@ -117,7 +117,7 @@ const EditItemScreen = (props: Props) => {
   );
 };
 
-export const EditItemScreenOptions = navData => {
+export const EditItemScreenOptions = (navData) => {
   return {
     headerTitle: i18n._(
       t`Edit ${getUploadTypeIntlStrings(
@@ -135,7 +135,7 @@ export const EditItemScreenOptions = navData => {
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
   token: selectToken(state),
-  userTags: selectUserTags(state),
+  userTags: getUserTags(state),
   userFolders: selectUserFolders(state),
   userBlogs: selectUserBlogs(state),
   uploadJournals: selectAllJEntries(state),

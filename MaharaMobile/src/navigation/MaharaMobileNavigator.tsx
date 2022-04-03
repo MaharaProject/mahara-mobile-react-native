@@ -9,28 +9,33 @@ import NavUploadActiveSVG from '../assets/images/nav-upload-active';
 import styles from '../assets/styles/variables';
 import {
   PendingItemsNavigator,
-  AddItemsNavigator,
+  CreateNavigator,
   MenuNavigator,
   navigatorStrings
 } from './StackNavigators';
 
-const BottomTabsNavigator = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator();
+
+const tabOptions = {
+  tabBarHideOnKeyboard: true,
+  tabBarActiveTintColor: styles.colors.navActiveGreenTint,
+  tabBarInactiveTintColor: styles.colors.quaternary,
+  tabBarStyle: {
+    backgroundColor: styles.colors.navBarGreen,
+    borderTopWidth: 0
+  },
+  tabBarShowLabel: false
+};
 
 const MaharaMobileNavigator = () => (
-  <BottomTabsNavigator.Navigator
-    initialRouteName="Add"
-    tabBarOptions={{
-      keyboardHidesTabBar: true,
-      activeTintColor: styles.colors.navActiveGreenTint,
-      inactiveTintColor: styles.colors.quaternary,
-      style: {backgroundColor: styles.colors.navBarGreen, borderTopWidth: 0},
-      showLabel: false
-    }}>
-    <BottomTabsNavigator.Screen
-      name="PendingScreen"
+  <BottomTab.Navigator initialRouteName="Create tab">
+    <BottomTab.Screen
+      name="Upload queue tab"
       component={PendingItemsNavigator}
       options={{
+        ...tabOptions,
         tabBarLabel: navigatorStrings().PENDING,
+        headerShown: false,
         tabBarIcon: ({focused}) => {
           if (focused === false) {
             return <NavUploadSVG />;
@@ -40,11 +45,13 @@ const MaharaMobileNavigator = () => (
         tabBarAccessibilityLabel: navigatorStrings().PENDING_ACCESSIBILITY_LABEL
       }}
     />
-    <BottomTabsNavigator.Screen
-      name="Add"
-      component={AddItemsNavigator}
+    <BottomTab.Screen
+      name="Create tab"
+      component={CreateNavigator}
       options={{
-        tabBarLabel: navigatorStrings.ADD,
+        ...tabOptions,
+        headerShown: false,
+        tabBarLabel: navigatorStrings().CREATE,
         tabBarIcon: ({focused}) => {
           if (focused === false) {
             return <NavAddSVG />;
@@ -54,10 +61,12 @@ const MaharaMobileNavigator = () => (
         tabBarAccessibilityLabel: navigatorStrings().ADD_ACCESSIBILITY_LABEL
       }}
     />
-    <BottomTabsNavigator.Screen
-      name="Menu"
+    <BottomTab.Screen
+      name="Menu tab"
       component={MenuNavigator}
       options={{
+        ...tabOptions,
+        headerShown: false,
         tabBarIcon: ({focused}) => {
           if (focused === false) {
             return <NavMenuSVG />;
@@ -68,7 +77,7 @@ const MaharaMobileNavigator = () => (
         tabBarAccessibilityLabel: navigatorStrings().MENU
       }}
     />
-  </BottomTabsNavigator.Navigator>
+  </BottomTab.Navigator>
 );
 
 export default MaharaMobileNavigator;

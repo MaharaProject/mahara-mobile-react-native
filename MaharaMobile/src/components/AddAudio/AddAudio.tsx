@@ -7,7 +7,7 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
 import variables from '../../assets/styles/variables';
-import {File, PlayBackType, RecordBackType} from '../../models/models';
+import {File, PlayBackType} from '../../models/models';
 import {newFile} from '../../models/typeCreators';
 import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
 import MediumButton from '../UI/MediumButton/MediumButton';
@@ -51,7 +51,7 @@ const AddAudio = (props: Props) => {
 
     if (Platform.OS === 'android') {
       try {
-        const grantedStorage = await PermissionsAndroid.request(
+        const grantedWriteStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
             title: props.i18n._(t`Access permission`),
@@ -62,7 +62,28 @@ const AddAudio = (props: Props) => {
           }
         );
 
-        if (grantedStorage !== PermissionsAndroid.RESULTS.GRANTED) {
+        if (grantedWriteStorage !== PermissionsAndroid.RESULTS.GRANTED) {
+          setIsPermissionGranted(false);
+          return;
+        }
+      } catch (e) {
+        console.warn(e);
+        setIsPermissionGranted(false);
+      }
+
+      try {
+        const grantedReadStorage = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          {
+            title: props.i18n._(t`Access permission`),
+            message: props.i18n._(
+              t`Allow Mahara Mobile to read photos, media, and files on your device?`
+            ),
+            buttonPositive: props.i18n._(t`Allow`)
+          }
+        );
+
+        if (grantedReadStorage !== PermissionsAndroid.RESULTS.GRANTED) {
           setIsPermissionGranted(false);
           return;
         }
@@ -113,10 +134,11 @@ const AddAudio = (props: Props) => {
     }
 
     const rand = Math.round(Math.random() * 1000);
+    const {dirs} = RNFetchBlob.fs;
     const path =
       Platform.select({
         ios: `${rand}recording.m4a`,
-        android: `sdcard/${rand}recording.mp3`
+        android: `${dirs.CacheDir}/${rand}recording.mp3`
       }) ?? `${rand}recording.m4a`;
 
     setURI(path);
@@ -136,7 +158,7 @@ const AddAudio = (props: Props) => {
     let fileSize = 0;
     let filename = '';
 
-    await RNFetchBlob.fs.stat(checkIOS(result)).then(stats => {
+    await RNFetchBlob.fs.stat(checkIOS(result)).then((stats) => {
       filename = stats.filename;
       fileSize = parseInt(stats.size, 10);
     });

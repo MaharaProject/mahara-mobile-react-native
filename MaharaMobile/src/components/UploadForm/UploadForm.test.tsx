@@ -7,6 +7,7 @@ import configureStore from 'redux-mock-store';
 import i18n from '../../i18n';
 import UploadForm from './UploadForm';
 
+jest.useFakeTimers();
 it('renders correctly', () => {
   const props = {
     userTags: [],

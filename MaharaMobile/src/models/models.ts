@@ -51,11 +51,16 @@ export type PendingJEntry = {
   journalEntry: JournalEntry;
 };
 
+export type Tags = Array<UserTag>;
+export type Folders = Array<UserFolder>;
+export type Blogs = Array<UserBlog>;
+export type Username = Array<UserFolder>;
+
 export type User = {
-  userName: string;
-  userFolders: Array<UserFolder>;
-  userTags: Array<UserTag>;
-  userBlogs: Array<UserBlog>;
+  userName: Username;
+  userFolders: Folders;
+  userTags: Tags;
+  userBlogs: Blogs;
 };
 
 export type UserFolder = {
@@ -85,12 +90,13 @@ export type UserBlogJSON = {
 };
 
 // as stated in LinguiJS docs: https://lingui.js.org/ref/macro.html#usage
-export type MessageDescriptor = {
-  id: string;
-  defaults?: string;
-  values?: object;
-  formats?: object;
-};
+// replaced with updated in in library
+// export type MessageDescriptor = {
+//   id: string;
+//   defaults?: string;
+//   values?: object;
+//   formats?: object;
+// };
 
 export type LoginType = 'basic' | 'sso' | 'token';
 
@@ -126,4 +132,35 @@ export type RecordBackType = {
   isRecording?: boolean;
   currentPosition: number;
   currentMetering?: number;
+};
+
+export type ItemId = string;
+export type TagId = number;
+export type TagsIds = Array<number>;
+export type TaggedItems = Record<ItemId, Set<TagId>>;
+// libraries
+
+// react native image-picker
+export type ReactNativeImagePickerResponse = {
+  didCancel?: boolean;
+  errorCode?: any;
+  errorMessage?: string;
+  assets?: ReactNativeImagePickerAsset;
+};
+
+export type ReactNativeImagePickerAsset = {
+  fileName: string;
+  fileSize: number;
+  height: number;
+  type: string;
+  uri: string;
+  width: number;
+  base64?: string;
+  duration?: any;
+};
+
+export type ReactNativeImagePickerErrorCode = {
+  camera_unavailable?: any;
+  permission?: any;
+  others?: any;
 };

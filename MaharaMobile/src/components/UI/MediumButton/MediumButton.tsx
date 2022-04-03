@@ -1,10 +1,10 @@
+import {MessageDescriptor} from '@lingui/core';
 import {I18n} from '@lingui/react';
 import {Button, Icon, Text} from 'native-base';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import buttons from '../../../assets/styles/buttons';
 import styles from '../../../assets/styles/variables';
-import {MessageDescriptor} from '../../../models/models';
 
 type Props = {
   onPress: () => void;

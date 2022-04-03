@@ -3,11 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 import {Dispatch} from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import {
-  clearUserTags,
-  updateUserTags,
-  updateUserTagsIds
-} from '../store/actions/actions';
+import {clearUserTags} from '../store/actions/actions';
 import {
   clearLoginInfo,
   setDefaultBlogId,
@@ -33,15 +29,14 @@ import {
 } from '../store/actions/uploadFiles';
 
 import i18n from '../i18n';
-import {UserBlog, UserBlogJSON, UserFolder, UserTag} from '../models/models';
-import {newUserTag} from '../models/typeCreators';
+import {UserBlog, UserFolder} from '../models/models';
 import {
   GUEST_BLOG,
   GUEST_FOLDER,
   GUEST_TOKEN,
   GUEST_USERNAME
 } from './constants';
-import {userBlogJSONtoUserBlog} from './helperFunctions';
+import flashMessage from '../components/FlashMessage/FlashMessage';
 
 /**
  * Attempt to fetch user info based on given token
@@ -51,49 +46,23 @@ import {userBlogJSONtoUserBlog} from './helperFunctions';
  * @returns true if successful log in and data loading
  * @returns Promise.reject() on fail
  */
-export function fetchUserOnTokenLogin(
+export async function fetchUserWithToken(
   serverUrl: string,
   requestOptions: RequestInit
 ) {
-  return async function(dispatch: Dispatch) {
-    try {
-      const response = await fetch(serverUrl, requestOptions);
-      const json = await response.json();
-      if (json.error) {
-        return Promise.reject();
-      }
-      dispatch(updateUserName(json.userprofile.myname));
-
-      type FetchedTag = {
-        tag: string;
-        usage: number;
-      };
-
-      // Create UserTags with id and string.
-      const newUserTags: Array<UserTag> = json.tags.tags.map(
-        (tag: FetchedTag) => newUserTag(tag.tag)
-      );
-      dispatch(updateUserTags(newUserTags));
-      dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
-
-      dispatch(
-        updateUserBlogs(
-          json.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b))
-        )
-      );
-
-      // Check if user has folders (they can be deleted on Mahara)
-      if (json.folders.folders.length !== 0) {
-        dispatch(updateUserFolders(json.folders.folders));
-      }
-
-      dispatch(setDefaultBlogId(json.blogs.blogs[0].id));
-      dispatch(setDefaultFolder(json.folders.folders[0].title));
-    } catch (e) {
-      //
-    }
-    return null;
-  };
+  const response = await fetch(serverUrl, requestOptions);
+  const json = await response.json().catch((e) => {
+    console.warn(
+      `Expected ERROR:  because we have been auto logged out and cannot retrieve any data${e}`
+    );
+  });
+  if (json != null) {
+    // if json.error is true, meaning failed to log in, we don't reject the promise
+    // and instead use the information inside i.e. the Mahara error message inside
+    // onCheckAuthJSON() to decide on next the next action
+    return Promise.resolve(json);
+  }
+  return null;
 }
 
 export const clearReduxData = async (dispatch: Dispatch) => {
@@ -161,12 +130,13 @@ export const fetchProfilePic = async (
     fileCache: true
   })
     .fetch('GET', serverUrl)
-    .then(res => {
+    .then((res) => {
       profilePic = `file://${res.path()}`;
       dispatch(updateProfilePic(profilePic));
     })
-    .catch(() => {
-      // TODO error handling
+    .catch((e) => {
+      console.error(e.error_message);
+      flashMessage(e.error_class, 'warning');
     });
 
   return profilePic;
@@ -215,4 +185,27 @@ export const checkValidInitialState = (
     return false;
   }
   return true;
+};
+
+/**
+ *
+ * @param json JSON returned from Mahara API
+ * @param successCallback e.g. props.onGetToken(json.token);
+ * @param failCallback e.g. props.onGetToken(null);
+ */
+export const onCheckAuthJSON = (
+  json: any,
+  successCallback: Function,
+  failCallback: Function
+) => {
+  if (json) {
+    if (json.error) {
+      console.warn('Failed to log in: ', json.error);
+      failCallback();
+    }
+    if (json.token != null) {
+      console.warn('success! token received: ', json.token);
+      successCallback();
+    }
+  }
 };

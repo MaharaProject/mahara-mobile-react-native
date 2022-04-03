@@ -1,13 +1,15 @@
 import {t, Trans} from '@lingui/macro';
 import {I18n} from '@lingui/react';
 import React, {useState} from 'react';
-import {Platform, Text, TextInput, View} from 'react-native';
+import {ActivityIndicator, Platform, Text, TextInput, View} from 'react-native';
 import {getManufacturer, getModel} from 'react-native-device-info';
 import uuid from 'react-native-uuid';
 import LogoSvg from '../../assets/images/Logo-big';
 import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
+import variables from '../../assets/styles/variables';
+import {onCheckAuthJSON} from '../../utils/authHelperFunctions';
 import {LOG_IN_ICON} from '../../utils/constants';
 import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../UI/MediumButton/MediumButton';
@@ -15,14 +17,15 @@ import styles from './LocalLogin.style';
 
 type Props = {
   url: string;
-  onUpdateToken: Function;
+  onGetToken: Function;
+  isLoading: boolean;
 };
 
 export default function LocalLogin(props: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const checkLogins = async () => {
+  const checkLoginForToken = async () => {
     const manufacturer = getManufacturer();
     const model = getModel();
     const id = uuid.v4();
@@ -45,10 +48,16 @@ export default function LocalLogin(props: Props) {
     try {
       const request = await fetch(url, config);
       const json = await request.json();
-      props.onUpdateToken(json.token);
+
+      onCheckAuthJSON(
+        json,
+        () => props.onGetToken(json.token),
+        () => props.onGetToken(null)
+      );
     } catch (e) {
-      // console.log(e);
+      console.error(`Unexpected error:${e}`);
     }
+    return null;
   };
 
   return (
@@ -58,6 +67,9 @@ export default function LocalLogin(props: Props) {
           <View style={styles.imageWrapper}>
             <LogoSvg />
           </View>
+          {props.isLoading ? (
+            <ActivityIndicator size="small" color={variables.colors.light} />
+          ) : null}
           <Text style={[headingStyles.mainHeading, generic.center]}>
             <Trans>Log in via username and password</Trans>
           </Text>
@@ -66,7 +78,7 @@ export default function LocalLogin(props: Props) {
               <TextInput
                 style={forms.textInput}
                 placeholder={i18n._(t`Username`)}
-                onChangeText={usernameInput => setUsername(usernameInput)}
+                onChangeText={(usernameInput) => setUsername(usernameInput)}
                 autoCapitalize="none"
               />
             )}
@@ -77,7 +89,7 @@ export default function LocalLogin(props: Props) {
                 style={forms.textInput}
                 secureTextEntry
                 placeholder={i18n._(t`Password`)}
-                onChangeText={passwordInput => setPassword(passwordInput)}
+                onChangeText={(passwordInput) => setPassword(passwordInput)}
                 autoCapitalize="none"
               />
             )}
@@ -85,7 +97,7 @@ export default function LocalLogin(props: Props) {
           <MediumButton
             text={t`Login`}
             icon={LOG_IN_ICON}
-            onPress={() => checkLogins()}
+            onPress={checkLoginForToken}
           />
         </View>
       </MaharaGradient>

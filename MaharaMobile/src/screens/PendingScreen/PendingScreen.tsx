@@ -1,5 +1,4 @@
 import {t, Trans} from '@lingui/macro';
-import {Icon, Toast} from 'native-base';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator, Alert, Text, View} from 'react-native';
 import {showMessage} from 'react-native-flash-message';
@@ -10,14 +9,17 @@ import UploadSVG from '../../assets/images/upload';
 import messages from '../../assets/styles/messages';
 import textStyles from '../../assets/styles/text';
 import styles from '../../assets/styles/variables';
+import flashMessage from '../../components/FlashMessage/FlashMessage';
 // components
 import PendingList from '../../components/PendingList/PendingList';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import i18n from '../../i18n';
 import {
+  updateItemTags as updateItemTagsIds,
+  saveTaggedItemsToAsync
+} from '../../store/actions/actions';
+import {
   DisplayItems,
-  MessageDescriptor,
-  MessageInfoType,
   PendingJEntry,
   PendingMFile,
   UploadItemType,
@@ -64,36 +66,6 @@ const PendingScreen = (props: Props) => {
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
-  const flashMessage = (
-    text: MessageDescriptor,
-    messageType: MessageInfoType
-  ) => {
-    Toast.show({
-      text: (
-        <Text
-          style={{
-            fontSize: styles.font.md,
-            color: styles.colors.messageSuccessText
-          }}>
-          <Icon
-            style={{
-              color: styles.colors.messageSuccessIcon
-            }}
-            name="md-checkmark-circle"
-          />
-          &nbsp;&nbsp;{i18n._(text)}
-        </Text>
-      ),
-      type: messageType,
-      style: {
-        backgroundColor: styles.colors.messageSuccessBg,
-        paddingBottom: styles.padding.md
-      },
-      position: 'top',
-      duration: 3000
-    });
-  };
-
   useEffect(() => {
     if (props.route.params?.added === true) {
       flashMessage(t`Added to upload queue successfully!`, 'success');
@@ -118,6 +90,9 @@ const PendingScreen = (props: Props) => {
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
+            // TODO: update related tags
+            props.dispatch(updateItemTagsIds(itemId, []));
+            props.dispatch(saveTaggedItemsToAsync());
           }
         }
       ],
@@ -131,7 +106,7 @@ const PendingScreen = (props: Props) => {
   };
 
   const clearUploadError = (id: string) => {
-    const newState = uploadErrorItemsIds.filter(item => item !== id);
+    const newState = uploadErrorItemsIds.filter((item) => item !== id);
     setUploadErrorItemsIds(newState);
   };
 
@@ -198,7 +173,7 @@ const PendingScreen = (props: Props) => {
       props.dispatch(removeUploadFile(id));
       props.dispatch(removeUploadJEntry(id));
 
-      const newState = uploadedItemsIds.filter(item => item !== id);
+      const newState = uploadedItemsIds.filter((item) => item !== id);
       setUploadedItemsIds(newState);
     }, 1000);
 
@@ -210,7 +185,7 @@ const PendingScreen = (props: Props) => {
 
   const onUploadClick = () => {
     setLoading(true);
-    props.uploadFiles.forEach(async file => {
+    props.uploadFiles.forEach(async (file) => {
       clearUploadError(file.id);
       props
         .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
@@ -224,7 +199,7 @@ const PendingScreen = (props: Props) => {
         });
     });
 
-    props.uploadJEntries.forEach(async journalEntry => {
+    props.uploadJEntries.forEach(async (journalEntry) => {
       clearUploadError(journalEntry.id);
       props
         .dispatch(

@@ -72,11 +72,20 @@ const PrivacyScreen = () => (
               and its content secure. In order to help protect your personal
               information, please do not disclose your username, password, or
               access token to anybody or allow them to view content you are
-              planning to upload to your Mahara site via Mahara Mobile. Once
-              content has been uploaded, file names, descriptions, and journal
-              entries are not available via the app anymore. Images and videos
-              will still be stored in their original location on your device.
-              Audio recordings are not stored outside of Mahara Mobile.`}
+              planning to upload to your Mahara site via Mahara Mobile.`}
+          />
+        </Body>
+      </ListItem>
+
+      <ListItem>
+        <Body>
+          <SubHeading text={t`Deleting your data`} />
+          <MediumText
+            text={t`Once you have uploaded data to your Mahara account, it is no longer stored in the app.
+            Log into your account on the Mahara website you use to manage or delete uploaded data there.
+            When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone.
+            Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading
+             to your Mahara account will still be available on your device unless you deleted them yourself.`}
           />
         </Body>
       </ListItem>

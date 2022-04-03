@@ -1,13 +1,9 @@
 import {t} from '@lingui/macro';
 import {withI18n} from '@lingui/react';
 import {StackActions} from '@react-navigation/native';
-import {Icon, Input, Item, Picker, Text, View} from 'native-base';
+import {Item, Picker, Text, View} from 'native-base';
 import React, {useEffect, useState} from 'react';
-import {TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import buttons from '../../assets/styles/buttons';
-import forms from '../../assets/styles/forms';
-import styles from '../../assets/styles/variables';
 import i18n from '../../i18n';
 import {
   File,
@@ -22,18 +18,17 @@ import {
   newJournalEntry,
   newMaharaFile,
   newPendingJEntry,
-  newPendingMFile,
-  newUserTag
+  newPendingMFile
 } from '../../models/typeCreators';
 import {
-  addTagsToItem,
+  updateItemTags as updateItemTagsIds,
   addUserTags,
   saveTaggedItemsToAsync
 } from '../../store/actions/actions';
 import {addFileToUploadList} from '../../store/actions/uploadFiles';
 import {addJournalEntryToUploadList} from '../../store/actions/uploadJEntries';
 import {RootState} from '../../store/reducers/rootReducer';
-import {selectItemTagsStrings} from '../../store/reducers/userTagsReducer';
+import {getItemTags} from '../../store/reducers/userTagsReducer';
 import {emptyPendingJEntry, emptyPendingMFile} from '../../utils/constants';
 import {
   isValidText,
@@ -42,7 +37,6 @@ import {
   setTagString
 } from '../../utils/formHelper';
 import {
-  findUserTagByString,
   getUploadTypeIntlStrings,
   isPendingJEntry,
   isPendingMFile
@@ -52,7 +46,7 @@ import FormInput from '../UI/FormInput/FormInput';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
-import uploadFormStyles from './UploadForm.style';
+import TagsPicker from './TagsPicker';
 import BlogPicker from './UploadFormComponents';
 
 type Props = {
@@ -73,15 +67,16 @@ type State = {
   selectedTags: Array<string>;
   selectedTag: UserTag;
   newTags: Array<UserTag>;
-  itemTagIds: Set<number>;
+  itemTagIds: Array<number>;
 };
 
 const UploadForm = (props: Props) => {
-  let editItemTags: Array<string> = [];
+  let existingItemTags: Array<UserTag>;
   if (props.editItem) {
-    const pendingItem = props.editItem;
-    editItemTags = useSelector((state: RootState) =>
-      selectItemTagsStrings(state, pendingItem.id)
+    const uploadItem = props.editItem;
+
+    existingItemTags = useSelector((state: RootState) =>
+      getItemTags(state, uploadItem.id)
     );
   }
 
@@ -91,10 +86,6 @@ const UploadForm = (props: Props) => {
   const {pickedFile} = props;
 
   // STATE
-  const [newTagText, setNewTagText] = useState('');
-  const [selectedTag, setSelectedTag] = useState<State['selectedTag']>();
-  const [showTagInput, setShowTagInput] = useState(false);
-  // form values
   const [isDraft, setIsDraft] = useState(false);
   const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size > 0);
   const [title, setTitle] = useState(''); // title and filename
@@ -104,12 +95,12 @@ const UploadForm = (props: Props) => {
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
   const [selectedBlog, setSelectedBlog] = useState(props.defaultBlogId);
-  const [selectedTags, setSelectedTags] = useState<State['selectedTags']>(
-    editItemTags
-  );
+  const [selectedTagsStrings, setSelectedTagsStrings] = useState<
+    State['selectedTags']
+  >([]);
+  const [itemTagsIds, setItemTagsIds] = useState<Array<number>>([]);
   const [newTags, setNewTags] = useState<State['newTags']>([]);
-  const [itemTagIds, setItemTagIds] = useState<State['itemTagIds']>(new Set());
-  // error messages
+  // the itemTagsIds is what gets submitted by the form
 
   useEffect(() => {
     if (props.editItem) {
@@ -149,59 +140,6 @@ const UploadForm = (props: Props) => {
     checkFileValid();
   }, [pickedFile]);
 
-  const hideTagInput = () => {
-    setShowTagInput(false);
-    setSelectedTag(newUserTag('...')); // TODO CHECK
-  };
-
-  /**
-   * Creates a new UserTag instance and adds it to the set of tags of the current item being
-   * created/edited. - then add to set of new tags being created to later add to redux and
-   * hides the tag input.
-   *
-   * @param tagString string of tag to be created.
-   */
-  const addNewTagToItem = (tagString: string) => {
-    const newTag = newUserTag(tagString);
-    setItemTagIds(itemTagIds.add(newTag.id));
-    setNewTags([...newTags, newTag]);
-    hideTagInput();
-  };
-
-  /**
-   * Handles action for the item selected in the tags picker dropdown.
-   *
-   * - If tagString === 'Add new tag +', show the tag input
-   * - If the tagString matches an existing UserTag, assign that tagString as the selected one.
-   * - If the tagString does not match an existing UserTag, assign that tagString as the
-   *   selcted one and addNewTagToItem().
-   * @param tagString for new UserTag
-   */
-  const selectTagHandler = (tagString: string) => {
-    if (tagString === '') return;
-    if (tagString === 'Add new tag +') {
-      setShowTagInput(true);
-      return;
-    }
-
-    if (selectedTags.includes(tagString)) return;
-
-    // Find a matching tag
-    const tagMatch = findUserTagByString(tagString, props.userTags);
-    if (tagMatch) {
-      setSelectedTag(tagMatch);
-      setSelectedTags([...selectedTags, tagMatch.tag]);
-      setItemTagIds(itemTagIds.add(tagMatch.id));
-    } else {
-      setSelectedTags([...selectedTags, tagString]);
-      addNewTagToItem(tagString);
-    }
-  };
-
-  const removeTag = (tag: string) => {
-    setSelectedTags(selectedTags.filter((item: string) => item !== tag));
-  };
-
   /**
    * Creates PendingJEntry, adds to upload queue
    * Updates the id if needed and returns the id
@@ -235,7 +173,9 @@ const UploadForm = (props: Props) => {
    */
   const addFileToUpload = (file: File, id: string): string => {
     let pendingFileData: PendingMFile = emptyPendingMFile;
-    const tagString = selectedTags ? setTagString(selectedTags) : '';
+    const tagString = selectedTagsStrings
+      ? setTagString(selectedTagsStrings)
+      : '';
     const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
     const extension = file.name.match(/\.[0-9a-z]+$/i) ?? '';
 
@@ -290,16 +230,18 @@ const UploadForm = (props: Props) => {
     if (newTags.length > 0) {
       dispatch(addUserTags(newTags));
     }
+
     // Attach tags to item on queue to pending
-    if (selectedTags.length > 0) {
-      dispatch(addTagsToItem(id, itemTagIds));
-      dispatch(saveTaggedItemsToAsync());
-    }
+    // if (selectedTags.length > 0) {
+    // if a tag was removed, we need to update it too.
+    dispatch(updateItemTagsIds(id, itemTagsIds));
+    dispatch(saveTaggedItemsToAsync());
+    // }
 
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate('PendingScreen', {added: true});
+    props.navigation.navigate('Upload queue tab', {added: true});
   };
 
   const updateTitle = (newTitle: string) => {
@@ -360,7 +302,7 @@ const UploadForm = (props: Props) => {
     if (itemType === 'J_ENTRY') return null;
 
     const matchingFolder = props.userFolders.find(
-      f => f.title === props.defFolderTitle
+      (f) => f.title === props.defFolderTitle
     );
 
     const folders: Array<UserFolder> = putDefaultAtTop(
@@ -397,69 +339,19 @@ const UploadForm = (props: Props) => {
     );
   };
 
+  const onNewUserTag = (newTag: UserTag) => {
+    setNewTags([...newTags, newTag]);
+  };
+
   const renderTagsPicker = () => (
-    // const displayedSelectedTags = selectedTags.concat(arr);
-    <View>
-      <View style={uploadFormStyles.tagsContainer}>
-        <SubHeading text={t`Tags`} />
-
-        {/* Display selected tags */}
-        {selectedTags?.map((value: string, index: number) => (
-          <TouchableOpacity
-            key={Math.random() * 100 + value}
-            onPress={() => removeTag(value)}
-            accessibilityRole="button"
-            accessibilityLabel={value}
-            accessibilityHint={i18n._(t`Tap to remove tag`)}>
-            <View style={forms.tag}>
-              <Text style={forms.tagText}>{value}</Text>
-              <Text style={forms.tagClose} accessibilityLabel="">
-                x
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-        {/* Create new tag */}
-        {showTagInput && (
-          <Item regular>
-            <Input
-              placeholder={i18n._(t`New tag...`)}
-              onChangeText={(text: string) => setNewTagText(text)}
-            />
-
-            <Icon
-              onPress={() => selectTagHandler(newTagText)}
-              name="checkmark-outline"
-            />
-            <Icon onPress={() => setShowTagInput(false)} name="close-outline" />
-          </Item>
-        )}
-      </View>
-      {/* Display drop down of existing tags */}
-      <Item regular style={[buttons.default]}>
-        <Picker
-          mode="dropdown"
-          iosHeader="Select tags"
-          placeholder={i18n._(t`Select tags`)}
-          accessibilityLabel={i18n._(t`Select tags`)}
-          selectedValue={selectedTag}
-          onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
-          <Picker.Item
-            label={i18n._(t`Select tags...`)}
-            value=""
-            color={styles.colors.darkgrey}
-          />
-          <Picker.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" />
-          {props.userTags.map((value: UserTag, index: number) => (
-            <Picker.Item
-              label={value.tag}
-              value={value.tag}
-              key={props.userTags[index].id}
-            />
-          ))}
-        </Picker>
-      </Item>
-    </View>
+    <TagsPicker
+      existingTags={existingItemTags}
+      userTags={props.userTags}
+      onAddNewUserTag={onNewUserTag}
+      onSetItemUploadTagsString={setSelectedTagsStrings}
+      onUpdateItemTagsIds={setItemTagsIds}
+      // onUpdateItemTags={}
+    />
   );
 
   const getFormValidation = () => {
@@ -494,7 +386,7 @@ const UploadForm = (props: Props) => {
             navigation={props.navigation}
             onPress={() => {
               props.navigation.popToTop();
-              props.navigation.navigate('Pending');
+              props.navigation.navigate('Upload queue tab');
             }}
           />
         )}

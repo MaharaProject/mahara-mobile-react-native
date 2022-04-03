@@ -24,7 +24,7 @@ import {
   selectUserBlogs,
   selectUserFolders
 } from '../../store/reducers/userArtefactsReducer';
-import {selectUserTags} from '../../store/reducers/userTagsReducer';
+import {getUserTags} from '../../store/reducers/userTagsReducer';
 import {
   pickDocument,
   renderImagePreview,
@@ -108,7 +108,7 @@ const AddItemScreen = (props: Props) => {
   );
 };
 
-export const AddItemScreenOptions = navData => {
+export const AddItemScreenOptions = (navData) => {
   const itemType = navData.route.params?.itemType ?? 'FILE';
   const intlStringOfItemType = getUploadTypeIntlStrings(itemType).toLowerCase();
   const addString = i18n._(t`Add`);
@@ -117,6 +117,7 @@ export const AddItemScreenOptions = navData => {
   return {
     headerTitle,
     headerLeft: () => (
+      // TODO: use the HeaderBackButton in the future for better accessibility (default)
       <CustomVerifyBackButton
         goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
       />
@@ -127,7 +128,7 @@ export const AddItemScreenOptions = navData => {
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
   token: selectToken(state),
-  userTags: selectUserTags(state),
+  userTags: getUserTags(state),
   userFolders: selectUserFolders(state),
   userBlogs: selectUserBlogs(state),
   uploadJournals: selectAllJEntries(state),

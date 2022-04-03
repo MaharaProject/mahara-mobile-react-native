@@ -8,7 +8,6 @@ import {
   UserBlog,
   UserFolder
 } from '../models/models';
-
 // action types - payloads of information that send data from your application to your store
 
 // DOMAIN DATA
@@ -16,7 +15,8 @@ import {
 export const ADD_USER_TAGS = 'ADD_USER_TAGS';
 export const CLEAR_USER_TAGS = 'CLEAR_USER_TAGS';
 export const REMOVE_USER_TAG = 'REMOVE_USER_TAG';
-export const TAG_ITEM = 'TAG_ITEM';
+export const UPDATE_ITEM_TAGS = 'UPDATE_ITEM_TAGS';
+
 export const TAGGED_ITEMS = 'TAGGED_ITEMS';
 export const UPDATE_TAGGED_ITEMS = 'UPDATE_TAGGED_ITEMS';
 export const UPDATE_USER_TAGS = 'UPDATE_USER_TAGS';

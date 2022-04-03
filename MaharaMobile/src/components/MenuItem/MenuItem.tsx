@@ -1,7 +1,7 @@
+import {MessageDescriptor} from '@lingui/core';
 import {I18n} from '@lingui/react';
 import React from 'react';
 import {Text, TouchableHighlight} from 'react-native';
-import {MessageDescriptor} from '../../models/models';
 import menuItemStyles from './MenuItem.style';
 
 type MenuItemProps = {
