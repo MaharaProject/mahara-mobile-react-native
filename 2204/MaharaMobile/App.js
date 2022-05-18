@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import i18n, {changeActiveLanguage} from './i18n';
 import type {Node} from 'react';
 import {
@@ -90,7 +90,6 @@ const App: () => Node = () => {
     </SafeAreaView>
   );
 };
-
 
 export const I18nProviderWrapper = () => {
   const [activeLanguage, setActiveLanguage] = useState('en');
