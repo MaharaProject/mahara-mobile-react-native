@@ -31,7 +31,7 @@ import {
 import AppNavigator from './src/navigation/AppNavigator';
 // import getTheme from '../native-base-theme/components';
 import {NativeBaseProvider, Box} from 'native-base';
-// import * as RNLocalize from 'react-native-localize';
+import * as RNLocalize from 'react-native-localize';
 import {I18nProvider} from '@lingui/react';
 
 
