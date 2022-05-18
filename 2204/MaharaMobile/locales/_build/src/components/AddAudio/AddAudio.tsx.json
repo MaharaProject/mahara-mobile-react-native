@@ -1,0 +1,122 @@
+{
+  "Access permission": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        45
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        60
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        45
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        60
+      ]
+    ]
+  },
+  "Allow Mahara Mobile to access photos, media, and files on your device?": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        46
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        46
+      ]
+    ]
+  },
+  "Allow": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        47
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        62
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        77
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        47
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        62
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        77
+      ]
+    ]
+  },
+  "Allow Mahara Mobile to read photos, media, and files on your device?": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        61
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        61
+      ]
+    ]
+  },
+  "Permission to record audio": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        75
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        75
+      ]
+    ]
+  },
+  "Allow your microphone to record audio and save the files?": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        76
+      ],
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        76
+      ]
+    ]
+  },
+  "Stop": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        191
+      ]
+    ]
+  },
+  "Re-record": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        191
+      ]
+    ]
+  },
+  "Record": {
+    "origin": [
+      [
+        "src/components/AddAudio/AddAudio.tsx",
+        191
+      ]
+    ]
+  }
+}

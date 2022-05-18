@@ -1,0 +1,34 @@
+{
+  "Select login type": {
+    "origin": [
+      [
+        "src/components/LoginTypes/LoginTypes.tsx",
+        19
+      ]
+    ]
+  },
+  "Single sign-on": {
+    "origin": [
+      [
+        "src/components/LoginTypes/LoginTypes.tsx",
+        22
+      ]
+    ]
+  },
+  "Local": {
+    "origin": [
+      [
+        "src/components/LoginTypes/LoginTypes.tsx",
+        23
+      ]
+    ]
+  },
+  "Access token": {
+    "origin": [
+      [
+        "src/components/LoginTypes/LoginTypes.tsx",
+        24
+      ]
+    ]
+  }
+}

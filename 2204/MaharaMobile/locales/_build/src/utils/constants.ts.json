@@ -1,0 +1,34 @@
+{
+  "journal entry": {
+    "origin": [
+      [
+        "src/utils/constants.ts",
+        81
+      ]
+    ]
+  },
+  "file": {
+    "origin": [
+      [
+        "src/utils/constants.ts",
+        82
+      ]
+    ]
+  },
+  "photo": {
+    "origin": [
+      [
+        "src/utils/constants.ts",
+        83
+      ]
+    ]
+  },
+  "audio": {
+    "origin": [
+      [
+        "src/utils/constants.ts",
+        84
+      ]
+    ]
+  }
+}

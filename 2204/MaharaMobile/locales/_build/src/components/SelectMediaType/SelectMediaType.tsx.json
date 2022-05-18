@@ -1,0 +1,34 @@
+{
+  "File": {
+    "origin": [
+      [
+        "src/components/SelectMediaType/SelectMediaType.tsx",
+        14
+      ]
+    ]
+  },
+  "Photo": {
+    "origin": [
+      [
+        "src/components/SelectMediaType/SelectMediaType.tsx",
+        15
+      ]
+    ]
+  },
+  "Journal entry": {
+    "origin": [
+      [
+        "src/components/SelectMediaType/SelectMediaType.tsx",
+        18
+      ]
+    ]
+  },
+  "Audio": {
+    "origin": [
+      [
+        "src/components/SelectMediaType/SelectMediaType.tsx",
+        19
+      ]
+    ]
+  }
+}

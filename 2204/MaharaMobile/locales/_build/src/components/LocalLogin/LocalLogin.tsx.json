@@ -1,0 +1,34 @@
+{
+  "Log in via username and password": {
+    "origin": [
+      [
+        "src/components/LocalLogin/LocalLogin.tsx",
+        64
+      ]
+    ]
+  },
+  "Username": {
+    "origin": [
+      [
+        "src/components/LocalLogin/LocalLogin.tsx",
+        67
+      ]
+    ]
+  },
+  "Password": {
+    "origin": [
+      [
+        "src/components/LocalLogin/LocalLogin.tsx",
+        70
+      ]
+    ]
+  },
+  "Login": {
+    "origin": [
+      [
+        "src/components/LocalLogin/LocalLogin.tsx",
+        72
+      ]
+    ]
+  }
+}

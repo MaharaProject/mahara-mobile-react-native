@@ -1,0 +1,106 @@
+{
+  "File": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        160
+      ]
+    ]
+  },
+  "A file has been added.": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        161
+      ]
+    ]
+  },
+  "Title": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        171
+      ]
+    ]
+  },
+  "Name": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        171
+      ]
+    ]
+  },
+  "Entry": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        174
+      ]
+    ]
+  },
+  "Description": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        174
+      ]
+    ]
+  },
+  "Folder": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        184
+      ]
+    ]
+  },
+  "Error: You do not have any folders on your site.": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        185
+      ]
+    ]
+  },
+  "Select folder": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        187
+      ]
+    ]
+  },
+  "default": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        191
+      ]
+    ]
+  },
+  "Confirm edits to {intlItemType}": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        216
+      ]
+    ]
+  },
+  "Queue to upload": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        217
+      ]
+    ]
+  },
+  "Fields marked by * are required.": {
+    "origin": [
+      [
+        "src/components/UploadForm/UploadForm.tsx",
+        238
+      ]
+    ]
+  }
+}

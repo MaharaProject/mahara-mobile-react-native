@@ -1,0 +1,102 @@
+{
+  "Profile settings": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        45
+      ]
+    ]
+  },
+  "Destination folder": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        60
+      ]
+    ]
+  },
+  "Select folder": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        62
+      ]
+    ]
+  },
+  "default": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        68
+      ],
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        88
+      ]
+    ]
+  },
+  "Destination journal": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        82
+      ]
+    ]
+  },
+  "Select journal": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        84
+      ]
+    ]
+  },
+  "Hi": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        101
+      ]
+    ]
+  },
+  "Updated preferences": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        105
+      ]
+    ]
+  },
+  "Folder": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        106
+      ]
+    ]
+  },
+  "Journal": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        107
+      ]
+    ]
+  },
+  "Default options": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        111
+      ]
+    ]
+  },
+  "Update preferences": {
+    "origin": [
+      [
+        "src/screens/PreferencesScreen/PreferencesScreen.tsx",
+        114
+      ]
+    ]
+  }
+}

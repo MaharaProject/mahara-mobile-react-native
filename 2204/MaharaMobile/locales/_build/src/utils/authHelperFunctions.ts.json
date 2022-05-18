@@ -1,0 +1,18 @@
+{
+  "Are you sure?": {
+    "origin": [
+      [
+        "src/utils/authHelperFunctions.ts",
+        106
+      ]
+    ]
+  },
+  "Items in the upload queue will not be retrievable once logged out.": {
+    "origin": [
+      [
+        "src/utils/authHelperFunctions.ts",
+        106
+      ]
+    ]
+  }
+}

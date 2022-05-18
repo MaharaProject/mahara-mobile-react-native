@@ -1,0 +1,10 @@
+{
+  "Cancel": {
+    "origin": [
+      [
+        "src/components/UI/CancelButton/CancelButton.tsx",
+        12
+      ]
+    ]
+  }
+}
