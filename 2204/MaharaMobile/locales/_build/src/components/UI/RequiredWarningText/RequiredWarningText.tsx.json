@@ -1,0 +1,10 @@
+{
+  "This field is required.": {
+    "origin": [
+      [
+        "src/components/UI/RequiredWarningText/RequiredWarningText.tsx",
+        12
+      ]
+    ]
+  }
+}

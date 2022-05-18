@@ -1,0 +1,82 @@
+{
+  "No photo captured": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        14
+      ]
+    ]
+  },
+  "Camera closed.": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        14
+      ]
+    ]
+  },
+  "ImagePicker Error:{0}": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        17
+      ]
+    ]
+  },
+  "Invalid file": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        72
+      ]
+    ]
+  },
+  "Please select a file.": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        72
+      ]
+    ]
+  },
+  "Are you sure?": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        82
+      ]
+    ]
+  },
+  "It looks like you have been editing something. If you leave before saving, your changes will be lost.": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        82
+      ]
+    ]
+  },
+  "Cancel": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        84
+      ]
+    ]
+  },
+  "Okay": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        90
+      ]
+    ]
+  },
+  "image preview": {
+    "origin": [
+      [
+        "src/utils/addEditHelperFunctions.tsx",
+        97
+      ]
+    ]
+  }
+}

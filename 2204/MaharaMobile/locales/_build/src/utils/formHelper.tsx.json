@@ -1,0 +1,10 @@
+{
+  "This field is required.": {
+    "origin": [
+      [
+        "src/utils/formHelper.tsx",
+        23
+      ]
+    ]
+  }
+}

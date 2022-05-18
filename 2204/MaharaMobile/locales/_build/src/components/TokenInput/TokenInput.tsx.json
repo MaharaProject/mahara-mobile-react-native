@@ -1,0 +1,18 @@
+{
+  "Log in via an access token": {
+    "origin": [
+      [
+        "src/components/TokenInput/TokenInput.tsx",
+        25
+      ]
+    ]
+  },
+  "Verify token": {
+    "origin": [
+      [
+        "src/components/TokenInput/TokenInput.tsx",
+        27
+      ]
+    ]
+  }
+}

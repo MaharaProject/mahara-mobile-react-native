@@ -1,0 +1,50 @@
+{
+  "Please check the internet connection.": {
+    "origin": [
+      [
+        "src/utils/helperFunctions.ts",
+        76
+      ]
+    ]
+  },
+  "Audio": {
+    "origin": [
+      [
+        "src/utils/helperFunctions.ts",
+        96
+      ]
+    ]
+  },
+  "File": {
+    "origin": [
+      [
+        "src/utils/helperFunctions.ts",
+        98
+      ]
+    ]
+  },
+  "Journal entry": {
+    "origin": [
+      [
+        "src/utils/helperFunctions.ts",
+        100
+      ]
+    ]
+  },
+  "Photo": {
+    "origin": [
+      [
+        "src/utils/helperFunctions.ts",
+        102
+      ]
+    ]
+  },
+  "Invalid type": {
+    "origin": [
+      [
+        "src/utils/helperFunctions.ts",
+        104
+      ]
+    ]
+  }
+}
