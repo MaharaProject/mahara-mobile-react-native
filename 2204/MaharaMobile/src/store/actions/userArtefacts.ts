@@ -1,4 +1,4 @@
-import {t} from '@lingui/macro';
+// import {t} from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   CLEAR_USER_BLOGS,
@@ -7,9 +7,9 @@ import {
   UPDATE_USER_FOLDERS
 } from '../../utils/constants';
 import {LoginInfo, UserBlog, UserFolder} from '../../models/models';
-import RequestError from '../../utils/RequestError';
 import {updateUrl} from './loginInfo';
 import {updateLoginTypes} from './actions';
+import RequestError from '../../utils/RequestError';
 
 // userArtefactsReducer
 
@@ -64,14 +64,14 @@ export function checkLoginTypes(url: string) {
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
         throw new Error(
-          i18n._(t`This is not a Mahara site. Please re-enter URL.`)
+          // i18n._(t`This is not a Mahara site. Please re-enter URL.`)
         );
       }
       // check that webservices is enabled on the Mahara instance
       if (!result.wsenabled) {
         throw new Error(
           i18n._(
-            t`Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.`
+            // t`Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.`
           )
         );
       }
@@ -80,7 +80,7 @@ export function checkLoginTypes(url: string) {
       return true; // for success to turn loading spinner off
     } catch (error) {
       if (error.code >= 400 && error.code < 600) {
-        throw new Error(i18n._(t`Invalid Mahara site. Please re-enter URL.`));
+        // throw new Error(i18n._(t`Invalid Mahara site. Please re-enter URL.`));
       }
 
       throw error;
