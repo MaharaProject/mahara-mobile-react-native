@@ -9,6 +9,7 @@
 import React, {useState} from 'react';
 import i18n, {changeActiveLanguage} from './i18n';
 import type {Node} from 'react';
+import {Root, StyleProvider} from 'native-base';
 import {
   SafeAreaView,
   ScrollView,
@@ -61,33 +62,44 @@ const App: () => Node = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          {/* <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks /> */}
-        </View>
-      </ScrollView>
+    <SafeAreaView>
+      <Root>
+      <Provider store={store}>
+        <StyleProvider style={getTheme(commonColor)}>
+          <I18nProviderWrapper>
+            <AppNavigator />
+          </I18nProviderWrapper>
+        </StyleProvider>
+      </Provider>
+    </Root>
     </SafeAreaView>
+    // <SafeAreaView style={backgroundStyle}>
+    //   <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+    //   <ScrollView
+    //     contentInsetAdjustmentBehavior="automatic"
+    //     style={backgroundStyle}>
+    //     <Header />
+    //     <View
+    //       style={{
+    //         backgroundColor: isDarkMode ? Colors.black : Colors.white,
+    //       }}>
+    //       <Section title="Step One">
+    //         Edit <Text style={styles.highlight}>App.js</Text> to change this
+    //         screen and then come back to see your edits.
+    //       </Section>
+    //       <Section title="See Your Changes">
+    //         <ReloadInstructions />
+    //       </Section>
+    //       <Section title="Debug">
+    //         <DebugInstructions />
+    //       </Section>
+    //       <Section title="Learn More">
+    //         Read the docs to discover what to do next:
+    //       </Section>
+    //       <LearnMoreLinks />
+    //     </View>
+    //   </ScrollView>
+    // </SafeAreaView>
   );
 };
 
