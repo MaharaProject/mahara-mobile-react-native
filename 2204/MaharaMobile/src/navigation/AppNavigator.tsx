@@ -1,6 +1,7 @@
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 import React from 'react';
 import {useSelector} from 'react-redux';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 // import MaharaMobileNavigator from './MaharaMobileNavigator';
 // import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 // import {AuthNavigator} from './StackNavigators';
@@ -25,9 +26,9 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      {/* {isAuth && <MaharaMobileNavigator />}
-      {!isAuth && didTryAutoLogin && <AuthNavigator />}
-      {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />} */}
+      {/* {isAuth && <MaharaMobileNavigator />} */}
+      {/* {!isAuth && didTryAutoLogin && <AuthNavigator />} */}
+      {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />}
     </NavigationContainer>
   );
 };

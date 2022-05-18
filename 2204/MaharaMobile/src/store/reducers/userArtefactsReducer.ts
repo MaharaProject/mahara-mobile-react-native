@@ -3,12 +3,7 @@ import {
   UserBlogsActions,
   UserFoldersActions
 } from '../../models/userArtefactsTypes';
-import {
-  CLEAR_USER_BLOGS,
-  CLEAR_USER_FOLDERS,
-  UPDATE_USER_BLOGS,
-  UPDATE_USER_FOLDERS
-} from '../../utils/constants';
+import { CLEAR_USER_BLOGS, CLEAR_USER_FOLDERS, UPDATE_USER_BLOGS, UPDATE_USER_FOLDERS } from '../../utils/constants';
 import {RootState} from './rootReducer';
 
 // UserFolders
