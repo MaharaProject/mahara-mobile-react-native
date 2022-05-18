@@ -23,8 +23,14 @@
   "dependencies": {
     "@lingui/conf": "^3.13.3",
     "@lingui/core": "^3.13.3",
+    "@react-navigation/bottom-tabs": "^6.3.1",
+    "@react-navigation/core": "^6.2.1",
+    "@react-navigation/drawer": "^6.4.1",
+    "@react-navigation/stack": "^6.2.1",
     "react": "17.0.2",
-    "react-native": "^0.68.0-0"
+    "react-native": "^0.68.0-0",
+    "react-redux": "^8.0.1",
+    "redux": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
