@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useEffect} from 'react';
-import {ActivityIndicator, StatusBar, StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {PendingJEntry, PendingMFile} from '../../models/models';
+import React, { useEffect } from 'react';
+import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { PendingJEntry, PendingMFile } from '../../models/models';
 import {
   updateLoginTypes,
   updateTaggedItemsFromAsync,
@@ -18,8 +18,8 @@ import {
   updateUrl,
   updateUserName
 } from '../../store/actions/loginInfo';
-import {addFileToUploadList} from '../../store/actions/uploadFiles';
-import {addJournalEntryToUploadList} from '../../store/actions/uploadJEntries';
+import { addFileToUploadList } from '../../store/actions/uploadFiles';
+import { addJournalEntryToUploadList } from '../../store/actions/uploadJEntries';
 import {
   updateUserBlogs,
   updateUserFolders
@@ -61,15 +61,21 @@ const AuthLoadingScreen = () => {
       let ssoLogin = false;
 
       await AsyncStorage.getItem('localLogin').then((result: string | null) => {
-        if (result) localLogin = JSON.parse(result);
+        if (result) {
+          localLogin = JSON.parse(result);
+        }
       });
 
       await AsyncStorage.getItem('tokenLogin').then((result: string | null) => {
-        if (result) tokenLogin = JSON.parse(result);
+        if (result) {
+          tokenLogin = JSON.parse(result);
+        }
       });
 
       await AsyncStorage.getItem('ssoLogin').then((result: string | null) => {
-        if (result) ssoLogin = JSON.parse(result);
+        if (result) {
+          ssoLogin = JSON.parse(result);
+        }
       });
 
       dispatch(updateLoginTypes(null, localLogin, tokenLogin, ssoLogin));

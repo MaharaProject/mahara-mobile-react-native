@@ -1,11 +1,11 @@
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 // import MaharaMobileNavigator from './MaharaMobileNavigator';
-// import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
-// import {AuthNavigator} from './StackNavigators';
-import {RootState} from '../store/reducers/rootReducer';
+// import { AuthNavigator } from './StackNavigators';
+import { RootState } from '../store/reducers/rootReducer';
+import { Text } from 'native-base';
 
 const AppNavigator = () => {
   const isAuth = useSelector(
@@ -20,13 +20,14 @@ const AppNavigator = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#FFF' // react-nav default background is grey
-    }
+      background: '#FFF', // react-nav default background is grey
+    },
   };
 
   return (
     <NavigationContainer theme={MyTheme}>
       {/* {isAuth && <MaharaMobileNavigator />} */}
+      <Text>{didTryAutoLogin}</Text>
       {/* {!isAuth && didTryAutoLogin && <AuthNavigator />} */}
       {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />}
     </NavigationContainer>
