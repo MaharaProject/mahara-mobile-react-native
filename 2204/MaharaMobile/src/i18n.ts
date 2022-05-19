@@ -1,6 +1,6 @@
 import {setupI18n} from '@lingui/core';
-import catalogEn from './locales/en/messages';
-import catalogKo from './locales/ko/messages';
+import catalogEn from '../locales/en/messages';
+import catalogKo from '../locales/ko/messages';
 
 const i18n = setupI18n();
 i18n.load({
