@@ -1,13 +1,13 @@
-// import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
+import { t } from '@lingui/macro';
+import { withI18n } from '@lingui/react';
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
 // Images
 import PickFileSvg from '../../assets/images/PickFile';
 import RecordAudioSvg from '../../assets/images/RecordAudio';
 import TakePhotoSvg from '../../assets/images/TakePhoto';
-import {UploadItemType} from '../../models/models';
+import { UploadItemType } from '../../models/models';
 import GridButton from '../UI/GridButton/GridButton';
 import styles from './SelectMediaType.style';
 
