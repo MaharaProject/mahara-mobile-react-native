@@ -29,7 +29,7 @@ const App: () => Node = () => {
   const store = configureStore(undefined, i18n);
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
@@ -37,7 +37,11 @@ const App: () => Node = () => {
     // <NativeBaseProvider>
     <Root>
       <Provider store={store}>
-        <AppNavigator />
+        {/* <StyleProvider style={getTheme(commonColor)}> */}
+        <I18nProviderWrapper>
+          <AppNavigator />
+        </I18nProviderWrapper>
+        {/* </StyleProvider> */}
       </Provider>
     </Root>
     //     </View>
