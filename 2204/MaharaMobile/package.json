@@ -91,5 +91,8 @@
       "react",
       "react-test-renderer"
     ]
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }
