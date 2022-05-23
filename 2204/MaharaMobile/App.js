@@ -7,6 +7,10 @@
  */
 
 import React, { useEffect, useState } from 'react';
+import { Root, StyleProvider } from 'native-base';
+import commonColor from './native-base-theme/variables/commonColor';
+import getTheme from './native-base-theme/components';
+
 // import i18n, { changeActiveLanguage } from './src/i18n';
 
 import type { Node } from 'react';
@@ -15,7 +19,6 @@ import { Provider } from 'react-redux';
 import { useColorScheme } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { Root } from 'native-base';
 import AppNavigator from './src/navigation/AppNavigator';
 
 // import getTheme from '../native-base-theme/components';
@@ -38,11 +41,11 @@ const App: () => Node = () => {
     // <NativeBaseProvider>
     <Root>
       <Provider store={store}>
-        {/* <StyleProvider style={getTheme(commonColor)}> */}
-        {/* <I18nProviderWrapper> */}
-        <AppNavigator />
-        {/* </I18nProviderWrapper> */}
-        {/* </StyleProvider> */}
+        <StyleProvider style={getTheme(commonColor)}>
+          {/* <I18nProviderWrapper> */}
+          <AppNavigator />
+          {/* </I18nProviderWrapper> */}
+        </StyleProvider>
       </Provider>
     </Root>
     //     </View>
