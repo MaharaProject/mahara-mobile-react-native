@@ -9,7 +9,7 @@ import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
-import i18n from '../../i18n';
+// import i18n from '../../i18n';
 import { UserBlog, UserFolder, UserTag } from '../../models/models';
 import {
   selectDefaultBlogId,
@@ -91,7 +91,7 @@ const AddItemScreen = (props: Props) => {
             <AddAudio setPickedFile={setPickedFile} />
           </View>
         )}
-        <View>
+        {/* <View>
           <UploadForm
             pickedFile={pickedFile}
             userFolders={props.userFolders}
@@ -105,7 +105,7 @@ const AddItemScreen = (props: Props) => {
             defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
           />
-        </View>
+        </View> */}
       </View>
     </Content>
   );

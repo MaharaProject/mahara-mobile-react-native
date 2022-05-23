@@ -1,5 +1,6 @@
 // import {t, Trans} from '@lingui/macro';
 import { useEffect, useState } from 'react';
+import React from 'react';
 import { ActivityIndicator, Alert, Text, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { connect, useSelector } from 'react-redux';
