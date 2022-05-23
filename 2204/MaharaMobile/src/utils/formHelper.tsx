@@ -1,9 +1,9 @@
 // import {t} from '@lingui/macro';
-import {I18n} from '@lingui/react';
-import {Label} from 'native-base';
+// // import {I18n} from '@lingui/react';
 import React from 'react';
+import { Label } from 'native-base';
 import styles from '../assets/styles/variables';
-import {UploadItemType, UserBlog, UserFolder} from '../models/models';
+import { UploadItemType, UserBlog, UserFolder } from '../models/models';
 
 export const setTagString = (tags: Array<string>) => {
   const tagsArray = tags.map(
@@ -19,25 +19,32 @@ export const isValidText = (
   itemType: UploadItemType,
   text: string
 ): boolean => {
-  if (itemType === 'J_ENTRY' && text.length === 0) return false;
-  if (itemType === 'FILE' || itemType === 'PHOTO') return true;
+  if (itemType === 'J_ENTRY' && text.length === 0) {
+    return false;
+  }
+  if (itemType === 'FILE' || itemType === 'PHOTO') {
+    return true;
+  }
   return true;
 };
 
-export const RequiredWarningText = (props: {customText: string}) => (
-  <I18n>
-    {({i18n}) => (
-      <Label style={{color: styles.colors.warn}}>
-        {props.customText
-          ? i18n._(props.customText)
-          : i18n._(t`This field is required.`)}
-      </Label>
-    )}
-  </I18n>
+export const RequiredWarningText = (props: { customText: string }) => (
+  // <I18n>
+  //   {({i18n}) => (
+  //     <Label style={{color: styles.colors.warn}}>
+  //       {props.customText
+  //         ? i18n._(props.customText)
+  //         : i18n._(t`This field is required.`)}
+  //     </Label>
+  //   )}
+  // </I18n>
+  <Label style={{ color: styles.colors.warn }}>
+    {props.customText ? props.customText : 'This field is required.'}
+  </Label>
 );
 
 export const RedAsterisk = () => (
-  <Label style={{color: styles.colors.warn}}>*</Label>
+  <Label style={{ color: styles.colors.warn }}>*</Label>
 );
 
 /**

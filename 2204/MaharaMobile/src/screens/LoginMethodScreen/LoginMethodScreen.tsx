@@ -1,16 +1,16 @@
-import {I18n} from '@lingui/core';
+// import {I18n} from '@lingui/core';
 // // import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
-import React, {useEffect, useState} from 'react';
-import {Alert, View} from 'react-native';
-import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
+// import {withI18n} from '@lingui/react';
+import React, { useEffect, useState } from 'react';
+import { Alert, View } from 'react-native';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import {
   addToken,
   setDefaultBlogId,
   setDefaultFolder,
   updateGuestStatus,
-  updateUserName
+  updateUserName,
 } from '../../store/actions/loginInfo';
 import generic from '../../assets/styles/generic';
 import LocalLogin from '../../components/LocalLogin/LocalLogin';
@@ -21,41 +21,42 @@ import {
   UserBlog,
   UserBlogJSON,
   UserFolder,
-  UserTag
+  UserTag,
 } from '../../models/models';
 import {
   selectIsGuestStatus,
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
-  selectUrl
+  selectUrl,
 } from '../../store/reducers/loginInfoReducer';
-import {RootState} from '../../store/reducers/rootReducer';
+import { RootState } from '../../store/reducers/rootReducer';
 import {
   selectUserBlogs,
-  selectUserFolders
+  selectUserFolders,
 } from '../../store/reducers/userArtefactsReducer';
 import {
   fetchUserWithToken,
   onCheckAuthJSON,
-  updatePendingItemsOnGuestToUser
+  updatePendingItemsOnGuestToUser,
 } from '../../utils/authHelperFunctions';
-import {newUserTag} from '../../models/typeCreators';
-import {updateUserTags, updateUserTagsIds} from '../../store/actions/actions';
+import { newUserTag } from '../../models/typeCreators';
+import { updateUserTags, updateUserTagsIds } from '../../store/actions/actions';
 import {
   updateUserBlogs,
-  updateUserFolders
+  updateUserFolders,
 } from '../../store/actions/userArtefacts';
-import {userBlogJSONtoUserBlog} from '../../utils/helperFunctions';
+import { userBlogJSONtoUserBlog } from '../../utils/helperFunctions';
 import flashMessage from '../../components/FlashMessage/FlashMessage';
 
 type Props = {
   dispatch: Dispatch;
-  route: {params: {loginType: LoginType}};
+  route: { params: { loginType: LoginType } };
   url: string;
   userFolders: Array<UserFolder>;
   userBlogs: Array<UserBlog>;
-  i18n: I18n;
+  // i18n: I18n;
+  i18n: any;
   isGuest: boolean;
 };
 
@@ -75,27 +76,33 @@ export const LoginMethodScreen = (props: Props) => {
     if (newToken !== null) {
       setToken(newToken);
     } else {
-      const {loginType} = props.route.params;
+      const { loginType } = props.route.params;
       if (newToken == null) {
         switch (loginType) {
           case 'basic':
             Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(
-                t`Your username or password was incorrect. Please try again.`
-              )
+              // props.i18n._(t`Login failed`),
+              'Login failed',
+              // props.i18n._(
+              // t`Your username or password was incorrect. Please try again.`
+              'Your username or password was incorrect. Please try again.'
+              // )
             );
             break;
           case 'token':
             Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(t`Invalid token: please try again.`)
+              // props.i18n._(t`Login failed`),
+              // props.i18n._(t`Invalid token: please try again.`)
+              'Login failed',
+              'Invalid token: please try again.'
             );
             break;
           case 'sso':
             Alert.alert(
-              props.i18n._(t`Login failed`),
-              props.i18n._(t`Please try again.`)
+              // props.i18n._(t`Login failed`),
+              // props.i18n._(t`Please try again.`)
+              'Login failed',
+              'Please try again.'
             );
             break;
           default:
@@ -106,7 +113,7 @@ export const LoginMethodScreen = (props: Props) => {
   };
 
   const login = () => {
-    const {url} = props;
+    const { url } = props;
     const serverUrl = `${url}webservice/rest/server.php?alt=json`;
 
     const body = {
@@ -116,15 +123,15 @@ export const LoginMethodScreen = (props: Props) => {
       userprofile: {},
       userprofileicon: {},
       wsfunction: 'module_mobileapi_sync',
-      wstoken: token
+      wstoken: token,
     };
 
     const requestOptions = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
     };
 
     // TODO check this function
@@ -207,7 +214,8 @@ export const LoginMethodScreen = (props: Props) => {
         props.dispatch(setDefaultBlogId(userData.blogs.blogs[0].id));
         props.dispatch(setDefaultFolder(userData.folders.folders[0].title));
         setLoading(false);
-        flashMessage(t`Logged in: ${userData.userprofile.myname}`, 'success');
+        // flashMessage(t`Logged in: ${userData.userprofile.myname}`, 'success');
+        flashMessage(`Logged in: ${userData.userprofile.myname}`, 'success');
 
         // checkValidInitialState(props.userBlogs, props.userFolders)
       });
@@ -219,7 +227,7 @@ export const LoginMethodScreen = (props: Props) => {
     }
   }, [token]);
 
-  const {loginType} = props.route.params;
+  const { loginType } = props.route.params;
 
   return (
     <View style={generic.view}>
@@ -245,11 +253,11 @@ export const LoginMethodScreenOptions = (navData) => {
 
   if (headerTitle === 'sso') {
     return {
-      headerTitle: 'SSO'
+      headerTitle: 'SSO',
     };
   }
   return {
-    headerShown: false
+    headerShown: false,
   };
 };
 
@@ -260,7 +268,8 @@ const mapStateToProps = (state: RootState) => ({
   localLogin: selectLocalLogin(state),
   userBlogs: selectUserBlogs(state),
   userFolders: selectUserFolders(state),
-  isGuest: selectIsGuestStatus(state)
+  isGuest: selectIsGuestStatus(state),
 });
 
-export default connect(mapStateToProps)(withI18n()(LoginMethodScreen));
+// export default connect(mapStateToProps)(withI18n()(LoginMethodScreen));
+export default connect(mapStateToProps)(LoginMethodScreen);

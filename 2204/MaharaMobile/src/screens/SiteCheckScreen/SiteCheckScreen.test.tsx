@@ -1,10 +1,10 @@
-import {I18nProvider} from '@lingui/react';
+// import {I18nProvider} from '@lingui/react';
 import React from 'react';
 import 'react-native';
 import {Provider} from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
-import i18n from '../../i18n';
+// import i18n from '../../i18n';
 import SiteCheckScreen from './SiteCheckScreen';
 
 it('renders correctly', () => {
@@ -31,9 +31,9 @@ it('renders correctly', () => {
 
   renderer.create(
     <Provider store={mockStore(initialState)}>
-      <I18nProvider i18n={i18n} language="en">
+      {/* <I18nProvider i18n={i18n} language="en"> */}
         <SiteCheckScreen {...props} />
-      </I18nProvider>
+      {/* </I18nProvider> */}
     </Provider>
   );
 });

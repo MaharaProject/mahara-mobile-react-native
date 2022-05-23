@@ -7,6 +7,7 @@ import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
 import { RootState } from '../store/reducers/rootReducer';
 import { Text } from 'native-base';
 import MaharaMobileNavigator from './MaharaMobileNavigator';
+import { AuthNavigator } from './StackNavigators';
 
 const AppNavigator = () => {
   const isAuth = useSelector(
@@ -27,10 +28,10 @@ const AppNavigator = () => {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      {/* {isAuth && <MaharaMobileNavigator />} */}
-      <MaharaMobileNavigator />
-      {/* {!isAuth && didTryAutoLogin && <AuthNavigator />} */}
-      {/* {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />} */}
+      {isAuth && <MaharaMobileNavigator />}
+      {/* <MaharaMobileNavigator /> */}
+      {!isAuth && didTryAutoLogin && <AuthNavigator />}
+      {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />}
     </NavigationContainer>
   );
 };

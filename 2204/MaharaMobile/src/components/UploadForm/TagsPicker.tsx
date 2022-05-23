@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 // import {t} from '@lingui/macro';
-import {Icon, Input, Item, Picker, Text, View} from 'native-base';
-import {TouchableOpacity} from 'react-native';
+import { Icon, Input, Item, Picker, Text, View } from 'native-base';
+import { TouchableOpacity } from 'react-native';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
-import i18n from '../../i18n';
-import {UserTag} from '../../models/models';
-import {newUserTag} from '../../models/typeCreators';
-import {findUserTagByString} from '../../utils/helperFunctions';
+// import i18n from '../../i18n';
+import { UserTag } from '../../models/models';
+import { newUserTag } from '../../models/typeCreators';
+import { findUserTagByString } from '../../utils/helperFunctions';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
 
@@ -93,7 +93,9 @@ const TagsPicker = (props: Props) => {
    * @param tagString for new UserTag
    */
   const selectTagHandler = (tagString: string) => {
-    if (tagString === '') return;
+    if (tagString === '') {
+      return;
+    }
     if (tagString === 'Add new tag +') {
       setShowTagInput(true);
       return;
@@ -101,7 +103,9 @@ const TagsPicker = (props: Props) => {
 
     const selectedTagsAsStrings = getSelectedTagsAsStrings();
 
-    if (selectedTagsAsStrings.includes(tagString)) return;
+    if (selectedTagsAsStrings.includes(tagString)) {
+      return;
+    }
 
     // Find a matching tag
     const tagMatch = findUserTagByString(tagString, props.userTags);
@@ -122,8 +126,8 @@ const TagsPicker = (props: Props) => {
   return (
     <View>
       <View style={uploadFormStyles.tagsContainer}>
-        <SubHeading text={t`Tags`} />
-
+        {/* <SubHeading text={t`Tags`} /> */}
+        <SubHeading text="Tags" />
         {/* Display selected tags */}
         {getSelectedTagsAsStrings().map((value: string, index: number) => (
           <TouchableOpacity
@@ -131,7 +135,8 @@ const TagsPicker = (props: Props) => {
             onPress={() => onRemoveTag(index)}
             accessibilityRole="button"
             accessibilityLabel={value}
-            accessibilityHint={i18n._(t`Tap to remove tag`)}>
+            // accessibilityHint={i18n._(t`Tap to remove tag`)}
+          >
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
               <Text style={forms.tagClose} accessibilityLabel="">
@@ -144,7 +149,8 @@ const TagsPicker = (props: Props) => {
         {showTagInput && (
           <Item regular>
             <Input
-              placeholder={i18n._(t`New tag...`)}
+              // placeholder={i18n._(t`New tag...`)}
+              placeholder="New tag..."
               onChangeText={(text: string) => setNewTagText(text)}
             />
 
@@ -161,16 +167,19 @@ const TagsPicker = (props: Props) => {
         <Picker
           mode="dropdown"
           iosHeader="Select tags"
-          placeholder={i18n._(t`Select tags`)}
-          accessibilityLabel={i18n._(t`Select tags`)}
+          // placeholder={i18n._(t`Select tags`)}
+          placeholder="Select tags"
+          // accessibilityLabel={i18n._(t`Select tags`)}
           selectedValue={selectedDropdownTag}
           onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
           <Picker.Item
-            label={i18n._(t`Select tags...`)}
+            // label={i18n._(t`Select tags...`)}
+            label="Select tags..."
             value=""
             color={styles.colors.darkgrey}
           />
-          <Picker.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" />
+          {/* <Picker.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" /> */}
+          <Picker.Item label="Add new tag +" value="Add new tag +" />
           {props.userTags.map((value: UserTag, index: number) => (
             <Picker.Item
               label={value.tag}

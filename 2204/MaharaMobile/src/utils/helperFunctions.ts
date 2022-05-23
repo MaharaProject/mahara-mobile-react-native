@@ -1,7 +1,7 @@
 // import {t} from '@lingui/macro';
-import {StackActions} from '@react-navigation/native';
-import {useEffect, useRef} from 'react';
-import i18n from '../i18n';
+import { StackActions } from '@react-navigation/native';
+import { useEffect, useRef } from 'react';
+// import i18n from '../i18n';
 import {
   JournalEntry,
   MaharaFile,
@@ -10,9 +10,9 @@ import {
   UploadItemType,
   UserBlog,
   UserBlogJSON,
-  UserTag
+  UserTag,
 } from '../models/models';
-import {newUploadResponse} from '../models/typeCreators';
+import { newUploadResponse } from '../models/typeCreators';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -39,7 +39,7 @@ export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {
     id: blogJSON.id,
     locked: blogJSON.locked,
     numBlogPosts: blogJSON.numblogposts,
-    title: blogJSON.title
+    title: blogJSON.title,
   };
   return userBlog;
 }
@@ -49,9 +49,9 @@ export function buildObject(item: object) {
     return {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(item)
+      body: JSON.stringify(item),
     };
   }
   if (isMaharaFile(item)) {
@@ -64,7 +64,7 @@ export function buildObject(item: object) {
     sendFormData.append('filetoupload', item.filetoupload as unknown as Blob);
     return {
       method: 'POST',
-      body: sendFormData
+      body: sendFormData,
     };
   }
   return null;
@@ -81,7 +81,9 @@ export function uploadItemToMahara(url: string, item: object) {
     } catch (error) {
       customResponse = newUploadResponse(
         '',
-        i18n._(t`Please check the internet connection.`),
+        // i18n._(t`Please check the internet connection.`),
+        'Please check the internet connection.',
+
         '',
         '',
         {},
@@ -95,7 +97,7 @@ export function uploadItemToMahara(url: string, item: object) {
   };
 }
 
-export const popNavigationStack = StackActions.pop({n: 1});
+export const popNavigationStack = StackActions.pop({ n: 1 });
 
 // to use prevProps in Hooks
 export function usePreviousProps(value: number) {
@@ -112,15 +114,20 @@ export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
 export const getUploadTypeIntlStrings = (itemType: UploadItemType) => {
   switch (itemType) {
     case 'AUDIO':
-      return i18n._(t`Audio`);
+      // return i18n._(t`Audio`);
+      return 'Audio';
     case 'FILE':
-      return i18n._(t`File`);
+      // return i18n._(t`File`);
+      return 'File';
     case 'J_ENTRY':
-      return i18n._(t`Journal entry`);
+      // return i18n._(t`Journal entry`);
+      return 'Journal entry';
     case 'PHOTO':
-      return i18n._(t`Photo`);
+      // return i18n._(t`Photo`);
+      return 'Photo';
     default:
-      return i18n._(t`Invalid type`);
+      // return i18n._(t`Invalid type`);
+      return 'Invalid type';
   }
 };
 

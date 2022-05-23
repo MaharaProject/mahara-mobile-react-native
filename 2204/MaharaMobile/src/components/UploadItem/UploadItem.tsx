@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unused-prop-types */
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { withI18n } from '@lingui/react';
+// import { withI18n } from '@lingui/react';
 import React from 'react';
 import {
   Image,
   ImageSourcePropType,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import styles from '../../assets/styles/variables';
@@ -77,7 +77,7 @@ const UploadItem = (props: Props) => {
       <View
         style={[
           uploadItemStyles.imageContainer,
-          { borderWidth: 4, borderColor: styles.colors.light }
+          { borderWidth: 4, borderColor: styles.colors.light },
         ]}>
         <Image source={props.image} style={uploadItemStyles.thumbnail} />
       </View>
@@ -138,4 +138,5 @@ const UploadItem = (props: Props) => {
   );
 };
 
-export default withI18n()(UploadItem);
+// export default withI18n()(UploadItem);
+export default UploadItem;

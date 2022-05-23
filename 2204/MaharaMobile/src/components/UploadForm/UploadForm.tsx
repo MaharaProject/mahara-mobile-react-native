@@ -1,10 +1,10 @@
 // import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
-import {StackActions} from '@react-navigation/native';
-import {Item, Picker, Text, View} from 'native-base';
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import i18n from '../../i18n';
+// import {withI18n} from '@lingui/react';
+import { StackActions } from '@react-navigation/native';
+import { Item, Picker, Text, View } from 'native-base';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+// import i18n from '../../i18n';
 import {
   File,
   PendingJEntry,
@@ -12,34 +12,34 @@ import {
   UploadItemType,
   UserBlog,
   UserFolder,
-  UserTag
+  UserTag,
 } from '../../models/models';
 import {
   newJournalEntry,
   newMaharaFile,
   newPendingJEntry,
-  newPendingMFile
+  newPendingMFile,
 } from '../../models/typeCreators';
 import {
   updateItemTags as updateItemTagsIds,
   addUserTags,
-  saveTaggedItemsToAsync
+  saveTaggedItemsToAsync,
 } from '../../store/actions/actions';
-import {addFileToUploadList} from '../../store/actions/uploadFiles';
-import {addJournalEntryToUploadList} from '../../store/actions/uploadJEntries';
-import {RootState} from '../../store/reducers/rootReducer';
-import {getItemTags} from '../../store/reducers/userTagsReducer';
-import {emptyPendingJEntry, emptyPendingMFile} from '../../utils/constants';
+import { addFileToUploadList } from '../../store/actions/uploadFiles';
+import { addJournalEntryToUploadList } from '../../store/actions/uploadJEntries';
+import { RootState } from '../../store/reducers/rootReducer';
+import { getItemTags } from '../../store/reducers/userTagsReducer';
+import { emptyPendingJEntry, emptyPendingMFile } from '../../utils/constants';
 import {
   isValidText,
   putDefaultAtTop,
   removeExtension,
-  setTagString
+  setTagString,
 } from '../../utils/formHelper';
 import {
   getUploadTypeIntlStrings,
   isPendingJEntry,
-  isPendingMFile
+  isPendingMFile,
 } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
@@ -82,8 +82,8 @@ const UploadForm = (props: Props) => {
 
   const dispatch = useDispatch();
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
-  const {itemType} = props;
-  const {pickedFile} = props;
+  const { itemType } = props;
+  const { pickedFile } = props;
 
   // STATE
   const [isDraft, setIsDraft] = useState(false);
@@ -105,7 +105,7 @@ const UploadForm = (props: Props) => {
   useEffect(() => {
     if (props.editItem) {
       if (isPendingMFile(props.editItem)) {
-        const {maharaFormData} = props.editItem;
+        const { maharaFormData } = props.editItem;
         // The file is set in AddItemScreen as the pickedFile.
         setTitle(removeExtension(maharaFormData.name));
         setDescription(maharaFormData.description);
@@ -115,7 +115,7 @@ const UploadForm = (props: Props) => {
         setFileValid(true);
       }
       if (isPendingJEntry(props.editItem)) {
-        const {journalEntry} = props.editItem;
+        const { journalEntry } = props.editItem;
         setTitle(journalEntry.title);
         setDescription(journalEntry.body);
         setSelectedBlog(journalEntry.blogid);
@@ -187,7 +187,7 @@ const UploadForm = (props: Props) => {
 
     const updatedFile = {
       ...file,
-      name: filename
+      name: filename,
     };
 
     const formData = newMaharaFile(
@@ -241,7 +241,7 @@ const UploadForm = (props: Props) => {
     // upon successful upload, remove the AddFile screen from the navigation stack
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate('Upload queue tab', {added: true});
+    props.navigation.navigate('Upload queue tab', { added: true });
   };
 
   const updateTitle = (newTitle: string) => {
@@ -255,12 +255,17 @@ const UploadForm = (props: Props) => {
   };
 
   const renderDisplayedFilename = () => {
-    if (itemType === 'J_ENTRY') return null;
+    if (itemType === 'J_ENTRY') {
+      return null;
+    }
     return (
       <View>
-        <SubHeading required text={t`File`} />
+        {/* <SubHeading required text={t`File`} /> */}
+        <SubHeading required text="File" />
         {fileValid ? (
-          <Text accessibilityLabel={i18n._(t`A file has been added.`)}>
+          <Text
+          // accessibilityLabel={i18n._(t`A file has been added.`)}
+          >
             {pickedFile?.name}
           </Text>
         ) : null}
@@ -276,7 +281,8 @@ const UploadForm = (props: Props) => {
       )} */}
       <SubHeading
         required={itemType === 'J_ENTRY'}
-        text={itemType === 'J_ENTRY' ? t`Title` : t`Name`}
+        // text={itemType === 'J_ENTRY' ? t`Title` : t`Name`}
+        text={itemType === 'J_ENTRY' ? 'Title' : 'Name'}
       />
       {/* {!titleValid && <RequiredWarningText />} */}
       <FormInput
@@ -286,7 +292,8 @@ const UploadForm = (props: Props) => {
       />
       <SubHeading
         required={itemType === 'J_ENTRY'}
-        text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
+        // text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
+        text={itemType === 'J_ENTRY' ? 'Entry' : 'Description'}
       />
       {/* {!descValid && <RequiredWarningText />} */}
       <FormInput
@@ -299,7 +306,9 @@ const UploadForm = (props: Props) => {
   );
 
   const renderFolderPicker = () => {
-    if (itemType === 'J_ENTRY') return null;
+    if (itemType === 'J_ENTRY') {
+      return null;
+    }
 
     const matchingFolder = props.userFolders.find(
       (f) => f.title === props.defFolderTitle
@@ -313,23 +322,26 @@ const UploadForm = (props: Props) => {
 
     return (
       <View>
-        <SubHeading required text={t`Folder`} />
+        {/* <SubHeading required text={t`Folder`} /> */}
+        <SubHeading required text="Folder" />
         {props.defFolderTitle === undefined && (
           <RequiredWarningText
-            customText={t`Error: You do not have any folders on your site.`}
+            // customText={t`Error: You do not have any folders on your site.`}
+            customText="Error: You do not have any folders on your site."
           />
         )}
         <Item regular>
           <Picker
             placeholder={props.defFolderTitle}
-            accessibilityLabel={i18n._(t`Select folder`)}
+            // accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolder}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
             {folders &&
               folders.map((f: UserFolder) => {
                 const label =
                   f.title === props.defFolderTitle
-                    ? `${f.title} - ${i18n._(t`default`)}`
+                    ? // ? `${f.title} - ${i18n._(t`default`)}`
+                      `${f.title} - default}`
                     : f.title;
                 return <Picker.Item label={label} value={f.title} key={f.id} />;
               })}
@@ -375,8 +387,10 @@ const UploadForm = (props: Props) => {
           icon="time-outline"
           text={
             props.editItem
-              ? t`Confirm edits to ${intlItemType}`
-              : t`Queue to upload`
+              ? // ? t`Confirm edits to ${intlItemType}`
+                // : t`Queue to upload`
+                `Confirm edits to ${intlItemType}`
+              : 'Queue to upload'
           }
         />
 
@@ -419,7 +433,10 @@ const UploadForm = (props: Props) => {
 
   return (
     <View>
-      <RequiredWarningText customText={t`Fields marked by * are required.`} />
+      <RequiredWarningText
+        // customText={t`Fields marked by * are required.`}
+        customText="Fields marked by * are required."
+      />
       {renderDisplayedFilename()}
       {renderTextInputs()}
       {renderFolderPicker()}
@@ -430,4 +447,5 @@ const UploadForm = (props: Props) => {
   );
 };
 
-export default withI18n()(UploadForm);
+// export default withI18n()(UploadForm);
+export default UploadForm;

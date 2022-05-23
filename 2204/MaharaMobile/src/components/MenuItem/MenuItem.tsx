@@ -1,11 +1,12 @@
-import {MessageDescriptor} from '@lingui/core';
-import {I18n} from '@lingui/react';
+// import {MessageDescriptor} from '@lingui/core';
+// // import {I18n} from '@lingui/react';
 import React from 'react';
-import {Text, TouchableHighlight} from 'react-native';
+import { Text, TouchableHighlight } from 'react-native';
 import menuItemStyles from './MenuItem.style';
 
 type MenuItemProps = {
-  title: MessageDescriptor;
+  // title: MessageDescriptor;
+  title: any;
   path: () => void;
   style: any;
 };
@@ -16,11 +17,12 @@ const MenuItem = (props: MenuItemProps) => {
       onPress={props.path}
       underlayColor="#3E5027"
       style={props.style}>
-      <I18n>
+      {/* <I18n>
         {({i18n}) => (
           <Text style={menuItemStyles.listItemText}>{i18n._(props.title)}</Text>
         )}
-      </I18n>
+      </I18n> */}
+      <Text style={menuItemStyles.listItemText}>{props.title}</Text>
     </TouchableHighlight>
   );
 };

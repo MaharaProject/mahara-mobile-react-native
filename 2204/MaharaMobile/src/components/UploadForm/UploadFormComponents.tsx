@@ -1,11 +1,11 @@
-import {i18n} from '@lingui/core';
+import { i18n } from '@lingui/core';
 // import {t} from '@lingui/macro';
-import {Item, Left, Picker, Right, Switch} from 'native-base';
+import { Item, Left, Picker, Right, Switch } from 'native-base';
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import styles from '../../assets/styles/variables';
-import {UserBlog} from '../../models/models';
-import {putDefaultAtTop} from '../../utils/formHelper';
+import { UserBlog } from '../../models/models';
+import { putDefaultAtTop } from '../../utils/formHelper';
 import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 
@@ -34,17 +34,19 @@ export const BlogPicker = (props: {
         setIsDraft={props.setIsDraft}
         isDraft={props.isDraft}
       />
-      <SubHeading required text={t`Journal`} />
+      {/* <SubHeading required text={t`Journal`} /> */}
+      <SubHeading required text="Journal" />
       {!props.checkUserBlogs && (
         <RequiredWarningText
-          customText={t`Error: You do not have any journals on your site.`}
+          // customText={t`Error: You do not have any journals on your site.`}
+          customText="Error: You do not have any journals on your site."
         />
       )}
       <Item regular>
         <Picker
           mode="dropdown"
-          placeholder={i18n._(t`Please select a journal`)}
-          accessibilityLabel={i18n._(t`Select a journal`)}
+          // placeholder={i18n._(t`Please select a journal`)}
+          // accessibilityLabel={i18n._(t`Select a journal`)}
           selectedValue={props.selectedBlog}
           // style={forms.picker}
           onValueChange={(blogId: number) => props.setSelectedBlog(blogId)}>
@@ -70,13 +72,14 @@ type Props = {
 };
 
 const JournalDraftSwitch = (props: Props) => (
-  <Item style={{borderColor: styles.colors.light}}>
+  <Item style={{ borderColor: styles.colors.light }}>
     <Left>
-      <SubHeading text={t`Draft journal entry`} />
+      {/* <SubHeading text={t`Draft journal entry`} /> */}
+      <SubHeading text="Draft journal entry" />
     </Left>
     <Right>
       <Switch
-        trackColor={{false: '', true: styles.colors.navBarGreen}}
+        trackColor={{ false: '', true: styles.colors.navBarGreen }}
         thumbColor={false ? '' : styles.colors.primary}
         value={props.isDraft}
         onValueChange={() => props.setIsDraft(!props.isDraft)}

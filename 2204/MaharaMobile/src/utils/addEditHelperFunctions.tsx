@@ -1,20 +1,20 @@
 // import {t} from '@lingui/macro';
-import React, {Dispatch, SetStateAction} from 'react';
-import {ActionSheetIOS, Alert, Image, Platform, View} from 'react-native';
+import React, { Dispatch, SetStateAction } from 'react';
+import { ActionSheetIOS, Alert, Image, Platform, View } from 'react-native';
 // import DocumentPicker from 'react-native-document-picker';
 import {
   ImageLibraryOptions,
   ImagePickerResponse,
   launchCamera,
-  launchImageLibrary // for ios?
+  launchImageLibrary, // for ios?
 } from 'react-native-image-picker';
-import i18n from '../i18n';
+// import i18n from '../i18n';
 import {
   File,
   ReactNativeImagePickerAsset,
-  ReactNativeImagePickerResponse
+  ReactNativeImagePickerResponse,
 } from '../models/models';
-import {newFile} from '../models/typeCreators';
+import { newFile } from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
 const setSelectedImageCallback = (
@@ -24,9 +24,11 @@ const setSelectedImageCallback = (
   const asset = response as ReactNativeImagePickerAsset;
   const resp = response as ReactNativeImagePickerResponse;
   if (resp.didCancel) {
-    Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
+    // Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
+    Alert.alert('No photo captured. Camera closed');
   } else if (resp.errorCode) {
-    Alert.alert(i18n._(t`ImagePicker Error:${resp.errorMessage}`));
+    // Alert.alert(i18n._(t`ImagePicker Error:${resp.errorMessage}`));
+    Alert.alert('Error');
   } else {
     let path = asset.uri;
     if (Platform.OS === 'ios') {
@@ -46,7 +48,7 @@ const setSelectedImageCallback = (
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
   const options: ImageLibraryOptions = {
     // title: i18n._(t`Select image`),
-    mediaType: 'photo'
+    mediaType: 'photo',
   };
 
   /**
@@ -60,7 +62,7 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
         {
           options: ['Cancel', 'Open Photos', 'Open Camera'],
           destructiveButtonIndex: 3,
-          cancelButtonIndex: 0
+          cancelButtonIndex: 0,
         },
         (buttonIndex: number) => {
           if (buttonIndex === 0) {
@@ -86,15 +88,17 @@ export const pickDocument = (onSetPickedFile: any) => {
   const DocumentPicker = require('react-native-document-picker').default; // eslint-disable-line global-require
   try {
     DocumentPicker.pick({
-      type: [DocumentPicker.types.allFiles]
+      type: [DocumentPicker.types.allFiles],
     }).then((res) =>
       onSetPickedFile(newFile(res.uri, res.type, res.name, res.size))
     );
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {
-      Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
-        {text: 'Okay', style: 'destructive'}
-      ]);
+      // Alert.alert(i18n._(t`Invalid file`), i18n._(t`Please select a file.`), [
+      //   { text: 'Okay', style: 'destructive' },
+      //   ,
+      // ]);
+      Alert.alert('Invalid file');
     } else {
       Alert.alert(JSON.stringify(err));
     }
@@ -103,23 +107,27 @@ export const pickDocument = (onSetPickedFile: any) => {
 
 export const onCancelAlert = (goBack) => {
   Alert.alert(
-    i18n._(t`Are you sure?`),
-    i18n._(
-      t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`
-    ),
+    // i18n._(t`Are you sure?`),
+    // i18n._(
+    //   t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`
+    // ),
+    'Are you sure?',
+    'It looks like you have been editing something. if you leave before saving ,your changes will',
     [
       {
-        text: i18n._(t`Cancel`),
+        // text: i18n._(t`Cancel`),
+        text: 'Cancel',
         onPress: () => {
           // do nothing
-        }
+        },
       },
       {
-        text: i18n._(t`Okay`),
-        onPress: () => goBack()
-      }
+        // text: i18n._(t`Okay`),
+        text: 'Okay',
+        onPress: () => goBack(),
+      },
     ],
-    {cancelable: true}
+    { cancelable: true }
   );
 };
 
@@ -127,9 +135,9 @@ export const renderImagePreview = (uri: string) => {
   return (
     <View style={styles.imageWrap}>
       <Image
-        source={{uri}}
+        source={{ uri }}
         style={styles.image}
-        accessibilityLabel={i18n._(t`image preview`)}
+        // accessibilityLabel={i18n._(t`image preview`)}
       />
     </View>
   );

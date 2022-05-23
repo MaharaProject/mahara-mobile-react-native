@@ -1,7 +1,7 @@
 // import {t, Trans} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
+// import {withI18n} from '@lingui/react';
 import React from 'react';
-import {Text, View} from 'react-native';
+import { Text, View } from 'react-native';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
 import MediumButton from '../UI/MediumButton/MediumButton';
@@ -25,24 +25,28 @@ const LoginTypes = (props: Props) => {
   return (
     <View style={styles.view}>
       <Text style={[headingStyles.mainHeading, generic.center]}>
-        <Trans>Select login type</Trans>
+        {/* <Trans>Select login type</Trans> */}
+        <Text>Select login type</Text>
       </Text>
 
       {props.ssoLogin && (
         <MediumButton
-          text={t`Single sign-on`}
+          // text={t`Single sign-on`}
+          text="Single sign-on"
           onPress={() => props.goToLoginType('sso')}
         />
       )}
       {props.localLogin && (
         <MediumButton
-          text={t`Local`}
+          // text={t`Local`}
+          text="Local"
           onPress={() => props.goToLoginType('basic')}
         />
       )}
       {props.tokenLogin && (
         <MediumButton
-          text={t`Access token`}
+          // text={t`Access token`}
+          text="Access token"
           onPress={() => props.goToLoginType('token')}
         />
       )}
@@ -50,4 +54,5 @@ const LoginTypes = (props: Props) => {
   );
 };
 
-export default withI18n()(LoginTypes);
+// export default withI18n()(LoginTypes);
+export default LoginTypes;
