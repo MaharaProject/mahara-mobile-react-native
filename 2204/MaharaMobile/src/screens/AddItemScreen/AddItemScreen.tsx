@@ -1,5 +1,5 @@
 // // import {t} from '@lingui/macro';
-import { withI18n } from '@lingui/react';
+// import { ' } from '@lingui/react';
 import { CommonActions } from '@react-navigation/native';
 import { Content, View } from 'native-base';
 import React, { useState } from 'react';
@@ -65,8 +65,10 @@ const AddItemScreen = (props: Props) => {
             <OutlineButton
               text={
                 pickedFile.uri === ''
-                  ? t`Select a file`
-                  : t`Select a different file`
+                  ? // ? t`Select a file`
+                    // : t`Select a different file`
+                    'Select a file'
+                  : 'Select a different file'
               }
               onPress={() => pickDocument(setPickedFile)}
               style={null}
@@ -79,7 +81,8 @@ const AddItemScreen = (props: Props) => {
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
             icon="camera"
-            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+            // text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+            text={pickedFile.uri === '' ? 'Take photo' : 'Re-take photo'}
           />
         )}
         {/* record audio button */}
@@ -111,7 +114,8 @@ const AddItemScreen = (props: Props) => {
 export const AddItemScreenOptions = (navData) => {
   const itemType = navData.route.params?.itemType ?? 'FILE';
   const intlStringOfItemType = getUploadTypeIntlStrings(itemType).toLowerCase();
-  const addString = i18n._(t`Add`);
+  // const addString = i18n._(t`Add`);
+  const addString = 'Add';
   const headerTitle = addString.concat(' ', intlStringOfItemType);
 
   return {
@@ -137,4 +141,5 @@ const mapStateToProps = (state: RootState) => ({
   defaultBlogId: selectDefaultBlogId(state),
 });
 
-export default connect(mapStateToProps)(withI18n()(AddItemScreen));
+// export default connect(mapStateToProps)(withI18n()(AddItemScreen));
+export default connect(mapStateToProps)(AddItemScreen);

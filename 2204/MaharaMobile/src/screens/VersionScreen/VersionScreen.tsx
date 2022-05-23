@@ -1,10 +1,10 @@
 // // import {t} from '@lingui/macro';
-import {List, ListItem} from 'native-base';
+import { List, ListItem } from 'native-base';
 import React from 'react';
 import DeviceInfo from 'react-native-device-info';
 import flashMessage from '../../components/FlashMessage/FlashMessage';
 import MediumText from '../../components/UI/CustomText/MediumText';
-import i18n from '../../i18n';
+// import i18n from '../../i18n';
 
 const VersionScreen = () => {
   const version = DeviceInfo.getVersion();
@@ -16,9 +16,10 @@ const VersionScreen = () => {
     <List>
       <ListItem noBorder>
         <MediumText
-          textTranslated={i18n._(
-            t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`
-          )}
+          // textTranslated={i18n._(
+          //   t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`
+          // )}
+          textTranslated={`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`}
         />
       </ListItem>
     </List>

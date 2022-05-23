@@ -1,10 +1,10 @@
-import {Catalogs} from '@lingui/core';
+// import {Catalogs} from '@lingui/core';
 import {SET_CATALOGS, SET_LANGUAGE} from '../../utils/constants';
 import {RootState} from './rootReducer';
 
 export type AppSettingsState = {
   language: string;
-  catalogs: Catalogs;
+  // catalogs: Catalogs;
 };
 
 const initialState: AppSettingsState = {

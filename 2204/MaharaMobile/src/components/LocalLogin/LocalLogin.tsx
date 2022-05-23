@@ -1,16 +1,22 @@
 // import {t, Trans} from '@lingui/macro';
-import {I18n} from '@lingui/react';
-import React, {useState} from 'react';
-import {ActivityIndicator, Platform, Text, TextInput, View} from 'react-native';
-import {getManufacturer, getModel} from 'react-native-device-info';
+import { useState } from 'react';
+import {
+  ActivityIndicator,
+  Platform,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
+import { getManufacturer, getModel } from 'react-native-device-info';
+import React from 'react';
 import uuid from 'react-native-uuid';
 import LogoSvg from '../../assets/images/Logo-big';
 import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
 import variables from '../../assets/styles/variables';
-import {onCheckAuthJSON} from '../../utils/authHelperFunctions';
-import {LOG_IN_ICON} from '../../utils/constants';
+import { onCheckAuthJSON } from '../../utils/authHelperFunctions';
+import { LOG_IN_ICON } from '../../utils/constants';
 import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import styles from './LocalLogin.style';
@@ -42,7 +48,7 @@ export default function LocalLogin(props: Props) {
 
     const config = {
       method: 'POST',
-      body
+      body,
     };
 
     try {
@@ -71,9 +77,11 @@ export default function LocalLogin(props: Props) {
             <ActivityIndicator size="small" color={variables.colors.light} />
           ) : null}
           <Text style={[headingStyles.mainHeading, generic.center]}>
-            <Trans>Log in via username and password</Trans>
+            {/* <Trans>Log in via username and password</Trans> */}
+            <Text>Log in via username and password</Text>
           </Text>
-          <I18n>
+
+          {/* <I18n>
             {({i18n}) => (
               <TextInput
                 style={forms.textInput}
@@ -93,9 +101,23 @@ export default function LocalLogin(props: Props) {
                 autoCapitalize="none"
               />
             )}
-          </I18n>
+          </I18n> */}
+          <TextInput
+            style={forms.textInput}
+            // placeholder={i18n._(t`Username`)}
+            placeholder="Username"
+            onChangeText={(usernameInput) => setUsername(usernameInput)}
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={forms.textInput}
+            secureTextEntry
+            placeholder="Password"
+            onChangeText={(passwordInput) => setPassword(passwordInput)}
+            autoCapitalize="none"
+          />
           <MediumButton
-            text={t`Login`}
+            text="Login"
             icon={LOG_IN_ICON}
             onPress={checkLoginForToken}
           />

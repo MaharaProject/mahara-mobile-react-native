@@ -32,14 +32,19 @@ export default function TokenInput(props: Props) {
           {props.isLoading ? (
         <ActivityIndicator size="small" color={variables.colors.light} />
       ) : null}
-          <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Log in via an access token</Trans></Text>
+          <Text style={[headingStyles.mainHeading, generic.center]}>
+            {/* <Trans>Log in via an access token</Trans> */}
+            Log in via an access token
+            </Text>
           <TextInput
             style={forms.textInput}
             defaultValue="..."
             onChangeText={(input) => setToken(input.trim())
             }
           />
-          <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onGetToken(token)} />
+          {/* <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onGetToken(token)} /> */}
+          <MediumButton text="Verify token" icon={LOG_IN_ICON} onPress={() => props.onGetToken(token)} />
+
         </View>
       </MaharaGradient>
     </View>

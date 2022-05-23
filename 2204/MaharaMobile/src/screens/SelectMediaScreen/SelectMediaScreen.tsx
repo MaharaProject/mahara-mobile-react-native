@@ -1,4 +1,4 @@
-import {withI18n} from '@lingui/react';
+// import {withI18n} from '@lingui/react';
 import React from 'react';
 import {View} from 'react-native';
 import generic from '../../assets/styles/generic';
@@ -23,4 +23,6 @@ const SelectMediaScreen = (props: Props) => {
   );
 };
 
-export default withI18n()(SelectMediaScreen);
+// export default withI18n()(SelectMediaScreen);
+export default (SelectMediaScreen);
+

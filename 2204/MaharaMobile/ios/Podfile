@@ -19,6 +19,9 @@ target 'MaharaMobile' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'Permission-Microphone', :path => "#{permissions_path}/Microphone.podspec"
+  pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera.podspec"
+  
   target 'MaharaMobileTests' do
     inherit! :complete
     # Pods for testing

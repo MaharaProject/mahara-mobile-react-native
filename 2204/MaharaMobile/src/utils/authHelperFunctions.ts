@@ -1,9 +1,9 @@
 // import {t} from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
-import {Dispatch} from 'redux';
+import { Alert } from 'react-native';
+import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import {clearUserTags} from '../store/actions/actions';
+import { clearUserTags } from '../store/actions/actions';
 import {
   clearLoginInfo,
   setDefaultBlogId,
@@ -11,30 +11,30 @@ import {
   addToken,
   updateGuestStatus,
   updateProfilePic,
-  updateUserName
+  updateUserName,
 } from '../store/actions/loginInfo';
 import {
   clearUserBlogs,
   clearUserFolders,
   updateUserBlogs,
-  updateUserFolders
+  updateUserFolders,
 } from '../store/actions/userArtefacts';
 import {
   clearUploadJEntires,
-  updateJEntriesOnLogin
+  updateJEntriesOnLogin,
 } from '../store/actions/uploadJEntries';
 import {
   clearUploadFiles,
-  updateUploadFilesOnLogin
+  updateUploadFilesOnLogin,
 } from '../store/actions/uploadFiles';
 
-import i18n from '../i18n';
-import {UserBlog, UserFolder} from '../models/models';
+// import i18n from '../i18n';
+import { UserBlog, UserFolder } from '../models/models';
 import {
   GUEST_BLOG,
   GUEST_FOLDER,
   GUEST_TOKEN,
-  GUEST_USERNAME
+  GUEST_USERNAME,
 } from './constants';
 import flashMessage from '../components/FlashMessage/FlashMessage';
 
@@ -92,7 +92,7 @@ export const setUpGuest = async (dispatch: Dispatch) => {
 export const arrayToObject = (array: Array<any>) => {
   const arrayCopy = [...array];
   return arrayCopy.reduce((obj, item) => {
-    const objCopy = {...obj};
+    const objCopy = { ...obj };
     objCopy[item.id] = item;
     return objCopy;
   }, {});
@@ -127,7 +127,7 @@ export const fetchProfilePic = async (
   let profilePic = '';
 
   RNFetchBlob.config({
-    fileCache: true
+    fileCache: true,
   })
     .fetch('GET', serverUrl)
     .then((res) => {
@@ -144,16 +144,17 @@ export const fetchProfilePic = async (
 
 export const signOutAsync = async (navigation, dispatch) => {
   Alert.alert(
-    i18n._(t`Are you sure?`),
-    i18n._(
-      t`Items in the upload queue will not be retrievable once logged out.`
-    ),
-
+    // i18n._(t`Are you sure?`),
+    'Are you sure?',
+    // i18n._(
+    //   t`Items in the upload queue will not be retrievable once logged out.`
+    // ),
+    'Items in the upload queue will not be retrievable once logged out.',
     [
       {
         text: 'Cancel',
         onPress: () => null,
-        style: 'cancel'
+        style: 'cancel',
       },
       {
         text: 'Logout',
@@ -161,10 +162,10 @@ export const signOutAsync = async (navigation, dispatch) => {
           // navigation.navigate('SiteCheck');
           await AsyncStorage.clear();
           clearReduxData(dispatch);
-        }
-      }
+        },
+      },
     ],
-    {cancelable: false}
+    { cancelable: false }
   );
 };
 

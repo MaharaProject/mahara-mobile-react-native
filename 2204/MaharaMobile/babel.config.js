@@ -1,4 +1,4 @@
 module.exports = {
-  plugins: [],
+  plugins: ['macros'],
   presets: ['module:metro-react-native-babel-preset'],
 };

@@ -1,20 +1,21 @@
-import { I18n } from '@lingui/core';
+// import { I18n } from '@lingui/core';
 // import {t, Trans} from '@lingui/macro';
-import { withI18n } from '@lingui/react';
+// // import { withI18n } from '@lingui/react';
 import { Item, Picker } from 'native-base';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, Image, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setDefaultBlogId,
-  setDefaultFolder,
-} from '../../store/actions/loginInfo';
 import image from '../../assets/images/no_userphoto.png';
 import buttons from '../../assets/styles/buttons';
 import styles from '../../assets/styles/variables';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
-import i18n from '../../i18n';
+import React from 'react';
+import {
+  setDefaultBlogId,
+  setDefaultFolder,
+} from '../../store/actions/loginInfo';
+// import i18n from '../../i18n';
 import { UserBlog, UserFolder } from '../../models/models';
 import {
   selectDefaultBlogId,
@@ -36,7 +37,8 @@ import PreferencesScreenStyle from './PreferencesScreen.style';
 
 type Props = {
   navigation;
-  i18n: I18n;
+  // : I18n;
+  i18n: any;
 };
 
 const PreferencesScreen = (props: Props) => {
@@ -66,9 +68,11 @@ const PreferencesScreen = (props: Props) => {
 
   useEffect(() => {
     props.navigation.setParams({
-      title: props.i18n._(t`Profile settings`),
+      // title: props.i18n._(t`Profile settings`),
+      title: 'Profile settings',
     });
-  }, [props.i18n]);
+    // }, [props.i18n]);
+  });
 
   const getProfilePic = async () => {
     if (token === GUEST_TOKEN) {
@@ -91,10 +95,11 @@ const PreferencesScreen = (props: Props) => {
 
     return (
       <View>
-        <SubHeading text={t`Destination folder`} />
+        {/* <SubHeading text={t`Destination folder`} /> */}
+        <SubHeading text="Destination folder" />
         <Item regular>
           <Picker
-            accessibilityLabel={i18n._(t`Select folder`)}
+            // accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolderTitle}
             onValueChange={(folder: string) => {
               setSelectedFolderTitle(folder);
@@ -103,7 +108,8 @@ const PreferencesScreen = (props: Props) => {
               sortedFolders.map((f: UserFolder) => {
                 const label =
                   f.title === defaultFolderTitle
-                    ? `${f.title} - ${i18n._(t`default`)}`
+                    ? // ? `${f.title} - ${i18n._(t`default`)}`
+                      `${f.title} - default`
                     : f.title;
                 return <Picker.Item label={label} value={f.title} key={f.id} />;
               })}
@@ -121,17 +127,20 @@ const PreferencesScreen = (props: Props) => {
     const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
       <View>
-        <SubHeading text={t`Destination journal`} />
+        {/* <SubHeading text={t`Destination journal`} /> */}
+        <SubHeading text="Destination journal" />
+
         <Item regular style={buttons.default}>
           <Picker
-            accessibilityLabel={i18n._(t`Select journal`)}
+            // accessibilityLabel={i18n._(t`Select journal`)}
             selectedValue={selectedBlogId}
             onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
             {blogs &&
               blogs.map((blog: UserBlog) => {
                 const label =
                   blog.id === defaultBlogId
-                    ? `${blog.title} - ${i18n._(t`default`)}`
+                    ? // ? `${blog.title} - ${i18n._(t`default`)}`
+                      `${blog.title} - default`
                     : blog.title;
                 return (
                   <Picker.Item label={label} value={blog.id} key={blog.id} />
@@ -151,15 +160,19 @@ const PreferencesScreen = (props: Props) => {
         />
       </View>
       <Text style={PreferencesScreenStyle.name}>
-        <Trans>Hi</Trans> {userName}
+        {/* <Trans>Hi</Trans> {userName} */}
+        Hi {userName}
       </Text>
     </View>
   );
 
   const intl = {
-    updatedPref: t`Updated preferences`,
-    fldr: t`Folder`,
-    jrnl: t`Journal`,
+    // updatedPref: t`Updated preferences`,
+    // fldr: t`Folder`,
+    // jrnl: t`Journal`,
+    updatedPref: 'Updated preferences',
+    fld: 'Folder',
+    jrnl: 'Journal',
   };
 
   return (
@@ -167,12 +180,14 @@ const PreferencesScreen = (props: Props) => {
       {renderProfile()}
       <SubHeading
         style={{ fontSize: styles.font.xl }}
-        text={t`Default options`}
+        // text={t`Default options`}
+        text="Default options"
       />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
       <MediumButton
-        text={t`Update preferences`}
+        // text={t`Update preferences`}
+        text="Update preferences"
         onPress={() => {
           if (selectedBlogId) {
             dispatch(setDefaultBlogId(selectedBlogId));
@@ -181,9 +196,15 @@ const PreferencesScreen = (props: Props) => {
             dispatch(setDefaultFolder(selectedFolderTitle));
           }
           Alert.alert(
-            `${i18n._(intl.updatedPref)}`,
-            `${i18n._(intl.fldr)}: ${selectedFolderTitle || defaultFolderTitle} 
-            \n${i18n._(intl.jrnl)}: ${
+            // `${i18n._(intl.updatedPref)}`,
+            // `${i18n._(intl.fldr)}: ${selectedFolderTitle || defaultFolderTitle}
+            // \n${i18n._(intl.jrnl)}: ${
+            //   userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title ||
+            //   userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title
+            // }`
+            `${intl.updatedPref}`,
+            `${intl.fldr}: ${selectedFolderTitle || defaultFolderTitle}
+            \n${intl.jrnl}: ${
               userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title ||
               userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title
             }`
@@ -194,4 +215,5 @@ const PreferencesScreen = (props: Props) => {
   );
 };
 
-export default withI18n()(PreferencesScreen);
+// export default withI18n()(PreferencesScreen);
+export default PreferencesScreen;

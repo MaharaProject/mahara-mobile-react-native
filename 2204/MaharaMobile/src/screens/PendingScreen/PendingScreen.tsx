@@ -1,5 +1,5 @@
 // import {t, Trans} from '@lingui/macro';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Text, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { connect, useSelector } from 'react-redux';
@@ -13,11 +13,7 @@ import flashMessage from '../../components/FlashMessage/FlashMessage';
 // components
 import PendingList from '../../components/PendingList/PendingList';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import i18n from '../../i18n';
-import {
-  updateItemTags as updateItemTagsIds,
-  saveTaggedItemsToAsync,
-} from '../../store/actions/actions';
+// import i18n from '../../i18n';
 import {
   DisplayItems,
   PendingJEntry,
@@ -25,12 +21,16 @@ import {
   UploadItemType,
   UploadResponse,
 } from '../../models/models';
+import {
+  saveTaggedItemsToAsync,
+  updateItemTags as updateItemTagsIds,
+} from '../../store/actions/actions';
 import { addToken } from '../../store/actions/loginInfo';
 import { removeUploadFile } from '../../store/actions/uploadFiles';
 import { removeUploadJEntry } from '../../store/actions/uploadJEntries';
 import {
   selectUrl,
-  selectUserName
+  selectUserName,
 } from '../../store/reducers/loginInfoReducer';
 import { RootState } from '../../store/reducers/rootReducer';
 import {
@@ -71,7 +71,8 @@ const PendingScreen = (props: Props) => {
 
   useEffect(() => {
     if (props.route.params?.added === true) {
-      flashMessage(t`Added to upload queue successfully!`, 'success');
+      // flashMessage(t`Added to upload queue successfully!`, 'success');
+      flashMessage('Added to upload queue successfully!', 'success');
     }
   }, [props.route.params?.added]);
 
@@ -80,16 +81,20 @@ const PendingScreen = (props: Props) => {
    */
   const onRemove = (itemId: string) => {
     Alert.alert(
-      i18n._(t`Are you sure?`),
-      i18n._(t`The deletion of this information or file cannot be undone`),
+      // i18n._(t`Are you sure?`),
+      // i18n._(t`The deletion of this information or file cannot be undone`),
+      'Are you sure?',
+      'The deletion of this information or file cannot be undone',
       [
         {
-          text: i18n._(t`Cancel`),
+          // text: i18n._(t`Cancel`),
+          text: 'Cancel',
           onPress: () => null,
           style: 'cancel',
         },
         {
-          text: i18n._(t`Delete`),
+          // text: i18n._(t`Delete`),
+          text: 'Delete',
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
@@ -117,7 +122,8 @@ const PendingScreen = (props: Props) => {
     setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
 
     showMessage({
-      message: i18n._(t`${errorMessage}`),
+      // message: i18n._(t`${errorMessage}`),
+      message: { errorMessage },
       icon: {
         icon: 'auto',
         position: 'left',
@@ -163,7 +169,8 @@ const PendingScreen = (props: Props) => {
       <View style={pendingScreenStyles.noPending}>
         <UploadSVG />
         <Text style={pendingScreenStyles.noPendingText}>
-          <Trans>Your upload queue is empty</Trans>
+          {/* <Trans>Your upload queue is empty</Trans> */}
+          Your upload queue is empty
         </Text>
       </View>
     );
@@ -182,8 +189,12 @@ const PendingScreen = (props: Props) => {
       setUploadedItemsIds(newState);
     }, 1000);
 
+    // flashMessage(
+    //   t`Files have been uploaded to your Mahara successfully!`,
+    //   'success'
+    // );
     flashMessage(
-      t`Files have been uploaded to your Mahara successfully!`,
+      'Files have been uploaded to your Mahara successfully!',
       'success'
     );
   };
@@ -241,18 +252,21 @@ const PendingScreen = (props: Props) => {
           {props.userName !== GUEST_USERNAME ? (
             <View>
               <Text style={[pendingScreenStyles.urlText, textStyles.center]}>
-                <Trans>Your site: {url}</Trans>
+                {/* <Trans>Your site: {url}</Trans> */}
+                Your site: {url}
               </Text>
               <MediumButton
-                text={t`Upload to your site`}
+                // text={t`Upload to your site`}
+                text="Upload to your site"
                 onPress={onUploadClick}
                 icon="cloud-upload"
               />
             </View>
           ) : (
             <MediumButton
-              text={t`Please login`}
-              accessibilityHint={t`To upload pending items`}
+              // text={t`Please login`}
+              text="Please login"
+              // accessibilityHint={t`To upload pending items`}
               icon="log-in-outline"
               onPress={goToSiteCheck}
             />

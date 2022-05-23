@@ -6,7 +6,7 @@ import {
 import React from 'react';
 import LogoSvg from '../assets/images/Logo-big';
 import styles from '../assets/styles/variables';
-import i18n from '../i18n';
+// import i18n from '../i18n';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen, {
   AddItemScreenOptions,

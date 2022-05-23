@@ -1,16 +1,17 @@
-import {MessageDescriptor} from '@lingui/core';
+// import {MessageDescriptor} from '@lingui/core';
 // // import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
+// import {withI18n} from '@lingui/react';
 import React from 'react';
-import {View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import menuItemStyles from '../../components/MenuItem/MenuItem.style';
-import {signOutAsync} from '../../utils/authHelperFunctions';
+import { signOutAsync } from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
 
 type MenuItemObject = {
-  name: MessageDescriptor;
+  // name: MessageDescriptor;
+  name: any;
   path: () => void;
 };
 
@@ -22,13 +23,20 @@ const MenuScreen = (props: Props) => {
   const dispatch = useDispatch();
 
   const menuStrings = {
-    preferences: t`Preferences`,
-    help: t`Help`,
-    about: t`About`,
-    version: t`App version`,
-    terms: t`Terms and conditions`,
-    privacy: t`Privacy statement`,
-    logout: t`Logout`
+    // preferences: t`Preferences`,
+    // help: t`Help`,
+    // about: t`About`,
+    // version: t`App version`,
+    // terms: t`Terms and conditions`,
+    // privacy: t`Privacy statement`,
+    // logout: t`Logout`
+    preferences: 'Preferences',
+    help: 'Help',
+    about: 'About',
+    version: 'App version',
+    terms: 'Terms and conditions',
+    privacy: 'Privacy statement',
+    logout: 'Logout',
   };
 
   /**
@@ -37,10 +45,11 @@ const MenuScreen = (props: Props) => {
    * @param path path to navigate to onPressing the item
    */
   const createMenuItem = (
-    name: MessageDescriptor,
+    // name: MessageDescriptor,
+    name: any,
     path: () => void
   ): MenuItemObject => {
-    return {name, path};
+    return { name, path };
   };
 
   const navigateTo = (key: string) => () => props.navigation.navigate(key);
@@ -54,7 +63,7 @@ const MenuScreen = (props: Props) => {
     createMenuItem(menuStrings.version, navigateTo('Version')),
     createMenuItem(menuStrings.logout, () =>
       signOutAsync(props.navigation, dispatch)
-    )
+    ),
   ];
 
   return (
@@ -71,4 +80,5 @@ const MenuScreen = (props: Props) => {
   );
 };
 
-export default withI18n()(MenuScreen);
+// export default withI18n()(MenuScreen);
+export default MenuScreen;
