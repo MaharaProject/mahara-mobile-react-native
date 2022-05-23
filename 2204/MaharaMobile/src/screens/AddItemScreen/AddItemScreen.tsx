@@ -91,7 +91,7 @@ const AddItemScreen = (props: Props) => {
             <AddAudio setPickedFile={setPickedFile} />
           </View>
         )}
-        {/* <View>
+        <View>
           <UploadForm
             pickedFile={pickedFile}
             userFolders={props.userFolders}
@@ -105,7 +105,7 @@ const AddItemScreen = (props: Props) => {
             defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
           />
-        </View> */}
+        </View>
       </View>
     </Content>
   );

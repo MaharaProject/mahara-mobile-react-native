@@ -1,4 +1,4 @@
-import { i18n } from '@lingui/core';
+// import { i18n } from '@lingui/core';
 // import {t} from '@lingui/macro';
 import { Item, Left, Picker, Right, Switch } from 'native-base';
 import React from 'react';
