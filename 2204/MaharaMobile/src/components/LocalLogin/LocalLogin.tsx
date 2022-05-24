@@ -68,20 +68,20 @@ export default function LocalLogin(props: Props) {
 
   return (
     <View style={styles.view}>
-      <MaharaGradient style={generic.linearGradient}>
-        <View style={styles.wrapper}>
-          <View style={styles.imageWrapper}>
-            <LogoSvg />
-          </View>
-          {props.isLoading ? (
-            <ActivityIndicator size="small" color={variables.colors.light} />
-          ) : null}
-          <Text style={[headingStyles.mainHeading, generic.center]}>
-            {/* <Trans>Log in via username and password</Trans> */}
-            <Text>Log in via username and password</Text>
-          </Text>
+      {/* <MaharaGradient style={generic.linearGradient}> */}
+      <View style={styles.wrapper}>
+        <View style={styles.imageWrapper}>
+          <LogoSvg />
+        </View>
+        {props.isLoading ? (
+          <ActivityIndicator size="small" color={variables.colors.light} />
+        ) : null}
+        <Text style={[headingStyles.mainHeading, generic.center]}>
+          {/* <Trans>Log in via username and password</Trans> */}
+          <Text>Log in via username and password</Text>
+        </Text>
 
-          {/* <I18n>
+        {/* <I18n>
             {({i18n}) => (
               <TextInput
                 style={forms.textInput}
@@ -102,27 +102,27 @@ export default function LocalLogin(props: Props) {
               />
             )}
           </I18n> */}
-          <TextInput
-            style={forms.textInput}
-            // placeholder={i18n._(t`Username`)}
-            placeholder="Username"
-            onChangeText={(usernameInput) => setUsername(usernameInput)}
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={forms.textInput}
-            secureTextEntry
-            placeholder="Password"
-            onChangeText={(passwordInput) => setPassword(passwordInput)}
-            autoCapitalize="none"
-          />
-          <MediumButton
-            text="Login"
-            icon={LOG_IN_ICON}
-            onPress={checkLoginForToken}
-          />
-        </View>
-      </MaharaGradient>
+        <TextInput
+          style={forms.textInput}
+          // placeholder={i18n._(t`Username`)}
+          placeholder="Username"
+          onChangeText={(usernameInput) => setUsername(usernameInput)}
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={forms.textInput}
+          secureTextEntry
+          placeholder="Password"
+          onChangeText={(passwordInput) => setPassword(passwordInput)}
+          autoCapitalize="none"
+        />
+        <MediumButton
+          text="Login"
+          icon={LOG_IN_ICON}
+          onPress={checkLoginForToken}
+        />
+      </View>
+      {/* </MaharaGradient> */}
     </View>
   );
 }
