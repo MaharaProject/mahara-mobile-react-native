@@ -18,7 +18,7 @@ type Props = {
   setPickedFile: any;
   audioFileToEdit?: File;
   // i18n: I18n;
-  i18n: any;
+  i18n?: any;
 };
 
 type RecordStatus = 'recording' | 'recorded' | 'not-recorded';

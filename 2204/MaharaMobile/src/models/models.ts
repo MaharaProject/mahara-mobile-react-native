@@ -145,7 +145,7 @@ export type ReactNativeImagePickerResponse = {
   didCancel?: boolean;
   errorCode?: any;
   errorMessage?: string;
-  assets?: ReactNativeImagePickerAsset;
+  assets?: Array<ReactNativeImagePickerAsset>;
 };
 
 export type ReactNativeImagePickerAsset = {
@@ -157,6 +157,9 @@ export type ReactNativeImagePickerAsset = {
   width: number;
   base64?: string;
   duration?: any;
+  bitrate?: any;
+  timestamp?: any;
+  id: any;
 };
 
 export type ReactNativeImagePickerErrorCode = {
