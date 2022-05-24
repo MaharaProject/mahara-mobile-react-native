@@ -205,7 +205,7 @@ export const onCheckAuthJSON = (
       failCallback();
     }
     if (json.token != null) {
-      console.warn('success! token received: ', json.token);
+      // console.warn('success! token received: ', json.token);
       successCallback();
     }
   }

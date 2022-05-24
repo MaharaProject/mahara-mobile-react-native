@@ -143,7 +143,7 @@ const SiteCheckScreen = (props: Props) => {
       </View>
 
       {!isInputHidden ? (
-        <View>
+        <View style={{ padding: 10 }}>
           <Text
             style={[
               headingStyles.subHeading1,
@@ -197,7 +197,13 @@ const SiteCheckScreen = (props: Props) => {
       ) : null}
 
       {!isInputHidden ? (
-        <View style={{ justifyContent: 'space-between', flex: 1 }}>
+        <View
+          style={{
+            justifyContent: 'space-between',
+            flex: 1,
+            paddingLeft: 10,
+            paddingRight: 10,
+          }}>
           <MediumButton
             // text={t`Next`}
             text="Next"
