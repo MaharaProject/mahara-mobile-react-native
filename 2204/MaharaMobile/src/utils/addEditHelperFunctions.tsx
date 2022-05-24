@@ -1,7 +1,7 @@
 // import {t} from '@lingui/macro';
 import React, { Dispatch, SetStateAction } from 'react';
 import { ActionSheetIOS, Alert, Image, Platform, View } from 'react-native';
-// import DocumentPicker from 'react-native-document-picker';
+import DocumentPicker from 'react-native-document-picker';
 import {
   ImageLibraryOptions,
   ImagePickerResponse,
@@ -18,11 +18,17 @@ import { newFile } from '../models/typeCreators';
 import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
 const setSelectedImageCallback = (
-  response: unknown,
+  response: ReactNativeImagePickerResponse,
   setPickedFile: Dispatch<SetStateAction<File>>
 ) => {
-  const asset = response as ReactNativeImagePickerAsset;
-  const resp = response as ReactNativeImagePickerResponse;
+  const resp = response;
+
+  if (response.assets?.length === 0) {
+    Alert.alert('Error - no response found');
+  }
+
+  let asset = response.assets[0] as ReactNativeImagePickerAsset;
+
   if (resp.didCancel) {
     // Alert.alert(i18n._(t`No photo captured`), i18n._(t`Camera closed.`));
     Alert.alert('No photo captured. Camera closed');
@@ -30,17 +36,20 @@ const setSelectedImageCallback = (
     // Alert.alert(i18n._(t`ImagePicker Error:${resp.errorMessage}`));
     Alert.alert('Error');
   } else {
-    let path = asset.uri;
+    let path = asset != null ? asset.uri : '';
+    console.log('happy');
     if (Platform.OS === 'ios') {
       path = `˜${path.substring(path.indexOf('/Documents'))}`;
     }
 
     const maharaFile = newFile(
-      asset.uri,
+      path,
       asset.type,
       asset.fileName,
       asset.fileSize
     );
+
+    console.log(maharaFile);
     setPickedFile(maharaFile);
   }
 };
@@ -87,7 +96,7 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
 export const pickDocument = (onSetPickedFile: any) => {
   const DocumentPicker = require('react-native-document-picker').default; // eslint-disable-line global-require
   try {
-    DocumentPicker.pick({
+    DocumentPicker.pickSingle({
       type: [DocumentPicker.types.allFiles],
     }).then((res) =>
       onSetPickedFile(newFile(res.uri, res.type, res.name, res.size))
