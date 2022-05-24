@@ -56,19 +56,20 @@ export function checkLoginTypes(url: string) {
 
   // TODO: eslint-disable-next-line func-names
   // eslint-disable-next-line func-names
-  return async function (dispatch: Function, getState: Function, { i18n }) {
+  // return async function (dispatch: Function, getState: Function, { i18n }) {
+  return async function (dispatch: Function, getState: Function) {
     try {
       const result: LoginInfo = await getJSON(serverUrl);
 
       // TODO: i18n._(t`Network Error. Please check internet connection.`)
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
-        throw new Error();
+        throw new Error('This is not a Mahara site.');
         // i18n._(t`This is not a Mahara site. Please re-enter URL.`)
       }
       // check that webservices is enabled on the Mahara instance
       if (!result.wsenabled) {
-        throw new Error();
+        throw new Error('Webservices are not enabled');
         // i18n._(
         // t`Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.`
         // )

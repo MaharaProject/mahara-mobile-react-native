@@ -5,7 +5,7 @@ const generic = StyleSheet.create({
   view: {
     backgroundColor: styles.colors.primary,
     color: styles.colors.secondary,
-    height: '100%'
+    height: '100%',
   },
   wrap: {
     padding: styles.padding.sm
