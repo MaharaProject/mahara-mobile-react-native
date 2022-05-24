@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import { StyleSheet, View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
 const LogoSvg = () => {
   return (
@@ -10,8 +10,8 @@ const LogoSvg = () => {
         StyleSheet.absoluteFill,
         {
           alignItems: 'center',
-          justifyContent: 'center'
-        }
+          justifyContent: 'center',
+        },
       ]}>
       <Svg width="240" height="126" viewBox="0 0 95.47 50.25">
         <Path
