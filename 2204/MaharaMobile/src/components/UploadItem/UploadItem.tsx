@@ -1,5 +1,12 @@
-/* eslint-disable react/no-unused-prop-types */
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEdit,
+  faTrashAlt,
+  faBook,
+  faFilm,
+  faAnchor,
+  faMusic,
+  faImage,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { withI18n } from '@lingui/react';
 import React from 'react';
@@ -44,15 +51,15 @@ const UploadItem = (props: Props) => {
 
     switch (match) {
       case 'application':
-        return 'file';
+        return faImage;
       case 'audio':
-        return 'music';
+        return faMusic;
       case 'text':
-        return 'anchor';
+        return faAnchor;
       case 'video':
-        return 'film';
+        return faFilm;
       case 'journalEntry':
-        return 'book';
+        return faBook;
       default:
         return 'question';
     }
@@ -63,6 +70,7 @@ const UploadItem = (props: Props) => {
     if (!props.mimetype.includes('image')) {
       return (
         <View style={uploadItemStyles.imageContainer}>
+          <FontAwesomeIcon icon={getMimetypeIcon(props.mimetype)} size={25} />
           {/* <Icon
             name={getMimetypeIcon(props.mimetype)}
             size={30}

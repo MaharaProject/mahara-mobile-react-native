@@ -1,6 +1,6 @@
 // import { i18n } from '@lingui/core';
 // import {t} from '@lingui/macro';
-import { Box, Item, Left, Picker, Right, Select, Switch } from 'native-base';
+import { Box, HStack, Select, Switch } from 'native-base';
 import React from 'react';
 import { View } from 'react-native';
 import styles from '../../assets/styles/variables';
@@ -41,7 +41,7 @@ export const BlogPicker = (props: {
           customText="Error: You do not have any journals on your site."
         />
       )}
-      <Box regular>
+      <Box>
         <Select
           mode="dropdown"
           // placeholder={i18n._(t`Please select a journal`)}
@@ -72,18 +72,16 @@ type Props = {
 
 const JournalDraftSwitch = (props: Props) => (
   <Box style={{ borderColor: styles.colors.light }}>
-    <Left>
+    <HStack justifyContent="space-between">
       {/* <SubHeading text={t`Draft journal entry`} /> */}
       <SubHeading text="Draft journal entry" />
-    </Left>
-    <Right>
       <Switch
         trackColor={{ false: '', true: styles.colors.navBarGreen }}
         thumbColor={false ? '' : styles.colors.primary}
         value={props.isDraft}
         onValueChange={() => props.setIsDraft(!props.isDraft)}
       />
-    </Right>
+      </HStack>
   </Box>
 );
 
