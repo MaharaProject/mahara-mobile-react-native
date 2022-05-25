@@ -11,9 +11,9 @@ const AudioPlayButton = (props: AudioPlayButtonProps) => (
     bordered
     // rounded
     onPress={props.onPress}
-    style={{ marginEnd: variables.padding.sm }}>
-    {/* <Icon name={props.iconName} /> */}
-  </Button>
+    leftIcon={<Icon name={props.iconName} type="Ionicons" />}
+    style={{ marginEnd: variables.padding.sm }}
+  />
 );
 
 export default AudioPlayButton;

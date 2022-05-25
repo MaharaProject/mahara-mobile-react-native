@@ -21,7 +21,6 @@
     "fix-deps": "rnx-dep-check --write"
   },
   "dependencies": {
-    "@expo/vector-icons": "^13.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-native-fontawesome": "^0.2.7",
