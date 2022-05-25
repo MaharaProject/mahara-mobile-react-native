@@ -1,4 +1,4 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import NavAddSVG from '../assets/images/nav-add';
 import NavAddActiveSVG from '../assets/images/nav-add-active';
@@ -11,7 +11,7 @@ import {
   PendingItemsNavigator,
   CreateNavigator,
   MenuNavigator,
-  navigatorStrings
+  navigatorStrings,
 } from './StackNavigators';
 
 const BottomTab = createBottomTabNavigator();
@@ -22,9 +22,9 @@ const tabOptions = {
   tabBarInactiveTintColor: styles.colors.quaternary,
   tabBarStyle: {
     backgroundColor: styles.colors.navBarGreen,
-    borderTopWidth: 0
+    borderTopWidth: 0,
   },
-  tabBarShowLabel: false
+  tabBarShowLabel: false,
 };
 
 const MaharaMobileNavigator = () => (
@@ -36,13 +36,14 @@ const MaharaMobileNavigator = () => (
         ...tabOptions,
         tabBarLabel: navigatorStrings().PENDING,
         headerShown: false,
-        tabBarIcon: ({focused}) => {
+        tabBarIcon: ({ focused }) => {
           if (focused === false) {
             return <NavUploadSVG />;
           }
           return <NavUploadActiveSVG />;
         },
-        tabBarAccessibilityLabel: navigatorStrings().PENDING_ACCESSIBILITY_LABEL
+        tabBarAccessibilityLabel:
+          navigatorStrings().PENDING_ACCESSIBILITY_LABEL,
       }}
     />
     <BottomTab.Screen
@@ -52,13 +53,13 @@ const MaharaMobileNavigator = () => (
         ...tabOptions,
         headerShown: false,
         tabBarLabel: navigatorStrings().CREATE,
-        tabBarIcon: ({focused}) => {
+        tabBarIcon: ({ focused }) => {
           if (focused === false) {
             return <NavAddSVG />;
           }
           return <NavAddActiveSVG />;
         },
-        tabBarAccessibilityLabel: navigatorStrings().ADD_ACCESSIBILITY_LABEL
+        tabBarAccessibilityLabel: navigatorStrings().ADD_ACCESSIBILITY_LABEL,
       }}
     />
     <BottomTab.Screen
@@ -67,14 +68,14 @@ const MaharaMobileNavigator = () => (
       options={{
         ...tabOptions,
         headerShown: false,
-        tabBarIcon: ({focused}) => {
+        tabBarIcon: ({ focused }) => {
           if (focused === false) {
             return <NavMenuSVG />;
           }
           return <NavMenuActiveSVG />;
         },
         tabBarTestID: 'tabBar',
-        tabBarAccessibilityLabel: navigatorStrings().MENU
+        tabBarAccessibilityLabel: navigatorStrings().MENU,
       }}
     />
   </BottomTab.Navigator>

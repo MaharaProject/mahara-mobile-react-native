@@ -1,7 +1,7 @@
 // import { I18n } from '@lingui/core';
 // import {t, Trans} from '@lingui/macro';
 // // import { withI18n } from '@lingui/react';
-import { Item, Picker } from 'native-base';
+import { Box, Select } from 'native-base';
 import { useEffect, useState } from 'react';
 import { Alert, Image, Text, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -97,8 +97,8 @@ const PreferencesScreen = (props: Props) => {
       <View>
         {/* <SubHeading text={t`Destination folder`} /> */}
         <SubHeading text="Destination folder" />
-        <Item regular>
-          <Picker
+        <Box>
+          <Select
             // accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolderTitle}
             onValueChange={(folder: string) => {
@@ -111,10 +111,10 @@ const PreferencesScreen = (props: Props) => {
                     ? // ? `${f.title} - ${i18n._(t`default`)}`
                       `${f.title} - default`
                     : f.title;
-                return <Picker.Item label={label} value={f.title} key={f.id} />;
+                return <Select.Item label={label} value={f.title} key={f.id} />;
               })}
-          </Picker>
-        </Item>
+          </Select>
+        </Box>
       </View>
     );
   };
@@ -130,8 +130,8 @@ const PreferencesScreen = (props: Props) => {
         {/* <SubHeading text={t`Destination journal`} /> */}
         <SubHeading text="Destination journal" />
 
-        <Item regular style={buttons.default}>
-          <Picker
+        <Box style={buttons.default}>
+          <Select
             // accessibilityLabel={i18n._(t`Select journal`)}
             selectedValue={selectedBlogId}
             onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
@@ -143,11 +143,11 @@ const PreferencesScreen = (props: Props) => {
                       `${blog.title} - default`
                     : blog.title;
                 return (
-                  <Picker.Item label={label} value={blog.id} key={blog.id} />
+                  <Select.Item label={label} value={blog.id} key={blog.id} />
                 );
               })}
-          </Picker>
-        </Item>
+          </Select>
+        </Box>
       </View>
     );
   };

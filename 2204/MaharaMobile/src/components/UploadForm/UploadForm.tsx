@@ -1,7 +1,7 @@
 // import {t} from '@lingui/macro';
 // import {withI18n} from '@lingui/react';
 import { StackActions } from '@react-navigation/native';
-import { Item, Picker, Text, View } from 'native-base';
+import { Box, Item, Picker, Select, Text, View } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import i18n from '../../i18n';
@@ -34,6 +34,7 @@ import {
   isValidText,
   putDefaultAtTop,
   removeExtension,
+  RequiredWarningText,
   setTagString,
 } from '../../utils/formHelper';
 import {
@@ -44,7 +45,6 @@ import {
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
 import MediumButton from '../UI/MediumButton/MediumButton';
-import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import TagsPicker from './TagsPicker';
 import BlogPicker from './UploadFormComponents';
@@ -330,8 +330,8 @@ const UploadForm = (props: Props) => {
             customText="Error: You do not have any folders on your site."
           />
         )}
-        <Item regular>
-          <Picker
+        <Box regular>
+          <Select
             placeholder={props.defFolderTitle}
             // accessibilityLabel={i18n._(t`Select folder`)}
             selectedValue={selectedFolder}
@@ -343,10 +343,10 @@ const UploadForm = (props: Props) => {
                     ? // ? `${f.title} - ${i18n._(t`default`)}`
                       `${f.title} - default}`
                     : f.title;
-                return <Picker.Item label={label} value={f.title} key={f.id} />;
+                return <Select.Item label={label} value={f.title} key={f.id} />;
               })}
-          </Picker>
-        </Item>
+          </Select>
+        </Box>
       </View>
     );
   };

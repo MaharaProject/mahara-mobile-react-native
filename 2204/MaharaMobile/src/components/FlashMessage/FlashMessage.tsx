@@ -18,12 +18,12 @@ const flashMessage = (
           fontSize: styles.font.md,
           color: styles.colors.messageSuccessText,
         }}>
-        <Icon
+        {/* <Icon
           style={{
             color: styles.colors.messageSuccessIcon,
           }}
           name="md-checkmark-circle"
-        />
+        /> */}
         {/* &nbsp;&nbsp;{i18n._(text)} */}
         &nbsp;&nbsp;{text}
       </Text>

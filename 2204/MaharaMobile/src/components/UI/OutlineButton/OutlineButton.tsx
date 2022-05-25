@@ -24,13 +24,13 @@ const OutlineButton = (props: Props) => (
       bordered
       full
       light={props.light}
-      rounded
+      // rounded
       textStyle={props.style}
       accessibilityRole="button"
       // accessibilityLabel={i18n._(props.text)}
       accessibilityHint={props.accessibilityHint}
       onPress={props.onPress}>
-      <Icon name={props.icon} />
+      {/* <Icon name={props.icon} /> */}
       {/* <Text>{i18n._(props.text)}</Text> */}
       <Text>{props.text}</Text>
     </Button>

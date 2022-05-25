@@ -63,13 +63,13 @@ const UploadItem = (props: Props) => {
     if (!props.mimetype.includes('image')) {
       return (
         <View style={uploadItemStyles.imageContainer}>
-          <Icon
+          {/* <Icon
             name={getMimetypeIcon(props.mimetype)}
             size={30}
             type="font-awesome"
             color={styles.colors.light}
             containerStyle={uploadItemStyles.icon}
-          />
+          /> */}
         </View>
       );
     }

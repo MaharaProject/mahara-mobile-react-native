@@ -1,7 +1,7 @@
 // // import {t} from '@lingui/macro';
 // import { ' } from '@lingui/react';
 import { CommonActions } from '@react-navigation/native';
-import { Content, View } from 'native-base';
+import { Box, View } from 'native-base';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import generic from '../../assets/styles/generic';
@@ -52,7 +52,7 @@ const AddItemScreen = (props: Props) => {
   const [pickedFile, setPickedFile] = useState(emptyFile);
 
   return (
-    <Content>
+    <Box>
       <View style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
@@ -107,7 +107,7 @@ const AddItemScreen = (props: Props) => {
           />
         </View>
       </View>
-    </Content>
+    </Box>
   );
 };
 

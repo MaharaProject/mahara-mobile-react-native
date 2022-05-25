@@ -13,7 +13,7 @@ import textStyles from '../../assets/styles/text';
 import styles from '../../assets/styles/variables';
 import LoginTypes from '../../components/LoginTypes/LoginTypes';
 import LinkButton from '../../components/UI/LinkButton/LinkButton';
-import MaharaGradient from '../../components/UI/MaharaGradient/MaharaGradient';
+// import MaharaGradient from '../../components/UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import { checkLoginTypes } from '../../store/actions/userArtefacts';
@@ -101,12 +101,12 @@ const SiteCheckScreen = (props: Props) => {
               color: styles.colors.messageErrorText,
               flexDirection: 'row',
             }}>
-            <Icon
+            {/* <Icon
               style={{
                 color: styles.colors.messageErrorIcon,
               }}
               name="home"
-            />
+            /> */}
             &nbsp;&nbsp;{error.message}
           </Text>
         ),
@@ -199,10 +199,10 @@ const SiteCheckScreen = (props: Props) => {
       {!isInputHidden ? (
         <View
           style={{
-            justifyContent: 'space-between',
-            flex: 1,
-            paddingLeft: 10,
-            paddingRight: 10,
+            // justifyContent: 'space-between',
+            // flex: 1,
+            // paddingLeft: 10,
+            // paddingRight: 10,
           }}>
           <MediumButton
             // text={t`Next`}

@@ -1,7 +1,7 @@
 // // import {t} from '@lingui/macro';
-import {Body, List, ListItem} from 'native-base';
+import { Body, Divider, HStack, List, ListItem, VStack } from 'native-base';
 import React from 'react';
-import {ScrollView} from 'react-native';
+import { ScrollView } from 'react-native';
 import generic from '../../assets/styles/generic';
 import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
@@ -9,8 +9,8 @@ import SubHeading from '../../components/UI/SubHeading/SubHeading';
 
 const PrivacyScreen = () => (
   <ScrollView style={generic.wrap}>
-    <List>
-      <ListItem>
+    <VStack space={3} divider={<Divider />} w="90%">
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Introduction`} />
           <MediumText
@@ -36,9 +36,9 @@ const PrivacyScreen = () => (
               the two can communicate with each other. `}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`How we use your personal information`} />
           <MediumText
@@ -52,9 +52,9 @@ const PrivacyScreen = () => (
               that you are using for more information.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading
             text={t`Storage and security of your personal
@@ -75,9 +75,9 @@ const PrivacyScreen = () => (
               planning to upload to your Mahara site via Mahara Mobile.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Deleting your data`} />
           <MediumText
@@ -88,9 +88,9 @@ const PrivacyScreen = () => (
              to your Mahara account will still be available on your device unless you deleted them yourself.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Changes to this Privacy Statement`} />
           <MediumText
@@ -100,9 +100,9 @@ const PrivacyScreen = () => (
               each time you visit this app.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Contact`} />
           <MediumText>
@@ -113,8 +113,8 @@ const PrivacyScreen = () => (
             <LinkText url="mailto:privacy@mahara.org" text={t`contact us.`} />
           </MediumText> */}
         </Body>
-      </ListItem>
-    </List>
+      </HStack>
+    </VStack>
   </ScrollView>
 );
 
