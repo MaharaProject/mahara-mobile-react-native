@@ -9,12 +9,12 @@ const CustomVerifyBackButton = (props) => {
     return true;
   };
   return (
-    <Button style={{ elevation: 0 }} rounded icon onPress={onBackPress}>
-      <Icon
+    <Button style={{ elevation: 0 }} icon onPress={onBackPress}>
+      {/* <Icon
         name="arrow-back-outline"
         type="Ionicons"
         color={styles.colors.light}
-      />
+      /> */}
     </Button>
   );
 };

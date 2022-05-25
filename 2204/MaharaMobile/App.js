@@ -7,9 +7,8 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Root, StyleProvider } from 'native-base';
-import commonColor from './native-base-theme/variables/commonColor';
-import getTheme from './native-base-theme/components';
+// import { Root, StyleProvider } from 'native-base';
+import { extendTheme, NativeBaseProvider } from 'native-base';
 
 // import i18n, { changeActiveLanguage } from './src/i18n';
 
@@ -36,18 +35,34 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const theme = extendTheme({
+    colors: {
+      // Add new color
+      primary: '#576c36',
+      info: '#ba9b59',
+      success: '#3c4c23',
+      danger: '#a9000d',
+      warning: '#b9a34b',
+      dark: '#000',
+      light: '#FFF',
+    },
+    // Redefining only one shade, rest of the color will remain same.
+  });
+
   return (
     // Need to add theme back
     // <NativeBaseProvider>
-    <Root>
+    // <Root>
+    <NativeBaseProvider theme={theme}>
       <Provider store={store}>
-        <StyleProvider style={getTheme(commonColor)}>
-          {/* <I18nProviderWrapper> */}
-          <AppNavigator />
-          {/* </I18nProviderWrapper> */}
-        </StyleProvider>
+        {/* <StyleProvider style={getTheme(commonColor)}> */}
+        {/* <I18nProviderWrapper> */}
+        <AppNavigator />
+        {/* </I18nProviderWrapper> */}
+        {/* </StyleProvider> */}
       </Provider>
-    </Root>
+    </NativeBaseProvider>
+    // </Root>
     //     </View>
     //   </ScrollView>
     // </SafeAreaView>

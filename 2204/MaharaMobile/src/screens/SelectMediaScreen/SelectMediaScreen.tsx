@@ -1,9 +1,9 @@
 // import {withI18n} from '@lingui/react';
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import generic from '../../assets/styles/generic';
 import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
-import {UploadItemType} from '../../models/models';
+import { UploadItemType } from '../../models/models';
 
 type Props = {
   navigation: any;
@@ -12,7 +12,7 @@ type Props = {
 const SelectMediaScreen = (props: Props) => {
   const selectMediaType = (type: UploadItemType) => {
     props.navigation.navigate('AddItem', {
-      itemType: type
+      itemType: type,
     });
   };
 
@@ -24,5 +24,4 @@ const SelectMediaScreen = (props: Props) => {
 };
 
 // export default withI18n()(SelectMediaScreen);
-export default (SelectMediaScreen);
-
+export default SelectMediaScreen;

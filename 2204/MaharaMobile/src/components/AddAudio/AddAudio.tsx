@@ -5,7 +5,6 @@ import React, { useEffect, useState } from 'react';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
-import { PLATFORM } from '../../../native-base-theme/variables/commonColor';
 import variables from '../../assets/styles/variables';
 import { File, PlayBackType } from '../../models/models';
 import { newFile } from '../../models/typeCreators';
@@ -182,7 +181,7 @@ const AddAudio = (props: Props) => {
       fileSize = parseInt(stats.size, 10);
     });
 
-    const mime = `audio/${Platform.OS === PLATFORM.IOS ? 'm4a' : 'mp3'}`;
+    const mime = `audio/${Platform.OS === 'ios' ? 'm4a' : 'mp3'}`;
 
     const file = newFile(uri, mime, filename, fileSize);
 

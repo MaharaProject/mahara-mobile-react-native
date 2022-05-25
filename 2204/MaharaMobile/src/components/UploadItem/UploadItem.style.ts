@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import styles from '../../assets/styles/variables';
 
 const uploadItemStyles = StyleSheet.create({
@@ -6,7 +6,7 @@ const uploadItemStyles = StyleSheet.create({
     flexDirection: 'row',
     padding: 3,
     marginBottom: -15,
-    height: 110
+    height: 110,
   },
   pendingCard: {
     flexDirection: 'row',
@@ -14,57 +14,57 @@ const uploadItemStyles = StyleSheet.create({
     height: 80,
     alignItems: 'flex-start',
     justifyContent: 'center',
-    borderRadius: 0,
+    // borderRadius: 0,
     backgroundColor: styles.colors.lightgrey,
-    padding: 5
+    padding: 5,
   },
   buttonContainer: {
     flexDirection: 'row',
     width: '30%', // of width of parent
     justifyContent: 'space-around',
     paddingLeft: 10,
-    height: '100%'
+    height: '100%',
   },
   textContainer: {
     paddingLeft: 10,
     width: '50%',
     height: '100%',
     justifyContent: 'center',
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   text: {
-    fontSize: 16
+    fontSize: 16,
   },
   imageContainer: {
     width: '20%',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   icon: {
     height: '100%',
     backgroundColor: styles.colors.lightbrown_grid_button,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   thumbnail: {
     height: '100%',
-    width: '100%'
+    width: '100%',
   },
   button: {
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   date: {
-    fontSize: 20
+    fontSize: 20,
   },
   title: {
     color: styles.colors.primary,
     paddingVertical: 5,
-    fontSize: 16
+    fontSize: 16,
   },
   remove: {
-    color: styles.colors.red
+    color: styles.colors.red,
   },
   edit: {
-    color: styles.colors.green_grid_button
-  }
+    color: styles.colors.green_grid_button,
+  },
 });
 
 export default uploadItemStyles;

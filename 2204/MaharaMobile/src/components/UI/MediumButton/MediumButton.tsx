@@ -64,7 +64,7 @@ const MediumButton = (props: Props) => (
     dark={!!props.dark}
     disabled={props.invalid}
     iconLeft
-    rounded
+    // rounded
     info={!props.invalid}
     accessibilityRole="button"
     // accessibilityLabel={i18n._(props.text)}
@@ -73,10 +73,10 @@ const MediumButton = (props: Props) => (
     // }
     onPress={props.onPress}
     style={{ ...buttons.default, ...props.style }}>
-    <Icon
+    {/* <Icon
       name={props.icon}
       style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
-    />
+    /> */}
     <Text style={props.unbold ? {} : { fontWeight: 'bold' }}>
       {/* {i18n._(props.text)} */}
       {props.text}

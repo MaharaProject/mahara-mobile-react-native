@@ -1,12 +1,11 @@
 // import { i18n } from '@lingui/core';
 // import {t} from '@lingui/macro';
-import { Item, Left, Picker, Right, Switch } from 'native-base';
+import { Box, Item, Left, Picker, Right, Select, Switch } from 'native-base';
 import React from 'react';
 import { View } from 'react-native';
 import styles from '../../assets/styles/variables';
 import { UserBlog } from '../../models/models';
-import { putDefaultAtTop } from '../../utils/formHelper';
-import RequiredWarningText from '../UI/RequiredWarningText/RequiredWarningText';
+import { putDefaultAtTop, RequiredWarningText } from '../../utils/formHelper';
 import SubHeading from '../UI/SubHeading/SubHeading';
 
 export const BlogPicker = (props: {
@@ -42,8 +41,8 @@ export const BlogPicker = (props: {
           customText="Error: You do not have any journals on your site."
         />
       )}
-      <Item regular>
-        <Picker
+      <Box regular>
+        <Select
           mode="dropdown"
           // placeholder={i18n._(t`Please select a journal`)}
           // accessibilityLabel={i18n._(t`Select a journal`)}
@@ -57,11 +56,11 @@ export const BlogPicker = (props: {
                   ? `${blog.title} - default`
                   : blog.title;
               return (
-                <Picker.Item label={label} value={blog.id} key={blog.id} />
+                <Select.Item label={label} value={blog.id} key={blog.id} />
               );
             })}
-        </Picker>
-      </Item>
+        </Select>
+      </Box>
     </View>
   );
 };
@@ -72,7 +71,7 @@ type Props = {
 };
 
 const JournalDraftSwitch = (props: Props) => (
-  <Item style={{ borderColor: styles.colors.light }}>
+  <Box style={{ borderColor: styles.colors.light }}>
     <Left>
       {/* <SubHeading text={t`Draft journal entry`} /> */}
       <SubHeading text="Draft journal entry" />
@@ -85,7 +84,7 @@ const JournalDraftSwitch = (props: Props) => (
         onValueChange={() => props.setIsDraft(!props.isDraft)}
       />
     </Right>
-  </Item>
+  </Box>
 );
 
 export default BlogPicker;

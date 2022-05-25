@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import styles from './variables';
 
 const generic = StyleSheet.create({
@@ -8,15 +8,15 @@ const generic = StyleSheet.create({
     height: '100%',
   },
   wrap: {
-    padding: styles.padding.sm
+    padding: styles.padding.sm,
   },
   center: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   linearGradient: {
     flex: 1,
-    padding: styles.padding.md
-  }
+    padding: styles.padding.md,
+  },
 });
 
 export default generic;

@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
 // import {t} from '@lingui/macro';
-import { Icon, Input, Item, Picker, Text, View } from 'native-base';
+import {
+  Box,
+  Icon,
+  Input,
+  Item,
+  Picker,
+  Select,
+  Text,
+  View,
+} from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
@@ -147,24 +156,24 @@ const TagsPicker = (props: Props) => {
         ))}
         {/* Create new tag */}
         {showTagInput && (
-          <Item regular>
+          <Box>
             <Input
               // placeholder={i18n._(t`New tag...`)}
               placeholder="New tag..."
               onChangeText={(text: string) => setNewTagText(text)}
             />
 
-            <Icon
+            {/* <Icon
               onPress={() => selectTagHandler(newTagText)}
               name="checkmark-outline"
             />
-            <Icon onPress={() => setShowTagInput(false)} name="close-outline" />
-          </Item>
+            <Icon onPress={() => setShowTagInput(false)} name="close-outline" /> */}
+          </Box>
         )}
       </View>
       {/* Display drop down of existing tags */}
-      <Item regular style={[buttons.default]}>
-        <Picker
+      <Box style={[buttons.default]}>
+        <Select
           mode="dropdown"
           iosHeader="Select tags"
           // placeholder={i18n._(t`Select tags`)}
@@ -172,23 +181,23 @@ const TagsPicker = (props: Props) => {
           // accessibilityLabel={i18n._(t`Select tags`)}
           selectedValue={selectedDropdownTag}
           onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
-          <Picker.Item
+          <Select.Item
             // label={i18n._(t`Select tags...`)}
             label="Select tags..."
             value=""
             color={styles.colors.darkgrey}
           />
-          {/* <Picker.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" /> */}
-          <Picker.Item label="Add new tag +" value="Add new tag +" />
+          {/* <Select.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" /> */}
+          <Select.Item label="Add new tag +" value="Add new tag +" />
           {props.userTags.map((value: UserTag, index: number) => (
-            <Picker.Item
+            <Select.Item
               label={value.tag}
               value={value.tag}
               key={props.userTags[index].id}
             />
           ))}
-        </Picker>
-      </Item>
+        </Select>
+      </Box>
     </View>
   );
 };

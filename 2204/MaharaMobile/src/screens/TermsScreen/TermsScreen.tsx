@@ -1,19 +1,20 @@
 // // import {t} from '@lingui/macro';
-import {Body, List, ListItem} from 'native-base';
+// import { t } from '@lingui/macro';
+import { Body, Divider, HStack, VStack } from 'native-base';
 import React from 'react';
-import {ScrollView} from 'react-native';
+import { ScrollView } from 'react-native';
 import generic from '../../assets/styles/generic';
 import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
 
 type Props = {
-  navigation: {navigate: (arg0: string) => any};
+  navigation: { navigate: (arg0: string) => any };
 };
 const TermsScreen = (props: Props) => (
   <ScrollView style={generic.wrap}>
-    <List>
-      <ListItem>
+    <VStack space={3} divider={<Divider />} w="90%">
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Introduction`} />
           <MediumText
@@ -30,14 +31,14 @@ const TermsScreen = (props: Props) => (
               text={t`The Privacy Statement`}
             /> */}
 
-            {/* <MediumText
+          {/* <MediumText
               text={t`forms part of these terms and conditions and is hereby incorporated by reference.`}
             />
           </MediumText> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Purpose of Mahara Mobile`} />
           <MediumText
@@ -48,9 +49,9 @@ const TermsScreen = (props: Props) => (
             create journal entries.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Our obligations`} />
           <MediumText
@@ -58,9 +59,9 @@ const TermsScreen = (props: Props) => (
             your content to any Mahara site to which you decide to connect.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Your obligations`} />
           <MediumText
@@ -74,10 +75,10 @@ const TermsScreen = (props: Props) => (
             not your own.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
       {/* style={{fontSize: styles.font.md}} */}
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Liability`} /> */}
           {/* <MediumText
@@ -121,9 +122,9 @@ const TermsScreen = (props: Props) => (
           similar law where we are providing services to consumers.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           <SubHeading text={t`Governing Law`} />
           {/* <MediumText
@@ -133,36 +134,39 @@ const TermsScreen = (props: Props) => (
           and determine any claim arising them.`}
           /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
-          <SubHeading text={t`Changes to these Terms and Conditions`} />
-          <MediumText
-            text={t`We may occasionally make adjustments to our Terms and 
+          {/* <SubHeading text={t`Changes to these Terms and Conditions`} /> */}
+          {/* <MediumText
+            text={t`We may occasionally make adjustments to our Terms and
           Conditions to reflect changes to the system and in response to
           feedback. As such, we suggest you check the Terms and Conditions
           each time you visit this app.`}
-          />
+          /> */}
         </Body>
-      </ListItem>
+      </HStack>
 
-      <ListItem>
+      <HStack>
         <Body>
           {/* <SubHeading text={t`Contact`} /> */}
-          <MediumText>
-            {/* <MediumText
-              text={t`If you have any questions regarding these terms and
-              conditions, please `}
-            /> */}
-            <LinkText
-              url="https://mahara.org/contact.php"
-              // text={t`contact us.`}
-            />
-          </MediumText>
+          {/* <MediumText> */}
+          <MediumText
+            // text={t`If you have any questions regarding these terms and
+            // conditions, please `}
+            text="If you have any questions regarding these terms and
+              // conditions, please "
+          />
+          <LinkText
+            url="https://mahara.org/contact.php"
+            text="contact us."
+            // text={t`contact us.`}
+          />
+          {/* </MediumText> */}
         </Body>
-      </ListItem>
-    </List>
+      </HStack>
+    </VStack>
   </ScrollView>
 );
 

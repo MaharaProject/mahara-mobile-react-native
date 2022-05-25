@@ -1,7 +1,7 @@
 // import {t} from '@lingui/macro';
 // // import {I18n} from '@lingui/react';
 import React from 'react';
-import { Label } from 'native-base';
+import { FormControl } from 'native-base';
 import styles from '../assets/styles/variables';
 import { UploadItemType, UserBlog, UserFolder } from '../models/models';
 
@@ -38,13 +38,13 @@ export const RequiredWarningText = (props: { customText: string }) => (
   //     </Label>
   //   )}
   // </I18n>
-  <Label style={{ color: styles.colors.warn }}>
+  <FormControl.Label style={{ color: styles.colors.warn }}>
     {props.customText ? props.customText : 'This field is required.'}
-  </Label>
+  </FormControl.Label>
 );
 
 export const RedAsterisk = () => (
-  <Label style={{ color: styles.colors.warn }}>*</Label>
+  <FormControl.Label style={{ color: styles.colors.warn }}>*</FormControl.Label>
 );
 
 /**

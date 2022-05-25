@@ -33,7 +33,7 @@ const CancelButton = (props: Props) => {
     <Button
       light
       full
-      rounded
+      // rounded
       accessibilityRole="button"
       accessibilityLabel="Cancel"
       onPress={() => (props.onPress ? props.onPress() : onCancelAlert(goBack))}
