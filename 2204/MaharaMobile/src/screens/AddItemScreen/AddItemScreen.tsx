@@ -1,7 +1,8 @@
 // // import {t} from '@lingui/macro';
 // import { ' } from '@lingui/react';
+import { faCamera, faFolder } from '@fortawesome/free-solid-svg-icons';
 import { CommonActions } from '@react-navigation/native';
-import { Box, View } from 'native-base';
+import { Box, Center, Container, ScrollView, View } from 'native-base';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import generic from '../../assets/styles/generic';
@@ -52,7 +53,7 @@ const AddItemScreen = (props: Props) => {
   const [pickedFile, setPickedFile] = useState(emptyFile);
 
   return (
-    <Box>
+    <ScrollView>
       <View style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
@@ -72,7 +73,7 @@ const AddItemScreen = (props: Props) => {
               }
               onPress={() => pickDocument(setPickedFile)}
               style={null}
-              icon="folder-open"
+              icon={faFolder}
             />
           </View>
         )}
@@ -80,7 +81,7 @@ const AddItemScreen = (props: Props) => {
         {itemType === 'PHOTO' && (
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
-            icon="camera"
+            icon={faCamera}
             // text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
             text={pickedFile.uri === '' ? 'Take photo' : 'Re-take photo'}
           />
@@ -107,7 +108,7 @@ const AddItemScreen = (props: Props) => {
           />
         </View>
       </View>
-    </Box>
+    </ScrollView>
   );
 };
 

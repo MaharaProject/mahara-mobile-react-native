@@ -8,6 +8,7 @@ import {
   faImage,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Box, Center, HStack } from 'native-base';
 // import { withI18n } from '@lingui/react';
 import React from 'react';
 import {
@@ -19,6 +20,7 @@ import {
 } from 'react-native';
 import { Icon } from 'react-native-elements';
 import styles from '../../assets/styles/variables';
+import { ICON_SIZE } from '../../utils/constants';
 import Card from '../UI/Card/Card';
 import uploadItemStyles from './UploadItem.style';
 
@@ -70,14 +72,14 @@ const UploadItem = (props: Props) => {
     if (!props.mimetype.includes('image')) {
       return (
         <View style={uploadItemStyles.imageContainer}>
-          <FontAwesomeIcon icon={getMimetypeIcon(props.mimetype)} size={25} />
-          {/* <Icon
-            name={getMimetypeIcon(props.mimetype)}
-            size={30}
-            type="font-awesome"
-            color={styles.colors.light}
-            containerStyle={uploadItemStyles.icon}
-          /> */}
+          {/* <Center> */}
+          <Center style={uploadItemStyles.icon}>
+            <FontAwesomeIcon
+              color="white"
+              icon={getMimetypeIcon(props.mimetype)}
+              size="30"
+            />
+          </Center>
         </View>
       );
     }
@@ -124,7 +126,7 @@ const UploadItem = (props: Props) => {
               <FontAwesomeIcon
                 icon={faTrashAlt}
                 style={uploadItemStyles.remove}
-                size={25}
+                size={ICON_SIZE}
               />
             </TouchableOpacity>
           </View>
@@ -136,7 +138,7 @@ const UploadItem = (props: Props) => {
               <FontAwesomeIcon
                 icon={faEdit}
                 style={uploadItemStyles.edit}
-                size={25}
+                size={ICON_SIZE}
               />
             </TouchableOpacity>
           </View>

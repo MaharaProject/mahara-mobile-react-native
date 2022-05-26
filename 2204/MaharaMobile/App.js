@@ -25,6 +25,7 @@ import AppNavigator from './src/navigation/AppNavigator';
 import * as RNLocalize from 'react-native-localize';
 // import { I18nProvider } from '@lingui/react';
 import configureStore from './src/store/store';
+import { maharaTheme } from './src/utils/theme';
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -35,25 +36,11 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
-  const theme = extendTheme({
-    colors: {
-      // Add new color
-      primary: '#576c36',
-      info: '#ba9b59',
-      success: '#3c4c23',
-      danger: '#a9000d',
-      warning: '#b9a34b',
-      dark: '#000',
-      light: '#FFF',
-    },
-    // Redefining only one shade, rest of the color will remain same.
-  });
-
   return (
     // Need to add theme back
     // <NativeBaseProvider>
     // <Root>
-    <NativeBaseProvider theme={theme}>
+    <NativeBaseProvider theme={maharaTheme}>
       <Provider store={store}>
         {/* <StyleProvider style={getTheme(commonColor)}> */}
         {/* <I18nProviderWrapper> */}

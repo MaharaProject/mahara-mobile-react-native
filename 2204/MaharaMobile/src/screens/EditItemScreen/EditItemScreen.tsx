@@ -34,7 +34,7 @@ import {
   renderImagePreview,
   takePhoto,
 } from '../../utils/addEditHelperFunctions';
-import { emptyFile } from '../../utils/constants';
+import { CAMERA_ICON, emptyFile, FOLDER_ICON } from '../../utils/constants';
 import { getUploadTypeIntlStrings } from '../../utils/helperFunctions';
 
 type Props = {
@@ -84,14 +84,14 @@ const EditItemScreen = (props: Props) => {
                 pickDocument(setPickedFile);
               }}
               style={null}
-              icon="folder-open"
+              icon={FOLDER_ICON}
             />
           </View>
         )}
         {itemType === 'PHOTO' && (
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
-            icon="camera"
+            icon={CAMERA_ICON}
             // text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
             text={pickedFile.uri === '' ? 'Take photo' : 'Re-take photo'}
           />
