@@ -1,5 +1,6 @@
 // import {t} from '@lingui/macro';
 // import {withI18n} from '@lingui/react';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { StackActions } from '@react-navigation/native';
 import { Box, Item, Picker, Select, Text, View } from 'native-base';
 import React, { useEffect, useState } from 'react';
@@ -384,7 +385,7 @@ const UploadForm = (props: Props) => {
         <MediumButton
           onPress={handleForm}
           invalid={!validButton}
-          icon="time-outline"
+          icon={faClock}
           text={
             props.editItem
               ? // ? t`Confirm edits to ${intlItemType}`

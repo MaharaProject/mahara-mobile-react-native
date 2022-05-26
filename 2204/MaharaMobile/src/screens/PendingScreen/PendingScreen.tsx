@@ -46,6 +46,7 @@ import { GUEST_USERNAME } from '../../utils/constants';
 import { uploadItemToMahara } from '../../utils/helperFunctions';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
+import { faSignInAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   uploadFiles: Array<PendingMFile>;
@@ -260,7 +261,7 @@ const PendingScreen = (props: Props) => {
                 // text={t`Upload to your site`}
                 text="Upload to your site"
                 onPress={onUploadClick}
-                icon="cloud-upload"
+                icon={faUpload}
               />
             </View>
           ) : (
@@ -268,7 +269,7 @@ const PendingScreen = (props: Props) => {
               // text={t`Please login`}
               text="Please login"
               // accessibilityHint={t`To upload pending items`}
-              icon="log-in-outline"
+              icon={faSignInAlt}
               onPress={goToSiteCheck}
             />
           )}

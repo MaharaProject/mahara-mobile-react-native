@@ -1,12 +1,16 @@
 // import {t} from '@lingui/macro';
 import {
+  faFolder,
+} from '@fortawesome/free-regular-svg-icons';
+import { faArrowRight, faCamera } from '@fortawesome/free-solid-svg-icons';
+import {
   File,
   JournalEntry,
   MaharaFile,
   PendingJEntry,
   PendingMFile,
   UserBlog,
-  UserFolder
+  UserFolder,
 } from '../models/models';
 // action types - payloads of information that send data from your application to your store
 
@@ -76,12 +80,12 @@ export const GUEST_BLOG: UserBlog = {
   title: 'Guest Blog',
   description: '',
   locked: false,
-  numBlogPosts: -1
+  numBlogPosts: -1,
 };
 
 export const GUEST_FOLDER: UserFolder = {
   id: -1,
-  title: 'Guest Images'
+  title: 'Guest Images',
 };
 
 // URLS
@@ -108,25 +112,29 @@ export const PLAYING = 'PLAYING';
 // export const md_AUDIO = t`audio`;
 
 // Icons
-export const LOG_IN_ICON = 'log-in-outline';
+export const LOG_IN_ICON = faArrowRight;
+export const FOLDER_ICON = faFolder;
+export const CAMERA_ICON = faCamera;
+
+export const ICON_SIZE = 20;
 
 // SINGLETON EMPTY
 
-export const emptyFile: File = {uri: '', type: '', name: '', size: 0};
+export const emptyFile: File = { uri: '', type: '', name: '', size: 0 };
 export const emptyMFile: MaharaFile = {
   webservice: '',
   wstoken: '',
   foldername: '',
   name: '',
   description: '',
-  filetoupload: emptyFile
+  filetoupload: emptyFile,
 };
 export const emptyPendingMFile: PendingMFile = {
   id: '',
   url: '',
   maharaFormData: emptyMFile,
   mimetype: '',
-  type: 'FILE'
+  type: 'FILE',
 };
 
 export const emptyJEntry: JournalEntry = {
@@ -135,10 +143,10 @@ export const emptyJEntry: JournalEntry = {
   wsfunction: '',
   title: '',
   body: '',
-  isdraft: false
+  isdraft: false,
 };
 export const emptyPendingJEntry: PendingJEntry = {
   id: '',
   url: '',
-  journalEntry: emptyJEntry
+  journalEntry: emptyJEntry,
 };

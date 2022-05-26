@@ -1,6 +1,12 @@
 // import {I18n} from '@lingui/core';
 // import {t} from '@lingui/macro';
 // import {withI18n} from '@lingui/react';
+import {
+  faMicrophone,
+  faPause,
+  faPlay,
+  faStop,
+} from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
@@ -34,9 +40,9 @@ const AddAudio = (props: Props) => {
   const [playStatus, setPlayStatus] = useState<PlayStatus>('not-playing');
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
-  const PLAY_ICON = 'play-circle';
-  const PAUSE_ICON = 'pause-circle';
-  const STOP_ICON = 'stop-circle';
+  const PLAY_ICON = faPlay;
+  const PAUSE_ICON = faPause;
+  const STOP_ICON = faStop;
 
   const checkIOS = (filename: string): string => {
     let checkedURI = filename;
@@ -272,7 +278,7 @@ const AddAudio = (props: Props) => {
             // text={recordStatus === 'recorded' ? t`Re-record` : t`Record`}
             text={recordStatus === 'recorded' ? 'Re-record' : 'Record'}
             onPress={() => handleRecord()}
-            icon="mic"
+            icon={faMicrophone}
           />
         )}
       </View>
