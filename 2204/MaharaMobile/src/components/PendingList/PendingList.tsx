@@ -3,7 +3,8 @@ import { FlatList } from 'react-native-gesture-handler';
 import { DisplayItems, PendingJEntry, PendingMFile } from '../../models/models';
 import { isPendingJEntry, isPendingMFile } from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
-
+import { StyleSheet } from 'react-native';
+import styles from '../../assets/styles/variables';
 type Props = {
   dataList: DisplayItems;
   onRemove: Function;
@@ -22,6 +23,7 @@ const PendingList = (props: Props) => {
 
   return (
     <FlatList
+      style={listStyles.flatList}
       data={props.dataList}
       renderItem={({ item, index }) => {
         const itemId = item.id;
@@ -69,5 +71,14 @@ const PendingList = (props: Props) => {
     />
   );
 };
+
+const listStyles = StyleSheet.create({
+  flatList: {
+    padding: styles.padding.xs,
+    paddingLeft: styles.padding.lg,
+    paddingRight: styles.padding.lg,
+    paddingTop: styles.padding.md,
+  },
+});
 
 export default PendingList;

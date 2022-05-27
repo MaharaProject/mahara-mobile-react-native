@@ -67,7 +67,7 @@ const headerConfigForTabStacks: StackNavigationOptions = {
   headerTitleAlign: 'center',
   headerTitleStyle: {
     fontFamily: 'OpenSans-Bold',
-    fontSize: 25,
+    fontSize: styles.font.md,
   },
 };
 

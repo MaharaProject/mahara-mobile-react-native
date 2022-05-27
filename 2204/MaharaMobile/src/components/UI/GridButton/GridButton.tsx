@@ -5,7 +5,7 @@ import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import buttons from '../../../assets/styles/buttons';
 import gridButtonStyles from './GridButton.style';
-import {Text} from 'native-base';
+import { Box, Center, Text } from 'native-base';
 import { maharaTheme } from '../../../utils/theme';
 
 type Props = {
@@ -40,8 +40,10 @@ const GridButton = (props: Props) => (
     {props.image ? (
       <View style={gridButtonStyles.imageWrapper}>{props.image}</View>
     ) : null}
-    {/* <Text style={[gridButtonStyles.buttonText]}>{i18n._(props.title)}</Text> */}
-    <Text style={[gridButtonStyles.buttonText]}>{props.title}</Text>
+    <Center>
+      {/* <Text style={[gridButtonStyles.buttonText]}>{i18n._(props.title)}</Text> */}
+      <Text style={[gridButtonStyles.buttonText]}>{props.title}</Text>
+    </Center>
   </TouchableOpacity>
   // )}
   // </I18n>

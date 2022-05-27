@@ -185,7 +185,7 @@ const PreferencesScreen = (props: Props) => {
       />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
-      <MediumButton
+      {/* <MediumButton
         // text={t`Update preferences`}
         text="Update preferences"
         onPress={() => {
@@ -210,7 +210,7 @@ const PreferencesScreen = (props: Props) => {
             }`
           );
         }}
-      />
+      /> */}
     </View>
   );
 };
