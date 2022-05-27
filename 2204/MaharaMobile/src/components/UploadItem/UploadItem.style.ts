@@ -12,7 +12,7 @@ const uploadItemStyles = StyleSheet.create({
     height: '80%',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    borderRadius: 0,
+    borderRadius: 3,
     backgroundColor: styles.colors.lightgrey,
     padding: 5,
   },

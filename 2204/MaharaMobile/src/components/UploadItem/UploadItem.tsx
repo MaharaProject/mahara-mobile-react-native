@@ -46,8 +46,7 @@ type Props = {
 
 const UploadItem = (props: Props) => {
   const title = props.title ? props.title : '';
-  const displayName: string =
-    title.length > 25 ? `${title.substring(0, 20)}...` : title;
+  const displayName: string = title;
   const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
 
   const Thumbnail = () => {
@@ -110,7 +109,9 @@ const UploadItem = (props: Props) => {
 
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
-          <Text fontSize="xs">{displayName} </Text>
+          <Text isTruncated fontSize="xs">
+            {displayName}{' '}
+          </Text>
         </View>
         <View style={uploadItemStyles.buttonContainer}>
           <View style={uploadItemStyles.button}>
