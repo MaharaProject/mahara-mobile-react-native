@@ -1,12 +1,6 @@
 // import {t, Trans} from '@lingui/macro';
 import { useState } from 'react';
-import {
-  ActivityIndicator,
-  Platform,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Platform, TextInput, View } from 'react-native';
 import { getManufacturer, getModel } from 'react-native-device-info';
 import React from 'react';
 import uuid from 'react-native-uuid';
@@ -20,6 +14,7 @@ import { LOG_IN_ICON } from '../../utils/constants';
 import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import styles from './LocalLogin.style';
+import { Text } from 'native-base';
 
 type Props = {
   url: string;

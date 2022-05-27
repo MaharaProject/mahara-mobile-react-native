@@ -6,12 +6,11 @@ const gridButtonStyles = StyleSheet.create({
     margin: styles.padding.xs,
     flex: 1,
     justifyContent: 'center',
-    // borderRadius: 25,
+    borderRadius: 25,
   },
   buttonText: {
     textAlign: 'center',
     fontSize: styles.font.lg,
-    fontWeight: 'bold',
     color: styles.colors.light,
     marginBottom: styles.padding.md,
   },

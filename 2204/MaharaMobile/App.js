@@ -8,7 +8,7 @@
 
 import React, { useEffect, useState } from 'react';
 // import { Root, StyleProvider } from 'native-base';
-import { extendTheme, NativeBaseProvider } from 'native-base';
+import { NativeBaseProvider } from 'native-base';
 
 // import i18n, { changeActiveLanguage } from './src/i18n';
 

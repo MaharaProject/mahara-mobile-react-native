@@ -1,5 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
+import { View } from 'react-native';
 import styles from './Card.style';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const Card = (props: Props) => (
-  <View style={{...styles.uploadCard, ...props.style}}>{props.children}</View>
+  <View style={{ ...styles.uploadCard, ...props.style }}>{props.children}</View>
 );
 
 export default Card;

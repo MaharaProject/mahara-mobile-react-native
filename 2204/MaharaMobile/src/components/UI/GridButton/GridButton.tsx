@@ -1,9 +1,12 @@
 // import {MessageDescriptor} from '@lingui/core';
 // import {I18n} from '@lingui/react';
+import { StyleSheet } from 'react-native';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import buttons from '../../../assets/styles/buttons';
 import gridButtonStyles from './GridButton.style';
+import {Text} from 'native-base';
+import { maharaTheme } from '../../../utils/theme';
 
 type Props = {
   onPress: () => void;

@@ -8,7 +8,7 @@ export default StyleSheet.create({
   smButton: {
     marginBottom: styles.padding.md,
     marginRight: styles.padding.sm,
-    // borderRadius: 25,
+    borderRadius: 25,
     height: 50,
     minWidth: 50,
     textAlignVertical: 'center',

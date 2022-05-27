@@ -1,7 +1,7 @@
 import React from 'react';
-import {FlatList} from 'react-native-gesture-handler';
-import {DisplayItems, PendingJEntry, PendingMFile} from '../../models/models';
-import {isPendingJEntry, isPendingMFile} from '../../utils/helperFunctions';
+import { FlatList } from 'react-native-gesture-handler';
+import { DisplayItems, PendingJEntry, PendingMFile } from '../../models/models';
+import { isPendingJEntry, isPendingMFile } from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
@@ -23,7 +23,7 @@ const PendingList = (props: Props) => {
   return (
     <FlatList
       data={props.dataList}
-      renderItem={({item, index}) => {
+      renderItem={({ item, index }) => {
         const itemId = item.id;
         let mimetype = '';
         //  figure out what to pass in to UploadItem
@@ -35,7 +35,7 @@ const PendingList = (props: Props) => {
           thumbnail = {
             uri: pendingFile.maharaFormData.filetoupload.uri
               ? pendingFile.maharaFormData.filetoupload.uri
-              : ''
+              : '',
           };
         } else if (isPendingJEntry(item)) {
           const pendingJEntry: PendingJEntry = item;

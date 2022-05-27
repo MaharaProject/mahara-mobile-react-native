@@ -39,7 +39,7 @@ export const RequiredWarningText = (props: { customText: string }) => (
   //   )}
   // </I18n>
   // <FormControl.Label warning style={{ color: styles.colors.warn }}>
-  <Text style={{ color: styles.colors.warn }}>
+  <Text fontWeight={200} style={{ color: styles.colors.warn }}>
     {props.customText ? props.customText : 'This field is required.'}
   </Text>
   // </FormControl.Label>
