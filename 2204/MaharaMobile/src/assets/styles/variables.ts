@@ -49,11 +49,12 @@ const styles = {
     xl: 40,
   },
   font: {
-    xs: 14,
-    sm: 16,
-    md: 18,
-    lg: 20,
-    xl: 25,
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    xxl: 25,
   },
 };
 

@@ -1,16 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {View} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import { View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
 const AddJournalEntrySvg = () => {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="95"
-        viewBox="0 0 270 288">
+      <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 288">
         <Path
           id="add-journal-entry.svg"
           fill="#fff"

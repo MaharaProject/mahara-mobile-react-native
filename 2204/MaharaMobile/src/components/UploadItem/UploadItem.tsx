@@ -7,6 +7,7 @@ import {
   faMusic,
   faImage,
   faPencilAlt,
+  faMicrophoneAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Box, Center, HStack } from 'native-base';
@@ -15,15 +16,20 @@ import React from 'react';
 import {
   Image,
   ImageSourcePropType,
-  Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import { Text } from 'native-base';
 import { Icon } from 'react-native-elements';
 import styles from '../../assets/styles/variables';
 import { ICON_SIZE } from '../../utils/constants';
 import Card from '../UI/Card/Card';
 import uploadItemStyles from './UploadItem.style';
+import RecordAudioSvg from '../../assets/images/RecordAudio';
+import gridButtonStyles from '../UI/GridButton/GridButton.style';
+import TakePhotoSvg from '../../assets/images/TakePhoto';
+import PickFileSvg from '../../assets/images/PickFile';
+import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
 
 type Props = {
   title: string;
@@ -44,43 +50,31 @@ const UploadItem = (props: Props) => {
     title.length > 25 ? `${title.substring(0, 20)}...` : title;
   const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
 
-  const getMimetypeIcon = (mimetype: string) => {
-    let match = '';
-    mimetypes.forEach((type: string) => {
-      if (mimetype.includes(type)) {
-        match = type;
-      }
-    });
-
-    switch (match) {
-      case 'application':
-        return faImage;
-      case 'audio':
-        return faMusic;
-      case 'text':
-        return faAnchor;
-      case 'video':
-        return faFilm;
-      case 'journalEntry':
-        return faBook;
-      default:
-        return 'question';
-    }
-  };
-
   const Thumbnail = () => {
+    let thumbnailStyles;
+    if (props.mimetype.includes('application')) {
+      thumbnailStyles = gridButtonStyles.application;
+    }
+    if (props.mimetype.includes('audio')) {
+      thumbnailStyles = gridButtonStyles.audio;
+    }
+    if (props.mimetype.includes('journalEntry')) {
+      thumbnailStyles = gridButtonStyles.journalEntry;
+    }
     // not an image
     if (!props.mimetype.includes('image')) {
       return (
         <View style={uploadItemStyles.imageContainer}>
+          {/* <Text>{props.mimetype}</Text> */}
           {/* <Center> */}
-          <Center style={uploadItemStyles.icon}>
-            <FontAwesomeIcon
-              color="white"
-              icon={getMimetypeIcon(props.mimetype)}
-              size="30"
-            />
-          </Center>
+          <Box style={[uploadItemStyles.icon, thumbnailStyles]}>
+            {props.mimetype.includes('audio') ? <RecordAudioSvg /> : null}
+            {/* {props.mimetype.includes('audio') ? <TakePhotoSvg/> : null} */}
+            {props.mimetype.includes('application') ? <PickFileSvg /> : null}
+            {props.mimetype.includes('journalEntry') ? (
+              <AddJournalEntrySvg />
+            ) : null}
+          </Box>
         </View>
       );
     }
@@ -116,7 +110,7 @@ const UploadItem = (props: Props) => {
 
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
-          <Text style={uploadItemStyles.text}>{displayName} </Text>
+          <Text fontSize="xs">{displayName} </Text>
         </View>
         <View style={uploadItemStyles.buttonContainer}>
           <View style={uploadItemStyles.button}>
@@ -127,7 +121,7 @@ const UploadItem = (props: Props) => {
               <FontAwesomeIcon
                 icon={faTrashAlt}
                 style={uploadItemStyles.remove}
-                size={ICON_SIZE}
+                size={styles.font.xl}
               />
             </TouchableOpacity>
           </View>
@@ -139,7 +133,7 @@ const UploadItem = (props: Props) => {
               <FontAwesomeIcon
                 icon={faPencilAlt}
                 style={uploadItemStyles.edit}
-                size={ICON_SIZE}
+                size={styles.font.xl}
               />
             </TouchableOpacity>
           </View>

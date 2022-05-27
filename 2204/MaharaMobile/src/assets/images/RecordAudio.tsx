@@ -2,6 +2,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
+import gridButtonStyles from '../../components/UI/GridButton/GridButton.style';
 
 const RecordAudioSvg = () => {
   return (
