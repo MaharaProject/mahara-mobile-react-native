@@ -38,7 +38,7 @@ const styles = {
     navActiveGreenTint: '#576c36',
     siteCheckErrorTextPink: '#9b7968',
     recordingStopButtonRed: '#7c242b',
-    uploadButtonTan: '#b9a34b'
+    uploadButtonTan: '#b9a34b',
   },
   padding: {
     xs: 5,
@@ -46,15 +46,15 @@ const styles = {
     md: 15,
     ml: 20,
     lg: 30,
-    xl: 40
+    xl: 40,
   },
   font: {
     xs: 14,
     sm: 16,
     md: 18,
     lg: 20,
-    xl: 25
-  }
+    xl: 25,
+  },
 };
 
 export default styles;

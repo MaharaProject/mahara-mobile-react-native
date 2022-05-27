@@ -47,4 +47,39 @@ export const maharaTheme = extendTheme({
     dark: '#000',
     light: '#FFF',
   },
+  fontConfig: {
+    OpenSans: {
+      100: {
+        normal: 'OpenSans-Light',
+        italic: 'OpenSans-LightItalic',
+      },
+      200: {
+        normal: 'OpenSans-Regular',
+        italic: 'OpenSans-Italic',
+      },
+      300: {
+        normal: 'OpenSans-Medium',
+        italic: 'OpenSans-MediumItalic',
+      },
+      400: {
+        normal: 'OpenSans-SemiBold',
+        italic: 'OpenSans-SemiBoldItalic',
+      },
+      500: {
+        normal: 'OpenSans-Bold',
+        italic: 'OpenSans-BoldItalic',
+      },
+      600: {
+        normal: 'OpenSans-ExtraBold',
+        italic: 'OpenSans-ExtraBoldItalic',
+      },
+    },
+  },
+
+  // Make sure values below matches any of the keys in `fontConfig`
+  fonts: {
+    heading: 'OpenSans',
+    body: 'OpenSans',
+    mono: 'OpenSans',
+  },
 });

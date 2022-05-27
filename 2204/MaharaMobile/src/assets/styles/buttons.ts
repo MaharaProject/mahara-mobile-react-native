@@ -11,7 +11,7 @@ const buttons = StyleSheet.create({
     fontSize: styles.font.md,
     textAlign: 'center',
     width: '100%',
-    // borderRadius: 35,
+    borderRadius: 35,
   },
   md: {
     backgroundColor: styles.colors.secondary,
@@ -32,7 +32,6 @@ const buttons = StyleSheet.create({
   },
   cancel: {
     backgroundColor: styles.colors.lightgrey,
-    fontWeight: 'normal',
   },
   default: {
     marginBottom: styles.padding.sm,

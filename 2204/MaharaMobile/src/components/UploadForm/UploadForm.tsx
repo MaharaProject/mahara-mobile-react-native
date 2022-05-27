@@ -331,7 +331,7 @@ const UploadForm = (props: Props) => {
             customText="Error: You do not have any folders on your site."
           />
         )}
-        <Box regular>
+        <Box>
           <Select
             placeholder={props.defFolderTitle}
             // accessibilityLabel={i18n._(t`Select folder`)}
@@ -342,7 +342,7 @@ const UploadForm = (props: Props) => {
                 const label =
                   f.title === props.defFolderTitle
                     ? // ? `${f.title} - ${i18n._(t`default`)}`
-                      `${f.title} - default}`
+                      `${f.title} - default`
                     : f.title;
                 return <Select.Item label={label} value={f.title} key={f.id} />;
               })}

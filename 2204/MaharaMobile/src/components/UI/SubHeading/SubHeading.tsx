@@ -1,6 +1,6 @@
 // import {MessageDescriptor} from '@lingui/core';
 import React from 'react';
-import { Text } from 'react-native';
+import { Text } from 'native-base';
 import headingStyles from '../../../assets/styles/headings';
 // import i18n from '../../../i18n';
 import { RedAsterisk } from '../../../utils/formHelper';
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const SubHeading = (props: Props) => (
-  <Text style={[headingStyles.subHeading1, props.style]}>
+  <Text fontWeight={500} style={[headingStyles.subHeading1, props.style]}>
     {/* {i18n._(props.text)}:{props.required ? <RedAsterisk /> : null} */}
     {props.text}:{props.required ? <RedAsterisk /> : null}
   </Text>

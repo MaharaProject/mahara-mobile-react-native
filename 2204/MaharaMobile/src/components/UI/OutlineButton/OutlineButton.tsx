@@ -34,7 +34,7 @@ const OutlineButton = (props: Props) => (
       onPress={props.onPress}>
       {/* <Icon name={props.icon} /> */}
       {/* <Text>{i18n._(props.text)}</Text> */}
-      <Text>{props.text}</Text>
+      <Text fontWeight={300}>{props.text}</Text>
     </Button>
   </View>
   // )}

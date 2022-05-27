@@ -116,7 +116,7 @@ export const LOG_IN_ICON = faArrowRight;
 export const FOLDER_ICON = faFolder;
 export const CAMERA_ICON = faCamera;
 
-export const ICON_SIZE = 20;
+export const ICON_SIZE = 25;
 
 // SINGLETON EMPTY
 

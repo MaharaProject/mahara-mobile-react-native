@@ -60,9 +60,15 @@ export const navigatorStrings = () => {
 };
 
 const headerConfigForTabStacks: StackNavigationOptions = {
-  headerStyle: { backgroundColor: styles.colors.primary },
+  headerStyle: {
+    backgroundColor: styles.colors.primary,
+  },
   headerTintColor: styles.colors.light,
   headerTitleAlign: 'center',
+  headerTitleStyle: {
+    fontFamily: 'OpenSans-Bold',
+    fontSize: 25,
+  },
 };
 
 const AddItems = createStackNavigator();

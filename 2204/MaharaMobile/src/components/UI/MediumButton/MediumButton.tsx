@@ -77,7 +77,7 @@ const MediumButton = (props: Props) => (
     accessibilityRole="button"
     isDisabled={props.invalid}
     onPress={props.onPress}>
-    {props.text}
+    <Text>{props.text}</Text>
   </Button>
 );
 // <Button

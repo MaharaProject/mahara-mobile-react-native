@@ -6,6 +6,7 @@ import {
   faAnchor,
   faMusic,
   faImage,
+  faPencilAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Box, Center, HStack } from 'native-base';
@@ -136,7 +137,7 @@ const UploadItem = (props: Props) => {
               accessibilityLabel="Edit"
               onPress={props.onEdit}>
               <FontAwesomeIcon
-                icon={faEdit}
+                icon={faPencilAlt}
                 style={uploadItemStyles.edit}
                 size={ICON_SIZE}
               />

@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   uploadCard: {
     padding: 20,
     backgroundColor: 'white',
-    // borderRadius: 10,
+    borderRadius: 10,
     alignItems: 'flex-start',
 
     // all for iOS

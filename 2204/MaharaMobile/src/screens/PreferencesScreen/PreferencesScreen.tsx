@@ -1,9 +1,9 @@
 // import { I18n } from '@lingui/core';
 // import {t, Trans} from '@lingui/macro';
 // // import { withI18n } from '@lingui/react';
-import { Box, Select } from 'native-base';
+import { Box, Select, Text } from 'native-base';
 import { useEffect, useState } from 'react';
-import { Alert, Image, Text, View } from 'react-native';
+import { Alert, Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import image from '../../assets/images/no_userphoto.png';
 import buttons from '../../assets/styles/buttons';
