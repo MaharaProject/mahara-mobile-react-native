@@ -6,6 +6,7 @@ import { Button, Icon, Text, theme } from 'native-base';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import buttons from '../../../assets/styles/buttons';
+import variables from '../../../assets/styles/variables';
 import styles from '../../../assets/styles/variables';
 import { ICON_SIZE } from '../../../utils/constants';
 import { maharaTheme } from '../../../utils/theme';
@@ -21,6 +22,7 @@ type Props = {
   invalid?: boolean;
   style?: any;
   dark?: boolean;
+  children?: any;
 };
 
 const MediumButtonStyles = StyleSheet.create({
@@ -28,6 +30,7 @@ const MediumButtonStyles = StyleSheet.create({
     color: styles.colors.light,
   },
   light: {
+    borderRadius: 5,
     color: '#433113',
   },
 });
@@ -64,20 +67,26 @@ const MediumButton = (props: Props) => (
   // </I18n>
 
   <Button
-    rounded="md"
+    rounded="full"
+    bg="mahara.yellow5"
+    marginX={variables.padding.xs}
     // colorScheme={props.invalid ? 'info' : 'secondary'}
+    style={props.style}
     startIcon={
       <FontAwesomeIcon
-        color={maharaTheme.colors.green}
+        // color={maharaTheme.colors.green}
         icon={props.icon}
         size={ICON_SIZE}
-        // style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
+        style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
       />
     }
     accessibilityRole="button"
     isDisabled={props.invalid}
     onPress={props.onPress}>
-    <Text>{props.text}</Text>
+    <Text fontWeight="500">
+      {props.children}
+      {props.text}
+    </Text>
   </Button>
 );
 // <Button

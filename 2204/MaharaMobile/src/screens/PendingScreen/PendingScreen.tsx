@@ -47,7 +47,8 @@ import { GUEST_USERNAME } from '../../utils/constants';
 import { uploadItemToMahara } from '../../utils/helperFunctions';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
-import { faSignInAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faCloudUploadAlt, faSignInAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { maharaTheme } from '../../utils/theme';
 
 type Props = {
   uploadFiles: Array<PendingMFile>;
@@ -254,7 +255,9 @@ const PendingScreen = (props: Props) => {
         <View style={pendingScreenStyles.buttonContainer}>
           {props.userName !== GUEST_USERNAME ? (
             <View>
-              <Text style={[pendingScreenStyles.urlText, textStyles.center]}>
+              <Text
+                fontWeight="light"
+                style={[pendingScreenStyles.urlText, textStyles.center]}>
                 {/* <Trans>Your site: {url}</Trans> */}
                 Your site: {url}
               </Text>
@@ -262,7 +265,8 @@ const PendingScreen = (props: Props) => {
                 // text={t`Upload to your site`}
                 text="Upload to your site"
                 onPress={onUploadClick}
-                icon={faUpload}
+                icon={faCloudUploadAlt}
+                style={{ color: maharaTheme.colors.mahara.yellow4 }}
               />
             </View>
           ) : (

@@ -19,6 +19,7 @@ export const maharaTheme = extendTheme({
       yellow2: '#F2CB67',
       yellow3: '#F0C36D',
       yellow4: '#C6AD6E',
+      yellow5: '#BA9559',
       black1: '#000000',
       black2: '#222222',
       black3: '#333333',
