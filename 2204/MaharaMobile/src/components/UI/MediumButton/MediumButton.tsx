@@ -68,8 +68,7 @@ const MediumButton = (props: Props) => (
 
   <Button
     rounded="full"
-    bg="mahara.yellow5"
-    marginX={variables.padding.xs}
+    colorScheme="secondary"
     // colorScheme={props.invalid ? 'info' : 'secondary'}
     style={props.style}
     startIcon={

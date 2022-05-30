@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from 'native-base';
 import React from 'react';
 import { View } from 'react-native';
+import variables from '../../../assets/styles/variables';
 
 type Props = {
   onPress: () => void;
@@ -22,14 +23,13 @@ const OutlineButton = (props: Props) => (
   // {({i18n}) => (
   <View>
     <Button
+      colorScheme="primary"
+      rounded="full"
       variant="outline"
+      // marginX={variables.padding.xs}
       startIcon={<FontAwesomeIcon icon={props.icon} size={20} />}
-      // bordered
-      // full
       light={props.light}
-      // rounded
       _text={props.style}
-      // accessibilityLabel={i18n._(props.text)}
       accessibilityHint={props.accessibilityHint}
       onPress={props.onPress}>
       {/* <Icon name={props.icon} /> */}

@@ -2,7 +2,7 @@
 // import {withI18n} from '@lingui/react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { StackActions } from '@react-navigation/native';
-import { Box, Item, Picker, Select, Text, View } from 'native-base';
+import { Box, Item, Picker, Select, Text, View, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import i18n from '../../i18n';
@@ -381,8 +381,9 @@ const UploadForm = (props: Props) => {
     const validButton = getFormValidation();
     const intlItemType = getUploadTypeIntlStrings(itemType);
     return (
-      <View>
+      <VStack space={2} alignItems="stretch">
         <MediumButton
+          style={{ paddingBottom: 10 }}
           onPress={handleForm}
           invalid={!validButton}
           icon={faClock}
@@ -407,7 +408,7 @@ const UploadForm = (props: Props) => {
         )}
 
         {!props.editItem && <CancelButton navigation={props.navigation} />}
-      </View>
+      </VStack>
     );
   };
 

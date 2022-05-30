@@ -1,5 +1,6 @@
 // // import {t} from '@lingui/macro';
 import { CommonActions } from '@react-navigation/native';
+import { VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
@@ -69,7 +70,7 @@ const EditItemScreen = (props: Props) => {
 
   return (
     <ScrollView>
-      <View style={generic.wrap}>
+      <VStack space={4} style={generic.wrap}>
         {pickedFile.name &&
         (pickedFile.type.startsWith('image') ||
           pickedFile.type.startsWith('video'))
@@ -119,7 +120,7 @@ const EditItemScreen = (props: Props) => {
             defaultBlogId={props.defaultBlogId}
           />
         </View>
-      </View>
+      </VStack>
     </ScrollView>
   );
 };

@@ -8,7 +8,7 @@ const generic = StyleSheet.create({
     height: '100%',
   },
   wrap: {
-    padding: styles.padding.sm,
+    padding: styles.padding.md,
   },
   center: {
     textAlign: 'center',
