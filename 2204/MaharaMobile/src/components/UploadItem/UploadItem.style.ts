@@ -4,12 +4,13 @@ import styles from '../../assets/styles/variables';
 const uploadItemStyles = StyleSheet.create({
   uploadItem: {
     height: 80,
-    paddingBottom: -15,
+    // backgroundColor: 'red',
+    flexDirection: 'row'
   },
   pendingCard: {
     flexDirection: 'row',
     width: '100%',
-    height: '80%',
+    height: '88%',
     alignItems: 'flex-start',
     justifyContent: 'center',
     borderRadius: 3,
@@ -24,13 +25,13 @@ const uploadItemStyles = StyleSheet.create({
   },
   textContainer: {
     paddingLeft: 10,
-    width: '50%',
+    width: '47%',
     height: '100%',
     justifyContent: 'center',
     flexDirection: 'column',
   },
   imageContainer: {
-    width: '20%',
+    width: '23%',
     overflow: 'hidden',
   },
   icon: {

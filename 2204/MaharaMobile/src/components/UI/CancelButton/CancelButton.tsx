@@ -4,6 +4,7 @@ import { CommonActions } from '@react-navigation/native';
 import { Button, Text } from 'native-base';
 import React from 'react';
 import buttons from '../../../assets/styles/buttons';
+import variables from '../../../assets/styles/variables';
 import { onCancelAlert } from '../../../utils/addEditHelperFunctions';
 
 type Props = {
@@ -33,8 +34,8 @@ const CancelButton = (props: Props) => {
     <Button
       light
       full
-      // rounded
-      accessibilityRole="button"
+      rounded="full"
+      marginX={variables.padding.xs}
       accessibilityLabel="Cancel"
       onPress={() => (props.onPress ? props.onPress() : onCancelAlert(goBack))}
       style={[buttons.md, buttons.cancel]}>

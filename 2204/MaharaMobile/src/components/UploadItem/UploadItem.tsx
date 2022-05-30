@@ -81,7 +81,7 @@ const UploadItem = (props: Props) => {
       <View
         style={[
           uploadItemStyles.imageContainer,
-          { borderWidth: 4, borderColor: styles.colors.light },
+          // { borderWidth: 4, borderColor: styles.colors.light },
         ]}>
         <Image source={props.image} style={uploadItemStyles.thumbnail} />
       </View>
@@ -109,7 +109,7 @@ const UploadItem = (props: Props) => {
 
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
-          <Text isTruncated fontSize="xs">
+          <Text isTruncated fontSize="xs" fontWeight="light">
             {displayName}{' '}
           </Text>
         </View>
