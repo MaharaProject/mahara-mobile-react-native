@@ -1,8 +1,10 @@
 // // import {t} from '@lingui/macro';
 // import { ' } from '@lingui/react';
-import { faCamera, faFolder } from '@fortawesome/free-solid-svg-icons';
+import { faFileArchive, faFileCode, faFolderOpen } from '@fortawesome/free-regular-svg-icons';
+import { faCamera, faFile, faFolder, faFolderPlus } from '@fortawesome/free-solid-svg-icons';
+import { FolderOpen } from '@material-ui/icons';
 import { CommonActions } from '@react-navigation/native';
-import { Box, Center, Container, ScrollView, View } from 'native-base';
+import { Box, Center, Container, ScrollView, View, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import generic from '../../assets/styles/generic';
@@ -54,7 +56,7 @@ const AddItemScreen = (props: Props) => {
 
   return (
     <ScrollView>
-      <View style={generic.wrap}>
+      <VStack space={2} style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
         (pickedFile.type.startsWith('image') ||
@@ -107,7 +109,7 @@ const AddItemScreen = (props: Props) => {
             defaultBlogId={props.defaultBlogId}
           />
         </View>
-      </View>
+      </VStack>
     </ScrollView>
   );
 };

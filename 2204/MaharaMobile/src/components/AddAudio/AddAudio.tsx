@@ -7,6 +7,7 @@ import {
   faPlay,
   faStop,
 } from '@fortawesome/free-solid-svg-icons';
+import { HStack, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
@@ -247,7 +248,7 @@ const AddAudio = (props: Props) => {
 
   return (
     <View style={styles.buttonWrapper}>
-      <View style={styles.playbackButtonWrapper}>
+      <HStack space={2} style={styles.playbackButtonWrapper}>
         {recordStatus === 'recorded' ? (
           <AudioPlayButton
             iconName={playStatus === 'not-playing' ? PLAY_ICON : PAUSE_ICON}
@@ -262,16 +263,18 @@ const AddAudio = (props: Props) => {
             You need to grant the app permission in order to use this feature
           </Text>
         ) : null}
-      </View>
+      </HStack>
       <View style={styles.recordButton}>
         {recordStatus === 'recording' ? (
           <MediumButton
             dark
-            style={{ backgroundColor: variables.colors.recordingStopButtonRed }}
+            colorScheme="warning"
+            style={{ color: variables.colors.light }}
             // text={t`Stop`}
-            text="Stop"
+            text="Stop recording"
             onPress={() => handleRecord()}
             icon={STOP_ICON}
+            fontWeight="200"
           />
         ) : (
           <OutlineButton

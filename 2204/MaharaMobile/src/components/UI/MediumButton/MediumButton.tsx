@@ -23,6 +23,8 @@ type Props = {
   style?: any;
   dark?: boolean;
   children?: any;
+  colorScheme?: string;
+  fontWeight?: string;
 };
 
 const MediumButtonStyles = StyleSheet.create({
@@ -31,7 +33,7 @@ const MediumButtonStyles = StyleSheet.create({
   },
   light: {
     borderRadius: 5,
-    color: '#433113',
+    color: variables.colors.browner,
   },
 });
 
@@ -68,9 +70,12 @@ const MediumButton = (props: Props) => (
 
   <Button
     rounded="full"
-    colorScheme="secondary"
+    colorScheme={props.colorScheme ? props.colorScheme : 'secondary'}
     // colorScheme={props.invalid ? 'info' : 'secondary'}
-    style={props.style}
+    // style={[
+    //   props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light,
+    //   props.style,
+    // ]}
     startIcon={
       <FontAwesomeIcon
         // color={maharaTheme.colors.green}
@@ -82,7 +87,9 @@ const MediumButton = (props: Props) => (
     accessibilityRole="button"
     isDisabled={props.invalid}
     onPress={props.onPress}>
-    <Text fontWeight="500">
+    <Text
+      color={props.dark ? variables.colors.light : variables.colors.browner}
+      fontWeight={props.fontWeight ? props.fontWeight : '500'}>
       {props.children}
       {props.text}
     </Text>

@@ -379,7 +379,7 @@ const UploadForm = (props: Props) => {
 
   const renderButtons = () => {
     const validButton = getFormValidation();
-    const intlItemType = getUploadTypeIntlStrings(itemType);
+    const intlItemType = getUploadTypeIntlStrings(itemType).toLocaleLowerCase();
     return (
       <VStack space={2} alignItems="stretch">
         <MediumButton
