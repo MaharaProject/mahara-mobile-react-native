@@ -1,6 +1,6 @@
 {
   "name": "mahara-mobile",
-  "version": "21.10.2",
+  "version": "21.10.3",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
@@ -47,7 +47,6 @@
     "core-js": "^3.18.3",
     "eslint": "^7.32.0",
     "eslint-plugin-react-native": "^3.10.0",
-    "fastlane": "^0.1.0",
     "link": "^0.1.5",
     "lodash": "^4.17.21",
     "metro-react-native-babel-transformer": "^0.63.0",
