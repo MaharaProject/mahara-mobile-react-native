@@ -14,7 +14,7 @@ const buttons = StyleSheet.create({
     borderRadius: 35,
   },
   md: {
-    backgroundColor: styles.colors.secondary,
+    // backgroundColor: styles.colors.secondary,
     color: styles.colors.dark,
   },
   sm: {
@@ -31,7 +31,7 @@ const buttons = StyleSheet.create({
     color: styles.colors.light,
   },
   cancel: {
-    backgroundColor: styles.colors.lightgrey,
+    // backgroundColor: styles.colors.lightgrey,
   },
   default: {
     marginBottom: styles.padding.sm,

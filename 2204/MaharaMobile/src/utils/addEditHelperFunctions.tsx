@@ -36,6 +36,9 @@ const setSelectedImageCallback = (
     // Alert.alert(i18n._(t`ImagePicker Error:${resp.errorMessage}`));
     Alert.alert('Error');
   } else {
+    if (!asset) {
+      return;
+    }
     let path = asset != null ? asset.uri : '';
     console.log('happy');
     if (Platform.OS === 'ios') {

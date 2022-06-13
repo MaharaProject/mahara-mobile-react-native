@@ -266,7 +266,6 @@ const PendingScreen = (props: Props) => {
                 text="Upload to your site"
                 onPress={onUploadClick}
                 icon={faCloudUploadAlt}
-                style={{ color: maharaTheme.colors.mahara.yellow4 }}
               />
             </View>
           ) : (

@@ -9,8 +9,9 @@
 import React, { useEffect, useState } from 'react';
 // import { Root, StyleProvider } from 'native-base';
 import { NativeBaseProvider } from 'native-base';
+import { I18nProvider } from '@lingui/react';
 
-// import i18n, { changeActiveLanguage } from './src/i18n';
+import i18n, { changeActiveLanguage } from './src/i18n';
 
 import type { Node } from 'react';
 
@@ -43,9 +44,9 @@ const App: () => Node = () => {
     <NativeBaseProvider theme={maharaTheme}>
       <Provider store={store}>
         {/* <StyleProvider style={getTheme(commonColor)}> */}
-        {/* <I18nProviderWrapper> */}
-        <AppNavigator />
-        {/* </I18nProviderWrapper> */}
+        <I18nProviderWrapper>
+          <AppNavigator />
+        </I18nProviderWrapper>
         {/* </StyleProvider> */}
       </Provider>
     </NativeBaseProvider>
@@ -56,39 +57,39 @@ const App: () => Node = () => {
   );
 };
 
-// export const I18nProviderWrapper = () => {
-//   const [activeLanguage, setActiveLanguage] = useState('en');
-//   const [i18nInstance, setI18nInstance] = useState(i18n);
+export const I18nProviderWrapper = () => {
+  const [activeLanguage, setActiveLanguage] = useState('en');
+  const [i18nInstance, setI18nInstance] = useState(i18n);
 
-//   const toggleLanguage = () => {
-//     const defaultLang = 'en';
-//     const langTags = RNLocalize.getLocales().map(
-//       (locale) => locale.languageTag
-//     );
-//     const langTag = RNLocalize.findBestAvailableLanguage(langTags).languageTag;
+  const toggleLanguage = () => {
+    const defaultLang = 'en';
+    const langTags = RNLocalize.getLocales().map(
+      (locale) => locale.languageTag
+    );
+    const langTag = RNLocalize.findBestAvailableLanguage(langTags).languageTag;
 
-//     let langCode = defaultLang;
+    let langCode = defaultLang;
 
-//     RNLocalize.getLocales().forEach((locale) => {
-//       if (locale.languageTag === langTag) {
-//         langCode = locale.languageCode;
-//       }
-//     });
+    RNLocalize.getLocales().forEach((locale) => {
+      if (locale.languageTag === langTag) {
+        langCode = locale.languageCode;
+      }
+    });
 
-//     const updatedI18nInstance = changeActiveLanguage(langCode);
-//     setActiveLanguage(langCode);
-//     setI18nInstance(updatedI18nInstance);
-//   };
+    const updatedI18nInstance = changeActiveLanguage(langCode);
+    setActiveLanguage(langCode);
+    setI18nInstance(updatedI18nInstance);
+  };
 
-//   useEffect(() => {
-//     toggleLanguage();
-//   }, [activeLanguage]);
+  useEffect(() => {
+    toggleLanguage();
+  }, [activeLanguage]);
 
-//   return (
-//     <I18nProvider language={activeLanguage} i18n={i18nInstance}>
-//       <AppNavigator />
-//     </I18nProvider>
-//   );
-// };
+  return (
+    <I18nProvider language={activeLanguage} i18n={i18nInstance}>
+      <AppNavigator />
+    </I18nProvider>
+  );
+};
 
 export default App;

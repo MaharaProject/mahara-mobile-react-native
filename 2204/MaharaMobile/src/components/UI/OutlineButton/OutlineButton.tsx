@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from 'native-base';
 import React from 'react';
 import { View } from 'react-native';
+import variables from '../../../assets/styles/variables';
+import { maharaTheme } from '../../../utils/theme';
 
 type Props = {
   onPress: () => void;
@@ -17,28 +19,33 @@ type Props = {
   light?: boolean;
 };
 
-const OutlineButton = (props: Props) => (
+const OutlineButton = (props: Props) => {
   // <I18n>
   // {({i18n}) => (
-  <View>
-    <Button
-      variant="outline"
-      startIcon={<FontAwesomeIcon icon={props.icon} size={20} />}
-      // bordered
-      // full
-      light={props.light}
-      // rounded
-      _text={props.style}
-      // accessibilityLabel={i18n._(props.text)}
-      accessibilityHint={props.accessibilityHint}
-      onPress={props.onPress}>
-      {/* <Icon name={props.icon} /> */}
-      {/* <Text>{i18n._(props.text)}</Text> */}
-      <Text fontWeight={300}>{props.text}</Text>
-    </Button>
-  </View>
-  // )}
-  // </I18n>
-);
+
+  const buttonColour = maharaTheme.colors.primary[600];
+  return (
+    <View>
+      <Button
+        colorScheme="primary"
+        rounded="full"
+        variant="outline"
+        // marginX={variables.padding.xs}
+        startIcon={
+          <FontAwesomeIcon icon={props.icon} size={20} color={buttonColour} />
+        }
+        light={props.light}
+        _text={props.style}
+        accessibilityHint={props.accessibilityHint}
+        onPress={props.onPress}>
+        {/* <Icon name={props.icon} /> */}
+        {/* <Text>{i18n._(props.text)}</Text> */}
+        <Text fontWeight={200} color={buttonColour}>{props.text}</Text>
+      </Button>
+    </View>
+    // )}
+    // </I18n>
+  );
+};
 
 export default OutlineButton;

@@ -25,6 +25,7 @@ const styles = {
     berry_grid_button: '#612c45',
     lightbrown_grid_button: '#753b37',
     darkbrown_grid_button: '#423019',
+    browner: '#090703',
     red: '#76302e',
     messageSuccessBg: '#cfdeba',
     messageSuccessText: '#3c4c27',
@@ -41,6 +42,7 @@ const styles = {
     uploadButtonTan: '#b9a34b',
   },
   padding: {
+    xxs: 2.5,
     xs: 5,
     sm: 10,
     md: 15,

@@ -35,9 +35,10 @@ const CancelButton = (props: Props) => {
       light
       full
       rounded="full"
-      marginX={variables.padding.xs}
+      // marginX={variables.padding.xs}
       accessibilityLabel="Cancel"
       onPress={() => (props.onPress ? props.onPress() : onCancelAlert(goBack))}
+      colorScheme="info"
       style={[buttons.md, buttons.cancel]}>
       {/* <Text>{i18n._(t`Cancel`)}</Text> */}
       <Text>Cancel</Text>

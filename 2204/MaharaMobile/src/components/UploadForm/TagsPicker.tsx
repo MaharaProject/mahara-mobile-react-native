@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 // import {t} from '@lingui/macro';
 import {
   Box,
+  Center,
+  HStack,
   Icon,
   Input,
   Item,
@@ -156,19 +158,22 @@ const TagsPicker = (props: Props) => {
         ))}
         {/* Create new tag */}
         {showTagInput && (
-          <Box>
-            <Input
-              // placeholder={i18n._(t`New tag...`)}
-              placeholder="New tag..."
-              onChangeText={(text: string) => setNewTagText(text)}
-            />
+          <View>
+            <Input>Input</Input>
+            {/* <Center>
+              <Input
+                // placeholder={i18n._(t`New tag...`)}
+                placeholder="New tag..."
+                onChangeText={(text: string) => setNewTagText(text)}
+              />
+            </Center>
 
-            {/* <Icon
+            <Icon
               onPress={() => selectTagHandler(newTagText)}
               name="checkmark-outline"
             />
             <Icon onPress={() => setShowTagInput(false)} name="close-outline" /> */}
-          </Box>
+          </View>
         )}
       </View>
       {/* Display drop down of existing tags */}
