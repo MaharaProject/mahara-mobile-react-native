@@ -1,5 +1,5 @@
 // import {MessageDescriptor} from '@lingui/core';
-// // import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 // import {withI18n} from '@lingui/react';
 import React from 'react';
 import { View } from 'react-native';
@@ -23,20 +23,20 @@ const MenuScreen = (props: Props) => {
   const dispatch = useDispatch();
 
   const menuStrings = {
-    // preferences: t`Preferences`,
-    // help: t`Help`,
-    // about: t`About`,
-    // version: t`App version`,
-    // terms: t`Terms and conditions`,
-    // privacy: t`Privacy statement`,
-    // logout: t`Logout`
-    preferences: 'Preferences',
-    help: 'Help',
-    about: 'About',
-    version: 'App version',
-    terms: 'Terms and conditions',
-    privacy: 'Privacy statement',
-    logout: 'Logout',
+    preferences: t`Preferences`,
+    help: t`Help`,
+    about: t`About`,
+    version: t`App version`,
+    terms: t`Terms and conditions`,
+    privacy: t`Privacy statement`,
+    logout: t`Logout`,
+    //   preferences: 'Preferences',
+    //   help: 'Help',
+    //   about: 'About',
+    //   version: 'App version',
+    //   terms: 'Terms and conditions',
+    //   privacy: 'Privacy statement',
+    //   logout: 'Logout',
   };
 
   /**
