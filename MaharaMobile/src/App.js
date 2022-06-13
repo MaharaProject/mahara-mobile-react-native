@@ -1,5 +1,5 @@
 import {I18nProvider} from '@lingui/react';
-import * as Sentry from '@sentry/react-native';
+// import * as Sentry from '@sentry/react-native';
 import {Buffer} from 'buffer';
 import {Root, StyleProvider} from 'native-base';
 import React, {useEffect, useState} from 'react';
