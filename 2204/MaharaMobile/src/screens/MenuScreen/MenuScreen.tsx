@@ -68,12 +68,12 @@ const MenuScreen = (props: Props) => {
 
   return (
     <View style={menuScreenStyles.view}>
-      {menuItems.map((item: MenuItemObject) => (
+      {menuItems.map((item: MenuItemObject, index: number) => (
         <MenuItem
-          style={menuItemStyles.listItem}
-          title={item.name}
-          path={item.path}
-          key={item.name.id}
+        style={menuItemStyles.listItem}
+        title={item.name}
+        path={item.path}
+        key={item[index]}
         />
       ))}
     </View>

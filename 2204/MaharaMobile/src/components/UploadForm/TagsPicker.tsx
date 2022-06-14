@@ -2,12 +2,9 @@ import React, { useEffect, useState } from 'react';
 // import {t} from '@lingui/macro';
 import {
   Box,
-  Center,
-  HStack,
-  Icon,
+  CheckIcon,
+  CloseIcon,
   Input,
-  Item,
-  Picker,
   Select,
   Text,
   View,
@@ -158,21 +155,20 @@ const TagsPicker = (props: Props) => {
         ))}
         {/* Create new tag */}
         {showTagInput && (
-          <View>
-            <Input>Input</Input>
-            {/* <Center>
-              <Input
-                // placeholder={i18n._(t`New tag...`)}
-                placeholder="New tag..."
-                onChangeText={(text: string) => setNewTagText(text)}
-              />
-            </Center>
-
-            <Icon
+          <View style={uploadFormStyles.tagsContainer}>
+            <Input
+            // placeholder={i18n._(t`New tag...`)}
+            placeholder="New tag..."
+            onChangeText={(text: string) => setNewTagText(text)}
+            InputRightElement={[
+            <CheckIcon
+              mr="3"
               onPress={() => selectTagHandler(newTagText)}
-              name="checkmark-outline"
+            />,
+            <CloseIcon
+            mr="3"
+            onPress={() => setShowTagInput(false)} />]}
             />
-            <Icon onPress={() => setShowTagInput(false)} name="close-outline" /> */}
           </View>
         )}
       </View>
