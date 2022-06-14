@@ -1,7 +1,7 @@
 {
-   "catalogs": "./locales/",
-   "srcPathDirs": ['./src'],
-   "format": "po",
-   "fallbackLocales": "en"
-
-}
+   "locales": ["ko", "en"],
+   "catalogs": [{
+     "path": "locales/{locale}/messages",
+     "include": ["src"]
+   }]
+ }

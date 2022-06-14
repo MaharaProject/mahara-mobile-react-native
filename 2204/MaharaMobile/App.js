@@ -7,14 +7,12 @@
  */
 
 import React, { useEffect, useState } from 'react';
-// import { Root, StyleProvider } from 'native-base';
 import { NativeBaseProvider } from 'native-base';
 import { I18nProvider } from '@lingui/react';
-
-import i18n, { changeActiveLanguage } from './src/i18n';
-
-import type { Node } from 'react';
-
+import catalogEn from './locales/en/messages';
+import catalogKo from './locales/ko/messages';
+// import { en, ko } from 'make-plural/plurals';
+import { i18n } from '@lingui/core';
 import { Provider } from 'react-redux';
 import { useColorScheme } from 'react-native';
 
@@ -37,6 +35,13 @@ const App: () => Node = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  let messages = {
+    en: catalogEn,
+    ko: catalogKo,
+  };
+  i18n.load(messages);
+  i18n.activate('en');
+
   return (
     // Need to add theme back
     // <NativeBaseProvider>
@@ -57,9 +62,8 @@ const App: () => Node = () => {
   );
 };
 
-export const I18nProviderWrapper = () => {
+const I18nProviderWrapper = () => {
   const [activeLanguage, setActiveLanguage] = useState('en');
-  const [i18nInstance, setI18nInstance] = useState(i18n);
 
   const toggleLanguage = () => {
     const defaultLang = 'en';
@@ -67,26 +71,24 @@ export const I18nProviderWrapper = () => {
       (locale) => locale.languageTag
     );
     const langTag = RNLocalize.findBestAvailableLanguage(langTags).languageTag;
-
     let langCode = defaultLang;
 
-    RNLocalize.getLocales().forEach((locale) => {
-      if (locale.languageTag === langTag) {
-        langCode = locale.languageCode;
-      }
-    });
+    // RNLocalize.getLocales().forEach((locale) => {
+    //   if (locale.languageTag === langTag) {
+    //     langCode = locale.languageCode;
+    //   }
+    // });
 
-    const updatedI18nInstance = changeActiveLanguage(langCode);
-    setActiveLanguage(langCode);
-    setI18nInstance(updatedI18nInstance);
+    // i18n.load(langCode);
+    // setActiveLanguage(langCode);
+    // i18n.activate(langCode);
   };
-
-  useEffect(() => {
-    toggleLanguage();
-  }, [activeLanguage]);
+  // useEffect(() => {
+  //   toggleLanguage();
+  // }, [activeLanguage]);
 
   return (
-    <I18nProvider language={activeLanguage} i18n={i18nInstance}>
+    <I18nProvider language={activeLanguage} i18n={i18n}>
       <AppNavigator />
     </I18nProvider>
   );
