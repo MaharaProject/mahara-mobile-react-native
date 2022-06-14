@@ -9,10 +9,10 @@
 import React, { useEffect, useState } from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { I18nProvider } from '@lingui/react';
+import { en } from 'make-plural/plurals';
 import catalogEn from './locales/en/messages';
 import catalogKo from './locales/ko/messages';
-// import { en, ko } from 'make-plural/plurals';
-import { i18n } from '@lingui/core';
+// import { i18n } from '@lingui/core';
 import { Provider } from 'react-redux';
 import { useColorScheme } from 'react-native';
 
@@ -25,22 +25,15 @@ import * as RNLocalize from 'react-native-localize';
 // import { I18nProvider } from '@lingui/react';
 import configureStore from './src/store/store';
 import { maharaTheme } from './src/utils/theme';
+import { i18n, changeActiveLanguage } from './i18n';
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-  // const store = configureStore(undefined, i18n);
-  const store = configureStore(undefined);
+  const store = configureStore(undefined, i18n);
+  // const store = configureStore(undefined);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  let messages = {
-    en: catalogEn,
-    ko: catalogKo,
-  };
-  i18n.load(messages);
-  i18n.activate('en');
+  // i18n.loadLocaleData('en', { plurals: en });
+  // i18n.load('en', catalogEn.messages);
+  // i18n.activate('en');
 
   return (
     // Need to add theme back
@@ -62,33 +55,39 @@ const App: () => Node = () => {
   );
 };
 
-const I18nProviderWrapper = () => {
+export const I18nProviderWrapper = () => {
   const [activeLanguage, setActiveLanguage] = useState('en');
+  const [i18nInstance, setI18nInstance] = useState(i18n);
 
   const toggleLanguage = () => {
+    console.log('toggling language');
     const defaultLang = 'en';
     const langTags = RNLocalize.getLocales().map(
       (locale) => locale.languageTag
     );
     const langTag = RNLocalize.findBestAvailableLanguage(langTags).languageTag;
+
     let langCode = defaultLang;
 
-    // RNLocalize.getLocales().forEach((locale) => {
-    //   if (locale.languageTag === langTag) {
-    //     langCode = locale.languageCode;
-    //   }
-    // });
+    RNLocalize.getLocales().forEach((locale) => {
+      if (locale.languageTag === langTag) {
+        langCode = locale.languageCode;
+      }
+    });
 
-    // i18n.load(langCode);
-    // setActiveLanguage(langCode);
-    // i18n.activate(langCode);
+    const updatedI18nInstance = changeActiveLanguage(langCode);
+    setActiveLanguage(langCode);
+    setI18nInstance(updatedI18nInstance);
   };
-  // useEffect(() => {
-  //   toggleLanguage();
-  // }, [activeLanguage]);
+
+  useEffect(() => {
+    toggleLanguage();
+  }, [activeLanguage]);
 
   return (
-    <I18nProvider language={activeLanguage} i18n={i18n}>
+    <I18nProvider
+      // language={activeLanguage}
+      i18n={i18nInstance}>
       <AppNavigator />
     </I18nProvider>
   );
