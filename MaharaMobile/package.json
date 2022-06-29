@@ -1,6 +1,6 @@
 {
   "name": "mahara-mobile",
-  "version": "21.10.2",
+  "version": "21.10.4",
   "private": true,
   "scripts": {
     "android": "npx react-native run-android",
@@ -15,7 +15,8 @@
     "compile": "lingui compile",
     "postinstall": "npx jetify",
     "release": "cd android && ./gradlew assembleRelease",
-    "bundlerelease": "cd android && ./gradlew bundleRelease",
+    "routine": "npx browserslist@latest --update-db && npm run extract && npm run compile",
+    "bundlerelease": "npm run extract && npm run compile && cd android && ./gradlew bundleRelease",
     "postversion": "react-native-version",
     "devices": "adb devices"
   },

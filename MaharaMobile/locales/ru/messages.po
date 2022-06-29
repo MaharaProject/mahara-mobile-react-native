@@ -122,7 +122,7 @@ msgid "App version"
 msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:56
-#: src/utils/addEditHelperFunctions.tsx:82
+#: src/utils/addEditHelperFunctions.tsx:83
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
 msgstr ""
@@ -151,7 +151,7 @@ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:58
-#: src/utils/addEditHelperFunctions.tsx:84
+#: src/utils/addEditHelperFunctions.tsx:85
 msgid "Cancel"
 msgstr ""
 
@@ -309,7 +309,7 @@ msgstr ""
 msgid "Invalid Mahara site. Please re-enter URL."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:72
+#: src/utils/addEditHelperFunctions.tsx:73
 msgid "Invalid file"
 msgstr ""
 
@@ -321,7 +321,7 @@ msgstr ""
 msgid "Invalid type"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:82
+#: src/utils/addEditHelperFunctions.tsx:83
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr ""
 
@@ -462,7 +462,7 @@ msgstr ""
 msgid "No photo captured"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:90
+#: src/utils/addEditHelperFunctions.tsx:91
 msgid "Okay"
 msgstr ""
 
@@ -504,7 +504,7 @@ msgstr ""
 msgid "Please login"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:72
+#: src/utils/addEditHelperFunctions.tsx:73
 msgid "Please select a file."
 msgstr ""
 
@@ -855,7 +855,7 @@ msgstr ""
 msgid "forms part of these terms and conditions and is hereby incorporated by reference."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:97
+#: src/utils/addEditHelperFunctions.tsx:98
 msgid "image preview"
 msgstr ""
 
