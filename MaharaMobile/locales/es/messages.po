@@ -91,7 +91,7 @@ msgid "App version"
 msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:56
-#: src/utils/addEditHelperFunctions.tsx:83
+#: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
 msgstr ""
@@ -116,7 +116,7 @@ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:58
-#: src/utils/addEditHelperFunctions.tsx:85
+#: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
 msgstr ""
 
@@ -258,7 +258,7 @@ msgstr ""
 msgid "Invalid Mahara site. Please re-enter URL."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:73
+#: src/utils/addEditHelperFunctions.tsx:72
 msgid "Invalid file"
 msgstr ""
 
@@ -270,7 +270,7 @@ msgstr ""
 msgid "Invalid type"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:83
+#: src/utils/addEditHelperFunctions.tsx:82
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr ""
 
@@ -378,7 +378,7 @@ msgstr ""
 msgid "No photo captured"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:91
+#: src/utils/addEditHelperFunctions.tsx:90
 msgid "Okay"
 msgstr ""
 
@@ -420,7 +420,7 @@ msgstr ""
 msgid "Please login"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:73
+#: src/utils/addEditHelperFunctions.tsx:72
 msgid "Please select a file."
 msgstr ""
 
@@ -589,7 +589,11 @@ msgstr ""
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:15
-msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
+#~ msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:15
+msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}. The minimum supported Android version is 8."
 msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:9
@@ -731,7 +735,7 @@ msgstr ""
 msgid "forms part of these terms and conditions and is hereby incorporated by reference."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:98
+#: src/utils/addEditHelperFunctions.tsx:97
 msgid "image preview"
 msgstr ""
 
