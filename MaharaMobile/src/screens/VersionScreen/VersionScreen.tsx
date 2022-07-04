@@ -17,7 +17,8 @@ const VersionScreen = () => {
       <ListItem noBorder>
         <MediumText
           textTranslated={i18n._(
-            t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}. The minimum supported Android version is 8.`
+            t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and 
+            iOS ${ios}. The minimum supported Android version is 8.`
           )}
         />
       </ListItem>

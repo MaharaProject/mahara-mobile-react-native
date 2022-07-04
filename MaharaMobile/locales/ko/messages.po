@@ -111,7 +111,7 @@ msgid "App version"
 msgstr "앱 버전"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:56
-#: src/utils/addEditHelperFunctions.tsx:83
+#: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
 msgstr "확실해?"
@@ -140,7 +140,7 @@ msgstr "카메라가 닫혔습니다."
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:58
-#: src/utils/addEditHelperFunctions.tsx:85
+#: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
 msgstr "취소"
 
@@ -290,7 +290,7 @@ msgstr "소개"
 msgid "Invalid Mahara site. Please re-enter URL."
 msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 
-#: src/utils/addEditHelperFunctions.tsx:73
+#: src/utils/addEditHelperFunctions.tsx:72
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
@@ -302,7 +302,7 @@ msgstr "잘못된 토큰 : 다시 시도하십시오."
 msgid "Invalid type"
 msgstr "잘못된 유형"
 
-#: src/utils/addEditHelperFunctions.tsx:83
+#: src/utils/addEditHelperFunctions.tsx:82
 msgid "It looks like you have been editing something. If you leave before saving, your changes will be lost."
 msgstr "편집중인 것 같습니다. 저장하기 전에 나가면 변경 사항이 손실됩니다."
 
@@ -410,7 +410,7 @@ msgstr "다음"
 msgid "No photo captured"
 msgstr "사진이 촬영되지 않았습니다"
 
-#: src/utils/addEditHelperFunctions.tsx:91
+#: src/utils/addEditHelperFunctions.tsx:90
 msgid "Okay"
 msgstr "확실한"
 
@@ -452,7 +452,7 @@ msgstr "URL을 입력하십시오."
 msgid "Please login"
 msgstr "로그인 해주세요"
 
-#: src/utils/addEditHelperFunctions.tsx:73
+#: src/utils/addEditHelperFunctions.tsx:72
 msgid "Please select a file."
 msgstr "파일을 선택하십시오"
 
@@ -621,7 +621,11 @@ msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십�
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:15
-msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
+#~ msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:15
+msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}. The minimum supported Android version is 8."
 msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:9
@@ -771,7 +775,7 @@ msgstr "파일"
 msgid "forms part of these terms and conditions and is hereby incorporated by reference."
 msgstr "이 이용 약관의 일부를 구성합니다..."
 
-#: src/utils/addEditHelperFunctions.tsx:98
+#: src/utils/addEditHelperFunctions.tsx:97
 msgid "image preview"
 msgstr "이미지 미리보기"
 
