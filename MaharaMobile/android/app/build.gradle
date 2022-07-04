@@ -134,8 +134,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 59
-        versionName "21.10.4"
+        versionCode 60
+        versionName "21.10.5"
         ndk { debugSymbolLevel 'FULL' }
     }
     splits {
