@@ -621,12 +621,16 @@ msgstr "이것은 Mahara 사이트가 아닙니다. URL을 다시 입력하십�
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:15
+msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and  iOS {ios}. The minimum supported Android version is 8."
+msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:15
 #~ msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 #~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:15
-msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}. The minimum supported Android version is 8."
-msgstr ""
+#~ msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}. The minimum supported Android version is 8."
+#~ msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:9
 #~ msgid "This version supporteds up to Android 10"
