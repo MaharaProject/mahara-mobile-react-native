@@ -1,5 +1,5 @@
 // import {t, Trans} from '@lingui/macro';
-import { Icon, Text, Toast, View } from 'native-base';
+import { Text, Toast, View } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, TextInput } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
@@ -128,9 +128,9 @@ const SiteCheckScreen = (props: Props) => {
   };
 
   return (
-    <View style={generic.view}>
+    <View style={{ ...generic.view, justifyContent: 'flex-end' }}>
       {/* <MaharaGradient> */}
-      <View style={{ flex: 1.2 }}>
+      <View style={{ flex: 0.35 }}>
         <LogoSvg />
       </View>
 
@@ -150,7 +150,9 @@ const SiteCheckScreen = (props: Props) => {
               textStyles.textWhite,
               textStyles.center,
             ]}>
-            {/* <Trans>What is the address of your Mahara?</Trans> */}
+            {/* <Trans> */}
+            What is the address of your Mahara?
+            {/* </Trans> */}
           </Text>
           <TextInput
             keyboardType="url"
@@ -198,12 +200,14 @@ const SiteCheckScreen = (props: Props) => {
 
       {!isInputHidden ? (
         <View
-          style={{
-            // justifyContent: 'space-between',
-            // flex: 1,
-            // paddingLeft: 10,
-            // paddingRight: 10,
-          }}>
+          style={
+            {
+              // justifyContent: 'space-between',
+              // flex: 1,
+              // paddingLeft: 10,
+              // paddingRight: 10,
+            }
+          }>
           <MediumButton
             // text={t`Next`}
             text="Next"

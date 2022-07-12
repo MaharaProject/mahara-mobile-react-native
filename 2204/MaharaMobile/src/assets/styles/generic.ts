@@ -8,10 +8,11 @@ const generic = StyleSheet.create({
     height: '100%',
   },
   wrap: {
-    padding: styles.padding.md,
+    marginVertical: styles.padding.md,
+    paddingLeft: styles.padding.md,
   },
   center: {
-    textAlign: 'center',
+    textAlign: 'left',
   },
   linearGradient: {
     flex: 1,

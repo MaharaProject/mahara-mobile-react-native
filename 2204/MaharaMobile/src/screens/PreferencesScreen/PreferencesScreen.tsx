@@ -66,13 +66,13 @@ const PreferencesScreen = (props: Props) => {
     useState(defaultFolderTitle);
   const [selectedBlogId, setSelectedBlogId] = useState(defaultBlogId);
 
-  useEffect(() => {
-    props.navigation.setParams({
-      // title: props.i18n._(t`Profile settings`),
-      title: 'Profile settings',
-    });
-    // }, [props.i18n]);
-  });
+  // useEffect(() => {
+  //   props.navigation.setParams({
+  //     // title: props.i18n._(t`Profile settings`),
+  //     title: 'Profile settings',
+  //   });
+  //   // }, [props.i18n]);
+  // });
 
   const getProfilePic = async () => {
     if (token === GUEST_TOKEN) {

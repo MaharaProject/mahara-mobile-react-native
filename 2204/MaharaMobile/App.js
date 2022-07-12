@@ -9,7 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import { NativeBaseProvider } from 'native-base';
 import { I18nProvider } from '@lingui/react';
-import { en } from 'make-plural/plurals';
+// import { en } from 'make-plural/plurals';
 import catalogEn from './locales/en/messages';
 import catalogKo from './locales/ko/messages';
 // import { i18n } from '@lingui/core';
@@ -42,9 +42,9 @@ const App: () => Node = () => {
     <NativeBaseProvider theme={maharaTheme}>
       <Provider store={store}>
         {/* <StyleProvider style={getTheme(commonColor)}> */}
-        <I18nProviderWrapper>
-          <AppNavigator />
-        </I18nProviderWrapper>
+        {/* <I18nProviderWrapper> */}
+        <AppNavigator />
+        {/* </I18nProviderWrapper> */}
         {/* </StyleProvider> */}
       </Provider>
     </NativeBaseProvider>
