@@ -76,8 +76,8 @@ const PendingList = (props: Props) => {
 const listStyles = StyleSheet.create({
   flatList: {
     padding: styles.padding.xs,
-    paddingLeft: styles.padding.lg,
-    paddingRight: styles.padding.lg,
+    paddingLeft: styles.padding.md,
+    paddingRight: styles.padding.md,
     paddingTop: styles.padding.md,
     // flex: 1,
   },

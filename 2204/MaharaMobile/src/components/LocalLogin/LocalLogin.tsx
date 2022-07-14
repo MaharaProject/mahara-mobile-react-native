@@ -13,8 +13,10 @@ import { onCheckAuthJSON } from '../../utils/authHelperFunctions';
 import { LOG_IN_ICON } from '../../utils/constants';
 import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../UI/MediumButton/MediumButton';
-import styles from './LocalLogin.style';
-import { Text } from 'native-base';
+import { Stack, Text } from 'native-base';
+import LogoView from '../LogoView/LogoView';
+import SubHeading from '../UI/SubHeading/SubHeading';
+import styles from '../../assets/styles/variables';
 
 type Props = {
   url: string;
@@ -62,19 +64,18 @@ export default function LocalLogin(props: Props) {
   };
 
   return (
-    <View style={styles.view}>
-      {/* <MaharaGradient style={generic.linearGradient}> */}
-      <View style={styles.wrapper}>
-        <View style={styles.imageWrapper}>
-          <LogoSvg />
-        </View>
-        {props.isLoading ? (
-          <ActivityIndicator size="small" color={variables.colors.light} />
-        ) : null}
-        <Text style={[headingStyles.mainHeading, generic.center]}>
-          {/* <Trans>Log in via username and password</Trans> */}
-          <Text>Log in via username and password</Text>
-        </Text>
+    <LogoView>
+      {props.isLoading ? (
+        <ActivityIndicator size="small" color={variables.colors.light} />
+      ) : null}
+
+      <Stack direction="column" mb="2.5" mt="1.5" space={3}>
+        <SubHeading
+          noColon
+          style={{ color: styles.colors.light, textAlign: 'center' }}
+          text="Log in via username and password"
+        />
+        {/* <Trans>Log in via username and password</Trans> */}
 
         {/* <I18n>
             {({i18n}) => (
@@ -116,8 +117,7 @@ export default function LocalLogin(props: Props) {
           icon={LOG_IN_ICON}
           onPress={checkLoginForToken}
         />
-      </View>
-      {/* </MaharaGradient> */}
-    </View>
+      </Stack>
+    </LogoView>
   );
 }

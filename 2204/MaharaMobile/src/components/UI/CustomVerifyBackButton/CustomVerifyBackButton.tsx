@@ -25,6 +25,7 @@ const CustomVerifyBackButton = (props) => {
     // </Button>
     <Box alignItems="center">
       <IconButton
+        onPress={onBackPress}
         icon={
           <FontAwesomeIcon
             color={variables.colors.light}

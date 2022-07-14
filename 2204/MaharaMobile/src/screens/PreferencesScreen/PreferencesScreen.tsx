@@ -34,6 +34,7 @@ import { fetchProfilePic } from '../../utils/authHelperFunctions';
 import { GUEST_TOKEN } from '../../utils/constants';
 import { putDefaultAtTop } from '../../utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
+import { faAddressBook, faSave } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   navigation;
@@ -171,7 +172,7 @@ const PreferencesScreen = (props: Props) => {
     // fldr: t`Folder`,
     // jrnl: t`Journal`,
     updatedPref: 'Updated preferences',
-    fld: 'Folder',
+    fldr: 'Folder',
     jrnl: 'Journal',
   };
 
@@ -185,9 +186,10 @@ const PreferencesScreen = (props: Props) => {
       />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
-      {/* <MediumButton
+      <MediumButton
         // text={t`Update preferences`}
         text="Update preferences"
+        icon={faSave}
         onPress={() => {
           if (selectedBlogId) {
             dispatch(setDefaultBlogId(selectedBlogId));
@@ -210,7 +212,7 @@ const PreferencesScreen = (props: Props) => {
             }`
           );
         }}
-      /> */}
+      />
     </View>
   );
 };

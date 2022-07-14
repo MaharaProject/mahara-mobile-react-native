@@ -25,13 +25,13 @@ const uploadItemStyles = StyleSheet.create({
   },
   textContainer: {
     paddingLeft: 10,
-    width: '47%',
+    width: '50%',
     height: '100%',
     justifyContent: 'center',
     flexDirection: 'column',
   },
   imageContainer: {
-    width: '23%',
+    width: '20%',
     overflow: 'hidden',
   },
   icon: {

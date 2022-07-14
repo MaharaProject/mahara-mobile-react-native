@@ -1,6 +1,11 @@
 import { extendTheme } from 'native-base';
 
 export const maharaTheme = extendTheme({
+  components: {
+    Link: {
+      fontFamily: 'OpenSans',
+    },
+  },
   colors: {
     mahara: {
       white1: '#F3F3F3',

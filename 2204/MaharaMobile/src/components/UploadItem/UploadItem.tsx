@@ -66,8 +66,6 @@ const UploadItem = (props: Props) => {
     if (!props.mimetype.includes('image')) {
       return (
         <View style={uploadItemStyles.imageContainer}>
-          {/* <Text>{props.mimetype}</Text> */}
-          {/* <Center> */}
           <Box style={[uploadItemStyles.icon, thumbnailStyles]}>
             {props.mimetype.includes('audio') ? <RecordAudioSvg /> : null}
             {/* {props.mimetype.includes('audio') ? <TakePhotoSvg/> : null} */}
@@ -111,7 +109,7 @@ const UploadItem = (props: Props) => {
 
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
-          <Text isTruncated fontSize="xs" fontWeight="light">
+          <Text isTruncated fontSize="sm" fontWeight="light">
             {displayName}{' '}
           </Text>
         </View>

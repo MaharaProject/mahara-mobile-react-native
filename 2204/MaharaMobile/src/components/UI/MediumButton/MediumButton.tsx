@@ -77,12 +77,16 @@ const MediumButton = (props: Props) => (
     //   props.style,
     // ]}
     startIcon={
-      <FontAwesomeIcon
-        // color={maharaTheme.colors.green}
-        icon={props.icon}
-        size={ICON_SIZE}
-        style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
-      />
+      props.icon ? (
+        <FontAwesomeIcon
+          // color={maharaTheme.colors.green}
+          icon={props.icon}
+          size={ICON_SIZE}
+          style={
+            props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light
+          }
+        />
+      ) : undefined
     }
     accessibilityRole="button"
     isDisabled={props.invalid}

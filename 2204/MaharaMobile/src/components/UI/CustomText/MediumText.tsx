@@ -8,6 +8,7 @@ type Props = {
   children?: React.ReactNode;
   // text?: MessageDescriptor; //  not yet translated
   text: any;
+  childrenFirst?: boolean;
   textTranslated?: string; // translated
   style?: any;
 };
@@ -19,6 +20,7 @@ type Props = {
  * @param props
  */
 const MediumText = (props: Props) => {
+  let childrenFirst = props.childrenFirst ? true : false;
   return (
     <Text
       style={{
@@ -27,8 +29,10 @@ const MediumText = (props: Props) => {
         ...props.style,
       }}>
       {/* {props.text ? i18n._(props.text) : props.children} */}
-      {props.text ? props.text : props.children}
-      {props.textTranslated ? props.textTranslated : props.children}
+      {props.children != null && props.childrenFirst ? props.children : null}
+      {props.text ? props.text : null}
+      {props.textTranslated ? props.textTranslated : null}
+      {props.children && !props.childrenFirst ? props.children : null}
     </Text>
   );
 };

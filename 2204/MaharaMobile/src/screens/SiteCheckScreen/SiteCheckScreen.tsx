@@ -1,21 +1,33 @@
 // import {t, Trans} from '@lingui/macro';
-import { Text, Toast, View } from 'native-base';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  Center,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  ScrollView,
+  Text,
+  Toast,
+  View,
+} from 'native-base';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, TextInput } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import LogoSvg from '../../assets/images/Logo-big';
 import buttons from '../../assets/styles/buttons';
-import forms from '../../assets/styles/forms';
 import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
 import textStyles from '../../assets/styles/text';
 import styles from '../../assets/styles/variables';
 import LoginTypes from '../../components/LoginTypes/LoginTypes';
+import LogoView from '../../components/LogoView/LogoView';
 import LinkButton from '../../components/UI/LinkButton/LinkButton';
 // import MaharaGradient from '../../components/UI/MaharaGradient/MaharaGradient';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
+import SubHeading from '../../components/UI/SubHeading/SubHeading';
 import { checkLoginTypes } from '../../store/actions/userArtefacts';
 import {
   selectLocalLogin,
@@ -51,7 +63,7 @@ const SiteCheckScreen = (props: Props) => {
   const [serverPing, setServerPing] = useState(false);
   const [isInputHidden, setIsInputHidden] = useState(false);
   const [enterURLWarning, setEnterURLWarning] = useState(false);
-  const [controlURL, setControlURL] = useState('https://');
+  const [controlURL, setControlURL] = useState('');
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -128,19 +140,12 @@ const SiteCheckScreen = (props: Props) => {
   };
 
   return (
-    <View style={{ ...generic.view, justifyContent: 'flex-end' }}>
-      {/* <MaharaGradient> */}
-      <View style={{ flex: 0.35 }}>
-        <LogoSvg />
-      </View>
-
-      <View style={{ flex: 0.1 }}>
-        {loading ? (
-          <View>
-            <ActivityIndicator size="small" color={styles.colors.light} />
-          </View>
-        ) : null}
-      </View>
+    <LogoView>
+      {loading ? (
+        <View>
+          <ActivityIndicator size="small" color={styles.colors.light} />
+        </View>
+      ) : null}
 
       {!isInputHidden ? (
         <View style={{ padding: 10 }}>
@@ -154,21 +159,22 @@ const SiteCheckScreen = (props: Props) => {
             What is the address of your Mahara?
             {/* </Trans> */}
           </Text>
-          <TextInput
-            keyboardType="url"
-            style={[
-              forms.textInput,
-              enterURLWarning
-                ? {
-                    borderColor: styles.colors.siteCheckErrorTextPink,
-                    borderWidth: 2,
-                  }
-                : null,
-            ]}
-            placeholder="https://yoursite.edu/"
-            defaultValue={controlURL}
-            onChangeText={(url: string) => onUpdateURL(url)}
-          />
+          <InputGroup>
+            <InputLeftAddon children={'https://'} />
+            <Input
+              autoCapitalize="none"
+              onChangeText={onUpdateURL}
+              backgroundColor={'#FFF'}
+              fontSize={styles.font.sm}
+              variant="filled"
+              w={{
+                base: '80%',
+              }}
+              placeholder="yoursite.edu/"
+              defaultValue={controlURL}
+              value={controlURL}
+            />
+          </InputGroup>
         </View>
       ) : null}
 
@@ -181,14 +187,16 @@ const SiteCheckScreen = (props: Props) => {
 
       {serverPing && isInputHidden ? (
         <View>
-          <Text style={[headingStyles.mainHeading, generic.center]}>
-            {controlURL}
-          </Text>
+          <SubHeading
+            style={{ textAlign: 'center', color: styles.colors.light }}
+            text={controlURL}
+            noColon
+          />
           <OutlineButton
             light
             // text={t`Enter a different URL`}
             text="Enter a different URL"
-            style={buttons.light}
+            style={{ color: styles.colors.light }}
             onPress={() => {
               setServerPing(false);
               setIsInputHidden(false);
@@ -199,17 +207,10 @@ const SiteCheckScreen = (props: Props) => {
       ) : null}
 
       {!isInputHidden ? (
-        <View
-          style={
-            {
-              // justifyContent: 'space-between',
-              // flex: 1,
-              // paddingLeft: 10,
-              // paddingRight: 10,
-            }
-          }>
+        <View style={{ marginTop: styles.padding.sm }}>
           <MediumButton
             // text={t`Next`}
+            icon={faArrowRight}
             text="Next"
             onPress={() => {
               const url = addHttpTrims(controlURL);
@@ -232,11 +233,12 @@ const SiteCheckScreen = (props: Props) => {
           tokenLogin={props.tokenLogin}
         />
       )}
-
       {/* <LinkButton text={t`Skip`} onPress={skipLogin} /> */}
-      <LinkButton text="Skip" onPress={skipLogin} />
+      <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>
+        <LinkButton text="Skip" onPress={skipLogin} />
+      </View>
       {/* </MaharaGradient> */}
-    </View>
+    </LogoView>
   );
 };
 

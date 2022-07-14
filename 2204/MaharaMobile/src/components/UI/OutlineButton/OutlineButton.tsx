@@ -32,7 +32,9 @@ const OutlineButton = (props: Props) => {
         variant="outline"
         // marginX={variables.padding.xs}
         startIcon={
-          <FontAwesomeIcon icon={props.icon} size={20} color={buttonColour} />
+          props.icon ? (
+            <FontAwesomeIcon icon={props.icon} size={20} color={buttonColour} />
+          ) : undefined
         }
         light={props.light}
         _text={props.style}
@@ -40,7 +42,9 @@ const OutlineButton = (props: Props) => {
         onPress={props.onPress}>
         {/* <Icon name={props.icon} /> */}
         {/* <Text>{i18n._(props.text)}</Text> */}
-        <Text fontWeight={200} color={buttonColour}>{props.text}</Text>
+        <Text fontWeight={200} color={props.style?.color ?? buttonColour}>
+          {props.text}
+        </Text>
       </Button>
     </View>
     // )}

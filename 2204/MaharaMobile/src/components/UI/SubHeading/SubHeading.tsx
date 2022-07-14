@@ -10,12 +10,15 @@ type Props = {
   text: any;
   required?: boolean;
   style?: any;
+  noColon?: boolean;
 };
 
 const SubHeading = (props: Props) => (
   <Text fontWeight={500} style={[headingStyles.subHeading1, props.style]}>
     {/* {i18n._(props.text)}:{props.required ? <RedAsterisk /> : null} */}
-    {props.text}:{props.required ? <RedAsterisk /> : null}
+    {props.text}
+    {props.noColon ? '' : ':'}
+    {props.required ? <RedAsterisk /> : null}
   </Text>
 );
 export default SubHeading;

@@ -1,9 +1,10 @@
 // // import {t} from '@lingui/macro';
 // import { t } from '@lingui/macro';
-import { Box, Divider, HStack, VStack } from 'native-base';
+import { Box, Divider, Flex, HStack, Link, VStack } from 'native-base';
 import React from 'react';
 import { ScrollView } from 'react-native';
 import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
 import LinkText from '../../components/UI/CustomText/LinkText';
 import MediumText from '../../components/UI/CustomText/MediumText';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
@@ -14,8 +15,8 @@ type Props = {
 
 const TermsScreen = (props: Props) => {
   return (
-    <ScrollView style={generic.wrap}>
-      <VStack space={3} divider={<Divider />} w="90%">
+    <ScrollView style={{ ...generic.wrap, paddingLeft: styles.padding.md }}>
+      <VStack space={3} divider={<Divider />} w="100%">
         <HStack>
           <Box>
             <SubHeading
@@ -29,17 +30,15 @@ const TermsScreen = (props: Props) => {
             of Mahara Mobile."
             />
 
-            <MediumText text={undefined}>
+            <MediumText
+              childrenFirst
+              // text={t`forms part of these terms and conditions and is hereby incorporated by reference.`}
+              text="forms part of these terms and conditions and is hereby incorporated by reference. ">
               <LinkText
                 noStartSpace
                 onPress={() => props.navigation.navigate('Privacy')}
                 // text={t`The Privacy Statement`}
                 text="The Privacy Statement"
-              />
-
-              <MediumText
-                // text={t`forms part of these terms and conditions and is hereby incorporated by reference.`}
-                text="forms part of these terms and conditions and is hereby incorporated by reference. "
               />
             </MediumText>
           </Box>
@@ -237,9 +236,9 @@ const TermsScreen = (props: Props) => {
               <MediumText
                 // text={t`If you have any questions regarding these terms and
                 // conditions, please `}
-                text="If you have any questions regarding these terms and
-              // conditions, please "
+                text="If you have any questions regarding these terms and conditions, please"
               />
+
               <LinkText
                 url="https://mahara.org/contact.php"
                 text="contact us."

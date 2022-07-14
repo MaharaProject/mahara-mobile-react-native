@@ -170,7 +170,7 @@ const PrivacyScreen = () => (
           <MediumText text={undefined}>
             <MediumText
               text="If you have any questions regarding this Statement,
-             please."
+             please"
               // text={t`If you have any questions regarding this Statement,
               //   please`}
             />

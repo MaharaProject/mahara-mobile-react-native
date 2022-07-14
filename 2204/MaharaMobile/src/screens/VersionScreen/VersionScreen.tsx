@@ -17,15 +17,13 @@ const VersionScreen = () => {
   const ios = '14';
   return (
     <ScrollView style={generic.wrap}>
-      <VStack space={3} divider={<Divider />} w="90%">
-        <HStack noBorder>
-          <MediumText
-            // textTranslated={i18n._(
-            //   t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`
-            // )}
-            textTranslated={`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`} text={undefined} />
-        </HStack>
-      </VStack>
+      <MediumText
+        // textTranslated={i18n._(
+        //   t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`
+        // )}
+        textTranslated={`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`}
+        text={undefined}
+      />
     </ScrollView>
   );
 };
