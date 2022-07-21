@@ -1,0 +1,26 @@
+{
+  "This is not a Mahara site. Please re-enter URL.": {
+    "origin": [
+      [
+        "src/store/actions/userArtefacts.ts",
+        61
+      ]
+    ]
+  },
+  "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.": {
+    "origin": [
+      [
+        "src/store/actions/userArtefacts.ts",
+        65
+      ]
+    ]
+  },
+  "Invalid Mahara site. Please re-enter URL.": {
+    "origin": [
+      [
+        "src/store/actions/userArtefacts.ts",
+        73
+      ]
+    ]
+  }
+}
