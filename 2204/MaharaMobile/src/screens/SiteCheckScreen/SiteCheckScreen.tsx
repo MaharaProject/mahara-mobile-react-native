@@ -1,12 +1,9 @@
 // import {t, Trans} from '@lingui/macro';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import {
-  Center,
-  Flex,
   Input,
   InputGroup,
   InputLeftAddon,
-  ScrollView,
   Text,
   Toast,
   View,
@@ -15,9 +12,6 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import LogoSvg from '../../assets/images/Logo-big';
-import buttons from '../../assets/styles/buttons';
-import generic from '../../assets/styles/generic';
 import headingStyles from '../../assets/styles/headings';
 import textStyles from '../../assets/styles/text';
 import styles from '../../assets/styles/variables';

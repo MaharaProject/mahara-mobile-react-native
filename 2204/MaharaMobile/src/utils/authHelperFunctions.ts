@@ -248,7 +248,6 @@ export const login = (
     body: JSON.stringify(body),
   };
 
-  // TODO check this function
   /**
    * Convert pending items after a guest has logged into Mahara
    */
