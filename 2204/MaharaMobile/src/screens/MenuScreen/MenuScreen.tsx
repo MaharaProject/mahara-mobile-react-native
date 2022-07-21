@@ -1,5 +1,6 @@
 // import {MessageDescriptor} from '@lingui/core';
 import { t } from '@lingui/macro';
+import { ScrollView } from 'native-base';
 // import {withI18n} from '@lingui/react';
 import React from 'react';
 import { View } from 'react-native';
@@ -67,7 +68,7 @@ const MenuScreen = (props: Props) => {
   ];
 
   return (
-    <View style={menuScreenStyles.view}>
+    <ScrollView style={menuScreenStyles.view}>
       {menuItems.map((item: MenuItemObject, index: number) => (
         <MenuItem
           style={menuItemStyles.listItem}
@@ -76,7 +77,7 @@ const MenuScreen = (props: Props) => {
           key={item.name}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
