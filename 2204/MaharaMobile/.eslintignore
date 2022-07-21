@@ -1,4 +1,0 @@
-jest.config.js
-locale/_build/
-locale/**/*.js
-__mocks__
