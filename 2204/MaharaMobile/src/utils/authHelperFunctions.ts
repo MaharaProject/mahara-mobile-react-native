@@ -1,9 +1,14 @@
+import { useDispatch } from 'react-redux';
 // import {t} from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import { clearUserTags } from '../store/actions/actions';
+import {
+  clearUserTags,
+  updateUserTags,
+  updateUserTagsIds,
+} from '../store/actions/actions';
 import {
   clearLoginInfo,
   setDefaultBlogId,
@@ -29,7 +34,7 @@ import {
 } from '../store/actions/uploadFiles';
 
 // import i18n from '../i18n';
-import { UserBlog, UserFolder } from '../models/models';
+import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
 import {
   GUEST_BLOG,
   GUEST_FOLDER,
@@ -37,6 +42,8 @@ import {
   GUEST_USERNAME,
 } from './constants';
 import flashMessage from '../components/FlashMessage/FlashMessage';
+import { newUserTag } from '../models/typeCreators';
+import { userBlogJSONtoUserBlog } from './helperFunctions';
 
 /**
  * Attempt to fetch user info based on given token
@@ -209,4 +216,109 @@ export const onCheckAuthJSON = (
       successCallback();
     }
   }
+};
+
+export const login = (
+  url,
+  dispatch,
+  userBlogs,
+  userFolders,
+  token,
+  setLoading,
+  updateToken,
+  isGuest
+) => {
+  const serverUrl = `${url}webservice/rest/server.php?alt=json`;
+
+  const body = {
+    blogs: {},
+    folders: {},
+    tags: {},
+    userprofile: {},
+    userprofileicon: {},
+    wsfunction: 'module_mobileapi_sync',
+    wstoken: token,
+  };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  };
+
+  // TODO check this function
+  /**
+   * Convert pending items after a guest has logged into Mahara
+   */
+  const onGuestToUser = async () => {
+    dispatch(updateGuestStatus(false));
+    updatePendingItemsOnGuestToUser(
+      dispatch,
+      userBlogs,
+      userFolders,
+      token,
+      url
+    );
+    console.log('updatedGuestDetailsToProvidedUser');
+  };
+
+  let userData: any = null;
+  setLoading(true);
+  fetchUserWithToken(serverUrl, requestOptions)
+    .then((json) => {
+      console.log(json.token);
+      onCheckAuthJSON(
+        json,
+        () => updateToken(json.token),
+        () => {
+          updateToken(null);
+          setLoading(false);
+        }
+      );
+      userData = json;
+      if (isGuest) {
+        onGuestToUser();
+      }
+    })
+    .catch((e) => {
+      // We expect the error when use has been logged out, but dispatch continues because
+      // if we catch too early, not all the items won't dispatch ^
+      console.warn(`Error on fetchUserTokenLogin :) ${e}`);
+      // other failures e.g. failed to login are not caught because we want to use the
+      // information at onCheckAuthJSON()
+    })
+    .finally(() => {
+      //   // failed to log in
+      //   if (!userData.userprofile) {
+      //     return;
+      //   }
+      dispatch(addToken(token));
+      dispatch(updateUserName(userData.userprofile.myname));
+      type FetchedTag = {
+        tag: string;
+        usage: number;
+      };
+      // Create UserTags with id and string.
+      const newUserTags: Array<UserTag> = userData.tags.tags.map(
+        (tag: FetchedTag) => newUserTag(tag.tag)
+      );
+      dispatch(updateUserTags(newUserTags));
+      dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
+      dispatch(
+        updateUserBlogs(
+          userData.blogs.blogs.map((b: UserBlogJSON) =>
+            userBlogJSONtoUserBlog(b)
+          )
+        )
+      );
+      // Check if user has folders (they can be deleted on Mahara)
+      if (userData.folders.folders.length !== 0) {
+        dispatch(updateUserFolders(userData.folders.folders));
+      }
+      dispatch(setDefaultBlogId(userData.blogs.blogs[0].id));
+      dispatch(setDefaultFolder(userData.folders.folders[0].title));
+      // checkValidInitialState(props.userBlogs, props.userFolders)
+    });
 };
