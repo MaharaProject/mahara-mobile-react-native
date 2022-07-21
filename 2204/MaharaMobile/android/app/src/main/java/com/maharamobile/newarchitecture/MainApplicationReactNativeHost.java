@@ -1,4 +1,4 @@
-package com.maharamobile.newarchitecture;
+package org.mahara.mobile.app.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.maharamobile.BuildConfig;
-import com.maharamobile.newarchitecture.components.MainComponentsRegistry;
-import com.maharamobile.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import org.mahara.mobile.app.BuildConfig;
+import org.mahara.mobile.app.newarchitecture.components.MainComponentsRegistry;
+import org.mahara.mobile.app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.maharamobile.newarchitecture.modules;
+package org.mahara.mobile.app.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
