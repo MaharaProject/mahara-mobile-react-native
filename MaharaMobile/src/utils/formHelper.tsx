@@ -1,5 +1,4 @@
-// import {t} from '@lingui/macro';
-// // import {I18n} from '@lingui/react';
+import { t } from '@lingui/macro';
 import React from 'react';
 import { Text } from 'native-base';
 import styles from '../assets/styles/variables';
@@ -28,21 +27,10 @@ export const isValidText = (
   return true;
 };
 
-export const RequiredWarningText = (props: { customText: string }) => (
-  // <I18n>
-  //   {({i18n}) => (
-  //     <Label style={{color: styles.colors.warn}}>
-  //       {props.customText
-  //         ? i18n._(props.customText)
-  //         : i18n._(t`This field is required.`)}
-  //     </Label>
-  //   )}
-  // </I18n>
-  // <FormControl.Label warning style={{ color: styles.colors.warn }}>
+export const RequiredWarningText = (props: { customText?: string }) => (
   <Text fontWeight={200} style={{ color: styles.colors.warn }}>
-    {props.customText ? props.customText : 'This field is required.'}
+    {props.customText ? props.customText : t`This field is required.`}
   </Text>
-  // </FormControl.Label>
 );
 
 export const RedAsterisk = () => (

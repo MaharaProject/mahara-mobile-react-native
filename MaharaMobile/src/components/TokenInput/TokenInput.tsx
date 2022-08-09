@@ -1,4 +1,4 @@
-// import { t, Trans } from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { Input, Stack } from 'native-base';
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
@@ -44,9 +44,8 @@ export default function TokenInput(props: Props) {
             md: '25%',
           }}
         />
-        {/* <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onGetToken(token)} /> */}
         <MediumButton
-          text="Verify token"
+          text={t`Verify token`}
           icon={LOG_IN_ICON}
           onPress={() => props.onGetToken(token)}
         />

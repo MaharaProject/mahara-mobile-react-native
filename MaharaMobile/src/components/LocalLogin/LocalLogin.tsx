@@ -1,4 +1,4 @@
-// import {t, Trans} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { ActivityIndicator, Platform } from 'react-native';
@@ -72,48 +72,11 @@ export default function LocalLogin(props: Props) {
         <SubHeading
           noColon
           style={{ color: styles.colors.light, textAlign: 'center' }}
-          text="Log in via username and password"
+          text={t`Log in via username and password`}
         />
-        {/* <Trans>Log in via username and password</Trans> */}
-
-        {/* <I18n>
-            {({i18n}) => (
-              <TextInput
-                style={forms.textInput}
-                placeholder={i18n._(t`Username`)}
-                onChangeText={(usernameInput) => setUsername(usernameInput)}
-                autoCapitalize="none"
-              />
-            )}
-          </I18n>
-          <I18n>
-            {({i18n}) => (
-              <TextInput
-                style={forms.textInput}
-                secureTextEntry
-                placeholder={i18n._(t`Password`)}
-                onChangeText={(passwordInput) => setPassword(passwordInput)}
-                autoCapitalize="none"
-              />
-            )}
-          </I18n> */}
-        {/* <TextInput
-          style={forms.textInput}
-          // placeholder={i18n._(t`Username`)}
-          placeholder="Username"
-          onChangeText={(usernameInput) => setUsername(usernameInput)}
-          autoCapitalize="none"
-        />
-        <TextInput
-          style={forms.textInput}
-          secureTextEntry
-          placeholder="Password"
-          onChangeText={(passwordInput) => setPassword(passwordInput)}
-          autoCapitalize="none"
-        /> */}
         <Stack space={4} w="100%" alignItems="center">
           <Input
-            placeholder="Username"
+            placeholder={t`Username`}
             autoCapitalize="none"
             onChangeText={(usernameInput) => setUsername(usernameInput)}
             style={LocalLoginStyles.input}
@@ -156,12 +119,12 @@ export default function LocalLogin(props: Props) {
                 }
               />
             }
-            placeholder="Password"
+            placeholder={t`"Password`}
           />
         </Stack>
 
         <MediumButton
-          text="Login"
+          text={t`Login`}
           icon={LOG_IN_ICON}
           onPress={checkLoginForToken}
         />

@@ -1,5 +1,3 @@
-// import {MessageDescriptor} from '@lingui/core';
-// import {I18n} from '@lingui/react';
 import React from 'react';
 import { TouchableOpacity, View } from 'react-native';
 import buttons from '../../../assets/styles/buttons';
@@ -8,22 +6,16 @@ import { Center, Text } from 'native-base';
 
 type Props = {
   onPress: () => void;
-  // title: MessageDescriptor;
-  title: any;
-  // accessibilityHint?: MessageDescriptor;
-  accessibilityHint?: any;
+  title: string;
+  accessibilityHint?: string;
   image?: object;
   color?: string;
 };
 
 const GridButton = (props: Props) => (
-  // <I18n>
-  // {({i18n}) => (
   <TouchableOpacity
     accessibilityRole="button"
-    // accessibilityLabel={i18n._(props.title)}
     accessibilityHint={
-      // props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
       props.accessibilityHint ? props.accessibilityHint : undefined
     }
     onPress={props.onPress}
@@ -39,12 +31,9 @@ const GridButton = (props: Props) => (
       <View style={gridButtonStyles.imageWrapper}>{props.image}</View>
     ) : null}
     <Center>
-      {/* <Text style={[gridButtonStyles.buttonText]}>{i18n._(props.title)}</Text> */}
       <Text style={[gridButtonStyles.buttonText]}>{props.title}</Text>
     </Center>
   </TouchableOpacity>
-  // )}
-  // </I18n>
 );
 
 export default GridButton;

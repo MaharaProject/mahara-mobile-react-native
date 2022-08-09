@@ -1,5 +1,4 @@
-// // import {t} from '@lingui/macro';
-// import { ' } from '@lingui/react';
+import { t } from '@lingui/macro';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { CommonActions } from '@react-navigation/native';
@@ -11,7 +10,6 @@ import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
-// import i18n from '../../i18n';
 import { UserBlog, UserFolder, UserTag } from '../../models/models';
 import {
   selectDefaultBlogId,
@@ -67,10 +65,8 @@ const AddItemScreen = (props: Props) => {
             <OutlineButton
               text={
                 pickedFile.uri === ''
-                  ? // ? t`Select a file`
-                    // : t`Select a different file`
-                    'Select a file'
-                  : 'Select a different file'
+                  ? t`Select a file`
+                  : t`Select a different file`
               }
               onPress={() => pickDocument(setPickedFile)}
               style={null}
@@ -83,8 +79,7 @@ const AddItemScreen = (props: Props) => {
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
             icon={faCamera}
-            // text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
-            text={pickedFile.uri === '' ? 'Take photo' : 'Re-take photo'}
+            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
           />
         )}
         {/* record audio button */}
@@ -116,8 +111,7 @@ const AddItemScreen = (props: Props) => {
 export const AddItemScreenOptions = (navData) => {
   const itemType = navData.route.params?.itemType ?? 'FILE';
   const intlStringOfItemType = getUploadTypeIntlStrings(itemType).toLowerCase();
-  // const addString = i18n._(t`Add`);
-  const addString = 'Add';
+  const addString = t`Add`;
   const headerTitle = addString.concat(' ', intlStringOfItemType);
 
   return {
@@ -143,5 +137,4 @@ const mapStateToProps = (state: RootState) => ({
   defaultBlogId: selectDefaultBlogId(state),
 });
 
-// export default connect(mapStateToProps)(withI18n()(AddItemScreen));
 export default connect(mapStateToProps)(AddItemScreen);

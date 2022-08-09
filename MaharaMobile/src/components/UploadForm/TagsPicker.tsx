@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import {
   Box,
   CheckIcon,
@@ -13,7 +13,6 @@ import { TouchableOpacity } from 'react-native';
 import buttons from '../../assets/styles/buttons';
 import forms from '../../assets/styles/forms';
 import styles from '../../assets/styles/variables';
-// import i18n from '../../i18n';
 import { UserTag } from '../../models/models';
 import { newUserTag } from '../../models/typeCreators';
 import { findUserTagByString } from '../../utils/helperFunctions';
@@ -134,8 +133,7 @@ const TagsPicker = (props: Props) => {
   return (
     <View>
       <View style={uploadFormStyles.tagsContainer}>
-        {/* <SubHeading text={t`Tags`} /> */}
-        <SubHeading text="Tags" />
+        <SubHeading text={t`Tags`} />
         {/* Display selected tags */}
         {getSelectedTagsAsStrings().map((value: string, index: number) => (
           <TouchableOpacity
@@ -143,8 +141,7 @@ const TagsPicker = (props: Props) => {
             onPress={() => onRemoveTag(index)}
             accessibilityRole="button"
             accessibilityLabel={value}
-            // accessibilityHint={i18n._(t`Tap to remove tag`)}
-          >
+            accessibilityHint={t`Tap to remove tag`}>
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
               <Text style={forms.tagClose} accessibilityLabel="">
@@ -157,8 +154,7 @@ const TagsPicker = (props: Props) => {
         {showTagInput && (
           <View style={uploadFormStyles.tagsContainer}>
             <Input
-              // placeholder={i18n._(t`New tag...`)}
-              placeholder="New tag..."
+              placeholder={t`New tag...`}
               onChangeText={(text: string) => setNewTagText(text)}
               InputRightElement={[
                 <CheckIcon
@@ -176,19 +172,17 @@ const TagsPicker = (props: Props) => {
         <Select
           mode="dropdown"
           iosHeader="Select tags"
-          // placeholder={i18n._(t`Select tags`)}
-          placeholder="Select tags"
-          // accessibilityLabel={i18n._(t`Select tags`)}
+          placeholder={t`Select tags`}
+          accessibilityLabel={t`Select tags`}
           selectedValue={selectedDropdownTag}
           onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
           <Select.Item
-            // label={i18n._(t`Select tags...`)}
-            label="Select tags..."
+            label={t`Select tags...`}
             value=""
             color={styles.colors.darkgrey}
           />
-          {/* <Select.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" /> */}
-          <Select.Item label="Add new tag +" value="Add new tag +" />
+          <Select.Item label={t`Add new tag +`} value="Add new tag +" />
+
           {props.userTags.map((value: UserTag, index: number) => (
             <Select.Item
               label={value.tag}

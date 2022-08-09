@@ -1,5 +1,3 @@
-// import {MessageDescriptor} from '@lingui/core';
-// import { I18n } from '@lingui/react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from 'native-base';
@@ -11,10 +9,8 @@ import { ICON_SIZE } from '../../../utils/constants';
 
 type Props = {
   onPress: () => void;
-  // text: MessageDescriptor;
-  // accessibilityHint?: MessageDescriptor;
-  text: any;
-  accessibilityHint?: any;
+  text: string;
+  accessibilityHint?: string;
   icon?: IconDefinition;
   unbold?: boolean;
   invalid?: boolean;
@@ -36,36 +32,6 @@ const MediumButtonStyles = StyleSheet.create({
 });
 
 const MediumButton = (props: Props) => (
-  // <I18n>
-  //   {({i18n}) => (
-  //     <Button
-  //       full
-  //       light={!props.dark}
-  //       dark={!!props.dark}
-  //       disabled={props.invalid}
-  //       iconLeft
-  //       rounded
-  //       info={!props.invalid}
-  //       accessibilityRole="button"
-  //       accessibilityLabel={i18n._(props.text)}
-  //       accessibilityHint={
-  //         props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
-  //       }
-  //       onPress={props.onPress}
-  //       style={{...buttons.default, ...props.style}}>
-  //       <Icon
-  //         name={props.icon}
-  //         style={
-  //           props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light
-  //         }
-  //       />
-  //       <Text style={props.unbold ? {} : {fontWeight: 'bold'}}>
-  //         {i18n._(props.text)}
-  //       </Text>
-  //     </Button>
-  //   )}
-  // </I18n>
-
   <Button
     rounded="full"
     colorScheme={props.colorScheme ? props.colorScheme : 'secondary'}
@@ -87,6 +53,10 @@ const MediumButton = (props: Props) => (
       ) : undefined
     }
     accessibilityRole="button"
+    accessibilityLabel={props.text}
+    accessibilityHint={
+      props.accessibilityHint ? props.accessibilityHint : undefined
+    }
     isDisabled={props.invalid}
     onPress={props.onPress}>
     <Text
@@ -97,31 +67,6 @@ const MediumButton = (props: Props) => (
     </Text>
   </Button>
 );
-// <Button
-//   full
-//   light={!props.dark}
-//   dark={!!props.dark}
-//   disabled={props.invalid}
-//   iconLeft
-//   info={!props.invalid}
-//   accessibilityRole="button"
-//   // accessibilityLabel={i18n._(props.text)}
-//   // accessibilityHint={
-//   //   props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
-//   // }
-//   onPress={props.onPress}
-//   // style={{ ...buttons.default, ...props.style }}
-// >
-//   <FontAwesomeIcon icon={props.icon} size={25} />
-//   {/* <Icon
-//     name={props.icon}
-//     style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
-//   /> */}
-//   {/* <Text style={props.unbold ? {} : { fontWeight: 'bold' }}> */}
-//   {/* {i18n._(props.text)} */}
-//   {props.text}
-//   {/* </Text> */}
-// </Button>
 
 StyleSheet.create({
   disabled: {

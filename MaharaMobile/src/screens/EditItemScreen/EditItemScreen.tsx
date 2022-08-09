@@ -1,4 +1,4 @@
-// // import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { CommonActions } from '@react-navigation/native';
 import { VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
@@ -9,7 +9,6 @@ import AddAudio from '../../components/AddAudio/AddAudio';
 import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
 import UploadForm from '../../components/UploadForm/UploadForm';
-// import i18n from '../../i18n';
 import {
   PendingMFile,
   UserBlog,
@@ -79,8 +78,7 @@ const EditItemScreen = (props: Props) => {
         {itemType === 'FILE' && (
           <View>
             <OutlineButton
-              // text={t`Select a different file`}
-              text="Select a different file"
+              text={t`Select a different file`}
               onPress={() => {
                 pickDocument(setPickedFile);
               }}
@@ -93,8 +91,7 @@ const EditItemScreen = (props: Props) => {
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
             icon={CAMERA_ICON}
-            // text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
-            text={pickedFile.uri === '' ? 'Take photo' : 'Re-take photo'}
+            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
           />
         )}
         {itemType === 'AUDIO' && (
@@ -127,12 +124,7 @@ const EditItemScreen = (props: Props) => {
 
 export const EditItemScreenOptions = (navData) => {
   return {
-    // headerTitle: i18n._(
-    //   t`Edit ${getUploadTypeIntlStrings(
-    //     navData.route.params.itemType
-    //   ).toLowerCase()}`
-    // ),
-    headerTitle: `Edit ${getUploadTypeIntlStrings(
+    headerTitle: t`Edit ${getUploadTypeIntlStrings(
       navData.route.params.itemType
     ).toLowerCase()}`,
     headerLeft: () => (

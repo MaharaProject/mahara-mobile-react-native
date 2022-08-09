@@ -1,11 +1,9 @@
-// import {t} from '@lingui/macro';
-// import {withI18n} from '@lingui/react';
+import { t } from '@lingui/macro';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { StackActions } from '@react-navigation/native';
 import { Box, Select, Text, View, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import i18n from '../../i18n';
 import {
   File,
   PendingJEntry,
@@ -256,17 +254,15 @@ const UploadForm = (props: Props) => {
   };
 
   const renderDisplayedFilename = () => {
+    console.log(itemType);
     if (itemType === 'J_ENTRY') {
       return null;
     }
     return (
       <View>
-        {/* <SubHeading required text={t`File`} /> */}
-        <SubHeading required text="File" />
+        <SubHeading required text={t`File`} />
         {fileValid ? (
-          <Text
-          // accessibilityLabel={i18n._(t`A file has been added.`)}
-          >
+          <Text accessibilityLabel={t`A file has been added.`}>
             {pickedFile?.name}
           </Text>
         ) : null}
@@ -276,16 +272,10 @@ const UploadForm = (props: Props) => {
 
   const renderTextInputs = () => (
     <View>
-      {/* Error messages */}
-      {/* {!fileValid && itemType !== 'J_ENTRY' && (
-        <RequiredWarningText customText={t`A file is required.`} />
-      )} */}
       <SubHeading
         required={itemType === 'J_ENTRY'}
-        // text={itemType === 'J_ENTRY' ? t`Title` : t`Name`}
-        text={itemType === 'J_ENTRY' ? 'Title' : 'Name'}
+        text={itemType === 'J_ENTRY' ? t`Title` : t`Name`}
       />
-      {/* {!titleValid && <RequiredWarningText />} */}
       <FormInput
         valid={itemType === 'J_ENTRY' && titleValid}
         value={title}
@@ -293,10 +283,8 @@ const UploadForm = (props: Props) => {
       />
       <SubHeading
         required={itemType === 'J_ENTRY'}
-        // text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
-        text={itemType === 'J_ENTRY' ? 'Entry' : 'Description'}
+        text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
       />
-      {/* {!descValid && <RequiredWarningText />} */}
       <FormInput
         multiline
         valid={itemType === 'J_ENTRY' && descValid}
@@ -323,27 +311,22 @@ const UploadForm = (props: Props) => {
 
     return (
       <View>
-        {/* <SubHeading required text={t`Folder`} /> */}
-        <SubHeading required text="Folder" />
+        <SubHeading required text={t`Folder`} />
         {props.defFolderTitle === undefined && (
           <RequiredWarningText
-            // customText={t`Error: You do not have any folders on your site.`}
-            customText="Error: You do not have any folders on your site."
+            customText={t`Error: You do not have any folders on your site.`}
           />
         )}
         <Box>
           <Select
             placeholder={props.defFolderTitle}
-            // accessibilityLabel={i18n._(t`Select folder`)}
+            accessibilityLabel={t`Select folder`}
             selectedValue={selectedFolder}
             onValueChange={(folder: string) => setSelectedFolder(folder)}>
             {folders &&
               folders.map((f: UserFolder) => {
                 const label =
-                  f.title === props.defFolderTitle
-                    ? // ? `${f.title} - ${i18n._(t`default`)}`
-                      `${f.title} - default`
-                    : f.title;
+                  f.title === props.defFolderTitle ? `${f.title} - ${t`default`}` : f.title;
                 return <Select.Item label={label} value={f.title} key={f.id} />;
               })}
           </Select>
@@ -363,7 +346,6 @@ const UploadForm = (props: Props) => {
       onAddNewUserTag={onNewUserTag}
       onSetItemUploadTagsString={setSelectedTagsStrings}
       onUpdateItemTagsIds={setItemTagsIds}
-      // onUpdateItemTags={}
     />
   );
 
@@ -389,10 +371,8 @@ const UploadForm = (props: Props) => {
           icon={faClock}
           text={
             props.editItem
-              ? // ? t`Confirm edits to ${intlItemType}`
-                // : t`Queue to upload`
-                `Confirm edits to ${intlItemType}`
-              : 'Queue to upload'
+              ? t`Confirm edits to ${intlItemType}`
+              : t`Queue to upload`
           }
         />
 
@@ -435,10 +415,7 @@ const UploadForm = (props: Props) => {
 
   return (
     <View>
-      <RequiredWarningText
-        // customText={t`Fields marked by * are required.`}
-        customText="Fields marked by * are required."
-      />
+      <RequiredWarningText customText={t`Fields marked by * are required.`} />
       {renderDisplayedFilename()}
       {renderTextInputs()}
       {renderFolderPicker()}
@@ -449,5 +426,4 @@ const UploadForm = (props: Props) => {
   );
 };
 
-// export default withI18n()(UploadForm);
 export default UploadForm;

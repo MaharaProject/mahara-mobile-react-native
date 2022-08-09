@@ -1,5 +1,4 @@
-// import { i18n } from '@lingui/core';
-// import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { Box, HStack, Select, Switch } from 'native-base';
 import React from 'react';
 import { View } from 'react-native';
@@ -33,19 +32,17 @@ export const BlogPicker = (props: {
         setIsDraft={props.setIsDraft}
         isDraft={props.isDraft}
       />
-      {/* <SubHeading required text={t`Journal`} /> */}
-      <SubHeading required text="Journal" />
+      <SubHeading required text={t`Journal`} />
       {!props.checkUserBlogs && (
         <RequiredWarningText
-          // customText={t`Error: You do not have any journals on your site.`}
-          customText="Error: You do not have any journals on your site."
+          customText={t`Error: You do not have any journals on your site.`}
         />
       )}
       <Box>
         <Select
           mode="dropdown"
-          // placeholder={i18n._(t`Please select a journal`)}
-          // accessibilityLabel={i18n._(t`Select a journal`)}
+          placeholder={t`Please select a journal`}
+          accessibilityLabel={t`Select a journal`}
           selectedValue={props.selectedBlog}
           // style={forms.picker}
           onValueChange={(blogId: number) => props.setSelectedBlog(blogId)}>
@@ -73,8 +70,7 @@ type Props = {
 const JournalDraftSwitch = (props: Props) => (
   <Box style={{ borderColor: styles.colors.light }}>
     <HStack justifyContent="space-between">
-      {/* <SubHeading text={t`Draft journal entry`} /> */}
-      <SubHeading text="Draft journal entry" />
+      <SubHeading text={t`Draft journal entry`} />
       <Switch
         trackColor={{ false: '', true: styles.colors.navBarGreen }}
         thumbColor={false ? '' : styles.colors.primary}

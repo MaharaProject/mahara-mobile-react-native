@@ -1,4 +1,3 @@
-// import {t} from '@lingui/macro';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRight, faCamera } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -101,13 +100,6 @@ export const RERECORD = 'Re-record';
 // playback
 export const NOT_PLAYING = 'NOT_PLAYING';
 export const PLAYING = 'PLAYING';
-
-// Internationalisation message descriptors
-
-// export const md_JOURNAL_ENTRY = t`journal entry`;
-// export const md_FILE = t`file`;
-// export const md_PHOTO = t`photo`;
-// export const md_AUDIO = t`audio`;
 
 // Icons
 export const LOG_IN_ICON = faArrowRight;

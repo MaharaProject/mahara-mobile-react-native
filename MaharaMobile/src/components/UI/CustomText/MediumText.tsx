@@ -1,15 +1,11 @@
-// import {MessageDescriptor} from '@lingui/core';
 import { Text } from 'native-base';
 import React from 'react';
 import styles from '../../../assets/styles/variables';
-// import i18n from '../../../i18n';
 
 type Props = {
   children?: React.ReactNode;
-  // text?: MessageDescriptor; //  not yet translated
-  text: any;
+  text?: string;
   childrenFirst?: boolean;
-  textTranslated?: string; // translated
   style?: any;
 };
 
@@ -27,10 +23,8 @@ const MediumText = (props: Props) => {
         flexWrap: 'wrap',
         ...props.style,
       }}>
-      {/* {props.text ? i18n._(props.text) : props.children} */}
       {props.children != null && props.childrenFirst ? props.children : null}
-      {props.text ? props.text : null}
-      {props.textTranslated ? props.textTranslated : null}
+      {!!props.text && props.text}
       {props.children && !props.childrenFirst ? props.children : null}
     </Text>
   );

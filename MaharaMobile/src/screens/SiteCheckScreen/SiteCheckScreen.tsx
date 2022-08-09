@@ -1,4 +1,4 @@
-// import {t, Trans} from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import {
   Input,
@@ -149,9 +149,7 @@ const SiteCheckScreen = (props: Props) => {
               textStyles.textWhite,
               textStyles.center,
             ]}>
-            {/* <Trans> */}
-            What is the address of your Mahara?
-            {/* </Trans> */}
+            <Trans>What is the address of your Mahara?</Trans>
           </Text>
           <InputGroup>
             <InputLeftAddon children={'https://'} />
@@ -174,8 +172,7 @@ const SiteCheckScreen = (props: Props) => {
 
       {enterURLWarning ? (
         <Text style={textStyles.errorText}>
-          {/* <Trans>Please enter a URL.</Trans> */}
-          Please enter a URL
+          <Trans>Please enter a URL.</Trans>
         </Text>
       ) : null}
 
@@ -188,8 +185,7 @@ const SiteCheckScreen = (props: Props) => {
           />
           <OutlineButton
             light
-            // text={t`Enter a different URL`}
-            text="Enter a different URL"
+            text={t`Enter a different URL`}
             style={{ color: styles.colors.light }}
             onPress={() => {
               setServerPing(false);
@@ -203,9 +199,8 @@ const SiteCheckScreen = (props: Props) => {
       {!isInputHidden ? (
         <View style={{ marginTop: styles.padding.sm }}>
           <MediumButton
-            // text={t`Next`}
+            text={t`Next`}
             icon={faArrowRight}
-            text="Next"
             onPress={() => {
               const url = addHttpTrims(controlURL);
               if (url !== props.url) {
@@ -227,9 +222,9 @@ const SiteCheckScreen = (props: Props) => {
           tokenLogin={props.tokenLogin}
         />
       )}
-      {/* <LinkButton text={t`Skip`} onPress={skipLogin} /> */}
+
       <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>
-        <LinkButton text="Skip" onPress={skipLogin} />
+        <LinkButton text={t`Skip`} onPress={skipLogin} />
       </View>
       {/* </MaharaGradient> */}
     </LogoView>

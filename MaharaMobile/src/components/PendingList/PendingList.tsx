@@ -5,6 +5,7 @@ import { isPendingJEntry, isPendingMFile } from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
 import { StyleSheet, View } from 'react-native';
 import styles from '../../assets/styles/variables';
+
 type Props = {
   dataList: DisplayItems;
   onRemove: Function;

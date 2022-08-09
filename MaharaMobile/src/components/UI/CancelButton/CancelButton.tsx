@@ -1,5 +1,4 @@
-// import {t} from '@lingui/macro';
-// import { I18n } from '@lingui/react';
+import { t } from '@lingui/macro';
 import { CommonActions } from '@react-navigation/native';
 import { Button, Text } from 'native-base';
 import React from 'react';
@@ -14,22 +13,6 @@ type Props = {
 const CancelButton = (props: Props) => {
   const goBack = () => props.navigation.dispatch(CommonActions.goBack());
   return (
-    // <I18n>
-    //   {({i18n}) => (
-    //     <Button
-    //       light
-    //       full
-    //       rounded
-    //       accessibilityRole="button"
-    //       accessibilityLabel="Cancel"
-    //       onPress={() =>
-    //         props.onPress ? props.onPress() : onCancelAlert(goBack)
-    //       }
-    //       style={[buttons.md, buttons.cancel]}>
-    //       <Text>{i18n._(t`Cancel`)}</Text>
-    //     </Button>
-    //   )}
-    // </I18n>
     <Button
       light
       full
@@ -39,8 +22,7 @@ const CancelButton = (props: Props) => {
       onPress={() => (props.onPress ? props.onPress() : onCancelAlert(goBack))}
       colorScheme="info"
       style={[buttons.md, buttons.cancel]}>
-      {/* <Text>{i18n._(t`Cancel`)}</Text> */}
-      <Text>Cancel</Text>
+      <Text>{t`Cancel`}</Text>
     </Button>
   );
 };

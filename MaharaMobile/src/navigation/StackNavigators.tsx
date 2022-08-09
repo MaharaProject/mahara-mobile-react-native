@@ -1,4 +1,4 @@
-// import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import {
   createStackNavigator,
   StackNavigationOptions,
@@ -6,7 +6,6 @@ import {
 import React from 'react';
 import LogoSvg from '../assets/images/Logo-big';
 import styles from '../assets/styles/variables';
-// import i18n from '../i18n';
 import AboutScreen from '../screens/AboutScreen/AboutScreen';
 import AddItemScreen, {
   AddItemScreenOptions,
@@ -30,32 +29,19 @@ import VersionScreen from '../screens/VersionScreen/VersionScreen';
 // must make it a functional component to get lingui to trigger the translation
 export const navigatorStrings = () => {
   return {
-    // PENDING: i18n._(t`Upload queue`),
-    // CREATE: i18n._(t`Create`),
-    // ADDITEM: i18n._(t`Add item`),
-    // PROFILE_ACCESSIBILITY_LABEL: i18n._(t`Profile page`),
-    // ADD_ACCESSIBILITY_LABEL: i18n._(t`Add an item`),
-    // PENDING_ACCESSIBILITY_LABEL: i18n._(t`Upload queue page`),
-    // PREFERENCES: i18n._(t`Preferences`),
-    // ABOUT: i18n._(t`About`),
-    // MENU: i18n._(t`Menu`),
-    // PRIVACY: i18n._(t`Privacy`),
-    // HELP: i18n._(t`Help`),
-    // VERSION: i18n._(t`Version`),
-    // TERMS: i18n._(t`Terms and conditions`),
-    PENDING: 'Upload queue',
-    CREATE: 'Create',
-    ADDITEM: 'Add item',
-    PROFILE_ACCESSIBILITY_LABEL: 'Profile page',
-    ADD_ACCESSIBILITY_LABEL: 'Add an item',
-    PENDING_ACCESSIBILITY_LABEL: 'Upload queue page',
-    PREFERENCES: 'Preferences',
-    ABOUT: 'About',
-    MENU: 'Menu',
-    PRIVACY: 'Privacy',
-    HELP: 'Help',
-    VERSION: 'Version',
-    TERMS: 'Terms and conditions',
+    PENDING: t`Upload queue`,
+    CREATE: t`Create`,
+    ADDITEM: t`Add item`,
+    PROFILE_ACCESSIBILITY_LABEL: t`Profile page`,
+    ADD_ACCESSIBILITY_LABEL: t`Add an item`,
+    PENDING_ACCESSIBILITY_LABEL: t`Upload queue page`,
+    PREFERENCES: t`Preferences`,
+    ABOUT: t`About`,
+    MENU: t`Menu`,
+    PRIVACY: t`Privacy`,
+    HELP: t`Help`,
+    VERSION: t`Version`,
+    TERMS: t`Terms and conditions`,
   };
 };
 

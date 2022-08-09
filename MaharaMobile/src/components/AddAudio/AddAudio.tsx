@@ -1,12 +1,10 @@
-// import {I18n} from '@lingui/core';
-// import {t} from '@lingui/macro';
-// import {withI18n} from '@lingui/react';
 import {
   faMicrophone,
   faPause,
   faPlay,
   faStop,
 } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
 import { HStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
@@ -23,8 +21,6 @@ import styles from './AddAudio.style';
 type Props = {
   setPickedFile: any;
   audioFileToEdit?: File;
-  // i18n: I18n;
-  i18n?: any;
 };
 
 type RecordStatus = 'recording' | 'recorded' | 'not-recorded';
@@ -60,18 +56,10 @@ const AddAudio = (props: Props) => {
       try {
         const grantedWriteStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          // {
-          //   title: props.i18n._(t`Access permission`),
-          //   message: props.i18n._(
-          //     t`Allow Mahara Mobile to access photos, media, and files on your device?`
-          //   ),
-          //   buttonPositive: props.i18n._(t`Allow`)
-          // }
           {
-            title: 'Access permission',
-            message:
-              'Allow Mahara Mobile to access photos, media, and files on your device?',
-            buttonPositive: 'Allow',
+            title: t`Access permission`,
+            message: t`Allow Mahara Mobile to access photos, media, and files on your device?`,
+            buttonPositive: t`Allow`,
           }
         );
 
@@ -87,18 +75,10 @@ const AddAudio = (props: Props) => {
       try {
         const grantedReadStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-          // {
-          //   title: props.i18n._(t`Access permission`),
-          //   message: props.i18n._(
-          //     t`Allow Mahara Mobile to read photos, media, and files on your device?`
-          //   ),
-          //   buttonPositive: props.i18n._(t`Allow`)
-          // }
           {
-            title: 'Access permission',
-            message:
-              'Allow Mahara Mobile to read photos, media, and files on your device?',
-            buttonPositive: 'Allow',
+            title: t`Access permission`,
+            message: t`Allow Mahara Mobile to read photos, media, and files on your device?`,
+            buttonPositive: t`Allow`,
           }
         );
 
@@ -114,18 +94,10 @@ const AddAudio = (props: Props) => {
       try {
         const grantedRecord = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-          // {
-          //   title: props.i18n._(t`Permission to record audio`),
-          //   message: props.i18n._(
-          //     t`Allow your microphone to record audio and save the files?`
-          //   ),
-          //   buttonPositive: props.i18n._(t`Allow`),
-          // }
           {
-            title: 'Permission to record audio',
-            message:
-              'Allow your microphone to record audio and save the files?',
-            buttonPositive: 'Allow',
+            title: t`Permission to record audio`,
+            message: t`Allow your microphone to record audio and save the files?`,
+            buttonPositive: t`Allow`,
           }
         );
         if (grantedRecord !== PermissionsAndroid.RESULTS.GRANTED) {
@@ -270,16 +242,14 @@ const AddAudio = (props: Props) => {
             dark
             colorScheme="warning"
             style={{ color: variables.colors.light }}
-            // text={t`Stop`}
-            text="Stop recording"
+            text={t`Stop`}
             onPress={() => handleRecord()}
             icon={STOP_ICON}
             fontWeight="200"
           />
         ) : (
           <OutlineButton
-            // text={recordStatus === 'recorded' ? t`Re-record` : t`Record`}
-            text={recordStatus === 'recorded' ? 'Re-record' : 'Record'}
+            text={recordStatus === 'recorded' ? t`Re-record` : t`Record`}
             onPress={() => handleRecord()}
             icon={faMicrophone}
           />
@@ -289,5 +259,4 @@ const AddAudio = (props: Props) => {
   );
 };
 
-// export default withI18n()(AddAudio);
 export default AddAudio;

@@ -1,7 +1,6 @@
-// import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import { StackActions } from '@react-navigation/native';
 import { useEffect, useRef } from 'react';
-// import i18n from '../i18n';
 import {
   JournalEntry,
   MaharaFile,
@@ -81,9 +80,7 @@ export function uploadItemToMahara(url: string, item: object) {
     } catch (error) {
       customResponse = newUploadResponse(
         '',
-        // i18n._(t`Please check the internet connection.`),
-        'Please check the internet connection.',
-
+        t`Please check the internet connection.`,
         '',
         '',
         {},
@@ -114,20 +111,15 @@ export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
 export const getUploadTypeIntlStrings = (itemType: UploadItemType) => {
   switch (itemType) {
     case 'AUDIO':
-      // return i18n._(t`Audio`);
-      return 'Audio';
+      return t`Audio`;
     case 'FILE':
-      // return i18n._(t`File`);
-      return 'File';
+      return t`File`;
     case 'J_ENTRY':
-      // return i18n._(t`Journal entry`);
-      return 'Journal entry';
+      return t`Journal entry`;
     case 'PHOTO':
-      // return i18n._(t`Photo`);
-      return 'Photo';
+      return t`Photo`;
     default:
-      // return i18n._(t`Invalid type`);
-      return 'Invalid type';
+      return t`Invalid type`;
   }
 };
 

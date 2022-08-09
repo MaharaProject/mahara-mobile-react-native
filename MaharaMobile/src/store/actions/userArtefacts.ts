@@ -1,4 +1,4 @@
-// import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   CLEAR_USER_BLOGS,
@@ -10,8 +10,6 @@ import { LoginInfo, UserBlog, UserFolder } from '../../models/models';
 import { updateUrl } from './loginInfo';
 import { updateLoginTypes } from './actions';
 import RequestError from '../../utils/RequestError';
-
-// userArtefactsReducer
 
 export function updateUserBlogs(blogs: Array<UserBlog>) {
   AsyncStorage.setItem('userBlogs', JSON.stringify(blogs));
@@ -55,31 +53,27 @@ export function checkLoginTypes(url: string) {
   const serverUrl = `${url}module/mobileapi/json/info.php`;
 
   // TODO: eslint-disable-next-line func-names
-  // eslint-disable-next-line func-names
-  // return async function (dispatch: Function, getState: Function, { i18n }) {
-  return async function (dispatch: Function, getState: Function) {
+  return async function (dispatch) {
     try {
       const result: LoginInfo = await getJSON(serverUrl);
 
-      // TODO: i18n._(t`Network Error. Please check internet connection.`)
+      // TODO: (t`Network Error. Please check internet connection.`)
       // check that there is a mahara version, and therefore a Mahara instance
       if (!result.maharaversion) {
-        throw new Error('This is not a Mahara site.');
-        // i18n._(t`This is not a Mahara site. Please re-enter URL.`)
+        throw new Error(t`This is not a Mahara site. Please re-enter URL.`);
       }
       // check that webservices is enabled on the Mahara instance
       if (!result.wsenabled) {
-        throw new Error('Webservices are not enabled');
-        // i18n._(
-        // t`Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.`
-        // )
+        throw new Error(
+          t`Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled.`
+        );
       }
       dispatch(updateLoginTypes(result));
       dispatch(updateUrl(url));
       return true; // for success to turn loading spinner off
     } catch (error) {
       if (error.code >= 400 && error.code < 600) {
-        // throw new Error(i18n._(t`Invalid Mahara site. Please re-enter URL.`));
+        throw new Error(t`Invalid Mahara site. Please re-enter URL.`);
       }
 
       throw error;

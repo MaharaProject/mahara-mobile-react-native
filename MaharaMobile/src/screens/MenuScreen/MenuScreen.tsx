@@ -1,7 +1,5 @@
-// import {MessageDescriptor} from '@lingui/core';
 import { t } from '@lingui/macro';
 import { ScrollView } from 'native-base';
-// import {withI18n} from '@lingui/react';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import MenuItem from '../../components/MenuItem/MenuItem';
@@ -10,8 +8,7 @@ import { signOutAsync } from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
 
 type MenuItemObject = {
-  // name: MessageDescriptor;
-  name: any;
+  name: string;
   path: () => void;
 };
 
@@ -30,13 +27,6 @@ const MenuScreen = (props: Props) => {
     terms: t`Terms and conditions`,
     privacy: t`Privacy statement`,
     logout: t`Logout`,
-    //   preferences: 'Preferences',
-    //   help: 'Help',
-    //   about: 'About',
-    //   version: 'App version',
-    //   terms: 'Terms and conditions',
-    //   privacy: 'Privacy statement',
-    //   logout: 'Logout',
   };
 
   /**
@@ -44,11 +34,7 @@ const MenuScreen = (props: Props) => {
    * @param name name to display on Menu Screen
    * @param path path to navigate to onPressing the item
    */
-  const createMenuItem = (
-    // name: MessageDescriptor,
-    name: any,
-    path: () => void
-  ): MenuItemObject => {
+  const createMenuItem = (name: string, path: () => void): MenuItemObject => {
     return { name, path };
   };
 
@@ -80,5 +66,4 @@ const MenuScreen = (props: Props) => {
   );
 };
 
-// export default withI18n()(MenuScreen);
 export default MenuScreen;

@@ -1,4 +1,4 @@
-// import {t, Trans} from '@lingui/macro';
+import { t, Trans } from '@lingui/macro';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import { ActivityIndicator, Alert, View } from 'react-native';
@@ -15,7 +15,6 @@ import flashMessage from '../../components/FlashMessage/FlashMessage';
 // components
 import PendingList from '../../components/PendingList/PendingList';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
-// import i18n from '../../i18n';
 import {
   DisplayItems,
   PendingJEntry,
@@ -77,8 +76,7 @@ const PendingScreen = (props: Props) => {
 
   useEffect(() => {
     if (props.route.params?.added === true) {
-      // flashMessage(t`Added to upload queue successfully!`, 'success');
-      flashMessage('Added to upload queue successfully!', 'success');
+      flashMessage(t`Added to upload queue successfully!`, 'success');
     }
   }, [props.route.params?.added]);
 
@@ -87,20 +85,16 @@ const PendingScreen = (props: Props) => {
    */
   const onRemove = (itemId: string) => {
     Alert.alert(
-      // i18n._(t`Are you sure?`),
-      // i18n._(t`The deletion of this information or file cannot be undone`),
-      'Are you sure?',
-      'The deletion of this information or file cannot be undone',
+      t`Are you sure?`,
+      t`The deletion of this information or file cannot be undone`,
       [
         {
-          // text: i18n._(t`Cancel`),
-          text: 'Cancel',
+          text: t`Cancel`,
           onPress: () => null,
           style: 'cancel',
         },
         {
-          // text: i18n._(t`Delete`),
-          text: 'Delete',
+          text: t`Delete`,
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
@@ -128,8 +122,7 @@ const PendingScreen = (props: Props) => {
     setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
 
     showMessage({
-      // message: i18n._(t`${errorMessage}`),
-      message: { errorMessage },
+      message: t`${errorMessage}`,
       icon: {
         icon: 'auto',
         position: 'left',
@@ -175,8 +168,7 @@ const PendingScreen = (props: Props) => {
       <View style={pendingScreenStyles.noPending}>
         <UploadSVG />
         <Text style={pendingScreenStyles.noPendingText}>
-          {/* <Trans>Your upload queue is empty</Trans> */}
-          Your upload queue is empty
+          <Trans>Your upload queue is empty</Trans>
         </Text>
       </View>
     );
@@ -195,12 +187,8 @@ const PendingScreen = (props: Props) => {
       setUploadedItemsIds(newState);
     }, 1000);
 
-    // flashMessage(
-    //   t`Files have been uploaded to your Mahara successfully!`,
-    //   'success'
-    // );
     flashMessage(
-      'Files have been uploaded to your Mahara successfully!',
+      t`Files have been uploaded to your Mahara successfully!`,
       'success'
     );
   };
@@ -260,21 +248,18 @@ const PendingScreen = (props: Props) => {
               <Text
                 fontWeight="light"
                 style={[pendingScreenStyles.urlText, textStyles.center]}>
-                {/* <Trans>Your site: {url}</Trans> */}
-                Your site: {url}
+                <Trans>Your site: {url}</Trans>
               </Text>
               <MediumButton
-                // text={t`Upload to your site`}
-                text="Upload to your site"
+                text={t`Upload to your site`}
                 onPress={onUploadClick}
                 icon={faCloudUploadAlt}
               />
             </View>
           ) : (
             <MediumButton
-              // text={t`Please login`}
-              text="Please login"
-              // accessibilityHint={t`To upload pending items`}
+              text={t`Please login`}
+              accessibilityHint={t`To upload pending items`}
               icon={faSignInAlt}
               onPress={goToSiteCheck}
             />

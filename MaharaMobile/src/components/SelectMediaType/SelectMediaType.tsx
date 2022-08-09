@@ -1,5 +1,4 @@
-// import { t } from '@lingui/macro';
-// // import { withI18n } from '@lingui/react';
+import { t } from '@lingui/macro';
 import React from 'react';
 import { View } from 'react-native';
 import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
@@ -20,15 +19,13 @@ const SelectMediaType = (props: Props) => (
     <View style={styles.row}>
       <GridButton
         image={<PickFileSvg />}
-        // title={t`File`}
-        title="File"
+        title={t`File`}
         color="green"
         onPress={() => props.selectMediaType('FILE')}
       />
       <GridButton
         image={<TakePhotoSvg />}
-        // title={t`Photo`}
-        title="Photo"
+        title={t`Photo`}
         color="purple"
         onPress={() => props.selectMediaType('PHOTO')}
       />
@@ -36,15 +33,13 @@ const SelectMediaType = (props: Props) => (
     <View style={styles.row}>
       <GridButton
         image={<AddJournalEntrySvg />}
-        // title={t`Journal entry`}
-        title="Journal entry"
+        title={t`Journal entry`}
         color="lightbrown"
         onPress={() => props.selectMediaType('J_ENTRY')}
       />
       <GridButton
         image={<RecordAudioSvg />}
-        // title={t`Audio`}
-        title="Audio"
+        title={t`Audio`}
         color="darkbrown"
         onPress={() => props.selectMediaType('AUDIO')}
       />
@@ -52,5 +47,4 @@ const SelectMediaType = (props: Props) => (
   </View>
 );
 
-// export default withI18n()(SelectMediaType);
 export default SelectMediaType;

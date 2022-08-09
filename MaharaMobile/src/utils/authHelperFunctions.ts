@@ -1,4 +1,4 @@
-// import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
@@ -31,8 +31,6 @@ import {
   clearUploadFiles,
   updateUploadFilesOnLogin,
 } from '../store/actions/uploadFiles';
-
-// import i18n from '../i18n';
 import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
 import {
   GUEST_BLOG,
@@ -150,20 +148,16 @@ export const fetchProfilePic = async (
 
 export const signOutAsync = async (navigation, dispatch) => {
   Alert.alert(
-    // i18n._(t`Are you sure?`),
-    'Are you sure?',
-    // i18n._(
-    //   t`Items in the upload queue will not be retrievable once logged out.`
-    // ),
-    'Items in the upload queue will not be retrievable once logged out.',
+    t`Are you sure?`,
+    t`Items in the upload queue will not be retrievable once logged out.`,
     [
       {
-        text: 'Cancel',
+        text: t`Cancel`,
         onPress: () => null,
         style: 'cancel',
       },
       {
-        text: 'Logout',
+        text: t`Logout`,
         onPress: async () => {
           // navigation.navigate('SiteCheck');
           await AsyncStorage.clear();

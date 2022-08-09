@@ -1,5 +1,3 @@
-// import {MessageDescriptor} from '@lingui/core';
-// // import {I18n} from '@lingui/react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from 'native-base';
@@ -9,19 +7,14 @@ import { maharaTheme } from '../../../utils/theme';
 
 type Props = {
   onPress: () => void;
-  // text: MessageDescriptor;
-  // accessibilityHint?: MessageDescriptor;
-  text: any;
-  accessibilityHint?: any;
+  text: string;
+  accessibilityHint?: string;
   style?: any;
   icon?: IconDefinition;
   light?: boolean;
 };
 
 const OutlineButton = (props: Props) => {
-  // <I18n>
-  // {({i18n}) => (
-
   const buttonColour = maharaTheme.colors.primary[600];
   return (
     <View>
@@ -40,14 +33,11 @@ const OutlineButton = (props: Props) => {
         accessibilityHint={props.accessibilityHint}
         onPress={props.onPress}>
         {/* <Icon name={props.icon} /> */}
-        {/* <Text>{i18n._(props.text)}</Text> */}
         <Text fontWeight={200} color={props.style?.color ?? buttonColour}>
           {props.text}
         </Text>
       </Button>
     </View>
-    // )}
-    // </I18n>
   );
 };
 
