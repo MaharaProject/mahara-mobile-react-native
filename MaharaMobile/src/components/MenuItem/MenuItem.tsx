@@ -9,15 +9,12 @@ type MenuItemProps = {
   style: any;
 };
 
-const MenuItem = (props: MenuItemProps) => {
+function MenuItem(props: MenuItemProps) {
   return (
-    <TouchableHighlight
-      onPress={props.path}
-      underlayColor="#3E5027"
-      style={props.style}>
+    <TouchableHighlight onPress={props.path} underlayColor="#3E5027" style={props.style}>
       <Text style={menuItemStyles.listItemText}>{props.title}</Text>
     </TouchableHighlight>
   );
-};
+}
 
 export default MenuItem;

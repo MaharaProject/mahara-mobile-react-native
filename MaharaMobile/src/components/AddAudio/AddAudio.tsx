@@ -1,9 +1,4 @@
-import {
-  faMicrophone,
-  faPause,
-  faPlay,
-  faStop,
-} from '@fortawesome/free-solid-svg-icons';
+import { faMicrophone, faPause, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { HStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
@@ -28,11 +23,9 @@ type PlayStatus = 'playing' | 'not-playing';
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
-const AddAudio = (props: Props) => {
+function AddAudio(props: Props) {
   const [recordStatus, setRecordStat] = useState<RecordStatus>('not-recorded');
-  const [uri, setURI] = useState(
-    props.audioFileToEdit ? props.audioFileToEdit.uri : ''
-  );
+  const [uri, setURI] = useState(props.audioFileToEdit ? props.audioFileToEdit.uri : '');
 
   const [playStatus, setPlayStatus] = useState<PlayStatus>('not-playing');
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
@@ -59,7 +52,7 @@ const AddAudio = (props: Props) => {
           {
             title: t`Access permission`,
             message: t`Allow Mahara Mobile to access photos, media, and files on your device?`,
-            buttonPositive: t`Allow`,
+            buttonPositive: t`Allow`
           }
         );
 
@@ -78,7 +71,7 @@ const AddAudio = (props: Props) => {
           {
             title: t`Access permission`,
             message: t`Allow Mahara Mobile to read photos, media, and files on your device?`,
-            buttonPositive: t`Allow`,
+            buttonPositive: t`Allow`
           }
         );
 
@@ -97,7 +90,7 @@ const AddAudio = (props: Props) => {
           {
             title: t`Permission to record audio`,
             message: t`Allow your microphone to record audio and save the files?`,
-            buttonPositive: t`Allow`,
+            buttonPositive: t`Allow`
           }
         );
         if (grantedRecord !== PermissionsAndroid.RESULTS.GRANTED) {
@@ -135,7 +128,7 @@ const AddAudio = (props: Props) => {
     const path =
       Platform.select({
         ios: `${rand}recording.m4a`,
-        android: `${dirs.CacheDir}/${rand}recording.mp3`,
+        android: `${dirs.CacheDir}/${rand}recording.mp3`
       }) ?? `${rand}recording.m4a`;
 
     setURI(path);
@@ -257,6 +250,6 @@ const AddAudio = (props: Props) => {
       </View>
     </View>
   );
-};
+}
 
 export default AddAudio;

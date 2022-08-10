@@ -8,10 +8,8 @@ import { RootState } from '../store/reducers/rootReducer';
 import MaharaMobileNavigator from './MaharaMobileNavigator';
 import { AuthNavigator } from './StackNavigators';
 
-const AppNavigator = () => {
-  const isAuth = useSelector(
-    (state: RootState) => !!state.domainData.loginInfo.token
-  );
+function AppNavigator() {
+  const isAuth = useSelector((state: RootState) => !!state.domainData.loginInfo.token);
 
   const didTryAutoLogin = useSelector(
     (state: RootState) => !!state.domainData.loginInfo.didTryAutoLogin
@@ -21,8 +19,8 @@ const AppNavigator = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: '#FFF', // react-nav default background is grey
-    },
+      background: '#FFF' // react-nav default background is grey
+    }
   };
 
   return (
@@ -33,6 +31,6 @@ const AppNavigator = () => {
       {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />}
     </NavigationContainer>
   );
-};
+}
 
 export default AppNavigator;

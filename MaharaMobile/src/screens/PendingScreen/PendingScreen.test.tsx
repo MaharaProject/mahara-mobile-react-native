@@ -1,27 +1,26 @@
 // import {I18nProvider} from '@lingui/react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 // import i18n from '../../i18n';
 import PendingScreen from './PendingScreen';
 
-jest.mock('rn-fetch-blob', () => {
-  return true;
-});
+jest.mock('rn-fetch-blob', () => true);
 
 it('renders correctly', () => {
   const initialState = {
     appState: {
       uploadFiles: {
-        uploadFilesIds: [],
+        uploadFilesIds: []
       },
       uploadJEntries: {
-        uploadJEntriesIds: [],
-      },
+        uploadJEntriesIds: []
+      }
     },
     domainData: {
-      loginInfo: {},
-    },
+      loginInfo: {}
+    }
   };
 
   const mockStore = configureStore();

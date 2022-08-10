@@ -11,7 +11,7 @@ const forms = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     backgroundColor: styles.colors.light,
-    height: 40,
+    height: 40
   },
   multiLine: {
     color: styles.colors.dark,
@@ -22,7 +22,7 @@ const forms = StyleSheet.create({
     padding: styles.padding.md,
     borderRadius: 5,
     marginBottom: styles.padding.md,
-    backgroundColor: styles.colors.light,
+    backgroundColor: styles.colors.light
   },
   tag: {
     backgroundColor: styles.colors.quaternary,
@@ -32,19 +32,19 @@ const forms = StyleSheet.create({
     marginRight: styles.padding.xs,
     marginTop: styles.padding.xs,
     marginLeft: styles.padding.xs,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   tagText: {
     color: styles.colors.green_tag_text,
     paddingTop: styles.padding.xs,
     paddingBottom: styles.padding.xs,
-    fontSize: styles.font.sm,
+    fontSize: styles.font.sm
   },
   tagClose: {
     color: styles.colors.green_tag_close,
     paddingLeft: styles.padding.xs,
-    paddingTop: 3,
-  },
+    paddingTop: 3
+  }
 });
 
 export default forms;

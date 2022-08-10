@@ -7,7 +7,7 @@ import {
   PendingJEntry,
   PendingMFile,
   UserBlog,
-  UserFolder,
+  UserFolder
 } from '../models/models';
 // action types - payloads of information that send data from your application to your store
 
@@ -77,12 +77,12 @@ export const GUEST_BLOG: UserBlog = {
   title: 'Guest Blog',
   description: '',
   locked: false,
-  numBlogPosts: -1,
+  numBlogPosts: -1
 };
 
 export const GUEST_FOLDER: UserFolder = {
   id: -1,
-  title: 'Guest Images',
+  title: 'Guest Images'
 };
 
 // URLS
@@ -115,14 +115,14 @@ export const emptyMFile: MaharaFile = {
   foldername: '',
   name: '',
   description: '',
-  filetoupload: emptyFile,
+  filetoupload: emptyFile
 };
 export const emptyPendingMFile: PendingMFile = {
   id: '',
   url: '',
   maharaFormData: emptyMFile,
   mimetype: '',
-  type: 'FILE',
+  type: 'FILE'
 };
 
 export const emptyJEntry: JournalEntry = {
@@ -131,10 +131,10 @@ export const emptyJEntry: JournalEntry = {
   wsfunction: '',
   title: '',
   body: '',
-  isdraft: false,
+  isdraft: false
 };
 export const emptyPendingJEntry: PendingJEntry = {
   id: '',
   url: '',
-  journalEntry: emptyJEntry,
+  journalEntry: emptyJEntry
 };

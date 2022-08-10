@@ -17,12 +17,12 @@ it('renders correctly', () => {
     navigation: {
       navigate: () => {
         // do nothing
-      },
+      }
     },
     defFolderTitle: '',
     defaultBlogId: 0,
     userFolders: [],
-    userBlogs: [],
+    userBlogs: []
   };
 
   // create any initial state needed

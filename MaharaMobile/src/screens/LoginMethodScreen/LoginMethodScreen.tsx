@@ -1,5 +1,5 @@
 import { t } from '@lingui/macro';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -13,13 +13,10 @@ import {
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
-  selectUrl,
+  selectUrl
 } from '../../store/reducers/loginInfoReducer';
 import { RootState } from '../../store/reducers/rootReducer';
-import {
-  selectUserBlogs,
-  selectUserFolders,
-} from '../../store/reducers/userArtefactsReducer';
+import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
 import { login } from '../../utils/authHelperFunctions';
 
 type Props = {
@@ -28,42 +25,44 @@ type Props = {
   url: string;
   userFolders: Array<UserFolder>;
   userBlogs: Array<UserBlog>;
-  i18n: any;
   isGuest: boolean;
 };
 
-export const LoginMethodScreen = (props: Props) => {
+export function LoginMethodScreen(props: Props) {
   const [token, setToken] = useState('');
   const [loading, setLoading] = useState(false);
 
   /**
    * Validate the new token
    */
-  const updateToken = (newToken: string | null) => {
-    if (newToken !== null) {
-      setToken(newToken);
-    } else {
-      const { loginType } = props.route.params;
-      if (newToken == null) {
-        switch (loginType) {
-          case 'basic':
-            Alert.alert(
-              t`Login failed`,
-              t`Your username or password was incorrect. Please try again.`
-            );
-            break;
-          case 'token':
-            Alert.alert(t`Login failed`, t`Invalid token: please try again.`);
-            break;
-          case 'sso':
-            Alert.alert(t`Login failed`, t`Please try again.`);
-            break;
-          default:
-            break;
+  const updateToken = useCallback(
+    (newToken: string | null) => {
+      if (newToken !== null) {
+        setToken(newToken);
+      } else {
+        const { loginType } = props.route.params;
+        if (newToken == null) {
+          switch (loginType) {
+            case 'basic':
+              Alert.alert(
+                t`Login failed`,
+                t`Your username or password was incorrect. Please try again.`
+              );
+              break;
+            case 'token':
+              Alert.alert(t`Login failed`, t`Invalid token: please try again.`);
+              break;
+            case 'sso':
+              Alert.alert(t`Login failed`, t`Please try again.`);
+              break;
+            default:
+              break;
+          }
         }
       }
-    }
-  };
+    },
+    [props.route.params]
+  );
 
   useEffect(() => {
     if (token !== '' && token !== null) {
@@ -78,39 +77,39 @@ export const LoginMethodScreen = (props: Props) => {
         props.isGuest
       );
     }
-  }, [token]);
+  }, [
+    props.dispatch,
+    props.isGuest,
+    props.url,
+    props.userBlogs,
+    props.userFolders,
+    token,
+    updateToken
+  ]);
 
   const { loginType } = props.route.params;
 
   return (
     <View style={generic.view}>
-      {loginType === 'token' ? (
-        <TokenInput isLoading={loading} onGetToken={updateToken} />
-      ) : null}
-      {loginType === 'sso' ? (
-        <SSOLogin url={props.url} onGetToken={updateToken} />
-      ) : null}
+      {loginType === 'token' ? <TokenInput isLoading={loading} onGetToken={updateToken} /> : null}
+      {loginType === 'sso' ? <SSOLogin url={props.url} onGetToken={updateToken} /> : null}
       {loginType === 'basic' ? (
-        <LocalLogin
-          url={props.url}
-          isLoading={loading}
-          onGetToken={updateToken}
-        />
+        <LocalLogin url={props.url} isLoading={loading} onGetToken={updateToken} />
       ) : null}
     </View>
   );
-};
+}
 
 export const LoginMethodScreenOptions = (navData) => {
   const headerTitle = navData.route.params?.loginType;
 
   if (headerTitle === 'sso') {
     return {
-      headerTitle: 'SSO',
+      headerTitle: 'SSO'
     };
   }
   return {
-    headerShown: false,
+    headerShown: false
   };
 };
 
@@ -121,7 +120,7 @@ const mapStateToProps = (state: RootState) => ({
   localLogin: selectLocalLogin(state),
   userBlogs: selectUserBlogs(state),
   userFolders: selectUserFolders(state),
-  isGuest: selectIsGuestStatus(state),
+  isGuest: selectIsGuestStatus(state)
 });
 
 export default connect(mapStateToProps)(LoginMethodScreen);

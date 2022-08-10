@@ -10,8 +10,9 @@ const flashMessage = (text: string, messageType: MessageInfoType) => {
       <Text
         style={{
           fontSize: styles.font.md,
-          color: styles.colors.messageSuccessText,
-        }}>
+          color: styles.colors.messageSuccessText
+        }}
+      >
         {/* <Icon
           style={{
             color: styles.colors.messageSuccessIcon,
@@ -24,10 +25,10 @@ const flashMessage = (text: string, messageType: MessageInfoType) => {
     type: messageType,
     style: {
       backgroundColor: styles.colors.messageSuccessBg,
-      paddingBottom: styles.padding.md,
+      paddingBottom: styles.padding.md
     },
     position: 'top',
-    duration: 3000,
+    duration: 3000
   });
 };
 

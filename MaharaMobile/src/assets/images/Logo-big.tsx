@@ -3,16 +3,17 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-const LogoSvg = () => {
+function LogoSvg() {
   return (
     <View
       style={[
         StyleSheet.absoluteFill,
         {
           alignItems: 'center',
-          justifyContent: 'center',
-        },
-      ]}>
+          justifyContent: 'center'
+        }
+      ]}
+    >
       <Svg viewBox="0 0 95.47 50.25">
         <Path
           fill="#fff"
@@ -54,6 +55,6 @@ const LogoSvg = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default LogoSvg;

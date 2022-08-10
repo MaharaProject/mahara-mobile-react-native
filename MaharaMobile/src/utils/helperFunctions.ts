@@ -9,7 +9,7 @@ import {
   UploadItemType,
   UserBlog,
   UserBlogJSON,
-  UserTag,
+  UserTag
 } from '../models/models';
 import { newUploadResponse } from '../models/typeCreators';
 
@@ -38,7 +38,7 @@ export function userBlogJSONtoUserBlog(blogJSON: UserBlogJSON) {
     id: blogJSON.id,
     locked: blogJSON.locked,
     numBlogPosts: blogJSON.numblogposts,
-    title: blogJSON.title,
+    title: blogJSON.title
   };
   return userBlog;
 }
@@ -48,9 +48,9 @@ export function buildObject(item: object) {
     return {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(item),
+      body: JSON.stringify(item)
     };
   }
   if (isMaharaFile(item)) {
@@ -63,7 +63,7 @@ export function buildObject(item: object) {
     sendFormData.append('filetoupload', item.filetoupload as unknown as Blob);
     return {
       method: 'POST',
-      body: sendFormData,
+      body: sendFormData
     };
   }
   return null;

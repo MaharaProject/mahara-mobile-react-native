@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Action, AnyAction } from 'redux';
 import { ItemId, TaggedItems, TagsIds, UserTag } from '../../models/models';
 import {
   ADD_USER_TAGS,
@@ -11,7 +12,7 @@ import {
   UPDATE_TAGGED_ITEMS,
   UPDATE_TAGS_IDS,
   UPDATE_USER_TAGS,
-  USER_TAGS,
+  USER_TAGS
 } from '../../utils/constants';
 import { RootState } from './rootReducer';
 
@@ -27,7 +28,7 @@ export type UserTagInfoState = {
 const initialState: UserTagInfoState = {
   userTags: [],
   userTagsIds: [],
-  taggedItems: {},
+  taggedItems: {}
 };
 
 // Helper functions
@@ -37,10 +38,7 @@ const initialState: UserTagInfoState = {
  * @param state RootState
  * @param tags Array of UserTag instances
  */
-const addTags = (
-  state: UserTagInfoState,
-  tags: Array<UserTag>
-): UserTagInfoState => {
+const addTags = (state: UserTagInfoState, tags: Array<UserTag>): UserTagInfoState => {
   const updatedTags = new Set([...state.userTags]);
 
   tags.forEach((t) => {
@@ -56,7 +54,7 @@ const addTags = (
   return {
     ...state,
     userTags: state.userTags.concat(tags),
-    userTagsIds: state.userTagsIds.concat(tags.map((t: UserTag) => t.id)),
+    userTagsIds: state.userTagsIds.concat(tags.map((t: UserTag) => t.id))
   };
 };
 
@@ -96,13 +94,13 @@ const updateItemTags = (
     // Overriding the tags of an item with new updated ones
     updatedTaggedItems = {
       ...state.taggedItems,
-      [itemId]: new Set(tagsIds),
+      [itemId]: new Set(tagsIds)
     };
   }
 
   const newState: UserTagInfoState = {
     ...state,
-    taggedItems: updatedTaggedItems,
+    taggedItems: updatedTaggedItems
   };
   return newState;
 };
@@ -141,14 +139,12 @@ const updateTaggedItemsFromAsync = (
 
   return {
     ...state,
-    taggedItems: updatedTaggeditems,
+    taggedItems: updatedTaggeditems
   };
 };
 // REDUCER
-export const userTagsReducer = (
-  state = initialState,
-  action
-): UserTagInfoState => {
+
+export const userTagsReducer = (state = initialState, action: AnyAction): UserTagInfoState => {
   switch (action.type) {
     case ADD_USER_TAGS:
       return addTags(state, action.userTags);
@@ -159,7 +155,7 @@ export const userTagsReducer = (
     case UPDATE_TAGS_IDS:
       return {
         ...state,
-        userTagsIds: state.userTagsIds.concat(action.userTagsIds),
+        userTagsIds: state.userTagsIds.concat(action.userTagsIds)
       };
     case CLEAR_USER_TAGS:
       return initialState;
@@ -179,10 +175,7 @@ export const userTagsReducer = (
 export const getUserTags = (state: RootState): Array<UserTag> =>
   state.domainData.userTagsInfo.userTags;
 
-export const getItemTags = (
-  state: RootState,
-  itemId: string
-): Array<UserTag> => {
+export const getItemTags = (state: RootState, itemId: string): Array<UserTag> => {
   // Check itemId exists
   if (!state.domainData.userTagsInfo.taggedItems[itemId]) {
     return [];
@@ -204,10 +197,7 @@ export const getItemTags = (
 
   return tagsArr;
 };
-export const getItemTagsIds = (
-  state: RootState,
-  itemId: string
-): Array<number> => {
+export const getItemTagsIds = (state: RootState, itemId: string): Array<number> => {
   // Check if there are tags attached to matched item
   const tagIds = Array.from(state.domainData.userTagsInfo.taggedItems[itemId]);
   if (tagIds.length === 0) {
@@ -226,10 +216,7 @@ export const getItemTagsIds = (
   return tagsIdsArr;
 };
 
-export const getItemTagsStrings = (
-  state: RootState,
-  itemId: string
-): Array<string> => {
+export const getItemTagsStrings = (state: RootState, itemId: string): Array<string> => {
   // Check if there are tags attached to matched item
   const tagsArr: Array<string> = [];
   if (!state.domainData.userTagsInfo.taggedItems[itemId]) {

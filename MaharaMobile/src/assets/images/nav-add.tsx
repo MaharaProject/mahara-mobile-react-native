@@ -3,14 +3,10 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-const NavAddSVG = () => {
+function NavAddSVG() {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="28"
-        viewBox="0 0 102 102">
+      <Svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 102 102">
         <Path
           id="nav-add.svg"
           fill="#566d31"
@@ -20,6 +16,6 @@ const NavAddSVG = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default NavAddSVG;

@@ -11,11 +11,13 @@ type Props = {
   noColon?: boolean;
 };
 
-const SubHeading = (props: Props) => (
-  <Text fontWeight={500} style={[headingStyles.subHeading1, props.style]}>
-    {props.text}
-    {props.noColon ? '' : ':'}
-    {props.required ? <RedAsterisk /> : null}
-  </Text>
-);
+function SubHeading(props: Props) {
+  return (
+    <Text fontWeight={500} style={[headingStyles.subHeading1, props.style]}>
+      {props.text}
+      {props.noColon ? '' : ':'}
+      {props.required ? <RedAsterisk /> : null}
+    </Text>
+  );
+}
 export default SubHeading;

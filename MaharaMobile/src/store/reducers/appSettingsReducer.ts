@@ -9,23 +9,20 @@ export type AppSettingsState = {
 
 const initialState: AppSettingsState = {
   language: 'en',
-  catalogs: {},
+  catalogs: {}
 };
 
-export const appSettingsReducer = (
-  state = initialState,
-  action: any
-): AppSettingsState => {
+export const appSettingsReducer = (state = initialState, action: any): AppSettingsState => {
   switch (action.type) {
     case SET_LANGUAGE:
       return {
         ...state,
-        language: action.lang,
+        language: action.lang
       };
     case SET_CATALOGS:
       return {
         ...state,
-        catalogs: action.catalogs,
+        catalogs: action.catalogs
       };
     default:
       return state;
@@ -33,7 +30,5 @@ export const appSettingsReducer = (
 };
 
 // Selector
-export const selectLanguage = (state: RootState) =>
-  state.uiState.appSettings.language;
-export const selectCatalogs = (state: RootState) =>
-  state.uiState.appSettings.catalogs;
+export const selectLanguage = (state: RootState) => state.uiState.appSettings.language;
+export const selectCatalogs = (state: RootState) => state.uiState.appSettings.catalogs;

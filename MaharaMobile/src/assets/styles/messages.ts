@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import styles from '../../assets/styles/variables';
+import styles from './variables';
 
 export default StyleSheet.create({
   errorMessage: {
-    fontSize: styles.font.md,
+    fontSize: styles.font.md
   },
   errorIcon: {
-    marginRight: 20,
-  },
+    marginRight: 20
+  }
 });

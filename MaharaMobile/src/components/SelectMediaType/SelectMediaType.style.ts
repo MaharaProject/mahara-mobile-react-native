@@ -3,6 +3,6 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   row: {
     flexDirection: 'row',
-    height: '50%',
-  },
+    height: '50%'
+  }
 });

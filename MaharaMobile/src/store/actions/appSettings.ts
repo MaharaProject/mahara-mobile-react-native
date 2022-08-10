@@ -5,12 +5,12 @@ import { SET_LANGUAGE, TOGGLE_LANGUAGE } from '../../utils/constants';
 export function setLanguage(lang: string) {
   return {
     type: SET_LANGUAGE,
-    lang,
+    lang
   };
 }
 
 export function toggleLanguage() {
   return {
-    type: TOGGLE_LANGUAGE,
+    type: TOGGLE_LANGUAGE
   };
 }

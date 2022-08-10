@@ -8,19 +8,17 @@ import {
   UploadResponse,
   UserBlog,
   UserFolder,
-  UserTag,
+  UserTag
 } from './models';
 
 // Mahara file creation
 
-export const newFile = (
-  uri: string,
-  mimetype: string,
-  name: string,
-  size: number
-): File => {
-  return { uri, type: mimetype, name, size };
-};
+export const newFile = (uri: string, mimetype: string, name: string, size: number): File => ({
+  uri,
+  type: mimetype,
+  name,
+  size
+});
 
 export const newMaharaFile = (
   webService: string,
@@ -35,7 +33,7 @@ export const newMaharaFile = (
   filetoupload: file,
   foldername: folderName,
   webservice: webService,
-  wstoken: token,
+  wstoken: token
 });
 
 export const newPendingMFile = (
@@ -54,7 +52,7 @@ export const newPendingMFile = (
     url,
     maharaFormData,
     mimetype,
-    type,
+    type
   };
 };
 
@@ -66,16 +64,14 @@ export const newJournalEntry = (
   title: string,
   body: string,
   isDraft: boolean
-): JournalEntry => {
-  return {
-    blogid: blogId,
-    wsfunction: WS_FUNCTION_UPLOAD_BLOGPOST,
-    wstoken: wsToken,
-    title,
-    body,
-    isdraft: isDraft,
-  };
-};
+): JournalEntry => ({
+  blogid: blogId,
+  wsfunction: WS_FUNCTION_UPLOAD_BLOGPOST,
+  wstoken: wsToken,
+  title,
+  body,
+  isdraft: isDraft
+});
 
 export const newPendingJEntry = (
   itemId = '',
@@ -90,7 +86,7 @@ export const newPendingJEntry = (
   return {
     id,
     url,
-    journalEntry,
+    journalEntry
   };
 };
 
@@ -100,31 +96,27 @@ export const newPendingJEntry = (
  */
 export const newUserTag = (tagName: string): UserTag => ({
   id: Math.round(Math.random() * 1000),
-  tag: tagName,
+  tag: tagName
 });
 // id is just external from Mahara, for structure in this app
 
-export const newUserFolder = (title: string): UserFolder => {
-  return {
-    id: `${Math.floor(Math.random() * 100)}`,
-    title,
-  };
-};
+export const newUserFolder = (title: string): UserFolder => ({
+  id: `${Math.floor(Math.random() * 100)}`,
+  title
+});
 
 export const newUserBlog = (
   desc: string,
   locked = false,
   numBlogPosts = 0,
   title: string
-): UserBlog => {
-  return {
-    description: desc,
-    id: Math.round(Math.random() * 1000),
-    locked,
-    numBlogPosts,
-    title,
-  };
-};
+): UserBlog => ({
+  description: desc,
+  id: Math.round(Math.random() * 1000),
+  locked,
+  numBlogPosts,
+  title
+});
 
 export const newUploadResponse = (
   errorClass: string,
@@ -133,13 +125,11 @@ export const newUploadResponse = (
   errorName: string,
   error: object,
   file: number
-): UploadResponse => {
-  return {
-    error_class: errorClass,
-    error_message: errorMessage,
-    error_name: errorName,
-    error_rendered: errorRendered,
-    error,
-    file,
-  };
-};
+): UploadResponse => ({
+  error_class: errorClass,
+  error_message: errorMessage,
+  error_name: errorName,
+  error_rendered: errorRendered,
+  error,
+  file
+});

@@ -2,7 +2,7 @@ import {
   ADD_UPLOAD_JOURNAL_ENTRY,
   CLEAR_UPLOAD_J_ENTRIES,
   REMOVE_UPLOAD_JOURNAL_ENTRY,
-  UPDATE_J_ENTRIES_ON_LOGIN,
+  UPDATE_J_ENTRIES_ON_LOGIN
 } from '../../utils/constants';
 import { PendingJEntry, UserBlog } from '../../models/models';
 

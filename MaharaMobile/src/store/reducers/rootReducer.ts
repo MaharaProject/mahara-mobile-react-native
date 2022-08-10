@@ -12,15 +12,15 @@ export const rootReducer = combineReducers({
     loginInfo: loginInfoReducer,
     userTagsInfo: userTagsReducer,
     userFolders: userFoldersReducer,
-    userBlogs: userBlogsReducer,
+    userBlogs: userBlogsReducer
   }),
   appState: combineReducers({
     uploadFiles: uploadFilesReducer,
-    uploadJEntries: uploadJEntriesReducer,
+    uploadJEntries: uploadJEntriesReducer
   }),
   uiState: combineReducers({
-    appSettings: appSettingsReducer,
-  }),
+    appSettings: appSettingsReducer
+  })
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

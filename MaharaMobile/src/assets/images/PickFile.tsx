@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-const PickFileSvg = () => {
+function PickFileSvg() {
   return (
     <View>
       <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 255">
@@ -16,6 +16,6 @@ const PickFileSvg = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default PickFileSvg;

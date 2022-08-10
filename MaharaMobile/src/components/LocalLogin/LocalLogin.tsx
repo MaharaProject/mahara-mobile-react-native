@@ -1,26 +1,29 @@
 import { t } from '@lingui/macro';
-import { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { ActivityIndicator, Platform } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, ActivityIndicator, Platform } from 'react-native';
 import { getManufacturer, getModel } from 'react-native-device-info';
-import React from 'react';
 import uuid from 'react-native-uuid';
-import variables from '../../assets/styles/variables';
+import { IconButton, Input, Stack } from 'native-base';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { onCheckAuthJSON } from '../../utils/authHelperFunctions';
 import { LOG_IN_ICON } from '../../utils/constants';
 import MediumButton from '../UI/MediumButton/MediumButton';
-import { IconButton, Input, Stack, Text } from 'native-base';
 import LogoView from '../LogoView/LogoView';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import styles from '../../assets/styles/variables';
-import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 type Props = {
   url: string;
-  onGetToken: Function;
+  onGetToken: (token: string | null) => void;
   isLoading: boolean;
 };
+
+const LocalLoginStyles = StyleSheet.create({
+  input: {
+    backgroundColor: styles.colors.light
+  }
+});
 
 export default function LocalLogin(props: Props) {
   const [username, setUsername] = useState('');
@@ -44,7 +47,7 @@ export default function LocalLogin(props: Props) {
 
     const config = {
       method: 'POST',
-      body,
+      body
     };
 
     try {
@@ -64,9 +67,7 @@ export default function LocalLogin(props: Props) {
 
   return (
     <LogoView>
-      {props.isLoading ? (
-        <ActivityIndicator size="small" color={variables.colors.light} />
-      ) : null}
+      {props.isLoading ? <ActivityIndicator size="small" color={styles.colors.light} /> : null}
 
       <Stack direction="column" mb="2.5" mt="1.5" space={3}>
         <SubHeading
@@ -83,7 +84,7 @@ export default function LocalLogin(props: Props) {
             variant="filled"
             w={{
               base: '100%',
-              md: '25%',
+              md: '25%'
             }}
             // InputLeftElement={faPersonBooth}
           />
@@ -93,25 +94,25 @@ export default function LocalLogin(props: Props) {
             variant="filled"
             w={{
               base: '100%',
-              md: '25%',
+              md: '25%'
             }}
             type={show ? 'text' : 'password'}
             InputRightElement={
               <IconButton
                 h="full"
-                rounded={'none'}
+                rounded="none"
                 backgroundColor={styles.colors.light2}
                 onPress={() => setShow(!show)}
                 icon={
                   show ? (
                     <FontAwesomeIcon
-                      color={variables.colors.primary}
+                      color={styles.colors.primary}
                       icon={faEye}
                       size={styles.font.lg}
                     />
                   ) : (
                     <FontAwesomeIcon
-                      color={variables.colors.primary}
+                      color={styles.colors.primary}
                       icon={faEyeSlash}
                       size={styles.font.lg}
                     />
@@ -123,18 +124,8 @@ export default function LocalLogin(props: Props) {
           />
         </Stack>
 
-        <MediumButton
-          text={t`Login`}
-          icon={LOG_IN_ICON}
-          onPress={checkLoginForToken}
-        />
+        <MediumButton text={t`Login`} icon={LOG_IN_ICON} onPress={checkLoginForToken} />
       </Stack>
     </LogoView>
   );
 }
-
-const LocalLoginStyles = StyleSheet.create({
-  input: {
-    backgroundColor: styles.colors.light,
-  },
-});

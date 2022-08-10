@@ -6,7 +6,7 @@ import { WebView } from 'react-native-webview';
 
 type Props = {
   url: string;
-  onGetToken: Function;
+  onGetToken: (token: string) => void;
 };
 
 export default function SSOLogin(props: Props) {
@@ -20,9 +20,7 @@ export default function SSOLogin(props: Props) {
   const id = uuid.v4();
   const url =
     `${props.url}module/mobileapi/tokenform.php` +
-    `?service=${service}&component=${encodeURIComponent(
-      component
-    )}&clientname=${encodeURIComponent(
+    `?service=${service}&component=${encodeURIComponent(component)}&clientname=${encodeURIComponent(
       'Mahara Mobile'
     )}&clientenv=${encodeURIComponent(
       `${Platform.OS}, ${manufacturer}, ${model}`

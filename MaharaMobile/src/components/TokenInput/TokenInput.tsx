@@ -1,9 +1,7 @@
 import { t } from '@lingui/macro';
 import { Input, Stack } from 'native-base';
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { ActivityIndicator } from 'react-native';
-import variables from '../../assets/styles/variables';
+import { StyleSheet, ActivityIndicator } from 'react-native';
 import styles from '../../assets/styles/variables';
 // Images
 import { LOG_IN_ICON } from '../../utils/constants';
@@ -14,18 +12,22 @@ import SubHeading from '../UI/SubHeading/SubHeading';
 // import styles from './TokenInput.style';
 
 type Props = {
-  onGetToken: Function;
+  onGetToken: (token: string) => void;
   isLoading: boolean;
 };
+
+const TokenLoginStyles = StyleSheet.create({
+  input: {
+    backgroundColor: styles.colors.light
+  }
+});
 
 export default function TokenInput(props: Props) {
   const [token, setToken] = useState('');
 
   return (
     <LogoView>
-      {props.isLoading ? (
-        <ActivityIndicator size="small" color={variables.colors.light} />
-      ) : null}
+      {props.isLoading ? <ActivityIndicator size="small" color={styles.colors.light} /> : null}
 
       <Stack direction="column" mb="2.5" mt="1.5" space={3}>
         <SubHeading
@@ -41,7 +43,7 @@ export default function TokenInput(props: Props) {
           variant="filled"
           w={{
             base: '100%',
-            md: '25%',
+            md: '25%'
           }}
         />
         <MediumButton
@@ -53,9 +55,3 @@ export default function TokenInput(props: Props) {
     </LogoView>
   );
 }
-
-const TokenLoginStyles = StyleSheet.create({
-  input: {
-    backgroundColor: styles.colors.light,
-  },
-});

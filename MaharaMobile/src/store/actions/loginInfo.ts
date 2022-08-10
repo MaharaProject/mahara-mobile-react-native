@@ -11,7 +11,7 @@ import {
   DEFAULT_BLOG_ID,
   DEFAULT_FOLDER_TITLE,
   SET_DEFAULT_BLOG,
-  SET_DEFAULT_FOLDER,
+  SET_DEFAULT_FOLDER
 } from '../../utils/constants';
 
 // loginInfoReducer
@@ -42,7 +42,7 @@ export function updateUrl(address: string) {
   AsyncStorage.setItem('url', address);
   return {
     type: UPDATE_URL,
-    url: address,
+    url: address
   };
 }
 
@@ -50,7 +50,7 @@ export function updateProfilePic(filepath: string) {
   AsyncStorage.setItem('profileIcon', filepath);
   return {
     type: UPDATE_PROFILE_ICON,
-    profileIcon: filepath,
+    profileIcon: filepath
   };
 }
 

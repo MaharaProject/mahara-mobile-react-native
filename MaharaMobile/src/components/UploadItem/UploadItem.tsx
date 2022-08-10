@@ -1,14 +1,8 @@
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { Box } from 'native-base';
-import React from 'react';
-import {
-  Image,
-  ImageSourcePropType,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import { Text } from 'native-base';
+import { Box, Text } from 'native-base';
+import React, { useCallback } from 'react';
+import { Image, ImageSourcePropType, TouchableOpacity, View } from 'react-native';
 import styles from '../../assets/styles/variables';
 import Card from '../UI/Card/Card';
 import uploadItemStyles from './UploadItem.style';
@@ -19,23 +13,21 @@ import PickFileSvg from '../../assets/images/PickFile';
 
 type Props = {
   title: string;
-  description: string;
   mimetype: string;
-  index: number;
   image: ImageSourcePropType;
-  successfullyUploadedItem: boolean;
   showUploadError: boolean;
-  onRemove: () => {};
-  onEdit: () => {};
-  onClearError: () => {};
+  onRemove: () => void;
+  onEdit: () => void;
+  // onClearError: () => void;
+  // successfullyUploadedItem: boolean;
 };
 
-const UploadItem = (props: Props) => {
+function UploadItem(props: Props) {
   const title = props.title ? props.title : '';
   const displayName: string = title;
   // const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
 
-  const Thumbnail = () => {
+  const Thumbnail = useCallback(() => {
     let thumbnailStyles;
     if (props.mimetype.includes('application')) {
       thumbnailStyles = gridButtonStyles.application;
@@ -54,9 +46,7 @@ const UploadItem = (props: Props) => {
             {props.mimetype.includes('audio') ? <RecordAudioSvg /> : null}
             {/* {props.mimetype.includes('audio') ? <TakePhotoSvg/> : null} */}
             {props.mimetype.includes('application') ? <PickFileSvg /> : null}
-            {props.mimetype.includes('journalEntry') ? (
-              <AddJournalEntrySvg />
-            ) : null}
+            {props.mimetype.includes('journalEntry') ? <AddJournalEntrySvg /> : null}
           </Box>
         </View>
       );
@@ -64,13 +54,14 @@ const UploadItem = (props: Props) => {
     return (
       <View
         style={[
-          uploadItemStyles.imageContainer,
+          uploadItemStyles.imageContainer
           // { borderWidth: 4, borderColor: styles.colors.light },
-        ]}>
+        ]}
+      >
         <Image source={props.image} style={uploadItemStyles.thumbnail} />
       </View>
     );
-  };
+  }, [props.image, props.mimetype]);
 
   return (
     <View style={uploadItemStyles.uploadItem}>
@@ -102,7 +93,8 @@ const UploadItem = (props: Props) => {
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel="Remove"
-              onPress={props.onRemove}>
+              onPress={props.onRemove}
+            >
               <FontAwesomeIcon
                 icon={faTrashAlt}
                 style={uploadItemStyles.remove}
@@ -114,18 +106,15 @@ const UploadItem = (props: Props) => {
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel="Edit"
-              onPress={props.onEdit}>
-              <FontAwesomeIcon
-                icon={faEdit}
-                style={uploadItemStyles.edit}
-                size={styles.font.xl}
-              />
+              onPress={props.onEdit}
+            >
+              <FontAwesomeIcon icon={faEdit} style={uploadItemStyles.edit} size={styles.font.xl} />
             </TouchableOpacity>
           </View>
         </View>
       </Card>
     </View>
   );
-};
+}
 
 export default UploadItem;

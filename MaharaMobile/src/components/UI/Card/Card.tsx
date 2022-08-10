@@ -7,8 +7,8 @@ type Props = {
   style: object;
 };
 
-const Card = (props: Props) => (
-  <View style={{ ...styles.uploadCard, ...props.style }}>{props.children}</View>
-);
+function Card(props: Props) {
+  return <View style={{ ...styles.uploadCard, ...props.style }}>{props.children}</View>;
+}
 
 export default Card;

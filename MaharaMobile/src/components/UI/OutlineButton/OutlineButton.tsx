@@ -14,7 +14,7 @@ type Props = {
   light?: boolean;
 };
 
-const OutlineButton = (props: Props) => {
+function OutlineButton(props: Props) {
   const buttonColour = maharaTheme.colors.primary[600];
   return (
     <View>
@@ -31,7 +31,8 @@ const OutlineButton = (props: Props) => {
         light={props.light}
         _text={props.style}
         accessibilityHint={props.accessibilityHint}
-        onPress={props.onPress}>
+        onPress={props.onPress}
+      >
         {/* <Icon name={props.icon} /> */}
         <Text fontWeight={200} color={props.style?.color ?? buttonColour}>
           {props.text}
@@ -39,6 +40,6 @@ const OutlineButton = (props: Props) => {
       </Button>
     </View>
   );
-};
+}
 
 export default OutlineButton;

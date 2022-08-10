@@ -10,8 +10,8 @@ it('renders correctly', () => {
     navigation: {
       navigate: () => {
         // do nothing
-      },
-    },
+      }
+    }
   };
 
   renderer.create(

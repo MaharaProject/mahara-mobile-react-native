@@ -11,18 +11,18 @@ import {
   UploadItemType,
   UserBlog,
   UserFolder,
-  UserTag,
+  UserTag
 } from '../../models/models';
 import {
   newJournalEntry,
   newMaharaFile,
   newPendingJEntry,
-  newPendingMFile,
+  newPendingMFile
 } from '../../models/typeCreators';
 import {
   updateItemTags as updateItemTagsIds,
   addUserTags,
-  saveTaggedItemsToAsync,
+  saveTaggedItemsToAsync
 } from '../../store/actions/actions';
 import { addFileToUploadList } from '../../store/actions/uploadFiles';
 import { addJournalEntryToUploadList } from '../../store/actions/uploadJEntries';
@@ -34,19 +34,19 @@ import {
   putDefaultAtTop,
   removeExtension,
   RequiredWarningText,
-  setTagString,
+  setTagString
 } from '../../utils/formHelper';
 import {
   getUploadTypeIntlStrings,
   isPendingJEntry,
-  isPendingMFile,
+  isPendingMFile
 } from '../../utils/helperFunctions';
 import CancelButton from '../UI/CancelButton/CancelButton';
 import FormInput from '../UI/FormInput/FormInput';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import TagsPicker from './TagsPicker';
-import BlogPicker from './UploadFormComponents';
+import { BlogPicker } from './UploadFormComponents';
 
 type Props = {
   pickedFile?: File;
@@ -69,15 +69,10 @@ type State = {
   itemTagIds: Array<number>;
 };
 
-const UploadForm = (props: Props) => {
-  let existingItemTags: Array<UserTag>;
-  if (props.editItem) {
-    const uploadItem = props.editItem;
-
-    existingItemTags = useSelector((state: RootState) =>
-      getItemTags(state, uploadItem.id)
-    );
-  }
+function UploadForm(props: Props) {
+  const existingItemTags = useSelector((state: RootState) =>
+    props.editItem ? getItemTags(state, props.editItem.id) : []
+  );
 
   const dispatch = useDispatch();
   const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
@@ -94,9 +89,7 @@ const UploadForm = (props: Props) => {
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
   const [selectedBlog, setSelectedBlog] = useState(props.defaultBlogId);
-  const [selectedTagsStrings, setSelectedTagsStrings] = useState<
-    State['selectedTags']
-  >([]);
+  const [selectedTagsStrings, setSelectedTagsStrings] = useState<State['selectedTags']>([]);
   const [itemTagsIds, setItemTagsIds] = useState<Array<number>>([]);
   const [newTags, setNewTags] = useState<State['newTags']>([]);
   // the itemTagsIds is what gets submitted by the form
@@ -125,7 +118,8 @@ const UploadForm = (props: Props) => {
     }
   }, [props.editItem]);
 
-  const checkFileValid = () => {
+  /* check file valid */
+  useEffect(() => {
     if (itemType === 'J_ENTRY') {
       setFileValid(true);
     }
@@ -133,11 +127,7 @@ const UploadForm = (props: Props) => {
     if (pickedFile) {
       setFileValid(pickedFile.size > 0);
     }
-  };
-
-  useEffect(() => {
-    checkFileValid();
-  }, [pickedFile]);
+  }, [itemType, pickedFile]);
 
   /**
    * Creates PendingJEntry, adds to upload queue
@@ -172,9 +162,7 @@ const UploadForm = (props: Props) => {
    */
   const addFileToUpload = (file: File, id: string): string => {
     let pendingFileData: PendingMFile = emptyPendingMFile;
-    const tagString = selectedTagsStrings
-      ? setTagString(selectedTagsStrings)
-      : '';
+    const tagString = selectedTagsStrings ? setTagString(selectedTagsStrings) : '';
     const fileUrl = `${props.url}/webservice/rest/server.php?alt=json${tagString}`;
     const extension = file.name.match(/\.[0-9a-z]+$/i) ?? '';
 
@@ -186,7 +174,7 @@ const UploadForm = (props: Props) => {
 
     const updatedFile = {
       ...file,
-      name: filename,
+      name: filename
     };
 
     const formData = newMaharaFile(
@@ -198,13 +186,7 @@ const UploadForm = (props: Props) => {
       updatedFile
     );
 
-    pendingFileData = newPendingMFile(
-      id,
-      fileUrl,
-      formData,
-      file.type,
-      itemType
-    );
+    pendingFileData = newPendingMFile(id, fileUrl, formData, file.type, itemType);
 
     dispatch(addFileToUploadList(pendingFileData));
     return pendingFileData.id;
@@ -254,7 +236,6 @@ const UploadForm = (props: Props) => {
   };
 
   const renderDisplayedFilename = () => {
-    console.log(itemType);
     if (itemType === 'J_ENTRY') {
       return null;
     }
@@ -262,9 +243,7 @@ const UploadForm = (props: Props) => {
       <View>
         <SubHeading required text={t`File`} />
         {fileValid ? (
-          <Text accessibilityLabel={t`A file has been added.`}>
-            {pickedFile?.name}
-          </Text>
+          <Text accessibilityLabel={t`A file has been added.`}>{pickedFile?.name}</Text>
         ) : null}
       </View>
     );
@@ -299,30 +278,23 @@ const UploadForm = (props: Props) => {
       return null;
     }
 
-    const matchingFolder = props.userFolders.find(
-      (f) => f.title === props.defFolderTitle
-    );
+    const matchingFolder = props.userFolders.find((f) => f.title === props.defFolderTitle);
 
-    const folders: Array<UserFolder> = putDefaultAtTop(
-      null,
-      matchingFolder,
-      props.userFolders
-    );
+    const folders: Array<UserFolder> = putDefaultAtTop(null, matchingFolder, props.userFolders);
 
     return (
       <View>
         <SubHeading required text={t`Folder`} />
         {props.defFolderTitle === undefined && (
-          <RequiredWarningText
-            customText={t`Error: You do not have any folders on your site.`}
-          />
+          <RequiredWarningText customText={t`Error: You do not have any folders on your site.`} />
         )}
         <Box>
           <Select
             placeholder={props.defFolderTitle}
             accessibilityLabel={t`Select folder`}
             selectedValue={selectedFolder}
-            onValueChange={(folder: string) => setSelectedFolder(folder)}>
+            onValueChange={(folder: string) => setSelectedFolder(folder)}
+          >
             {folders &&
               folders.map((f: UserFolder) => {
                 const label =
@@ -369,11 +341,7 @@ const UploadForm = (props: Props) => {
           onPress={handleForm}
           invalid={!validButton}
           icon={faClock}
-          text={
-            props.editItem
-              ? t`Confirm edits to ${intlItemType}`
-              : t`Queue to upload`
-          }
+          text={props.editItem ? t`Confirm edits to ${intlItemType}` : t`Queue to upload`}
         />
 
         {/* Allow users to cancel edits */}
@@ -424,6 +392,6 @@ const UploadForm = (props: Props) => {
       {renderButtons()}
     </View>
   );
-};
+}
 
 export default UploadForm;

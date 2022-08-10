@@ -6,11 +6,11 @@ const outlineButtonStyles = StyleSheet.create({
     marginBottom: styles.padding.md,
     // borderColor: styles.colors.tertiary,
     color: styles.colors.tertiary,
-    borderWidth: 2,
+    borderWidth: 2
   },
   icon: {
-    color: styles.colors.tertiary,
-  },
+    color: styles.colors.tertiary
+  }
 });
 
 export default outlineButtonStyles;

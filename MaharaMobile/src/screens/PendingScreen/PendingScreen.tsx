@@ -1,12 +1,12 @@
 import { t, Trans } from '@lingui/macro';
-import { useEffect, useState } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, View } from 'react-native';
 import { Text } from 'native-base';
 import { showMessage } from 'react-native-flash-message';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 // Images
+import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import UploadSVG from '../../assets/images/upload';
 import messages from '../../assets/styles/messages';
 import textStyles from '../../assets/styles/text';
@@ -20,36 +20,29 @@ import {
   PendingJEntry,
   PendingMFile,
   UploadItemType,
-  UploadResponse,
+  UploadResponse
 } from '../../models/models';
 import {
   saveTaggedItemsToAsync,
-  updateItemTags as updateItemTagsIds,
+  updateItemTags as updateItemTagsIds
 } from '../../store/actions/actions';
 import { addToken } from '../../store/actions/loginInfo';
 import { removeUploadFile } from '../../store/actions/uploadFiles';
 import { removeUploadJEntry } from '../../store/actions/uploadJEntries';
-import {
-  selectUrl,
-  selectUserName,
-} from '../../store/reducers/loginInfoReducer';
+import { selectUrl, selectUserName } from '../../store/reducers/loginInfoReducer';
 import { RootState } from '../../store/reducers/rootReducer';
 import {
   selectAllUploadFiles,
-  selectAllUploadFilesIds,
+  selectAllUploadFilesIds
 } from '../../store/reducers/uploadFilesReducer';
 import {
   selectAllJEntries,
-  selectAllJEntriesIds,
+  selectAllJEntriesIds
 } from '../../store/reducers/uploadJEntriesReducer';
 import { GUEST_USERNAME } from '../../utils/constants';
 import { uploadItemToMahara } from '../../utils/helperFunctions';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
-import {
-  faCloudUploadAlt,
-  faSignInAlt,
-} from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
   uploadFiles: Array<PendingMFile>;
@@ -62,7 +55,7 @@ type Props = {
   route: { params: { added: boolean } };
 };
 
-const PendingScreen = (props: Props) => {
+function PendingScreen(props: Props) {
   const numUploadFiles = props.uploadFiles.length;
   const numUploadJEntries = props.uploadJEntries.length;
   const numUploadItems = numUploadFiles + numUploadJEntries;
@@ -91,7 +84,7 @@ const PendingScreen = (props: Props) => {
         {
           text: t`Cancel`,
           onPress: () => null,
-          style: 'cancel',
+          style: 'cancel'
         },
         {
           text: t`Delete`,
@@ -101,8 +94,8 @@ const PendingScreen = (props: Props) => {
             // TODO: update related tags
             props.dispatch(updateItemTagsIds(itemId, []));
             props.dispatch(saveTaggedItemsToAsync());
-          },
-        },
+          }
+        }
       ],
       { cancelable: false }
     );
@@ -125,12 +118,12 @@ const PendingScreen = (props: Props) => {
       message: t`${errorMessage}`,
       icon: {
         icon: 'auto',
-        position: 'left',
+        position: 'left'
       },
       type: 'warning',
       titleStyle: messages.errorMessage,
       backgroundColor: styles.colors.warnbg,
-      color: styles.colors.warn,
+      color: styles.colors.warn
     });
   };
 
@@ -138,18 +131,16 @@ const PendingScreen = (props: Props) => {
    * Renders a PendingList
    * @param dataList array of files and journal entries
    */
-  const renderPendingList = (dataList: DisplayItems) => {
-    return (
-      <PendingList
-        dataList={dataList}
-        onRemove={onRemove}
-        onEdit={onEdit}
-        successfullyUploadedItemsIds={uploadedItemsIds}
-        uploadErrorItems={uploadErrorItemsIds}
-        onClearError={clearUploadError}
-      />
-    );
-  };
+  const renderPendingList = (dataList: DisplayItems) => (
+    <PendingList
+      dataList={dataList}
+      onRemove={onRemove}
+      onEdit={onEdit}
+      successfullyUploadedItemsIds={uploadedItemsIds}
+      uploadErrorItems={uploadErrorItemsIds}
+      onClearError={clearUploadError}
+    />
+  );
 
   const pendingDisplay = () => {
     let list: DisplayItems = [];
@@ -187,10 +178,7 @@ const PendingScreen = (props: Props) => {
       setUploadedItemsIds(newState);
     }, 1000);
 
-    flashMessage(
-      t`Files have been uploaded to your Mahara successfully!`,
-      'success'
-    );
+    flashMessage(t`Files have been uploaded to your Mahara successfully!`, 'success');
   };
 
   const onUploadClick = () => {
@@ -214,9 +202,7 @@ const PendingScreen = (props: Props) => {
     props.uploadJEntries.forEach(async (journalEntry) => {
       clearUploadError(journalEntry.id);
       props
-        .dispatch(
-          uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)
-        )
+        .dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
         .then((result: UploadResponse) => {
           setLoading(false);
           if (result === undefined || result === null || result.error) {
@@ -245,9 +231,7 @@ const PendingScreen = (props: Props) => {
         <View style={pendingScreenStyles.buttonContainer}>
           {props.userName !== GUEST_USERNAME ? (
             <View>
-              <Text
-                fontWeight="light"
-                style={[pendingScreenStyles.urlText, textStyles.center]}>
+              <Text fontWeight="light" style={[pendingScreenStyles.urlText, textStyles.center]}>
                 <Trans>Your site: {url}</Trans>
               </Text>
               <MediumButton
@@ -268,14 +252,14 @@ const PendingScreen = (props: Props) => {
       ) : null}
     </View>
   );
-};
+}
 
 const mapStateToProps = (state: RootState) => ({
   uploadFiles: selectAllUploadFiles(state),
   uploadFilesIds: selectAllUploadFilesIds(state),
   uploadJEntries: selectAllJEntries(state),
   uploadJEntriesIds: selectAllJEntriesIds(state),
-  userName: selectUserName(state),
+  userName: selectUserName(state)
 });
 
 export default connect(mapStateToProps)(PendingScreen);

@@ -11,20 +11,20 @@ it('renders correctly', () => {
   const initialState = {
     appState: {
       uploadFiles: {
-        uploadFilesIds: [],
+        uploadFilesIds: []
       },
       uploadJEntries: {
-        uploadJEntriesIds: [],
-      },
+        uploadJEntriesIds: []
+      }
     },
     domainData: {
-      loginInfo: {},
-    },
+      loginInfo: {}
+    }
   };
 
   const props = {
     url: '',
-    navigation: jest.mock('', () => {}),
+    navigation: jest.mock('', () => {})
   };
 
   const mockStore = configureStore();

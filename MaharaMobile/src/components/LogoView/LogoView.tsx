@@ -8,7 +8,7 @@ type Props = {
   children: any;
 };
 
-const LogoView = (props: Props) => {
+function LogoView(props: Props) {
   return (
     <ScrollView
       contentContainerStyle={{
@@ -16,20 +16,21 @@ const LogoView = (props: Props) => {
         justifyContent: 'flex-start',
         padding: styles.padding.md,
         marginTop: styles.padding.xl,
-        paddingBottom: styles.padding.lg,
+        paddingBottom: styles.padding.lg
       }}
-      style={{ ...generic.view }}>
+      style={{ ...generic.view }}
+    >
       {/* <Maha0raGradient> */}
       {/* <MaharaGradient style={generic.linearGradient}> */}
 
-      <Flex alignItems={'center'}>
-        <Center w={'70%'} h={40}>
+      <Flex alignItems="center">
+        <Center w="70%" h={40}>
           <LogoSvg />
         </Center>
       </Flex>
       {props.children}
     </ScrollView>
   );
-};
+}
 
 export default LogoView;

@@ -9,7 +9,7 @@ import {
   UPDATE_TAGGED_ITEMS,
   UPDATE_TAGS_IDS,
   UPDATE_USER_TAGS,
-  USER_TAGS,
+  USER_TAGS
 } from '../../utils/constants';
 import { LoginInfo, UserTag } from '../../models/models';
 
@@ -85,6 +85,6 @@ export function updateLoginTypes(
     type: UPDATE_LOGIN_TYPES,
     tokenLogin,
     localLogin,
-    ssoLogin,
+    ssoLogin
   };
 }

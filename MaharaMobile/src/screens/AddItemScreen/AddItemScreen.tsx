@@ -15,21 +15,14 @@ import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
   selectToken,
-  selectUrl,
+  selectUrl
 } from '../../store/reducers/loginInfoReducer';
 import { RootState } from '../../store/reducers/rootReducer';
 import { selectAllUploadFiles } from '../../store/reducers/uploadFilesReducer';
 import { selectAllJEntries } from '../../store/reducers/uploadJEntriesReducer';
-import {
-  selectUserBlogs,
-  selectUserFolders,
-} from '../../store/reducers/userArtefactsReducer';
+import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
 import { getUserTags } from '../../store/reducers/userTagsReducer';
-import {
-  pickDocument,
-  renderImagePreview,
-  takePhoto,
-} from '../../utils/addEditHelperFunctions';
+import { pickDocument, renderImagePreview, takePhoto } from '../../utils/addEditHelperFunctions';
 import { emptyFile } from '../../utils/constants';
 import { getUploadTypeIntlStrings } from '../../utils/helperFunctions';
 
@@ -45,7 +38,7 @@ type Props = {
   defaultBlogId: number;
 };
 
-const AddItemScreen = (props: Props) => {
+function AddItemScreen(props: Props) {
   // State
   // TODO: itemtype is type UploadItemType ensures from the navigate in selectmediascreen
   const itemType = props.route.params?.itemType ?? 'FILE';
@@ -56,18 +49,13 @@ const AddItemScreen = (props: Props) => {
       <VStack space={2} style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
-        (pickedFile.type.startsWith('image') ||
-          pickedFile.type.startsWith('video'))
+        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
           ? renderImagePreview(pickedFile.uri)
           : null}
         {itemType === 'FILE' && (
           <View>
             <OutlineButton
-              text={
-                pickedFile.uri === ''
-                  ? t`Select a file`
-                  : t`Select a different file`
-              }
+              text={pickedFile.uri === '' ? t`Select a file` : t`Select a different file`}
               onPress={() => pickDocument(setPickedFile)}
               style={null}
               icon={faFolder}
@@ -106,7 +94,7 @@ const AddItemScreen = (props: Props) => {
       </VStack>
     </ScrollView>
   );
-};
+}
 
 export const AddItemScreenOptions = (navData) => {
   const itemType = navData.route.params?.itemType ?? 'FILE';
@@ -118,10 +106,8 @@ export const AddItemScreenOptions = (navData) => {
     headerTitle,
     headerLeft: () => (
       // TODO: use the HeaderBackButton in the future for better accessibility (default)
-      <CustomVerifyBackButton
-        goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
-      />
-    ),
+      <CustomVerifyBackButton goBack={() => navData.navigation.dispatch(CommonActions.goBack())} />
+    )
   };
 };
 
@@ -134,7 +120,7 @@ const mapStateToProps = (state: RootState) => ({
   uploadJournals: selectAllJEntries(state),
   uploadFiles: selectAllUploadFiles(state),
   defaultFolderTitle: selectDefaultFolderTitle(state),
-  defaultBlogId: selectDefaultBlogId(state),
+  defaultBlogId: selectDefaultBlogId(state)
 });
 
 export default connect(mapStateToProps)(AddItemScreen);

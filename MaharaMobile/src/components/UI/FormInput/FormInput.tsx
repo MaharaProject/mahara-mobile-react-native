@@ -8,7 +8,7 @@ type Props = {
   onChangeText: (text: string) => void;
 };
 
-const FormInput = (props: Props) => {
+function FormInput(props: Props) {
   return (
     <Box success={props.valid} regular>
       {props.multiline === true ? (
@@ -25,6 +25,6 @@ const FormInput = (props: Props) => {
       )}
     </Box>
   );
-};
+}
 
 export default FormInput;

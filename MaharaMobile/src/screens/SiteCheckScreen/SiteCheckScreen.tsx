@@ -1,13 +1,6 @@
 import { t, Trans } from '@lingui/macro';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import {
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  Text,
-  Toast,
-  View,
-} from 'native-base';
+import { Input, InputGroup, InputLeftAddon, Text, Toast, View } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
@@ -27,7 +20,7 @@ import {
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
-  selectUrl,
+  selectUrl
 } from '../../store/reducers/loginInfoReducer';
 import { RootState } from '../../store/reducers/rootReducer';
 import { setUpGuest } from '../../utils/authHelperFunctions';
@@ -53,7 +46,7 @@ type State = {
  * This screen holds the URL input and verifies whether a site
  * is a Mahara site with webservices connected.
  */
-const SiteCheckScreen = (props: Props) => {
+function SiteCheckScreen(props: Props) {
   const [serverPing, setServerPing] = useState(false);
   const [isInputHidden, setIsInputHidden] = useState(false);
   const [enterURLWarning, setEnterURLWarning] = useState(false);
@@ -105,8 +98,9 @@ const SiteCheckScreen = (props: Props) => {
             style={{
               fontSize: styles.font.md,
               color: styles.colors.messageErrorText,
-              flexDirection: 'row',
-            }}>
+              flexDirection: 'row'
+            }}
+          >
             {/* <Icon
               style={{
                 color: styles.colors.messageErrorIcon,
@@ -119,10 +113,10 @@ const SiteCheckScreen = (props: Props) => {
         type: 'danger',
         style: {
           backgroundColor: styles.colors.messageErrorBg,
-          paddingBottom: styles.padding.md,
+          paddingBottom: styles.padding.md
         },
         position: 'top',
-        duration: 3000,
+        duration: 3000
       });
     } finally {
       setLoading(false);
@@ -143,24 +137,19 @@ const SiteCheckScreen = (props: Props) => {
 
       {!isInputHidden ? (
         <View style={{ padding: 10 }}>
-          <Text
-            style={[
-              headingStyles.subHeading1,
-              textStyles.textWhite,
-              textStyles.center,
-            ]}>
+          <Text style={[headingStyles.subHeading1, textStyles.textWhite, textStyles.center]}>
             <Trans>What is the address of your Mahara?</Trans>
           </Text>
           <InputGroup>
-            <InputLeftAddon children={'https://'} />
+            <InputLeftAddon>https://</InputLeftAddon>
             <Input
               autoCapitalize="none"
               onChangeText={onUpdateURL}
-              backgroundColor={'#FFF'}
+              backgroundColor="#FFF"
               fontSize={styles.font.sm}
               variant="filled"
               w={{
-                base: '80%',
+                base: '80%'
               }}
               placeholder="yoursite.edu/"
               defaultValue={controlURL}
@@ -229,13 +218,13 @@ const SiteCheckScreen = (props: Props) => {
       {/* </MaharaGradient> */}
     </LogoView>
   );
-};
+}
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
   tokenLogin: selectTokenLogin(state),
   ssoLogin: selectSsoLogin(state),
-  localLogin: selectLocalLogin(state),
+  localLogin: selectLocalLogin(state)
 });
 
 export default connect(mapStateToProps)(SiteCheckScreen);

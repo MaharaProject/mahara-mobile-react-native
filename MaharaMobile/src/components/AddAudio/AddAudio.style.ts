@@ -3,7 +3,7 @@ import styles from '../../assets/styles/variables';
 
 export default StyleSheet.create({
   button: {
-    marginBottom: styles.padding.md,
+    marginBottom: styles.padding.md
   },
   smButton: {
     marginBottom: styles.padding.md,
@@ -15,24 +15,24 @@ export default StyleSheet.create({
     fontSize: styles.font.md,
     backgroundColor: styles.colors.light,
     borderColor: styles.colors.tertiary,
-    borderWidth: 2,
+    borderWidth: 2
   },
   playbackButtonWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   buttonWrapper: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   recordButton: {
-    flex: 1,
+    flex: 1
   },
   warning: {
     color: styles.colors.warn,
-    marginBottom: styles.padding.md,
+    marginBottom: styles.padding.md
   },
   recording: {
     backgroundColor: styles.colors.red,
     color: styles.colors.light,
-    borderWidth: 0,
-  },
+    borderWidth: 0
+  }
 });

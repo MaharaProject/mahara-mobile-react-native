@@ -17,11 +17,7 @@ function AudioPlayButton(props: AudioPlayButtonProps) {
       variant="outline"
       marginRight={variables.padding.xxs}
       startIcon={
-        <FontAwesomeIcon
-          icon={props.iconName}
-          color={maharaTheme.colors.primary[600]}
-          size={20}
-        />
+        <FontAwesomeIcon icon={props.iconName} color={maharaTheme.colors.primary[600]} size={20} />
       }
       accessibilityHint={t`play audio`}
       onPress={props.onPress}

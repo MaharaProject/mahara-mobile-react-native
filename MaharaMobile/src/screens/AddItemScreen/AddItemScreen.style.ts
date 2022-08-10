@@ -5,15 +5,15 @@ export default StyleSheet.create({
   image: {
     width: '100%',
     height: 200,
-    marginBottom: styles.padding.md,
+    marginBottom: styles.padding.md
   },
   imageWrap: {
     width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   button: {
     borderColor: '#f00',
-    color: '#0f0',
-  },
+    color: '#0f0'
+  }
 });

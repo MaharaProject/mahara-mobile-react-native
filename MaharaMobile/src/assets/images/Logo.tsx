@@ -3,7 +3,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Svg, { Circle, G, Path } from 'react-native-svg';
 
-const LogoSvg = () => {
+function LogoSvg() {
   return (
     <View
       style={[
@@ -12,9 +12,10 @@ const LogoSvg = () => {
           alignItems: 'flex-start',
           justifyContent: 'center',
           padding: 15,
-          paddingLeft: 40,
-        },
-      ]}>
+          paddingLeft: 40
+        }
+      ]}
+    >
       <Svg width="80" height="42" viewBox="0 0 203.026 106.9">
         <G id="Layer_2" data-name="Layer 2">
           <G id="Layer_1-2" data-name="Layer 1">
@@ -64,6 +65,6 @@ const LogoSvg = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default LogoSvg;

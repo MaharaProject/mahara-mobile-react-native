@@ -15,19 +15,20 @@ type Props = {
  * component otherwise the component will try to translate it.
  * @param props
  */
-const MediumText = (props: Props) => {
+function MediumText(props: Props) {
   return (
     <Text
       style={{
         fontSize: styles.font.md,
         flexWrap: 'wrap',
-        ...props.style,
-      }}>
+        ...props.style
+      }}
+    >
       {props.children != null && props.childrenFirst ? props.children : null}
       {!!props.text && props.text}
       {props.children && !props.childrenFirst ? props.children : null}
     </Text>
   );
-};
+}
 
 export default MediumText;

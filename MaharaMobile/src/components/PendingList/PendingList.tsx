@@ -1,21 +1,31 @@
 import React from 'react';
 import { FlatList } from 'react-native-gesture-handler';
+import { StyleSheet, View } from 'react-native';
 import { DisplayItems, PendingJEntry, PendingMFile } from '../../models/models';
 import { isPendingJEntry, isPendingMFile } from '../../utils/helperFunctions';
 import UploadItem from '../UploadItem/UploadItem';
-import { StyleSheet, View } from 'react-native';
 import styles from '../../assets/styles/variables';
 
 type Props = {
   dataList: DisplayItems;
-  onRemove: Function;
-  onEdit: Function;
+  onRemove: (id: string) => void;
+  onEdit: (item: PendingJEntry | PendingMFile) => void;
   successfullyUploadedItemsIds: Array<string>;
   uploadErrorItems: Array<string>;
-  onClearError: Function;
+  onClearError: (id: string) => void;
 };
 
-const PendingList = (props: Props) => {
+const listStyles = StyleSheet.create({
+  flatList: {
+    padding: styles.padding.xs,
+    paddingLeft: styles.padding.md,
+    paddingRight: styles.padding.md,
+    paddingTop: styles.padding.md
+    // flex: 1,
+  }
+});
+
+function PendingList(props: Props) {
   let title = '';
   let description = '';
   let thumbnail = {};
@@ -38,7 +48,7 @@ const PendingList = (props: Props) => {
           thumbnail = {
             uri: pendingFile.maharaFormData.filetoupload.uri
               ? pendingFile.maharaFormData.filetoupload.uri
-              : '',
+              : ''
           };
         } else if (isPendingJEntry(item)) {
           const pendingJEntry: PendingJEntry = item;
@@ -50,9 +60,12 @@ const PendingList = (props: Props) => {
         if (props.successfullyUploadedItemsIds.indexOf(itemId) !== -1) {
           isSuccessfullyUploadedItem = true;
         }
-        props.uploadErrorItems.indexOf(itemId) !== -1
-          ? (showUploadError = true)
-          : (showUploadError = false);
+
+        if (props.uploadErrorItems.indexOf(itemId) !== -1) {
+          showUploadError = true;
+        } else {
+          showUploadError = false;
+        }
 
         return (
           <UploadItem
@@ -72,16 +85,6 @@ const PendingList = (props: Props) => {
       ListFooterComponent={<View style={{ height: 20 }} />}
     />
   );
-};
-
-const listStyles = StyleSheet.create({
-  flatList: {
-    padding: styles.padding.xs,
-    paddingLeft: styles.padding.md,
-    paddingRight: styles.padding.md,
-    paddingTop: styles.padding.md,
-    // flex: 1,
-  },
-});
+}
 
 export default PendingList;

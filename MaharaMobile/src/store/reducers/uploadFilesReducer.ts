@@ -5,7 +5,7 @@ import {
   ADD_UPLOAD_FILE,
   CLEAR_UPLOAD_FILES,
   REMOVE_UPLOAD_FILE,
-  UPDATE_UPLOAD_FILES_ON_LOGIN,
+  UPDATE_UPLOAD_FILES_ON_LOGIN
 } from '../../utils/constants';
 import { RootState } from './rootReducer';
 import { UploadFilesActions } from '../../models/uploadFilesTypes';
@@ -17,16 +17,12 @@ export type UploadFilesState = {
 
 const initialState: UploadFilesState = {
   uploadFiles: {},
-  uploadFilesIds: [],
+  uploadFilesIds: []
 };
 
 // Helper functions
-const getFiles = (
-  ids: string[] = [],
-  arr: Record<string, PendingMFile>
-): Array<PendingMFile> => {
-  return ids.map((id: string) => arr[id]);
-};
+const getFiles = (ids: string[] = [], arr: Record<string, PendingMFile>): Array<PendingMFile> =>
+  ids.map((id: string) => arr[id]);
 
 const updateAsyncStorageUploadFiles = (uploadFiles: PendingMFile[]) => {
   AsyncStorage.setItem('uploadFiles', JSON.stringify(uploadFiles));
@@ -36,21 +32,18 @@ const addFileToUploadList = (state: UploadFilesState, file: PendingMFile) => {
   const updatedFilesIdsSet = new Set([...state.uploadFilesIds, file.id]);
   const updatedFiles = {
     ...state.uploadFiles,
-    [file.id]: file,
+    [file.id]: file
   };
 
   const updatedFileIds = Array.from(updatedFilesIdsSet);
   updateAsyncStorageUploadFiles(getFiles(updatedFileIds, updatedFiles));
   return {
     uploadFiles: updatedFiles,
-    uploadFilesIds: updatedFileIds,
+    uploadFilesIds: updatedFileIds
   };
 };
 
-const removeUploadFile = (
-  state: UploadFilesState,
-  id: string
-): UploadFilesState => {
+const removeUploadFile = (state: UploadFilesState, id: string): UploadFilesState => {
   // Filter out given id from state
   const updatedFileIds = state.uploadFilesIds.filter(
     (uploadFilesId: string) => uploadFilesId !== id
@@ -63,7 +56,7 @@ const removeUploadFile = (
   updateAsyncStorageUploadFiles(getFiles(updatedFileIds, updatedFiles));
   return {
     uploadFiles: updatedFiles,
-    uploadFilesIds: updatedFileIds,
+    uploadFilesIds: updatedFileIds
   };
 };
 
@@ -74,7 +67,7 @@ const updateUploadFilesOnLogin = (
   userFolders: Array<UserFolder>
 ): UploadFilesState => {
   const uploadJEntries = {
-    ...state.uploadFiles,
+    ...state.uploadFiles
   };
 
   const updatedFiles: Array<PendingMFile> = [];
@@ -85,9 +78,9 @@ const updateUploadFilesOnLogin = (
       maharaFormData: {
         ...file.maharaFormData,
         wstoken: token,
-        foldername: userFolders[0].title,
+        foldername: userFolders[0].title
       },
-      url: urlDomain + file.url,
+      url: urlDomain + file.url
     };
     updatedFiles.push(newPendingMFile);
   });
@@ -95,17 +88,14 @@ const updateUploadFilesOnLogin = (
   const updatedFilesObj = arrayToObject(updatedFiles);
   const newState: UploadFilesState = {
     ...state,
-    uploadFiles: updatedFilesObj,
+    uploadFiles: updatedFilesObj
   };
   updateAsyncStorageUploadFiles(updatedFiles);
   return newState;
 };
 
 // REDUCER
-export const uploadFilesReducer = (
-  state = initialState,
-  action: UploadFilesActions
-) => {
+export const uploadFilesReducer = (state = initialState, action: UploadFilesActions) => {
   switch (action.type) {
     case ADD_UPLOAD_FILE:
       return addFileToUploadList(state, action.file);
@@ -114,12 +104,7 @@ export const uploadFilesReducer = (
     case CLEAR_UPLOAD_FILES:
       return initialState;
     case UPDATE_UPLOAD_FILES_ON_LOGIN:
-      return updateUploadFilesOnLogin(
-        state,
-        action.token,
-        action.urlDomain,
-        action.userFolders
-      );
+      return updateUploadFilesOnLogin(state, action.token, action.urlDomain, action.userFolders);
     default:
       return state;
   }
@@ -135,13 +120,10 @@ export const selectAllUploadFiles = (state: RootState): Array<PendingMFile> => {
 };
 
 export const selectAllUploadFilesIds = (state: RootState) => [
-  ...state.appState.uploadFiles.uploadFilesIds,
+  ...state.appState.uploadFiles.uploadFilesIds
 ];
 
-export const selectUploadFileById = (
-  state: RootState,
-  { id }: { id: string }
-): PendingMFile => {
+export const selectUploadFileById = (state: RootState, { id }: { id: string }): PendingMFile => {
   const { uploadFiles } = uploadFilesState(state);
   return uploadFiles[id];
 };

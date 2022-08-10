@@ -9,7 +9,7 @@ import {
   UPDATE_PROFILE_ICON,
   UPDATE_SERVER_URL,
   UPDATE_URL,
-  UPDATE_USERNAME,
+  UPDATE_USERNAME
 } from '../../utils/constants';
 import { LoginInfoActions } from '../../models/loginInfoTypes';
 
@@ -44,7 +44,7 @@ const initialState: LoginInfoState = {
   didTryAutoLogin: false,
   profileIcon: '',
   defaultBlogId: 0,
-  defaultFolderTitle: '',
+  defaultFolderTitle: ''
 };
 
 export const loginInfoReducer = (
@@ -55,17 +55,17 @@ export const loginInfoReducer = (
     case UPDATE_SERVER_URL:
       return {
         ...state,
-        url: action.url,
+        url: action.url
       };
     case ADD_TOKEN:
       return {
         ...state,
-        token: action.token,
+        token: action.token
       };
     case UPDATE_USERNAME:
       return {
         ...state,
-        userName: action.userName,
+        userName: action.userName
       };
     case CLEAR_LOGIN_INFO:
       return initialState;
@@ -74,37 +74,37 @@ export const loginInfoReducer = (
         ...state,
         localLogin: action.localLogin,
         ssoLogin: action.ssoLogin,
-        tokenLogin: action.tokenLogin,
+        tokenLogin: action.tokenLogin
       };
     case UPDATE_URL:
       return {
         ...state,
-        url: action.url,
+        url: action.url
       };
     case UPDATE_PROFILE_ICON:
       return {
         ...state,
-        profileIcon: action.profileIcon,
+        profileIcon: action.profileIcon
       };
     case UPDATE_GUEST_STATUS:
       return {
         ...state,
-        isGuest: action.isGuest,
+        isGuest: action.isGuest
       };
     case SET_DID_TRY_AL:
       return {
         ...state,
-        didTryAutoLogin: true,
+        didTryAutoLogin: true
       };
     case SET_DEFAULT_BLOG:
       return {
         ...state,
-        defaultBlogId: action.blogId,
+        defaultBlogId: action.blogId
       };
     case SET_DEFAULT_FOLDER:
       return {
         ...state,
-        defaultFolderTitle: action.folderTitle,
+        defaultFolderTitle: action.folderTitle
       };
     default:
       return state;
@@ -113,23 +113,14 @@ export const loginInfoReducer = (
 
 // Selector
 export const selectUrl = (state: RootState) => state.domainData.loginInfo.url;
-export const selectTokenLogin = (state: RootState) =>
-  state.domainData.loginInfo.tokenLogin;
-export const selectSsoLogin = (state: RootState) =>
-  state.domainData.loginInfo.ssoLogin;
-export const selectLocalLogin = (state: RootState) =>
-  state.domainData.loginInfo.localLogin;
-export const selectToken = (state: RootState) =>
-  state.domainData.loginInfo.token;
-export const selectUserName = (state: RootState) =>
-  state.domainData.loginInfo.userName;
-export const selectAllLoginInfo = (state: RootState) =>
-  state.domainData.loginInfo;
-export const selectProfileIcon = (state: RootState) =>
-  state.domainData.loginInfo.profileIcon;
-export const selectDefaultBlogId = (state: RootState) =>
-  state.domainData.loginInfo.defaultBlogId;
+export const selectTokenLogin = (state: RootState) => state.domainData.loginInfo.tokenLogin;
+export const selectSsoLogin = (state: RootState) => state.domainData.loginInfo.ssoLogin;
+export const selectLocalLogin = (state: RootState) => state.domainData.loginInfo.localLogin;
+export const selectToken = (state: RootState) => state.domainData.loginInfo.token;
+export const selectUserName = (state: RootState) => state.domainData.loginInfo.userName;
+export const selectAllLoginInfo = (state: RootState) => state.domainData.loginInfo;
+export const selectProfileIcon = (state: RootState) => state.domainData.loginInfo.profileIcon;
+export const selectDefaultBlogId = (state: RootState) => state.domainData.loginInfo.defaultBlogId;
 export const selectDefaultFolderTitle = (state: RootState) =>
   state.domainData.loginInfo.defaultFolderTitle;
-export const selectIsGuestStatus = (state: RootState) =>
-  state.domainData.loginInfo.isGuest;
+export const selectIsGuestStatus = (state: RootState) => state.domainData.loginInfo.isGuest;

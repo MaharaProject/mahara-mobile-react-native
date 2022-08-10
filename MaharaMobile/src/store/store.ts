@@ -8,8 +8,7 @@ export default function configureStore(preloadedState) {
 
   middleware.push(createLogger());
 
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   return createStore(rootReducer, preloadedState, composeEnhancers(applyMiddleware(...middleware)));
 }

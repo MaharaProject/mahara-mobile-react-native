@@ -10,7 +10,7 @@ type Props = {
   onPress?;
 };
 
-const CancelButton = (props: Props) => {
+function CancelButton(props: Props) {
   const goBack = () => props.navigation.dispatch(CommonActions.goBack());
   return (
     <Button
@@ -21,10 +21,11 @@ const CancelButton = (props: Props) => {
       accessibilityLabel="Cancel"
       onPress={() => (props.onPress ? props.onPress() : onCancelAlert(goBack))}
       colorScheme="info"
-      style={[buttons.md, buttons.cancel]}>
+      style={[buttons.md, buttons.cancel]}
+    >
       <Text>{t`Cancel`}</Text>
     </Button>
   );
-};
+}
 
 export default CancelButton;

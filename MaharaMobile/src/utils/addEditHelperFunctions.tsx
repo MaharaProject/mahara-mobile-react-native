@@ -5,7 +5,7 @@ import {
   ImageLibraryOptions,
   ImagePickerResponse,
   launchCamera,
-  launchImageLibrary, // for ios?
+  launchImageLibrary // for ios?
 } from 'react-native-image-picker';
 import { File, ReactNativeImagePickerResponse } from '../models/models';
 import { newFile } from '../models/typeCreators';
@@ -34,12 +34,7 @@ const setSelectedImageCallback = (
       path = `˜${path.substring(path.indexOf('/Documents'))}`;
     }
 
-    const maharaFile = newFile(
-      path,
-      asset.type,
-      asset.fileName,
-      asset.fileSize
-    );
+    const maharaFile = newFile(path, asset.type, asset.fileName, asset.fileSize);
 
     setPickedFile(maharaFile);
   }
@@ -47,7 +42,7 @@ const setSelectedImageCallback = (
 
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
   const options: ImageLibraryOptions = {
-    mediaType: 'photo',
+    mediaType: 'photo'
   };
 
   /**
@@ -55,46 +50,45 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
    * The second arg is the callback which sends object: response (more info in the API Reference)
    */
 
-  Platform.OS === 'ios'
-    ? // TODO: this will not work rn image picker > 3, use rn action sheet.
-      ActionSheetIOS.showActionSheetWithOptions(
-        {
-          options: [t`Cancel`, t`Open Photos`, t`Open Camera`],
-          destructiveButtonIndex: 3,
-          cancelButtonIndex: 0,
-        },
-        (buttonIndex: number) => {
-          if (buttonIndex === 0) {
-            // cancel action
-          } else if (buttonIndex === 1) {
-            launchImageLibrary(options, (response: ImagePickerResponse) => {
-              setSelectedImageCallback(response, setPickedFile);
-            });
-          } else if (buttonIndex === 2) {
-            launchCamera(options, (response: ImagePickerResponse) => {
-              setSelectedImageCallback(response, setPickedFile);
-            });
-          }
+  if (Platform.OS === 'ios') {
+    // TODO: this will not work rn image picker > 3, use rn action sheet.
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: [t`Cancel`, t`Open Photos`, t`Open Camera`],
+        destructiveButtonIndex: 3,
+        cancelButtonIndex: 0
+      },
+      (buttonIndex: number) => {
+        if (buttonIndex === 0) {
+          // cancel action
+        } else if (buttonIndex === 1) {
+          launchImageLibrary(options, (response: ImagePickerResponse) => {
+            setSelectedImageCallback(response, setPickedFile);
+          });
+        } else if (buttonIndex === 2) {
+          launchCamera(options, (response: ImagePickerResponse) => {
+            setSelectedImageCallback(response, setPickedFile);
+          });
         }
-      )
-    : // setSelectedImageCallback(response, setPickedFile);
-      launchCamera(options, (response: ImagePickerResponse) => {
-        setSelectedImageCallback(response, setPickedFile);
-      });
+      }
+    );
+  } else {
+    launchCamera(options, (response: ImagePickerResponse) => {
+      setSelectedImageCallback(response, setPickedFile);
+    });
+  }
 };
 
 export const pickDocument = async (onSetPickedFile: any) => {
   const DocumentPicker = (await import('react-native-document-picker')).default;
   try {
     DocumentPicker.pickSingle({
-      type: [DocumentPicker.types.allFiles],
-    }).then((res) =>
-      onSetPickedFile(newFile(res.uri, res.type, res.name, res.size))
-    );
+      type: [DocumentPicker.types.allFiles]
+    }).then((res) => onSetPickedFile(newFile(res.uri, res.type, res.name, res.size)));
   } catch (err) {
     if (DocumentPicker.isCancel(err)) {
       Alert.alert(t`Invalid file`, t`Please select a file.`, [
-        { text: t`Okay`, style: 'destructive' },
+        { text: t`Okay`, style: 'destructive' }
       ]);
     } else {
       Alert.alert(JSON.stringify(err));
@@ -111,25 +105,19 @@ export const onCancelAlert = (goBack) => {
         text: t`Cancel`,
         onPress: () => {
           // do nothing
-        },
+        }
       },
       {
         text: t`Okay`,
-        onPress: () => goBack(),
-      },
+        onPress: () => goBack()
+      }
     ],
     { cancelable: true }
   );
 };
 
-export const renderImagePreview = (uri: string) => {
-  return (
-    <View style={styles.imageWrap}>
-      <Image
-        source={{ uri }}
-        style={styles.image}
-        accessibilityLabel={t`image preview`}
-      />
-    </View>
-  );
-};
+export const renderImagePreview = (uri: string) => (
+  <View style={styles.imageWrap}>
+    <Image source={{ uri }} style={styles.image} accessibilityLabel={t`image preview`} />
+  </View>
+);

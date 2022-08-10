@@ -16,7 +16,7 @@ type Props = {
   navigation: any;
 };
 
-const MenuScreen = (props: Props) => {
+function MenuScreen(props: Props) {
   const dispatch = useDispatch();
 
   const menuStrings = {
@@ -26,7 +26,7 @@ const MenuScreen = (props: Props) => {
     version: t`App version`,
     terms: t`Terms and conditions`,
     privacy: t`Privacy statement`,
-    logout: t`Logout`,
+    logout: t`Logout`
   };
 
   /**
@@ -34,9 +34,7 @@ const MenuScreen = (props: Props) => {
    * @param name name to display on Menu Screen
    * @param path path to navigate to onPressing the item
    */
-  const createMenuItem = (name: string, path: () => void): MenuItemObject => {
-    return { name, path };
-  };
+  const createMenuItem = (name: string, path: () => void): MenuItemObject => ({ name, path });
 
   const navigateTo = (key: string) => () => props.navigation.navigate(key);
 
@@ -47,9 +45,7 @@ const MenuScreen = (props: Props) => {
     createMenuItem(menuStrings.terms, navigateTo('Terms')),
     createMenuItem(menuStrings.privacy, navigateTo('Privacy')),
     createMenuItem(menuStrings.version, navigateTo('Version')),
-    createMenuItem(menuStrings.logout, () =>
-      signOutAsync(props.navigation, dispatch)
-    ),
+    createMenuItem(menuStrings.logout, () => signOutAsync(dispatch))
   ];
 
   return (
@@ -64,6 +60,6 @@ const MenuScreen = (props: Props) => {
       ))}
     </ScrollView>
   );
-};
+}
 
 export default MenuScreen;

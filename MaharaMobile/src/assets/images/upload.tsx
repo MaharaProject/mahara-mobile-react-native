@@ -3,14 +3,10 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-const UploadSVG = () => {
+function UploadSVG() {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="160"
-        viewBox="0 0 396 282">
+      <Svg xmlns="http://www.w3.org/2000/svg" width="100%" height="160" viewBox="0 0 396 282">
         <Path
           id="upload-big.svg"
           class="cls-1"
@@ -21,6 +17,6 @@ const UploadSVG = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default UploadSVG;

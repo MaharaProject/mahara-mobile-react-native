@@ -5,7 +5,7 @@ const uploadItemStyles = StyleSheet.create({
   uploadItem: {
     height: 80,
     // backgroundColor: 'red',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   pendingCard: {
     flexDirection: 'row',
@@ -15,50 +15,50 @@ const uploadItemStyles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 3,
     backgroundColor: styles.colors.lightgrey,
-    padding: 5,
+    padding: 5
   },
   buttonContainer: {
     flexDirection: 'row',
     width: '30%', // of width of parent
     justifyContent: 'space-around',
-    height: '100%',
+    height: '100%'
   },
   textContainer: {
     paddingLeft: 10,
     width: '50%',
     height: '100%',
     justifyContent: 'center',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   imageContainer: {
     width: '20%',
-    overflow: 'hidden',
+    overflow: 'hidden'
   },
   icon: {
     height: '100%',
     justifyContent: 'space-around',
-    backgroundColor: 'red',
+    backgroundColor: 'red'
   },
   thumbnail: {
     height: '100%',
-    width: '100%',
+    width: '100%'
   },
   button: {
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   date: {
-    fontSize: 20,
+    fontSize: 20
   },
   title: {
     color: styles.colors.primary,
-    paddingVertical: 5,
+    paddingVertical: 5
   },
   remove: {
-    color: styles.colors.red,
+    color: styles.colors.red
   },
   edit: {
-    color: styles.colors.green_grid_button,
-  },
+    color: styles.colors.green_grid_button
+  }
 });
 
 export default uploadItemStyles;

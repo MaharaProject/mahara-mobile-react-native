@@ -3,7 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-const AddJournalEntrySvg = () => {
+function AddJournalEntrySvg() {
   return (
     <View>
       <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 288">
@@ -16,6 +16,6 @@ const AddJournalEntrySvg = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default AddJournalEntrySvg;

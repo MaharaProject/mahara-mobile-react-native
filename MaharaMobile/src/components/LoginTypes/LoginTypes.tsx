@@ -2,14 +2,14 @@ import { t } from '@lingui/macro';
 import { faKey, faSignInAlt, faTags } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { View } from 'react-native';
+import { Stack } from 'native-base';
 import styles from '../../assets/styles/variables';
 import generic from '../../assets/styles/generic';
 import MediumButton from '../UI/MediumButton/MediumButton';
-import { Stack } from 'native-base';
 import SubHeading from '../UI/SubHeading/SubHeading';
 
 type Props = {
-  goToLoginType: Function;
+  goToLoginType: (type: string) => void;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
@@ -20,7 +20,7 @@ type Props = {
  * - a list of buttons for available login types
  * @param props
  */
-const LoginTypes = (props: Props) => {
+function LoginTypes(props: Props) {
   // https://yoursite.edu/
 
   return (
@@ -28,8 +28,9 @@ const LoginTypes = (props: Props) => {
       style={{
         ...generic.view,
         padding: styles.padding.sm,
-        flexGrow: 1,
-      }}>
+        flexGrow: 1
+      }}
+    >
       <Stack direction="column" mb="2.5" mt="1.5" space={3}>
         <SubHeading
           noColon
@@ -60,6 +61,6 @@ const LoginTypes = (props: Props) => {
       </Stack>
     </View>
   );
-};
+}
 
 export default LoginTypes;

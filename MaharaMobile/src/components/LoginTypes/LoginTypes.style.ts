@@ -3,17 +3,17 @@ import styles from '../../assets/styles/variables';
 
 export default StyleSheet.create({
   view: {
-    flex: 1,
+    flex: 1
   },
   buttonGroup: {
     justifyContent: 'space-between',
-    flex: 1,
+    flex: 1
   },
   buttons: {
-    marginBottom: styles.padding.md,
+    marginBottom: styles.padding.md
   },
   errorTextInput: {
     borderColor: styles.colors.warn,
-    borderWidth: 2,
-  },
+    borderWidth: 2
+  }
 });

@@ -33,16 +33,12 @@ const App: () => Node = () => {
 export const I18nProviderWrapper = ({ children }) => {
   useEffect(() => {
     const FALL_BACK_LANG = 'en';
-    const userLangTags = RNLocalize.getLocales().map(
-      (locale) => locale.languageTag
-    );
-    const bestFitLanguageTag =
-      RNLocalize.findBestAvailableLanguage(userLangTags).languageTag;
+    const userLangTags = RNLocalize.getLocales().map((locale) => locale.languageTag);
+    const bestFitLanguageTag = RNLocalize.findBestAvailableLanguage(userLangTags).languageTag;
 
     const langCode =
-      RNLocalize.getLocales().find(
-        (locale) => locale.languageTag === bestFitLanguageTag
-      ).languageCode || FALL_BACK_LANG;
+      RNLocalize.getLocales().find((locale) => locale.languageTag === bestFitLanguageTag)
+        .languageCode || FALL_BACK_LANG;
 
     changeActiveLanguage(langCode);
   }, []);

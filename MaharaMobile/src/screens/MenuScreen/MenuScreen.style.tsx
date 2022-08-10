@@ -5,8 +5,8 @@ const menuScreenStyles = StyleSheet.create({
   view: {
     backgroundColor: styles.colors.primary,
     height: '100%',
-    elevation: 4, // needs to be elevated to the same height as the top menu bar
-  },
+    elevation: 4 // needs to be elevated to the same height as the top menu bar
+  }
 });
 
 export default menuScreenStyles;

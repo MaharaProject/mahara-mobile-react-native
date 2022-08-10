@@ -1,11 +1,11 @@
 import { t } from '@lingui/macro';
 import React from 'react';
 import DeviceInfo from 'react-native-device-info';
-import MediumText from '../../components/UI/CustomText/MediumText';
 import { ScrollView } from 'react-native';
+import MediumText from '../../components/UI/CustomText/MediumText';
 import generic from '../../assets/styles/generic';
 
-const VersionScreen = () => {
+function VersionScreen() {
   const version = DeviceInfo.getVersion();
 
   const android = '11';
@@ -17,5 +17,5 @@ const VersionScreen = () => {
       />
     </ScrollView>
   );
-};
+}
 export default VersionScreen;

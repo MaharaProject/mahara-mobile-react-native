@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   uploadCard: {
     padding: 20,
     backgroundColor: 'white',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
 
     // all for iOS
     // shadowColor: 'black',
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
     // android
     // elevation: 5, // default android material shadow given
-  },
+  }
 });
 
 export default styles;

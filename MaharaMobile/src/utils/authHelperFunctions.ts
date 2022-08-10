@@ -3,11 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import {
-  clearUserTags,
-  updateUserTags,
-  updateUserTagsIds,
-} from '../store/actions/actions';
+import { clearUserTags, updateUserTags, updateUserTagsIds } from '../store/actions/actions';
 import {
   clearLoginInfo,
   setDefaultBlogId,
@@ -15,29 +11,18 @@ import {
   addToken,
   updateGuestStatus,
   updateProfilePic,
-  updateUserName,
+  updateUserName
 } from '../store/actions/loginInfo';
 import {
   clearUserBlogs,
   clearUserFolders,
   updateUserBlogs,
-  updateUserFolders,
+  updateUserFolders
 } from '../store/actions/userArtefacts';
-import {
-  clearUploadJEntires,
-  updateJEntriesOnLogin,
-} from '../store/actions/uploadJEntries';
-import {
-  clearUploadFiles,
-  updateUploadFilesOnLogin,
-} from '../store/actions/uploadFiles';
+import { clearUploadJEntires, updateJEntriesOnLogin } from '../store/actions/uploadJEntries';
+import { clearUploadFiles, updateUploadFilesOnLogin } from '../store/actions/uploadFiles';
 import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
-import {
-  GUEST_BLOG,
-  GUEST_FOLDER,
-  GUEST_TOKEN,
-  GUEST_USERNAME,
-} from './constants';
+import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
 import flashMessage from '../components/FlashMessage/FlashMessage';
 import { newUserTag } from '../models/typeCreators';
 import { userBlogJSONtoUserBlog } from './helperFunctions';
@@ -50,10 +35,7 @@ import { userBlogJSONtoUserBlog } from './helperFunctions';
  * @returns true if successful log in and data loading
  * @returns Promise.reject() on fail
  */
-export async function fetchUserWithToken(
-  serverUrl: string,
-  requestOptions: RequestInit
-) {
+export async function fetchUserWithToken(serverUrl: string, requestOptions: RequestInit) {
   const response = await fetch(serverUrl, requestOptions);
   const json = await response.json().catch((e) => {
     console.warn(
@@ -119,11 +101,7 @@ export const updatePendingItemsOnGuestToUser = async (
   dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
 };
 
-export const fetchProfilePic = async (
-  dispatch: Dispatch,
-  token: string,
-  url: string
-) => {
+export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: string) => {
   const api = 'module_mobileapi_get_user_profileicon&height=100&width=100';
   const wstoken = token;
   const serverUrl = `${url}module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;
@@ -131,7 +109,7 @@ export const fetchProfilePic = async (
   let profilePic = '';
 
   RNFetchBlob.config({
-    fileCache: true,
+    fileCache: true
   })
     .fetch('GET', serverUrl)
     .then((res) => {
@@ -146,7 +124,7 @@ export const fetchProfilePic = async (
   return profilePic;
 };
 
-export const signOutAsync = async (navigation, dispatch) => {
+export const signOutAsync = async (dispatch: Dispatch) => {
   Alert.alert(
     t`Are you sure?`,
     t`Items in the upload queue will not be retrievable once logged out.`,
@@ -154,16 +132,15 @@ export const signOutAsync = async (navigation, dispatch) => {
       {
         text: t`Cancel`,
         onPress: () => null,
-        style: 'cancel',
+        style: 'cancel'
       },
       {
         text: t`Logout`,
         onPress: async () => {
-          // navigation.navigate('SiteCheck');
           await AsyncStorage.clear();
           clearReduxData(dispatch);
-        },
-      },
+        }
+      }
     ],
     { cancelable: false }
   );
@@ -178,10 +155,7 @@ export const signOutAsync = async (navigation, dispatch) => {
  * - something odd in a site upgrade
  * - users missing a folder or blog will cause issues
  */
-export const checkValidInitialState = (
-  blogs: UserBlog[],
-  folders: UserFolder[]
-): boolean => {
+export const checkValidInitialState = (blogs: UserBlog[], folders: UserFolder[]): boolean => {
   if (blogs.length === 0 || folders.length === 0) {
     return false;
   }
@@ -196,8 +170,8 @@ export const checkValidInitialState = (
  */
 export const onCheckAuthJSON = (
   json: any,
-  successCallback: Function,
-  failCallback: Function
+  successCallback: () => void,
+  failCallback: () => void
 ) => {
   if (json) {
     if (json.error) {
@@ -230,15 +204,15 @@ export const login = (
     userprofile: {},
     userprofileicon: {},
     wsfunction: 'module_mobileapi_sync',
-    wstoken: token,
+    wstoken: token
   };
 
   const requestOptions = {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify(body)
   };
 
   /**
@@ -246,13 +220,7 @@ export const login = (
    */
   const onGuestToUser = async () => {
     dispatch(updateGuestStatus(false));
-    updatePendingItemsOnGuestToUser(
-      dispatch,
-      userBlogs,
-      userFolders,
-      token,
-      url
-    );
+    updatePendingItemsOnGuestToUser(dispatch, userBlogs, userFolders, token, url);
     console.log('updatedGuestDetailsToProvidedUser');
   };
 
@@ -293,17 +261,13 @@ export const login = (
         usage: number;
       };
       // Create UserTags with id and string.
-      const newUserTags: Array<UserTag> = userData.tags.tags.map(
-        (tag: FetchedTag) => newUserTag(tag.tag)
+      const newUserTags: Array<UserTag> = userData.tags.tags.map((tag: FetchedTag) =>
+        newUserTag(tag.tag)
       );
       dispatch(updateUserTags(newUserTags));
       dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
       dispatch(
-        updateUserBlogs(
-          userData.blogs.blogs.map((b: UserBlogJSON) =>
-            userBlogJSONtoUserBlog(b)
-          )
-        )
+        updateUserBlogs(userData.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b)))
       );
       // Check if user has folders (they can be deleted on Mahara)
       if (userData.folders.folders.length !== 0) {

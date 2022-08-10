@@ -1,18 +1,15 @@
 import { t, Trans } from '@lingui/macro';
 import { Box, Select, Text } from 'native-base';
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 import image from '../../assets/images/no_userphoto.png';
 import buttons from '../../assets/styles/buttons';
 import styles from '../../assets/styles/variables';
 import MediumButton from '../../components/UI/MediumButton/MediumButton';
 import SubHeading from '../../components/UI/SubHeading/SubHeading';
-import React from 'react';
-import {
-  setDefaultBlogId,
-  setDefaultFolder,
-} from '../../store/actions/loginInfo';
+import { setDefaultBlogId, setDefaultFolder } from '../../store/actions/loginInfo';
 // import i18n from '../../i18n';
 import { UserBlog, UserFolder } from '../../models/models';
 import {
@@ -21,20 +18,16 @@ import {
   selectProfileIcon,
   selectToken,
   selectUrl,
-  selectUserName,
+  selectUserName
 } from '../../store/reducers/loginInfoReducer';
 import { RootState } from '../../store/reducers/rootReducer';
-import {
-  selectUserBlogs,
-  selectUserFolders,
-} from '../../store/reducers/userArtefactsReducer';
+import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
 import { fetchProfilePic } from '../../utils/authHelperFunctions';
 import { GUEST_TOKEN } from '../../utils/constants';
 import { putDefaultAtTop } from '../../utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
 
-const PreferencesScreen = () => {
+function PreferencesScreen() {
   const dispatch = useDispatch();
 
   // Items from reducers
@@ -42,41 +35,29 @@ const PreferencesScreen = () => {
   const token = useSelector((state: RootState) => selectToken(state));
   const userName = useSelector((state: RootState) => selectUserName(state));
   const pIcon = useSelector((state: RootState) => selectProfileIcon(state));
-  const defaultFolderTitle = useSelector((state: RootState) =>
-    selectDefaultFolderTitle(state)
-  );
-  const defaultBlogId = useSelector((state: RootState) =>
-    selectDefaultBlogId(state)
-  );
+  const defaultFolderTitle = useSelector((state: RootState) => selectDefaultFolderTitle(state));
+  const defaultBlogId = useSelector((state: RootState) => selectDefaultBlogId(state));
 
   // Component state
-  const userFolders = useSelector((state: RootState) =>
-    selectUserFolders(state)
-  );
+  const userFolders = useSelector((state: RootState) => selectUserFolders(state));
 
   const userBlogs = useSelector((state: RootState) => selectUserBlogs(state));
-  const [selectedFolderTitle, setSelectedFolderTitle] =
-    useState(defaultFolderTitle);
+  const [selectedFolderTitle, setSelectedFolderTitle] = useState(defaultFolderTitle);
   const [selectedBlogId, setSelectedBlogId] = useState(defaultBlogId);
 
-  const getProfilePic = async () => {
-    if (token === GUEST_TOKEN) {
-      return;
+  const getProfilePic = useCallback(async () => {
+    if (token !== GUEST_TOKEN) {
+      fetchProfilePic(dispatch, token, url);
     }
-    fetchProfilePic(dispatch, token, url);
-  };
+  }, [dispatch, token, url]);
 
   useEffect(() => {
     getProfilePic();
-  }, []);
+  }, [getProfilePic]);
 
   const defaultFolderPicker = () => {
     const match = userFolders.find((f) => f.title === defaultFolderTitle);
-    const sortedFolders: Array<UserFolder> = putDefaultAtTop(
-      null,
-      match,
-      userFolders
-    );
+    const sortedFolders: Array<UserFolder> = putDefaultAtTop(null, match, userFolders);
 
     return (
       <View>
@@ -87,13 +68,12 @@ const PreferencesScreen = () => {
             selectedValue={selectedFolderTitle}
             onValueChange={(folder: string) => {
               setSelectedFolderTitle(folder);
-            }}>
+            }}
+          >
             {sortedFolders &&
               sortedFolders.map((f: UserFolder) => {
                 const label =
-                  f.title === defaultFolderTitle
-                    ? `${f.title} - ${t`default`}`
-                    : f.title;
+                  f.title === defaultFolderTitle ? `${f.title} - ${t`default`}` : f.title;
                 return <Select.Item label={label} value={f.title} key={f.id} />;
               })}
           </Select>
@@ -104,8 +84,7 @@ const PreferencesScreen = () => {
 
   const defaultBlogPicker = () => {
     // Find matching blog to the default blog
-    const match: UserBlog =
-      userBlogs.find((b) => b.id === defaultBlogId) ?? userBlogs[0];
+    const match: UserBlog = userBlogs.find((b) => b.id === defaultBlogId) ?? userBlogs[0];
 
     const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
@@ -116,16 +95,13 @@ const PreferencesScreen = () => {
           <Select
             accessibilityLabel={t`Select journal`}
             selectedValue={selectedBlogId}
-            onValueChange={(blogId: number) => setSelectedBlogId(blogId)}>
+            onValueChange={(blogId: number) => setSelectedBlogId(blogId)}
+          >
             {blogs &&
               blogs.map((blog: UserBlog) => {
                 const label =
-                  blog.id === defaultBlogId
-                    ? `${blog.title} - ${t`default`}`
-                    : blog.title;
-                return (
-                  <Select.Item label={label} value={blog.id} key={blog.id} />
-                );
+                  blog.id === defaultBlogId ? `${blog.title} - ${t`default`}` : blog.title;
+                return <Select.Item label={label} value={blog.id} key={blog.id} />;
               })}
           </Select>
         </Box>
@@ -135,10 +111,7 @@ const PreferencesScreen = () => {
   const renderProfile = () => (
     <View>
       <View style={PreferencesScreenStyle.imageContainer}>
-        <Image
-          source={pIcon ? { uri: pIcon } : image}
-          style={PreferencesScreenStyle.image}
-        />
+        <Image source={pIcon ? { uri: pIcon } : image} style={PreferencesScreenStyle.image} />
       </View>
       <Text style={PreferencesScreenStyle.name}>
         <Trans>Hi</Trans> {userName}
@@ -149,10 +122,7 @@ const PreferencesScreen = () => {
   return (
     <View style={PreferencesScreenStyle.view}>
       {renderProfile()}
-      <SubHeading
-        style={{ fontSize: styles.font.xl }}
-        text={t`Default options`}
-      />
+      <SubHeading style={{ fontSize: styles.font.xl }} text={t`Default options`} />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
       <MediumButton
@@ -177,6 +147,6 @@ const PreferencesScreen = () => {
       />
     </View>
   );
-};
+}
 
 export default PreferencesScreen;

@@ -4,13 +4,13 @@ import styles from '../../assets/styles/variables';
 const menuItemStyles = StyleSheet.create({
   listItem: {
     padding: styles.padding.md,
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   },
   listItemText: {
     marginLeft: styles.padding.sm,
     fontSize: styles.font.md,
-    color: styles.colors.contrast,
-  },
+    color: styles.colors.contrast
+  }
 });
 
 export default menuItemStyles;

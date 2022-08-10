@@ -3,8 +3,8 @@ import { extendTheme } from 'native-base';
 export const maharaTheme = extendTheme({
   components: {
     Link: {
-      fontFamily: 'OpenSans',
-    },
+      fontFamily: 'OpenSans'
+    }
   },
   colors: {
     mahara: {
@@ -26,7 +26,7 @@ export const maharaTheme = extendTheme({
       yellow5: '#BA9559',
       black1: '#000000',
       black2: '#222222',
-      black3: '#333333',
+      black3: '#333333'
       // grey1: '#666666',
       // grey2: '#959595',
     },
@@ -41,7 +41,7 @@ export const maharaTheme = extendTheme({
       500: '#5E7938',
       600: '#4b612d',
       700: '#384922',
-      800: '#263016',
+      800: '#263016'
     },
     secondary: {
       100: '#ddcaac',
@@ -52,7 +52,7 @@ export const maharaTheme = extendTheme({
       600: '#a78650',
       700: '#957747',
       800: '#82683e',
-      900: '#5d4b2d',
+      900: '#5d4b2d'
     },
     info: {
       100: '#fafafa',
@@ -63,7 +63,7 @@ export const maharaTheme = extendTheme({
       600: '#d7d7d7',
       700: '#bfbfbf',
       800: '#a7a7a7',
-      900: '#787878',
+      900: '#787878'
     },
     warning: {
       50: '#eecccf',
@@ -74,7 +74,7 @@ export const maharaTheme = extendTheme({
       500: '#a9000d',
       600: '#87000a',
       700: '#760009',
-      800: '#650008',
+      800: '#650008'
     },
     // Add new color
     green: '#576c36',
@@ -83,41 +83,41 @@ export const maharaTheme = extendTheme({
     danger: '#a9000d',
     // warning: '#b9a34b',
     dark: '#000',
-    light: '#FFF',
+    light: '#FFF'
   },
   fontConfig: {
     OpenSans: {
       100: {
         normal: 'OpenSans-Light',
-        italic: 'OpenSans-LightItalic',
+        italic: 'OpenSans-LightItalic'
       },
       200: {
         normal: 'OpenSans-Regular',
-        italic: 'OpenSans-Italic',
+        italic: 'OpenSans-Italic'
       },
       300: {
         normal: 'OpenSans-Medium',
-        italic: 'OpenSans-MediumItalic',
+        italic: 'OpenSans-MediumItalic'
       },
       400: {
         normal: 'OpenSans-SemiBold',
-        italic: 'OpenSans-SemiBoldItalic',
+        italic: 'OpenSans-SemiBoldItalic'
       },
       500: {
         normal: 'OpenSans-Bold',
-        italic: 'OpenSans-BoldItalic',
+        italic: 'OpenSans-BoldItalic'
       },
       600: {
         normal: 'OpenSans-ExtraBold',
-        italic: 'OpenSans-ExtraBoldItalic',
-      },
-    },
+        italic: 'OpenSans-ExtraBoldItalic'
+      }
+    }
   },
 
   // Make sure values below matches any of the keys in `fontConfig`
   fonts: {
     heading: 'OpenSans',
     body: 'OpenSans',
-    mono: 'OpenSans',
-  },
+    mono: 'OpenSans'
+  }
 });

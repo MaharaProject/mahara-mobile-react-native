@@ -8,10 +8,10 @@ type Props = {
   navigation: any;
 };
 
-const SelectMediaScreen = (props: Props) => {
+function SelectMediaScreen(props: Props) {
   const selectMediaType = (type: UploadItemType) => {
     props.navigation.navigate('AddItem', {
-      itemType: type,
+      itemType: type
     });
   };
 
@@ -20,6 +20,6 @@ const SelectMediaScreen = (props: Props) => {
       <SelectMediaType selectMediaType={selectMediaType} />
     </View>
   );
-};
+}
 
 export default SelectMediaScreen;

@@ -1,10 +1,11 @@
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Dispatch } from 'redux';
 import {
   CLEAR_USER_BLOGS,
   CLEAR_USER_FOLDERS,
   UPDATE_USER_BLOGS,
-  UPDATE_USER_FOLDERS,
+  UPDATE_USER_FOLDERS
 } from '../../utils/constants';
 import { LoginInfo, UserBlog, UserFolder } from '../../models/models';
 import { updateUrl } from './loginInfo';
@@ -37,7 +38,7 @@ const requestJSON = async (url: string, config: object, error?: string) => {
     if (!response.ok) {
       throw new RequestError({
         code: response.status,
-        message: error,
+        message: error
       });
     }
     const json = await response.json();
@@ -46,14 +47,13 @@ const requestJSON = async (url: string, config: object, error?: string) => {
     throw RequestError.createRequestError(e);
   }
 };
-const getJSON = (url: string, error?: string) =>
-  requestJSON(url, { method: 'GET' }, error);
+const getJSON = (url: string, error?: string) => requestJSON(url, { method: 'GET' }, error);
 
 export function checkLoginTypes(url: string) {
   const serverUrl = `${url}module/mobileapi/json/info.php`;
 
-  // TODO: eslint-disable-next-line func-names
-  return async function (dispatch) {
+  // eslint-disable-next-line func-names
+  return async function (dispatch: Dispatch) {
     try {
       const result: LoginInfo = await getJSON(serverUrl);
 
