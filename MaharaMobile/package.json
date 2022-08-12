@@ -36,6 +36,7 @@
     "@react-navigation/drawer": "^6.4.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
+    "@reduxjs/toolkit": "^1.8.4",
     "native-base": "^3.4.5",
     "react": "17.0.2",
     "react-native": "^0.68.0-0",
@@ -53,10 +54,8 @@
     "react-native-uuid": "^2.0.1",
     "react-native-version": "^4.0.0",
     "react-native-webview": "^11.18.2",
-    "react-redux": "^8.0.1",
-    "redux": "^4.2.0",
+    "react-redux": "^8.0.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.4.1",
     "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {
@@ -66,6 +65,8 @@
     "@lingui/macro": "^3.13.3",
     "@rnx-kit/dep-check": "^1.12.13",
     "@types/react-native": "^0.67.7",
+    "@types/redux-logger": "^3.0.9",
+    "@types/redux-mock-store": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^5.33.0",
     "@typescript-eslint/parser": "^5.33.0",
     "babel-core": "^7.0.0-bridge.0",

@@ -17,7 +17,7 @@ import configureStore from './src/store/store';
 import { maharaTheme } from './src/utils/theme';
 
 const App: () => Node = () => {
-  const store = configureStore(undefined, i18n);
+  const store = configureStore();
 
   return (
     <NativeBaseProvider theme={maharaTheme}>
