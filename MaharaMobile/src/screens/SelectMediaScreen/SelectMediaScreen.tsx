@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import generic from '../../assets/styles/generic';
-import SelectMediaType from '../../components/SelectMediaType/SelectMediaType';
-import { UploadItemType } from '../../models/models';
+import generic from 'assets/styles/generic';
+import SelectMediaType from 'components/SelectMediaType/SelectMediaType';
+import { UploadItemType } from 'models/models';
 
 type Props = {
   navigation: any;

@@ -1,11 +1,11 @@
-import { t, Trans } from '@lingui/macro';
-import { Box, Divider, HStack, VStack } from 'native-base';
 import React from 'react';
+import { Trans, t } from '@lingui/macro';
+import { Box, Divider, HStack, VStack } from 'native-base';
 import { ScrollView } from 'react-native';
-import generic from '../../assets/styles/generic';
-import LinkText from '../../components/UI/CustomText/LinkText';
-import MediumText from '../../components/UI/CustomText/MediumText';
-import SubHeading from '../../components/UI/SubHeading/SubHeading';
+import generic from 'assets/styles/generic';
+import LinkText from 'components/UI/CustomText/LinkText';
+import MediumText from 'components/UI/CustomText/MediumText';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
 
 function PrivacyScreen() {
   return (

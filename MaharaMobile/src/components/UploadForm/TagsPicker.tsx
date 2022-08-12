@@ -2,13 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { t } from '@lingui/macro';
 import { Box, CheckIcon, CloseIcon, Input, Select, Text, View } from 'native-base';
 import { TouchableOpacity } from 'react-native';
-import buttons from '../../assets/styles/buttons';
-import forms from '../../assets/styles/forms';
-import styles from '../../assets/styles/variables';
-import { UserTag } from '../../models/models';
-import { newUserTag } from '../../models/typeCreators';
-import { findUserTagByString } from '../../utils/helperFunctions';
-import SubHeading from '../UI/SubHeading/SubHeading';
+import buttons from 'assets/styles/buttons';
+import forms from 'assets/styles/forms';
+import styles from 'assets/styles/variables';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { UserTag } from 'models/models';
+import { newUserTag } from 'models/typeCreators';
+import { findUserTagByString } from 'utils/helperFunctions';
 import uploadFormStyles from './UploadForm.style';
 
 type Props = {

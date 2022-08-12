@@ -1,30 +1,30 @@
-import { t } from '@lingui/macro';
+import React, { useState } from 'react';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
 import { CommonActions } from '@react-navigation/native';
-import { ScrollView, View, VStack } from 'native-base';
-import React, { useState } from 'react';
+import { ScrollView, VStack, View } from 'native-base';
 import { connect } from 'react-redux';
-import generic from '../../assets/styles/generic';
-import AddAudio from '../../components/AddAudio/AddAudio';
-import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
-import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import UploadForm from '../../components/UploadForm/UploadForm';
-import { UserBlog, UserFolder, UserTag } from '../../models/models';
+import generic from 'assets/styles/generic';
+import AddAudio from 'components/AddAudio/AddAudio';
+import CustomVerifyBackButton from 'components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import UploadForm from 'components/UploadForm/UploadForm';
+import { UserBlog, UserFolder, UserTag } from 'models/models';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
   selectToken,
   selectUrl
-} from '../../store/reducers/loginInfoReducer';
-import { RootState } from '../../store/reducers/rootReducer';
-import { selectAllUploadFiles } from '../../store/reducers/uploadFilesReducer';
-import { selectAllJEntries } from '../../store/reducers/uploadJEntriesReducer';
-import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
-import { getUserTags } from '../../store/reducers/userTagsReducer';
-import { pickDocument, renderImagePreview, takePhoto } from '../../utils/addEditHelperFunctions';
-import { emptyFile } from '../../utils/constants';
-import { getUploadTypeIntlStrings } from '../../utils/helperFunctions';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectAllUploadFiles } from 'store/reducers/uploadFilesReducer';
+import { selectAllJEntries } from 'store/reducers/uploadJEntriesReducer';
+import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
+import { getUserTags } from 'store/reducers/userTagsReducer';
+import { pickDocument, renderImagePreview, takePhoto } from 'utils/addEditHelperFunctions';
+import { emptyFile } from 'utils/constants';
+import { getUploadTypeIntlStrings } from 'utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;

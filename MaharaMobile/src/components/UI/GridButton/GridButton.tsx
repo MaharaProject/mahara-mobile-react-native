@@ -1,7 +1,7 @@
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
 import { Center, Text } from 'native-base';
-import buttons from '../../../assets/styles/buttons';
+import { TouchableOpacity, View } from 'react-native';
+import buttons from 'assets/styles/buttons';
 import gridButtonStyles from './GridButton.style';
 
 type Props = {

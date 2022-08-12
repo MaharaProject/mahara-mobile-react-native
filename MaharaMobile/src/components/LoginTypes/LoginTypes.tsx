@@ -1,10 +1,10 @@
-import { t } from '@lingui/macro';
-import { faKey, faSignInAlt, faTags } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
-import { View } from 'react-native';
+import { faKey, faSignInAlt, faTags } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
 import { Stack } from 'native-base';
-import styles from '../../assets/styles/variables';
-import generic from '../../assets/styles/generic';
+import { View } from 'react-native';
+import generic from 'assets/styles/generic';
+import styles from 'assets/styles/variables';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import SubHeading from '../UI/SubHeading/SubHeading';
 

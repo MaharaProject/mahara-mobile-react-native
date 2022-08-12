@@ -1,10 +1,10 @@
+import React from 'react';
 import { t } from '@lingui/macro';
 import { ScrollView } from 'native-base';
-import React from 'react';
 import { useDispatch } from 'react-redux';
-import MenuItem from '../../components/MenuItem/MenuItem';
-import menuItemStyles from '../../components/MenuItem/MenuItem.style';
-import { signOutAsync } from '../../utils/authHelperFunctions';
+import MenuItem from 'components/MenuItem/MenuItem';
+import menuItemStyles from 'components/MenuItem/MenuItem.style';
+import { signOutAsync } from 'utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
 
 type MenuItemObject = {

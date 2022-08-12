@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Action, AnyAction } from 'redux';
-import { ItemId, TaggedItems, TagsIds, UserTag } from '../../models/models';
+import { ItemId, TaggedItems, TagsIds, UserTag } from 'models/models';
 import {
   ADD_USER_TAGS,
   CLEAR_USER_TAGS,
@@ -13,7 +13,7 @@ import {
   UPDATE_TAGS_IDS,
   UPDATE_USER_TAGS,
   USER_TAGS
-} from '../../utils/constants';
+} from 'utils/constants';
 import { RootState } from './rootReducer';
 
 /**

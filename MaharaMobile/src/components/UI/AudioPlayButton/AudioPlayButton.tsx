@@ -1,9 +1,9 @@
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { t } from '@lingui/macro';
 import { Button } from 'native-base';
-import React from 'react';
-import variables from '../../../assets/styles/variables';
-import { maharaTheme } from '../../../utils/theme';
+import variables from 'assets/styles/variables';
+import { maharaTheme } from 'utils/theme';
 
 type AudioPlayButtonProps = {
   onPress: () => void;

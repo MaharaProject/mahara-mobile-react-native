@@ -1,30 +1,30 @@
-import { t, Trans } from '@lingui/macro';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { Input, InputGroup, InputLeftAddon, Text, Toast, View } from 'native-base';
 import React, { useEffect, useState } from 'react';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Trans, t } from '@lingui/macro';
+import { Input, InputGroup, InputLeftAddon, Text, Toast, View } from 'native-base';
 import { ActivityIndicator } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import headingStyles from '../../assets/styles/headings';
-import textStyles from '../../assets/styles/text';
-import styles from '../../assets/styles/variables';
-import LoginTypes from '../../components/LoginTypes/LoginTypes';
-import LogoView from '../../components/LogoView/LogoView';
-import LinkButton from '../../components/UI/LinkButton/LinkButton';
-// import MaharaGradient from '../../components/UI/MaharaGradient/MaharaGradient';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import SubHeading from '../../components/UI/SubHeading/SubHeading';
-import { checkLoginTypes } from '../../store/actions/userArtefacts';
+import headingStyles from 'assets/styles/headings';
+import textStyles from 'assets/styles/text';
+import styles from 'assets/styles/variables';
+import LoginTypes from 'components/LoginTypes/LoginTypes';
+import LogoView from 'components/LogoView/LogoView';
+import LinkButton from 'components/UI/LinkButton/LinkButton';
+// import MaharaGradient from 'components/UI/MaharaGradient/MaharaGradient';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { checkLoginTypes } from 'store/actions/userArtefacts';
 import {
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
   selectUrl
-} from '../../store/reducers/loginInfoReducer';
-import { RootState } from '../../store/reducers/rootReducer';
-import { setUpGuest } from '../../utils/authHelperFunctions';
-import { addHttpTrims } from '../../utils/helperFunctions';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { setUpGuest } from 'utils/authHelperFunctions';
+import { addHttpTrims } from 'utils/helperFunctions';
 
 type Props = {
   dispatch: Dispatch;

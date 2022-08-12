@@ -1,17 +1,17 @@
-import { t, Trans } from '@lingui/macro';
-import { Box, Select, Text } from 'native-base';
 import React, { useCallback, useEffect, useState } from 'react';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { Trans, t } from '@lingui/macro';
+import { Box, Select, Text } from 'native-base';
 import { Alert, Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
-import image from '../../assets/images/no_userphoto.png';
-import buttons from '../../assets/styles/buttons';
-import styles from '../../assets/styles/variables';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import SubHeading from '../../components/UI/SubHeading/SubHeading';
-import { setDefaultBlogId, setDefaultFolder } from '../../store/actions/loginInfo';
-// import i18n from '../../i18n';
-import { UserBlog, UserFolder } from '../../models/models';
+import image from 'assets/images/no_userphoto.png';
+import buttons from 'assets/styles/buttons';
+import styles from 'assets/styles/variables';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { UserBlog, UserFolder } from 'models/models';
+import { setDefaultBlogId, setDefaultFolder } from 'store/actions/loginInfo';
+// import i18n from 'i18n';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
@@ -19,12 +19,12 @@ import {
   selectToken,
   selectUrl,
   selectUserName
-} from '../../store/reducers/loginInfoReducer';
-import { RootState } from '../../store/reducers/rootReducer';
-import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
-import { fetchProfilePic } from '../../utils/authHelperFunctions';
-import { GUEST_TOKEN } from '../../utils/constants';
-import { putDefaultAtTop } from '../../utils/formHelper';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
+import { fetchProfilePic } from 'utils/authHelperFunctions';
+import { GUEST_TOKEN } from 'utils/constants';
+import { putDefaultAtTop } from 'utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
 
 function PreferencesScreen() {

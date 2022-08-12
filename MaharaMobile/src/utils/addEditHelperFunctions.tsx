@@ -1,5 +1,5 @@
-import { t } from '@lingui/macro';
 import React, { Dispatch, SetStateAction } from 'react';
+import { t } from '@lingui/macro';
 import { ActionSheetIOS, Alert, Image, Platform, View } from 'react-native';
 import {
   ImageLibraryOptions,
@@ -7,9 +7,9 @@ import {
   launchCamera,
   launchImageLibrary // for ios?
 } from 'react-native-image-picker';
-import { File, ReactNativeImagePickerResponse } from '../models/models';
-import { newFile } from '../models/typeCreators';
-import styles from '../screens/AddItemScreen/AddItemScreen.style';
+import { File, ReactNativeImagePickerResponse } from 'models/models';
+import { newFile } from 'models/typeCreators';
+import styles from 'screens/AddItemScreen/AddItemScreen.style';
 
 const setSelectedImageCallback = (
   response: ReactNativeImagePickerResponse,

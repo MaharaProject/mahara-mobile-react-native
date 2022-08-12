@@ -1,11 +1,11 @@
+import React from 'react';
 import { t } from '@lingui/macro';
 import { Box, HStack, Select, Switch } from 'native-base';
-import React from 'react';
 import { View } from 'react-native';
-import styles from '../../assets/styles/variables';
-import { UserBlog } from '../../models/models';
-import { putDefaultAtTop, RequiredWarningText } from '../../utils/formHelper';
-import SubHeading from '../UI/SubHeading/SubHeading';
+import styles from 'assets/styles/variables';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { UserBlog } from 'models/models';
+import { RequiredWarningText, putDefaultAtTop } from 'utils/formHelper';
 
 type Props = {
   isDraft: boolean;

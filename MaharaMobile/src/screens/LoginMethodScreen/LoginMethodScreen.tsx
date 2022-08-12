@@ -1,23 +1,23 @@
-import { t } from '@lingui/macro';
 import React, { useCallback, useEffect, useState } from 'react';
+import { t } from '@lingui/macro';
 import { Alert, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import generic from '../../assets/styles/generic';
-import LocalLogin from '../../components/LocalLogin/LocalLogin';
-import SSOLogin from '../../components/SSOLogin/SSOLogin';
-import TokenInput from '../../components/TokenInput/TokenInput';
-import { LoginType, UserBlog, UserFolder } from '../../models/models';
+import generic from 'assets/styles/generic';
+import LocalLogin from 'components/LocalLogin/LocalLogin';
+import SSOLogin from 'components/SSOLogin/SSOLogin';
+import TokenInput from 'components/TokenInput/TokenInput';
+import { LoginType, UserBlog, UserFolder } from 'models/models';
 import {
   selectIsGuestStatus,
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
   selectUrl
-} from '../../store/reducers/loginInfoReducer';
-import { RootState } from '../../store/reducers/rootReducer';
-import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
-import { login } from '../../utils/authHelperFunctions';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
+import { login } from 'utils/authHelperFunctions';
 
 type Props = {
   dispatch: Dispatch;

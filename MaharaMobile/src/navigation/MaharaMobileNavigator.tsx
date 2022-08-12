@@ -1,16 +1,16 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import NavAddSVG from '../assets/images/nav-add';
-import NavAddActiveSVG from '../assets/images/nav-add-active';
-import NavMenuSVG from '../assets/images/nav-menu';
-import NavMenuActiveSVG from '../assets/images/nav-menu-active';
-import NavUploadSVG from '../assets/images/nav-upload';
-import NavUploadActiveSVG from '../assets/images/nav-upload-active';
-import styles from '../assets/styles/variables';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import NavAddSVG from 'assets/images/nav-add';
+import NavAddActiveSVG from 'assets/images/nav-add-active';
+import NavMenuSVG from 'assets/images/nav-menu';
+import NavMenuActiveSVG from 'assets/images/nav-menu-active';
+import NavUploadSVG from 'assets/images/nav-upload';
+import NavUploadActiveSVG from 'assets/images/nav-upload-active';
+import styles from 'assets/styles/variables';
 import {
-  PendingItemsNavigator,
   CreateNavigator,
   MenuNavigator,
+  PendingItemsNavigator,
   navigatorStrings
 } from './StackNavigators';
 

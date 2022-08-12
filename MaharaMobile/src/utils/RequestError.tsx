@@ -1,4 +1,4 @@
-import { RequestErrorPayload } from '../models/models';
+import { RequestErrorPayload } from 'models/models';
 
 class RequestError extends Error {
   code: number;

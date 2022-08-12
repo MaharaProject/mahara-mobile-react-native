@@ -1,9 +1,9 @@
+import React from 'react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from 'native-base';
-import React from 'react';
 import { View } from 'react-native';
-import { maharaTheme } from '../../../utils/theme';
+import { maharaTheme } from 'utils/theme';
 
 type Props = {
   onPress: () => void;

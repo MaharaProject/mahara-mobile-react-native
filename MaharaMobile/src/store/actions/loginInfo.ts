@@ -1,18 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {
-  SET_DID_TRY_AL,
   ADD_TOKEN,
-  UPDATE_GUEST_STATUS,
-  UPDATE_PROFILE_ICON,
-  UPDATE_URL,
-  UPDATE_USERNAME,
   CLEAR_LOGIN_INFO,
   DEFAULT_BLOG_ID,
   DEFAULT_FOLDER_TITLE,
   SET_DEFAULT_BLOG,
-  SET_DEFAULT_FOLDER
-} from '../../utils/constants';
+  SET_DEFAULT_FOLDER,
+  SET_DID_TRY_AL,
+  UPDATE_GUEST_STATUS,
+  UPDATE_PROFILE_ICON,
+  UPDATE_URL,
+  UPDATE_USERNAME
+} from 'utils/constants';
 
 // loginInfoReducer
 /**

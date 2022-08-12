@@ -1,6 +1,6 @@
 import React from 'react';
-import { TouchableHighlight } from 'react-native';
 import { Text } from 'native-base';
+import { TouchableHighlight } from 'react-native';
 import menuItemStyles from './MenuItem.style';
 
 type MenuItemProps = {

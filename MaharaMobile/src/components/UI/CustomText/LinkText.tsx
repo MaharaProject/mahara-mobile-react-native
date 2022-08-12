@@ -1,7 +1,7 @@
-import { Text } from 'native-base';
 import React from 'react';
-import { StyleSheet, Linking } from 'react-native';
-import styles from '../../../assets/styles/variables';
+import { Text } from 'native-base';
+import { Linking, StyleSheet } from 'react-native';
+import styles from 'assets/styles/variables';
 
 type Props = {
   text: string;

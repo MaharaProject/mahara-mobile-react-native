@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from 'test-utils';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import { render } from 'test-utils';
 import { LoginMethodScreen } from './LoginMethodScreen';
 
 it('renders correctly', () => {

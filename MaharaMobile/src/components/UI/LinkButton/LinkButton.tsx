@@ -1,7 +1,7 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
 import { Text } from 'native-base';
-import buttons from '../../../assets/styles/buttons';
+import { TouchableOpacity } from 'react-native';
+import buttons from 'assets/styles/buttons';
 import linkButtonStyles from './LinkButton.style';
 
 type Props = {

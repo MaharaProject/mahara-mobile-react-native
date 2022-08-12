@@ -1,4 +1,4 @@
-import { PendingJEntry, UserBlog } from './models';
+import { PendingJEntry, UserBlog } from 'models/models';
 
 export type UploadJEntriesActions = {
   type: string;

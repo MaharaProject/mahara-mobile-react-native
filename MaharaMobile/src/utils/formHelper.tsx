@@ -1,8 +1,8 @@
-import { t } from '@lingui/macro';
 import React from 'react';
+import { t } from '@lingui/macro';
 import { Text } from 'native-base';
-import styles from '../assets/styles/variables';
-import { UploadItemType, UserBlog, UserFolder } from '../models/models';
+import styles from 'assets/styles/variables';
+import { UploadItemType, UserBlog, UserFolder } from 'models/models';
 
 export const setTagString = (tags: Array<string>) => {
   const tagsArray = tags.map((tag: string, index: number) => `${tag}&tags[${index + 1}]=`);

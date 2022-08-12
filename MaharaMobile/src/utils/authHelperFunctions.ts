@@ -3,28 +3,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import { clearUserTags, updateUserTags, updateUserTagsIds } from '../store/actions/actions';
+import flashMessage from 'components/FlashMessage/FlashMessage';
+import { UserBlog, UserBlogJSON, UserFolder, UserTag } from 'models/models';
+import { newUserTag } from 'models/typeCreators';
+import { clearUserTags, updateUserTags, updateUserTagsIds } from 'store/actions/actions';
 import {
+  addToken,
   clearLoginInfo,
   setDefaultBlogId,
   setDefaultFolder,
-  addToken,
   updateGuestStatus,
   updateProfilePic,
   updateUserName
-} from '../store/actions/loginInfo';
+} from 'store/actions/loginInfo';
+import { clearUploadFiles, updateUploadFilesOnLogin } from 'store/actions/uploadFiles';
+import { clearUploadJEntires, updateJEntriesOnLogin } from 'store/actions/uploadJEntries';
 import {
   clearUserBlogs,
   clearUserFolders,
   updateUserBlogs,
   updateUserFolders
-} from '../store/actions/userArtefacts';
-import { clearUploadJEntires, updateJEntriesOnLogin } from '../store/actions/uploadJEntries';
-import { clearUploadFiles, updateUploadFilesOnLogin } from '../store/actions/uploadFiles';
-import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
+} from 'store/actions/userArtefacts';
 import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
-import flashMessage from '../components/FlashMessage/FlashMessage';
-import { newUserTag } from '../models/typeCreators';
 import { userBlogJSONtoUserBlog } from './helperFunctions';
 
 /**

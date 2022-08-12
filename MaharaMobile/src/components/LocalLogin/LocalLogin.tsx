@@ -1,17 +1,17 @@
-import { t } from '@lingui/macro';
 import React, { useState } from 'react';
-import { StyleSheet, ActivityIndicator, Platform } from 'react-native';
-import { getManufacturer, getModel } from 'react-native-device-info';
-import uuid from 'react-native-uuid';
-import { IconButton, Input, Stack } from 'native-base';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { onCheckAuthJSON } from '../../utils/authHelperFunctions';
-import { LOG_IN_ICON } from '../../utils/constants';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import LogoView from '../LogoView/LogoView';
-import SubHeading from '../UI/SubHeading/SubHeading';
-import styles from '../../assets/styles/variables';
+import { t } from '@lingui/macro';
+import { IconButton, Input, Stack } from 'native-base';
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
+import { getManufacturer, getModel } from 'react-native-device-info';
+import uuid from 'react-native-uuid';
+import styles from 'assets/styles/variables';
+import LogoView from 'components/LogoView/LogoView';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { onCheckAuthJSON } from 'utils/authHelperFunctions';
+import { LOG_IN_ICON } from 'utils/constants';
 
 type Props = {
   url: string;

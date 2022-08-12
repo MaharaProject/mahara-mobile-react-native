@@ -1,10 +1,10 @@
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import React from 'react';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import AuthLoadingScreen from 'screens/AuthLoadingScreen/AuthLoadingScreen';
+import { RootState } from 'store/reducers/rootReducer';
 // import MaharaMobileNavigator from './MaharaMobileNavigator';
 // import { AuthNavigator } from './StackNavigators';
-import { RootState } from '../store/reducers/rootReducer';
 import MaharaMobileNavigator from './MaharaMobileNavigator';
 import { AuthNavigator } from './StackNavigators';
 

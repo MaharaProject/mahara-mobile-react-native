@@ -1,8 +1,7 @@
 import React from 'react';
 import { Text } from 'native-base';
-import headingStyles from '../../../assets/styles/headings';
-
-import { RedAsterisk } from '../../../utils/formHelper';
+import headingStyles from 'assets/styles/headings';
+import { RedAsterisk } from 'utils/formHelper';
 
 type Props = {
   text: string;

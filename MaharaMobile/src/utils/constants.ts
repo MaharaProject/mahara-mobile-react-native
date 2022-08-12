@@ -8,7 +8,8 @@ import {
   PendingMFile,
   UserBlog,
   UserFolder
-} from '../models/models';
+} from 'models/models';
+
 // action types - payloads of information that send data from your application to your store
 
 // DOMAIN DATA

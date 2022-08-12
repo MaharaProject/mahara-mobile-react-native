@@ -1,14 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { PendingMFile, UserFolder } from '../../models/models';
-import { arrayToObject } from '../../utils/authHelperFunctions';
+import { PendingMFile, UserFolder } from 'models/models';
+import { UploadFilesActions } from 'models/uploadFilesTypes';
+import { arrayToObject } from 'utils/authHelperFunctions';
 import {
   ADD_UPLOAD_FILE,
   CLEAR_UPLOAD_FILES,
   REMOVE_UPLOAD_FILE,
   UPDATE_UPLOAD_FILES_ON_LOGIN
-} from '../../utils/constants';
+} from 'utils/constants';
 import { RootState } from './rootReducer';
-import { UploadFilesActions } from '../../models/uploadFilesTypes';
 
 export type UploadFilesState = {
   uploadFiles: Record<string, PendingMFile>;

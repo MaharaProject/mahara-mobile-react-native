@@ -1,10 +1,10 @@
+import React from 'react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from 'native-base';
-import React from 'react';
 import { StyleSheet } from 'react-native';
-import styles from '../../../assets/styles/variables';
-import { ICON_SIZE } from '../../../utils/constants';
+import styles from 'assets/styles/variables';
+import { ICON_SIZE } from 'utils/constants';
 
 type Props = {
   onPress: () => void;

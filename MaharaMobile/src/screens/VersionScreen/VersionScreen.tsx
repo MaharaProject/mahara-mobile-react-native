@@ -1,9 +1,9 @@
-import { t } from '@lingui/macro';
 import React from 'react';
-import DeviceInfo from 'react-native-device-info';
+import { t } from '@lingui/macro';
 import { ScrollView } from 'react-native';
-import MediumText from '../../components/UI/CustomText/MediumText';
-import generic from '../../assets/styles/generic';
+import DeviceInfo from 'react-native-device-info';
+import generic from 'assets/styles/generic';
+import MediumText from 'components/UI/CustomText/MediumText';
 
 function VersionScreen() {
   const version = DeviceInfo.getVersion();

@@ -1,9 +1,9 @@
+import React from 'react';
 import { t } from '@lingui/macro';
 import { CommonActions } from '@react-navigation/native';
 import { Button, Text } from 'native-base';
-import React from 'react';
-import buttons from '../../../assets/styles/buttons';
-import { onCancelAlert } from '../../../utils/addEditHelperFunctions';
+import buttons from 'assets/styles/buttons';
+import { onCancelAlert } from 'utils/addEditHelperFunctions';
 
 type Props = {
   navigation: { dispatch: (arg0: CommonActions.Action) => any };

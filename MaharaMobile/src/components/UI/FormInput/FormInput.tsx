@@ -1,5 +1,5 @@
-import { Box, Input, TextArea } from 'native-base';
 import React from 'react';
+import { Box, Input, TextArea } from 'native-base';
 
 type Props = {
   valid: boolean;

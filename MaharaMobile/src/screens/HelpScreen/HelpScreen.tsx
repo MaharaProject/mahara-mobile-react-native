@@ -1,9 +1,9 @@
+import React from 'react';
 import { Trans } from '@lingui/macro';
 import { Divider, HStack, VStack } from 'native-base';
-import React from 'react';
 import { View } from 'react-native';
-import generic from '../../assets/styles/generic';
-import MediumText from '../../components/UI/CustomText/MediumText';
+import generic from 'assets/styles/generic';
+import MediumText from 'components/UI/CustomText/MediumText';
 
 function HelpScreen() {
   return (

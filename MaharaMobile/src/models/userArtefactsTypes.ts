@@ -1,4 +1,4 @@
-import { UserFolder, UserBlog } from './models';
+import { UserBlog, UserFolder } from 'models/models';
 
 export type UserFoldersActions = {
   type: string;

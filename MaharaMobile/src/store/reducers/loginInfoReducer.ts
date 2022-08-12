@@ -1,18 +1,17 @@
+import { LoginInfoActions } from 'models/loginInfoTypes';
 import {
-  SET_DID_TRY_AL,
   ADD_TOKEN,
   CLEAR_LOGIN_INFO,
   SET_DEFAULT_BLOG,
   SET_DEFAULT_FOLDER,
+  SET_DID_TRY_AL,
   UPDATE_GUEST_STATUS,
   UPDATE_LOGIN_TYPES,
   UPDATE_PROFILE_ICON,
   UPDATE_SERVER_URL,
   UPDATE_URL,
   UPDATE_USERNAME
-} from '../../utils/constants';
-import { LoginInfoActions } from '../../models/loginInfoTypes';
-
+} from 'utils/constants';
 import { RootState } from './rootReducer';
 
 type LoginInfoState = {

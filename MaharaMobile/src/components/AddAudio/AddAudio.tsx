@@ -1,16 +1,16 @@
+import React, { useEffect, useState } from 'react';
 import { faMicrophone, faPause, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { HStack } from 'native-base';
-import React, { useEffect, useState } from 'react';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
-import variables from '../../assets/styles/variables';
-import { File, PlayBackType } from '../../models/models';
-import { newFile } from '../../models/typeCreators';
-import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import OutlineButton from '../UI/OutlineButton/OutlineButton';
+import variables from 'assets/styles/variables';
+import AudioPlayButton from 'components/UI/AudioPlayButton/AudioPlayButton';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import { File, PlayBackType } from 'models/models';
+import { newFile } from 'models/typeCreators';
 import styles from './AddAudio.style';
 
 type Props = {

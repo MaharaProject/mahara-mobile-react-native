@@ -1,14 +1,14 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ActivityIndicator, StatusBar, StyleSheet, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { PendingJEntry, PendingMFile } from '../../models/models';
+import { PendingJEntry, PendingMFile } from 'models/models';
 import {
   updateLoginTypes,
   updateTaggedItemsFromAsync,
   updateUserTags,
   updateUserTagsIds
-} from '../../store/actions/actions';
+} from 'store/actions/actions';
 import {
   addToken,
   setDefaultBlogId,
@@ -17,17 +17,17 @@ import {
   updateProfilePic,
   updateUrl,
   updateUserName
-} from '../../store/actions/loginInfo';
-import { addFileToUploadList } from '../../store/actions/uploadFiles';
-import { addJournalEntryToUploadList } from '../../store/actions/uploadJEntries';
-import { updateUserBlogs, updateUserFolders } from '../../store/actions/userArtefacts';
+} from 'store/actions/loginInfo';
+import { addFileToUploadList } from 'store/actions/uploadFiles';
+import { addJournalEntryToUploadList } from 'store/actions/uploadJEntries';
+import { updateUserBlogs, updateUserFolders } from 'store/actions/userArtefacts';
 import {
   DEFAULT_BLOG_ID,
   DEFAULT_FOLDER_TITLE,
   TAGGED_ITEMS,
   TAGS_IDS,
   USER_TAGS
-} from '../../utils/constants';
+} from 'utils/constants';
 
 function AuthLoadingScreen() {
   const dispatch = useDispatch();

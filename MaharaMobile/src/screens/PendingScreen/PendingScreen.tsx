@@ -1,46 +1,37 @@
-import { t, Trans } from '@lingui/macro';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, View } from 'react-native';
+// Images
+import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { Trans, t } from '@lingui/macro';
 import { Text } from 'native-base';
+import { ActivityIndicator, Alert, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-// Images
-import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import UploadSVG from '../../assets/images/upload';
-import messages from '../../assets/styles/messages';
-import textStyles from '../../assets/styles/text';
-import styles from '../../assets/styles/variables';
-import flashMessage from '../../components/FlashMessage/FlashMessage';
-// components
-import PendingList from '../../components/PendingList/PendingList';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import UploadSVG from 'assets/images/upload';
+import messages from 'assets/styles/messages';
+import textStyles from 'assets/styles/text';
+import styles from 'assets/styles/variables';
+import flashMessage from 'components/FlashMessage/FlashMessage';
+import PendingList from 'components/PendingList/PendingList';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
 import {
   DisplayItems,
   PendingJEntry,
   PendingMFile,
   UploadItemType,
   UploadResponse
-} from '../../models/models';
-import {
-  saveTaggedItemsToAsync,
-  updateItemTags as updateItemTagsIds
-} from '../../store/actions/actions';
-import { addToken } from '../../store/actions/loginInfo';
-import { removeUploadFile } from '../../store/actions/uploadFiles';
-import { removeUploadJEntry } from '../../store/actions/uploadJEntries';
-import { selectUrl, selectUserName } from '../../store/reducers/loginInfoReducer';
-import { RootState } from '../../store/reducers/rootReducer';
-import {
-  selectAllUploadFiles,
-  selectAllUploadFilesIds
-} from '../../store/reducers/uploadFilesReducer';
-import {
-  selectAllJEntries,
-  selectAllJEntriesIds
-} from '../../store/reducers/uploadJEntriesReducer';
-import { GUEST_USERNAME } from '../../utils/constants';
-import { uploadItemToMahara } from '../../utils/helperFunctions';
+} from 'models/models';
+// components
+import { saveTaggedItemsToAsync, updateItemTags as updateItemTagsIds } from 'store/actions/actions';
+import { addToken } from 'store/actions/loginInfo';
+import { removeUploadFile } from 'store/actions/uploadFiles';
+import { removeUploadJEntry } from 'store/actions/uploadJEntries';
+import { selectUrl, selectUserName } from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectAllUploadFiles, selectAllUploadFilesIds } from 'store/reducers/uploadFilesReducer';
+import { selectAllJEntries, selectAllJEntriesIds } from 'store/reducers/uploadJEntriesReducer';
+import { GUEST_USERNAME } from 'utils/constants';
+import { uploadItemToMahara } from 'utils/helperFunctions';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
 

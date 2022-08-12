@@ -1,9 +1,13 @@
-import { t } from '@lingui/macro';
-import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { StackActions } from '@react-navigation/native';
-import { Box, Select, Text, View, VStack } from 'native-base';
 import React, { useEffect, useState } from 'react';
+import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
+import { StackActions } from '@react-navigation/native';
+import { Box, Select, Text, VStack, View } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
+import CancelButton from 'components/UI/CancelButton/CancelButton';
+import FormInput from 'components/UI/FormInput/FormInput';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
 import {
   File,
   PendingJEntry,
@@ -12,39 +16,31 @@ import {
   UserBlog,
   UserFolder,
   UserTag
-} from '../../models/models';
+} from 'models/models';
 import {
   newJournalEntry,
   newMaharaFile,
   newPendingJEntry,
   newPendingMFile
-} from '../../models/typeCreators';
+} from 'models/typeCreators';
 import {
-  updateItemTags as updateItemTagsIds,
   addUserTags,
-  saveTaggedItemsToAsync
-} from '../../store/actions/actions';
-import { addFileToUploadList } from '../../store/actions/uploadFiles';
-import { addJournalEntryToUploadList } from '../../store/actions/uploadJEntries';
-import { RootState } from '../../store/reducers/rootReducer';
-import { getItemTags } from '../../store/reducers/userTagsReducer';
-import { emptyPendingJEntry, emptyPendingMFile } from '../../utils/constants';
+  saveTaggedItemsToAsync,
+  updateItemTags as updateItemTagsIds
+} from 'store/actions/actions';
+import { addFileToUploadList } from 'store/actions/uploadFiles';
+import { addJournalEntryToUploadList } from 'store/actions/uploadJEntries';
+import { RootState } from 'store/reducers/rootReducer';
+import { getItemTags } from 'store/reducers/userTagsReducer';
+import { emptyPendingJEntry, emptyPendingMFile } from 'utils/constants';
 import {
+  RequiredWarningText,
   isValidText,
   putDefaultAtTop,
   removeExtension,
-  RequiredWarningText,
   setTagString
-} from '../../utils/formHelper';
-import {
-  getUploadTypeIntlStrings,
-  isPendingJEntry,
-  isPendingMFile
-} from '../../utils/helperFunctions';
-import CancelButton from '../UI/CancelButton/CancelButton';
-import FormInput from '../UI/FormInput/FormInput';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import SubHeading from '../UI/SubHeading/SubHeading';
+} from 'utils/formHelper';
+import { getUploadTypeIntlStrings, isPendingJEntry, isPendingMFile } from 'utils/helperFunctions';
 import TagsPicker from './TagsPicker';
 import { BlogPicker } from './UploadFormComponents';
 

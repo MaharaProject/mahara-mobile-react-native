@@ -1,24 +1,24 @@
-import { t } from '@lingui/macro';
-import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import React from 'react';
-import LogoSvg from '../assets/images/Logo-big';
-import styles from '../assets/styles/variables';
-import AboutScreen from '../screens/AboutScreen/AboutScreen';
-import AddItemScreen, { AddItemScreenOptions } from '../screens/AddItemScreen/AddItemScreen';
-import EditItemScreen, { EditItemScreenOptions } from '../screens/EditItemScreen/EditItemScreen';
-import HelpScreen from '../screens/HelpScreen/HelpScreen';
+import { t } from '@lingui/macro';
+import { StackNavigationOptions, createStackNavigator } from '@react-navigation/stack';
+import LogoSvg from 'assets/images/Logo-big';
+import styles from 'assets/styles/variables';
+import AboutScreen from 'screens/AboutScreen/AboutScreen';
+import AddItemScreen, { AddItemScreenOptions } from 'screens/AddItemScreen/AddItemScreen';
+import EditItemScreen, { EditItemScreenOptions } from 'screens/EditItemScreen/EditItemScreen';
+import HelpScreen from 'screens/HelpScreen/HelpScreen';
 import {
   LoginMethodScreen,
   LoginMethodScreenOptions
-} from '../screens/LoginMethodScreen/LoginMethodScreen';
-import MenuScreen from '../screens/MenuScreen/MenuScreen';
-import PendingScreen from '../screens/PendingScreen/PendingScreen';
-import PreferencesScreen from '../screens/PreferencesScreen/PreferencesScreen';
-import PrivacyScreen from '../screens/PrivacyScreen/PrivacyScreen';
-import SelectMediaScreen from '../screens/SelectMediaScreen/SelectMediaScreen';
-import SiteCheckScreen from '../screens/SiteCheckScreen/SiteCheckScreen';
-import TermsScreen from '../screens/TermsScreen/TermsScreen';
-import VersionScreen from '../screens/VersionScreen/VersionScreen';
+} from 'screens/LoginMethodScreen/LoginMethodScreen';
+import MenuScreen from 'screens/MenuScreen/MenuScreen';
+import PendingScreen from 'screens/PendingScreen/PendingScreen';
+import PreferencesScreen from 'screens/PreferencesScreen/PreferencesScreen';
+import PrivacyScreen from 'screens/PrivacyScreen/PrivacyScreen';
+import SelectMediaScreen from 'screens/SelectMediaScreen/SelectMediaScreen';
+import SiteCheckScreen from 'screens/SiteCheckScreen/SiteCheckScreen';
+import TermsScreen from 'screens/TermsScreen/TermsScreen';
+import VersionScreen from 'screens/VersionScreen/VersionScreen';
 
 // must make it a functional component to get lingui to trigger the translation
 export const navigatorStrings = () => ({

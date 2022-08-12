@@ -1,13 +1,14 @@
+import React, { useState } from 'react';
 import { t } from '@lingui/macro';
 import { Input, Stack } from 'native-base';
-import React, { useState } from 'react';
-import { StyleSheet, ActivityIndicator } from 'react-native';
-import styles from '../../assets/styles/variables';
+import { ActivityIndicator, StyleSheet } from 'react-native';
+import styles from 'assets/styles/variables';
+import LogoView from 'components/LogoView/LogoView';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
 // Images
-import { LOG_IN_ICON } from '../../utils/constants';
-import LogoView from '../LogoView/LogoView';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import SubHeading from '../UI/SubHeading/SubHeading';
+import { LOG_IN_ICON } from 'utils/constants';
+
 // Styles
 // import styles from './TokenInput.style';
 

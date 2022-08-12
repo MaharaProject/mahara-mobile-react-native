@@ -1,8 +1,8 @@
-import { Center, Flex, ScrollView } from 'native-base';
 import React from 'react';
-import LogoSvg from '../../assets/images/Logo-big';
-import generic from '../../assets/styles/generic';
-import styles from '../../assets/styles/variables';
+import { Center, Flex, ScrollView } from 'native-base';
+import LogoSvg from 'assets/images/Logo-big';
+import generic from 'assets/styles/generic';
+import styles from 'assets/styles/variables';
 
 type Props = {
   children: any;

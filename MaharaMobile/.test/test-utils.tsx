@@ -1,8 +1,8 @@
+import React from 'react';
+import { I18nProvider } from '@lingui/react';
 import { render } from '@testing-library/react-native';
 import { NativeBaseProvider } from 'native-base';
-import { I18nProvider } from '@lingui/react';
-import i18n, { changeActiveLanguage } from '../i18n';
-import React from 'react';
+import i18n, { changeActiveLanguage } from 'i18n';
 
 const AllTheProviders = ({ children }: { children: React.ReactElement }) => {
   changeActiveLanguage('en');

@@ -1,10 +1,10 @@
+import { PendingMFile, UserFolder } from 'models/models';
 import {
   ADD_UPLOAD_FILE,
   CLEAR_UPLOAD_FILES,
   REMOVE_UPLOAD_FILE,
   UPDATE_UPLOAD_FILES_ON_LOGIN
-} from '../../utils/constants';
-import { PendingMFile, UserFolder } from '../../models/models';
+} from 'utils/constants';
 
 // uploadFilesReducer
 

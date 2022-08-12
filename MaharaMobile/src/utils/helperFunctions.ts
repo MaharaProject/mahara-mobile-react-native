@@ -1,6 +1,6 @@
+import { useEffect, useRef } from 'react';
 import { t } from '@lingui/macro';
 import { StackActions } from '@react-navigation/native';
-import { useEffect, useRef } from 'react';
 import {
   JournalEntry,
   MaharaFile,
@@ -10,8 +10,8 @@ import {
   UserBlog,
   UserBlogJSON,
   UserTag
-} from '../models/models';
-import { newUploadResponse } from '../models/typeCreators';
+} from 'models/models';
+import { newUploadResponse } from 'models/typeCreators';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {

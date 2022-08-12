@@ -1,9 +1,9 @@
+import React from 'react';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Box, IconButton } from 'native-base';
-import React from 'react';
-import styles from '../../../assets/styles/variables';
-import { onCancelAlert } from '../../../utils/addEditHelperFunctions';
+import styles from 'assets/styles/variables';
+import { onCancelAlert } from 'utils/addEditHelperFunctions';
 
 function CustomVerifyBackButton(props) {
   const onBackPress = () => {

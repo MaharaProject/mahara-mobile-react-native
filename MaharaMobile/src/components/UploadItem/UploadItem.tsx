@@ -1,15 +1,15 @@
+import React, { useCallback } from 'react';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Box, Text } from 'native-base';
-import React, { useCallback } from 'react';
 import { Image, ImageSourcePropType, TouchableOpacity, View } from 'react-native';
-import styles from '../../assets/styles/variables';
-import Card from '../UI/Card/Card';
+import AddJournalEntrySvg from 'assets/images/AddJournalEntry';
+import PickFileSvg from 'assets/images/PickFile';
+import RecordAudioSvg from 'assets/images/RecordAudio';
+import styles from 'assets/styles/variables';
+import Card from 'components/UI/Card/Card';
+import gridButtonStyles from 'components/UI/GridButton/GridButton.style';
 import uploadItemStyles from './UploadItem.style';
-import RecordAudioSvg from '../../assets/images/RecordAudio';
-import gridButtonStyles from '../UI/GridButton/GridButton.style';
-import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
-import PickFileSvg from '../../assets/images/PickFile';
 
 type Props = {
   title: string;

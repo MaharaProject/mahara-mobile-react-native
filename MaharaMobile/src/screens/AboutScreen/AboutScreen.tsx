@@ -1,10 +1,10 @@
-import { t, Trans } from '@lingui/macro';
-import { Divider, HStack, VStack } from 'native-base';
 import React from 'react';
+import { Trans } from '@lingui/macro';
+import { Divider, HStack, VStack } from 'native-base';
 import { ScrollView } from 'react-native';
-import generic from '../../assets/styles/generic';
-import LinkText from '../../components/UI/CustomText/LinkText';
-import MediumText from '../../components/UI/CustomText/MediumText';
+import generic from 'assets/styles/generic';
+import LinkText from 'components/UI/CustomText/LinkText';
+import MediumText from 'components/UI/CustomText/MediumText';
 
 function AboutScreen() {
   return (

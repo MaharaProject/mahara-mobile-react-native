@@ -1,8 +1,8 @@
-import { Icon, Toast } from 'native-base';
 import React from 'react';
+import { Icon, Toast } from 'native-base';
 import { Text } from 'react-native';
-import styles from '../../assets/styles/variables';
-import { MessageInfoType } from '../../models/models';
+import styles from 'assets/styles/variables';
+import { MessageInfoType } from 'models/models';
 
 const flashMessage = (text: string, messageType: MessageInfoType) => {
   Toast.show({
