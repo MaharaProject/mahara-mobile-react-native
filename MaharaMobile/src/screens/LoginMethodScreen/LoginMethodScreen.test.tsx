@@ -1,6 +1,5 @@
 import React from 'react';
-import 'react-native';
-import renderer from 'react-test-renderer';
+import { render } from 'test-utils';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { LoginMethodScreen } from './LoginMethodScreen';
@@ -24,5 +23,5 @@ it('renders correctly', () => {
     isGuest: false,
     navigation: jest.mock('', () => {})
   };
-  renderer.create(<LoginMethodScreen {...props} />);
+  render(<LoginMethodScreen {...props} />);
 });

@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": { "test-utils": ["../.test/test-utils"] },
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -11,5 +13,6 @@
     "strict": true,
     "target": "esnext"
   },
+  "include": ["src/**/*", ".test/**/*"],
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }
