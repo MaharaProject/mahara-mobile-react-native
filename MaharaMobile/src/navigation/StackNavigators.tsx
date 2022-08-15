@@ -7,10 +7,7 @@ import AboutScreen from 'screens/AboutScreen/AboutScreen';
 import AddItemScreen, { AddItemScreenOptions } from 'screens/AddItemScreen/AddItemScreen';
 import EditItemScreen, { EditItemScreenOptions } from 'screens/EditItemScreen/EditItemScreen';
 import HelpScreen from 'screens/HelpScreen/HelpScreen';
-import {
-  LoginMethodScreen,
-  LoginMethodScreenOptions
-} from 'screens/LoginMethodScreen/LoginMethodScreen';
+import LoginScreen, { LoginMethodScreenOptions } from 'screens/LoginMethodScreen/LoginMethodScreen';
 import MenuScreen from 'screens/MenuScreen/MenuScreen';
 import PendingScreen from 'screens/PendingScreen/PendingScreen';
 import PreferencesScreen from 'screens/PreferencesScreen/PreferencesScreen';
@@ -145,7 +142,7 @@ export function AuthNavigator() {
       <Auth.Screen name="SiteCheck" component={SiteCheckScreen} options={{ headerShown: false }} />
       <Auth.Screen
         name="LoginMethodScreen"
-        component={LoginMethodScreen}
+        component={LoginScreen}
         options={LoginMethodScreenOptions}
       />
     </Auth.Navigator>
