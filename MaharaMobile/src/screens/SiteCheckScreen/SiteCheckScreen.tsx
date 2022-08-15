@@ -1,7 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
-import { Input, InputGroup, InputLeftAddon, Text, Toast, View } from 'native-base';
+import {
+  Alert,
+  CloseIcon,
+  HStack,
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  Text,
+  VStack,
+  View,
+  useToast
+} from 'native-base';
 import { ActivityIndicator } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -47,6 +59,8 @@ type State = {
  * is a Mahara site with webservices connected.
  */
 function SiteCheckScreen(props: Props) {
+  const toast = useToast();
+
   const [serverPing, setServerPing] = useState(false);
   const [isInputHidden, setIsInputHidden] = useState(false);
   const [enterURLWarning, setEnterURLWarning] = useState(false);
@@ -92,31 +106,24 @@ function SiteCheckScreen(props: Props) {
       // checkLoginTypes does return a promise, but not obvious to IDE as it's anonymous
       await dispatch(checkLoginTypes(serverUrl));
     } catch (error) {
-      Toast.show({
-        text: (
-          <Text
-            style={{
-              fontSize: styles.font.md,
-              color: styles.colors.messageErrorText,
-              flexDirection: 'row'
-            }}
-          >
-            {/* <Icon
-              style={{
-                color: styles.colors.messageErrorIcon,
-              }}
-              name="home"
-            /> */}
-            &nbsp;&nbsp;{error.message}
-          </Text>
-        ),
-        type: 'danger',
-        style: {
-          backgroundColor: styles.colors.messageErrorBg,
-          paddingBottom: styles.padding.md
-        },
-        position: 'top',
-        duration: 3000
+      toast.show({
+        render: ({ id }) => (
+          <Alert mx={2} status="error" variant="left-accent">
+            <VStack>
+              <HStack space={3} alignItems="center">
+                <Alert.Icon />
+                <Text w="100%" fontWeight="medium">{t`Connection error`}</Text>
+                <IconButton
+                  icon={<CloseIcon size="4" />}
+                  onPress={() => toast.close(id)}
+                  colorScheme="red"
+                  ml="auto"
+                />
+              </HStack>
+              <Text>{error.message}</Text>
+            </VStack>
+          </Alert>
+        )
       });
     } finally {
       setLoading(false);
