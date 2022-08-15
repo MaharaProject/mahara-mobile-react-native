@@ -120,7 +120,7 @@ export default function LocalLogin(props: Props) {
                 }
               />
             }
-            placeholder={t`"Password`}
+            placeholder={t`Password`}
           />
         </Stack>
 
