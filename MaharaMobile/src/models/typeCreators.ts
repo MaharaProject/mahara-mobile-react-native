@@ -13,7 +13,12 @@ import { WS_FUNCTION_UPLOAD_BLOGPOST } from 'utils/constants';
 
 // Mahara file creation
 
-export const newFile = (uri: string, mimetype: string, name: string, size: number): File => ({
+export const newFile = (
+  uri: string | null | undefined,
+  mimetype: string | null | undefined,
+  name: string | null | undefined,
+  size: number | null | undefined
+): File => ({
   uri,
   type: mimetype,
   name,

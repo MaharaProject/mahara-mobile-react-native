@@ -277,7 +277,7 @@ function UploadForm(props: Props) {
 
     const matchingFolder = props.userFolders.find((f) => f.title === props.defFolderTitle);
 
-    const folders: Array<UserFolder> = putDefaultAtTop(null, matchingFolder, props.userFolders);
+    const folders = putDefaultAtTop(matchingFolder, props.userFolders);
 
     return (
       <View>

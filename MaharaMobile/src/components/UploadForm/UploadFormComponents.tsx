@@ -39,7 +39,7 @@ export function BlogPicker(props: {
 }) {
   // Await the async retrieving data (default blogs)
   const matchingBlog = props.userBlogs.find(async (b: UserBlog) => b.id === props.defaultBlogId);
-  const blogs = putDefaultAtTop(matchingBlog, null, props.userBlogs) as Array<UserBlog>;
+  const blogs = putDefaultAtTop(matchingBlog, props.userBlogs);
 
   return (
     <View>

@@ -1,5 +1,6 @@
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Action } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 import { LoginInfo, UserBlog, UserFolder } from 'models/models';
 import RequestError from 'utils/RequestError';
@@ -38,12 +39,12 @@ const requestJSON = async (url: string, config: object, error?: string) => {
     if (!response.ok) {
       throw new RequestError({
         code: response.status,
-        message: error
+        message: error || ''
       });
     }
     const json = await response.json();
     return json;
-  } catch (e) {
+  } catch (e: any) {
     throw RequestError.createRequestError(e);
   }
 };
@@ -70,8 +71,7 @@ export function checkLoginTypes(url: string) {
       }
       dispatch(updateLoginTypes(result));
       dispatch(updateUrl(url));
-      return true; // for success to turn loading spinner off
-    } catch (error) {
+    } catch (error: any) {
       if (error.code >= 400 && error.code < 600) {
         throw new Error(t`Invalid Mahara site. Please re-enter URL.`);
       }

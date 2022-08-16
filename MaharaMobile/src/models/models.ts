@@ -11,10 +11,10 @@ export type MessageInfoType = 'success' | 'warning' | 'error';
 // Mahara file creation and for uploading
 
 export type File = {
-  uri: string;
-  type: string;
-  name: string;
-  size: number; // Not used in upload
+  uri: string | null | undefined;
+  name: string | null | undefined;
+  type: string | null | undefined;
+  size: number | null | undefined; // Not used in upload
 };
 
 export type MaharaFile = {
@@ -138,32 +138,3 @@ export type ItemId = string;
 export type TagId = number;
 export type TagsIds = Array<number>;
 export type TaggedItems = Record<ItemId, Set<TagId>>;
-// libraries
-
-// react native image-picker
-export type ReactNativeImagePickerResponse = {
-  didCancel?: boolean;
-  errorCode?: any;
-  errorMessage?: string;
-  assets?: Array<ReactNativeImagePickerAsset>;
-};
-
-export type ReactNativeImagePickerAsset = {
-  fileName: string;
-  fileSize: number;
-  height: number;
-  type: string;
-  uri: string;
-  width: number;
-  base64?: string;
-  duration?: any;
-  bitrate?: any;
-  timestamp?: any;
-  id: any;
-};
-
-export type ReactNativeImagePickerErrorCode = {
-  camera_unavailable?: any;
-  permission?: any;
-  others?: any;
-};

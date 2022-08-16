@@ -15,9 +15,9 @@ class RequestError extends Error {
     }
   }
 
-  static createRequestError(e: RequestError): RequestError {
+  static createRequestError(e: RequestError | Error): RequestError {
     if (e.name === 'RequestError') {
-      return e;
+      return e as RequestError;
     }
 
     return new RequestError({

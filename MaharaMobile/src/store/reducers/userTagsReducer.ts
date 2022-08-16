@@ -129,11 +129,11 @@ const saveTaggedItemsToAsync = (state: UserTagInfoState) => {
  */
 const updateTaggedItemsFromAsync = (
   state: UserTagInfoState,
-  asyncTaggedItemsData: Record<number, Array<string>>
+  asyncTaggedItemsData: Record<string, Array<number>>
 ): UserTagInfoState => {
   const updatedTaggedItemIds: Array<ItemId> = Object.keys(asyncTaggedItemsData);
   const updatedTaggeditems: TaggedItems = {};
-  updatedTaggedItemIds.forEach((itemId: ItemId) => {
+  updatedTaggedItemIds.forEach((itemId) => {
     updatedTaggeditems[itemId] = new Set(asyncTaggedItemsData[itemId]);
   });
 

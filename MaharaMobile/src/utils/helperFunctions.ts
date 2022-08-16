@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
 import { t } from '@lingui/macro';
-import { StackActions } from '@react-navigation/native';
 import {
   JournalEntry,
   MaharaFile,
@@ -66,7 +64,7 @@ export function buildObject(item: object) {
       body: sendFormData
     };
   }
-  return null;
+  return undefined;
 }
 
 export function uploadItemToMahara(url: string, item: object) {
@@ -92,17 +90,6 @@ export function uploadItemToMahara(url: string, item: object) {
     // therefore, this catch will never get triggered
     return customResponse;
   };
-}
-
-export const popNavigationStack = StackActions.pop({ n: 1 });
-
-// to use prevProps in Hooks
-export function usePreviousProps(value: number) {
-  const ref: React.MutableRefObject<number> = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
 }
 
 export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>

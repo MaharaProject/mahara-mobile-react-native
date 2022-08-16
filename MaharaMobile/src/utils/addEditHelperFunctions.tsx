@@ -7,12 +7,12 @@ import {
   launchCamera,
   launchImageLibrary // for ios?
 } from 'react-native-image-picker';
-import { File, ReactNativeImagePickerResponse } from 'models/models';
+import { File } from 'models/models';
 import { newFile } from 'models/typeCreators';
 import styles from 'screens/AddItemScreen/AddItemScreen.style';
 
 const setSelectedImageCallback = (
-  response: ReactNativeImagePickerResponse,
+  response: ImagePickerResponse,
   setPickedFile: Dispatch<SetStateAction<File>>
 ) => {
   if (response.assets?.length === 0) {
@@ -29,7 +29,7 @@ const setSelectedImageCallback = (
     if (!asset) {
       return;
     }
-    let path = asset != null ? asset.uri : '';
+    let path = asset?.uri || '';
     if (Platform.OS === 'ios') {
       path = `˜${path.substring(path.indexOf('/Documents'))}`;
     }
@@ -62,18 +62,18 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
         if (buttonIndex === 0) {
           // cancel action
         } else if (buttonIndex === 1) {
-          launchImageLibrary(options, (response: ImagePickerResponse) => {
+          launchImageLibrary(options, (response) => {
             setSelectedImageCallback(response, setPickedFile);
           });
         } else if (buttonIndex === 2) {
-          launchCamera(options, (response: ImagePickerResponse) => {
+          launchCamera(options, (response) => {
             setSelectedImageCallback(response, setPickedFile);
           });
         }
       }
     );
   } else {
-    launchCamera(options, (response: ImagePickerResponse) => {
+    launchCamera(options, (response) => {
       setSelectedImageCallback(response, setPickedFile);
     });
   }
@@ -96,7 +96,7 @@ export const pickDocument = async (onSetPickedFile: any) => {
   }
 };
 
-export const onCancelAlert = (goBack) => {
+export const onCancelAlert = (goBack: () => void) => {
   Alert.alert(
     t`Are you sure?`,
     t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`,

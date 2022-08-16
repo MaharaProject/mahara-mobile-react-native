@@ -37,22 +37,15 @@ export function RedAsterisk() {
 /**
  * Order list for UserBlog and UserFolder types for default on UploadForm
  */
-export const putDefaultAtTop = (
-  defaultBlog: UserBlog,
-  defFolder: UserFolder,
-  arr: Array<UserFolder> | Array<UserBlog>
-): Array<UserFolder> | Array<UserBlog> => {
-  if (defFolder || defaultBlog) {
-    let resultArray = [];
-    const defaultItem = defaultBlog || defFolder;
-
-    const set = new Set([...arr]);
-    set.delete(defaultItem);
-    resultArray.push(defaultItem);
-    resultArray = resultArray.concat(Array.from(set));
+export function putDefaultAtTop<Item extends UserBlog | UserFolder>(
+  defaultItem: Item | undefined,
+  arr: Array<Item> | Array<Item>
+): Array<Item> | Array<Item> {
+  if (defaultItem) {
+    const resultArray = [defaultItem, ...arr.filter((item) => item.id !== defaultItem.id)];
     return resultArray;
   }
-  return null;
-};
+  return arr;
+}
 
 export const removeExtension = (filename: string) => filename.split('.').slice(0, -1).join('.');

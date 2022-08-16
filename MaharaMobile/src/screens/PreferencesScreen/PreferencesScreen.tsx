@@ -57,7 +57,7 @@ function PreferencesScreen() {
 
   const defaultFolderPicker = () => {
     const match = userFolders.find((f) => f.title === defaultFolderTitle);
-    const sortedFolders: Array<UserFolder> = putDefaultAtTop(null, match, userFolders);
+    const sortedFolders = putDefaultAtTop(match, userFolders);
 
     return (
       <View>
@@ -85,8 +85,8 @@ function PreferencesScreen() {
   const defaultBlogPicker = () => {
     // Find matching blog to the default blog
     const match: UserBlog = userBlogs.find((b) => b.id === defaultBlogId) ?? userBlogs[0];
+    const blogs = putDefaultAtTop(match, userBlogs);
 
-    const blogs = putDefaultAtTop(match, null, userBlogs) as Array<UserBlog>;
     return (
       <View>
         <SubHeading text={t`Destination journal`} />
@@ -94,14 +94,14 @@ function PreferencesScreen() {
         <Box style={buttons.default}>
           <Select
             accessibilityLabel={t`Select journal`}
-            selectedValue={selectedBlogId}
-            onValueChange={(blogId: number) => setSelectedBlogId(blogId)}
+            selectedValue={selectedBlogId.toString()}
+            onValueChange={(blogId: string) => setSelectedBlogId(+blogId)}
           >
             {blogs &&
               blogs.map((blog: UserBlog) => {
                 const label =
                   blog.id === defaultBlogId ? `${blog.title} - ${t`default`}` : blog.title;
-                return <Select.Item label={label} value={blog.id} key={blog.id} />;
+                return <Select.Item label={label} value={blog.id.toString()} key={blog.id} />;
               })}
           </Select>
         </Box>

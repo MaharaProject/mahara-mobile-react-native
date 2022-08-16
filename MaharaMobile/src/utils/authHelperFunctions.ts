@@ -186,14 +186,14 @@ export const onCheckAuthJSON = (
 };
 
 export const login = (
-  url,
-  dispatch,
-  userBlogs,
-  userFolders,
-  token,
-  setLoading,
-  updateToken,
-  isGuest
+  url: string,
+  dispatch: Dispatch,
+  userBlogs: UserBlog[],
+  userFolders: UserFolder[],
+  token: string,
+  setLoading: (loading: boolean) => void,
+  updateToken: (token: string | null) => void,
+  isGuest: boolean
 ) => {
   const serverUrl = `${url}webservice/rest/server.php?alt=json`;
 

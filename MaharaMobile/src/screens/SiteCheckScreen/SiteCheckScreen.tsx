@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
+import { Action, AnyAction, AsyncThunkAction } from '@reduxjs/toolkit';
 import {
   Alert,
   CloseIcon,
@@ -36,6 +37,7 @@ import {
 } from 'store/reducers/loginInfoReducer';
 import { RootState } from 'store/reducers/rootReducer';
 import { setUpGuest } from 'utils/authHelperFunctions';
+import { getErrorMessage } from 'utils/error';
 import { addHttpTrims } from 'utils/helperFunctions';
 
 type Props = {
@@ -45,13 +47,6 @@ type Props = {
   ssoLogin: boolean;
   localLogin: boolean;
   url: string;
-};
-
-type State = {
-  loginType: string;
-  serverPing: boolean;
-  isInputHidden: boolean;
-  loading: boolean;
 };
 
 /**
@@ -103,9 +98,9 @@ function SiteCheckScreen(props: Props) {
 
     try {
       setLoading(true);
-      // checkLoginTypes does return a promise, but not obvious to IDE as it's anonymous
-      await dispatch(checkLoginTypes(serverUrl));
+      await checkLoginTypes(serverUrl)(dispatch);
     } catch (error) {
+      const message = getErrorMessage(error);
       toast.show({
         render: ({ id }) => (
           <Alert mx={2} status="error" variant="left-accent">
@@ -120,7 +115,7 @@ function SiteCheckScreen(props: Props) {
                   ml="auto"
                 />
               </HStack>
-              <Text>{error.message}</Text>
+              <Text>{message}</Text>
             </VStack>
           </Alert>
         )
