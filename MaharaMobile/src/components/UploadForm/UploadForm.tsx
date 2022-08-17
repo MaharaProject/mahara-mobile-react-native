@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
-import { CommonActions, StackActions } from '@react-navigation/native';
-import { Box, Select, Text, Toast, VStack, View } from 'native-base';
+import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
+import { Box, Select, Text, VStack, View } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
 import FormInput from 'components/UI/FormInput/FormInput';
@@ -56,6 +56,7 @@ type Props = {
   navigation: any;
   defFolderTitle: string;
   defaultBlogId: number;
+  setDirty(dirty: boolean): void;
 };
 
 type State = {
@@ -88,7 +89,27 @@ function UploadForm(props: Props) {
   const [selectedTagsStrings, setSelectedTagsStrings] = useState<State['selectedTags']>([]);
   const [itemTagsIds, setItemTagsIds] = useState<Array<number>>([]);
   const [newTags, setNewTags] = useState<State['newTags']>([]);
-  // the itemTagsIds is what gets submitted by the form
+
+  /**
+   * Listen to form values and mark dirty if any values are set
+   *  - checks non-default
+   *  - check arrays contain values
+   *  - checks strings are truthy (non empty)
+   */
+  useEffect(() => {
+    if (
+      pickedFile?.uri ||
+      title ||
+      description ||
+      selectedFolder !== props.defFolderTitle ||
+      selectedBlog !== props.defaultBlogId ||
+      selectedTagsStrings?.length
+    ) {
+      props.setDirty(true);
+    } else {
+      props.setDirty(false);
+    }
+  }, [description, pickedFile, props, selectedBlog, selectedFolder, selectedTagsStrings, title]);
 
   useEffect(() => {
     if (props.editItem) {
@@ -209,17 +230,17 @@ function UploadForm(props: Props) {
     }
 
     // Attach tags to item on queue to pending
-    // if (selectedTags.length > 0) {
-    // if a tag was removed, we need to update it too.
     dispatch(updateItemTagsIds(id, itemTagsIds));
     dispatch(saveTaggedItemsToAsync());
-    // }
 
+    // mark form as clean again (to not block navigation)
+    props.setDirty(false);
     // upon successful upload, remove the AddFile screen from the navigation stack
-    props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
-    props.navigation.navigate('Upload queue tab', { added: true });
-    Toast.show({ title: t`Added to upload queue successfully!` });
+    props.navigation.dispatch({
+      ...CommonActions.navigate('Upload queue tab', { added: true, saving: true }),
+      ...StackActions.popToTop()
+    });
   };
 
   const updateTitle = (newTitle: string) => {
@@ -341,23 +362,11 @@ function UploadForm(props: Props) {
           text={props.editItem ? t`Confirm edits to ${intlItemType}` : t`Queue to upload`}
         />
 
-        {/* Allow users to cancel edits */}
-        {props.editItem && (
-          <CancelButton
-            onPress={() => {
-              props.navigation.popToTop();
-              props.navigation.navigate('Upload queue tab');
-            }}
-          />
-        )}
-
-        {!props.editItem && (
-          <CancelButton
-            onPress={() => {
-              props.navigation.dispatch(CommonActions.goBack());
-            }}
-          />
-        )}
+        <CancelButton
+          onPress={() => {
+            props.navigation.dispatch(CommonActions.goBack());
+          }}
+        />
       </VStack>
     );
   };

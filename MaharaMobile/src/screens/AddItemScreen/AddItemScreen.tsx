@@ -9,7 +9,7 @@ import AddAudio from 'components/AddAudio/AddAudio';
 import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import UploadForm from 'components/UploadForm/UploadForm';
 import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
-import { UserBlog, UserFolder, UserTag } from 'models/models';
+import { UploadItemType, UserBlog, UserFolder, UserTag } from 'models/models';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
@@ -30,7 +30,7 @@ type Props = {
   userTags: Array<UserTag>;
   token: string;
   navigation: any;
-  route: { params: { itemType: string } };
+  route: { params: { itemType: UploadItemType } };
   url: string;
   userBlogs: Array<UserBlog>;
   defaultFolderTitle: string;
@@ -38,12 +38,12 @@ type Props = {
 };
 
 function AddItemScreen(props: Props) {
-  // State
-  // TODO: itemtype is type UploadItemType ensures from the navigate in selectmediascreen
   const itemType = props.route.params?.itemType ?? 'FILE';
   const [pickedFile, setPickedFile] = useState(emptyFile);
 
-  useChangeNavigationWarning();
+  // track if the form has changes and block navigating away when dirty
+  const [isDirty, setDirty] = useState(false);
+  useChangeNavigationWarning(isDirty);
 
   return (
     <ScrollView>
@@ -86,10 +86,10 @@ function AddItemScreen(props: Props) {
             itemType={itemType}
             token={props.token}
             url={props.url}
-            editItem={null}
             navigation={props.navigation}
             defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
+            setDirty={setDirty}
           />
         </View>
       </VStack>

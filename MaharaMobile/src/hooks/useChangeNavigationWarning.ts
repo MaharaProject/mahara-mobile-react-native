@@ -12,13 +12,13 @@ const onCancelAlert = (goBack: () => void) => {
   );
 };
 
-export function useChangeNavigationWarning(hasUnsavedChanges = true) {
+export function useChangeNavigationWarning(hasUnsavedChanges: boolean) {
   const navigation = useNavigation();
 
   useEffect(
     () =>
       navigation.addListener('beforeRemove', (e) => {
-        if (!hasUnsavedChanges) {
+        if (!hasUnsavedChanges || e.data.action.payload?.params?.saving) {
           // If we don't have unsaved changes, then we don't need to do anything
           return;
         }

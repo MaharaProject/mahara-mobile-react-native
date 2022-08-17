@@ -7,6 +7,7 @@ import {
   HStack,
   IconButton,
   Text,
+  Toast,
   Alert as ToastAlert,
   VStack,
   useToast
@@ -48,7 +49,7 @@ type Props = {
   dispatch: Dispatch;
   navigation: any;
   userName: string;
-  route: { params: { added: boolean } };
+  route: { params?: { added: boolean } };
 };
 
 function PendingScreen(props: Props) {
@@ -63,6 +64,11 @@ function PendingScreen(props: Props) {
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
+  useEffect(() => {
+    if (props.route.params?.added) {
+      Toast.show({ title: t`Added to upload queue successfully!` });
+    }
+  }, [props.route.params?.added]);
   /**
    * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
    */

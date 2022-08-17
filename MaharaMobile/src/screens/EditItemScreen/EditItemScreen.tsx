@@ -48,7 +48,9 @@ function EditItemScreen(props: Props) {
   // Get item passed in as nav param from Upload Queue
   const { itemToEdit } = props.route.params;
 
-  useChangeNavigationWarning();
+  // track if the form has changes and block navigating away when dirty
+  const [isDirty, setDirty] = useState(false);
+  useChangeNavigationWarning(isDirty);
 
   return (
     <ScrollView>
@@ -94,6 +96,7 @@ function EditItemScreen(props: Props) {
             navigation={props.navigation}
             defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
+            setDirty={setDirty}
           />
         </View>
       </VStack>
