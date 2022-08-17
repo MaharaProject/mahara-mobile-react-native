@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from 'react';
 import * as RNLocalize from 'react-native-localize';
 import { I18nProvider } from '@lingui/react';
 import { NativeBaseProvider } from 'native-base';
+import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import i18n, { changeActiveLanguage } from 'i18n';
 import AppNavigator from 'navigation/AppNavigator';
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <NativeBaseProvider theme={maharaTheme}>
+      <StatusBar backgroundColor={maharaTheme.colors.green} />
       <Provider store={store}>
         <I18nProviderWrapper>
           <AppNavigator />

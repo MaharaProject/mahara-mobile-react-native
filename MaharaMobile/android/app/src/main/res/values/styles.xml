@@ -1,9 +1,12 @@
 <resources>
+    <!--   color for the navigation bar and other secondary UI elements -->
+    <color name="colorSecondary">#9eb47a</color>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:editTextBackground">@drawable/rn_edit_text_material</item>
+        <item name="android:navigationBarColor">@color/colorSecondary</item>
     </style>
 
 </resources>

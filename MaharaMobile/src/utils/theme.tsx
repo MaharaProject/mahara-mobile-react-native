@@ -78,10 +78,7 @@ export const maharaTheme = extendTheme({
     },
     // Add new color
     green: '#576c36',
-    // info: '#ba9b59',
-    success: '#3c4c23',
     danger: '#a9000d',
-    // warning: '#b9a34b',
     dark: '#000',
     light: '#FFF'
   },
