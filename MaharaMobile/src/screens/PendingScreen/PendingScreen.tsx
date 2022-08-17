@@ -2,16 +2,21 @@ import React, { useEffect, useState } from 'react';
 // Images
 import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
-import { Text } from 'native-base';
+import {
+  CloseIcon,
+  HStack,
+  IconButton,
+  Text,
+  Alert as ToastAlert,
+  VStack,
+  useToast
+} from 'native-base';
 import { ActivityIndicator, Alert, View } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import UploadSVG from 'assets/images/upload';
-import messages from 'assets/styles/messages';
 import textStyles from 'assets/styles/text';
 import styles from 'assets/styles/variables';
-import flashMessage from 'components/FlashMessage/FlashMessage';
 import PendingList from 'components/PendingList/PendingList';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
 import {
@@ -52,17 +57,11 @@ function PendingScreen(props: Props) {
   const numUploadItems = numUploadFiles + numUploadJEntries;
 
   const [uploadedItemsIds, setUploadedItemsIds] = useState<string[]>([]);
-  const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
-  const [errorMessage, setErrorMessage] = useState('Error message');
   const [loading, setLoading] = useState(false);
 
-  const url = useSelector((state: RootState) => selectUrl(state));
+  const toast = useToast();
 
-  useEffect(() => {
-    if (props.route.params?.added === true) {
-      flashMessage(t`Added to upload queue successfully!`, 'success');
-    }
-  }, [props.route.params?.added]);
+  const url = useSelector((state: RootState) => selectUrl(state));
 
   /**
    * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
@@ -97,24 +96,25 @@ function PendingScreen(props: Props) {
     props.navigation.navigate('EditItem', { itemToEdit: item, itemType: type });
   };
 
-  const clearUploadError = (id: string) => {
-    const newState = uploadErrorItemsIds.filter((item) => item !== id);
-    setUploadErrorItemsIds(newState);
-  };
-
-  const onUploadError = (id: string) => {
-    setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
-
-    showMessage({
-      message: t`${errorMessage}`,
-      icon: {
-        icon: 'auto',
-        position: 'left'
-      },
-      type: 'warning',
-      titleStyle: messages.errorMessage,
-      backgroundColor: styles.colors.warnbg,
-      color: styles.colors.warn
+  const onUploadError = (itemId: string, errorMessage: string) => {
+    toast.show({
+      render: ({ id }) => (
+        <ToastAlert mx={2} status="error" variant="left-accent">
+          <VStack>
+            <HStack space={3} alignItems="center">
+              <ToastAlert.Icon />
+              <Text w="100%" fontWeight="medium">{t`Upload error`}</Text>
+              <IconButton
+                icon={<CloseIcon size="4" />}
+                onPress={() => toast.close(id)}
+                colorScheme="red"
+                ml="auto"
+              />
+            </HStack>
+            <Text>{errorMessage}</Text>
+          </VStack>
+        </ToastAlert>
+      )
     });
   };
 
@@ -128,8 +128,6 @@ function PendingScreen(props: Props) {
       onRemove={onRemove}
       onEdit={onEdit}
       successfullyUploadedItemsIds={uploadedItemsIds}
-      uploadErrorItems={uploadErrorItemsIds}
-      onClearError={clearUploadError}
     />
   );
 
@@ -156,53 +154,63 @@ function PendingScreen(props: Props) {
     );
   };
 
-  const onSuccessfulUpload = (id: string) => {
+  const onSuccessfulUpload = (itemId: string) => {
     // change class to show upload success
-    setUploadedItemsIds([...uploadedItemsIds, id]);
+    setUploadedItemsIds([...uploadedItemsIds, itemId]);
     // then, card disappears
     // and remove id from successfullyUploadedItems to clear memory
     setTimeout(() => {
-      props.dispatch(removeUploadFile(id));
-      props.dispatch(removeUploadJEntry(id));
-
-      const newState = uploadedItemsIds.filter((item) => item !== id);
-      setUploadedItemsIds(newState);
+      props.dispatch(removeUploadFile(itemId));
+      props.dispatch(removeUploadJEntry(itemId));
+      setUploadedItemsIds((state) => state.filter((item) => item !== itemId));
     }, 1000);
 
-    flashMessage(t`Files have been uploaded to your Mahara successfully!`, 'success');
+    toast.show({
+      render: ({ id }) => (
+        <ToastAlert mx={2} status="success" variant="left-accent">
+          <VStack>
+            <HStack space={3} alignItems="center">
+              <ToastAlert.Icon />
+              <Text w="100%" fontWeight="medium">{t`Upload success`}</Text>
+              <IconButton
+                icon={<CloseIcon size="4" />}
+                onPress={() => toast.close(id)}
+                colorScheme="green"
+                ml="auto"
+              />
+            </HStack>
+            <Text>{t`Files have been uploaded to your Mahara successfully!`}</Text>
+          </VStack>
+        </ToastAlert>
+      )
+    });
   };
 
   const onUploadClick = () => {
     setLoading(true);
     props.uploadFiles.forEach(async (file) => {
-      clearUploadError(file.id);
-      props
-        .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
-        .then((result: UploadResponse) => {
-          setLoading(false);
-          // an error either returns result = undefined, or result = { error: true }
-          if (result === undefined || result === null || result.error) {
-            setErrorMessage(result.error_message);
-            onUploadError(file.id);
-          } else {
-            onSuccessfulUpload(file.id);
-          }
-        });
+      uploadItemToMahara(file.url, file.maharaFormData)().then((result: UploadResponse) => {
+        setLoading(false);
+        // an error either returns result = undefined, or result = { error: true }
+        if (result === undefined || result === null || result.error) {
+          onUploadError(file.id, result.error_message);
+        } else {
+          onSuccessfulUpload(file.id);
+        }
+      });
     });
 
     props.uploadJEntries.forEach(async (journalEntry) => {
-      clearUploadError(journalEntry.id);
-      props
-        .dispatch(uploadItemToMahara(journalEntry.url, journalEntry.journalEntry))
-        .then((result: UploadResponse) => {
+      uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)().then(
+        (result: UploadResponse) => {
           setLoading(false);
           if (result === undefined || result === null || result.error) {
-            setErrorMessage(result.error_message);
-            onUploadError(journalEntry.id);
+            onUploadError(journalEntry.id, result.error_message);
           } else {
             onSuccessfulUpload(journalEntry.id);
           }
-        });
+        }
+      );
     });
   };
 

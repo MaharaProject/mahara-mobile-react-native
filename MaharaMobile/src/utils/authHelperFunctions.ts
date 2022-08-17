@@ -1,9 +1,9 @@
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Toast } from 'native-base';
 import { Alert } from 'react-native';
 import { Dispatch } from 'redux';
 import RNFetchBlob from 'rn-fetch-blob';
-import flashMessage from 'components/FlashMessage/FlashMessage';
 import { UserBlog, UserBlogJSON, UserFolder, UserTag } from 'models/models';
 import { newUserTag } from 'models/typeCreators';
 import { clearUserTags, updateUserTags, updateUserTagsIds } from 'store/actions/actions';
@@ -114,11 +114,11 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
     .fetch('GET', serverUrl)
     .then((res) => {
       profilePic = `file://${res.path()}`;
+
       dispatch(updateProfilePic(profilePic));
     })
     .catch((e) => {
-      console.error(e.error_message);
-      flashMessage(e.error_class, 'warning');
+      Toast.show({ title: e.error_message });
     });
 
   return profilePic;

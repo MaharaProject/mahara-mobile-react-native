@@ -11,8 +11,6 @@ type Props = {
   onRemove: (id: string) => void;
   onEdit: (item: PendingJEntry | PendingMFile) => void;
   successfullyUploadedItemsIds: Array<string>;
-  uploadErrorItems: Array<string>;
-  onClearError: (id: string) => void;
 };
 
 const listStyles = StyleSheet.create({
@@ -30,7 +28,6 @@ function PendingList(props: Props) {
   let description = '';
   let thumbnail = {};
   let isSuccessfullyUploadedItem = false;
-  let showUploadError = false;
 
   return (
     <FlatList
@@ -61,12 +58,6 @@ function PendingList(props: Props) {
           isSuccessfullyUploadedItem = true;
         }
 
-        if (props.uploadErrorItems.indexOf(itemId) !== -1) {
-          showUploadError = true;
-        } else {
-          showUploadError = false;
-        }
-
         return (
           <UploadItem
             title={title}
@@ -76,8 +67,6 @@ function PendingList(props: Props) {
             onEdit={() => props.onEdit(item)}
             image={thumbnail}
             successfullyUploadedItem={isSuccessfullyUploadedItem}
-            showUploadError={showUploadError}
-            onClearError={() => props.onClearError(itemId)}
             index={index}
           />
         );

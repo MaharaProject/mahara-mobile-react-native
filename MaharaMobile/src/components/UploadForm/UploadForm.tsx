@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { StackActions } from '@react-navigation/native';
-import { Box, Select, Text, VStack, View } from 'native-base';
+import { Box, Select, Text, Toast, VStack, View } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
 import FormInput from 'components/UI/FormInput/FormInput';
@@ -219,6 +219,7 @@ function UploadForm(props: Props) {
     props.navigation.dispatch(StackActions.popToTop());
     // then take user to PendingScreen
     props.navigation.navigate('Upload queue tab', { added: true });
+    Toast.show({ title: t`Added to upload queue successfully!` });
   };
 
   const updateTitle = (newTitle: string) => {
