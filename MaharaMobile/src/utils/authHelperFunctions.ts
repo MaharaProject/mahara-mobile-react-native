@@ -2,8 +2,8 @@ import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Toast } from 'native-base';
 import { Alert } from 'react-native';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Dispatch } from 'redux';
-import RNFetchBlob from 'rn-fetch-blob';
 import { UserBlog, UserBlogJSON, UserFolder, UserTag } from 'models/models';
 import { newUserTag } from 'models/typeCreators';
 import { clearUserTags, updateUserTags, updateUserTagsIds } from 'store/actions/actions';
@@ -108,7 +108,7 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
 
   let profilePic = '';
 
-  RNFetchBlob.config({
+  ReactNativeBlobUtil.config({
     fileCache: true
   })
     .fetch('GET', serverUrl)

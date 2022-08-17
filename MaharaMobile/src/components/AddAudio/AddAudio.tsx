@@ -4,7 +4,7 @@ import { t } from '@lingui/macro';
 import { HStack } from 'native-base';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import RNFetchBlob from 'rn-fetch-blob';
+import ReactNativeBlobUtil from 'react-native-blob-util';
 import variables from 'assets/styles/variables';
 import AudioPlayButton from 'components/UI/AudioPlayButton/AudioPlayButton';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
@@ -124,7 +124,7 @@ function AddAudio(props: Props) {
     }
 
     const rand = Math.round(Math.random() * 1000);
-    const { dirs } = RNFetchBlob.fs;
+    const { dirs } = ReactNativeBlobUtil.fs;
     const path =
       Platform.select({
         ios: `${rand}recording.m4a`,
@@ -148,7 +148,7 @@ function AddAudio(props: Props) {
     let fileSize = 0;
     let filename = '';
 
-    await RNFetchBlob.fs.stat(checkIOS(result)).then((stats) => {
+    await ReactNativeBlobUtil.fs.stat(checkIOS(result)).then((stats) => {
       filename = stats.filename;
       fileSize = parseInt(stats.size, 10);
     });

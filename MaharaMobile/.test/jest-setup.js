@@ -2,7 +2,7 @@ import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/asy
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('react-native-device-info', () => ({ getModel: jest.fn() }));
-jest.mock('rn-fetch-blob', () => ({
+jest.mock('react-native-blob-util', () => ({
   fs: { dirs: { CacheDir: './' }, unlink: jest.fn() },
   config: () => ({ fetch: jest.fn() })
 }));
