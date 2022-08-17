@@ -17,44 +17,18 @@ import SiteCheckScreen from 'screens/SiteCheckScreen/SiteCheckScreen';
 import TermsScreen from 'screens/TermsScreen/TermsScreen';
 import VersionScreen from 'screens/VersionScreen/VersionScreen';
 
-// must make it a functional component to get lingui to trigger the translation
-export const navigatorStrings = () => ({
-  PENDING: t`Upload queue`,
-  CREATE: t`Create`,
-  ADDITEM: t`Add item`,
-  PROFILE_ACCESSIBILITY_LABEL: t`Profile page`,
-  ADD_ACCESSIBILITY_LABEL: t`Add an item`,
-  PENDING_ACCESSIBILITY_LABEL: t`Upload queue page`,
-  PREFERENCES: t`Preferences`,
-  ABOUT: t`About`,
-  MENU: t`Menu`,
-  PRIVACY: t`Privacy`,
-  HELP: t`Help`,
-  VERSION: t`Version`,
-  TERMS: t`Terms and conditions`
-});
-
 const headerConfigForTabStacks: StackNavigationOptions = {
-  headerStyle: {
-    backgroundColor: styles.colors.primary
-  },
+  headerStyle: { backgroundColor: styles.colors.primary },
   headerTintColor: styles.colors.light,
   headerTitleAlign: 'center',
-  headerTitleStyle: {
-    fontFamily: 'OpenSans-Bold',
-    fontSize: styles.font.md
-  }
+  headerTitleStyle: { fontFamily: 'OpenSans-Bold', fontSize: styles.font.md }
 };
 
 const AddItems = createStackNavigator();
 export function CreateNavigator() {
   return (
     <AddItems.Navigator screenOptions={headerConfigForTabStacks}>
-      <AddItems.Screen
-        name="Create"
-        component={SelectMediaScreen}
-        options={{ title: navigatorStrings().CREATE }}
-      />
+      <AddItems.Screen name="Create" component={SelectMediaScreen} options={{ title: t`Create` }} />
       <AddItems.Screen name="AddItem" component={AddItemScreen} options={AddItemScreenOptions} />
     </AddItems.Navigator>
   );
@@ -67,9 +41,7 @@ export function PendingItemsNavigator() {
       <PendingItems.Screen
         name="Pending"
         component={PendingScreen}
-        options={{
-          title: navigatorStrings().PENDING
-        }}
+        options={{ title: t`Upload queue` }}
       />
       <PendingItems.Screen
         name="EditItem"
@@ -94,46 +66,26 @@ export function MenuNavigator() {
             elevation: 0 // This is for android
           },
           headerLeft: LogoSvg,
-          title: navigatorStrings().MENU
+          title: t`Menu`
         }}
       />
-      <Menu.Screen
-        name="About"
-        component={AboutScreen}
-        options={{
-          headerTitle: navigatorStrings().ABOUT
-        }}
-      />
+      <Menu.Screen name="About" component={AboutScreen} options={{ title: t`About` }} />
       <Menu.Screen
         name="Preferences"
         component={PreferencesScreen}
-        options={{ headerTitle: navigatorStrings().PREFERENCES }}
+        options={{ title: t`Preferences` }}
       />
       <Menu.Screen
         name="Terms"
         component={TermsScreen}
-        options={{ headerTitle: navigatorStrings().TERMS }}
+        options={{ title: t`Terms and conditions` }}
       />
-      <Menu.Screen
-        name="Privacy"
-        component={PrivacyScreen}
-        options={{ headerTitle: navigatorStrings().PRIVACY }}
-      />
-      <Menu.Screen
-        name="Help"
-        component={HelpScreen}
-        options={{ headerTitle: navigatorStrings().HELP }}
-      />
-      <Menu.Screen
-        name="Version"
-        component={VersionScreen}
-        options={{ headerTitle: navigatorStrings().VERSION }}
-      />
+      <Menu.Screen name="Privacy" component={PrivacyScreen} options={{ title: t`Privacy` }} />
+      <Menu.Screen name="Help" component={HelpScreen} options={{ title: t`Help` }} />
+      <Menu.Screen name="Version" component={VersionScreen} options={{ title: t`Version` }} />
     </Menu.Navigator>
   );
 }
-
-// TODO: test tab config on iOS to see if matches Android
 
 const Auth = createStackNavigator();
 export function AuthNavigator() {
@@ -148,30 +100,3 @@ export function AuthNavigator() {
     </Auth.Navigator>
   );
 }
-
-// const androidTabConfig = createMaterialBottomTabNavigator(tabScreenConfig, {
-//   initialRouteName: 'Add',
-//   activeColor: styles.colors.light,
-//   inactiveColor: styles.colors.tertiary,
-//   labeled: false,
-//   barStyle: {
-//     backgroundColor: styles.colors.light2
-//   }
-// });
-
-// const iOSTabConfig = createBottomTabNavigator(tabScreenConfig, {
-//   initialRouteName: 'Add',
-//   tabBarOptions: {
-//     showLabel: false,
-//     activeTintColor: styles.colors.light,
-//     inactiveTintColor: styles.colors.tertiary,
-//     style: {
-//       backgroundColor: styles.colors.light2
-//     },
-//     tabStyle: {
-//       alignContent: 'space-between'
-//     }
-//   }
-// });
-
-// Platform.OS === 'android' ? androidTabConfig : iOSTabConfig;

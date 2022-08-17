@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { t } from '@lingui/macro';
-import { CommonActions } from '@react-navigation/native';
 import { VStack } from 'native-base';
 import { ScrollView, View } from 'react-native';
 import { connect } from 'react-redux';
 import generic from 'assets/styles/generic';
 import AddAudio from 'components/AddAudio/AddAudio';
-import CustomVerifyBackButton from 'components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import UploadForm from 'components/UploadForm/UploadForm';
+import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
 import { PendingMFile, UserBlog, UserFolder, UserTag } from 'models/models';
 import {
   selectDefaultBlogId,
@@ -48,6 +47,8 @@ function EditItemScreen(props: Props) {
 
   // Get item passed in as nav param from Upload Queue
   const { itemToEdit } = props.route.params;
+
+  useChangeNavigationWarning();
 
   return (
     <ScrollView>
@@ -101,10 +102,7 @@ function EditItemScreen(props: Props) {
 }
 
 export const EditItemScreenOptions = (navData) => ({
-  headerTitle: t`Edit ${getUploadTypeIntlStrings(navData.route.params.itemType).toLowerCase()}`,
-  headerLeft: () => (
-    <CustomVerifyBackButton goBack={() => navData.navigation.dispatch(CommonActions.goBack())} />
-  )
+  title: t`Edit ${getUploadTypeIntlStrings(navData.route.params.itemType).toLowerCase()}`
 });
 
 const mapStateToProps = (state: RootState) => ({

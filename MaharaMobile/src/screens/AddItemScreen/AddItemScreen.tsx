@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
-import { CommonActions } from '@react-navigation/native';
 import { ScrollView, VStack, View } from 'native-base';
 import { connect } from 'react-redux';
 import generic from 'assets/styles/generic';
 import AddAudio from 'components/AddAudio/AddAudio';
-import CustomVerifyBackButton from 'components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
 import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import UploadForm from 'components/UploadForm/UploadForm';
+import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
 import { UserBlog, UserFolder, UserTag } from 'models/models';
 import {
   selectDefaultBlogId,
@@ -43,6 +42,8 @@ function AddItemScreen(props: Props) {
   // TODO: itemtype is type UploadItemType ensures from the navigate in selectmediascreen
   const itemType = props.route.params?.itemType ?? 'FILE';
   const [pickedFile, setPickedFile] = useState(emptyFile);
+
+  useChangeNavigationWarning();
 
   return (
     <ScrollView>
@@ -96,20 +97,9 @@ function AddItemScreen(props: Props) {
   );
 }
 
-export const AddItemScreenOptions = (navData) => {
-  const itemType = navData.route.params?.itemType ?? 'FILE';
-  const intlStringOfItemType = getUploadTypeIntlStrings(itemType).toLowerCase();
-  const addString = t`Add`;
-  const headerTitle = addString.concat(' ', intlStringOfItemType);
-
-  return {
-    headerTitle,
-    headerLeft: () => (
-      // TODO: use the HeaderBackButton in the future for better accessibility (default)
-      <CustomVerifyBackButton goBack={() => navData.navigation.dispatch(CommonActions.goBack())} />
-    )
-  };
-};
+export const AddItemScreenOptions = (navData) => ({
+  title: t`Add ${getUploadTypeIntlStrings(navData.route.params.itemType).toLowerCase()}`
+});
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),

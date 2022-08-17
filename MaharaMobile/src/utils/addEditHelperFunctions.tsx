@@ -96,26 +96,6 @@ export const pickDocument = async (onSetPickedFile: any) => {
   }
 };
 
-export const onCancelAlert = (goBack: () => void) => {
-  Alert.alert(
-    t`Are you sure?`,
-    t`It looks like you have been editing something. If you leave before saving, your changes will be lost.`,
-    [
-      {
-        text: t`Cancel`,
-        onPress: () => {
-          // do nothing
-        }
-      },
-      {
-        text: t`Okay`,
-        onPress: () => goBack()
-      }
-    ],
-    { cancelable: true }
-  );
-};
-
 export const renderImagePreview = (uri: string) => (
   <View style={styles.imageWrap}>
     <Image source={{ uri }} style={styles.image} accessibilityLabel={t`image preview`} />

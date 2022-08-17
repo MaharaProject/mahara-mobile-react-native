@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
-import { StackActions } from '@react-navigation/native';
+import { CommonActions, StackActions } from '@react-navigation/native';
 import { Box, Select, Text, Toast, VStack, View } from 'native-base';
 import { useDispatch, useSelector } from 'react-redux';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
@@ -344,7 +344,6 @@ function UploadForm(props: Props) {
         {/* Allow users to cancel edits */}
         {props.editItem && (
           <CancelButton
-            navigation={props.navigation}
             onPress={() => {
               props.navigation.popToTop();
               props.navigation.navigate('Upload queue tab');
@@ -352,7 +351,13 @@ function UploadForm(props: Props) {
           />
         )}
 
-        {!props.editItem && <CancelButton navigation={props.navigation} />}
+        {!props.editItem && (
+          <CancelButton
+            onPress={() => {
+              props.navigation.dispatch(CommonActions.goBack());
+            }}
+          />
+        )}
       </VStack>
     );
   };

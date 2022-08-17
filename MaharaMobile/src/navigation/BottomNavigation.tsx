@@ -1,4 +1,5 @@
 import React from 'react';
+import { t } from '@lingui/macro';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import NavAddSVG from 'assets/images/nav-add';
 import NavAddActiveSVG from 'assets/images/nav-add-active';
@@ -7,27 +8,19 @@ import NavMenuActiveSVG from 'assets/images/nav-menu-active';
 import NavUploadSVG from 'assets/images/nav-upload';
 import NavUploadActiveSVG from 'assets/images/nav-upload-active';
 import styles from 'assets/styles/variables';
-import {
-  CreateNavigator,
-  MenuNavigator,
-  PendingItemsNavigator,
-  navigatorStrings
-} from './StackNavigators';
-
-const BottomTab = createBottomTabNavigator();
+import { CreateNavigator, MenuNavigator, PendingItemsNavigator } from './StackNavigators';
 
 const tabOptions = {
   tabBarHideOnKeyboard: true,
   tabBarActiveTintColor: styles.colors.navActiveGreenTint,
   tabBarInactiveTintColor: styles.colors.quaternary,
-  tabBarStyle: {
-    backgroundColor: styles.colors.navBarGreen,
-    borderTopWidth: 0
-  },
+  tabBarStyle: { backgroundColor: styles.colors.navBarGreen },
   tabBarShowLabel: false
 };
 
-function MaharaMobileNavigator() {
+const BottomTab = createBottomTabNavigator();
+
+function BottomNavigation() {
   return (
     <BottomTab.Navigator initialRouteName="Create tab">
       <BottomTab.Screen
@@ -35,15 +28,10 @@ function MaharaMobileNavigator() {
         component={PendingItemsNavigator}
         options={{
           ...tabOptions,
-          tabBarLabel: navigatorStrings().PENDING,
+          tabBarLabel: t`Upload queue`,
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            if (focused === false) {
-              return <NavUploadSVG />;
-            }
-            return <NavUploadActiveSVG />;
-          },
-          tabBarAccessibilityLabel: navigatorStrings().PENDING_ACCESSIBILITY_LABEL
+          tabBarIcon: ({ focused }) => (focused ? <NavUploadActiveSVG /> : <NavUploadSVG />),
+          tabBarAccessibilityLabel: t`Upload queue page`
         }}
       />
       <BottomTab.Screen
@@ -52,14 +40,9 @@ function MaharaMobileNavigator() {
         options={{
           ...tabOptions,
           headerShown: false,
-          tabBarLabel: navigatorStrings().CREATE,
-          tabBarIcon: ({ focused }) => {
-            if (focused === false) {
-              return <NavAddSVG />;
-            }
-            return <NavAddActiveSVG />;
-          },
-          tabBarAccessibilityLabel: navigatorStrings().ADD_ACCESSIBILITY_LABEL
+          tabBarLabel: t`Create`,
+          tabBarIcon: ({ focused }) => (focused ? <NavAddActiveSVG /> : <NavAddSVG />),
+          tabBarAccessibilityLabel: t`Add an item`
         }}
       />
       <BottomTab.Screen
@@ -68,18 +51,12 @@ function MaharaMobileNavigator() {
         options={{
           ...tabOptions,
           headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            if (focused === false) {
-              return <NavMenuSVG />;
-            }
-            return <NavMenuActiveSVG />;
-          },
-          tabBarTestID: 'tabBar',
-          tabBarAccessibilityLabel: navigatorStrings().MENU
+          tabBarIcon: ({ focused }) => (focused ? <NavMenuActiveSVG /> : <NavMenuSVG />),
+          tabBarAccessibilityLabel: t`Menu`
         }}
       />
     </BottomTab.Navigator>
   );
 }
 
-export default MaharaMobileNavigator;
+export default BottomNavigation;

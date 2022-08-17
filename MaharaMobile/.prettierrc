@@ -9,6 +9,7 @@
     "<THIRD_PARTY_MODULES>",
     "^assets/",
     "^components/",
+    "^hooks/",
     "^i18n",
     "^models/",
     "^navigation/",
