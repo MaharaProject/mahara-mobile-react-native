@@ -72,7 +72,7 @@ buck-out/
 # __snapshots__
 
 # i18n
-locales/_build/
+locales/**/*
 # locales/**/*.js
 
 # IDEs VS Code
