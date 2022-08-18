@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { t } from '@lingui/macro';
-import { Box, CheckIcon, CloseIcon, Input, Select, Text, View } from 'native-base';
+import { Box, CheckIcon, DeleteIcon, IconButton, Input, Select, Text, View } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import buttons from 'assets/styles/buttons';
 import forms from 'assets/styles/forms';
@@ -129,7 +129,7 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
         {/* Display selected tags */}
         {getSelectedTagsAsStrings().map((value: string, index: number) => (
           <TouchableOpacity
-            key={Math.floor(Math.random() * 100) + value}
+            key={value}
             onPress={() => onRemoveTag(index)}
             accessibilityRole="button"
             accessibilityLabel={value}
@@ -150,8 +150,26 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
               placeholder={t`New tag...`}
               onChangeText={(text: string) => setNewTagText(text)}
               InputRightElement={[
-                <CheckIcon mr="3" onPress={() => selectTagHandler(newTagText)} />,
-                <CloseIcon mr="3" onPress={() => setShowTagInput(false)} />
+                <IconButton
+                  key="add-button"
+                  mr="1"
+                  icon={<CheckIcon />}
+                  onPress={() => {
+                    setNewTagText('');
+                    selectTagHandler(newTagText);
+                  }}
+                  isDisabled={!newTagText}
+                />,
+                <IconButton
+                  key="remove-button"
+                  mr="1"
+                  colorScheme="warning"
+                  icon={<DeleteIcon />}
+                  onPress={() => {
+                    setNewTagText('');
+                    setShowTagInput(false);
+                  }}
+                />
               ]}
             />
           </View>
@@ -177,8 +195,8 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
 
           {props.userTags
             .filter((tag) => !selectedTags.find((selectedTag) => selectedTag.id === tag.id))
-            .map((value: UserTag, index: number) => (
-              <Select.Item label={value.tag} value={value.tag} key={props.userTags[index].id} />
+            .map((value) => (
+              <Select.Item label={value.tag} value={value.tag} key={value.id} />
             ))}
         </Select>
       </Box>
