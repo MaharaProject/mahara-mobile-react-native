@@ -167,12 +167,19 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
           selectedValue={selectedDropdownTag}
           onValueChange={(itemValue: string) => selectTagHandler(itemValue)}
         >
-          <Select.Item label={t`Select tags...`} value="" color={styles.colors.darkgrey} />
+          <Select.Item
+            label={t`Select tags...`}
+            value=""
+            color={styles.colors.darkgrey}
+            isDisabled
+          />
           <Select.Item label={t`Add new tag +`} value="Add new tag +" />
 
-          {props.userTags.map((value: UserTag, index: number) => (
-            <Select.Item label={value.tag} value={value.tag} key={props.userTags[index].id} />
-          ))}
+          {props.userTags
+            .filter((tag) => !selectedTags.find((selectedTag) => selectedTag.id === tag.id))
+            .map((value: UserTag, index: number) => (
+              <Select.Item label={value.tag} value={value.tag} key={props.userTags[index].id} />
+            ))}
         </Select>
       </Box>
     </View>
