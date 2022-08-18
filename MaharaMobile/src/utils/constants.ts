@@ -16,7 +16,6 @@ import {
 // userTagsReducer
 export const ADD_USER_TAGS = 'ADD_USER_TAGS';
 export const CLEAR_USER_TAGS = 'CLEAR_USER_TAGS';
-export const REMOVE_USER_TAG = 'REMOVE_USER_TAG';
 export const UPDATE_ITEM_TAGS = 'UPDATE_ITEM_TAGS';
 
 export const TAGGED_ITEMS = 'TAGGED_ITEMS';

@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Action, AnyAction } from 'redux';
+import { AnyAction } from 'redux';
 import { ItemId, TaggedItems, TagsIds, UserTag } from 'models/models';
 import {
   ADD_USER_TAGS,
   CLEAR_USER_TAGS,
-  REMOVE_USER_TAG,
   SAVE_TAGGED_ITEMS_TO_ASYNC,
   TAGGED_ITEMS,
   TAGS_IDS,
@@ -58,18 +57,6 @@ const addTags = (state: UserTagInfoState, tags: Array<UserTag>): UserTagInfoStat
   };
 };
 
-// TODO: is not used yet
-const removeTag = (state: UserTagInfoState, tag: UserTag) => {
-  const newState = { ...state };
-  delete newState.userTags[tag.id];
-  newState.userTagsIds.splice(
-    newState.userTagsIds.findIndex((id: number) => id === tag.id),
-    1
-  );
-  AsyncStorage.setItem(USER_TAGS, JSON.stringify(newState.userTagsIds));
-  return newState;
-};
-
 /**
  * Updates/Create the entries (if there are no tags) in the set for the given itemId
  * in the taggiedItems object in state. Once updated, sets the 'taggedItems' in AsyncStorage
@@ -84,25 +71,18 @@ const updateItemTags = (
   tagsIds: TagsIds,
   itemId: ItemId
 ): UserTagInfoState => {
-  // Update tags for this item
-  let updatedTaggedItems: TaggedItems = { ...state.taggedItems };
-
-  // Remove all tags from this item and reference
   if (tagsIds.length === 0) {
-    delete updatedTaggedItems[itemId];
-  } else {
-    // Overriding the tags of an item with new updated ones
-    updatedTaggedItems = {
-      ...state.taggedItems,
-      [itemId]: new Set(tagsIds)
-    };
+    // Remove all tags from this item and reference
+    return { ...state, taggedItems: { ...state.taggedItems, [itemId]: [] } };
   }
-
-  const newState: UserTagInfoState = {
+  // Overriding the tags of an item with new updated ones
+  return {
     ...state,
-    taggedItems: updatedTaggedItems
+    taggedItems: {
+      ...state.taggedItems,
+      [itemId]: Array.from(new Set(tagsIds))
+    }
   };
-  return newState;
 };
 
 /**
@@ -134,7 +114,7 @@ const updateTaggedItemsFromAsync = (
   const updatedTaggedItemIds: Array<ItemId> = Object.keys(asyncTaggedItemsData);
   const updatedTaggeditems: TaggedItems = {};
   updatedTaggedItemIds.forEach((itemId) => {
-    updatedTaggeditems[itemId] = new Set(asyncTaggedItemsData[itemId]);
+    updatedTaggeditems[itemId] = asyncTaggedItemsData[itemId];
   });
 
   return {
@@ -148,8 +128,6 @@ export const userTagsReducer = (state = initialState, action: AnyAction): UserTa
   switch (action.type) {
     case ADD_USER_TAGS:
       return addTags(state, action.userTags);
-    case REMOVE_USER_TAG:
-      return removeTag(state, action.userTag);
     case UPDATE_USER_TAGS:
       return { ...state, userTags: state.userTags.concat(action.userTags) };
     case UPDATE_TAGS_IDS:
