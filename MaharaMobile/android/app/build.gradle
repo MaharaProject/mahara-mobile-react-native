@@ -129,6 +129,15 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
+
+/**
+ * import values from keystore file for signing builds with 
+ */
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -138,8 +147,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 62
-        versionName "21.10.0"
+        versionCode 63
+        versionName "21.11.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {
@@ -224,13 +233,10 @@ android {
     signingConfigs {
         release {
             keyAlias 'upload'
-            storeFile file('maharamobile-keystore.jks')
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
-                storeFile file(MYAPP_UPLOAD_STORE_FILE)
-                storePassword MYAPP_UPLOAD_STORE_PASSWORD
-                keyAlias MYAPP_UPLOAD_KEY_ALIAS
-                keyPassword MYAPP_UPLOAD_KEY_PASSWORD
-            }
+            storeFile file(keystoreProperties['UPLOAD_STORE_FILE'])   
+            storePassword keystoreProperties['UPLOAD_STORE_PASSWORD']
+            keyAlias keystoreProperties['UPLOAD_KEY_ALIAS']
+            keyPassword keystoreProperties['UPLOAD_KEY_PASSWORD']                        
         }
         debug {
             storeFile file('debug.keystore')
