@@ -20,9 +20,6 @@ function LogoView(props: Props) {
       }}
       style={{ ...generic.view }}
     >
-      {/* <Maha0raGradient> */}
-      {/* <MaharaGradient style={generic.linearGradient}> */}
-
       <Flex alignItems="center">
         <Center w="70%" h={40}>
           <LogoSvg />

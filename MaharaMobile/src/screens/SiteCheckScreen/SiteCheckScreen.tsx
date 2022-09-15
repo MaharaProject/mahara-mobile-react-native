@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
-import { Action, AnyAction, AsyncThunkAction } from '@reduxjs/toolkit';
 import {
   Alert,
   CloseIcon,
@@ -24,7 +23,6 @@ import styles from 'assets/styles/variables';
 import LoginTypes from 'components/LoginTypes/LoginTypes';
 import LogoView from 'components/LogoView/LogoView';
 import LinkButton from 'components/UI/LinkButton/LinkButton';
-// import MaharaGradient from 'components/UI/MaharaGradient/MaharaGradient';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
 import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
@@ -217,7 +215,6 @@ function SiteCheckScreen(props: Props) {
       <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>
         <LinkButton text={t`Skip`} onPress={skipLogin} />
       </View>
-      {/* </MaharaGradient> */}
     </LogoView>
   );
 }
