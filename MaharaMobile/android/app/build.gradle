@@ -129,13 +129,27 @@ def reactNativeArchitectures() {
     return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
 }
 
-
+import java.io.FileNotFoundException;
 /**
- * import values from keystore file for signing builds with 
+ * get release properties & fallback on example/debug if file not exist
  */
-def keystorePropertiesFile = rootProject.file("keystore.properties")
-def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+def getReleaseProperties(){
+    try {    
+        def file = rootProject.file("keystore.properties")
+        def properties = new Properties()
+        properties.load(new FileInputStream(file)) 
+        return properties
+    } catch (FileNotFoundException error) {
+        logger.quiet('Create an "android/keystore.properties" file if you need to perform a release build')
+        def exampleFile = rootProject.file("example-keystore.properties")
+        def exampleProperties = new Properties()
+        exampleProperties.load(new FileInputStream(exampleFile))
+        return exampleProperties
+    }    
+}
+
+def releaseProperties = getReleaseProperties()
+
 
 
 android {
@@ -232,11 +246,10 @@ android {
     }
     signingConfigs {
         release {
-            keyAlias 'upload'
-            storeFile file(keystoreProperties['UPLOAD_STORE_FILE'])   
-            storePassword keystoreProperties['UPLOAD_STORE_PASSWORD']
-            keyAlias keystoreProperties['UPLOAD_KEY_ALIAS']
-            keyPassword keystoreProperties['UPLOAD_KEY_PASSWORD']                        
+            storeFile file(releaseProperties['STORE_FILE'])   
+            storePassword releaseProperties['STORE_PASSWORD']
+            keyAlias releaseProperties['KEY_ALIAS']
+            keyPassword releaseProperties['KEY_PASSWORD']                        
         }
         debug {
             storeFile file('debug.keystore')
