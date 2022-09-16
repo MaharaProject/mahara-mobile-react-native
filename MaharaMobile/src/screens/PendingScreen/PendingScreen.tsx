@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // Images
 import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
-import {
-  CloseIcon,
-  HStack,
-  IconButton,
-  Text,
-  Toast,
-  Alert as ToastAlert,
-  VStack,
-  useToast
-} from 'native-base';
-import { ActivityIndicator, Alert, View } from 'react-native';
+import { Alert, CloseIcon, HStack, IconButton, Text, VStack, useToast } from 'native-base';
+import { ActivityIndicator, Alert as ReactNativeAlert, View } from 'react-native';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import UploadSVG from 'assets/images/upload';
@@ -38,6 +29,7 @@ import { selectAllUploadFiles, selectAllUploadFilesIds } from 'store/reducers/up
 import { selectAllJEntries, selectAllJEntriesIds } from 'store/reducers/uploadJEntriesReducer';
 import { GUEST_USERNAME } from 'utils/constants';
 import { uploadItemToMahara } from 'utils/helperFunctions';
+import { maharaTheme } from 'utils/theme';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
 
@@ -49,7 +41,6 @@ type Props = {
   dispatch: Dispatch;
   navigation: any;
   userName: string;
-  route: { params?: { added: boolean } };
 };
 
 function PendingScreen(props: Props) {
@@ -64,16 +55,18 @@ function PendingScreen(props: Props) {
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
-  useEffect(() => {
-    if (props.route.params?.added) {
-      Toast.show({ title: t`Added to upload queue successfully!` });
-    }
-  }, [props.route.params?.added]);
+  //  This is no longer shown as we don't navigate to the pending screen upon adding an item
+  // useEffect(() => {
+  //   if (props.route.params?.added) {
+  //     Toast.show({ title: t`Added to upload queue successfully!` });
+  //   }
+  // }, [props.route.params?.added]);
+
   /**
    * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
    */
   const onRemove = (itemId: string) => {
-    Alert.alert(
+    ReactNativeAlert.alert(
       t`Are you sure?`,
       t`The deletion of this information or file cannot be undone`,
       [
@@ -105,10 +98,10 @@ function PendingScreen(props: Props) {
   const onUploadError = (itemId: string, errorMessage: string) => {
     toast.show({
       render: ({ id }) => (
-        <ToastAlert mx={2} status="error" variant="left-accent">
-          <VStack>
+        <Alert mx={2} status="error" variant="left-accent">
+          <VStack alignItems="center">
             <HStack space={3} alignItems="center">
-              <ToastAlert.Icon />
+              <Alert.Icon />
               <Text w="100%" fontWeight="medium">{t`Upload error`}</Text>
               <IconButton
                 icon={<CloseIcon size="4" />}
@@ -119,7 +112,7 @@ function PendingScreen(props: Props) {
             </HStack>
             <Text>{errorMessage}</Text>
           </VStack>
-        </ToastAlert>
+        </Alert>
       )
     });
   };
@@ -173,21 +166,32 @@ function PendingScreen(props: Props) {
 
     toast.show({
       render: ({ id }) => (
-        <ToastAlert mx={2} status="success" variant="left-accent">
-          <VStack>
+        <Alert
+          mx={2}
+          status="success"
+          backgroundColor={maharaTheme.colors.success[10]}
+          variant="left-accent"
+        >
+          <VStack alignItems="center">
             <HStack space={3} alignItems="center">
-              <ToastAlert.Icon />
-              <Text w="100%" fontWeight="medium">{t`Upload success`}</Text>
+              <Alert.Icon />
+              <Text
+                w="100%"
+                color={maharaTheme.colors.success[900]}
+                fontWeight="medium"
+              >{t`Upload success`}</Text>
               <IconButton
                 icon={<CloseIcon size="4" />}
                 onPress={() => toast.close(id)}
-                colorScheme="green"
+                color={maharaTheme.colors.successIcon}
                 ml="auto"
               />
             </HStack>
-            <Text>{t`Files have been uploaded to your Mahara successfully!`}</Text>
+            <Text
+              color={maharaTheme.colors.success[900]}
+            >{t`Files have been uploaded to your Mahara successfully!`}</Text>
           </VStack>
-        </ToastAlert>
+        </Alert>
       )
     });
   };

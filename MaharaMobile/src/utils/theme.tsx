@@ -80,7 +80,31 @@ export const maharaTheme = extendTheme({
     green: '#576c36',
     danger: '#a9000d',
     dark: '#000',
-    light: '#FFF'
+    light: '#FFF',
+    successIcon: '#76A63D',
+    debug: {
+      100: '#B8D7E7',
+      200: '#A6C6D7',
+      300: '#93B5C7',
+      400: '#80A4B7',
+      500: '#6D93A6',
+      600: '#5B8296',
+      700: '#487185',
+      800: '#356075',
+      900: '#224E64'
+    },
+    success: {
+      10: '#CEDDB9',
+      50: '#BBCAA6',
+      100: '#A8B792',
+      200: '#95A47F',
+      300: '#81906B',
+      400: '#6E7D58',
+      500: '#5A6944',
+      600: '#51603B',
+      700: '#475631',
+      800: '#33421D'
+    }
   },
   fontConfig: {
     OpenSans: {
