@@ -64,8 +64,8 @@ msgid "Add {0}"
 msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:69
-msgid "Added to upload queue successfully!"
-msgstr ""
+#~ msgid "Added to upload queue successfully!"
+#~ msgstr ""
 
 #: src/components/LoginTypes/LoginTypes.tsx:76
 #~ msgid "Address of your Mahara site"
@@ -113,7 +113,7 @@ msgid "App version"
 msgstr ""
 
 #: src/hooks/useChangeNavigationWarning.ts:8
-#: src/screens/PendingScreen/PendingScreen.tsx:77
+#: src/screens/PendingScreen/PendingScreen.tsx:70
 #: src/utils/authHelperFunctions.ts:129
 msgid "Are you sure?"
 msgstr ""
@@ -142,7 +142,7 @@ msgstr ""
 
 #: src/components/UI/CancelButton/CancelButton.tsx:21
 #: src/hooks/useChangeNavigationWarning.ts:10
-#: src/screens/PendingScreen/PendingScreen.tsx:81
+#: src/screens/PendingScreen/PendingScreen.tsx:74
 #: src/utils/addEditHelperFunctions.tsx:57
 #: src/utils/authHelperFunctions.ts:133
 msgid "Cancel"
@@ -164,7 +164,7 @@ msgstr ""
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:110
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:108
 msgid "Connection error"
 msgstr ""
 
@@ -182,7 +182,7 @@ msgstr ""
 msgid "Default options"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:86
+#: src/screens/PendingScreen/PendingScreen.tsx:79
 msgid "Delete"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "Edit {0}"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:179
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:177
 msgid "Enter a different URL"
 msgstr ""
 
@@ -236,7 +236,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:188
+#: src/screens/PendingScreen/PendingScreen.tsx:192
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
@@ -450,7 +450,7 @@ msgstr ""
 msgid "New tag..."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:193
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:191
 msgid "Next"
 msgstr ""
 
@@ -501,11 +501,11 @@ msgstr ""
 msgid "Please check the internet connection."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:166
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:164
 msgid "Please enter a URL."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:250
+#: src/screens/PendingScreen/PendingScreen.tsx:254
 msgid "Please login"
 msgstr ""
 
@@ -606,7 +606,7 @@ msgstr ""
 msgid "Single sign-on"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:218
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:216
 msgid "Skip"
 msgstr ""
 
@@ -640,7 +640,7 @@ msgstr ""
 msgid "The Privacy Statement"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:78
+#: src/screens/PendingScreen/PendingScreen.tsx:71
 msgid "The deletion of this information or file cannot be undone"
 msgstr ""
 
@@ -692,7 +692,7 @@ msgstr ""
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:251
+#: src/screens/PendingScreen/PendingScreen.tsx:255
 msgid "To upload pending items"
 msgstr ""
 
@@ -704,7 +704,7 @@ msgstr ""
 msgid "Updated preferences"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:112
+#: src/screens/PendingScreen/PendingScreen.tsx:105
 msgid "Upload error"
 msgstr ""
 
@@ -717,11 +717,11 @@ msgstr ""
 msgid "Upload queue page"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:180
+#: src/screens/PendingScreen/PendingScreen.tsx:182
 msgid "Upload success"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:243
+#: src/screens/PendingScreen/PendingScreen.tsx:247
 msgid "Upload to your site"
 msgstr ""
 
@@ -785,7 +785,7 @@ msgstr ""
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:143
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:141
 msgid "What is the address of your Mahara?"
 msgstr ""
 
@@ -809,11 +809,11 @@ msgstr ""
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:240
+#: src/screens/PendingScreen/PendingScreen.tsx:244
 msgid "Your site: {url}"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:157
+#: src/screens/PendingScreen/PendingScreen.tsx:150
 msgid "Your upload queue is empty"
 msgstr ""
 

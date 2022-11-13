@@ -62,8 +62,8 @@ msgid "Add {0}"
 msgstr "{0} 추가"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:69
-msgid "Added to upload queue successfully!"
-msgstr "업로드 대기열에 성공적으로 추가되었습니다!"
+#~ msgid "Added to upload queue successfully!"
+#~ msgstr "업로드 대기열에 성공적으로 추가되었습니다!"
 
 #: src/components/LoginTypes/LoginTypes.tsx:76
 #~ msgid "Address of your Mahara site"
@@ -111,7 +111,7 @@ msgid "App version"
 msgstr "앱 버전"
 
 #: src/hooks/useChangeNavigationWarning.ts:8
-#: src/screens/PendingScreen/PendingScreen.tsx:77
+#: src/screens/PendingScreen/PendingScreen.tsx:70
 #: src/utils/authHelperFunctions.ts:129
 msgid "Are you sure?"
 msgstr "확실해?"
@@ -140,7 +140,7 @@ msgstr "카메라가 닫혔습니다."
 
 #: src/components/UI/CancelButton/CancelButton.tsx:21
 #: src/hooks/useChangeNavigationWarning.ts:10
-#: src/screens/PendingScreen/PendingScreen.tsx:81
+#: src/screens/PendingScreen/PendingScreen.tsx:74
 #: src/utils/addEditHelperFunctions.tsx:57
 #: src/utils/authHelperFunctions.ts:133
 msgid "Cancel"
@@ -166,7 +166,7 @@ msgstr "이 개인 정보 보호 정책의 변경"
 msgid "Confirm edits to {intlItemType}"
 msgstr "{intlItemType} 편집을 확인하십시오."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:110
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:108
 msgid "Connection error"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Default options"
 msgstr "개인 정보 수집"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:86
+#: src/screens/PendingScreen/PendingScreen.tsx:79
 msgid "Delete"
 msgstr "삭제"
 
@@ -212,7 +212,7 @@ msgstr "초안 분개"
 msgid "Edit {0}"
 msgstr "편집 {0}"
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:179
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:177
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
@@ -238,7 +238,7 @@ msgstr "*로 표시된 필드는 필수입니다."
 msgid "File"
 msgstr "파일"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:188
+#: src/screens/PendingScreen/PendingScreen.tsx:192
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
@@ -415,7 +415,7 @@ msgstr "Mahara 프로젝트 나 Catalyst는 Mahara Mobile에 ..."
 msgid "New tag..."
 msgstr "새 태그 ..."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:193
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:191
 msgid "Next"
 msgstr "다음"
 
@@ -466,11 +466,11 @@ msgstr "사진"
 msgid "Please check the internet connection."
 msgstr "인터넷 연결을 확인하십시오."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:166
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:164
 msgid "Please enter a URL."
 msgstr "URL을 입력하십시오."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:250
+#: src/screens/PendingScreen/PendingScreen.tsx:254
 msgid "Please login"
 msgstr "로그인 해주세요"
 
@@ -571,7 +571,7 @@ msgstr "태그 선택..."
 msgid "Single sign-on"
 msgstr "싱글 사인온"
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:218
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:216
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
@@ -605,7 +605,7 @@ msgstr "이용 약관"
 msgid "The Privacy Statement"
 msgstr "개인 정보 보호 정책"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:78
+#: src/screens/PendingScreen/PendingScreen.tsx:71
 msgid "The deletion of this information or file cannot be undone"
 msgstr "이 정보 또는 파일 삭제를 취소 할 수 없습니다."
 
@@ -657,7 +657,7 @@ msgstr "표제"
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
 msgstr "허용되는 최대 범위까지 ..."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:251
+#: src/screens/PendingScreen/PendingScreen.tsx:255
 msgid "To upload pending items"
 msgstr "보류중인 항목을 업로드하려면"
 
@@ -669,7 +669,7 @@ msgstr "환경 설정 업데이트"
 msgid "Updated preferences"
 msgstr "환경 설정 업데이트"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:112
+#: src/screens/PendingScreen/PendingScreen.tsx:105
 msgid "Upload error"
 msgstr ""
 
@@ -682,11 +682,11 @@ msgstr "업로드 대기열"
 msgid "Upload queue page"
 msgstr "대기열 페이지 업로드"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:180
+#: src/screens/PendingScreen/PendingScreen.tsx:182
 msgid "Upload success"
 msgstr ""
 
-#: src/screens/PendingScreen/PendingScreen.tsx:243
+#: src/screens/PendingScreen/PendingScreen.tsx:247
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
 
@@ -742,7 +742,7 @@ msgstr ""
 msgid "Web services are not enabled on the Mahara site. Please contact the administrator of your site to have them enabled."
 msgstr "Mahara 사이트에서 웹 서비스를 사용할 수 없습니다. 활성화하려면 사이트 관리자에게 문의하십시오."
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:143
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:141
 msgid "What is the address of your Mahara?"
 msgstr ""
 
@@ -766,11 +766,11 @@ msgstr "귀하의 의무"
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr "로그인하면 자신의 이름이 앱에 표시되고 앱과 Mahara 자체에 저장된 액세스 토큰을 통해 Mahara 계정에 연결되므로 두 사람이 서로 통신 할 수 있습니다."
 
-#: src/screens/PendingScreen/PendingScreen.tsx:240
+#: src/screens/PendingScreen/PendingScreen.tsx:244
 msgid "Your site: {url}"
 msgstr "마하라 URL: {url}"
 
-#: src/screens/PendingScreen/PendingScreen.tsx:157
+#: src/screens/PendingScreen/PendingScreen.tsx:150
 msgid "Your upload queue is empty"
 msgstr "업로드 대기열이 비어 있습니다"
 
