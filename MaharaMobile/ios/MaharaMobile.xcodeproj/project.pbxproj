@@ -9,27 +9,9 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MaharaMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MaharaMobileTests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-MaharaMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-MaharaMobile.a */; };
-		10EF726CD174440D925243AE /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1606DF2C58D4BA59B25489B /* FontAwesome5_Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DE57FD9390E4C89AF9957DB /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E15EE8D78494ED491CB9338 /* SimpleLineIcons.ttf */; };
-		417EDA431F494EFC91DFD1ED /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 31252C6683BA4899B632B174 /* AntDesign.ttf */; };
-		468492E9AAF84A94B5D2DDA2 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFA5C5315FD340F99A9A3F2C /* Ionicons.ttf */; };
-		4FCC217921974541895F0CF4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09E152B86DE84267B8C02803 /* MaterialCommunityIcons.ttf */; };
-		5177EED6669C44B7906DE75B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F113C4B7F29B4EA3B3196798 /* Octicons.ttf */; };
-		58146B971AFE4CE9B8AFAD0B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D30A01D0548B4A9489A00328 /* Zocial.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-MaharaMobile-MaharaMobileTests.a */; };
-		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		858AC9A142314D6198208058 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA73B7B6F0F3494DA920B65D /* Entypo.ttf */; };
-		8F0DC54FD68B4A739D2299A9 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67B529B237F74897A784D996 /* Feather.ttf */; };
-		95C4BCDCBEC74B409FF8A6DD /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCC0F5E14E5A4426B9523C7D /* EvilIcons.ttf */; };
-		9C899502EDC5428ABC78A5B0 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0E9299737CB46D4ABCB6927 /* FontAwesome5_Solid.ttf */; };
-		B4AD3CA422074A5E89C8733D /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8976AF3C19C941D9A16A50A1 /* Fontisto.ttf */; };
-		C069F6E172F045029E496804 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BF06011DB984274A255AB6B /* Foundation.ttf */; };
-		ED7B976DB755404192C464AA /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB8C2D4FC7AF483E8A08F3ED /* FontAwesome.ttf */; };
-		F033AFEE9EB841FD8F15FB5D /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51C708BBBE58432BB81312FD /* FontAwesome5_Brands.ttf */; };
-		FD7D31062DC643FF8DA59E88 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B1FE9BB6BF74DE6873A5065 /* MaterialIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -236,7 +218,6 @@
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
-				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
 				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
@@ -291,31 +272,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		13B07F8E1A680F5B00A75B9A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				417EDA431F494EFC91DFD1ED /* AntDesign.ttf in Resources */,
-				858AC9A142314D6198208058 /* Entypo.ttf in Resources */,
-				95C4BCDCBEC74B409FF8A6DD /* EvilIcons.ttf in Resources */,
-				8F0DC54FD68B4A739D2299A9 /* Feather.ttf in Resources */,
-				ED7B976DB755404192C464AA /* FontAwesome.ttf in Resources */,
-				F033AFEE9EB841FD8F15FB5D /* FontAwesome5_Brands.ttf in Resources */,
-				10EF726CD174440D925243AE /* FontAwesome5_Regular.ttf in Resources */,
-				9C899502EDC5428ABC78A5B0 /* FontAwesome5_Solid.ttf in Resources */,
-				B4AD3CA422074A5E89C8733D /* Fontisto.ttf in Resources */,
-				C069F6E172F045029E496804 /* Foundation.ttf in Resources */,
-				468492E9AAF84A94B5D2DDA2 /* Ionicons.ttf in Resources */,
-				4FCC217921974541895F0CF4 /* MaterialCommunityIcons.ttf in Resources */,
-				FD7D31062DC643FF8DA59E88 /* MaterialIcons.ttf in Resources */,
-				5177EED6669C44B7906DE75B /* Octicons.ttf in Resources */,
-				2DE57FD9390E4C89AF9957DB /* SimpleLineIcons.ttf in Resources */,
-				58146B971AFE4CE9B8AFAD0B /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,6 +530,7 @@
 				PRODUCT_NAME = MaharaMobile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -599,6 +556,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MaharaMobile;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
