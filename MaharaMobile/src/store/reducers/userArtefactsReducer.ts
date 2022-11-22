@@ -1,24 +1,18 @@
-import {UserBlog, UserFolder} from '../../models/models';
-import {
-  UserBlogsActions,
-  UserFoldersActions
-} from '../../models/userArtefactsTypes';
+import { UserBlog, UserFolder } from 'models/models';
+import { UserBlogsActions, UserFoldersActions } from 'models/userArtefactsTypes';
 import {
   CLEAR_USER_BLOGS,
   CLEAR_USER_FOLDERS,
   UPDATE_USER_BLOGS,
   UPDATE_USER_FOLDERS
-} from '../../utils/constants';
-import {RootState} from './rootReducer';
+} from 'utils/constants';
+import { RootState } from './rootReducer';
 
 // UserFolders
 export type UserFoldersState = Array<UserFolder>;
 const initialUserFoldersState: UserFoldersState = [];
 
-export const userFoldersReducer = (
-  state = initialUserFoldersState,
-  action: UserFoldersActions
-) => {
+export const userFoldersReducer = (state = initialUserFoldersState, action: UserFoldersActions) => {
   switch (action.type) {
     case UPDATE_USER_FOLDERS:
       // TODO: this doesn't update folders but just overwrites.
@@ -32,17 +26,13 @@ export const userFoldersReducer = (
 };
 
 // UserFolders Selectors
-export const selectUserFolders = (state: RootState) =>
-  state.domainData.userFolders;
+export const selectUserFolders = (state: RootState) => state.domainData.userFolders;
 
 // UserBlogs
 export type UserBlogsState = Array<UserBlog>;
 const initialUserBlogsState: UserBlogsState = [];
 
-export const userBlogsReducer = (
-  state = initialUserBlogsState,
-  action: UserBlogsActions
-) => {
+export const userBlogsReducer = (state = initialUserBlogsState, action: UserBlogsActions) => {
   switch (action.type) {
     case UPDATE_USER_BLOGS:
       // TODO: this doesn't update blogs but just overwrites.

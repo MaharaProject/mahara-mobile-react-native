@@ -1,39 +1,45 @@
-import {MessageDescriptor} from '@lingui/core';
-import {I18n} from '@lingui/react';
-import {Button, Icon, Text} from 'native-base';
 import React from 'react';
-import {View} from 'react-native';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Button, Text } from 'native-base';
+import { View } from 'react-native';
+import { maharaTheme } from 'utils/theme';
 
 type Props = {
   onPress: () => void;
-  text: MessageDescriptor;
-  accessibilityHint?: MessageDescriptor;
+  text: string;
+  accessibilityHint?: string;
   style?: any;
-  icon?: string;
+  icon?: IconDefinition;
   light?: boolean;
 };
 
-const OutlineButton = (props: Props) => (
-  <I18n>
-    {({i18n}) => (
-      <View>
-        <Button
-          iconLeft
-          bordered
-          full
-          light={props.light}
-          rounded
-          textStyle={props.style}
-          accessibilityRole="button"
-          accessibilityLabel={i18n._(props.text)}
-          accessibilityHint={props.accessibilityHint}
-          onPress={props.onPress}>
-          <Icon name={props.icon} />
-          <Text>{i18n._(props.text)}</Text>
-        </Button>
-      </View>
-    )}
-  </I18n>
-);
+function OutlineButton(props: Props) {
+  const buttonColour = maharaTheme.colors.primary[600];
+  return (
+    <View>
+      <Button
+        colorScheme="primary"
+        rounded="full"
+        variant="outline"
+        // marginX={variables.padding.xs}
+        startIcon={
+          props.icon ? (
+            <FontAwesomeIcon icon={props.icon} size={20} color={buttonColour} />
+          ) : undefined
+        }
+        light={props.light}
+        _text={props.style}
+        accessibilityHint={props.accessibilityHint}
+        onPress={props.onPress}
+      >
+        {/* <Icon name={props.icon} /> */}
+        <Text fontWeight={200} color={props.style?.color ?? buttonColour}>
+          {props.text}
+        </Text>
+      </Button>
+    </View>
+  );
+}
 
 export default OutlineButton;

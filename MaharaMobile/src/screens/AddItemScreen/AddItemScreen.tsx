@@ -1,76 +1,65 @@
-import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
-import {CommonActions} from '@react-navigation/native';
-import {Content, View} from 'native-base';
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import generic from '../../assets/styles/generic';
-import AddAudio from '../../components/AddAudio/AddAudio';
-import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
-import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import UploadForm from '../../components/UploadForm/UploadForm';
-import i18n from '../../i18n';
-import {UserBlog, UserFolder, UserTag} from '../../models/models';
+import React, { useState } from 'react';
+import { faFolder } from '@fortawesome/free-regular-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
+import { ScrollView, VStack, View } from 'native-base';
+import { connect } from 'react-redux';
+import generic from 'assets/styles/generic';
+import AddAudio from 'components/AddAudio/AddAudio';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import UploadForm from 'components/UploadForm/UploadForm';
+import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
+import { UploadItemType, UserBlog, UserFolder, UserTag } from 'models/models';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
   selectToken,
   selectUrl
-} from '../../store/reducers/loginInfoReducer';
-import {RootState} from '../../store/reducers/rootReducer';
-import {selectAllUploadFiles} from '../../store/reducers/uploadFilesReducer';
-import {selectAllJEntries} from '../../store/reducers/uploadJEntriesReducer';
-import {
-  selectUserBlogs,
-  selectUserFolders
-} from '../../store/reducers/userArtefactsReducer';
-import {getUserTags} from '../../store/reducers/userTagsReducer';
-import {
-  pickDocument,
-  renderImagePreview,
-  takePhoto
-} from '../../utils/addEditHelperFunctions';
-import {emptyFile} from '../../utils/constants';
-import {getUploadTypeIntlStrings} from '../../utils/helperFunctions';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectAllUploadFiles } from 'store/reducers/uploadFilesReducer';
+import { selectAllJEntries } from 'store/reducers/uploadJEntriesReducer';
+import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
+import { getUserTags } from 'store/reducers/userTagsReducer';
+import { pickDocument, renderImagePreview, takePhoto } from 'utils/addEditHelperFunctions';
+import { emptyFile } from 'utils/constants';
+import { getUploadTypeIntlStrings } from 'utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
   userTags: Array<UserTag>;
   token: string;
   navigation: any;
-  route: {params: {itemType: string}};
+  route: { params: { itemType: UploadItemType } };
   url: string;
   userBlogs: Array<UserBlog>;
   defaultFolderTitle: string;
   defaultBlogId: number;
 };
 
-const AddItemScreen = (props: Props) => {
-  // State
-  // TODO: itemtype is type UploadItemType ensures from the navigate in selectmediascreen
+function AddItemScreen(props: Props) {
   const itemType = props.route.params?.itemType ?? 'FILE';
   const [pickedFile, setPickedFile] = useState(emptyFile);
 
+  // track if the form has changes and block navigating away when dirty
+  const [isDirty, setDirty] = useState(false);
+  useChangeNavigationWarning(isDirty);
+
   return (
-    <Content>
-      <View style={generic.wrap}>
+    <ScrollView>
+      <VStack space={2} style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
-        (pickedFile.type.startsWith('image') ||
-          pickedFile.type.startsWith('video'))
+        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
           ? renderImagePreview(pickedFile.uri)
           : null}
         {itemType === 'FILE' && (
           <View>
             <OutlineButton
-              text={
-                pickedFile.uri === ''
-                  ? t`Select a file`
-                  : t`Select a different file`
-              }
+              text={pickedFile.uri === '' ? t`Select a file` : t`Select a different file`}
               onPress={() => pickDocument(setPickedFile)}
               style={null}
-              icon="folder-open"
+              icon={faFolder}
             />
           </View>
         )}
@@ -78,7 +67,7 @@ const AddItemScreen = (props: Props) => {
         {itemType === 'PHOTO' && (
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
-            icon="camera"
+            icon={faCamera}
             text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
           />
         )}
@@ -97,33 +86,20 @@ const AddItemScreen = (props: Props) => {
             itemType={itemType}
             token={props.token}
             url={props.url}
-            editItem={null}
             navigation={props.navigation}
             defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
+            setDirty={setDirty}
           />
         </View>
-      </View>
-    </Content>
+      </VStack>
+    </ScrollView>
   );
-};
+}
 
-export const AddItemScreenOptions = (navData) => {
-  const itemType = navData.route.params?.itemType ?? 'FILE';
-  const intlStringOfItemType = getUploadTypeIntlStrings(itemType).toLowerCase();
-  const addString = i18n._(t`Add`);
-  const headerTitle = addString.concat(' ', intlStringOfItemType);
-
-  return {
-    headerTitle,
-    headerLeft: () => (
-      // TODO: use the HeaderBackButton in the future for better accessibility (default)
-      <CustomVerifyBackButton
-        goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
-      />
-    )
-  };
-};
+export const AddItemScreenOptions = (navData) => ({
+  title: t`Add ${getUploadTypeIntlStrings(navData.route.params.itemType).toLowerCase()}`
+});
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),
@@ -137,4 +113,4 @@ const mapStateToProps = (state: RootState) => ({
   defaultBlogId: selectDefaultBlogId(state)
 });
 
-export default connect(mapStateToProps)(withI18n()(AddItemScreen));
+export default connect(mapStateToProps)(AddItemScreen);

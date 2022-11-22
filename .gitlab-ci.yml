@@ -26,6 +26,11 @@ lint:
   script:
     - cd MaharaMobile
     - npm run lint
+prettier:
+  stage: lint
+  script:
+    - cd MaharaMobile
+    - npm run prettier
 
 test:
   stage: test

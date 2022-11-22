@@ -1,13 +1,11 @@
-import {MessageDescriptor} from '@lingui/core';
-import {Text} from 'native-base';
 import React from 'react';
-import styles from '../../../assets/styles/variables';
-import i18n from '../../../i18n';
+import { Text } from 'native-base';
+import styles from 'assets/styles/variables';
 
 type Props = {
   children?: React.ReactNode;
-  text?: MessageDescriptor; //  not yet translated
-  textTranslated?: string; // translated
+  text?: string;
+  childrenFirst?: boolean;
   style?: any;
 };
 
@@ -17,18 +15,20 @@ type Props = {
  * component otherwise the component will try to translate it.
  * @param props
  */
-const MediumText = (props: Props) => {
+function MediumText(props: Props) {
   return (
     <Text
       style={{
         fontSize: styles.font.md,
         flexWrap: 'wrap',
         ...props.style
-      }}>
-      {props.text ? i18n._(props.text) : props.children}
-      {props.textTranslated ? props.textTranslated : props.children}
+      }}
+    >
+      {props.children != null && props.childrenFirst ? props.children : null}
+      {!!props.text && props.text}
+      {props.children && !props.childrenFirst ? props.children : null}
     </Text>
   );
-};
+}
 
 export default MediumText;

@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import styles from '../../../assets/styles/variables';
+import { StyleSheet } from 'react-native';
+import styles from 'assets/styles/variables';
 
 const gridButtonStyles = StyleSheet.create({
   button: {
@@ -9,9 +9,7 @@ const gridButtonStyles = StyleSheet.create({
     borderRadius: 25
   },
   buttonText: {
-    textAlign: 'center',
-    fontSize: styles.font.lg,
-    fontWeight: 'bold',
+    fontSize: styles.font.md,
     color: styles.colors.light,
     marginBottom: styles.padding.md
   },
@@ -31,6 +29,18 @@ const gridButtonStyles = StyleSheet.create({
   },
   darkbrown: {
     backgroundColor: styles.colors.darkbrown_grid_button
+  },
+  journalEntry: {
+    backgroundColor: styles.colors.lightbrown_grid_button,
+    padding: styles.padding.sm
+  },
+  application: {
+    backgroundColor: styles.colors.green_grid_button,
+    padding: styles.padding.sm
+  },
+  audio: {
+    backgroundColor: styles.colors.darkbrown_grid_button,
+    padding: styles.padding.sm
   }
 });
 

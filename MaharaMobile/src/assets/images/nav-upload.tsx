@@ -1,16 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {View} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import { View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
-const NavUploadSVG = () => {
+function NavUploadSVG() {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="60"
-        height="30"
-        viewBox="0 0 100 100">
+      <Svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 100 100">
         <Path
           id="nav-upload.svg"
           fill="#566d31"
@@ -20,6 +16,6 @@ const NavUploadSVG = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default NavUploadSVG;

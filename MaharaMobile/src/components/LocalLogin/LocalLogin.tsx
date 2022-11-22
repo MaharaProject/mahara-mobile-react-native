@@ -1,29 +1,34 @@
-import {t, Trans} from '@lingui/macro';
-import {I18n} from '@lingui/react';
-import React, {useState} from 'react';
-import {ActivityIndicator, Platform, Text, TextInput, View} from 'react-native';
-import {getManufacturer, getModel} from 'react-native-device-info';
+import React, { useState } from 'react';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { t } from '@lingui/macro';
+import { IconButton, Input, Stack } from 'native-base';
+import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
+import { getManufacturer, getModel } from 'react-native-device-info';
 import uuid from 'react-native-uuid';
-import LogoSvg from '../../assets/images/Logo-big';
-import forms from '../../assets/styles/forms';
-import generic from '../../assets/styles/generic';
-import headingStyles from '../../assets/styles/headings';
-import variables from '../../assets/styles/variables';
-import {onCheckAuthJSON} from '../../utils/authHelperFunctions';
-import {LOG_IN_ICON} from '../../utils/constants';
-import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import styles from './LocalLogin.style';
+import styles from 'assets/styles/variables';
+import LogoView from 'components/LogoView/LogoView';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { onCheckAuthJSON } from 'utils/authHelperFunctions';
+import { LOG_IN_ICON } from 'utils/constants';
 
 type Props = {
   url: string;
-  onGetToken: Function;
+  onGetToken: (token: string | null) => void;
   isLoading: boolean;
 };
+
+const LocalLoginStyles = StyleSheet.create({
+  input: {
+    backgroundColor: styles.colors.light
+  }
+});
 
 export default function LocalLogin(props: Props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [show, setShow] = React.useState(false);
 
   const checkLoginForToken = async () => {
     const manufacturer = getManufacturer();
@@ -32,7 +37,7 @@ export default function LocalLogin(props: Props) {
     const url = `${props.url}module/mobileapi/json/token.php`;
 
     const body = new FormData();
-    body.append('username', username);
+    body.append('username', username.trim());
     body.append('password', password);
     body.append('service', 'maharamobile');
     body.append('component', 'module/mobileapi');
@@ -61,46 +66,66 @@ export default function LocalLogin(props: Props) {
   };
 
   return (
-    <View style={styles.view}>
-      <MaharaGradient style={generic.linearGradient}>
-        <View style={styles.wrapper}>
-          <View style={styles.imageWrapper}>
-            <LogoSvg />
-          </View>
-          {props.isLoading ? (
-            <ActivityIndicator size="small" color={variables.colors.light} />
-          ) : null}
-          <Text style={[headingStyles.mainHeading, generic.center]}>
-            <Trans>Log in via username and password</Trans>
-          </Text>
-          <I18n>
-            {({i18n}) => (
-              <TextInput
-                style={forms.textInput}
-                placeholder={i18n._(t`Username`)}
-                onChangeText={(usernameInput) => setUsername(usernameInput)}
-                autoCapitalize="none"
-              />
-            )}
-          </I18n>
-          <I18n>
-            {({i18n}) => (
-              <TextInput
-                style={forms.textInput}
-                secureTextEntry
-                placeholder={i18n._(t`Password`)}
-                onChangeText={(passwordInput) => setPassword(passwordInput)}
-                autoCapitalize="none"
-              />
-            )}
-          </I18n>
-          <MediumButton
-            text={t`Login`}
-            icon={LOG_IN_ICON}
-            onPress={checkLoginForToken}
+    <LogoView>
+      {props.isLoading ? <ActivityIndicator size="small" color={styles.colors.light} /> : null}
+
+      <Stack direction="column" mb="2.5" mt="1.5" space={3}>
+        <SubHeading
+          noColon
+          style={{ color: styles.colors.light, textAlign: 'center' }}
+          text={t`Log in via username and password`}
+        />
+        <Stack space={4} w="100%" alignItems="center">
+          <Input
+            placeholder={t`Username`}
+            autoCapitalize="none"
+            onChangeText={(usernameInput) => setUsername(usernameInput)}
+            style={LocalLoginStyles.input}
+            variant="filled"
+            w={{
+              base: '100%',
+              md: '25%'
+            }}
+            // InputLeftElement={faPersonBooth}
           />
-        </View>
-      </MaharaGradient>
-    </View>
+          <Input
+            style={LocalLoginStyles.input}
+            onChangeText={(passwordInput) => setPassword(passwordInput)}
+            variant="filled"
+            w={{
+              base: '100%',
+              md: '25%'
+            }}
+            type={show ? 'text' : 'password'}
+            InputRightElement={
+              <IconButton
+                h="full"
+                rounded="none"
+                backgroundColor={styles.colors.light2}
+                onPress={() => setShow(!show)}
+                icon={
+                  show ? (
+                    <FontAwesomeIcon
+                      color={styles.colors.primary}
+                      icon={faEye}
+                      size={styles.font.lg}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      color={styles.colors.primary}
+                      icon={faEyeSlash}
+                      size={styles.font.lg}
+                    />
+                  )
+                }
+              />
+            }
+            placeholder={t`Password`}
+          />
+        </Stack>
+
+        <MediumButton text={t`Login`} icon={LOG_IN_ICON} onPress={checkLoginForToken} />
+      </Stack>
+    </LogoView>
   );
 }

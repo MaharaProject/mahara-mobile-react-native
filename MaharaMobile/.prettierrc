@@ -1,0 +1,25 @@
+{
+  "printWidth": 100,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "importOrder": [
+    "^react$",
+    "<THIRD_PARTY_MODULES>",
+    "^assets/",
+    "^components/",
+    "^hooks/",
+    "^i18n",
+    "^models/",
+    "^navigation/",
+    "^screens/",
+    "^store/",
+    "^utils/",
+    "^[./].*(?<!\\.(c|le|sc)ss)$",
+    "\\.(c|le|sc)ss$"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
+  "importOrderGroupNamespaceSpecifiers": true
+}

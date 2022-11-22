@@ -1,141 +1,117 @@
-/* eslint-disable react/no-unused-prop-types */
-import {faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {withI18n} from '@lingui/react';
-import React from 'react';
-import {
-  Image,
-  ImageSourcePropType,
-  Text,
-  TouchableOpacity,
-  View
-} from 'react-native';
-import {Icon} from 'react-native-elements';
-import styles from '../../assets/styles/variables';
-import Card from '../UI/Card/Card';
+import React, { useCallback } from 'react';
+import { faCheckCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Box, Text } from 'native-base';
+import { Image, ImageSourcePropType, TouchableOpacity, View } from 'react-native';
+import AddJournalEntrySvg from 'assets/images/AddJournalEntry';
+import PickFileSvg from 'assets/images/PickFile';
+import RecordAudioSvg from 'assets/images/RecordAudio';
+import styles from 'assets/styles/variables';
+import Card from 'components/UI/Card/Card';
+import gridButtonStyles from 'components/UI/GridButton/GridButton.style';
 import uploadItemStyles from './UploadItem.style';
 
 type Props = {
   title: string;
-  description: string;
   mimetype: string;
-  index: number;
   image: ImageSourcePropType;
+  onRemove: () => void;
+  onEdit: () => void;
   successfullyUploadedItem: boolean;
-  showUploadError: boolean;
-  onRemove: () => {};
-  onEdit: () => {};
-  onClearError: () => {};
 };
 
-const UploadItem = (props: Props) => {
+function UploadItem(props: Props) {
   const title = props.title ? props.title : '';
-  const displayName: string =
-    title.length > 25 ? `${title.substring(0, 20)}...` : title;
-  const mimetypes = ['application', 'audio', 'text', 'video', 'journalEntry']; // images ignored as they have own thumbnail
+  const displayName: string = title;
 
-  const getMimetypeIcon = (mimetype: string) => {
-    let match = '';
-    mimetypes.forEach((type: string) => {
-      if (mimetype.includes(type)) {
-        match = type;
-      }
-    });
-
-    switch (match) {
-      case 'application':
-        return 'file';
-      case 'audio':
-        return 'music';
-      case 'text':
-        return 'anchor';
-      case 'video':
-        return 'film';
-      case 'journalEntry':
-        return 'book';
-      default:
-        return 'question';
+  const Thumbnail = useCallback(() => {
+    let thumbnailStyles;
+    if (props.mimetype.includes('application')) {
+      thumbnailStyles = gridButtonStyles.application;
     }
-  };
-
-  const Thumbnail = () => {
+    if (props.mimetype.includes('audio')) {
+      thumbnailStyles = gridButtonStyles.audio;
+    }
+    if (props.mimetype.includes('journalEntry')) {
+      thumbnailStyles = gridButtonStyles.journalEntry;
+    }
     // not an image
     if (!props.mimetype.includes('image')) {
       return (
         <View style={uploadItemStyles.imageContainer}>
-          <Icon
-            name={getMimetypeIcon(props.mimetype)}
-            size={30}
-            type="font-awesome"
-            color={styles.colors.light}
-            containerStyle={uploadItemStyles.icon}
-          />
+          <Box style={[uploadItemStyles.icon, thumbnailStyles]}>
+            {props.mimetype.includes('audio') ? <RecordAudioSvg /> : null}
+            {props.mimetype.includes('application') ? <PickFileSvg /> : null}
+            {props.mimetype.includes('journalEntry') ? <AddJournalEntrySvg /> : null}
+          </Box>
         </View>
       );
     }
     return (
-      <View
-        style={[
-          uploadItemStyles.imageContainer,
-          {borderWidth: 4, borderColor: styles.colors.light}
-        ]}>
+      <View style={[uploadItemStyles.imageContainer]}>
         <Image source={props.image} style={uploadItemStyles.thumbnail} />
       </View>
     );
-  };
+  }, [props.image, props.mimetype]);
 
   return (
     <View style={uploadItemStyles.uploadItem}>
-      <Card style={{...uploadItemStyles.pendingCard}}>
-        {/* {props.successfullyUploadedItem && <Text>Upload successful!</Text>} */}
-        {props.showUploadError && (
-          <View>
-            {/* TODO: Error message displayed on item card for failure upload */}
-            {/* 
-            There was an error uploading this file. Please try again.
-          
-            <Icon
-              onPress={props.onClearError}
-              name="times"
-              type="font-awesome"
-              color={styles.colors.dark}
-            /> */}
-          </View>
-        )}
-
+      <Card
+        style={{
+          ...uploadItemStyles.pendingCard,
+          ...(props.successfullyUploadedItem ? uploadItemStyles.success : {})
+        }}
+      >
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
-          <Text style={uploadItemStyles.text}>{displayName} </Text>
+          <Text isTruncated fontSize="sm" fontWeight="light">
+            {displayName}{' '}
+          </Text>
         </View>
         <View style={uploadItemStyles.buttonContainer}>
-          <View style={uploadItemStyles.button}>
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityLabel="Remove"
-              onPress={props.onRemove}>
+          {!props.successfullyUploadedItem && (
+            <>
+              <View style={uploadItemStyles.button}>
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  accessibilityLabel="Remove"
+                  onPress={props.onRemove}
+                >
+                  <FontAwesomeIcon
+                    icon={faTrashAlt}
+                    style={uploadItemStyles.remove}
+                    size={styles.font.xl}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={uploadItemStyles.button}>
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  accessibilityLabel="Edit"
+                  onPress={props.onEdit}
+                >
+                  <FontAwesomeIcon
+                    icon={faEdit}
+                    style={uploadItemStyles.edit}
+                    size={styles.font.xl}
+                  />
+                </TouchableOpacity>
+              </View>
+            </>
+          )}
+          {props.successfullyUploadedItem && (
+            <View style={uploadItemStyles.button}>
               <FontAwesomeIcon
-                icon={faTrashAlt}
-                style={uploadItemStyles.remove}
-                size={25}
+                icon={faCheckCircle}
+                style={uploadItemStyles.success}
+                size={styles.font.xl}
               />
-            </TouchableOpacity>
-          </View>
-          <View style={uploadItemStyles.button}>
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityLabel="Edit"
-              onPress={props.onEdit}>
-              <FontAwesomeIcon
-                icon={faEdit}
-                style={uploadItemStyles.edit}
-                size={25}
-              />
-            </TouchableOpacity>
-          </View>
+            </View>
+          )}
         </View>
       </Card>
     </View>
   );
-};
+}
 
-export default withI18n()(UploadItem);
+export default UploadItem;

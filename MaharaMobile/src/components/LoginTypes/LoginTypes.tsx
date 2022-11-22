@@ -1,14 +1,15 @@
-import {t, Trans} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
 import React from 'react';
-import {Text, View} from 'react-native';
-import generic from '../../assets/styles/generic';
-import headingStyles from '../../assets/styles/headings';
+import { faKey, faSignInAlt, faTags } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
+import { Stack } from 'native-base';
+import { View } from 'react-native';
+import generic from 'assets/styles/generic';
+import styles from 'assets/styles/variables';
 import MediumButton from '../UI/MediumButton/MediumButton';
-import styles from './LoginTypes.style';
+import SubHeading from '../UI/SubHeading/SubHeading';
 
 type Props = {
-  goToLoginType: Function;
+  goToLoginType: (type: string) => void;
   tokenLogin: boolean;
   ssoLogin: boolean;
   localLogin: boolean;
@@ -19,35 +20,47 @@ type Props = {
  * - a list of buttons for available login types
  * @param props
  */
-const LoginTypes = (props: Props) => {
+function LoginTypes(props: Props) {
   // https://yoursite.edu/
 
   return (
-    <View style={styles.view}>
-      <Text style={[headingStyles.mainHeading, generic.center]}>
-        <Trans>Select login type</Trans>
-      </Text>
-
-      {props.ssoLogin && (
-        <MediumButton
-          text={t`Single sign-on`}
-          onPress={() => props.goToLoginType('sso')}
+    <View
+      style={{
+        ...generic.view,
+        padding: styles.padding.sm,
+        flexGrow: 1
+      }}
+    >
+      <Stack direction="column" mb="2.5" mt="1.5" space={3}>
+        <SubHeading
+          noColon
+          text={t`Select login type`}
+          style={{ color: styles.colors.light, textAlign: 'center' }}
         />
-      )}
-      {props.localLogin && (
-        <MediumButton
-          text={t`Local`}
-          onPress={() => props.goToLoginType('basic')}
-        />
-      )}
-      {props.tokenLogin && (
-        <MediumButton
-          text={t`Access token`}
-          onPress={() => props.goToLoginType('token')}
-        />
-      )}
+        {props.ssoLogin && (
+          <MediumButton
+            text={t`Single sign-on`}
+            icon={faKey}
+            onPress={() => props.goToLoginType('sso')}
+          />
+        )}
+        {props.localLogin && (
+          <MediumButton
+            text={t`Local`}
+            icon={faSignInAlt}
+            onPress={() => props.goToLoginType('basic')}
+          />
+        )}
+        {props.tokenLogin && (
+          <MediumButton
+            text={t`Access token`}
+            icon={faTags}
+            onPress={() => props.goToLoginType('token')}
+          />
+        )}
+      </Stack>
     </View>
   );
-};
+}
 
-export default withI18n()(LoginTypes);
+export default LoginTypes;

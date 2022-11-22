@@ -1,16 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {View} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import { View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
-const NavAddActiveSVG = () => {
+function NavAddActiveSVG() {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="30"
-        height="30"
-        viewBox="0 0 102 102">
+      <Svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 102 102">
         <Path
           id="nav-add-active.svg"
           fill="#566d31"
@@ -20,6 +16,6 @@ const NavAddActiveSVG = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default NavAddActiveSVG;

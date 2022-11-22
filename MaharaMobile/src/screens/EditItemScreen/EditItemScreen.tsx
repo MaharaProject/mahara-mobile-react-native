@@ -1,36 +1,28 @@
-import {t} from '@lingui/macro';
-import {CommonActions} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {ScrollView, View} from 'react-native';
-import {connect} from 'react-redux';
-import generic from '../../assets/styles/generic';
-import AddAudio from '../../components/AddAudio/AddAudio';
-import CustomVerifyBackButton from '../../components/UI/CustomVerifyBackButton/CustomVerifyBackButton';
-import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import UploadForm from '../../components/UploadForm/UploadForm';
-import i18n from '../../i18n';
-import {PendingMFile, UserBlog, UserFolder, UserTag} from '../../models/models';
+import React, { useState } from 'react';
+import { t } from '@lingui/macro';
+import { VStack } from 'native-base';
+import { ScrollView, View } from 'react-native';
+import { connect } from 'react-redux';
+import generic from 'assets/styles/generic';
+import AddAudio from 'components/AddAudio/AddAudio';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import UploadForm from 'components/UploadForm/UploadForm';
+import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
+import { PendingMFile, UserBlog, UserFolder, UserTag } from 'models/models';
 import {
   selectDefaultBlogId,
   selectDefaultFolderTitle,
   selectToken,
   selectUrl
-} from '../../store/reducers/loginInfoReducer';
-import {RootState} from '../../store/reducers/rootReducer';
-import {selectAllUploadFiles} from '../../store/reducers/uploadFilesReducer';
-import {selectAllJEntries} from '../../store/reducers/uploadJEntriesReducer';
-import {
-  selectUserBlogs,
-  selectUserFolders
-} from '../../store/reducers/userArtefactsReducer';
-import {getUserTags} from '../../store/reducers/userTagsReducer';
-import {
-  pickDocument,
-  renderImagePreview,
-  takePhoto
-} from '../../utils/addEditHelperFunctions';
-import {emptyFile} from '../../utils/constants';
-import {getUploadTypeIntlStrings} from '../../utils/helperFunctions';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectAllUploadFiles } from 'store/reducers/uploadFilesReducer';
+import { selectAllJEntries } from 'store/reducers/uploadJEntriesReducer';
+import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
+import { getUserTags } from 'store/reducers/userTagsReducer';
+import { pickDocument, renderImagePreview, takePhoto } from 'utils/addEditHelperFunctions';
+import { CAMERA_ICON, FOLDER_ICON, emptyFile } from 'utils/constants';
+import { getUploadTypeIntlStrings } from 'utils/helperFunctions';
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -44,30 +36,27 @@ type Props = {
   defaultBlogId: number;
 };
 
-const EditItemScreen = (props: Props) => {
+function EditItemScreen(props: Props) {
   // ItemType is type UploadItemType ensures from the navigate in selectMediaScreen
-  const {itemType} = props.route.params;
+  const { itemType } = props.route.params;
   const pendingFile: PendingMFile = props.route.params.itemToEdit;
 
   const [pickedFile, setPickedFile] = useState(
-    pendingFile.maharaFormData
-      ? pendingFile.maharaFormData.filetoupload
-      : emptyFile
+    pendingFile.maharaFormData ? pendingFile.maharaFormData.filetoupload : emptyFile
   );
 
   // Get item passed in as nav param from Upload Queue
-  const {itemToEdit} = props.route.params;
+  const { itemToEdit } = props.route.params;
 
-  useEffect(() => {
-    setPickedFile(pickedFile);
-  }, []);
+  // track if the form has changes and block navigating away when dirty
+  const [isDirty, setDirty] = useState(false);
+  useChangeNavigationWarning(isDirty);
 
   return (
     <ScrollView>
-      <View style={generic.wrap}>
+      <VStack space={4} style={generic.wrap}>
         {pickedFile.name &&
-        (pickedFile.type.startsWith('image') ||
-          pickedFile.type.startsWith('video'))
+        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
           ? renderImagePreview(pickedFile.uri)
           : null}
         {itemType === 'FILE' && (
@@ -78,23 +67,20 @@ const EditItemScreen = (props: Props) => {
                 pickDocument(setPickedFile);
               }}
               style={null}
-              icon="folder-open"
+              icon={FOLDER_ICON}
             />
           </View>
         )}
         {itemType === 'PHOTO' && (
           <OutlineButton
             onPress={() => takePhoto(setPickedFile)}
-            icon="camera"
+            icon={CAMERA_ICON}
             text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
           />
         )}
         {itemType === 'AUDIO' && (
           <View>
-            <AddAudio
-              audioFileToEdit={pickedFile}
-              setPickedFile={setPickedFile}
-            />
+            <AddAudio audioFileToEdit={pickedFile} setPickedFile={setPickedFile} />
           </View>
         )}
         <View>
@@ -110,27 +96,17 @@ const EditItemScreen = (props: Props) => {
             navigation={props.navigation}
             defFolderTitle={props.defaultFolderTitle}
             defaultBlogId={props.defaultBlogId}
+            setDirty={setDirty}
           />
         </View>
-      </View>
+      </VStack>
     </ScrollView>
   );
-};
+}
 
-export const EditItemScreenOptions = (navData) => {
-  return {
-    headerTitle: i18n._(
-      t`Edit ${getUploadTypeIntlStrings(
-        navData.route.params.itemType
-      ).toLowerCase()}`
-    ),
-    headerLeft: () => (
-      <CustomVerifyBackButton
-        goBack={() => navData.navigation.dispatch(CommonActions.goBack())}
-      />
-    )
-  };
-};
+export const EditItemScreenOptions = (navData) => ({
+  title: t`Edit ${getUploadTypeIntlStrings(navData.route.params.itemType).toLowerCase()}`
+});
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),

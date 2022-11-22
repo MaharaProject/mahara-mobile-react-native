@@ -1,23 +1,22 @@
-import React, {useEffect, useState} from 'react';
-import {t} from '@lingui/macro';
-import {Icon, Input, Item, Picker, Text, View} from 'native-base';
-import {TouchableOpacity} from 'react-native';
-import buttons from '../../assets/styles/buttons';
-import forms from '../../assets/styles/forms';
-import styles from '../../assets/styles/variables';
-import i18n from '../../i18n';
-import {UserTag} from '../../models/models';
-import {newUserTag} from '../../models/typeCreators';
-import {findUserTagByString} from '../../utils/helperFunctions';
-import SubHeading from '../UI/SubHeading/SubHeading';
+import React, { useCallback, useEffect, useState } from 'react';
+import { t } from '@lingui/macro';
+import { Box, CheckIcon, DeleteIcon, IconButton, Input, Select, Text, View } from 'native-base';
+import { TouchableOpacity } from 'react-native';
+import buttons from 'assets/styles/buttons';
+import forms from 'assets/styles/forms';
+import styles from 'assets/styles/variables';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { UserTag } from 'models/models';
+import { newUserTag } from 'models/typeCreators';
+import { findUserTagByString } from 'utils/helperFunctions';
 import uploadFormStyles from './UploadForm.style';
 
 type Props = {
   existingTags: Array<UserTag>;
   userTags: Array<UserTag>;
-  onAddNewUserTag: Function;
-  onUpdateItemTagsIds: Function;
-  onSetItemUploadTagsString: Function;
+  onAddNewUserTag: (tag: UserTag) => void;
+  onUpdateItemTagsIds: (ids: number[]) => void;
+  onSetItemUploadTagsString: (tags: string[]) => void;
 };
 
 type State = {
@@ -27,26 +26,21 @@ type State = {
   itemTagIds: Array<number>;
 };
 
-const TagsPicker = (props: Props) => {
+function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }: Props) {
   const [newTagText, setNewTagText] = useState('');
-  const [selectedDropdownTag, setSelectedDropdownTag] =
-    useState<State['selectedTag']>();
+  const [selectedDropdownTag, setSelectedDropdownTag] = useState<State['selectedTag']>();
   const [showTagInput, setShowTagInput] = useState(false);
-  const [selectedTags, setSelectedTags] = useState<Array<UserTag>>(
-    props.existingTags || []
+  const [selectedTags, setSelectedTags] = useState<Array<UserTag>>(props.existingTags || []);
+
+  const getSelectedTagsAsStrings = useCallback(
+    () => selectedTags.map((tag: UserTag) => tag.tag),
+    [selectedTags]
   );
 
-  const getSelectedTagsAsStrings = () => {
-    return selectedTags.map((tag: UserTag) => {
-      return tag.tag;
-    });
-  };
-
-  const getSelectedTagsAsIds = () => {
-    return selectedTags.map((tag: UserTag) => {
-      return tag.id;
-    });
-  };
+  const getSelectedTagsAsIds = useCallback(
+    () => selectedTags.map((tag: UserTag) => tag.id),
+    [selectedTags]
+  );
 
   const updateSelectedTags = (tag: UserTag, addTag = true) => {
     const itemTags = new Set(selectedTags);
@@ -93,7 +87,9 @@ const TagsPicker = (props: Props) => {
    * @param tagString for new UserTag
    */
   const selectTagHandler = (tagString: string) => {
-    if (tagString === '') return;
+    if (tagString === '') {
+      return;
+    }
     if (tagString === 'Add new tag +') {
       setShowTagInput(true);
       return;
@@ -101,7 +97,9 @@ const TagsPicker = (props: Props) => {
 
     const selectedTagsAsStrings = getSelectedTagsAsStrings();
 
-    if (selectedTagsAsStrings.includes(tagString)) return;
+    if (selectedTagsAsStrings.includes(tagString)) {
+      return;
+    }
 
     // Find a matching tag
     const tagMatch = findUserTagByString(tagString, props.userTags);
@@ -115,23 +113,28 @@ const TagsPicker = (props: Props) => {
   };
 
   useEffect(() => {
-    props.onSetItemUploadTagsString(getSelectedTagsAsStrings());
-    props.onUpdateItemTagsIds(getSelectedTagsAsIds());
-  }, [selectedTags]);
+    onSetItemUploadTagsString(getSelectedTagsAsStrings());
+    onUpdateItemTagsIds(getSelectedTagsAsIds());
+  }, [
+    getSelectedTagsAsIds,
+    getSelectedTagsAsStrings,
+    onSetItemUploadTagsString,
+    onUpdateItemTagsIds
+  ]);
 
   return (
     <View>
       <View style={uploadFormStyles.tagsContainer}>
         <SubHeading text={t`Tags`} />
-
         {/* Display selected tags */}
         {getSelectedTagsAsStrings().map((value: string, index: number) => (
           <TouchableOpacity
-            key={Math.floor(Math.random() * 100) + value}
+            key={value}
             onPress={() => onRemoveTag(index)}
             accessibilityRole="button"
             accessibilityLabel={value}
-            accessibilityHint={i18n._(t`Tap to remove tag`)}>
+            accessibilityHint={t`Tap to remove tag`}
+          >
             <View style={forms.tag}>
               <Text style={forms.tagText}>{value}</Text>
               <Text style={forms.tagClose} accessibilityLabel="">
@@ -142,46 +145,63 @@ const TagsPicker = (props: Props) => {
         ))}
         {/* Create new tag */}
         {showTagInput && (
-          <Item regular>
+          <View style={uploadFormStyles.tagsContainer}>
             <Input
-              placeholder={i18n._(t`New tag...`)}
+              placeholder={t`New tag...`}
               onChangeText={(text: string) => setNewTagText(text)}
+              InputRightElement={[
+                <IconButton
+                  key="add-button"
+                  mr="1"
+                  icon={<CheckIcon />}
+                  onPress={() => {
+                    setNewTagText('');
+                    selectTagHandler(newTagText);
+                  }}
+                  isDisabled={!newTagText}
+                />,
+                <IconButton
+                  key="remove-button"
+                  mr="1"
+                  colorScheme="warning"
+                  icon={<DeleteIcon />}
+                  onPress={() => {
+                    setNewTagText('');
+                    setShowTagInput(false);
+                  }}
+                />
+              ]}
             />
-
-            <Icon
-              onPress={() => selectTagHandler(newTagText)}
-              name="checkmark-outline"
-            />
-            <Icon onPress={() => setShowTagInput(false)} name="close-outline" />
-          </Item>
+          </View>
         )}
       </View>
       {/* Display drop down of existing tags */}
-      <Item regular style={[buttons.default]}>
-        <Picker
+      <Box style={[buttons.default]}>
+        <Select
           mode="dropdown"
           iosHeader="Select tags"
-          placeholder={i18n._(t`Select tags`)}
-          accessibilityLabel={i18n._(t`Select tags`)}
+          placeholder={t`Select tags`}
+          accessibilityLabel={t`Select tags`}
           selectedValue={selectedDropdownTag}
-          onValueChange={(itemValue: string) => selectTagHandler(itemValue)}>
-          <Picker.Item
-            label={i18n._(t`Select tags...`)}
+          onValueChange={(itemValue: string) => selectTagHandler(itemValue)}
+        >
+          <Select.Item
+            label={t`Select tags...`}
             value=""
             color={styles.colors.darkgrey}
+            isDisabled
           />
-          <Picker.Item label={i18n._(t`Add new tag +`)} value="Add new tag +" />
-          {props.userTags.map((value: UserTag, index: number) => (
-            <Picker.Item
-              label={value.tag}
-              value={value.tag}
-              key={props.userTags[index].id}
-            />
-          ))}
-        </Picker>
-      </Item>
+          <Select.Item label={t`Add new tag +`} value="Add new tag +" />
+
+          {props.userTags
+            .filter((tag) => !selectedTags.find((selectedTag) => selectedTag.id === tag.id))
+            .map((value) => (
+              <Select.Item label={value.tag} value={value.tag} key={value.id} />
+            ))}
+        </Select>
+      </Box>
     </View>
   );
-};
+}
 
 export default TagsPicker;

@@ -757,7 +757,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:110
-msgid "We may occasionally make adjustments to our Terms and  Conditions to reflect changes to the system and in response to feedback. As such, we suggest you check the Terms and Conditions each time you visit this app."
+msgid "We may occasionally make adjustments to our Terms and Conditions to reflect changes to the system and in response to feedback. As such, we suggest you check the Terms and Conditions each time you visit this app."
 msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:85

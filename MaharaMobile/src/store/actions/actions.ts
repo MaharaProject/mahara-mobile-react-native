@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoginInfo, UserTag } from 'models/models';
 import {
   ADD_USER_TAGS,
   CLEAR_USER_TAGS,
@@ -10,30 +11,29 @@ import {
   UPDATE_TAGS_IDS,
   UPDATE_USER_TAGS,
   USER_TAGS
-} from '../../utils/constants';
-import {LoginInfo, UserTag} from '../../models/models';
+} from 'utils/constants';
 
 // action creators - functions that create actions
 
 // userTagsReducer
 export function addUserTags(tags: Array<UserTag>) {
   // saved to async storage inside the reducer
-  return {type: ADD_USER_TAGS, userTags: tags};
+  return { type: ADD_USER_TAGS, userTags: tags };
 }
 
 export function updateUserTags(tags: Array<UserTag>) {
   AsyncStorage.setItem(USER_TAGS, JSON.stringify(tags));
-  return {type: UPDATE_USER_TAGS, userTags: tags};
+  return { type: UPDATE_USER_TAGS, userTags: tags };
 }
 
 export function updateUserTagsIds(userTagsIds: Array<number>) {
   AsyncStorage.setItem(TAGS_IDS, JSON.stringify(userTagsIds));
-  return {type: UPDATE_TAGS_IDS, userTagsIds};
+  return { type: UPDATE_TAGS_IDS, userTagsIds };
 }
 
 export function updateItemTags(itemId: string, tagsIds: Array<number>) {
   // saved to async storage inside reducer
-  return {type: UPDATE_ITEM_TAGS, tagsIds, itemId};
+  return { type: UPDATE_ITEM_TAGS, tagsIds, itemId };
 }
 
 /**
@@ -42,15 +42,15 @@ export function updateItemTags(itemId: string, tagsIds: Array<number>) {
  * returned.
  */
 export function saveTaggedItemsToAsync() {
-  return {type: SAVE_TAGGED_ITEMS_TO_ASYNC};
+  return { type: SAVE_TAGGED_ITEMS_TO_ASYNC };
 }
 
 export function updateTaggedItemsFromAsync(taggedItems: string) {
-  return {type: UPDATE_TAGGED_ITEMS, taggedItems};
+  return { type: UPDATE_TAGGED_ITEMS, taggedItems };
 }
 
 export function clearUserTags() {
-  return {type: CLEAR_USER_TAGS};
+  return { type: CLEAR_USER_TAGS };
 }
 
 /**

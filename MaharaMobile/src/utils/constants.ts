@@ -1,4 +1,5 @@
-import {t} from '@lingui/macro';
+import { faFolder } from '@fortawesome/free-regular-svg-icons';
+import { faArrowRight, faCamera } from '@fortawesome/free-solid-svg-icons';
 import {
   File,
   JournalEntry,
@@ -7,14 +8,14 @@ import {
   PendingMFile,
   UserBlog,
   UserFolder
-} from '../models/models';
+} from 'models/models';
+
 // action types - payloads of information that send data from your application to your store
 
 // DOMAIN DATA
 // userTagsReducer
 export const ADD_USER_TAGS = 'ADD_USER_TAGS';
 export const CLEAR_USER_TAGS = 'CLEAR_USER_TAGS';
-export const REMOVE_USER_TAG = 'REMOVE_USER_TAG';
 export const UPDATE_ITEM_TAGS = 'UPDATE_ITEM_TAGS';
 
 export const TAGGED_ITEMS = 'TAGGED_ITEMS';
@@ -64,7 +65,6 @@ export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';
 
 // UI STATE
 export const SET_LANGUAGE = 'SET_LANGUAGE';
-export const SET_CATALOGS = 'SET_CATALOGS';
 export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 
 // OTHER DATA
@@ -100,19 +100,14 @@ export const RERECORD = 'Re-record';
 export const NOT_PLAYING = 'NOT_PLAYING';
 export const PLAYING = 'PLAYING';
 
-// Internationalisation message descriptors
-
-export const md_JOURNAL_ENTRY = t`journal entry`;
-export const md_FILE = t`file`;
-export const md_PHOTO = t`photo`;
-export const md_AUDIO = t`audio`;
-
 // Icons
-export const LOG_IN_ICON = 'log-in-outline';
+export const LOG_IN_ICON = faArrowRight;
+export const FOLDER_ICON = faFolder;
+export const CAMERA_ICON = faCamera;
 
 // SINGLETON EMPTY
 
-export const emptyFile: File = {uri: '', type: '', name: '', size: 0};
+export const emptyFile: File = { uri: '', type: '', name: '', size: 0 };
 export const emptyMFile: MaharaFile = {
   webservice: '',
   wstoken: '',

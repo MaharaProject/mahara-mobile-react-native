@@ -1,13 +1,9 @@
-import {I18nProvider} from '@lingui/react';
 import React from 'react';
-import 'react-native';
-import {Provider} from 'react-redux';
-import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import i18n from '../../i18n';
+import { render } from 'test-utils';
 import UploadForm from './UploadForm';
 
-jest.useFakeTimers();
 it('renders correctly', () => {
   const props = {
     userTags: [],
@@ -30,11 +26,9 @@ it('renders correctly', () => {
   // here it is possible to pass in any middleware if needed into //configureStore
   const mockStore = configureStore();
 
-  renderer.create(
+  render(
     <Provider store={mockStore(initialState)}>
-      <I18nProvider i18n={i18n} language="en">
-        <UploadForm {...props} />
-      </I18nProvider>
+      <UploadForm {...props} />
     </Provider>
   );
 });

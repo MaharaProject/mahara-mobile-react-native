@@ -1,42 +1,31 @@
-import {t} from '@lingui/macro';
+import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Alert} from 'react-native';
-import {Dispatch} from 'redux';
-import RNFetchBlob from 'rn-fetch-blob';
-import {clearUserTags} from '../store/actions/actions';
+import { Toast } from 'native-base';
+import { Alert } from 'react-native';
+import ReactNativeBlobUtil from 'react-native-blob-util';
+import { Dispatch } from 'redux';
+import { UserBlog, UserBlogJSON, UserFolder, UserTag } from 'models/models';
+import { newUserTag } from 'models/typeCreators';
+import { clearUserTags, updateUserTags, updateUserTagsIds } from 'store/actions/actions';
 import {
+  addToken,
   clearLoginInfo,
   setDefaultBlogId,
   setDefaultFolder,
-  addToken,
   updateGuestStatus,
   updateProfilePic,
   updateUserName
-} from '../store/actions/loginInfo';
+} from 'store/actions/loginInfo';
+import { clearUploadFiles, updateUploadFilesOnLogin } from 'store/actions/uploadFiles';
+import { clearUploadJEntires, updateJEntriesOnLogin } from 'store/actions/uploadJEntries';
 import {
   clearUserBlogs,
   clearUserFolders,
   updateUserBlogs,
   updateUserFolders
-} from '../store/actions/userArtefacts';
-import {
-  clearUploadJEntires,
-  updateJEntriesOnLogin
-} from '../store/actions/uploadJEntries';
-import {
-  clearUploadFiles,
-  updateUploadFilesOnLogin
-} from '../store/actions/uploadFiles';
-
-import i18n from '../i18n';
-import {UserBlog, UserFolder} from '../models/models';
-import {
-  GUEST_BLOG,
-  GUEST_FOLDER,
-  GUEST_TOKEN,
-  GUEST_USERNAME
-} from './constants';
-import flashMessage from '../components/FlashMessage/FlashMessage';
+} from 'store/actions/userArtefacts';
+import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
+import { userBlogJSONtoUserBlog } from './helperFunctions';
 
 /**
  * Attempt to fetch user info based on given token
@@ -46,10 +35,7 @@ import flashMessage from '../components/FlashMessage/FlashMessage';
  * @returns true if successful log in and data loading
  * @returns Promise.reject() on fail
  */
-export async function fetchUserWithToken(
-  serverUrl: string,
-  requestOptions: RequestInit
-) {
+export async function fetchUserWithToken(serverUrl: string, requestOptions: RequestInit) {
   const response = await fetch(serverUrl, requestOptions);
   const json = await response.json().catch((e) => {
     console.warn(
@@ -92,7 +78,7 @@ export const setUpGuest = async (dispatch: Dispatch) => {
 export const arrayToObject = (array: Array<any>) => {
   const arrayCopy = [...array];
   return arrayCopy.reduce((obj, item) => {
-    const objCopy = {...obj};
+    const objCopy = { ...obj };
     objCopy[item.id] = item;
     return objCopy;
   }, {});
@@ -115,56 +101,48 @@ export const updatePendingItemsOnGuestToUser = async (
   dispatch(updateUploadFilesOnLogin(token, urlDomain, userFolders));
 };
 
-export const fetchProfilePic = async (
-  dispatch: Dispatch,
-  token: string,
-  url: string
-) => {
+export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: string) => {
   const api = 'module_mobileapi_get_user_profileicon&height=100&width=100';
   const wstoken = token;
   const serverUrl = `${url}module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;
 
   let profilePic = '';
 
-  RNFetchBlob.config({
+  ReactNativeBlobUtil.config({
     fileCache: true
   })
     .fetch('GET', serverUrl)
     .then((res) => {
       profilePic = `file://${res.path()}`;
+
       dispatch(updateProfilePic(profilePic));
     })
     .catch((e) => {
-      console.error(e.error_message);
-      flashMessage(e.error_class, 'warning');
+      Toast.show({ title: e.error_message });
     });
 
   return profilePic;
 };
 
-export const signOutAsync = async (navigation, dispatch) => {
+export const signOutAsync = async (dispatch: Dispatch) => {
   Alert.alert(
-    i18n._(t`Are you sure?`),
-    i18n._(
-      t`Items in the upload queue will not be retrievable once logged out.`
-    ),
-
+    t`Are you sure?`,
+    t`Items in the upload queue will not be retrievable once logged out.`,
     [
       {
-        text: 'Cancel',
+        text: t`Cancel`,
         onPress: () => null,
         style: 'cancel'
       },
       {
-        text: 'Logout',
+        text: t`Logout`,
         onPress: async () => {
-          // navigation.navigate('SiteCheck');
           await AsyncStorage.clear();
           clearReduxData(dispatch);
         }
       }
     ],
-    {cancelable: false}
+    { cancelable: false }
   );
 };
 
@@ -177,10 +155,7 @@ export const signOutAsync = async (navigation, dispatch) => {
  * - something odd in a site upgrade
  * - users missing a folder or blog will cause issues
  */
-export const checkValidInitialState = (
-  blogs: UserBlog[],
-  folders: UserFolder[]
-): boolean => {
+export const checkValidInitialState = (blogs: UserBlog[], folders: UserFolder[]): boolean => {
   if (blogs.length === 0 || folders.length === 0) {
     return false;
   }
@@ -195,8 +170,8 @@ export const checkValidInitialState = (
  */
 export const onCheckAuthJSON = (
   json: any,
-  successCallback: Function,
-  failCallback: Function
+  successCallback: () => void,
+  failCallback: () => void
 ) => {
   if (json) {
     if (json.error) {
@@ -208,4 +183,98 @@ export const onCheckAuthJSON = (
       successCallback();
     }
   }
+};
+
+export const login = (
+  url: string,
+  dispatch: Dispatch,
+  userBlogs: UserBlog[],
+  userFolders: UserFolder[],
+  token: string,
+  setLoading: (loading: boolean) => void,
+  updateToken: (token: string | null) => void,
+  isGuest: boolean
+) => {
+  const serverUrl = `${url}webservice/rest/server.php?alt=json`;
+
+  const body = {
+    blogs: {},
+    folders: {},
+    tags: {},
+    userprofile: {},
+    userprofileicon: {},
+    wsfunction: 'module_mobileapi_sync',
+    wstoken: token
+  };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  };
+
+  /**
+   * Convert pending items after a guest has logged into Mahara
+   */
+  const onGuestToUser = async () => {
+    dispatch(updateGuestStatus(false));
+    updatePendingItemsOnGuestToUser(dispatch, userBlogs, userFolders, token, url);
+    console.log('updatedGuestDetailsToProvidedUser');
+  };
+
+  let userData: any = null;
+  setLoading(true);
+  fetchUserWithToken(serverUrl, requestOptions)
+    .then((json) => {
+      console.log(json.token);
+      onCheckAuthJSON(
+        json,
+        () => updateToken(json.token),
+        () => {
+          updateToken(null);
+          setLoading(false);
+        }
+      );
+      userData = json;
+      if (isGuest) {
+        onGuestToUser();
+      }
+    })
+    .catch((e) => {
+      // We expect the error when use has been logged out, but dispatch continues because
+      // if we catch too early, not all the items won't dispatch ^
+      console.warn(`Error on fetchUserTokenLogin :) ${e}`);
+      // other failures e.g. failed to login are not caught because we want to use the
+      // information at onCheckAuthJSON()
+    })
+    .finally(() => {
+      //   // failed to log in
+      //   if (!userData.userprofile) {
+      //     return;
+      //   }
+      dispatch(addToken(token));
+      dispatch(updateUserName(userData.userprofile.myname));
+      type FetchedTag = {
+        tag: string;
+        usage: number;
+      };
+      // Create UserTags with id and string.
+      const newUserTags: Array<UserTag> = userData.tags.tags.map((tag: FetchedTag) =>
+        newUserTag(tag.tag)
+      );
+      dispatch(updateUserTags(newUserTags));
+      dispatch(updateUserTagsIds(newUserTags.map((tag: UserTag) => tag.id)));
+      dispatch(
+        updateUserBlogs(userData.blogs.blogs.map((b: UserBlogJSON) => userBlogJSONtoUserBlog(b)))
+      );
+      // Check if user has folders (they can be deleted on Mahara)
+      if (userData.folders.folders.length !== 0) {
+        dispatch(updateUserFolders(userData.folders.folders));
+      }
+      dispatch(setDefaultBlogId(userData.blogs.blogs[0].id));
+      dispatch(setDefaultFolder(userData.folders.folders[0].title));
+      // checkValidInitialState(props.userBlogs, props.userFolders)
+    });
 };

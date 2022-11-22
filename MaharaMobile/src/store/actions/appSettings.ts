@@ -1,4 +1,4 @@
-import {SET_LANGUAGE, TOGGLE_LANGUAGE} from '../../utils/constants';
+import { SET_LANGUAGE, TOGGLE_LANGUAGE } from 'utils/constants';
 
 // appSettingsReducer
 

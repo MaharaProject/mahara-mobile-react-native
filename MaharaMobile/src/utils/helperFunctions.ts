@@ -1,7 +1,4 @@
-import {t} from '@lingui/macro';
-import {StackActions} from '@react-navigation/native';
-import {useEffect, useRef} from 'react';
-import i18n from '../i18n';
+import { t } from '@lingui/macro';
 import {
   JournalEntry,
   MaharaFile,
@@ -11,8 +8,8 @@ import {
   UserBlog,
   UserBlogJSON,
   UserTag
-} from '../models/models';
-import {newUploadResponse} from '../models/typeCreators';
+} from 'models/models';
+import { newUploadResponse } from 'models/typeCreators';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function isJournalEntry(x: any): x is JournalEntry {
@@ -67,7 +64,7 @@ export function buildObject(item: object) {
       body: sendFormData
     };
   }
-  return null;
+  return undefined;
 }
 
 export function uploadItemToMahara(url: string, item: object) {
@@ -81,7 +78,7 @@ export function uploadItemToMahara(url: string, item: object) {
     } catch (error) {
       customResponse = newUploadResponse(
         '',
-        i18n._(t`Please check the internet connection.`),
+        t`Please check the internet connection.`,
         '',
         '',
         {},
@@ -95,32 +92,21 @@ export function uploadItemToMahara(url: string, item: object) {
   };
 }
 
-export const popNavigationStack = StackActions.pop({n: 1});
-
-// to use prevProps in Hooks
-export function usePreviousProps(value: number) {
-  const ref: React.MutableRefObject<number> = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 export const findUserTagByString = (tagString: string, tags: Array<UserTag>) =>
   tags.find((tag: UserTag) => tag.tag === tagString);
 
 export const getUploadTypeIntlStrings = (itemType: UploadItemType) => {
   switch (itemType) {
     case 'AUDIO':
-      return i18n._(t`Audio`);
+      return t`Audio`;
     case 'FILE':
-      return i18n._(t`File`);
+      return t`File`;
     case 'J_ENTRY':
-      return i18n._(t`Journal entry`);
+      return t`Journal entry`;
     case 'PHOTO':
-      return i18n._(t`Photo`);
+      return t`Photo`;
     default:
-      return i18n._(t`Invalid type`);
+      return t`Invalid type`;
   }
 };
 

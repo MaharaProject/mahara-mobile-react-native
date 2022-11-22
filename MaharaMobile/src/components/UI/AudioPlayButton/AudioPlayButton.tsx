@@ -1,19 +1,28 @@
-import {Button, Icon} from 'native-base';
 import React from 'react';
-import variables from '../../../assets/styles/variables';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { t } from '@lingui/macro';
+import { Button } from 'native-base';
+import variables from 'assets/styles/variables';
+import { maharaTheme } from 'utils/theme';
 
 type AudioPlayButtonProps = {
   onPress: () => void;
   iconName: string;
 };
-const AudioPlayButton = (props: AudioPlayButtonProps) => (
-  <Button
-    bordered
-    rounded
-    onPress={props.onPress}
-    style={{marginEnd: variables.padding.sm}}>
-    <Icon name={props.iconName} />
-  </Button>
-);
+function AudioPlayButton(props: AudioPlayButtonProps) {
+  return (
+    <Button
+      colorScheme="primary"
+      rounded="full"
+      variant="outline"
+      marginRight={variables.padding.xxs}
+      startIcon={
+        <FontAwesomeIcon icon={props.iconName} color={maharaTheme.colors.primary[600]} size={20} />
+      }
+      accessibilityHint={t`play audio`}
+      onPress={props.onPress}
+    />
+  );
+}
 
 export default AudioPlayButton;

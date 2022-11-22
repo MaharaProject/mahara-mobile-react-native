@@ -1,16 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {View} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import { View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
-const NavMenuActiveSVG = () => {
+function NavMenuActiveSVG() {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="70"
-        height="32"
-        viewBox="0 0 100 100">
+      <Svg xmlns="http://www.w3.org/2000/svg" width="70" height="32" viewBox="0 0 100 100">
         <Path
           id="nav-menu-active.svg"
           fill="#566d31"
@@ -20,6 +16,6 @@ const NavMenuActiveSVG = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default NavMenuActiveSVG;

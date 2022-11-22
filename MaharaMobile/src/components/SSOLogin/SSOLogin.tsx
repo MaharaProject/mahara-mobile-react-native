@@ -1,12 +1,12 @@
-import React, {useRef} from 'react';
-import {Platform} from 'react-native';
-import {getManufacturer, getModel} from 'react-native-device-info';
+import React, { useRef } from 'react';
+import { Platform } from 'react-native';
+import { getManufacturer, getModel } from 'react-native-device-info';
 import uuid from 'react-native-uuid';
-import {WebView} from 'react-native-webview';
+import { WebView } from 'react-native-webview';
 
 type Props = {
   url: string;
-  onGetToken: Function;
+  onGetToken: (token: string) => void;
 };
 
 export default function SSOLogin(props: Props) {
@@ -20,9 +20,7 @@ export default function SSOLogin(props: Props) {
   const id = uuid.v4();
   const url =
     `${props.url}module/mobileapi/tokenform.php` +
-    `?service=${service}&component=${encodeURIComponent(
-      component
-    )}&clientname=${encodeURIComponent(
+    `?service=${service}&component=${encodeURIComponent(component)}&clientname=${encodeURIComponent(
       'Mahara Mobile'
     )}&clientenv=${encodeURIComponent(
       `${Platform.OS}, ${manufacturer}, ${model}`
@@ -40,7 +38,7 @@ export default function SSOLogin(props: Props) {
       ref={(ref) => {
         webref = ref;
       }}
-      source={{uri: url}}
+      source={{ uri: url }}
       incognito
       injectedJavaScript={GET_TOKEN_JS}
       onMessage={(event) => {

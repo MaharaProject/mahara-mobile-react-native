@@ -1,5 +1,5 @@
-import {Input, Item, Textarea} from 'native-base';
 import React from 'react';
+import { Box, Input, TextArea } from 'native-base';
 
 type Props = {
   valid: boolean;
@@ -8,23 +8,23 @@ type Props = {
   onChangeText: (text: string) => void;
 };
 
-const FormInput = (props: Props) => {
+function FormInput(props: Props) {
   return (
-    <Item success={props.valid} regular>
+    <Box success={props.valid} regular>
       {props.multiline === true ? (
-        <Textarea
+        <TextArea
           underline={false}
           rowSpan={2}
           value={props.value}
           onChangeText={props.onChangeText}
           bordered={false}
-          style={{flex: 1}}
+          style={{ flex: 1 }}
         />
       ) : (
         <Input value={props.value} onChangeText={props.onChangeText} />
       )}
-    </Item>
+    </Box>
   );
-};
+}
 
 export default FormInput;

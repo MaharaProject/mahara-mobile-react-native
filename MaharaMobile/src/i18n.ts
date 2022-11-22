@@ -1,20 +1,17 @@
-import {setupI18n} from '@lingui/core';
+import { i18n } from '@lingui/core';
+import { en, ko } from 'make-plural';
 import catalogEn from '../locales/en/messages';
 import catalogKo from '../locales/ko/messages';
 
-const i18n = setupI18n();
-i18n.load({
-  en: catalogEn
+i18n.loadLocaleData({
+  en: { plurals: en },
+  ko: { plurals: ko }
 });
 
+i18n.load({ en: catalogEn.messages, ko: catalogKo.messages });
+
 export const changeActiveLanguage = (newActiveLanguage: string) => {
-  const catalog = {
-    en: catalogEn,
-    ko: catalogKo
-  };
-  i18n.load(catalog);
   i18n.activate(newActiveLanguage);
-  return i18n;
 };
 
 export default i18n;

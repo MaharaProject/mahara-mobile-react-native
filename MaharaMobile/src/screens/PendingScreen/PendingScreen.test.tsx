@@ -1,14 +1,8 @@
-import {I18nProvider} from '@lingui/react';
 import React from 'react';
-import {Provider} from 'react-redux';
-import renderer from 'react-test-renderer';
+import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import i18n from '../../i18n';
+import { render } from 'test-utils';
 import PendingScreen from './PendingScreen';
-
-jest.mock('rn-fetch-blob', () => {
-  return true;
-});
 
 it('renders correctly', () => {
   const initialState = {
@@ -27,11 +21,9 @@ it('renders correctly', () => {
 
   const mockStore = configureStore();
 
-  renderer.create(
+  render(
     <Provider store={mockStore(initialState)}>
-      <I18nProvider i18n={i18n} language="en">
-        <PendingScreen route={() => jest.mock('route', () => {})} />
-      </I18nProvider>
+      <PendingScreen route={() => jest.mock('route', () => {})} />
     </Provider>
   );
 });

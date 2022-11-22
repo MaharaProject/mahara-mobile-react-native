@@ -1,4 +1,3 @@
-import {WS_FUNCTION_UPLOAD_BLOGPOST} from '../utils/constants';
 import {
   File,
   JournalEntry,
@@ -9,18 +8,22 @@ import {
   UserBlog,
   UserFolder,
   UserTag
-} from './models';
+} from 'models/models';
+import { WS_FUNCTION_UPLOAD_BLOGPOST } from 'utils/constants';
 
 // Mahara file creation
 
 export const newFile = (
-  uri: string,
-  mimetype: string,
-  name: string,
-  size: number
-): File => {
-  return {uri, type: mimetype, name, size};
-};
+  uri: string | null | undefined,
+  mimetype: string | null | undefined,
+  name: string | null | undefined,
+  size: number | null | undefined
+): File => ({
+  uri,
+  type: mimetype,
+  name,
+  size
+});
 
 export const newMaharaFile = (
   webService: string,
@@ -66,16 +69,14 @@ export const newJournalEntry = (
   title: string,
   body: string,
   isDraft: boolean
-): JournalEntry => {
-  return {
-    blogid: blogId,
-    wsfunction: WS_FUNCTION_UPLOAD_BLOGPOST,
-    wstoken: wsToken,
-    title,
-    body,
-    isdraft: isDraft
-  };
-};
+): JournalEntry => ({
+  blogid: blogId,
+  wsfunction: WS_FUNCTION_UPLOAD_BLOGPOST,
+  wstoken: wsToken,
+  title,
+  body,
+  isdraft: isDraft
+});
 
 export const newPendingJEntry = (
   itemId = '',
@@ -104,27 +105,23 @@ export const newUserTag = (tagName: string): UserTag => ({
 });
 // id is just external from Mahara, for structure in this app
 
-export const newUserFolder = (title: string): UserFolder => {
-  return {
-    id: `${Math.floor(Math.random() * 100)}`,
-    title
-  };
-};
+export const newUserFolder = (title: string): UserFolder => ({
+  id: `${Math.floor(Math.random() * 100)}`,
+  title
+});
 
 export const newUserBlog = (
   desc: string,
   locked = false,
   numBlogPosts = 0,
   title: string
-): UserBlog => {
-  return {
-    description: desc,
-    id: Math.round(Math.random() * 1000),
-    locked,
-    numBlogPosts,
-    title
-  };
-};
+): UserBlog => ({
+  description: desc,
+  id: Math.round(Math.random() * 1000),
+  locked,
+  numBlogPosts,
+  title
+});
 
 export const newUploadResponse = (
   errorClass: string,
@@ -133,13 +130,11 @@ export const newUploadResponse = (
   errorName: string,
   error: object,
   file: number
-): UploadResponse => {
-  return {
-    error_class: errorClass,
-    error_message: errorMessage,
-    error_name: errorName,
-    error_rendered: errorRendered,
-    error,
-    file
-  };
-};
+): UploadResponse => ({
+  error_class: errorClass,
+  error_message: errorMessage,
+  error_name: errorName,
+  error_rendered: errorRendered,
+  error,
+  file
+});

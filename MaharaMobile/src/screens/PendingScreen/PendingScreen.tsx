@@ -1,45 +1,35 @@
-import {t, Trans} from '@lingui/macro';
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Alert, Text, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
-import {connect, useSelector} from 'react-redux';
-import {Dispatch} from 'redux';
+import React, { useState } from 'react';
 // Images
-import UploadSVG from '../../assets/images/upload';
-import messages from '../../assets/styles/messages';
-import textStyles from '../../assets/styles/text';
-import styles from '../../assets/styles/variables';
-import flashMessage from '../../components/FlashMessage/FlashMessage';
-// components
-import PendingList from '../../components/PendingList/PendingList';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import i18n from '../../i18n';
-import {
-  updateItemTags as updateItemTagsIds,
-  saveTaggedItemsToAsync
-} from '../../store/actions/actions';
+import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { Trans, t } from '@lingui/macro';
+import { Alert, CloseIcon, HStack, IconButton, Text, VStack, useToast } from 'native-base';
+import { ActivityIndicator, Alert as ReactNativeAlert, View } from 'react-native';
+import { connect, useSelector } from 'react-redux';
+import { Dispatch } from 'redux';
+import UploadSVG from 'assets/images/upload';
+import textStyles from 'assets/styles/text';
+import styles from 'assets/styles/variables';
+import PendingList from 'components/PendingList/PendingList';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
 import {
   DisplayItems,
   PendingJEntry,
   PendingMFile,
   UploadItemType,
   UploadResponse
-} from '../../models/models';
-import {addToken} from '../../store/actions/loginInfo';
-import {removeUploadFile} from '../../store/actions/uploadFiles';
-import {removeUploadJEntry} from '../../store/actions/uploadJEntries';
-import {selectUrl, selectUserName} from '../../store/reducers/loginInfoReducer';
-import {RootState} from '../../store/reducers/rootReducer';
-import {
-  selectAllUploadFiles,
-  selectAllUploadFilesIds
-} from '../../store/reducers/uploadFilesReducer';
-import {
-  selectAllJEntries,
-  selectAllJEntriesIds
-} from '../../store/reducers/uploadJEntriesReducer';
-import {GUEST_USERNAME} from '../../utils/constants';
-import {uploadItemToMahara} from '../../utils/helperFunctions';
+} from 'models/models';
+// components
+import { saveTaggedItemsToAsync, updateItemTags as updateItemTagsIds } from 'store/actions/actions';
+import { addToken } from 'store/actions/loginInfo';
+import { removeUploadFile } from 'store/actions/uploadFiles';
+import { removeUploadJEntry } from 'store/actions/uploadJEntries';
+import { selectUrl, selectUserName } from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { selectAllUploadFiles, selectAllUploadFilesIds } from 'store/reducers/uploadFilesReducer';
+import { selectAllJEntries, selectAllJEntriesIds } from 'store/reducers/uploadJEntriesReducer';
+import { GUEST_USERNAME } from 'utils/constants';
+import { uploadItemToMahara } from 'utils/helperFunctions';
+import { maharaTheme } from 'utils/theme';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
 
@@ -51,42 +41,42 @@ type Props = {
   dispatch: Dispatch;
   navigation: any;
   userName: string;
-  route: {params: {added: boolean}};
 };
 
-const PendingScreen = (props: Props) => {
+function PendingScreen(props: Props) {
   const numUploadFiles = props.uploadFiles.length;
   const numUploadJEntries = props.uploadJEntries.length;
   const numUploadItems = numUploadFiles + numUploadJEntries;
 
   const [uploadedItemsIds, setUploadedItemsIds] = useState<string[]>([]);
-  const [uploadErrorItemsIds, setUploadErrorItemsIds] = useState<string[]>([]);
-  const [errorMessage, setErrorMessage] = useState('Error message');
   const [loading, setLoading] = useState(false);
+
+  const toast = useToast();
 
   const url = useSelector((state: RootState) => selectUrl(state));
 
-  useEffect(() => {
-    if (props.route.params?.added === true) {
-      flashMessage(t`Added to upload queue successfully!`, 'success');
-    }
-  }, [props.route.params?.added]);
+  //  This is no longer shown as we don't navigate to the pending screen upon adding an item
+  // useEffect(() => {
+  //   if (props.route.params?.added) {
+  //     Toast.show({ title: t`Added to upload queue successfully!` });
+  //   }
+  // }, [props.route.params?.added]);
 
   /**
    * When 'Delete' is pressed, filter out the item with the given id and update the UploadList.
    */
   const onRemove = (itemId: string) => {
-    Alert.alert(
-      i18n._(t`Are you sure?`),
-      i18n._(t`The deletion of this information or file cannot be undone`),
+    ReactNativeAlert.alert(
+      t`Are you sure?`,
+      t`The deletion of this information or file cannot be undone`,
       [
         {
-          text: i18n._(t`Cancel`),
+          text: t`Cancel`,
           onPress: () => null,
           style: 'cancel'
         },
         {
-          text: i18n._(t`Delete`),
+          text: t`Delete`,
           onPress: () => {
             props.dispatch(removeUploadFile(itemId));
             props.dispatch(removeUploadJEntry(itemId));
@@ -96,33 +86,34 @@ const PendingScreen = (props: Props) => {
           }
         }
       ],
-      {cancelable: false}
+      { cancelable: false }
     );
   };
 
   const onEdit = (item: PendingMFile | PendingJEntry) => {
     const type: UploadItemType = item.type ?? 'J_ENTRY';
-    props.navigation.navigate('EditItem', {itemToEdit: item, itemType: type});
+    props.navigation.navigate('EditItem', { itemToEdit: item, itemType: type });
   };
 
-  const clearUploadError = (id: string) => {
-    const newState = uploadErrorItemsIds.filter((item) => item !== id);
-    setUploadErrorItemsIds(newState);
-  };
-
-  const onUploadError = (id: string) => {
-    setUploadErrorItemsIds([...uploadErrorItemsIds, id]);
-
-    showMessage({
-      message: i18n._(t`${errorMessage}`),
-      icon: {
-        icon: 'auto',
-        position: 'left'
-      },
-      type: 'warning',
-      titleStyle: messages.errorMessage,
-      backgroundColor: styles.colors.warnbg,
-      color: styles.colors.warn
+  const onUploadError = (itemId: string, errorMessage: string) => {
+    toast.show({
+      render: ({ id }) => (
+        <Alert mx={2} status="error" variant="left-accent">
+          <VStack alignItems="center">
+            <HStack space={3} alignItems="center">
+              <Alert.Icon />
+              <Text w="100%" fontWeight="medium">{t`Upload error`}</Text>
+              <IconButton
+                icon={<CloseIcon size="4" />}
+                onPress={() => toast.close(id)}
+                colorScheme="red"
+                ml="auto"
+              />
+            </HStack>
+            <Text>{errorMessage}</Text>
+          </VStack>
+        </Alert>
+      )
     });
   };
 
@@ -130,23 +121,21 @@ const PendingScreen = (props: Props) => {
    * Renders a PendingList
    * @param dataList array of files and journal entries
    */
-  const renderPendingList = (dataList: DisplayItems) => {
-    return (
-      <PendingList
-        dataList={dataList}
-        onRemove={onRemove}
-        onEdit={onEdit}
-        successfullyUploadedItemsIds={uploadedItemsIds}
-        uploadErrorItems={uploadErrorItemsIds}
-        onClearError={clearUploadError}
-      />
-    );
-  };
+  const renderPendingList = (dataList: DisplayItems) => (
+    <PendingList
+      dataList={dataList}
+      onRemove={onRemove}
+      onEdit={onEdit}
+      successfullyUploadedItemsIds={uploadedItemsIds}
+    />
+  );
 
   const pendingDisplay = () => {
     let list: DisplayItems = [];
 
-    if (props.uploadFilesIds?.length > 0) list = list.concat(props.uploadFiles);
+    if (props.uploadFilesIds?.length > 0) {
+      list = list.concat(props.uploadFiles);
+    }
     if (props.uploadJEntriesIds?.length > 0) {
       list = list.concat(props.uploadJEntries);
     }
@@ -164,54 +153,74 @@ const PendingScreen = (props: Props) => {
     );
   };
 
-  const onSuccessfulUpload = (id: string) => {
+  const onSuccessfulUpload = (itemId: string) => {
     // change class to show upload success
-    setUploadedItemsIds([...uploadedItemsIds, id]);
+    setUploadedItemsIds([...uploadedItemsIds, itemId]);
     // then, card disappears
     // and remove id from successfullyUploadedItems to clear memory
     setTimeout(() => {
-      props.dispatch(removeUploadFile(id));
-      props.dispatch(removeUploadJEntry(id));
-
-      const newState = uploadedItemsIds.filter((item) => item !== id);
-      setUploadedItemsIds(newState);
+      props.dispatch(removeUploadFile(itemId));
+      props.dispatch(removeUploadJEntry(itemId));
+      setUploadedItemsIds((state) => state.filter((item) => item !== itemId));
     }, 1000);
 
-    flashMessage(
-      t`Files have been uploaded to your Mahara successfully!`,
-      'success'
-    );
+    toast.show({
+      render: ({ id }) => (
+        <Alert
+          mx={2}
+          status="success"
+          backgroundColor={maharaTheme.colors.success[10]}
+          variant="left-accent"
+        >
+          <VStack alignItems="center">
+            <HStack space={3} alignItems="center">
+              <Alert.Icon />
+              <Text
+                w="100%"
+                color={maharaTheme.colors.success[900]}
+                fontWeight="medium"
+              >{t`Upload success`}</Text>
+              <IconButton
+                icon={<CloseIcon size="4" />}
+                onPress={() => toast.close(id)}
+                color={maharaTheme.colors.successIcon}
+                ml="auto"
+              />
+            </HStack>
+            <Text
+              color={maharaTheme.colors.success[900]}
+            >{t`Files have been uploaded to your Mahara successfully!`}</Text>
+          </VStack>
+        </Alert>
+      )
+    });
   };
 
   const onUploadClick = () => {
     setLoading(true);
     props.uploadFiles.forEach(async (file) => {
-      clearUploadError(file.id);
-      props
-        .dispatch(uploadItemToMahara(file.url, file.maharaFormData))
-        .then((result: UploadResponse) => {
-          setLoading(false);
-          // an error either returns result = undefined, or result = { error: true }
-          if (result === undefined || result === null || result.error) {
-            setErrorMessage(result.error_message);
-            onUploadError(file.id);
-          } else onSuccessfulUpload(file.id);
-        });
+      uploadItemToMahara(file.url, file.maharaFormData)().then((result: UploadResponse) => {
+        setLoading(false);
+        // an error either returns result = undefined, or result = { error: true }
+        if (result === undefined || result === null || result.error) {
+          onUploadError(file.id, result.error_message);
+        } else {
+          onSuccessfulUpload(file.id);
+        }
+      });
     });
 
     props.uploadJEntries.forEach(async (journalEntry) => {
-      clearUploadError(journalEntry.id);
-      props
-        .dispatch(
-          uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)
-        )
-        .then((result: UploadResponse) => {
+      uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)().then(
+        (result: UploadResponse) => {
           setLoading(false);
           if (result === undefined || result === null || result.error) {
-            setErrorMessage(result.error_message);
-            onUploadError(journalEntry.id);
-          } else onSuccessfulUpload(journalEntry.id);
-        });
+            onUploadError(journalEntry.id, result.error_message);
+          } else {
+            onSuccessfulUpload(journalEntry.id);
+          }
+        }
+      );
     });
   };
 
@@ -231,20 +240,20 @@ const PendingScreen = (props: Props) => {
         <View style={pendingScreenStyles.buttonContainer}>
           {props.userName !== GUEST_USERNAME ? (
             <View>
-              <Text style={[pendingScreenStyles.urlText, textStyles.center]}>
+              <Text fontWeight="light" style={[pendingScreenStyles.urlText, textStyles.center]}>
                 <Trans>Your site: {url}</Trans>
               </Text>
               <MediumButton
                 text={t`Upload to your site`}
                 onPress={onUploadClick}
-                icon="cloud-upload"
+                icon={faCloudUploadAlt}
               />
             </View>
           ) : (
             <MediumButton
               text={t`Please login`}
               accessibilityHint={t`To upload pending items`}
-              icon="log-in-outline"
+              icon={faSignInAlt}
               onPress={goToSiteCheck}
             />
           )}
@@ -252,7 +261,7 @@ const PendingScreen = (props: Props) => {
       ) : null}
     </View>
   );
-};
+}
 
 const mapStateToProps = (state: RootState) => ({
   uploadFiles: selectAllUploadFiles(state),

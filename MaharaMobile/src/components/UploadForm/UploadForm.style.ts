@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import styles from '../../assets/styles/variables';
+import { StyleSheet } from 'react-native';
+import styles from 'assets/styles/variables';
 
 const uploadFormStyes = StyleSheet.create({
   tagsContainer: {
@@ -39,8 +39,7 @@ const uploadFormStyes = StyleSheet.create({
     height: 300
   },
   queueButton: {
-    marginBottom: styles.padding.sm,
-    fontWeight: 'bold'
+    marginBottom: styles.padding.sm
   }
 });
 

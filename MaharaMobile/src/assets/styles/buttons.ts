@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import styles from './variables';
 
 const buttons = StyleSheet.create({
@@ -14,7 +14,7 @@ const buttons = StyleSheet.create({
     borderRadius: 35
   },
   md: {
-    backgroundColor: styles.colors.secondary,
+    // backgroundColor: styles.colors.secondary,
     color: styles.colors.dark
   },
   sm: {
@@ -31,8 +31,7 @@ const buttons = StyleSheet.create({
     color: styles.colors.light
   },
   cancel: {
-    backgroundColor: styles.colors.lightgrey,
-    fontWeight: 'normal'
+    // backgroundColor: styles.colors.lightgrey,
   },
   default: {
     marginBottom: styles.padding.sm

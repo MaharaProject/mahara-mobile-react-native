@@ -1,47 +1,58 @@
-/* eslint-disable prettier/prettier */
-import { t, Trans } from '@lingui/macro';
 import React, { useState } from 'react';
-import { ActivityIndicator, Text, TextInput, View } from 'react-native';
+import { t } from '@lingui/macro';
+import { Input, Stack } from 'native-base';
+import { ActivityIndicator, StyleSheet } from 'react-native';
+import styles from 'assets/styles/variables';
+import LogoView from 'components/LogoView/LogoView';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
 // Images
-import LogoSvg from '../../assets/images/Logo-big';
-import forms from '../../assets/styles/forms';
-import generic from '../../assets/styles/generic';
-import headingStyles from '../../assets/styles/headings';
-import variables from '../../assets/styles/variables';
-import { LOG_IN_ICON } from '../../utils/constants';
-import MaharaGradient from '../UI/MaharaGradient/MaharaGradient';
-import MediumButton from '../UI/MediumButton/MediumButton';
+import { LOG_IN_ICON } from 'utils/constants';
+
 // Styles
-import styles from './TokenInput.style';
+// import styles from './TokenInput.style';
 
 type Props = {
-  onGetToken: Function;
+  onGetToken: (token: string) => void;
   isLoading: boolean;
 };
+
+const TokenLoginStyles = StyleSheet.create({
+  input: {
+    backgroundColor: styles.colors.light
+  }
+});
 
 export default function TokenInput(props: Props) {
   const [token, setToken] = useState('');
 
   return (
-    <View style={styles.view}>
-      <MaharaGradient colors={[variables.colors.dark2, variables.colors.tertiary, variables.colors.light2]} style={generic.linearGradient}>
-        <View style={styles.wrapper}>
-          <View style={styles.imageWrapper}>
-            <LogoSvg />
-          </View>
-          {props.isLoading ? (
-        <ActivityIndicator size="small" color={variables.colors.light} />
-      ) : null}
-          <Text style={[headingStyles.mainHeading, generic.center]}><Trans>Log in via an access token</Trans></Text>
-          <TextInput
-            style={forms.textInput}
-            defaultValue="..."
-            onChangeText={(input) => setToken(input.trim())
-            }
-          />
-          <MediumButton text={t`Verify token`} icon={LOG_IN_ICON} onPress={() => props.onGetToken(token)} />
-        </View>
-      </MaharaGradient>
-    </View>
+    <LogoView>
+      {props.isLoading ? <ActivityIndicator size="small" color={styles.colors.light} /> : null}
+
+      <Stack direction="column" mb="2.5" mt="1.5" space={3}>
+        <SubHeading
+          noColon
+          style={{ color: styles.colors.light, textAlign: 'center' }}
+          text=" Log in via an access token"
+        />
+        <Input
+          placeholder="..."
+          autoCapitalize="none"
+          onChangeText={(input) => setToken(input.trim())}
+          style={TokenLoginStyles.input}
+          variant="filled"
+          w={{
+            base: '100%',
+            md: '25%'
+          }}
+        />
+        <MediumButton
+          text={t`Verify token`}
+          icon={LOG_IN_ICON}
+          onPress={() => props.onGetToken(token)}
+        />
+      </Stack>
+    </LogoView>
   );
 }

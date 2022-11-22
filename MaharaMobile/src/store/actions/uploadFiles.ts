@@ -1,23 +1,23 @@
+import { PendingMFile, UserFolder } from 'models/models';
 import {
   ADD_UPLOAD_FILE,
   CLEAR_UPLOAD_FILES,
   REMOVE_UPLOAD_FILE,
   UPDATE_UPLOAD_FILES_ON_LOGIN
-} from '../../utils/constants';
-import {PendingMFile, UserFolder} from '../../models/models';
+} from 'utils/constants';
 
 // uploadFilesReducer
 
 export function addFileToUploadList(file: PendingMFile) {
-  return {type: ADD_UPLOAD_FILE, file};
+  return { type: ADD_UPLOAD_FILE, file };
 }
 
 export function removeUploadFile(id: string) {
-  return {type: REMOVE_UPLOAD_FILE, id};
+  return { type: REMOVE_UPLOAD_FILE, id };
 }
 
 export function clearUploadFiles() {
-  return {type: CLEAR_UPLOAD_FILES};
+  return { type: CLEAR_UPLOAD_FILES };
 }
 
 export function updateUploadFilesOnLogin(
@@ -25,5 +25,5 @@ export function updateUploadFilesOnLogin(
   urlDomain: string,
   userFolders: Array<UserFolder>
 ) {
-  return {type: UPDATE_UPLOAD_FILES_ON_LOGIN, token, urlDomain, userFolders};
+  return { type: UPDATE_UPLOAD_FILES_ON_LOGIN, token, urlDomain, userFolders };
 }

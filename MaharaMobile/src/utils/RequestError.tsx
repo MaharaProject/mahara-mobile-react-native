@@ -1,4 +1,4 @@
-import {RequestErrorPayload} from '../models/models';
+import { RequestErrorPayload } from 'models/models';
 
 class RequestError extends Error {
   code: number;
@@ -7,11 +7,7 @@ class RequestError extends Error {
 
   previousError: Error | null = null;
 
-  constructor({
-    code = 400,
-    message = 'Request Error',
-    previousError
-  }: RequestErrorPayload) {
+  constructor({ code = 400, message = 'Request Error', previousError }: RequestErrorPayload) {
     super(String(message) || 'Request Error');
     this.code = Number(code);
     if (previousError) {
@@ -19,12 +15,16 @@ class RequestError extends Error {
     }
   }
 
-  static createRequestError(e: RequestError): RequestError {
+  static createRequestError(e: RequestError | Error): RequestError {
     if (e.name === 'RequestError') {
-      return e;
+      return e as RequestError;
     }
 
-    return new RequestError({code: 500, message: e.message, previousError: e});
+    return new RequestError({
+      code: 500,
+      message: e.message,
+      previousError: e
+    });
   }
 }
 

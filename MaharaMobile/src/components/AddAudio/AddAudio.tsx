@@ -1,23 +1,21 @@
-import {I18n} from '@lingui/core';
-import {t} from '@lingui/macro';
-import {withI18n} from '@lingui/react';
-import React, {useEffect, useState} from 'react';
-import {PermissionsAndroid, Platform, Text, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { faMicrophone, faPause, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
+import { t } from '@lingui/macro';
+import { HStack } from 'native-base';
+import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import RNFetchBlob from 'rn-fetch-blob';
-import {PLATFORM} from '../../../native-base-theme/variables/commonColor';
-import variables from '../../assets/styles/variables';
-import {File, PlayBackType} from '../../models/models';
-import {newFile} from '../../models/typeCreators';
-import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
-import MediumButton from '../UI/MediumButton/MediumButton';
-import OutlineButton from '../UI/OutlineButton/OutlineButton';
+import ReactNativeBlobUtil from 'react-native-blob-util';
+import variables from 'assets/styles/variables';
+import AudioPlayButton from 'components/UI/AudioPlayButton/AudioPlayButton';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import { File, PlayBackType } from 'models/models';
+import { newFile } from 'models/typeCreators';
 import styles from './AddAudio.style';
 
 type Props = {
   setPickedFile: any;
   audioFileToEdit?: File;
-  i18n: I18n;
 };
 
 type RecordStatus = 'recording' | 'recorded' | 'not-recorded';
@@ -25,18 +23,16 @@ type PlayStatus = 'playing' | 'not-playing';
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
-const AddAudio = (props: Props) => {
+function AddAudio(props: Props) {
   const [recordStatus, setRecordStat] = useState<RecordStatus>('not-recorded');
-  const [uri, setURI] = useState(
-    props.audioFileToEdit ? props.audioFileToEdit.uri : ''
-  );
+  const [uri, setURI] = useState(props.audioFileToEdit ? props.audioFileToEdit.uri : '');
 
   const [playStatus, setPlayStatus] = useState<PlayStatus>('not-playing');
   const [isPermissionGranted, setIsPermissionGranted] = useState(true);
 
-  const PLAY_ICON = 'play-circle';
-  const PAUSE_ICON = 'pause-circle';
-  const STOP_ICON = 'stop-circle';
+  const PLAY_ICON = faPlay;
+  const PAUSE_ICON = faPause;
+  const STOP_ICON = faStop;
 
   const checkIOS = (filename: string): string => {
     let checkedURI = filename;
@@ -54,11 +50,9 @@ const AddAudio = (props: Props) => {
         const grantedWriteStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
-            title: props.i18n._(t`Access permission`),
-            message: props.i18n._(
-              t`Allow Mahara Mobile to access photos, media, and files on your device?`
-            ),
-            buttonPositive: props.i18n._(t`Allow`)
+            title: t`Access permission`,
+            message: t`Allow Mahara Mobile to access photos, media, and files on your device?`,
+            buttonPositive: t`Allow`
           }
         );
 
@@ -75,11 +69,9 @@ const AddAudio = (props: Props) => {
         const grantedReadStorage = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
           {
-            title: props.i18n._(t`Access permission`),
-            message: props.i18n._(
-              t`Allow Mahara Mobile to read photos, media, and files on your device?`
-            ),
-            buttonPositive: props.i18n._(t`Allow`)
+            title: t`Access permission`,
+            message: t`Allow Mahara Mobile to read photos, media, and files on your device?`,
+            buttonPositive: t`Allow`
           }
         );
 
@@ -96,11 +88,9 @@ const AddAudio = (props: Props) => {
         const grantedRecord = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
           {
-            title: props.i18n._(t`Permission to record audio`),
-            message: props.i18n._(
-              t`Allow your microphone to record audio and save the files?`
-            ),
-            buttonPositive: props.i18n._(t`Allow`)
+            title: t`Permission to record audio`,
+            message: t`Allow your microphone to record audio and save the files?`,
+            buttonPositive: t`Allow`
           }
         );
         if (grantedRecord !== PermissionsAndroid.RESULTS.GRANTED) {
@@ -134,7 +124,7 @@ const AddAudio = (props: Props) => {
     }
 
     const rand = Math.round(Math.random() * 1000);
-    const {dirs} = RNFetchBlob.fs;
+    const { dirs } = ReactNativeBlobUtil.fs;
     const path =
       Platform.select({
         ios: `${rand}recording.m4a`,
@@ -158,12 +148,12 @@ const AddAudio = (props: Props) => {
     let fileSize = 0;
     let filename = '';
 
-    await RNFetchBlob.fs.stat(checkIOS(result)).then((stats) => {
+    await ReactNativeBlobUtil.fs.stat(checkIOS(result)).then((stats) => {
       filename = stats.filename;
       fileSize = parseInt(stats.size, 10);
     });
 
-    const mime = `audio/${Platform.OS === PLATFORM.IOS ? 'm4a' : 'mp3'}`;
+    const mime = `audio/${Platform.OS === 'ios' ? 'm4a' : 'mp3'}`;
 
     const file = newFile(uri, mime, filename, fileSize);
 
@@ -223,7 +213,7 @@ const AddAudio = (props: Props) => {
 
   return (
     <View style={styles.buttonWrapper}>
-      <View style={styles.playbackButtonWrapper}>
+      <HStack space={2} style={styles.playbackButtonWrapper}>
         {recordStatus === 'recorded' ? (
           <AudioPlayButton
             iconName={playStatus === 'not-playing' ? PLAY_ICON : PAUSE_ICON}
@@ -238,26 +228,28 @@ const AddAudio = (props: Props) => {
             You need to grant the app permission in order to use this feature
           </Text>
         ) : null}
-      </View>
+      </HStack>
       <View style={styles.recordButton}>
         {recordStatus === 'recording' ? (
           <MediumButton
             dark
-            style={{backgroundColor: variables.colors.recordingStopButtonRed}}
+            colorScheme="warning"
+            style={{ color: variables.colors.light }}
             text={t`Stop`}
             onPress={() => handleRecord()}
             icon={STOP_ICON}
+            fontWeight="200"
           />
         ) : (
           <OutlineButton
             text={recordStatus === 'recorded' ? t`Re-record` : t`Record`}
             onPress={() => handleRecord()}
-            icon="mic"
+            icon={faMicrophone}
           />
         )}
       </View>
     </View>
   );
-};
+}
 
-export default withI18n()(AddAudio);
+export default AddAudio;

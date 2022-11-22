@@ -1,31 +1,42 @@
-import {t, Trans} from '@lingui/macro';
-import {Icon, Text, Toast, View} from 'native-base';
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, TextInput} from 'react-native';
-import {connect, useDispatch} from 'react-redux';
-import {Dispatch} from 'redux';
-import LogoSvg from '../../assets/images/Logo-big';
-import buttons from '../../assets/styles/buttons';
-import forms from '../../assets/styles/forms';
-import generic from '../../assets/styles/generic';
-import headingStyles from '../../assets/styles/headings';
-import textStyles from '../../assets/styles/text';
-import styles from '../../assets/styles/variables';
-import LoginTypes from '../../components/LoginTypes/LoginTypes';
-import LinkButton from '../../components/UI/LinkButton/LinkButton';
-import MaharaGradient from '../../components/UI/MaharaGradient/MaharaGradient';
-import MediumButton from '../../components/UI/MediumButton/MediumButton';
-import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
-import {checkLoginTypes} from '../../store/actions/userArtefacts';
+import React, { useEffect, useState } from 'react';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Trans, t } from '@lingui/macro';
+import {
+  Alert,
+  CloseIcon,
+  HStack,
+  IconButton,
+  Input,
+  InputGroup,
+  InputLeftAddon,
+  Text,
+  VStack,
+  View,
+  useToast
+} from 'native-base';
+import { ActivityIndicator } from 'react-native';
+import { connect, useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
+import headingStyles from 'assets/styles/headings';
+import textStyles from 'assets/styles/text';
+import styles from 'assets/styles/variables';
+import LoginTypes from 'components/LoginTypes/LoginTypes';
+import LogoView from 'components/LogoView/LogoView';
+import LinkButton from 'components/UI/LinkButton/LinkButton';
+import MediumButton from 'components/UI/MediumButton/MediumButton';
+import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
+import SubHeading from 'components/UI/SubHeading/SubHeading';
+import { checkLoginTypes } from 'store/actions/userArtefacts';
 import {
   selectLocalLogin,
   selectSsoLogin,
   selectTokenLogin,
   selectUrl
-} from '../../store/reducers/loginInfoReducer';
-import {RootState} from '../../store/reducers/rootReducer';
-import {setUpGuest} from '../../utils/authHelperFunctions';
-import {addHttpTrims} from '../../utils/helperFunctions';
+} from 'store/reducers/loginInfoReducer';
+import { RootState } from 'store/reducers/rootReducer';
+import { setUpGuest } from 'utils/authHelperFunctions';
+import { getErrorMessage } from 'utils/error';
+import { addHttpTrims } from 'utils/helperFunctions';
 
 type Props = {
   dispatch: Dispatch;
@@ -36,27 +47,22 @@ type Props = {
   url: string;
 };
 
-type State = {
-  loginType: string;
-  serverPing: boolean;
-  isInputHidden: boolean;
-  loading: boolean;
-};
-
 /**
  * This screen holds the URL input and verifies whether a site
  * is a Mahara site with webservices connected.
  */
-const SiteCheckScreen = (props: Props) => {
+function SiteCheckScreen(props: Props) {
+  const toast = useToast();
+
   const [serverPing, setServerPing] = useState(false);
   const [isInputHidden, setIsInputHidden] = useState(false);
   const [enterURLWarning, setEnterURLWarning] = useState(false);
-  const [controlURL, setControlURL] = useState('https://');
+  const [controlURL, setControlURL] = useState('');
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const goToLoginType = (type: string) => {
-    props.navigation.navigate('LoginMethodScreen', {loginType: type});
+    props.navigation.navigate('LoginMethodScreen', { loginType: type });
   };
 
   useEffect(() => {
@@ -90,33 +96,27 @@ const SiteCheckScreen = (props: Props) => {
 
     try {
       setLoading(true);
-      // checkLoginTypes does return a promise, but not obvious to IDE as it's anonymous
-      await dispatch(checkLoginTypes(serverUrl));
+      await checkLoginTypes(serverUrl)(dispatch);
     } catch (error) {
-      Toast.show({
-        text: (
-          <Text
-            style={{
-              fontSize: styles.font.md,
-              color: styles.colors.messageErrorText,
-              flexDirection: 'row'
-            }}>
-            <Icon
-              style={{
-                color: styles.colors.messageErrorIcon
-              }}
-              name="home"
-            />
-            &nbsp;&nbsp;{error.message}
-          </Text>
-        ),
-        type: 'danger',
-        style: {
-          backgroundColor: styles.colors.messageErrorBg,
-          paddingBottom: styles.padding.md
-        },
-        position: 'top',
-        duration: 3000
+      const message = getErrorMessage(error);
+      toast.show({
+        render: ({ id }) => (
+          <Alert mx={2} status="error" variant="left-accent">
+            <VStack>
+              <HStack space={3} alignItems="center">
+                <Alert.Icon />
+                <Text w="100%" fontWeight="medium">{t`Connection error`}</Text>
+                <IconButton
+                  icon={<CloseIcon size="4" />}
+                  onPress={() => toast.close(id)}
+                  colorScheme="red"
+                  ml="auto"
+                />
+              </HStack>
+              <Text>{message}</Text>
+            </VStack>
+          </Alert>
+        )
       });
     } finally {
       setLoading(false);
@@ -128,103 +128,96 @@ const SiteCheckScreen = (props: Props) => {
   };
 
   return (
-    <View style={generic.view}>
-      <MaharaGradient>
-        <View style={{flex: 1.2}}>
-          <LogoSvg />
+    <LogoView>
+      {loading ? (
+        <View>
+          <ActivityIndicator size="small" color={styles.colors.light} />
         </View>
+      ) : null}
 
-        <View style={{flex: 0.1}}>
-          {loading ? (
-            <View>
-              <ActivityIndicator size="small" color={styles.colors.light} />
-            </View>
-          ) : null}
-        </View>
-
-        {!isInputHidden ? (
-          <View>
-            <Text
-              style={[
-                headingStyles.subHeading1,
-                textStyles.textWhite,
-                textStyles.center
-              ]}>
-              <Trans>What is the address of your Mahara?</Trans>
-            </Text>
-            <TextInput
-              keyboardType="url"
-              style={[
-                forms.textInput,
-                enterURLWarning
-                  ? {
-                      borderColor: styles.colors.siteCheckErrorTextPink,
-                      borderWidth: 2
-                    }
-                  : null
-              ]}
-              placeholder="https://yoursite.edu/"
-              defaultValue={controlURL}
-              onChangeText={(url: string) => onUpdateURL(url)}
-            />
-          </View>
-        ) : null}
-
-        {enterURLWarning ? (
-          <Text style={textStyles.errorText}>
-            <Trans>Please enter a URL.</Trans>
+      {!isInputHidden ? (
+        <View style={{ padding: 10 }}>
+          <Text style={[headingStyles.subHeading1, textStyles.textWhite, textStyles.center]}>
+            <Trans>What is the address of your Mahara?</Trans>
           </Text>
-        ) : null}
-
-        {serverPing && isInputHidden ? (
-          <View>
-            <Text style={[headingStyles.mainHeading, generic.center]}>
-              {controlURL}
-            </Text>
-            <OutlineButton
-              light
-              text={t`Enter a different URL`}
-              style={buttons.light}
-              onPress={() => {
-                setServerPing(false);
-                setIsInputHidden(false);
-                setLoading(false);
+          <InputGroup>
+            <InputLeftAddon>https://</InputLeftAddon>
+            <Input
+              autoCapitalize="none"
+              onChangeText={onUpdateURL}
+              backgroundColor="#FFF"
+              fontSize={styles.font.sm}
+              variant="filled"
+              w={{
+                base: '80%'
               }}
+              placeholder="yoursite.edu/"
+              defaultValue={controlURL}
+              value={controlURL}
             />
-          </View>
-        ) : null}
+          </InputGroup>
+        </View>
+      ) : null}
 
-        {!isInputHidden ? (
-          <View style={{justifyContent: 'space-between', flex: 1}}>
-            <MediumButton
-              text={t`Next`}
-              onPress={() => {
-                const url = addHttpTrims(controlURL);
-                if (url !== props.url) {
-                  checkServer(url);
-                } else {
-                  setServerPing(true);
-                  setIsInputHidden(true);
-                }
-              }}
-            />
-          </View>
-        ) : null}
+      {enterURLWarning ? (
+        <Text style={textStyles.errorText}>
+          <Trans>Please enter a URL.</Trans>
+        </Text>
+      ) : null}
 
-        {serverPing && (
-          <LoginTypes
-            goToLoginType={goToLoginType}
-            localLogin={props.localLogin}
-            ssoLogin={props.ssoLogin}
-            tokenLogin={props.tokenLogin}
+      {serverPing && isInputHidden ? (
+        <View>
+          <SubHeading
+            style={{ textAlign: 'center', color: styles.colors.light }}
+            text={controlURL}
+            noColon
           />
-        )}
+          <OutlineButton
+            light
+            text={t`Enter a different URL`}
+            style={{ color: styles.colors.light }}
+            onPress={() => {
+              setServerPing(false);
+              setIsInputHidden(false);
+              setLoading(false);
+            }}
+          />
+        </View>
+      ) : null}
 
+      {!isInputHidden ? (
+        <View style={{ marginTop: styles.padding.sm }}>
+          <MediumButton
+            text={t`Next`}
+            icon={faArrowRight}
+            onPress={() => {
+              const url = addHttpTrims(controlURL);
+              if (url !== props.url) {
+                checkServer(url);
+              } else {
+                setServerPing(true);
+                setIsInputHidden(true);
+              }
+            }}
+          />
+        </View>
+      ) : null}
+
+      {serverPing && (
+        <LoginTypes
+          goToLoginType={goToLoginType}
+          localLogin={props.localLogin}
+          ssoLogin={props.ssoLogin}
+          tokenLogin={props.tokenLogin}
+        />
+      )}
+
+      <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>
         <LinkButton text={t`Skip`} onPress={skipLogin} />
-      </MaharaGradient>
-    </View>
+      </View>
+    </LogoView>
   );
-};
+}
 
 const mapStateToProps = (state: RootState) => ({
   url: selectUrl(state),

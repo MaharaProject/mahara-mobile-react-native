@@ -1,20 +1,21 @@
-import {MessageDescriptor} from '@lingui/core';
-import {I18n} from '@lingui/react';
-import {Button, Icon, Text} from 'native-base';
 import React from 'react';
-import {StyleSheet} from 'react-native';
-import buttons from '../../../assets/styles/buttons';
-import styles from '../../../assets/styles/variables';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Button, Text } from 'native-base';
+import { StyleSheet } from 'react-native';
+import styles from 'assets/styles/variables';
+import { ICON_SIZE } from 'utils/constants';
 
 type Props = {
   onPress: () => void;
-  text: MessageDescriptor;
-  accessibilityHint?: MessageDescriptor;
-  icon?: string;
-  unbold?: boolean;
+  text: string;
+  accessibilityHint?: string;
+  icon?: IconDefinition;
   invalid?: boolean;
-  style?: any;
   dark?: boolean;
+  children?: any;
+  colorScheme?: string;
+  fontWeight?: string;
 };
 
 const MediumButtonStyles = StyleSheet.create({
@@ -22,41 +23,47 @@ const MediumButtonStyles = StyleSheet.create({
     color: styles.colors.light
   },
   light: {
-    color: '#433113'
+    borderRadius: 5,
+    color: styles.colors.browner
   }
 });
 
-const MediumButton = (props: Props) => (
-  <I18n>
-    {({i18n}) => (
-      <Button
-        full
-        light={!props.dark}
-        dark={!!props.dark}
-        disabled={props.invalid}
-        iconLeft
-        rounded
-        info={!props.invalid}
-        accessibilityRole="button"
-        accessibilityLabel={i18n._(props.text)}
-        accessibilityHint={
-          props.accessibilityHint ? i18n._(props.accessibilityHint) : undefined
-        }
-        onPress={props.onPress}
-        style={{...buttons.default, ...props.style}}>
-        <Icon
-          name={props.icon}
-          style={
-            props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light
-          }
-        />
-        <Text style={props.unbold ? {} : {fontWeight: 'bold'}}>
-          {i18n._(props.text)}
-        </Text>
-      </Button>
-    )}
-  </I18n>
-);
+function MediumButton(props: Props) {
+  return (
+    <Button
+      rounded="full"
+      colorScheme={props.colorScheme ? props.colorScheme : 'secondary'}
+      // colorScheme={props.invalid ? 'info' : 'secondary'}
+      // style={[
+      //   props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light,
+      //   props.style,
+      // ]}
+      startIcon={
+        props.icon ? (
+          <FontAwesomeIcon
+            // color={maharaTheme.colors.green}
+            icon={props.icon}
+            size={ICON_SIZE}
+            style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
+          />
+        ) : undefined
+      }
+      accessibilityRole="button"
+      accessibilityLabel={props.text}
+      accessibilityHint={props.accessibilityHint ? props.accessibilityHint : undefined}
+      isDisabled={props.invalid}
+      onPress={props.onPress}
+    >
+      <Text
+        color={props.dark ? styles.colors.light : styles.colors.browner}
+        fontWeight={props.fontWeight ? props.fontWeight : '500'}
+      >
+        {props.children}
+        {props.text}
+      </Text>
+    </Button>
+  );
+}
 
 StyleSheet.create({
   disabled: {

@@ -1,16 +1,12 @@
 /* eslint-disable max-len */
 import React from 'react';
-import {View} from 'react-native';
-import Svg, {Path} from 'react-native-svg';
+import { View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
-const PickFileSvg = () => {
+function PickFileSvg() {
   return (
     <View>
-      <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="85"
-        viewBox="0 0 285 255">
+      <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 255">
         <Path
           id="pick-file.svg"
           fill="#fff"
@@ -20,6 +16,6 @@ const PickFileSvg = () => {
       </Svg>
     </View>
   );
-};
+}
 
 export default PickFileSvg;

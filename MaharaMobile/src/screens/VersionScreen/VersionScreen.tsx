@@ -1,27 +1,21 @@
-import {t} from '@lingui/macro';
-import {List, ListItem} from 'native-base';
 import React from 'react';
+import { t } from '@lingui/macro';
+import { ScrollView } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
-import flashMessage from '../../components/FlashMessage/FlashMessage';
-import MediumText from '../../components/UI/CustomText/MediumText';
-import i18n from '../../i18n';
+import generic from 'assets/styles/generic';
+import MediumText from 'components/UI/CustomText/MediumText';
 
-const VersionScreen = () => {
+function VersionScreen() {
   const version = DeviceInfo.getVersion();
-  const versionCode = DeviceInfo.getReadableVersion();
-  // flashMessage(versionCode, 'warning');
+
   const android = '11';
   const ios = '14';
   return (
-    <List>
-      <ListItem noBorder>
-        <MediumText
-          textTranslated={i18n._(
-            t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`
-          )}
-        />
-      </ListItem>
-    </List>
+    <ScrollView style={generic.wrap}>
+      <MediumText
+        text={t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`}
+      />
+    </ScrollView>
   );
-};
+}
 export default VersionScreen;
