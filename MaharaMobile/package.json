@@ -1,6 +1,6 @@
 {
   "name": "maharamobile",
-  "version": "22.10.0",
+  "version": "22.10.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
