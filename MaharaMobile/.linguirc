@@ -1,5 +1,5 @@
 {
-   "locales": ["ko", "en"],
+   "locales": ["en", "ko", "fr"],
    "catalogs": [{
      "path": "locales/{locale}/messages",
      "include": ["src"]
