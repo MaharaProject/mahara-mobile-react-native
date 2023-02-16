@@ -178,6 +178,7 @@ android {
                             "-DREACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
                             "-DNODE_MODULES_DIR=$rootDir/../node_modules",
                             "-DANDROID_STL=c++_shared"
+                    }
                 }
             }
             if (!enableSeparateBuildPerCPUArchitecture) {
