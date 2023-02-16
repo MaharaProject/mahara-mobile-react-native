@@ -1,6 +1,6 @@
 {
   "name": "maharamobile",
-  "version": "22.10.5",
+  "version": "23.2.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -22,6 +22,14 @@
     "devices": "adb devices",
     "check-deps": "rnx-dep-check",
     "fix-deps": "rnx-dep-check --write"
+  },
+  "codegenConfig": {
+    "name": "MaharaMobile",
+    "type": "components",
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "org.mahara.mobile.app"
+    }
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
@@ -90,7 +98,7 @@
     "path": "^0.12.7",
     "prettier": "^2.8.4",
     "react-native-vector-icons": "^9.2.0",
-    "react-test-renderer": "18.1",
+    "react-test-renderer": "^18.1.0",
     "redux-mock-store": "^1.5.4",
     "typescript": "^4.9.5"
   },

@@ -7,7 +7,7 @@
 
 module.exports = {
   resolver: {
-    sourceExts: ['js', 'ts', 'tsx', 'mjs']
+    sourceExts: ['js', 'ts', 'tsx', 'mjs', 'json']
   },
   transformer: {
     getTransformOptions: async () => ({
