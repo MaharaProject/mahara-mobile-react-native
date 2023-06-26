@@ -1,5 +1,5 @@
 import App from 'app';
 import { AppRegistry } from 'react-native';
-import { name as appName } from './app.json';
+import { codegenConfig as config } from './package.json';
 
-AppRegistry.registerComponent(appName, () => App);
+AppRegistry.registerComponent(config.name, () => App);
