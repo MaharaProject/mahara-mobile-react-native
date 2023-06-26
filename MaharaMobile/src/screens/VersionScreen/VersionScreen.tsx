@@ -8,7 +8,7 @@ import MediumText from 'components/UI/CustomText/MediumText';
 function VersionScreen() {
   const version = DeviceInfo.getVersion();
 
-  const android = '11';
+  const android = '13';
   const ios = '14';
   return (
     <ScrollView style={generic.wrap}>
