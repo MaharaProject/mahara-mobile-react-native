@@ -150,8 +150,6 @@ def getReleaseProperties(){
 
 def releaseProperties = getReleaseProperties()
 
-
-
 android {
     ndkVersion rootProject.ext.ndkVersion
 
@@ -168,17 +166,12 @@ android {
         if (isNewArchitectureEnabled()) {
             // We configure the CMake build only if you decide to opt-in for the New Architecture.
             externalNativeBuild {
-                ndkBuild {
-                    arguments "PROJECT_BUILD_DIR=$buildDir",
-                        "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
-                    cmake {
-                        arguments "-DPROJECT_BUILD_DIR=$buildDir",
-                            "-DREACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                            "-DREACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
-                            "-DNODE_MODULES_DIR=$rootDir/../node_modules",
-                            "-DANDROID_STL=c++_shared"
-                    }
+                cmake {
+                    arguments "-DPROJECT_BUILD_DIR=$buildDir",
+                        "-DREACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
+                        "-DREACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
+                        "-DNODE_MODULES_DIR=$rootDir/../node_modules",
+                        "-DANDROID_STL=c++_shared"
                 }
             }
             if (!enableSeparateBuildPerCPUArchitecture) {
@@ -345,8 +338,3 @@ def isNewArchitectureEnabled() {
     // - Set an environment variable `ORG_GRADLE_PROJECT_newArchEnabled=true`
     return project.hasProperty("newArchEnabled") && project.newArchEnabled == "true"
 }
-
-// project.ext.vectoricons = [
-//     iconFontNames: [ 'MaterialIcons.ttf', 'EvilIcons.ttf', 'Ionicons.ttf' ] // Name of the font files you want to copy
-// ]
-// apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
