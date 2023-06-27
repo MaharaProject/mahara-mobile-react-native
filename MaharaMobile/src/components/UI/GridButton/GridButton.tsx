@@ -24,7 +24,8 @@ function GridButton(props: Props) {
         props.color === 'green' ? gridButtonStyles.green : null,
         props.color === 'purple' ? gridButtonStyles.purple : null,
         props.color === 'lightbrown' ? gridButtonStyles.lightbrown : null,
-        props.color === 'darkbrown' ? gridButtonStyles.darkbrown : null
+        props.color === 'darkbrown' ? gridButtonStyles.darkbrown : null,
+        props.color === 'disabled' ? gridButtonStyles.disabled : null
       ]}
     >
       {props.image ? <View style={gridButtonStyles.imageWrapper}>{props.image}</View> : null}

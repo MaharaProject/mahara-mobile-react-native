@@ -30,6 +30,9 @@ const gridButtonStyles = StyleSheet.create({
   darkbrown: {
     backgroundColor: styles.colors.darkbrown_grid_button
   },
+  disabled: {
+    backgroundColor: styles.colors.darkgrey
+  },
   journalEntry: {
     backgroundColor: styles.colors.lightbrown_grid_button,
     padding: styles.padding.sm
