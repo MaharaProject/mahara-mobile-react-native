@@ -32,10 +32,8 @@ msgstr "À propos de"
 #~ msgid "About Mahara Mobile"
 #~ msgstr "À propos de Mahara Mobile"
 
-#: src/components/AddAudio/AddAudio.tsx:53
-#: src/components/AddAudio/AddAudio.tsx:72
-#: src/components/AddAudio/AddAudio.tsx:53
-#: src/components/AddAudio/AddAudio.tsx:72
+#: src/components/AddAudio/AddAudio.tsx:55
+#: src/components/AddAudio/AddAudio.tsx:74
 msgid "Access permission"
 msgstr "Autorisation d'accès"
 
@@ -75,17 +73,13 @@ msgstr "Ajouter {0}"
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
 msgstr "Tous les fichiers et contenus téléversés sur un site Mahara sont soumis aux lois sur le droit d'auteur. Vous êtes responsable d'obtenir les autorisations requises pour reproduire ou publier toute oeuvre qui n'est pas la vôtre."
 
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
-#: src/components/AddAudio/AddAudio.tsx:93
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
-#: src/components/AddAudio/AddAudio.tsx:93
+#: src/components/AddAudio/AddAudio.tsx:57
+#: src/components/AddAudio/AddAudio.tsx:76
+#: src/components/AddAudio/AddAudio.tsx:95
 msgid "Allow"
 msgstr "Autoriser"
 
-#: src/components/AddAudio/AddAudio.tsx:54
-#: src/components/AddAudio/AddAudio.tsx:54
+#: src/components/AddAudio/AddAudio.tsx:56
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de votre appareil?"
 
@@ -94,13 +88,11 @@ msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de v
 #~ msgid "Allow Mahara Mobile to access the camera?"
 #~ msgstr "Autoriser Mahara Mobile à utiliser la caméra?"
 
-#: src/components/AddAudio/AddAudio.tsx:73
-#: src/components/AddAudio/AddAudio.tsx:73
+#: src/components/AddAudio/AddAudio.tsx:75
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
 msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de votre appareil?"
 
-#: src/components/AddAudio/AddAudio.tsx:92
-#: src/components/AddAudio/AddAudio.tsx:92
+#: src/components/AddAudio/AddAudio.tsx:94
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "Autoriser l'utilisation du micro pour enregistrer l'audio et l'enregistrer dans un fichier?"
 
@@ -118,10 +110,13 @@ msgstr "Version de l'application"
 msgid "Are you sure?"
 msgstr "Êtes-vous certain?"
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:43
 #: src/utils/helperFunctions.ts:101
 msgid "Audio"
 msgstr "Audio"
+
+#: src/components/SelectMediaType/SelectMediaType.tsx:43
+msgid "Audio (disabled)"
+msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:27
 #~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
@@ -487,8 +482,7 @@ msgstr "Nos obligations"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: src/components/AddAudio/AddAudio.tsx:91
-#: src/components/AddAudio/AddAudio.tsx:91
+#: src/components/AddAudio/AddAudio.tsx:93
 msgid "Permission to record audio"
 msgstr "Autorisation d'enregistrer l'audio"
 
@@ -550,7 +544,7 @@ msgstr "But de Mahara mobile"
 msgid "Queue to upload"
 msgstr "Queue de téléversement"
 
-#: src/components/AddAudio/AddAudio.tsx:245
+#: src/components/AddAudio/AddAudio.tsx:257
 msgid "Re-record"
 msgstr "Enregistrer de nouveau"
 
@@ -559,7 +553,7 @@ msgstr "Enregistrer de nouveau"
 msgid "Re-take photo"
 msgstr "Reprendre la photo"
 
-#: src/components/AddAudio/AddAudio.tsx:245
+#: src/components/AddAudio/AddAudio.tsx:257
 msgid "Record"
 msgstr "Enregistrer"
 
@@ -610,7 +604,7 @@ msgstr "Authentification unique"
 msgid "Skip"
 msgstr "Ignorer"
 
-#: src/components/AddAudio/AddAudio.tsx:238
+#: src/components/AddAudio/AddAudio.tsx:250
 msgid "Stop"
 msgstr "Arrêter"
 

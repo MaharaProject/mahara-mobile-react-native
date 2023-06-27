@@ -32,10 +32,8 @@ msgstr ""
 #~ msgid "About Mahara Mobile"
 #~ msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:53
-#: src/components/AddAudio/AddAudio.tsx:72
-#: src/components/AddAudio/AddAudio.tsx:53
-#: src/components/AddAudio/AddAudio.tsx:72
+#: src/components/AddAudio/AddAudio.tsx:55
+#: src/components/AddAudio/AddAudio.tsx:74
 msgid "Access permission"
 msgstr ""
 
@@ -75,17 +73,13 @@ msgstr ""
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
-#: src/components/AddAudio/AddAudio.tsx:93
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
-#: src/components/AddAudio/AddAudio.tsx:93
+#: src/components/AddAudio/AddAudio.tsx:57
+#: src/components/AddAudio/AddAudio.tsx:76
+#: src/components/AddAudio/AddAudio.tsx:95
 msgid "Allow"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:54
-#: src/components/AddAudio/AddAudio.tsx:54
+#: src/components/AddAudio/AddAudio.tsx:56
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr ""
 
@@ -94,13 +88,11 @@ msgstr ""
 #~ msgid "Allow Mahara Mobile to access the camera?"
 #~ msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:73
-#: src/components/AddAudio/AddAudio.tsx:73
+#: src/components/AddAudio/AddAudio.tsx:75
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:92
-#: src/components/AddAudio/AddAudio.tsx:92
+#: src/components/AddAudio/AddAudio.tsx:94
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
@@ -118,9 +110,12 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:43
 #: src/utils/helperFunctions.ts:101
 msgid "Audio"
+msgstr ""
+
+#: src/components/SelectMediaType/SelectMediaType.tsx:43
+msgid "Audio (disabled)"
 msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:27
@@ -487,8 +482,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:91
-#: src/components/AddAudio/AddAudio.tsx:91
+#: src/components/AddAudio/AddAudio.tsx:93
 msgid "Permission to record audio"
 msgstr ""
 
@@ -550,7 +544,7 @@ msgstr ""
 msgid "Queue to upload"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:245
+#: src/components/AddAudio/AddAudio.tsx:257
 msgid "Re-record"
 msgstr ""
 
@@ -559,7 +553,7 @@ msgstr ""
 msgid "Re-take photo"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:245
+#: src/components/AddAudio/AddAudio.tsx:257
 msgid "Record"
 msgstr ""
 
@@ -610,7 +604,7 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:238
+#: src/components/AddAudio/AddAudio.tsx:250
 msgid "Stop"
 msgstr ""
 

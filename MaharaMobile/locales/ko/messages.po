@@ -30,10 +30,8 @@ msgstr "정보"
 #~ msgid "About Mahara Mobile"
 #~ msgstr "Mahara Mobile에 대하여"
 
-#: src/components/AddAudio/AddAudio.tsx:53
-#: src/components/AddAudio/AddAudio.tsx:72
-#: src/components/AddAudio/AddAudio.tsx:53
-#: src/components/AddAudio/AddAudio.tsx:72
+#: src/components/AddAudio/AddAudio.tsx:55
+#: src/components/AddAudio/AddAudio.tsx:74
 msgid "Access permission"
 msgstr "액세스 권한"
 
@@ -73,17 +71,13 @@ msgstr "{0} 추가"
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
 msgstr "KO All files and content..."
 
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
-#: src/components/AddAudio/AddAudio.tsx:93
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
-#: src/components/AddAudio/AddAudio.tsx:93
+#: src/components/AddAudio/AddAudio.tsx:57
+#: src/components/AddAudio/AddAudio.tsx:76
+#: src/components/AddAudio/AddAudio.tsx:95
 msgid "Allow"
 msgstr "허용하다"
 
-#: src/components/AddAudio/AddAudio.tsx:54
-#: src/components/AddAudio/AddAudio.tsx:54
+#: src/components/AddAudio/AddAudio.tsx:56
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하도록 허용 하시겠습니까?"
 
@@ -92,13 +86,11 @@ msgstr "Mahara Mobile이 기기의 사진, 미디어 및 파일에 액세스하�
 #~ msgid "Allow Mahara Mobile to access the camera?"
 #~ msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:73
-#: src/components/AddAudio/AddAudio.tsx:73
+#: src/components/AddAudio/AddAudio.tsx:75
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:92
-#: src/components/AddAudio/AddAudio.tsx:92
+#: src/components/AddAudio/AddAudio.tsx:94
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 하시겠습니까?"
 
@@ -116,10 +108,13 @@ msgstr "앱 버전"
 msgid "Are you sure?"
 msgstr "확실해?"
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:43
 #: src/utils/helperFunctions.ts:101
 msgid "Audio"
 msgstr "오디오"
+
+#: src/components/SelectMediaType/SelectMediaType.tsx:43
+msgid "Audio (disabled)"
+msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:27
 #~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
@@ -452,8 +447,7 @@ msgstr "우리의 의무"
 msgid "Password"
 msgstr "암호"
 
-#: src/components/AddAudio/AddAudio.tsx:91
-#: src/components/AddAudio/AddAudio.tsx:91
+#: src/components/AddAudio/AddAudio.tsx:93
 msgid "Permission to record audio"
 msgstr "오디오 녹음 권한"
 
@@ -515,7 +509,7 @@ msgstr "Mahara Mobile의 목적"
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
-#: src/components/AddAudio/AddAudio.tsx:245
+#: src/components/AddAudio/AddAudio.tsx:257
 msgid "Re-record"
 msgstr "다시 녹음"
 
@@ -524,7 +518,7 @@ msgstr "다시 녹음"
 msgid "Re-take photo"
 msgstr "사진을 다시 찍습니다."
 
-#: src/components/AddAudio/AddAudio.tsx:245
+#: src/components/AddAudio/AddAudio.tsx:257
 msgid "Record"
 msgstr "녹음"
 
@@ -575,7 +569,7 @@ msgstr "싱글 사인온"
 msgid "Skip"
 msgstr "로그인 건너 뛰기"
 
-#: src/components/AddAudio/AddAudio.tsx:238
+#: src/components/AddAudio/AddAudio.tsx:250
 msgid "Stop"
 msgstr "녹화 중지"
 
