@@ -30,7 +30,10 @@ function GridButton(props: Props) {
     >
       {props.image ? <View style={gridButtonStyles.imageWrapper}>{props.image}</View> : null}
       <Center>
-        <Text style={[gridButtonStyles.buttonText]}>{props.title}</Text>
+        <Text centre style={[gridButtonStyles.buttonText]}>
+          {props.title}
+        </Text>
+        ;
       </Center>
     </TouchableOpacity>
   );

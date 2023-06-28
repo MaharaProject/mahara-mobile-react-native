@@ -19,6 +19,20 @@ function SelectMediaType(props: Props) {
     <View>
       <View style={styles.row}>
         <GridButton
+          // image={<RecordAudioSvg />}
+          title={t`Create and upload your learning evidence`}
+          color="darkbrown"
+          onPress={() => {}}
+        />
+        <GridButton
+          image={<AddJournalEntrySvg />}
+          title={t`Journal entry`}
+          color="lightbrown"
+          onPress={() => props.selectMediaType('J_ENTRY')}
+        />
+      </View>
+      <View style={styles.row}>
+        <GridButton
           image={<PickFileSvg />}
           title={t`File`}
           color="green"
@@ -30,20 +44,6 @@ function SelectMediaType(props: Props) {
           color="purple"
           onPress={() => props.selectMediaType('PHOTO')}
         />
-      </View>
-      <View style={styles.row}>
-        <GridButton
-          image={<AddJournalEntrySvg />}
-          title={t`Journal entry`}
-          color="lightbrown"
-          onPress={() => props.selectMediaType('J_ENTRY')}
-        />
-        {/* <GridButton
-          image={<RecordAudioSvg />}
-          title={t`Audio (disabled)`}
-          color="disabled"
-          onPress={() => {}}
-        /> */}
       </View>
     </View>
   );
