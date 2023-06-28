@@ -34,9 +34,8 @@ const setSelectedImageCallback = (
       path = `˜${path.substring(path.indexOf('/Documents'))}`;
     }
 
-// const maharaFile = newFile(path, asset.type, asset.fileName, asset.fileSize);
-const maharaFile = newFile(path, asset.type, `Photo_${Date.now()}.jpg`, asset.fileSize);
-
+    // const maharaFile = newFile(path, asset.type, asset.fileName, asset.fileSize);
+    const maharaFile = newFile(path, asset.type, `Photo_${Date.now()}.jpg`, asset.fileSize);
 
     setPickedFile(maharaFile);
   }

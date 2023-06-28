@@ -14,7 +14,7 @@ import { newFile } from 'models/typeCreators';
 import styles from './AddAudio.style';
 
 type Props = {
-// setPickedFile: any;
+  // setPickedFile: any;
   audioFileToEdit?: File;
 };
 
