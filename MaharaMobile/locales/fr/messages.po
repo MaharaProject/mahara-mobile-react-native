@@ -32,8 +32,8 @@ msgstr "À propos de"
 #~ msgid "About Mahara Mobile"
 #~ msgstr "À propos de Mahara Mobile"
 
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
+#: src/components/AddAudio/AddAudio.tsx:53
+#: src/components/AddAudio/AddAudio.tsx:72
 msgid "Access permission"
 msgstr "Autorisation d'accès"
 
@@ -73,13 +73,13 @@ msgstr "Ajouter {0}"
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
 msgstr "Tous les fichiers et contenus téléversés sur un site Mahara sont soumis aux lois sur le droit d'auteur. Vous êtes responsable d'obtenir les autorisations requises pour reproduire ou publier toute oeuvre qui n'est pas la vôtre."
 
-#: src/components/AddAudio/AddAudio.tsx:57
-#: src/components/AddAudio/AddAudio.tsx:76
-#: src/components/AddAudio/AddAudio.tsx:95
+#: src/components/AddAudio/AddAudio.tsx:55
+#: src/components/AddAudio/AddAudio.tsx:74
+#: src/components/AddAudio/AddAudio.tsx:93
 msgid "Allow"
 msgstr "Autoriser"
 
-#: src/components/AddAudio/AddAudio.tsx:56
+#: src/components/AddAudio/AddAudio.tsx:54
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de votre appareil?"
 
@@ -88,11 +88,11 @@ msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de v
 #~ msgid "Allow Mahara Mobile to access the camera?"
 #~ msgstr "Autoriser Mahara Mobile à utiliser la caméra?"
 
-#: src/components/AddAudio/AddAudio.tsx:75
+#: src/components/AddAudio/AddAudio.tsx:73
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
 msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de votre appareil?"
 
-#: src/components/AddAudio/AddAudio.tsx:94
+#: src/components/AddAudio/AddAudio.tsx:92
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "Autoriser l'utilisation du micro pour enregistrer l'audio et l'enregistrer dans un fichier?"
 
@@ -115,8 +115,8 @@ msgid "Audio"
 msgstr "Audio"
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:43
-msgid "Audio (disabled)"
-msgstr ""
+#~ msgid "Audio (disabled)"
+#~ msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:27
 #~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
@@ -173,6 +173,10 @@ msgstr "Contact"
 msgid "Create"
 msgstr "Créer"
 
+#: src/components/SelectMediaType/SelectMediaType.tsx:23
+msgid "Create and upload your learning evidence"
+msgstr ""
+
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:125
 msgid "Default options"
 msgstr "Options par défaut"
@@ -225,7 +229,7 @@ msgstr "Erreur : vous n'avez aucun journal sur votre site."
 msgid "Fields marked by * are required."
 msgstr "Les champs marqués d'un * sont obligatoires."
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:23
+#: src/components/SelectMediaType/SelectMediaType.tsx:37
 #: src/components/UploadForm/UploadForm.tsx:262
 #: src/utils/helperFunctions.ts:103
 msgid "File"
@@ -323,7 +327,7 @@ msgstr "Les éléments de la queue de téléversement ne seront pas récupérabl
 msgid "Journal"
 msgstr "Journal"
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:37
+#: src/components/SelectMediaType/SelectMediaType.tsx:29
 #: src/utils/helperFunctions.ts:105
 msgid "Journal entry"
 msgstr "Article de journal"
@@ -482,11 +486,11 @@ msgstr "Nos obligations"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: src/components/AddAudio/AddAudio.tsx:93
+#: src/components/AddAudio/AddAudio.tsx:91
 msgid "Permission to record audio"
 msgstr "Autorisation d'enregistrer l'audio"
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:29
+#: src/components/SelectMediaType/SelectMediaType.tsx:43
 #: src/utils/helperFunctions.ts:107
 msgid "Photo"
 msgstr "Photo"
@@ -544,7 +548,7 @@ msgstr "But de Mahara mobile"
 msgid "Queue to upload"
 msgstr "Queue de téléversement"
 
-#: src/components/AddAudio/AddAudio.tsx:257
+#: src/components/AddAudio/AddAudio.tsx:237
 msgid "Re-record"
 msgstr "Enregistrer de nouveau"
 
@@ -553,7 +557,7 @@ msgstr "Enregistrer de nouveau"
 msgid "Re-take photo"
 msgstr "Reprendre la photo"
 
-#: src/components/AddAudio/AddAudio.tsx:257
+#: src/components/AddAudio/AddAudio.tsx:237
 msgid "Record"
 msgstr "Enregistrer"
 
@@ -604,7 +608,7 @@ msgstr "Authentification unique"
 msgid "Skip"
 msgstr "Ignorer"
 
-#: src/components/AddAudio/AddAudio.tsx:250
+#: src/components/AddAudio/AddAudio.tsx:230
 msgid "Stop"
 msgstr "Arrêter"
 

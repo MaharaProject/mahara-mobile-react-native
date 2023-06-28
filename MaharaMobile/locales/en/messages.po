@@ -32,8 +32,8 @@ msgstr ""
 #~ msgid "About Mahara Mobile"
 #~ msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:55
-#: src/components/AddAudio/AddAudio.tsx:74
+#: src/components/AddAudio/AddAudio.tsx:53
+#: src/components/AddAudio/AddAudio.tsx:72
 msgid "Access permission"
 msgstr ""
 
@@ -73,13 +73,13 @@ msgstr ""
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:57
-#: src/components/AddAudio/AddAudio.tsx:76
-#: src/components/AddAudio/AddAudio.tsx:95
+#: src/components/AddAudio/AddAudio.tsx:55
+#: src/components/AddAudio/AddAudio.tsx:74
+#: src/components/AddAudio/AddAudio.tsx:93
 msgid "Allow"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:56
+#: src/components/AddAudio/AddAudio.tsx:54
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
 msgstr ""
 
@@ -88,11 +88,11 @@ msgstr ""
 #~ msgid "Allow Mahara Mobile to access the camera?"
 #~ msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:75
+#: src/components/AddAudio/AddAudio.tsx:73
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:94
+#: src/components/AddAudio/AddAudio.tsx:92
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
@@ -115,8 +115,8 @@ msgid "Audio"
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:43
-msgid "Audio (disabled)"
-msgstr ""
+#~ msgid "Audio (disabled)"
+#~ msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:27
 #~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
@@ -173,6 +173,10 @@ msgstr ""
 msgid "Create"
 msgstr ""
 
+#: src/components/SelectMediaType/SelectMediaType.tsx:23
+msgid "Create and upload your learning evidence"
+msgstr ""
+
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:125
 msgid "Default options"
 msgstr ""
@@ -225,7 +229,7 @@ msgstr ""
 msgid "Fields marked by * are required."
 msgstr ""
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:23
+#: src/components/SelectMediaType/SelectMediaType.tsx:37
 #: src/components/UploadForm/UploadForm.tsx:262
 #: src/utils/helperFunctions.ts:103
 msgid "File"
@@ -323,7 +327,7 @@ msgstr ""
 msgid "Journal"
 msgstr ""
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:37
+#: src/components/SelectMediaType/SelectMediaType.tsx:29
 #: src/utils/helperFunctions.ts:105
 msgid "Journal entry"
 msgstr ""
@@ -482,11 +486,11 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:93
+#: src/components/AddAudio/AddAudio.tsx:91
 msgid "Permission to record audio"
 msgstr ""
 
-#: src/components/SelectMediaType/SelectMediaType.tsx:29
+#: src/components/SelectMediaType/SelectMediaType.tsx:43
 #: src/utils/helperFunctions.ts:107
 msgid "Photo"
 msgstr ""
@@ -544,7 +548,7 @@ msgstr ""
 msgid "Queue to upload"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:257
+#: src/components/AddAudio/AddAudio.tsx:237
 msgid "Re-record"
 msgstr ""
 
@@ -553,7 +557,7 @@ msgstr ""
 msgid "Re-take photo"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:257
+#: src/components/AddAudio/AddAudio.tsx:237
 msgid "Record"
 msgstr ""
 
@@ -604,7 +608,7 @@ msgstr ""
 msgid "Skip"
 msgstr ""
 
-#: src/components/AddAudio/AddAudio.tsx:250
+#: src/components/AddAudio/AddAudio.tsx:230
 msgid "Stop"
 msgstr ""
 
