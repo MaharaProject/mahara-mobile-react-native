@@ -191,8 +191,8 @@ export const login = (
   userBlogs: UserBlog[],
   userFolders: UserFolder[],
   token: string,
-  setLoading: (loading: boolean) => void,
-  updateToken: (token: string | null) => void,
+  setLoading?: (loading: boolean) => void,
+  updateToken?: (token: string | null) => void,
   isGuest: boolean
 ) => {
   const serverUrl = `${url}webservice/rest/server.php?alt=json`;
@@ -225,16 +225,22 @@ export const login = (
   };
 
   let userData: any = null;
-  setLoading(true);
+  if (setLoading) {
+    setLoading(true);
+  }
   fetchUserWithToken(serverUrl, requestOptions)
     .then((json) => {
       console.log(json.token);
       onCheckAuthJSON(
         json,
-        () => updateToken(json.token),
         () => {
-          updateToken(null);
-          setLoading(false);
+          if (updateToken) updateToken(json.token);
+        },
+        () => {
+          if (updateToken) {
+            updateToken(null);
+          }
+          if (setLoading) setLoading(false);
         }
       );
       userData = json;
