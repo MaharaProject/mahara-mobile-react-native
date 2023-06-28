@@ -4,7 +4,6 @@ import { t } from '@lingui/macro';
 import { HStack } from 'native-base';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 // import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import variables from 'assets/styles/variables';
 import AudioPlayButton from 'components/UI/AudioPlayButton/AudioPlayButton';
@@ -23,7 +22,6 @@ type RecordStatus = 'recording' | 'recorded' | 'not-recorded';
 type PlayStatus = 'playing' | 'not-playing';
 
 const audioRecorderPlayer = null;
-
 
 function AddAudio(props: Props) {
   const [recordStatus, setRecordStat] = useState<RecordStatus>('not-recorded');
@@ -120,56 +118,38 @@ function AddAudio(props: Props) {
 
   const onStartRecord = async () => {
     // check not playing recording
-// if (playStatus === 'playing') {
-//   setPlayStatus('not-playing');
-// audioRecorderPlayer.pausePlayer();
-// }
-
-
-// const rand = Math.round(Math.random() * 1000);
-// const { dirs } = ReactNativeBlobUtil.fs;
-// const path =
-//   Platform.select({
-//     ios: `${rand}recording.m4a`,
-//     android: `${dirs.CacheDir}/${rand}recording.mp3`
-//   }) ?? `${rand}recording.m4a`;
-
-
-// setURI(path);
-
-
-// const resultURI = await audioRecorderPlayer.startRecorder(path);
-// audioRecorderPlayer.addRecordBackListener(() => {
-// setURI(resultURI);
-// setRecordStat('recording');
-// });
-
+    // if (playStatus === 'playing') {
+    //   setPlayStatus('not-playing');
+    // audioRecorderPlayer.pausePlayer();
+    // }
+    // const rand = Math.round(Math.random() * 1000);
+    // const { dirs } = ReactNativeBlobUtil.fs;
+    // const path =
+    //   Platform.select({
+    //     ios: `${rand}recording.m4a`,
+    //     android: `${dirs.CacheDir}/${rand}recording.mp3`
+    //   }) ?? `${rand}recording.m4a`;
+    // setURI(path);
+    // const resultURI = await audioRecorderPlayer.startRecorder(path);
+    // audioRecorderPlayer.addRecordBackListener(() => {
+    // setURI(resultURI);
+    // setRecordStat('recording');
+    // });
   };
 
   const onStopRecord = async () => {
-// const result = await audioRecorderPlayer.stopRecorder();
-// audioRecorderPlayer.removeRecordBackListener();
-// setRecordStat('recorded');
-
-
-// let fileSize = 0;
-// let filename = '';
-
-
-// await ReactNativeBlobUtil.fs.stat(checkIOS(result)).then((stats) => {
-//   filename = stats.filename;
-//   fileSize = parseInt(stats.size, 10);
-// });
-
-
-// const mime = `audio/${Platform.OS === 'ios' ? 'm4a' : 'mp3'}`;
-
-
-// const file = newFile(uri, mime, filename, fileSize);
-
-
-// props.setPickedFile(file);
-
+    // const result = await audioRecorderPlayer.stopRecorder();
+    // audioRecorderPlayer.removeRecordBackListener();
+    // setRecordStat('recorded');
+    // let fileSize = 0;
+    // let filename = '';
+    // await ReactNativeBlobUtil.fs.stat(checkIOS(result)).then((stats) => {
+    //   filename = stats.filename;
+    //   fileSize = parseInt(stats.size, 10);
+    // });
+    // const mime = `audio/${Platform.OS === 'ios' ? 'm4a' : 'mp3'}`;
+    // const file = newFile(uri, mime, filename, fileSize);
+    // props.setPickedFile(file);
   };
 
   const handleRecord = async () => {

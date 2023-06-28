@@ -38,12 +38,12 @@ function SelectMediaType(props: Props) {
           color="lightbrown"
           onPress={() => props.selectMediaType('J_ENTRY')}
         />
-        <GridButton
+        {/* <GridButton
           image={<RecordAudioSvg />}
           title={t`Audio (disabled)`}
           color="disabled"
           onPress={() => {}}
-        />
+        /> */}
       </View>
     </View>
   );
