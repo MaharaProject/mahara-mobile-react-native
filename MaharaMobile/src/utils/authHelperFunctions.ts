@@ -113,7 +113,9 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
   })
     .fetch('GET', serverUrl)
     .then((res) => {
-      profilePic = `file://${res.path()}`;
+      console.log('💛')
+      console.log(res)
+      profilePic = `file://data/${res.data}`;
 
       dispatch(updateProfilePic(profilePic));
     })
@@ -228,6 +230,7 @@ export const login = (
   setLoading(true);
   fetchUserWithToken(serverUrl, requestOptions)
     .then((json) => {
+      console.log(json)
       console.log(json.token);
       onCheckAuthJSON(
         json,

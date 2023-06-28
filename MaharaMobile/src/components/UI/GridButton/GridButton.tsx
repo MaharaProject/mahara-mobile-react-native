@@ -33,7 +33,6 @@ function GridButton(props: Props) {
         <Text centre style={[gridButtonStyles.buttonText]}>
           {props.title}
         </Text>
-        ;
       </Center>
     </TouchableOpacity>
   );
