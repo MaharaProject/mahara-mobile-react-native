@@ -234,13 +234,17 @@ export const login = (
       onCheckAuthJSON(
         json,
         () => {
-          if (updateToken) updateToken(json.token);
+          if (updateToken) {
+            updateToken(json.token);
+          }
         },
         () => {
           if (updateToken) {
             updateToken(null);
           }
-          if (setLoading) setLoading(false);
+          if (setLoading) {
+            setLoading(false);
+          }
         }
       );
       userData = json;
