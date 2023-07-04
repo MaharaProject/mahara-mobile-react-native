@@ -81,7 +81,8 @@ function UploadForm(props: Props) {
   const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size > 0);
   const [title, setTitle] = useState(''); // title and filename
   const [titleValid, setTitleValid] = useState(props.itemType !== 'J_ENTRY');
-  const [description, setDescription] = useState(''); // description and journal entry
+  const [description, setDescription] = useState(''); // file caption and journal entry
+  const [alttext, setAltText] = useState(''); // file alt text
   const [descValid, setDescValid] = useState(props.itemType !== 'J_ENTRY');
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
@@ -101,6 +102,7 @@ function UploadForm(props: Props) {
       pickedFile?.uri ||
       title ||
       description ||
+      alttext ||
       selectedFolder !== props.defFolderTitle ||
       selectedBlog !== props.defaultBlogId ||
       selectedTagsStrings?.length
@@ -109,7 +111,16 @@ function UploadForm(props: Props) {
     } else {
       props.setDirty(false);
     }
-  }, [description, pickedFile, props, selectedBlog, selectedFolder, selectedTagsStrings, title]);
+  }, [
+    description,
+    alttext,
+    pickedFile,
+    props,
+    selectedBlog,
+    selectedFolder,
+    selectedTagsStrings,
+    title
+  ]);
 
   useEffect(() => {
     if (props.editItem) {
@@ -117,7 +128,8 @@ function UploadForm(props: Props) {
         const { maharaFormData } = props.editItem;
         // The file is set in AddItemScreen as the pickedFile.
         setTitle(removeExtension(maharaFormData.name));
-        setDescription(maharaFormData.description);
+        setDescription(maharaFormData.caption);
+        setAltText(maharaFormData.alttext);
         setSelectedFolder(maharaFormData.foldername);
         setTitleValid(true);
         setDescValid(true);
@@ -200,6 +212,7 @@ function UploadForm(props: Props) {
       folder,
       filename,
       description,
+      alttext,
       updatedFile
     );
 
@@ -248,9 +261,14 @@ function UploadForm(props: Props) {
     setTitle(newTitle);
   };
 
-  const updateDescription = (desc: string) => {
-    setDescValid(isValidText(itemType, desc));
-    setDescription(desc);
+  const updateDesc = (caption: string) => {
+    setDescValid(isValidText(itemType, caption));
+    setDescription(caption);
+  };
+
+  const updateAltText = (altText: string) => {
+    setDescValid(isValidText(itemType, altText));
+    setAltText(altText);
   };
 
   const renderDisplayedFilename = () => {
@@ -280,14 +298,20 @@ function UploadForm(props: Props) {
       />
       <SubHeading
         required={itemType === 'J_ENTRY'}
-        text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
+        text={itemType === 'J_ENTRY' ? t`Entry` : t`Caption`}
       />
       <FormInput
         multiline
         valid={itemType === 'J_ENTRY' && descValid}
         value={description}
-        onChangeText={(desc: string) => updateDescription(desc)}
+        onChangeText={(desc: string) => updateDesc(desc)}
       />
+      {itemType !== 'J_ENTRY' && (
+        <View>
+          <SubHeading text={t`Alt text`} />
+          <FormInput value={alttext} onChangeText={(altText: string) => updateAltText(altText)} />
+        </View>
+      )}
     </View>
   );
 

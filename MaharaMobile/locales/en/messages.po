@@ -19,7 +19,7 @@ msgstr ""
 #~ msgid "<0> </0><1>{0} </1>"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:264
+#: src/components/UploadForm/UploadForm.tsx:282
 msgid "A file has been added."
 msgstr ""
 
@@ -96,6 +96,10 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
+#: src/components/UploadForm/UploadForm.tsx:311
+msgid "Alt text"
+msgstr ""
+
 #: src/screens/VersionScreen/VersionScreen.tsx:23
 #~ msgid "App Version"
 #~ msgstr ""
@@ -110,7 +114,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: src/utils/helperFunctions.ts:101
+#: src/utils/helperFunctions.ts:102
 msgid "Audio"
 msgstr ""
 
@@ -138,9 +142,13 @@ msgstr ""
 #: src/components/UI/CancelButton/CancelButton.tsx:21
 #: src/hooks/useChangeNavigationWarning.ts:10
 #: src/screens/PendingScreen/PendingScreen.tsx:74
-#: src/utils/addEditHelperFunctions.tsx:57
+#: src/utils/addEditHelperFunctions.tsx:58
 #: src/utils/authHelperFunctions.ts:133
 msgid "Cancel"
+msgstr ""
+
+#: src/components/UploadForm/UploadForm.tsx:301
+msgid "Caption"
 msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:152
@@ -155,7 +163,7 @@ msgstr ""
 #~ msgid "Collection of personal information"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:362
+#: src/components/UploadForm/UploadForm.tsx:386
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
@@ -190,8 +198,8 @@ msgid "Deleting your data"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:283
-msgid "Description"
-msgstr ""
+#~ msgid "Description"
+#~ msgstr ""
 
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:64
 msgid "Destination folder"
@@ -213,11 +221,11 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:283
+#: src/components/UploadForm/UploadForm.tsx:301
 msgid "Entry"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:307
+#: src/components/UploadForm/UploadForm.tsx:331
 msgid "Error: You do not have any folders on your site."
 msgstr ""
 
@@ -225,13 +233,13 @@ msgstr ""
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:397
+#: src/components/UploadForm/UploadForm.tsx:421
 msgid "Fields marked by * are required."
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:262
-#: src/utils/helperFunctions.ts:103
+#: src/components/UploadForm/UploadForm.tsx:280
+#: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr ""
 
@@ -239,7 +247,7 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:305
+#: src/components/UploadForm/UploadForm.tsx:329
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:140
 msgid "Folder"
 msgstr ""
@@ -302,7 +310,7 @@ msgstr ""
 msgid "Invalid Mahara site. Please re-enter URL."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:90
+#: src/utils/addEditHelperFunctions.tsx:91
 msgid "Invalid file"
 msgstr ""
 
@@ -310,7 +318,7 @@ msgstr ""
 msgid "Invalid token: please try again."
 msgstr ""
 
-#: src/utils/helperFunctions.ts:109
+#: src/utils/helperFunctions.ts:110
 msgid "Invalid type"
 msgstr ""
 
@@ -328,7 +336,7 @@ msgid "Journal"
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:29
-#: src/utils/helperFunctions.ts:105
+#: src/utils/helperFunctions.ts:106
 msgid "Journal entry"
 msgstr ""
 
@@ -349,12 +357,20 @@ msgstr ""
 msgid "Local"
 msgstr ""
 
+#: src/screens/MenuScreen/MenuScreen.tsx:30
+msgid "Log in"
+msgstr ""
+
 #: src/components/TokenInput/TokenInput.tsx:25
 #~ msgid "Log in via an access token"
 #~ msgstr ""
 
 #: src/components/LocalLogin/LocalLogin.tsx:76
 msgid "Log in via username and password"
+msgstr ""
+
+#: src/screens/MenuScreen/MenuScreen.tsx:29
+msgid "Log out"
 msgstr ""
 
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:124
@@ -371,7 +387,6 @@ msgstr ""
 msgid "Login failed"
 msgstr ""
 
-#: src/screens/MenuScreen/MenuScreen.tsx:29
 #: src/utils/authHelperFunctions.ts:138
 msgid "Logout"
 msgstr ""
@@ -433,7 +448,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:274
+#: src/components/UploadForm/UploadForm.tsx:292
 msgid "Name"
 msgstr ""
 
@@ -458,7 +473,7 @@ msgid "No photo captured"
 msgstr ""
 
 #: src/hooks/useChangeNavigationWarning.ts:10
-#: src/utils/addEditHelperFunctions.tsx:91
+#: src/utils/addEditHelperFunctions.tsx:92
 msgid "Okay"
 msgstr ""
 
@@ -466,11 +481,11 @@ msgstr ""
 msgid "Once you have uploaded data to your Mahara account, it is no longer stored in the app. Log into your account on the Mahara website you use to manage or delete uploaded data there. When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone. Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading to your Mahara account will still be available on your device unless you deleted them yourself."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:57
+#: src/utils/addEditHelperFunctions.tsx:58
 msgid "Open Camera"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:57
+#: src/utils/addEditHelperFunctions.tsx:58
 msgid "Open Photos"
 msgstr ""
 
@@ -491,11 +506,11 @@ msgid "Permission to record audio"
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:43
-#: src/utils/helperFunctions.ts:107
+#: src/utils/helperFunctions.ts:108
 msgid "Photo"
 msgstr ""
 
-#: src/utils/helperFunctions.ts:81
+#: src/utils/helperFunctions.ts:82
 msgid "Please check the internet connection."
 msgstr ""
 
@@ -507,7 +522,7 @@ msgstr ""
 msgid "Please login"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:90
+#: src/utils/addEditHelperFunctions.tsx:91
 msgid "Please select a file."
 msgstr ""
 
@@ -544,7 +559,7 @@ msgstr ""
 msgid "Purpose of Mahara Mobile"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:362
+#: src/components/UploadForm/UploadForm.tsx:386
 msgid "Queue to upload"
 msgstr ""
 
@@ -574,7 +589,7 @@ msgstr ""
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:312
+#: src/components/UploadForm/UploadForm.tsx:336
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:67
 msgid "Select folder"
 msgstr ""
@@ -614,6 +629,10 @@ msgstr ""
 
 #: src/screens/PrivacyScreen/PrivacyScreen.tsx:63
 msgid "Storage and security of your personal information"
+msgstr ""
+
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:150
+msgid "Sync"
 msgstr ""
 
 #: src/components/UploadForm/TagsPicker.tsx:128
@@ -682,7 +701,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:274
+#: src/components/UploadForm/UploadForm.tsx:292
 msgid "Title"
 msgstr ""
 
@@ -836,7 +855,7 @@ msgstr ""
 msgid "contact us."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:319
+#: src/components/UploadForm/UploadForm.tsx:343
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:76
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:103
 msgid "default"
@@ -850,7 +869,7 @@ msgstr ""
 msgid "forms part of these terms and conditions and is hereby incorporated by reference."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:101
+#: src/utils/addEditHelperFunctions.tsx:102
 msgid "image preview"
 msgstr ""
 
