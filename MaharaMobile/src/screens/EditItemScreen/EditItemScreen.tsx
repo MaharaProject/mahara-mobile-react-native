@@ -54,54 +54,52 @@ function EditItemScreen(props: Props) {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
-      <ScrollView>
-        <VStack space={4} style={generic.wrap}>
-          {pickedFile.name &&
-          (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
-            ? renderImagePreview(pickedFile.uri)
-            : null}
-          {itemType === 'FILE' && (
-            <View>
-              <OutlineButton
-                text={t`Select a different file`}
-                onPress={() => {
-                  pickDocument(setPickedFile);
-                }}
-                style={null}
-                icon={FOLDER_ICON}
-              />
-            </View>
-          )}
-          {itemType === 'PHOTO' && (
-            <OutlineButton
-              onPress={() => takePhoto(setPickedFile)}
-              icon={CAMERA_ICON}
-              text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
-            />
-          )}
-          {itemType === 'AUDIO' && (
-            <View>
-              <AddAudio audioFileToEdit={pickedFile} setPickedFile={setPickedFile} />
-            </View>
-          )}
+      <VStack space={4} style={generic.wrap}>
+        {pickedFile.name &&
+        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
+          ? renderImagePreview(pickedFile.uri)
+          : null}
+        {itemType === 'FILE' && (
           <View>
-            <UploadForm
-              pickedFile={pickedFile}
-              userFolders={props.userFolders}
-              userTags={props.userTags}
-              userBlogs={props.userBlogs}
-              itemType={itemType}
-              token={props.token}
-              url={props.url}
-              editItem={itemToEdit}
-              navigation={props.navigation}
-              defFolderTitle={props.defaultFolderTitle}
-              defaultBlogId={props.defaultBlogId}
-              setDirty={setDirty}
+            <OutlineButton
+              text={t`Select a different file`}
+              onPress={() => {
+                pickDocument(setPickedFile);
+              }}
+              style={null}
+              icon={FOLDER_ICON}
             />
           </View>
-        </VStack>
-      </ScrollView>
+        )}
+        {itemType === 'PHOTO' && (
+          <OutlineButton
+            onPress={() => takePhoto(setPickedFile)}
+            icon={CAMERA_ICON}
+            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+          />
+        )}
+        {itemType === 'AUDIO' && (
+          <View>
+            <AddAudio audioFileToEdit={pickedFile} setPickedFile={setPickedFile} />
+          </View>
+        )}
+        <View>
+          <UploadForm
+            pickedFile={pickedFile}
+            userFolders={props.userFolders}
+            userTags={props.userTags}
+            userBlogs={props.userBlogs}
+            itemType={itemType}
+            token={props.token}
+            url={props.url}
+            editItem={itemToEdit}
+            navigation={props.navigation}
+            defFolderTitle={props.defaultFolderTitle}
+            defaultBlogId={props.defaultBlogId}
+            setDirty={setDirty}
+          />
+        </View>
+      </VStack>
     </KeyboardAvoidingView>
   );
 }
