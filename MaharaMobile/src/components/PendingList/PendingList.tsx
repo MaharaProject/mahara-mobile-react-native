@@ -40,7 +40,7 @@ function PendingList(props: Props) {
         if (isPendingMFile(item)) {
           const pendingFile: PendingMFile = item;
           title = pendingFile.maharaFormData.name;
-          description = pendingFile.maharaFormData.description;
+          description = pendingFile.maharaFormData.caption;
           mimetype = pendingFile.mimetype;
           thumbnail = {
             uri: pendingFile.maharaFormData.filetoupload.uri

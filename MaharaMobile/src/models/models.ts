@@ -22,7 +22,8 @@ export type MaharaFile = {
   wstoken: string;
   foldername: string;
   name: string;
-  description: string;
+  caption: string;
+  alttext: string;
   filetoupload: File;
 };
 
