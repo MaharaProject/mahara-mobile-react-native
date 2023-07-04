@@ -1,6 +1,6 @@
 {
   "name": "maharamobile",
-  "version": "23.6.7",
+  "version": "23.6.8",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -107,7 +107,7 @@
     "react-native-version": {
       "dottie": "2.0.6"
     },
-    "native-base":{
+    "native-base": {
       "react": "18.1.0"
     }
   }
