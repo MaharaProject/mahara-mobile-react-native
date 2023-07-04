@@ -7,7 +7,6 @@ import SubHeading from 'components/UI/SubHeading/SubHeading';
 import { UserBlog } from 'models/models';
 import { RequiredWarningText, putDefaultAtTop } from 'utils/formHelper';
 
-
 type Props = {
   isDraft: boolean;
   setIsDraft: (arg0: boolean) => void;

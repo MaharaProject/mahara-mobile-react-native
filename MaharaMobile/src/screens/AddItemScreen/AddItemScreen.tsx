@@ -49,52 +49,52 @@ function AddItemScreen(props: Props) {
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
       <ScrollView>
-      <VStack space={2} style={generic.wrap}>
-        {/* select a file button */}
-        {pickedFile.name &&
-        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
-          ? renderImagePreview(pickedFile.uri)
-          : null}
-        {itemType === 'FILE' && (
-          <View>
+        <VStack space={2} style={generic.wrap}>
+          {/* select a file button */}
+          {pickedFile.name &&
+          (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
+            ? renderImagePreview(pickedFile.uri)
+            : null}
+          {itemType === 'FILE' && (
+            <View>
+              <OutlineButton
+                text={pickedFile.uri === '' ? t`Select a file` : t`Select a different file`}
+                onPress={() => pickDocument(setPickedFile)}
+                style={null}
+                icon={faFolder}
+              />
+            </View>
+          )}
+          {/* take a photo button */}
+          {itemType === 'PHOTO' && (
             <OutlineButton
-              text={pickedFile.uri === '' ? t`Select a file` : t`Select a different file`}
-              onPress={() => pickDocument(setPickedFile)}
-              style={null}
-              icon={faFolder}
+              onPress={() => takePhoto(setPickedFile)}
+              icon={faCamera}
+              text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+            />
+          )}
+          {/* record audio button */}
+          {itemType === 'AUDIO' && (
+            <View>
+              <AddAudio setPickedFile={setPickedFile} />
+            </View>
+          )}
+          <View>
+            <UploadForm
+              pickedFile={pickedFile}
+              userFolders={props.userFolders}
+              userTags={props.userTags}
+              userBlogs={props.userBlogs}
+              itemType={itemType}
+              token={props.token}
+              url={props.url}
+              navigation={props.navigation}
+              defFolderTitle={props.defaultFolderTitle}
+              defaultBlogId={props.defaultBlogId}
+              setDirty={setDirty}
             />
           </View>
-        )}
-        {/* take a photo button */}
-        {itemType === 'PHOTO' && (
-          <OutlineButton
-            onPress={() => takePhoto(setPickedFile)}
-            icon={faCamera}
-            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
-          />
-        )}
-        {/* record audio button */}
-        {itemType === 'AUDIO' && (
-          <View>
-            <AddAudio setPickedFile={setPickedFile} />
-          </View>
-        )}
-        <View>
-          <UploadForm
-            pickedFile={pickedFile}
-            userFolders={props.userFolders}
-            userTags={props.userTags}
-            userBlogs={props.userBlogs}
-            itemType={itemType}
-            token={props.token}
-            url={props.url}
-            navigation={props.navigation}
-            defFolderTitle={props.defaultFolderTitle}
-            defaultBlogId={props.defaultBlogId}
-            setDirty={setDirty}
-          />
-        </View>
-      </VStack>
+        </VStack>
       </ScrollView>
     </KeyboardAvoidingView>
   );
