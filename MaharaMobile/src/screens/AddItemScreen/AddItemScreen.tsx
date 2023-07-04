@@ -48,6 +48,7 @@ function AddItemScreen(props: Props) {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
+      <ScrollView>
       <VStack space={2} style={generic.wrap}>
         {/* select a file button */}
         {pickedFile.name &&
@@ -94,6 +95,7 @@ function AddItemScreen(props: Props) {
           />
         </View>
       </VStack>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }

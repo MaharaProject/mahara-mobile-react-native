@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { t } from '@lingui/macro';
-import { KeyboardAvoidingView, VStack } from 'native-base';
-import { ScrollView, View } from 'react-native';
+import { KeyboardAvoidingView, ScrollView, VStack } from 'native-base';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import generic from 'assets/styles/generic';
 import AddAudio from 'components/AddAudio/AddAudio';
@@ -9,12 +9,7 @@ import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import UploadForm from 'components/UploadForm/UploadForm';
 import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
 import { PendingMFile, UserBlog, UserFolder, UserTag } from 'models/models';
-import {
-  selectDefaultBlogId,
-  selectDefaultFolderTitle,
-  selectToken,
-  selectUrl
-} from 'store/reducers/loginInfoReducer';
+import { selectDefaultBlogId, selectDefaultFolderTitle, selectToken, selectUrl } from 'store/reducers/loginInfoReducer';
 import { RootState } from 'store/reducers/rootReducer';
 import { selectAllUploadFiles } from 'store/reducers/uploadFilesReducer';
 import { selectAllJEntries } from 'store/reducers/uploadJEntriesReducer';
@@ -23,6 +18,7 @@ import { getUserTags } from 'store/reducers/userTagsReducer';
 import { pickDocument, renderImagePreview, takePhoto } from 'utils/addEditHelperFunctions';
 import { CAMERA_ICON, FOLDER_ICON, emptyFile } from 'utils/constants';
 import { getUploadTypeIntlStrings } from 'utils/helperFunctions';
+
 
 type Props = {
   userFolders: Array<UserFolder>;
@@ -54,52 +50,54 @@ function EditItemScreen(props: Props) {
 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
-      <VStack space={4} style={generic.wrap}>
-        {pickedFile.name &&
-        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
-          ? renderImagePreview(pickedFile.uri)
-          : null}
-        {itemType === 'FILE' && (
-          <View>
+      <ScrollView>
+        <VStack space={4} style={generic.wrap}>
+          {pickedFile.name &&
+          (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
+            ? renderImagePreview(pickedFile.uri)
+            : null}
+          {itemType === 'FILE' && (
+            <View>
+              <OutlineButton
+                text={t`Select a different file`}
+                onPress={() => {
+                  pickDocument(setPickedFile);
+                }}
+                style={null}
+                icon={FOLDER_ICON}
+              />
+            </View>
+          )}
+          {itemType === 'PHOTO' && (
             <OutlineButton
-              text={t`Select a different file`}
-              onPress={() => {
-                pickDocument(setPickedFile);
-              }}
-              style={null}
-              icon={FOLDER_ICON}
+              onPress={() => takePhoto(setPickedFile)}
+              icon={CAMERA_ICON}
+              text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+            />
+          )}
+          {itemType === 'AUDIO' && (
+            <View>
+              <AddAudio audioFileToEdit={pickedFile} setPickedFile={setPickedFile} />
+            </View>
+          )}
+          <View>
+            <UploadForm
+              pickedFile={pickedFile}
+              userFolders={props.userFolders}
+              userTags={props.userTags}
+              userBlogs={props.userBlogs}
+              itemType={itemType}
+              token={props.token}
+              url={props.url}
+              editItem={itemToEdit}
+              navigation={props.navigation}
+              defFolderTitle={props.defaultFolderTitle}
+              defaultBlogId={props.defaultBlogId}
+              setDirty={setDirty}
             />
           </View>
-        )}
-        {itemType === 'PHOTO' && (
-          <OutlineButton
-            onPress={() => takePhoto(setPickedFile)}
-            icon={CAMERA_ICON}
-            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
-          />
-        )}
-        {itemType === 'AUDIO' && (
-          <View>
-            <AddAudio audioFileToEdit={pickedFile} setPickedFile={setPickedFile} />
-          </View>
-        )}
-        <View>
-          <UploadForm
-            pickedFile={pickedFile}
-            userFolders={props.userFolders}
-            userTags={props.userTags}
-            userBlogs={props.userBlogs}
-            itemType={itemType}
-            token={props.token}
-            url={props.url}
-            editItem={itemToEdit}
-            navigation={props.navigation}
-            defFolderTitle={props.defaultFolderTitle}
-            defaultBlogId={props.defaultBlogId}
-            setDirty={setDirty}
-          />
-        </View>
-      </VStack>
+        </VStack>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 }
