@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
-import { Box, Select, Text, VStack, View } from 'native-base';
+import { Box, KeyboardAvoidingView, ScrollView, Select, Text, VStack, View } from 'native-base';
+import { LogBox, ScrollViewBase } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
 import FormInput from 'components/UI/FormInput/FormInput';
@@ -121,6 +123,10 @@ function UploadForm(props: Props) {
     selectedTagsStrings,
     title
   ]);
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
 
   useEffect(() => {
     if (props.editItem) {

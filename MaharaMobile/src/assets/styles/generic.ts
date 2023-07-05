@@ -4,8 +4,7 @@ import styles from './variables';
 const generic = StyleSheet.create({
   view: {
     backgroundColor: styles.colors.primary,
-    color: styles.colors.secondary,
-    height: '100%'
+    color: styles.colors.secondary
   },
   wrap: {
     marginVertical: styles.padding.sm,
