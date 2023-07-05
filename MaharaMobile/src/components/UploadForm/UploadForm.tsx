@@ -83,7 +83,7 @@ function UploadForm(props: Props) {
   const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size > 0);
   const [title, setTitle] = useState(''); // title and filename
   const [titleValid, setTitleValid] = useState(props.itemType !== 'J_ENTRY');
-  const [description, setDescription] = useState(''); // file caption and journal entry
+  const [description, setDescription] = useState(''); // file description (or image caption) and journal entry
   const [alttext, setAltText] = useState(''); // file alt text
   const [descValid, setDescValid] = useState(props.itemType !== 'J_ENTRY');
 
@@ -134,7 +134,7 @@ function UploadForm(props: Props) {
         const { maharaFormData } = props.editItem;
         // The file is set in AddItemScreen as the pickedFile.
         setTitle(removeExtension(maharaFormData.name));
-        setDescription(maharaFormData.caption);
+        setDescription(maharaFormData.description);
         setAltText(maharaFormData.alttext);
         setSelectedFolder(maharaFormData.foldername);
         setTitleValid(true);
@@ -267,9 +267,9 @@ function UploadForm(props: Props) {
     setTitle(newTitle);
   };
 
-  const updateDesc = (caption: string) => {
-    setDescValid(isValidText(itemType, caption));
-    setDescription(caption);
+  const updateDesc = (desc: string) => {
+    setDescValid(isValidText(itemType, desc));
+    setDescription(desc);
   };
 
   const updateAltText = (altText: string) => {
@@ -302,20 +302,29 @@ function UploadForm(props: Props) {
         value={title}
         onChangeText={(text: string) => updateTitle(text)}
       />
-      <SubHeading
-        required={itemType === 'J_ENTRY'}
-        text={itemType === 'J_ENTRY' ? t`Entry` : t`Caption`}
-      />
+      {itemType === 'J_ENTRY' && <SubHeading required text={t`Entry`} />}
+      {itemType === 'PHOTO' && <SubHeading required text={t`Caption`} />}
+      {itemType === 'FILE' && (
+        <SubHeading
+          required
+          text={pickedFile && pickedFile.type?.startsWith('image') ? t`Caption` : t`Description`}
+        />
+      )}
+
       <FormInput
         multiline
         valid={itemType === 'J_ENTRY' && descValid}
         value={description}
         onChangeText={(desc: string) => updateDesc(desc)}
       />
-      {itemType !== 'J_ENTRY' && (
+      {pickedFile?.type?.startsWith('image') && (
         <View>
           <SubHeading text={t`Alt text`} />
-          <FormInput value={alttext} onChangeText={(altText: string) => updateAltText(altText)} />
+          <FormInput
+            valid
+            value={alttext}
+            onChangeText={(altText: string) => updateAltText(altText)}
+          />
         </View>
       )}
     </View>

@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
-#: src/components/UploadForm/UploadForm.tsx:282
+#: src/components/UploadForm/UploadForm.tsx:288
 msgid "A file has been added."
 msgstr "파일이 추가되었습니다."
 
@@ -55,7 +55,7 @@ msgstr "아이템 추가"
 msgid "Add new tag +"
 msgstr "새 태그 추가 +"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:101
+#: src/screens/AddItemScreen/AddItemScreen.tsx:98
 msgid "Add {0}"
 msgstr "{0} 추가"
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 하시겠습니까?"
 
-#: src/components/UploadForm/UploadForm.tsx:311
+#: src/components/UploadForm/UploadForm.tsx:322
 msgid "Alt text"
 msgstr ""
 
@@ -128,7 +128,7 @@ msgstr "오디오"
 msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app, whereas single sign-on takes you to your Mahara site. You may also generate an access token manually on your Mahara site if that feature is enabled."
 msgstr "KO By using the full potential of the application ... "
 
-#: src/utils/addEditHelperFunctions.tsx:25
+#: src/utils/addEditHelperFunctions.tsx:26
 msgid "Camera closed."
 msgstr "카메라가 닫혔습니다."
 
@@ -140,12 +140,13 @@ msgstr "카메라가 닫혔습니다."
 #: src/components/UI/CancelButton/CancelButton.tsx:21
 #: src/hooks/useChangeNavigationWarning.ts:10
 #: src/screens/PendingScreen/PendingScreen.tsx:74
-#: src/utils/addEditHelperFunctions.tsx:58
+#: src/utils/addEditHelperFunctions.tsx:59
 #: src/utils/authHelperFunctions.ts:133
 msgid "Cancel"
 msgstr "취소"
 
-#: src/components/UploadForm/UploadForm.tsx:301
+#: src/components/UploadForm/UploadForm.tsx:306
+#: src/components/UploadForm/UploadForm.tsx:310
 msgid "Caption"
 msgstr ""
 
@@ -165,7 +166,7 @@ msgstr "이 개인 정보 보호 정책의 변경"
 #~ msgid "Collection of personal information"
 #~ msgstr "개인 정보 수집"
 
-#: src/components/UploadForm/UploadForm.tsx:386
+#: src/components/UploadForm/UploadForm.tsx:401
 msgid "Confirm edits to {intlItemType}"
 msgstr "{intlItemType} 편집을 확인하십시오."
 
@@ -199,9 +200,9 @@ msgstr "삭제"
 msgid "Deleting your data"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:283
-#~ msgid "Description"
-#~ msgstr "설명"
+#: src/components/UploadForm/UploadForm.tsx:310
+msgid "Description"
+msgstr "설명"
 
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:64
 msgid "Destination folder"
@@ -215,7 +216,7 @@ msgstr "대상 저널"
 msgid "Draft journal entry"
 msgstr "초안 분개"
 
-#: src/screens/EditItemScreen/EditItemScreen.tsx:108
+#: src/screens/EditItemScreen/EditItemScreen.tsx:106
 msgid "Edit {0}"
 msgstr "편집 {0}"
 
@@ -223,11 +224,11 @@ msgstr "편집 {0}"
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:301
+#: src/components/UploadForm/UploadForm.tsx:305
 msgid "Entry"
 msgstr "분개"
 
-#: src/components/UploadForm/UploadForm.tsx:331
+#: src/components/UploadForm/UploadForm.tsx:346
 msgid "Error: You do not have any folders on your site."
 msgstr "KO Error: You have no folders"
 
@@ -235,12 +236,12 @@ msgstr "KO Error: You have no folders"
 msgid "Error: You do not have any journals on your site."
 msgstr "오류 : 사이트에 저널이 없습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:421
+#: src/components/UploadForm/UploadForm.tsx:436
 msgid "Fields marked by * are required."
 msgstr "*로 표시된 필드는 필수입니다."
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:280
+#: src/components/UploadForm/UploadForm.tsx:286
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr "파일"
@@ -249,7 +250,7 @@ msgstr "파일"
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
-#: src/components/UploadForm/UploadForm.tsx:329
+#: src/components/UploadForm/UploadForm.tsx:344
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:140
 msgid "Folder"
 msgstr "볼더"
@@ -287,7 +288,7 @@ msgstr "본 성명서에 관해 궁금한 점이 있거나 위의 기준을 준�
 msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr "일반적인 질문이 있거나 문제를보고하려면 Mahara Mobile의 GitHub '문제'페이지에서 할 수 있습니다."
 
-#: src/utils/addEditHelperFunctions.tsx:27
+#: src/utils/addEditHelperFunctions.tsx:28
 msgid "ImagePicker Error:{0}"
 msgstr "ImagePicker 오류 : {0}"
 
@@ -304,7 +305,7 @@ msgstr "소개"
 msgid "Invalid Mahara site. Please re-enter URL."
 msgstr "잘못된 Mahara 사이트입니다. URL을 다시 입력하십시오."
 
-#: src/utils/addEditHelperFunctions.tsx:91
+#: src/utils/addEditHelperFunctions.tsx:92
 msgid "Invalid file"
 msgstr "유효하지 않은 파일"
 
@@ -417,7 +418,7 @@ msgstr ""
 msgid "Menu"
 msgstr "메뉴"
 
-#: src/components/UploadForm/UploadForm.tsx:292
+#: src/components/UploadForm/UploadForm.tsx:298
 msgid "Name"
 msgstr "이름"
 
@@ -433,12 +434,12 @@ msgstr "새 태그 ..."
 msgid "Next"
 msgstr "다음"
 
-#: src/utils/addEditHelperFunctions.tsx:25
+#: src/utils/addEditHelperFunctions.tsx:26
 msgid "No photo captured"
 msgstr "사진이 촬영되지 않았습니다"
 
 #: src/hooks/useChangeNavigationWarning.ts:10
-#: src/utils/addEditHelperFunctions.tsx:92
+#: src/utils/addEditHelperFunctions.tsx:93
 msgid "Okay"
 msgstr "확실한"
 
@@ -446,11 +447,11 @@ msgstr "확실한"
 msgid "Once you have uploaded data to your Mahara account, it is no longer stored in the app. Log into your account on the Mahara website you use to manage or delete uploaded data there. When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone. Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading to your Mahara account will still be available on your device unless you deleted them yourself."
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:58
+#: src/utils/addEditHelperFunctions.tsx:59
 msgid "Open Camera"
 msgstr ""
 
-#: src/utils/addEditHelperFunctions.tsx:58
+#: src/utils/addEditHelperFunctions.tsx:59
 msgid "Open Photos"
 msgstr ""
 
@@ -487,7 +488,7 @@ msgstr "URL을 입력하십시오."
 msgid "Please login"
 msgstr "로그인 해주세요"
 
-#: src/utils/addEditHelperFunctions.tsx:91
+#: src/utils/addEditHelperFunctions.tsx:92
 msgid "Please select a file."
 msgstr "파일을 선택하십시오"
 
@@ -524,7 +525,7 @@ msgstr "개인 정보 보호 정책"
 msgid "Purpose of Mahara Mobile"
 msgstr "Mahara Mobile의 목적"
 
-#: src/components/UploadForm/UploadForm.tsx:386
+#: src/components/UploadForm/UploadForm.tsx:401
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
@@ -532,8 +533,8 @@ msgstr "업로드 대기열"
 msgid "Re-record"
 msgstr "다시 녹음"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:71
-#: src/screens/EditItemScreen/EditItemScreen.tsx:78
+#: src/screens/AddItemScreen/AddItemScreen.tsx:73
+#: src/screens/EditItemScreen/EditItemScreen.tsx:79
 msgid "Re-take photo"
 msgstr "사진을 다시 찍습니다."
 
@@ -541,12 +542,12 @@ msgstr "사진을 다시 찍습니다."
 msgid "Record"
 msgstr "녹음"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:59
-#: src/screens/EditItemScreen/EditItemScreen.tsx:65
+#: src/screens/AddItemScreen/AddItemScreen.tsx:62
+#: src/screens/EditItemScreen/EditItemScreen.tsx:67
 msgid "Select a different file"
 msgstr "다른 파일을 선택하십시오"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:59
+#: src/screens/AddItemScreen/AddItemScreen.tsx:62
 msgid "Select a file"
 msgstr "파일을 선택하십시오"
 
@@ -554,7 +555,7 @@ msgstr "파일을 선택하십시오"
 msgid "Select a journal"
 msgstr "저널을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:336
+#: src/components/UploadForm/UploadForm.tsx:351
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:67
 msgid "Select folder"
 msgstr "폴더 선택"
@@ -604,8 +605,8 @@ msgstr ""
 msgid "Tags"
 msgstr "태그"
 
-#: src/screens/AddItemScreen/AddItemScreen.tsx:71
-#: src/screens/EditItemScreen/EditItemScreen.tsx:78
+#: src/screens/AddItemScreen/AddItemScreen.tsx:73
+#: src/screens/EditItemScreen/EditItemScreen.tsx:79
 msgid "Take photo"
 msgstr "사진을 찍다"
 
@@ -666,7 +667,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:292
+#: src/components/UploadForm/UploadForm.tsx:298
 msgid "Title"
 msgstr "표제"
 
@@ -804,7 +805,7 @@ msgstr "사용자 이름 또는 암호가 잘못되었습니다. 다시 시도�
 msgid "contact us."
 msgstr "문의하기"
 
-#: src/components/UploadForm/UploadForm.tsx:343
+#: src/components/UploadForm/UploadForm.tsx:358
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:76
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:103
 msgid "default"
@@ -818,7 +819,7 @@ msgstr "기본"
 msgid "forms part of these terms and conditions and is hereby incorporated by reference."
 msgstr "이 이용 약관의 일부를 구성합니다..."
 
-#: src/utils/addEditHelperFunctions.tsx:102
+#: src/utils/addEditHelperFunctions.tsx:103
 msgid "image preview"
 msgstr "이미지 미리보기"
 

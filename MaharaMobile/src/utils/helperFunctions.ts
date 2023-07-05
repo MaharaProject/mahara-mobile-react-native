@@ -57,7 +57,7 @@ export function buildObject(item: object) {
     sendFormData.append('wstoken', item.wstoken);
     sendFormData.append('foldername', item.foldername);
     sendFormData.append('title', item.name);
-    sendFormData.append('description', item.caption);
+    sendFormData.append('description', item.description);
     sendFormData.append('alttext', item.alttext);
     sendFormData.append('filetoupload', item.filetoupload as unknown as Blob);
     return {
