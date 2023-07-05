@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
-import { KeyboardAvoidingView, ScrollView, VStack, View } from 'native-base';
+import { VStack, View } from 'native-base';
 import { Platform } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { connect } from 'react-redux';
 import generic from 'assets/styles/generic';
 import AddAudio from 'components/AddAudio/AddAudio';
@@ -47,56 +48,54 @@ function AddItemScreen(props: Props) {
   useChangeNavigationWarning(isDirty);
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
-      <ScrollView>
-        <VStack space={2} style={generic.wrap}>
-          {/* select a file button */}
-          {pickedFile.name &&
-          (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
-            ? renderImagePreview(pickedFile.uri)
-            : null}
-          {itemType === 'FILE' && (
-            <View>
-              <OutlineButton
-                text={pickedFile.uri === '' ? t`Select a file` : t`Select a different file`}
-                onPress={() => pickDocument(setPickedFile)}
-                style={null}
-                icon={faFolder}
-              />
-            </View>
-          )}
-          {/* take a photo button */}
-          {itemType === 'PHOTO' && (
-            <OutlineButton
-              onPress={() => takePhoto(setPickedFile)}
-              icon={faCamera}
-              text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
-            />
-          )}
-          {/* record audio button */}
-          {itemType === 'AUDIO' && (
-            <View>
-              <AddAudio setPickedFile={setPickedFile} />
-            </View>
-          )}
+    <KeyboardAwareScrollView behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
+      <VStack space={2} style={generic.wrap}>
+        {/* select a file button */}
+        {pickedFile.name &&
+        (pickedFile.type.startsWith('image') || pickedFile.type.startsWith('video'))
+          ? renderImagePreview(pickedFile.uri)
+          : null}
+        {itemType === 'FILE' && (
           <View>
-            <UploadForm
-              pickedFile={pickedFile}
-              userFolders={props.userFolders}
-              userTags={props.userTags}
-              userBlogs={props.userBlogs}
-              itemType={itemType}
-              token={props.token}
-              url={props.url}
-              navigation={props.navigation}
-              defFolderTitle={props.defaultFolderTitle}
-              defaultBlogId={props.defaultBlogId}
-              setDirty={setDirty}
+            <OutlineButton
+              text={pickedFile.uri === '' ? t`Select a file` : t`Select a different file`}
+              onPress={() => pickDocument(setPickedFile)}
+              style={null}
+              icon={faFolder}
             />
           </View>
-        </VStack>
-      </ScrollView>
-    </KeyboardAvoidingView>
+        )}
+        {/* take a photo button */}
+        {itemType === 'PHOTO' && (
+          <OutlineButton
+            onPress={() => takePhoto(setPickedFile)}
+            icon={faCamera}
+            text={pickedFile.uri === '' ? t`Take photo` : t`Re-take photo`}
+          />
+        )}
+        {/* record audio button */}
+        {itemType === 'AUDIO' && (
+          <View>
+            <AddAudio setPickedFile={setPickedFile} />
+          </View>
+        )}
+        <View>
+          <UploadForm
+            pickedFile={pickedFile}
+            userFolders={props.userFolders}
+            userTags={props.userTags}
+            userBlogs={props.userBlogs}
+            itemType={itemType}
+            token={props.token}
+            url={props.url}
+            navigation={props.navigation}
+            defFolderTitle={props.defaultFolderTitle}
+            defaultBlogId={props.defaultBlogId}
+            setDirty={setDirty}
+          />
+        </View>
+      </VStack>
+    </KeyboardAwareScrollView>
   );
 }
 
