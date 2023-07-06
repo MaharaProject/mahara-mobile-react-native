@@ -57,6 +57,9 @@ const styles = {
     lg: 18,
     xl: 20,
     xxl: 25
+  },
+  heights: {
+    input: 40.5
   }
 };
 

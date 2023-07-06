@@ -6,6 +6,7 @@ import { Box, KeyboardAvoidingView, ScrollView, Select, Text, VStack, View } fro
 import { LogBox, ScrollViewBase } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
+import styles from 'assets/styles/variables';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
 import FormInput from 'components/UI/FormInput/FormInput';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
@@ -347,6 +348,7 @@ function UploadForm(props: Props) {
         )}
         <Box>
           <Select
+            height={styles.heights.input}
             placeholder={props.defFolderTitle}
             accessibilityLabel={t`Select folder`}
             selectedValue={selectedFolder}

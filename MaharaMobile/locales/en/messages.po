@@ -19,7 +19,7 @@ msgstr ""
 #~ msgid "<0> </0><1>{0} </1>"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:288
+#: src/components/UploadForm/UploadForm.tsx:289
 msgid "A file has been added."
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 #~ msgid "Add item"
 #~ msgstr ""
 
-#: src/components/UploadForm/TagsPicker.tsx:194
+#: src/components/UploadForm/TagsPicker.tsx:195
 msgid "Add new tag +"
 msgstr ""
 
@@ -96,7 +96,7 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:322
+#: src/components/UploadForm/UploadForm.tsx:323
 msgid "Alt text"
 msgstr ""
 
@@ -147,8 +147,8 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:306
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:307
+#: src/components/UploadForm/UploadForm.tsx:311
 msgid "Caption"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr ""
 #~ msgid "Collection of personal information"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:401
+#: src/components/UploadForm/UploadForm.tsx:403
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
@@ -198,7 +198,7 @@ msgstr ""
 msgid "Deleting your data"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:311
 msgid "Description"
 msgstr ""
 
@@ -222,11 +222,11 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:305
+#: src/components/UploadForm/UploadForm.tsx:306
 msgid "Entry"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:346
+#: src/components/UploadForm/UploadForm.tsx:347
 msgid "Error: You do not have any folders on your site."
 msgstr ""
 
@@ -234,12 +234,12 @@ msgstr ""
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:436
+#: src/components/UploadForm/UploadForm.tsx:438
 msgid "Fields marked by * are required."
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:286
+#: src/components/UploadForm/UploadForm.tsx:287
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr ""
@@ -248,7 +248,7 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:344
+#: src/components/UploadForm/UploadForm.tsx:345
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:140
 msgid "Folder"
 msgstr ""
@@ -359,8 +359,8 @@ msgid "Local"
 msgstr ""
 
 #: src/screens/MenuScreen/MenuScreen.tsx:30
-msgid "Log in"
-msgstr ""
+#~ msgid "Log in"
+#~ msgstr ""
 
 #: src/components/TokenInput/TokenInput.tsx:25
 #~ msgid "Log in via an access token"
@@ -371,14 +371,15 @@ msgid "Log in via username and password"
 msgstr ""
 
 #: src/screens/MenuScreen/MenuScreen.tsx:29
-msgid "Log out"
-msgstr ""
+#~ msgid "Log out"
+#~ msgstr ""
 
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:124
 #~ msgid "Logged in: {0}"
 #~ msgstr ""
 
 #: src/components/LocalLogin/LocalLogin.tsx:127
+#: src/screens/MenuScreen/MenuScreen.tsx:30
 msgid "Login"
 msgstr ""
 
@@ -388,6 +389,7 @@ msgstr ""
 msgid "Login failed"
 msgstr ""
 
+#: src/screens/MenuScreen/MenuScreen.tsx:29
 #: src/utils/authHelperFunctions.ts:138
 msgid "Logout"
 msgstr ""
@@ -449,7 +451,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Name"
 msgstr ""
 
@@ -527,7 +529,7 @@ msgstr ""
 msgid "Please select a file."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormComponents.tsx:54
+#: src/components/UploadForm/UploadFormComponents.tsx:55
 msgid "Please select a journal"
 msgstr ""
 
@@ -560,7 +562,7 @@ msgstr ""
 msgid "Purpose of Mahara Mobile"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:401
+#: src/components/UploadForm/UploadForm.tsx:403
 msgid "Queue to upload"
 msgstr ""
 
@@ -586,11 +588,11 @@ msgstr ""
 msgid "Select a file"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormComponents.tsx:55
+#: src/components/UploadForm/UploadFormComponents.tsx:56
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:351
+#: src/components/UploadForm/UploadForm.tsx:353
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:67
 msgid "Select folder"
 msgstr ""
@@ -607,12 +609,12 @@ msgstr ""
 msgid "Select login type"
 msgstr ""
 
-#: src/components/UploadForm/TagsPicker.tsx:183
 #: src/components/UploadForm/TagsPicker.tsx:184
+#: src/components/UploadForm/TagsPicker.tsx:185
 msgid "Select tags"
 msgstr ""
 
-#: src/components/UploadForm/TagsPicker.tsx:189
+#: src/components/UploadForm/TagsPicker.tsx:190
 msgid "Select tags..."
 msgstr ""
 
@@ -702,7 +704,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Title"
 msgstr ""
 
@@ -743,7 +745,7 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/LocalLogin/LocalLogin.tsx:80
+#: src/components/LocalLogin/LocalLogin.tsx:81
 msgid "Username"
 msgstr ""
 
@@ -856,7 +858,7 @@ msgstr ""
 msgid "contact us."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:358
+#: src/components/UploadForm/UploadForm.tsx:360
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:76
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:103
 msgid "default"

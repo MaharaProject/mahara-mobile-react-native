@@ -50,6 +50,7 @@ export function BlogPicker(props: {
       )}
       <Box>
         <Select
+          height={styles.heights.input}
           mode="dropdown"
           placeholder={t`Please select a journal`}
           accessibilityLabel={t`Select a journal`}

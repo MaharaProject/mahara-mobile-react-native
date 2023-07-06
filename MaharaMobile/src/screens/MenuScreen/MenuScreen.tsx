@@ -26,8 +26,8 @@ function MenuScreen(props: Props) {
     version: t`App version`,
     terms: t`Terms and conditions`,
     privacy: t`Privacy statement`,
-    logout: t`Log out`,
-    login: t`Log in`
+    logout: t`Logout`,
+    login: t`Login`
   };
 
   /**

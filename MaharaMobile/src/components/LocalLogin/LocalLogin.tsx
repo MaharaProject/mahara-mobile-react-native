@@ -77,6 +77,7 @@ export default function LocalLogin(props: Props) {
         />
         <Stack space={4} w="100%" alignItems="center">
           <Input
+            height={styles.heights.input}
             placeholder={t`Username`}
             autoCapitalize="none"
             onChangeText={(usernameInput) => setUsername(usernameInput)}
@@ -86,7 +87,6 @@ export default function LocalLogin(props: Props) {
               base: '100%',
               md: '25%'
             }}
-            // InputLeftElement={faPersonBooth}
           />
           <Input
             style={LocalLoginStyles.input}

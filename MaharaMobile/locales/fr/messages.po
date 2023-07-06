@@ -19,7 +19,7 @@ msgstr ""
 #~ msgid "<0> </0><1>{0} </1>"
 #~ msgstr "<0> </0><1>{0} </1>"
 
-#: src/components/UploadForm/UploadForm.tsx:288
+#: src/components/UploadForm/UploadForm.tsx:289
 msgid "A file has been added."
 msgstr "Un fichier a été ajouté"
 
@@ -53,7 +53,7 @@ msgstr "Ajouter un élément"
 #~ msgid "Add item"
 #~ msgstr "Ajouter un élément"
 
-#: src/components/UploadForm/TagsPicker.tsx:194
+#: src/components/UploadForm/TagsPicker.tsx:195
 msgid "Add new tag +"
 msgstr "Ajouter un mot-clé"
 
@@ -96,7 +96,7 @@ msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de v
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "Autoriser l'utilisation du micro pour enregistrer l'audio et l'enregistrer dans un fichier?"
 
-#: src/components/UploadForm/UploadForm.tsx:322
+#: src/components/UploadForm/UploadForm.tsx:323
 msgid "Alt text"
 msgstr ""
 
@@ -147,8 +147,8 @@ msgstr "Caméra fermée"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/components/UploadForm/UploadForm.tsx:306
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:307
+#: src/components/UploadForm/UploadForm.tsx:311
 msgid "Caption"
 msgstr ""
 
@@ -164,7 +164,7 @@ msgstr "Changements à la politique de confidentialité"
 #~ msgid "Collection of personal information"
 #~ msgstr "Collecte de renseignements personnels"
 
-#: src/components/UploadForm/UploadForm.tsx:401
+#: src/components/UploadForm/UploadForm.tsx:403
 msgid "Confirm edits to {intlItemType}"
 msgstr "Confirmer les modifications à {intlItemType}"
 
@@ -198,7 +198,7 @@ msgstr "Supprimer"
 msgid "Deleting your data"
 msgstr "Suppression de vos données"
 
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:311
 msgid "Description"
 msgstr "Description"
 
@@ -222,11 +222,11 @@ msgstr "Modifier {0}"
 msgid "Enter a different URL"
 msgstr "Entrer une URL différente"
 
-#: src/components/UploadForm/UploadForm.tsx:305
+#: src/components/UploadForm/UploadForm.tsx:306
 msgid "Entry"
 msgstr "Entrée"
 
-#: src/components/UploadForm/UploadForm.tsx:346
+#: src/components/UploadForm/UploadForm.tsx:347
 msgid "Error: You do not have any folders on your site."
 msgstr "Erreur : vous n'avez aucun dossier sur votre site."
 
@@ -234,12 +234,12 @@ msgstr "Erreur : vous n'avez aucun dossier sur votre site."
 msgid "Error: You do not have any journals on your site."
 msgstr "Erreur : vous n'avez aucun journal sur votre site."
 
-#: src/components/UploadForm/UploadForm.tsx:436
+#: src/components/UploadForm/UploadForm.tsx:438
 msgid "Fields marked by * are required."
 msgstr "Les champs marqués d'un * sont obligatoires."
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:286
+#: src/components/UploadForm/UploadForm.tsx:287
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr "Fichier"
@@ -248,7 +248,7 @@ msgstr "Fichier"
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "Les fichiers ont été téléversés sur votre site Mahara avec succès!"
 
-#: src/components/UploadForm/UploadForm.tsx:344
+#: src/components/UploadForm/UploadForm.tsx:345
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:140
 msgid "Folder"
 msgstr "Dossier"
@@ -359,8 +359,8 @@ msgid "Local"
 msgstr "Local"
 
 #: src/screens/MenuScreen/MenuScreen.tsx:30
-msgid "Log in"
-msgstr ""
+#~ msgid "Log in"
+#~ msgstr ""
 
 #: src/components/TokenInput/TokenInput.tsx:25
 #~ msgid "Log in via an access token"
@@ -371,14 +371,15 @@ msgid "Log in via username and password"
 msgstr "Se connecter à l'aide d'un nom d'utilisateur et d'un mot de passe"
 
 #: src/screens/MenuScreen/MenuScreen.tsx:29
-msgid "Log out"
-msgstr ""
+#~ msgid "Log out"
+#~ msgstr ""
 
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:124
 #~ msgid "Logged in: {0}"
 #~ msgstr "Connecté : {0}"
 
 #: src/components/LocalLogin/LocalLogin.tsx:127
+#: src/screens/MenuScreen/MenuScreen.tsx:30
 msgid "Login"
 msgstr "Connexion"
 
@@ -388,6 +389,7 @@ msgstr "Connexion"
 msgid "Login failed"
 msgstr "Échec de connexion"
 
+#: src/screens/MenuScreen/MenuScreen.tsx:29
 #: src/utils/authHelperFunctions.ts:138
 msgid "Logout"
 msgstr "Déconnexion"
@@ -449,7 +451,7 @@ msgstr "Mahara est un logiciel libre de portfolio numérique conçu pour la réf
 msgid "Menu"
 msgstr "Menu"
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Name"
 msgstr "Nom"
 
@@ -527,7 +529,7 @@ msgstr "Veuillez vous connecter"
 msgid "Please select a file."
 msgstr "Veuillez sélectionner un fichier"
 
-#: src/components/UploadForm/UploadFormComponents.tsx:54
+#: src/components/UploadForm/UploadFormComponents.tsx:55
 msgid "Please select a journal"
 msgstr "Veuillez choisir un journal"
 
@@ -560,7 +562,7 @@ msgstr "Politique de confidentialité"
 msgid "Purpose of Mahara Mobile"
 msgstr "But de Mahara mobile"
 
-#: src/components/UploadForm/UploadForm.tsx:401
+#: src/components/UploadForm/UploadForm.tsx:403
 msgid "Queue to upload"
 msgstr "Queue de téléversement"
 
@@ -586,11 +588,11 @@ msgstr "Choisir un autre fichier"
 msgid "Select a file"
 msgstr "Choisir un fichier"
 
-#: src/components/UploadForm/UploadFormComponents.tsx:55
+#: src/components/UploadForm/UploadFormComponents.tsx:56
 msgid "Select a journal"
 msgstr "Choisir un journal"
 
-#: src/components/UploadForm/UploadForm.tsx:351
+#: src/components/UploadForm/UploadForm.tsx:353
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:67
 msgid "Select folder"
 msgstr "Choisir un dossier"
@@ -607,12 +609,12 @@ msgstr "Choisir un journal"
 msgid "Select login type"
 msgstr "Choisir un mode de connexion"
 
-#: src/components/UploadForm/TagsPicker.tsx:183
 #: src/components/UploadForm/TagsPicker.tsx:184
+#: src/components/UploadForm/TagsPicker.tsx:185
 msgid "Select tags"
 msgstr "Choisir les mots clés"
 
-#: src/components/UploadForm/TagsPicker.tsx:189
+#: src/components/UploadForm/TagsPicker.tsx:190
 msgid "Select tags..."
 msgstr "Choisir les mots clés..."
 
@@ -702,7 +704,7 @@ msgstr "Cette version de Mahara Mobile est {version} fonctionnant jusqu'à Andro
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr "Cette version fonctionne jusqu'à Android 10."
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Title"
 msgstr "Titre"
 
@@ -743,7 +745,7 @@ msgstr "Téléversement réussi"
 msgid "Upload to your site"
 msgstr "Téléverser sur votre site"
 
-#: src/components/LocalLogin/LocalLogin.tsx:80
+#: src/components/LocalLogin/LocalLogin.tsx:81
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
@@ -856,7 +858,7 @@ msgstr "Votre nom d'utilisateur ou mot de passe est erroné. Veuillez essayer de
 msgid "contact us."
 msgstr "contactez-nous"
 
-#: src/components/UploadForm/UploadForm.tsx:358
+#: src/components/UploadForm/UploadForm.tsx:360
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:76
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:103
 msgid "default"
