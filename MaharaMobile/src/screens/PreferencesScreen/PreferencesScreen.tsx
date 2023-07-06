@@ -64,6 +64,7 @@ function PreferencesScreen() {
         <SubHeading text={t`Destination folder`} />
         <Box>
           <Select
+            height={styles.heights.input}
             accessibilityLabel={t`Select folder`}
             selectedValue={selectedFolderTitle}
             onValueChange={(folder: string) => {
@@ -93,6 +94,7 @@ function PreferencesScreen() {
 
         <Box style={buttons.default}>
           <Select
+            height={styles.heights.input}
             accessibilityLabel={t`Select journal`}
             selectedValue={selectedBlogId.toString()}
             onValueChange={(blogId: string) => setSelectedBlogId(+blogId)}

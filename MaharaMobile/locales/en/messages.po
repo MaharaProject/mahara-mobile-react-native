@@ -126,7 +126,7 @@ msgstr ""
 #~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:27
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:28
 msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app, whereas single sign-on takes you to your Mahara site. You may also generate an access token manually on your Mahara site if that feature is enabled."
 msgstr ""
 
@@ -156,7 +156,7 @@ msgstr ""
 msgid "Changes to these Terms and Conditions"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:99
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:100
 msgid "Changes to this Privacy Statement"
 msgstr ""
 
@@ -172,7 +172,7 @@ msgstr ""
 msgid "Connection error"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:112
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:113
 #: src/screens/TermsScreen/TermsScreen.tsx:165
 msgid "Contact"
 msgstr ""
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Create and upload your learning evidence"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:125
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:127
 msgid "Default options"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:82
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:83
 msgid "Deleting your data"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Destination folder"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:92
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:93
 msgid "Destination journal"
 msgstr ""
 
@@ -249,11 +249,11 @@ msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:345
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:140
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:142
 msgid "Folder"
 msgstr ""
 
-#: src/screens/HelpScreen/HelpScreen.tsx:14
+#: src/screens/HelpScreen/HelpScreen.tsx:15
 msgid "For help, contact the support team of the Mahara instance that you are using. Typically, you can find a 'Contact us' link in the footer of the Mahara site to which you log in."
 msgstr ""
 
@@ -266,11 +266,11 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:117
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:119
 msgid "Hi"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:47
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:48
 msgid "How we use your personal information"
 msgstr ""
 
@@ -282,11 +282,11 @@ msgstr ""
 #~ msgid "If you have any questions regarding this Statement or believe we have not adhered to the above criteria, please"
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:115
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:116
 msgid "If you have any questions regarding this Statement, please"
 msgstr ""
 
-#: src/screens/HelpScreen/HelpScreen.tsx:23
+#: src/screens/HelpScreen/HelpScreen.tsx:24
 msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr ""
 
@@ -298,11 +298,11 @@ msgstr ""
 #~ msgid "In order to push content to Mahara from Mahara Mobile, you require an account on a Mahara site that allows mobile uploads. Typically, the institution that you are affiliated with will make a Mahara instance available to you to use if you are working with portfolios."
 #~ msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:61
+#: src/screens/AboutScreen/AboutScreen.tsx:62
 msgid "In order to push content to Mahara from Mahara Mobile, you require an account on a Mahara site that allows mobile uploads. Typically, the institution that you are affiliated with will make a Mahara site available to you to use if you are working with portfolios."
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:16
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:17
 #: src/screens/TermsScreen/TermsScreen.tsx:21
 msgid "Introduction"
 msgstr ""
@@ -332,7 +332,7 @@ msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
 #: src/components/UploadForm/UploadFormComponents.tsx:47
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:141
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:143
 msgid "Journal"
 msgstr ""
 
@@ -406,7 +406,7 @@ msgstr ""
 #~ msgid "Mahara Mobile allows you to collect your evidence on your mobile device, including when you are offline. You can then upload your photos, videos, journal entries, etc. to your Mahara instance and add them your portfolios."
 #~ msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:49
+#: src/screens/AboutScreen/AboutScreen.tsx:50
 msgid "Mahara Mobile allows you to collect your evidence on your mobile device, including when you are offline. You can then upload your photos, videos, journal entries, etc. to your Mahara instance and add them your portfolios.<0></0>"
 msgstr ""
 
@@ -414,7 +414,7 @@ msgstr ""
 #~ msgid "Mahara Mobile allows you to connect your mobile device to your Mahara site. You can create and collect your content on your mobile device and use the app to upload it to your Mahara site. You can any file available for uploading via Android and create journal entries."
 #~ msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:28
+#: src/screens/AboutScreen/AboutScreen.tsx:29
 msgid "Mahara Mobile allows you to connect your mobile device to your Mahara site. You can create and collect your content on your mobile device and use the app to upload it to your Mahara site. You can upload any files that your device allows you to upload and create journal entries."
 msgstr ""
 
@@ -422,7 +422,7 @@ msgstr ""
 msgid "Mahara Mobile allows you to upload content from your mobile device into the Mahara site that you are using without needing to go to the Mahara site itself. It is a more convenient way to record and upload images, video, and audio files. It also allows you to create journal entries."
 msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:15
+#: src/screens/AboutScreen/AboutScreen.tsx:16
 msgid "Mahara Mobile is an open source project created by the Mahara Project Team. To contribute or report bugs, see our"
 msgstr ""
 
@@ -438,7 +438,7 @@ msgstr ""
 #~ msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
 #~ msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:38
+#: src/screens/AboutScreen/AboutScreen.tsx:39
 msgid "Mahara is an open source ePortfolio platform designed for reflecting on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
 msgstr ""
 
@@ -455,7 +455,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:49
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:50
 msgid "Neither the Mahara project nor Catalyst IT have access to any of the data that you enter on Mahara Mobile nor access to any data analytics. The institution that hosts the Mahara site to which you connect cannot access data in your Mahara Mobile app either. The institution will have a certain amount of access to data that you upload to the institution's Mahara site via Mahara Mobile. Please refer to the privacy statement on the Mahara site that you are using for more information."
 msgstr ""
 
@@ -480,7 +480,7 @@ msgstr ""
 msgid "Okay"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:84
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:85
 msgid "Once you have uploaded data to your Mahara account, it is no longer stored in the app. Log into your account on the Mahara website you use to manage or delete uploaded data there. When you log out of Mahara Mobile, all content you created in the app will be deleted. This cannot be undone. Only files that already existed on your device before you added them to your Mahara Mobile queue for uploading to your Mahara account will still be available on your device unless you deleted them yourself."
 msgstr ""
 
@@ -593,7 +593,7 @@ msgid "Select a journal"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:353
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:67
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 msgid "Select folder"
 msgstr ""
 
@@ -601,7 +601,7 @@ msgstr ""
 #~ msgid "Select image"
 #~ msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:96
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:98
 msgid "Select journal"
 msgstr ""
 
@@ -630,11 +630,11 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:63
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:64
 msgid "Storage and security of your personal information"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:150
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:152
 msgid "Sync"
 msgstr ""
 
@@ -696,7 +696,7 @@ msgstr ""
 #~ msgid "This version of Mahara Mobile is {version}, supporting up to Android {android}, and iOS {ios}."
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:16
+#: src/screens/VersionScreen/VersionScreen.tsx:17
 msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
@@ -716,11 +716,11 @@ msgstr ""
 msgid "To upload pending items"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:129
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:131
 msgid "Update preferences"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:139
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:141
 msgid "Updated preferences"
 msgstr ""
 
@@ -749,7 +749,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: src/components/TokenInput/TokenInput.tsx:51
+#: src/components/TokenInput/TokenInput.tsx:52
 msgid "Verify token"
 msgstr ""
 
@@ -761,7 +761,7 @@ msgstr ""
 #~ msgid "We are committed to protecting your privacy and providing you with a safe and functional personal learning and development environment. This Statement of Privacy applies to the app 'Mahara Mobile ' as provided by Catalyst IT on behalf of the Mahara community and governs data collection and usage."
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:18
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:19
 msgid "We are committed to protecting your privacy and providing you with a safe mobile app to connect to your instance of Mahara. This Statement of Privacy applies to the mobile app 'Mahara Mobile' as provided by Catalyst.Net Limited ('Catalyst IT') on behalf of the Mahara community and governs data collection and usage."
 msgstr ""
 
@@ -773,7 +773,7 @@ msgstr ""
 #~ msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such we suggest you check the Privacy Statement each time you visit this app."
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:101
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:102
 msgid "We may occasionally make adjustments to our Privacy Statement to reflect changes to the system and in response to feedback. As such, we suggest you check the Privacy Statement each time you visit this app."
 msgstr ""
 
@@ -789,7 +789,7 @@ msgstr ""
 msgid "We provide a secure environment that allows you to upload your content to any Mahara site to which you decide to connect."
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:65
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:66
 msgid "We will take all reasonable steps to ensure that the connection between Mahara Mobile and a Mahara site you connect to is secure from the app perspective and that your access information is not disclosed. Neither the Mahara project nor Catalyst IT are responsible though for maintaining the Mahara site that you connect to or keeping your installation of Mahara Mobile up to date on your mobile device. It is the responsibility of the organisation providing the Mahara service to keep the site and its content secure. In order to help protect your personal information, please do not disclose your username, password, or access token to anybody or allow them to view content you are planning to upload to your Mahara site via Mahara Mobile."
 msgstr ""
 
@@ -825,7 +825,7 @@ msgstr ""
 msgid "Your obligations"
 msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:36
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:37
 msgid "Your own name is displayed in the app once you are logged in, and you are connected to your Mahara account via an access token that is stored in the app as well as on Mahara itself so the two can communicate with each other."
 msgstr ""
 
@@ -853,14 +853,14 @@ msgstr ""
 #~ msgid "contact us"
 #~ msgstr ""
 
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:117
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:118
 #: src/screens/TermsScreen/TermsScreen.tsx:169
 msgid "contact us."
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:360
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:76
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:103
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:77
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:105
 msgid "default"
 msgstr ""
 

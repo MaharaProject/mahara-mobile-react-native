@@ -3,12 +3,13 @@ import { Trans } from '@lingui/macro';
 import { Divider, HStack, VStack } from 'native-base';
 import { View } from 'react-native';
 import generic from 'assets/styles/generic';
+import styles from 'assets/styles/variables';
 import MediumText from 'components/UI/CustomText/MediumText';
 
 function HelpScreen() {
   return (
-    <View style={generic.wrap}>
-      <VStack space={3} divider={<Divider />} w="90%">
+    <View style={{ ...generic.wrap, paddingLeft: styles.padding.md }}>
+      <VStack space={3} divider={<Divider />} w="100%">
         <HStack>
           <MediumText>
             <Trans>
