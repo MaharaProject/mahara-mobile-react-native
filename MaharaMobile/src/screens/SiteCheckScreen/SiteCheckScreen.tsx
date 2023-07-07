@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
-import {
-  Alert,
-  CloseIcon,
-  HStack,
-  IconButton,
-  Input,
-  InputGroup,
-  InputLeftAddon,
-  Text,
-  VStack,
-  View,
-  useToast
-} from 'native-base';
-import { ActivityIndicator } from 'react-native';
+import { Alert, CloseIcon, HStack, IconButton, Input, InputGroup, InputLeftAddon, Text, VStack, View, useToast } from 'native-base';
+import { ActivityIndicator, Platform } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import headingStyles from 'assets/styles/headings';
@@ -143,6 +131,8 @@ function SiteCheckScreen(props: Props) {
           <InputGroup>
             <InputLeftAddon>https://</InputLeftAddon>
             <Input
+              type="text"
+              keyboardType={Platform.OS === 'ios' ? 'url' : 'default'}
               autoCapitalize="none"
               onChangeText={onUpdateURL}
               backgroundColor="#FFF"
