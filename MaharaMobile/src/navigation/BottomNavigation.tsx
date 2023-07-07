@@ -10,7 +10,6 @@ import NavUploadActiveSVG from 'assets/images/nav-upload-active';
 import styles from 'assets/styles/variables';
 import { CreateNavigator, MenuNavigator, PendingItemsNavigator } from './StackNavigators';
 
-
 const tabOptions = {
   tabBarHideOnKeyboard: true,
   tabBarActiveTintColor: styles.colors.navActiveGreenTint,

@@ -6,7 +6,6 @@ import { RootState } from 'store/reducers/rootReducer';
 import BottomNavigation from './BottomNavigation';
 import { AuthNavigator } from './StackNavigators';
 
-
 function AppNavigator() {
   const isAuth = useSelector((state: RootState) => !!state.domainData.loginInfo.token);
 
