@@ -1,12 +1,13 @@
 /* eslint-disable max-len */
 import React from 'react';
+import { VStack } from 'native-base';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
 function NavMenuActiveSVG() {
   return (
-    <View>
-      <Svg xmlns="http://www.w3.org/2000/svg" width="70" height="32" viewBox="0 0 100 100">
+    <VStack>
+      <Svg xmlns="http://www.w3.org/2000/svg" width="70" height="32" viewBox="0 -10 130 100">
         <Path
           id="nav-menu-active.svg"
           fill="#566d31"
@@ -14,7 +15,7 @@ function NavMenuActiveSVG() {
           transform="translate(-4632.94 -3865.97)"
         />
       </Svg>
-    </View>
+    </VStack>
   );
 }
 

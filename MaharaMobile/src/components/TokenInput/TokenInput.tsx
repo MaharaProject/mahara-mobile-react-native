@@ -37,7 +37,8 @@ export default function TokenInput(props: Props) {
           text=" Log in via an access token"
         />
         <Input
-          placeholder="..."
+          placeholder=""
+          height={styles.heights.input}
           autoCapitalize="none"
           onChangeText={(input) => setToken(input.trim())}
           style={TokenLoginStyles.input}

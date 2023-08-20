@@ -23,6 +23,7 @@ export type MaharaFile = {
   foldername: string;
   name: string;
   description: string;
+  alttext: string;
   filetoupload: File;
 };
 

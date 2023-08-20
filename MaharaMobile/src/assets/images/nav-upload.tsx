@@ -1,11 +1,32 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { View } from 'react-native';
+import { Badge, VStack } from 'native-base';
 import Svg, { Path } from 'react-native-svg';
 
-function NavUploadSVG() {
+type Props = {
+  uploadItemsCount?: number;
+};
+
+function NavUploadSVG(props: Props) {
   return (
-    <View>
+    <VStack>
+      {props.uploadItemsCount > 0 && (
+        <Badge
+          colorScheme="primary"
+          rounded="full"
+          mb={-4}
+          mr={-4}
+          zIndex={1}
+          variant="outline"
+          alignSelf="flex-end"
+          _text={{
+            fontSize: 12
+          }}
+        >
+          {props.uploadItemsCount}
+        </Badge>
+      )}
+
       <Svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 100 100">
         <Path
           id="nav-upload.svg"
@@ -14,7 +35,7 @@ function NavUploadSVG() {
           transform="translate(-4071 -3858)"
         />
       </Svg>
-    </View>
+    </VStack>
   );
 }
 

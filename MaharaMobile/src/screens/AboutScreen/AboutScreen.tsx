@@ -3,13 +3,14 @@ import { Trans } from '@lingui/macro';
 import { Divider, HStack, VStack } from 'native-base';
 import { ScrollView } from 'react-native';
 import generic from 'assets/styles/generic';
+import styles from 'assets/styles/variables';
 import LinkText from 'components/UI/CustomText/LinkText';
 import MediumText from 'components/UI/CustomText/MediumText';
 
 function AboutScreen() {
   return (
-    <ScrollView style={generic.wrap}>
-      <VStack space={3} divider={<Divider />} w="90%">
+    <ScrollView style={{ ...generic.wrap, paddingLeft: styles.padding.md }}>
+      <VStack space={3} divider={<Divider />} w="100%">
         <HStack style={{ flexDirection: 'column' }}>
           <MediumText>
             <Trans>

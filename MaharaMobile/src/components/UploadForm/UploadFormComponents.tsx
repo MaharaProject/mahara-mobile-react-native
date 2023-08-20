@@ -1,7 +1,7 @@
 import React from 'react';
 import { t } from '@lingui/macro';
 import { Box, HStack, Select, Switch } from 'native-base';
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import styles from 'assets/styles/variables';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
 import { UserBlog } from 'models/models';
@@ -18,7 +18,7 @@ function JournalDraftSwitch(props: Props) {
       <HStack justifyContent="space-between">
         <SubHeading text={t`Draft journal entry`} />
         <Switch
-          trackColor={{ false: '', true: styles.colors.navBarGreen }}
+          trackColor={{ false: styles.colors.darkgrey, true: styles.colors.navBarGreen }}
           thumbColor={false ? '' : styles.colors.primary}
           value={props.isDraft}
           onValueChange={() => props.setIsDraft(!props.isDraft)}
@@ -50,6 +50,7 @@ export function BlogPicker(props: {
       )}
       <Box>
         <Select
+          height={styles.heights.input}
           mode="dropdown"
           placeholder={t`Please select a journal`}
           accessibilityLabel={t`Select a journal`}

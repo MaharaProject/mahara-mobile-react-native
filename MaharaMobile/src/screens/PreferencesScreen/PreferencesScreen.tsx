@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faSync } from '@fortawesome/free-solid-svg-icons';
 import { Trans, t } from '@lingui/macro';
 import { Box, Select, Text } from 'native-base';
 import { Alert, Image, View } from 'react-native';
@@ -22,7 +22,7 @@ import {
 } from 'store/reducers/loginInfoReducer';
 import { RootState } from 'store/reducers/rootReducer';
 import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
-import { fetchProfilePic } from 'utils/authHelperFunctions';
+import { fetchProfilePic, login } from 'utils/authHelperFunctions';
 import { GUEST_TOKEN } from 'utils/constants';
 import { putDefaultAtTop } from 'utils/formHelper';
 import PreferencesScreenStyle from './PreferencesScreen.style';
@@ -64,6 +64,7 @@ function PreferencesScreen() {
         <SubHeading text={t`Destination folder`} />
         <Box>
           <Select
+            height={styles.heights.input}
             accessibilityLabel={t`Select folder`}
             selectedValue={selectedFolderTitle}
             onValueChange={(folder: string) => {
@@ -93,6 +94,7 @@ function PreferencesScreen() {
 
         <Box style={buttons.default}>
           <Select
+            height={styles.heights.input}
             accessibilityLabel={t`Select journal`}
             selectedValue={selectedBlogId.toString()}
             onValueChange={(blogId: string) => setSelectedBlogId(+blogId)}
@@ -143,6 +145,14 @@ function PreferencesScreen() {
               userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title
             }`
           );
+        }}
+      />
+      <View style={{ padding: 5 }} />
+      <MediumButton
+        text={t`Sync`}
+        icon={faSync}
+        onPress={() => {
+          login(url, dispatch, userBlogs, userFolders, token, null, null, false);
         }}
       />
     </View>

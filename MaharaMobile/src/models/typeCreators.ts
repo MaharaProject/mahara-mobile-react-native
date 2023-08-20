@@ -30,10 +30,12 @@ export const newMaharaFile = (
   token: string,
   folderName: string,
   fileName: string,
-  desc: string,
+  description: string,
+  alttext: string,
   file: File
 ): MaharaFile => ({
-  description: desc,
+  description,
+  alttext,
   name: fileName,
   filetoupload: file,
   foldername: folderName,

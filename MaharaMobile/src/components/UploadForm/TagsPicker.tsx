@@ -178,6 +178,7 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
       {/* Display drop down of existing tags */}
       <Box style={[buttons.default]}>
         <Select
+          height={styles.heights.input}
           mode="dropdown"
           iosHeader="Select tags"
           placeholder={t`Select tags`}

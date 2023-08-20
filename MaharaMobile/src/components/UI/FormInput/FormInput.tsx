@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Input, TextArea } from 'native-base';
+import styles from 'assets/styles/variables';
 
 type Props = {
   valid: boolean;
@@ -21,7 +22,11 @@ function FormInput(props: Props) {
           style={{ flex: 1 }}
         />
       ) : (
-        <Input value={props.value} onChangeText={props.onChangeText} />
+        <Input
+          height={styles.heights.input}
+          value={props.value}
+          onChangeText={props.onChangeText}
+        />
       )}
     </Box>
   );

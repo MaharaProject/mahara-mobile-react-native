@@ -3,15 +3,16 @@ import { t } from '@lingui/macro';
 import { ScrollView } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import generic from 'assets/styles/generic';
+import styles from 'assets/styles/variables';
 import MediumText from 'components/UI/CustomText/MediumText';
 
 function VersionScreen() {
   const version = DeviceInfo.getVersion();
 
-  const android = '11';
+  const android = '13';
   const ios = '14';
   return (
-    <ScrollView style={generic.wrap}>
+    <ScrollView style={{ ...generic.wrap, paddingLeft: styles.padding.md }}>
       <MediumText
         text={t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`}
       />

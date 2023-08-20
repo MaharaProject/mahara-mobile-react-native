@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
-import { Box, Select, Text, VStack, View } from 'native-base';
+import { Box, KeyboardAvoidingView, ScrollView, Select, Text, VStack, View } from 'native-base';
+import { LogBox, ScrollViewBase } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch, useSelector } from 'react-redux';
+import styles from 'assets/styles/variables';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
 import FormInput from 'components/UI/FormInput/FormInput';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
@@ -81,7 +84,8 @@ function UploadForm(props: Props) {
   const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size > 0);
   const [title, setTitle] = useState(''); // title and filename
   const [titleValid, setTitleValid] = useState(props.itemType !== 'J_ENTRY');
-  const [description, setDescription] = useState(''); // description and journal entry
+  const [description, setDescription] = useState(''); // file description (or image caption) and journal entry
+  const [alttext, setAltText] = useState(''); // file alt text
   const [descValid, setDescValid] = useState(props.itemType !== 'J_ENTRY');
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
@@ -101,6 +105,7 @@ function UploadForm(props: Props) {
       pickedFile?.uri ||
       title ||
       description ||
+      alttext ||
       selectedFolder !== props.defFolderTitle ||
       selectedBlog !== props.defaultBlogId ||
       selectedTagsStrings?.length
@@ -109,7 +114,20 @@ function UploadForm(props: Props) {
     } else {
       props.setDirty(false);
     }
-  }, [description, pickedFile, props, selectedBlog, selectedFolder, selectedTagsStrings, title]);
+  }, [
+    description,
+    alttext,
+    pickedFile,
+    props,
+    selectedBlog,
+    selectedFolder,
+    selectedTagsStrings,
+    title
+  ]);
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
 
   useEffect(() => {
     if (props.editItem) {
@@ -118,6 +136,7 @@ function UploadForm(props: Props) {
         // The file is set in AddItemScreen as the pickedFile.
         setTitle(removeExtension(maharaFormData.name));
         setDescription(maharaFormData.description);
+        setAltText(maharaFormData.alttext);
         setSelectedFolder(maharaFormData.foldername);
         setTitleValid(true);
         setDescValid(true);
@@ -200,6 +219,7 @@ function UploadForm(props: Props) {
       folder,
       filename,
       description,
+      alttext,
       updatedFile
     );
 
@@ -248,9 +268,14 @@ function UploadForm(props: Props) {
     setTitle(newTitle);
   };
 
-  const updateDescription = (desc: string) => {
+  const updateDesc = (desc: string) => {
     setDescValid(isValidText(itemType, desc));
     setDescription(desc);
+  };
+
+  const updateAltText = (altText: string) => {
+    setDescValid(isValidText(itemType, altText));
+    setAltText(altText);
   };
 
   const renderDisplayedFilename = () => {
@@ -278,16 +303,31 @@ function UploadForm(props: Props) {
         value={title}
         onChangeText={(text: string) => updateTitle(text)}
       />
-      <SubHeading
-        required={itemType === 'J_ENTRY'}
-        text={itemType === 'J_ENTRY' ? t`Entry` : t`Description`}
-      />
+      {itemType === 'J_ENTRY' && <SubHeading required text={t`Entry`} />}
+      {itemType === 'PHOTO' && <SubHeading required text={t`Caption`} />}
+      {itemType === 'FILE' && (
+        <SubHeading
+          required
+          text={pickedFile && pickedFile.type?.startsWith('image') ? t`Caption` : t`Description`}
+        />
+      )}
+
       <FormInput
         multiline
         valid={itemType === 'J_ENTRY' && descValid}
         value={description}
-        onChangeText={(desc: string) => updateDescription(desc)}
+        onChangeText={(desc: string) => updateDesc(desc)}
       />
+      {pickedFile?.type?.startsWith('image') && (
+        <View>
+          <SubHeading text={t`Alt text`} />
+          <FormInput
+            valid
+            value={alttext}
+            onChangeText={(altText: string) => updateAltText(altText)}
+          />
+        </View>
+      )}
     </View>
   );
 
@@ -308,6 +348,7 @@ function UploadForm(props: Props) {
         )}
         <Box>
           <Select
+            height={styles.heights.input}
             placeholder={props.defFolderTitle}
             accessibilityLabel={t`Select folder`}
             selectedValue={selectedFolder}

@@ -13,9 +13,15 @@ function AppNavigator() {
     (state: RootState) => !!state.domainData.loginInfo.didTryAutoLogin
   );
 
+  const uploadItemsCount = useSelector(
+    (state: RootState) =>
+      state.appState.uploadFiles.uploadFilesIds.length +
+      state.appState.uploadJEntries.uploadJEntriesIds.length
+  );
+
   return (
     <NavigationContainer theme={DefaultTheme}>
-      {isAuth && <BottomNavigation />}
+      {isAuth && <BottomNavigation uploadItemsCount={uploadItemsCount} />}
       {/* <MaharaMobileNavigator /> */}
       {!isAuth && didTryAutoLogin && <AuthNavigator />}
       {!isAuth && !didTryAutoLogin && <AuthLoadingScreen />}

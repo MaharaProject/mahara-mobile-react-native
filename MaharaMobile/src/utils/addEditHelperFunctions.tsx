@@ -20,21 +20,23 @@ const setSelectedImageCallback = (
   }
 
   const asset = (response.assets || [])[0];
+  console.log(asset);
 
   if (response.didCancel) {
     Alert.alert(t`No photo captured`, t`Camera closed.`);
   } else if (response.errorCode) {
     Alert.alert(t`ImagePicker Error:${response.errorMessage}`);
   } else {
-    if (!asset) {
+    if (!asset.uri) {
       return;
     }
-    let path = asset?.uri || '';
-    if (Platform.OS === 'ios') {
-      path = `˜${path.substring(path.indexOf('/Documents'))}`;
-    }
+    const path = asset?.uri || '';
+    // if (Platform.OS === 'ios') {
+    //   path = `˜${path.substring(path.indexOf('/Documents'))}`;
+    // }
 
-    const maharaFile = newFile(path, asset.type, asset.fileName, asset.fileSize);
+    // const maharaFile = newFile(path, asset.type, asset.fileName, asset.fileSize);
+    const maharaFile = newFile(path, asset.type, `Photo_${Date.now()}.jpg`, asset.fileSize);
 
     setPickedFile(maharaFile);
   }

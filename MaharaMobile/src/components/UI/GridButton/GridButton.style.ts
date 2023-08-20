@@ -11,7 +11,8 @@ const gridButtonStyles = StyleSheet.create({
   buttonText: {
     fontSize: styles.font.md,
     color: styles.colors.light,
-    marginBottom: styles.padding.md
+    marginBottom: styles.padding.md,
+    marginHorizontal: styles.padding.md
   },
   imageWrapper: {
     height: '35%',
@@ -29,6 +30,9 @@ const gridButtonStyles = StyleSheet.create({
   },
   darkbrown: {
     backgroundColor: styles.colors.darkbrown_grid_button
+  },
+  disabled: {
+    backgroundColor: styles.colors.darkgrey
   },
   journalEntry: {
     backgroundColor: styles.colors.lightbrown_grid_button,

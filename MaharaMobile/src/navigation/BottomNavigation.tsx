@@ -20,7 +20,11 @@ const tabOptions = {
 
 const BottomTab = createBottomTabNavigator();
 
-function BottomNavigation() {
+type Props = {
+  uploadItemsCount?: number;
+};
+
+function BottomNavigation(props: Props) {
   return (
     <BottomTab.Navigator initialRouteName="Create tab">
       <BottomTab.Screen
@@ -30,7 +34,12 @@ function BottomNavigation() {
           ...tabOptions,
           tabBarLabel: t`Upload queue`,
           headerShown: false,
-          tabBarIcon: ({ focused }) => (focused ? <NavUploadActiveSVG /> : <NavUploadSVG />),
+          tabBarIcon: ({ focused }) =>
+            focused ? (
+              <NavUploadActiveSVG uploadItemsCount={props.uploadItemsCount} />
+            ) : (
+              <NavUploadSVG uploadItemsCount={props.uploadItemsCount} />
+            ),
           tabBarAccessibilityLabel: t`Upload queue page`
         }}
       />
