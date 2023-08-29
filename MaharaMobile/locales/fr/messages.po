@@ -27,7 +27,7 @@ msgstr ""
 #~ msgid "<0> </0><1>{0} </1>"
 #~ msgstr "<0> </0><1>{0} </1>"
 
-#: src/components/UploadForm/UploadForm.tsx:288
+#: src/components/UploadForm/UploadForm.tsx:289
 msgid "A file has been added."
 msgstr "Un fichier a été ajouté"
 
@@ -104,7 +104,7 @@ msgstr "Autoriser Mahara Mobile à accéder aux photos, médias et fichiers de v
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "Autoriser l'utilisation du micro pour enregistrer l'audio et l'enregistrer dans un fichier?"
 
-#: src/components/UploadForm/UploadForm.tsx:322
+#: src/components/UploadForm/UploadForm.tsx:308
 msgid "Alt text"
 msgstr ""
 
@@ -163,8 +163,8 @@ msgstr "Caméra fermée"
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/components/UploadForm/UploadForm.tsx:306
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:322
+#: src/components/UploadForm/UploadForm.tsx:326
 msgid "Caption"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr "Changements à la politique de confidentialité"
 #~ msgid "Collection of personal information"
 #~ msgstr "Collecte de renseignements personnels"
 
-#: src/components/UploadForm/UploadForm.tsx:402
+#: src/components/UploadForm/UploadForm.tsx:417
 msgid "Confirm edits to {intlItemType}"
 msgstr "Confirmer les modifications à {intlItemType}"
 
@@ -211,7 +211,7 @@ msgstr "Créer"
 msgid "Create and upload your learning evidence"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:359
+#: src/components/UploadForm/UploadForm.tsx:374
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:77
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:105
 msgid "default"
@@ -229,7 +229,7 @@ msgstr "Supprimer"
 msgid "Deleting your data"
 msgstr "Suppression de vos données"
 
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:329
 msgid "Description"
 msgstr "Description"
 
@@ -253,11 +253,11 @@ msgstr "Modifier {0}"
 msgid "Enter a different URL"
 msgstr "Entrer une URL différente"
 
-#: src/components/UploadForm/UploadForm.tsx:305
+#: src/components/UploadForm/UploadForm.tsx:321
 msgid "Entry"
 msgstr "Entrée"
 
-#: src/components/UploadForm/UploadForm.tsx:346
+#: src/components/UploadForm/UploadForm.tsx:361
 msgid "Error: You do not have any folders on your site."
 msgstr "Erreur : vous n'avez aucun dossier sur votre site."
 
@@ -265,7 +265,7 @@ msgstr "Erreur : vous n'avez aucun dossier sur votre site."
 msgid "Error: You do not have any journals on your site."
 msgstr "Erreur : vous n'avez aucun journal sur votre site."
 
-#: src/components/UploadForm/UploadForm.tsx:437
+#: src/components/UploadForm/UploadForm.tsx:473
 msgid "Fields marked by * are required."
 msgstr "Les champs marqués d'un * sont obligatoires."
 
@@ -274,7 +274,7 @@ msgstr "Les champs marqués d'un * sont obligatoires."
 #~ msgstr "fichier"
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:286
+#: src/components/UploadForm/UploadForm.tsx:287
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr "Fichier"
@@ -283,7 +283,7 @@ msgstr "Fichier"
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "Les fichiers ont été téléversés sur votre site Mahara avec succès!"
 
-#: src/components/UploadForm/UploadForm.tsx:344
+#: src/components/UploadForm/UploadForm.tsx:359
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:142
 msgid "Folder"
 msgstr "Dossier"
@@ -498,7 +498,7 @@ msgstr "Mahara mobile est un logiciel libre créé par l'équipe du projet Mahar
 msgid "Menu"
 msgstr "Menu"
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Name"
 msgstr "Nom"
 
@@ -617,7 +617,7 @@ msgstr "Politique de confidentialité"
 msgid "Purpose of Mahara Mobile"
 msgstr "But de Mahara mobile"
 
-#: src/components/UploadForm/UploadForm.tsx:402
+#: src/components/UploadForm/UploadForm.tsx:417
 msgid "Queue to upload"
 msgstr "Queue de téléversement"
 
@@ -651,7 +651,7 @@ msgstr "Choisir un fichier"
 msgid "Select a journal"
 msgstr "Choisir un journal"
 
-#: src/components/UploadForm/UploadForm.tsx:352
+#: src/components/UploadForm/UploadForm.tsx:367
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 msgid "Select folder"
 msgstr "Choisir un dossier"
@@ -763,7 +763,7 @@ msgstr "Cette version de Mahara Mobile est {version} fonctionnant jusqu'à Andro
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr "Cette version fonctionne jusqu'à Android 10."
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Title"
 msgstr "Titre"
 
@@ -807,6 +807,10 @@ msgstr "Téléversement réussi"
 #: src/screens/PendingScreen/PendingScreen.tsx:247
 msgid "Upload to your site"
 msgstr "Téléverser sur votre site"
+
+#: src/components/UploadForm/UploadForm.tsx:435
+msgid "Use alt text as image caption"
+msgstr ""
 
 #: src/components/LocalLogin/LocalLogin.tsx:81
 msgid "Username"

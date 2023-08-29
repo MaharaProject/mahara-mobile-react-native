@@ -1,6 +1,6 @@
 {
   "name": "maharamobile",
-  "version": "23.8.6",
+  "version": "23.8.8",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -9,8 +9,8 @@
     "test": "jest --config .test/jest.config.js",
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
-    "prettier": "prettier --check .",
-    "prettier:fix": "prettier  --write .",
+    "prettier": "prettier src/**/*.{ts,tsx} --check",
+    "prettier:fix": "prettier src/**/*.{ts,tsx} --write ",
     "tsc": "tsc",
     "add-locale": "lingui add-locale",
     "extract": "lingui extract",

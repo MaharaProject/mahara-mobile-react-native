@@ -17,7 +17,7 @@ msgstr ""
 #~ msgid "{errorMessage}"
 #~ msgstr "{errorMessage}"
 
-#: src/components/UploadForm/UploadForm.tsx:288
+#: src/components/UploadForm/UploadForm.tsx:289
 msgid "A file has been added."
 msgstr "파일이 추가되었습니다."
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr "마이크가 오디오를 녹음하고 파일을 저장하도록 허용 하시겠습니까?"
 
-#: src/components/UploadForm/UploadForm.tsx:322
+#: src/components/UploadForm/UploadForm.tsx:308
 msgid "Alt text"
 msgstr ""
 
@@ -153,8 +153,8 @@ msgstr "카메라가 닫혔습니다."
 msgid "Cancel"
 msgstr "취소"
 
-#: src/components/UploadForm/UploadForm.tsx:306
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:322
+#: src/components/UploadForm/UploadForm.tsx:326
 msgid "Caption"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr "이 개인 정보 보호 정책의 변경"
 #~ msgid "Collection of personal information"
 #~ msgstr "개인 정보 수집"
 
-#: src/components/UploadForm/UploadForm.tsx:402
+#: src/components/UploadForm/UploadForm.tsx:417
 msgid "Confirm edits to {intlItemType}"
 msgstr "{intlItemType} 편집을 확인하십시오."
 
@@ -201,7 +201,7 @@ msgstr ""
 msgid "Create and upload your learning evidence"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:359
+#: src/components/UploadForm/UploadForm.tsx:374
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:77
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:105
 msgid "default"
@@ -219,7 +219,7 @@ msgstr "삭제"
 msgid "Deleting your data"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:310
+#: src/components/UploadForm/UploadForm.tsx:329
 msgid "Description"
 msgstr "설명"
 
@@ -243,11 +243,11 @@ msgstr "편집 {0}"
 msgid "Enter a different URL"
 msgstr "다른 URL을 입력하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:305
+#: src/components/UploadForm/UploadForm.tsx:321
 msgid "Entry"
 msgstr "분개"
 
-#: src/components/UploadForm/UploadForm.tsx:346
+#: src/components/UploadForm/UploadForm.tsx:361
 msgid "Error: You do not have any folders on your site."
 msgstr "KO Error: You have no folders"
 
@@ -255,7 +255,7 @@ msgstr "KO Error: You have no folders"
 msgid "Error: You do not have any journals on your site."
 msgstr "오류 : 사이트에 저널이 없습니다."
 
-#: src/components/UploadForm/UploadForm.tsx:437
+#: src/components/UploadForm/UploadForm.tsx:473
 msgid "Fields marked by * are required."
 msgstr "*로 표시된 필드는 필수입니다."
 
@@ -264,7 +264,7 @@ msgstr "*로 표시된 필드는 필수입니다."
 #~ msgstr "파일"
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:286
+#: src/components/UploadForm/UploadForm.tsx:287
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr "파일"
@@ -273,7 +273,7 @@ msgstr "파일"
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
-#: src/components/UploadForm/UploadForm.tsx:344
+#: src/components/UploadForm/UploadForm.tsx:359
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:142
 msgid "Folder"
 msgstr "볼더"
@@ -455,7 +455,7 @@ msgstr "Mahara Mobile은 Mahara 프로젝트 팀에서 만든 오픈 소스 프�
 msgid "Menu"
 msgstr "메뉴"
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Name"
 msgstr "이름"
 
@@ -570,7 +570,7 @@ msgstr "개인 정보 보호 정책"
 msgid "Purpose of Mahara Mobile"
 msgstr "Mahara Mobile의 목적"
 
-#: src/components/UploadForm/UploadForm.tsx:402
+#: src/components/UploadForm/UploadForm.tsx:417
 msgid "Queue to upload"
 msgstr "업로드 대기열"
 
@@ -604,7 +604,7 @@ msgstr "파일을 선택하십시오"
 msgid "Select a journal"
 msgstr "저널을 선택하십시오"
 
-#: src/components/UploadForm/UploadForm.tsx:352
+#: src/components/UploadForm/UploadForm.tsx:367
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 msgid "Select folder"
 msgstr "폴더 선택"
@@ -716,7 +716,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:298
+#: src/components/UploadForm/UploadForm.tsx:299
 msgid "Title"
 msgstr "표제"
 
@@ -756,6 +756,10 @@ msgstr ""
 #: src/screens/PendingScreen/PendingScreen.tsx:247
 msgid "Upload to your site"
 msgstr "귀하의 사이트에 업로드"
+
+#: src/components/UploadForm/UploadForm.tsx:435
+msgid "Use alt text as image caption"
+msgstr ""
 
 #: src/components/LocalLogin/LocalLogin.tsx:81
 msgid "Username"

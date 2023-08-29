@@ -18,6 +18,7 @@ function JournalDraftSwitch(props: Props) {
       <HStack justifyContent="space-between">
         <SubHeading text={t`Draft journal entry`} />
         <Switch
+          size="md"
           trackColor={{ false: styles.colors.darkgrey, true: styles.colors.navBarGreen }}
           thumbColor={false ? '' : styles.colors.primary}
           value={props.isDraft}

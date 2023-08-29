@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
-import { Box, Select, Text, VStack, View } from 'native-base';
+import { Box, Select, Text, VStack, View, HStack, Switch } from 'native-base';
 import { LogBox } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from 'assets/styles/variables';
@@ -84,6 +84,7 @@ function UploadForm(props: Props) {
   const [title, setTitle] = useState(''); // title and filename
   const [titleValid, setTitleValid] = useState(props.itemType !== 'J_ENTRY');
   const [description, setDescription] = useState(''); // file description (or image caption) and journal entry
+  const [useAltTextAsImageCaption, setUseAltTextAsImageCaption] = useState(false);
   const [alttext, setAltText] = useState(''); // file alt text
   const [descValid, setDescValid] = useState(props.itemType !== 'J_ENTRY');
 
@@ -291,7 +292,7 @@ function UploadForm(props: Props) {
     );
   };
 
-  const renderTextInputs = () => (
+  const renderNameTitleAndAltText = () => (
     <View>
       <SubHeading
         required={itemType === 'J_ENTRY'}
@@ -302,31 +303,42 @@ function UploadForm(props: Props) {
         value={title}
         onChangeText={(text: string) => updateTitle(text)}
       />
+      {(itemType === 'PHOTO' || (itemType === 'FILE' && pickedFile?.type?.startsWith('image'))) && (
+        <View>
+          <SubHeading text={t`Alt text`} />
+          <FormInput
+            valid
+            value={alttext}
+            onChangeText={(altText: string) => updateAltText(altText)}
+          />
+        </View>
+      )}
+    </View>
+  );
+
+  const renderTextInputs = () => (
+    <View>
       {itemType === 'J_ENTRY' && <SubHeading required text={t`Entry`} />}
-      {itemType == 'PHOTO' ||
-        (pickedFile?.type?.startsWith('image') && (
-          <View>
-            <SubHeading text={t`Alt text`} />
-            <FormInput
-              valid
-              value={alttext}
-              onChangeText={(altText: string) => updateAltText(altText)}
-            />
-          </View>
-        ))}
-      {itemType === 'PHOTO' && <SubHeading text={t`Caption`} />}
-      {itemType === 'FILE' && (
-        <SubHeading
-          text={pickedFile && pickedFile.type?.startsWith('image') ? t`Caption` : t`Description`}
-        />
+      {itemType === 'PHOTO' && !useAltTextAsImageCaption && <SubHeading text={t`Caption`} />}
+      {itemType === 'FILE' &&
+        pickedFile &&
+        pickedFile.type?.startsWith('image') &&
+        !useAltTextAsImageCaption && <SubHeading text={t`Caption`} />}
+
+      {itemType === 'FILE' && pickedFile && !pickedFile.type?.startsWith('image') && (
+        <SubHeading text={t`Description`} />
       )}
 
-      <FormInput
-        multiline
-        valid={itemType === 'J_ENTRY' && descValid}
-        value={description}
-        onChangeText={(desc: string) => updateDesc(desc)}
-      />
+      {(itemType === 'J_ENTRY' ||
+        (itemType === 'FILE' && !useAltTextAsImageCaption) ||
+        (itemType === 'PHOTO' && !useAltTextAsImageCaption)) && (
+        <FormInput
+          multiline
+          valid={itemType === 'J_ENTRY' && descValid}
+          value={description}
+          onChangeText={(desc: string) => updateDesc(desc)}
+        />
+      )}
     </View>
   );
 
@@ -411,6 +423,26 @@ function UploadForm(props: Props) {
     );
   };
 
+  const renderUseAltTextAsImageCaptionSwitch = () => (
+    <View>
+      {itemType === 'PHOTO' ||
+        (pickedFile?.type?.startsWith('image') && (
+          <Box style={{ borderColor: styles.colors.light }}>
+            <HStack justifyContent="space-between">
+              <SubHeading text={t`Use alt text as image caption`} />
+              <Switch
+                size="md"
+                trackColor={{ false: styles.colors.darkgrey, true: styles.colors.navBarGreen }}
+                thumbColor={false ? '' : styles.colors.primary}
+                value={useAltTextAsImageCaption}
+                onValueChange={() => setUseAltTextAsImageCaption(!useAltTextAsImageCaption)}
+              />
+            </HStack>
+          </Box>
+        ))}
+    </View>
+  );
+
   const renderJournalPickerSwitch = () => {
     if (itemType === 'J_ENTRY') {
       return (
@@ -436,6 +468,8 @@ function UploadForm(props: Props) {
     <View>
       <RequiredWarningText customText={t`Fields marked by * are required.`} />
       {renderDisplayedFilename()}
+      {renderNameTitleAndAltText()}
+      {renderUseAltTextAsImageCaptionSwitch()}
       {renderTextInputs()}
       {renderFolderPicker()}
       {renderJournalPickerSwitch()}
