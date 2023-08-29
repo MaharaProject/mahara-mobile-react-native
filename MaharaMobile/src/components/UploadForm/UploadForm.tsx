@@ -303,7 +303,18 @@ function UploadForm(props: Props) {
         onChangeText={(text: string) => updateTitle(text)}
       />
       {itemType === 'J_ENTRY' && <SubHeading required text={t`Entry`} />}
-      {itemType === 'PHOTO' && <SubHeading required text={t`Caption`} />}
+      {itemType == 'PHOTO' ||
+        (pickedFile?.type?.startsWith('image') && (
+          <View>
+            <SubHeading text={t`Alt text`} />
+            <FormInput
+              valid
+              value={alttext}
+              onChangeText={(altText: string) => updateAltText(altText)}
+            />
+          </View>
+        ))}
+      {itemType === 'PHOTO' && <SubHeading text={t`Caption`} />}
       {itemType === 'FILE' && (
         <SubHeading
           text={pickedFile && pickedFile.type?.startsWith('image') ? t`Caption` : t`Description`}
@@ -316,16 +327,6 @@ function UploadForm(props: Props) {
         value={description}
         onChangeText={(desc: string) => updateDesc(desc)}
       />
-      {pickedFile?.type?.startsWith('image') && (
-        <View>
-          <SubHeading text={t`Alt text`} />
-          <FormInput
-            valid
-            value={alttext}
-            onChangeText={(altText: string) => updateAltText(altText)}
-          />
-        </View>
-      )}
     </View>
   );
 
