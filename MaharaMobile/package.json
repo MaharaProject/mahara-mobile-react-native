@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
     "@babel/preset-env": "^7.20.0",
     "@babel/preset-typescript": "^7.22.15",
     "@babel/runtime": "^7.20.0",
