@@ -427,21 +427,20 @@ function UploadForm(props: Props) {
 
   const renderUseAltTextAsImageCaptionSwitch = () => (
     <View>
-      {itemType === 'PHOTO' ||
-        (pickedFile?.type?.startsWith('image') && (
-          <Box style={{ borderColor: styles.colors.light }}>
-            <HStack justifyContent="space-between">
-              <SubHeading text={t`Use alt text as image caption`} />
-              <Switch
-                size="md"
-                trackColor={{ false: styles.colors.darkgrey, true: styles.colors.navBarGreen }}
-                thumbColor={false ? '' : styles.colors.primary}
-                value={useAltTextAsImageCaption}
-                onValueChange={() => setUseAltTextAsImageCaption(!useAltTextAsImageCaption)}
-              />
-            </HStack>
-          </Box>
-        ))}
+      {(itemType === 'PHOTO' || pickedFile?.type?.startsWith('image')) && (
+        <Box style={{ borderColor: styles.colors.light }}>
+          <HStack justifyContent="space-between">
+            <SubHeading text={t`Use alt text as image caption`} />
+            <Switch
+              size="md"
+              trackColor={{ false: styles.colors.darkgrey, true: styles.colors.navBarGreen }}
+              thumbColor={false ? '' : styles.colors.primary}
+              value={useAltTextAsImageCaption}
+              onValueChange={() => setUseAltTextAsImageCaption(!useAltTextAsImageCaption)}
+            />
+          </HStack>
+        </Box>
+      )}
     </View>
   );
 

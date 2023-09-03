@@ -27,7 +27,7 @@ msgstr ""
 #~ msgid "<0> </0><1>{0} </1>"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:289
+#: src/components/UploadForm/UploadForm.tsx:291
 msgid "A file has been added."
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:308
+#: src/components/UploadForm/UploadForm.tsx:310
 msgid "Alt text"
 msgstr ""
 
@@ -163,8 +163,8 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:322
-#: src/components/UploadForm/UploadForm.tsx:326
+#: src/components/UploadForm/UploadForm.tsx:324
+#: src/components/UploadForm/UploadForm.tsx:328
 msgid "Caption"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 #~ msgid "Collection of personal information"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:417
+#: src/components/UploadForm/UploadForm.tsx:416
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Create and upload your learning evidence"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:374
+#: src/components/UploadForm/UploadForm.tsx:373
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:77
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:105
 msgid "default"
@@ -229,7 +229,7 @@ msgstr ""
 msgid "Deleting your data"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:329
+#: src/components/UploadForm/UploadForm.tsx:331
 msgid "Description"
 msgstr ""
 
@@ -253,19 +253,19 @@ msgstr ""
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:321
+#: src/components/UploadForm/UploadForm.tsx:323
 msgid "Entry"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:361
+#: src/components/UploadForm/UploadForm.tsx:360
 msgid "Error: You do not have any folders on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormComponents.tsx:49
+#: src/components/UploadForm/UploadFormComponents.tsx:50
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:473
+#: src/components/UploadForm/UploadForm.tsx:471
 msgid "Fields marked by * are required."
 msgstr ""
 
@@ -274,7 +274,7 @@ msgstr ""
 #~ msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:287
+#: src/components/UploadForm/UploadForm.tsx:289
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr ""
@@ -283,7 +283,7 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:359
+#: src/components/UploadForm/UploadForm.tsx:358
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:142
 msgid "Folder"
 msgstr ""
@@ -374,7 +374,7 @@ msgstr ""
 msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormComponents.tsx:47
+#: src/components/UploadForm/UploadFormComponents.tsx:48
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:143
 msgid "Journal"
 msgstr ""
@@ -498,7 +498,7 @@ msgstr ""
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:301
 msgid "Name"
 msgstr ""
 
@@ -584,7 +584,7 @@ msgstr ""
 msgid "Please select a file."
 msgstr ""
 
-#: src/components/UploadForm/UploadFormComponents.tsx:55
+#: src/components/UploadForm/UploadFormComponents.tsx:56
 msgid "Please select a journal"
 msgstr ""
 
@@ -617,7 +617,7 @@ msgstr ""
 msgid "Purpose of Mahara Mobile"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:417
+#: src/components/UploadForm/UploadForm.tsx:416
 msgid "Queue to upload"
 msgstr ""
 
@@ -638,6 +638,10 @@ msgstr ""
 #~ msgid "repository on GitHub."
 #~ msgstr ""
 
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:170
+#~ msgid "Save URL?"
+#~ msgstr ""
+
 #: src/screens/AddItemScreen/AddItemScreen.tsx:62
 #: src/screens/EditItemScreen/EditItemScreen.tsx:67
 msgid "Select a different file"
@@ -647,11 +651,11 @@ msgstr ""
 msgid "Select a file"
 msgstr ""
 
-#: src/components/UploadForm/UploadFormComponents.tsx:56
+#: src/components/UploadForm/UploadFormComponents.tsx:57
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:367
+#: src/components/UploadForm/UploadForm.tsx:366
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 msgid "Select folder"
 msgstr ""
@@ -763,7 +767,7 @@ msgstr ""
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:301
 msgid "Title"
 msgstr ""
 
@@ -808,7 +812,7 @@ msgstr ""
 msgid "Upload to your site"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:435
+#: src/components/UploadForm/UploadForm.tsx:434
 msgid "Use alt text as image caption"
 msgstr ""
 
