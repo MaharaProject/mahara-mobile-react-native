@@ -25,6 +25,7 @@ export type MaharaFile = {
   description: string;
   alttext: string;
   filetoupload: File;
+  useAltTextAsImageCaption: boolean;
 };
 
 export type PendingMFile = {

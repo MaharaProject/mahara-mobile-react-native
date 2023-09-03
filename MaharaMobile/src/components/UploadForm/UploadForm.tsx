@@ -138,6 +138,7 @@ function UploadForm(props: Props) {
         setDescription(maharaFormData.description);
         setAltText(maharaFormData.alttext);
         setSelectedFolder(maharaFormData.foldername);
+        setUseAltTextAsImageCaption(maharaFormData.useAltTextAsImageCaption);
         setTitleValid(true);
         setDescValid(true);
         setFileValid(true);
@@ -220,7 +221,8 @@ function UploadForm(props: Props) {
       filename,
       description,
       alttext,
-      updatedFile
+      updatedFile,
+      useAltTextAsImageCaption
     );
 
     pendingFileData = newPendingMFile(id, fileUrl, formData, file.type, itemType);

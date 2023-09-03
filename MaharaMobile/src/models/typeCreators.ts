@@ -32,7 +32,8 @@ export const newMaharaFile = (
   fileName: string,
   description: string,
   alttext: string,
-  file: File
+  file: File,
+  useAltTextAsImageCaption?: boolean,
 ): MaharaFile => ({
   description,
   alttext,
@@ -40,7 +41,8 @@ export const newMaharaFile = (
   filetoupload: file,
   foldername: folderName,
   webservice: webService,
-  wstoken: token
+  wstoken: token,
+  useAltTextAsImageCaption: useAltTextAsImageCaption ?? false,
 });
 
 export const newPendingMFile = (
