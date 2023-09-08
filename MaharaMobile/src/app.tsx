@@ -13,7 +13,7 @@ export function I18nProviderWrapper({ children }: { children: ReactElement }) {
   useEffect(() => {
     const FALL_BACK_LANG = 'en';
     const userLangTags = RNLocalize.getLocales().map((locale) => locale.languageTag);
-    const bestFitLanguageTag = RNLocalize.findBestAvailableLanguage(userLangTags)?.languageTag;
+    const bestFitLanguageTag = RNLocalize.findBestLanguageTag(userLangTags)?.languageTag;
 
     const langCode =
       RNLocalize.getLocales().find((locale) => locale.languageTag === bestFitLanguageTag)
@@ -25,7 +25,7 @@ export function I18nProviderWrapper({ children }: { children: ReactElement }) {
   return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 }
 
-function App() {
+function App(): JSX.Element {
   const store = configureStore();
 
   return (

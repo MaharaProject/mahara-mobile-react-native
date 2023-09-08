@@ -20,6 +20,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+ios/.xcode.env.local
 project.xcworkspace
 
 # Android/IntelliJ
@@ -30,6 +31,8 @@ build/
 local.properties
 *.iml
 *.hprof
+.cxx/
+android/gradle/wrapper/
 android/app/*.jks
 android/*.jks
 android/sentry.properties
@@ -44,9 +47,6 @@ yarn-error.log
 # general project stuff
 .env
 
-# BUCK
-buck-out/
-\.buckd/
 *.keystore
 keystore.properties
 !debug.keystore
@@ -61,6 +61,7 @@ keystore.properties
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+**/fastlane/test_output
 
 # Bundle artifact
 *.jsbundle
@@ -77,4 +78,12 @@ locales/_build/
 # locales/**/*.js
 
 # IDEs VS Code
-.vscode/*
+*.patch
+
+*.pem
+
+# Temporary files created by Metro to check the health of the file watcher
+.metro-health-check*
+
+# testing
+/coverage

@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
 import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
-import { Box, KeyboardAvoidingView, ScrollView, Select, Text, VStack, View } from 'native-base';
-import { LogBox, ScrollViewBase } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Box, Select, Text, VStack, View } from 'native-base';
+import { LogBox } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from 'assets/styles/variables';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
@@ -307,7 +306,6 @@ function UploadForm(props: Props) {
       {itemType === 'PHOTO' && <SubHeading required text={t`Caption`} />}
       {itemType === 'FILE' && (
         <SubHeading
-          required
           text={pickedFile && pickedFile.type?.startsWith('image') ? t`Caption` : t`Description`}
         />
       )}

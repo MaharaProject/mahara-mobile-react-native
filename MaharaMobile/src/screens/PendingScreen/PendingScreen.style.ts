@@ -29,6 +29,7 @@ export default StyleSheet.create({
   noPendingText: {
     textAlign: 'center',
     fontSize: styles.font.xl,
+    paddingTop: styles.padding.sm,
     marginTop: styles.padding.md,
     color: styles.colors.midgrey
   },

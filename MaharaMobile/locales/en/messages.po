@@ -15,11 +15,19 @@ msgstr ""
 #~ msgid "\"Mahara Project."
 #~ msgstr ""
 
+#: src/components/UI/CustomText/MediumText.tsx:14
+#~ msgid "{0}"
+#~ msgstr ""
+
+#: src/screens/PendingScreen/PendingScreen.tsx:86
+#~ msgid "{errorMessage}"
+#~ msgstr ""
+
 #: src/components/UI/CustomText/LinkText.tsx:7
 #~ msgid "<0> </0><1>{0} </1>"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:289
+#: src/components/UploadForm/UploadForm.tsx:288
 msgid "A file has been added."
 msgstr ""
 
@@ -45,7 +53,11 @@ msgstr ""
 #~ msgid "Add"
 #~ msgstr ""
 
-#: src/navigation/BottomNavigation.tsx:45
+#: src/screens/AddItemScreen/AddItemScreen.tsx:98
+msgid "Add {0}"
+msgstr ""
+
+#: src/navigation/BottomNavigation.tsx:54
 msgid "Add an item"
 msgstr ""
 
@@ -55,10 +67,6 @@ msgstr ""
 
 #: src/components/UploadForm/TagsPicker.tsx:195
 msgid "Add new tag +"
-msgstr ""
-
-#: src/screens/AddItemScreen/AddItemScreen.tsx:98
-msgid "Add {0}"
 msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:69
@@ -96,23 +104,31 @@ msgstr ""
 msgid "Allow your microphone to record audio and save the files?"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:323
+#: src/components/UploadForm/UploadForm.tsx:322
 msgid "Alt text"
 msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:23
-#~ msgid "App Version"
+#: src/screens/LegalScreen/LegalScreen.tsx:89
+#~ msgid "and we will use all reasonable efforts to remedy the issue."
 #~ msgstr ""
 
 #: src/screens/MenuScreen/MenuScreen.tsx:26
 msgid "App version"
 msgstr ""
 
+#: src/screens/VersionScreen/VersionScreen.tsx:23
+#~ msgid "App Version"
+#~ msgstr ""
+
 #: src/hooks/useChangeNavigationWarning.ts:8
 #: src/screens/PendingScreen/PendingScreen.tsx:70
 #: src/utils/authHelperFunctions.ts:129
 msgid "Are you sure?"
 msgstr ""
+
+#: src/utils/constants.ts:84
+#~ msgid "audio"
+#~ msgstr ""
 
 #: src/utils/helperFunctions.ts:102
 msgid "Audio"
@@ -147,8 +163,8 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:307
-#: src/components/UploadForm/UploadForm.tsx:311
+#: src/components/UploadForm/UploadForm.tsx:306
+#: src/components/UploadForm/UploadForm.tsx:310
 msgid "Caption"
 msgstr ""
 
@@ -164,7 +180,7 @@ msgstr ""
 #~ msgid "Collection of personal information"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:403
+#: src/components/UploadForm/UploadForm.tsx:402
 msgid "Confirm edits to {intlItemType}"
 msgstr ""
 
@@ -177,13 +193,28 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: src/navigation/BottomNavigation.tsx:43
+#: src/screens/LegalScreen/LegalScreen.tsx:88
+#~ msgid "contact us"
+#~ msgstr ""
+
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:118
+#: src/screens/TermsScreen/TermsScreen.tsx:169
+msgid "contact us."
+msgstr ""
+
+#: src/navigation/BottomNavigation.tsx:52
 #: src/navigation/StackNavigators.tsx:31
 msgid "Create"
 msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:23
 msgid "Create and upload your learning evidence"
+msgstr ""
+
+#: src/components/UploadForm/UploadForm.tsx:359
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:77
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:105
+msgid "default"
 msgstr ""
 
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:127
@@ -198,7 +229,7 @@ msgstr ""
 msgid "Deleting your data"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:311
+#: src/components/UploadForm/UploadForm.tsx:310
 msgid "Description"
 msgstr ""
 
@@ -218,15 +249,15 @@ msgstr ""
 msgid "Edit {0}"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:177
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:179
 msgid "Enter a different URL"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:306
+#: src/components/UploadForm/UploadForm.tsx:305
 msgid "Entry"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:347
+#: src/components/UploadForm/UploadForm.tsx:346
 msgid "Error: You do not have any folders on your site."
 msgstr ""
 
@@ -234,12 +265,16 @@ msgstr ""
 msgid "Error: You do not have any journals on your site."
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:438
+#: src/components/UploadForm/UploadForm.tsx:437
 msgid "Fields marked by * are required."
 msgstr ""
 
+#: src/utils/constants.ts:82
+#~ msgid "file"
+#~ msgstr ""
+
 #: src/components/SelectMediaType/SelectMediaType.tsx:37
-#: src/components/UploadForm/UploadForm.tsx:287
+#: src/components/UploadForm/UploadForm.tsx:286
 #: src/utils/helperFunctions.ts:104
 msgid "File"
 msgstr ""
@@ -248,13 +283,17 @@ msgstr ""
 msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:345
+#: src/components/UploadForm/UploadForm.tsx:344
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:142
 msgid "Folder"
 msgstr ""
 
 #: src/screens/HelpScreen/HelpScreen.tsx:15
 msgid "For help, contact the support team of the Mahara instance that you are using. Typically, you can find a 'Contact us' link in the footer of the Mahara site to which you log in."
+msgstr ""
+
+#: src/screens/TermsScreen/TermsScreen.tsx:36
+msgid "forms part of these terms and conditions and is hereby incorporated by reference."
 msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:139
@@ -290,6 +329,10 @@ msgstr ""
 msgid "If you have general questions or want to report issues, you can do so on the Mahara Mobile's GitHub 'Issues' page."
 msgstr ""
 
+#: src/utils/addEditHelperFunctions.tsx:103
+msgid "image preview"
+msgstr ""
+
 #: src/utils/addEditHelperFunctions.tsx:28
 msgid "ImagePicker Error:{0}"
 msgstr ""
@@ -307,12 +350,12 @@ msgstr ""
 msgid "Introduction"
 msgstr ""
 
-#: src/store/actions/userArtefacts.ts:76
-msgid "Invalid Mahara site. Please re-enter URL."
-msgstr ""
-
 #: src/utils/addEditHelperFunctions.tsx:92
 msgid "Invalid file"
+msgstr ""
+
+#: src/store/actions/userArtefacts.ts:76
+msgid "Invalid Mahara site. Please re-enter URL."
 msgstr ""
 
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:53
@@ -335,6 +378,10 @@ msgstr ""
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:143
 msgid "Journal"
 msgstr ""
+
+#: src/utils/constants.ts:81
+#~ msgid "journal entry"
+#~ msgstr ""
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:29
 #: src/utils/helperFunctions.ts:106
@@ -394,6 +441,18 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
+#: src/screens/AboutScreen/AboutScreen.tsx:27
+#~ msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
+#~ msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:39
+msgid "Mahara is an open source ePortfolio platform designed for reflecting on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
+msgstr ""
+
+#: src/screens/AboutScreen/AboutScreen.tsx:27
+#~ msgid "Mahara is an open source ePortfolio system designed for social learning. An ePortfolio is a system in which learners can record evidence of their learning, e.g. essays, artwork, certificates, reflections or other such things they produce that can be stored digitally."
+#~ msgstr ""
+
 #: src/screens/AboutScreen/AboutScreen.tsx:15
 #~ msgid "Mahara Mobile"
 #~ msgstr ""
@@ -434,40 +493,28 @@ msgstr ""
 #~ msgid "Mahara Project."
 #~ msgstr ""
 
-#: src/screens/AboutScreen/AboutScreen.tsx:27
-#~ msgid "Mahara is an open source ePortfolio platform designed for reflecing on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
-#~ msgstr ""
-
-#: src/screens/AboutScreen/AboutScreen.tsx:39
-msgid "Mahara is an open source ePortfolio platform designed for reflecting on what you have learned and for supporting social learning. An ePortfolio is a tool and method to record your evidence of their learning, e.g. essays, artwork, and certificates, and reflect on them to learn from your experiences . You can also engage in conversations with others and create group portfolios."
-msgstr ""
-
-#: src/screens/AboutScreen/AboutScreen.tsx:27
-#~ msgid "Mahara is an open source ePortfolio system designed for social learning. An ePortfolio is a system in which learners can record evidence of their learning, e.g. essays, artwork, certificates, reflections or other such things they produce that can be stored digitally."
-#~ msgstr ""
-
-#: src/navigation/BottomNavigation.tsx:55
+#: src/navigation/BottomNavigation.tsx:64
 #: src/navigation/StackNavigators.tsx:69
 msgid "Menu"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:298
 msgid "Name"
-msgstr ""
-
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:50
-msgid "Neither the Mahara project nor Catalyst IT have access to any of the data that you enter on Mahara Mobile nor access to any data analytics. The institution that hosts the Mahara site to which you connect cannot access data in your Mahara Mobile app either. The institution will have a certain amount of access to data that you upload to the institution's Mahara site via Mahara Mobile. Please refer to the privacy statement on the Mahara site that you are using for more information."
 msgstr ""
 
 #: src/screens/LegalScreen/LegalScreen.tsx:42
 #~ msgid "Neither the Mahara project nor Catalyst have access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
 #~ msgstr ""
 
+#: src/screens/PrivacyScreen/PrivacyScreen.tsx:50
+msgid "Neither the Mahara project nor Catalyst IT have access to any of the data that you enter on Mahara Mobile nor access to any data analytics. The institution that hosts the Mahara site to which you connect cannot access data in your Mahara Mobile app either. The institution will have a certain amount of access to data that you upload to the institution's Mahara site via Mahara Mobile. Please refer to the privacy statement on the Mahara site that you are using for more information."
+msgstr ""
+
 #: src/components/UploadForm/TagsPicker.tsx:150
 msgid "New tag..."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:191
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:193
 msgid "Next"
 msgstr ""
 
@@ -508,16 +555,24 @@ msgstr ""
 msgid "Permission to record audio"
 msgstr ""
 
+#: src/utils/constants.ts:83
+#~ msgid "photo"
+#~ msgstr ""
+
 #: src/components/SelectMediaType/SelectMediaType.tsx:43
 #: src/utils/helperFunctions.ts:108
 msgid "Photo"
+msgstr ""
+
+#: src/components/UI/AudioPlayButton/AudioPlayButton.tsx:22
+msgid "play audio"
 msgstr ""
 
 #: src/utils/helperFunctions.ts:82
 msgid "Please check the internet connection."
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:164
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:166
 msgid "Please enter a URL."
 msgstr ""
 
@@ -562,7 +617,7 @@ msgstr ""
 msgid "Purpose of Mahara Mobile"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:403
+#: src/components/UploadForm/UploadForm.tsx:402
 msgid "Queue to upload"
 msgstr ""
 
@@ -579,6 +634,10 @@ msgstr ""
 msgid "Record"
 msgstr ""
 
+#: src/screens/AboutScreen/AboutScreen.tsx:16
+#~ msgid "repository on GitHub."
+#~ msgstr ""
+
 #: src/screens/AddItemScreen/AddItemScreen.tsx:62
 #: src/screens/EditItemScreen/EditItemScreen.tsx:67
 msgid "Select a different file"
@@ -592,7 +651,7 @@ msgstr ""
 msgid "Select a journal"
 msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:353
+#: src/components/UploadForm/UploadForm.tsx:352
 #: src/screens/PreferencesScreen/PreferencesScreen.tsx:68
 msgid "Select folder"
 msgstr ""
@@ -622,7 +681,7 @@ msgstr ""
 msgid "Single sign-on"
 msgstr ""
 
-#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:216
+#: src/screens/SiteCheckScreen/SiteCheckScreen.tsx:218
 msgid "Skip"
 msgstr ""
 
@@ -656,12 +715,12 @@ msgstr ""
 msgid "Terms and conditions"
 msgstr ""
 
-#: src/screens/TermsScreen/TermsScreen.tsx:33
-msgid "The Privacy Statement"
-msgstr ""
-
 #: src/screens/PendingScreen/PendingScreen.tsx:71
 msgid "The deletion of this information or file cannot be undone"
+msgstr ""
+
+#: src/screens/TermsScreen/TermsScreen.tsx:33
+msgid "The Privacy Statement"
 msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:141
@@ -684,10 +743,6 @@ msgstr ""
 #~ msgid "This version of Mahara Mobile is"
 #~ msgstr ""
 
-#: src/screens/VersionScreen/VersionScreen.tsx:7
-#~ msgid "This version of Mahara Mobile is 21.04.2"
-#~ msgstr ""
-
 #: src/screens/VersionScreen/VersionScreen.tsx:8
 #~ msgid "This version of Mahara Mobile is {MAHARAVERSION}"
 #~ msgstr ""
@@ -700,13 +755,21 @@ msgstr ""
 msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
 msgstr ""
 
+#: src/screens/VersionScreen/VersionScreen.tsx:7
+#~ msgid "This version of Mahara Mobile is 21.04.2"
+#~ msgstr ""
+
 #: src/screens/VersionScreen/VersionScreen.tsx:9
 #~ msgid "This version supporteds up to Android 10"
 #~ msgstr ""
 
-#: src/components/UploadForm/UploadForm.tsx:299
+#: src/components/UploadForm/UploadForm.tsx:298
 msgid "Title"
 msgstr ""
+
+#: src/screens/LegalScreen/LegalScreen.tsx:42
+#~ msgid "tNeither the Mahara project nor Catalyst have access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
+#~ msgstr ""
 
 #: src/screens/TermsScreen/TermsScreen.tsx:91
 msgid "To the maximum extent permitted by law, we will not be liable to you for any direct, indirect or consequential loss or damages (including but not limited to loss of business profits, business interruption, loss of business information, data, goodwill or other non-pecuniary loss) arising out of or in connection with this agreement or the provision of the website, whether arising from negligence, breach of contract or otherwise."
@@ -728,12 +791,12 @@ msgstr ""
 msgid "Upload error"
 msgstr ""
 
-#: src/navigation/BottomNavigation.tsx:31
+#: src/navigation/BottomNavigation.tsx:35
 #: src/navigation/StackNavigators.tsx:44
 msgid "Upload queue"
 msgstr ""
 
-#: src/navigation/BottomNavigation.tsx:34
+#: src/navigation/BottomNavigation.tsx:43
 msgid "Upload queue page"
 msgstr ""
 
@@ -840,66 +903,3 @@ msgstr ""
 #: src/screens/LoginMethodScreen/LoginMethodScreen.tsx:49
 msgid "Your username or password was incorrect. Please try again."
 msgstr ""
-
-#: src/screens/LegalScreen/LegalScreen.tsx:89
-#~ msgid "and we will use all reasonable efforts to remedy the issue."
-#~ msgstr ""
-
-#: src/utils/constants.ts:84
-#~ msgid "audio"
-#~ msgstr ""
-
-#: src/screens/LegalScreen/LegalScreen.tsx:88
-#~ msgid "contact us"
-#~ msgstr ""
-
-#: src/screens/PrivacyScreen/PrivacyScreen.tsx:118
-#: src/screens/TermsScreen/TermsScreen.tsx:169
-msgid "contact us."
-msgstr ""
-
-#: src/components/UploadForm/UploadForm.tsx:360
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:77
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:105
-msgid "default"
-msgstr ""
-
-#: src/utils/constants.ts:82
-#~ msgid "file"
-#~ msgstr ""
-
-#: src/screens/TermsScreen/TermsScreen.tsx:36
-msgid "forms part of these terms and conditions and is hereby incorporated by reference."
-msgstr ""
-
-#: src/utils/addEditHelperFunctions.tsx:103
-msgid "image preview"
-msgstr ""
-
-#: src/utils/constants.ts:81
-#~ msgid "journal entry"
-#~ msgstr ""
-
-#: src/utils/constants.ts:83
-#~ msgid "photo"
-#~ msgstr ""
-
-#: src/components/UI/AudioPlayButton/AudioPlayButton.tsx:22
-msgid "play audio"
-msgstr ""
-
-#: src/screens/AboutScreen/AboutScreen.tsx:16
-#~ msgid "repository on GitHub."
-#~ msgstr ""
-
-#: src/screens/LegalScreen/LegalScreen.tsx:42
-#~ msgid "tNeither the Mahara project nor Catalyst have access to any of the data that you enter on Mahara Mobile. The institution that hosts the Mahara site that you connect to cannot access data in your Mahara Mobile app either."
-#~ msgstr ""
-
-#: src/components/UI/CustomText/MediumText.tsx:14
-#~ msgid "{0}"
-#~ msgstr ""
-
-#: src/screens/PendingScreen/PendingScreen.tsx:86
-#~ msgid "{errorMessage}"
-#~ msgstr ""

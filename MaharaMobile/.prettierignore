@@ -32,6 +32,7 @@ local.properties
 *.hprof
 android/app/*.jks
 android/*.jks
+android/gradle/wrapper
 android/sentry.properties
 android/gradle.properties
 
@@ -77,3 +78,5 @@ locales/**/*
 
 # IDEs VS Code
 .vscode/*
+
+.eslintrc.js

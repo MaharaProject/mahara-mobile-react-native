@@ -2,3 +2,4 @@ jest.config.js
 locale/_build/
 locale/**/*.js
 __mocks__
+.eslintrc.js

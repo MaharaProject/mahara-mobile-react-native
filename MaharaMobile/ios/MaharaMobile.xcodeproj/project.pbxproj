@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MaharaMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MaharaMobileTests.m */; };
-		0C80B921A6F3F58F76C31292 /* libPods-MaharaMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-MaharaMobile.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		7699B88040F8A987B510C191 /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-MaharaMobile-MaharaMobileTests.a */; };
-		E56AF4EB2A5227970099CB38 /* hermes.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = E56AF4EA2A5227970099CB38 /* hermes.xcframework */; };
+		159E50A40818D9FE8B96A7C2 /* libPods-MaharaMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B39E7F73F81CCC2DFB3683B7 /* libPods-MaharaMobile.a */; };
+		77FD5170A67F4279A0FDEA2C /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE37BD6FB582FBDB34A6A7B7 /* libPods-MaharaMobile-MaharaMobileTests.a */; };
 		E5D92AAF296F6FA600DE8DC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AAE296F6FA600DE8DC6 /* Images.xcassets */; };
 		E5D92AB1296F8A3200DE8DC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AAE296F6FA600DE8DC6 /* Images.xcassets */; };
 		E5D92ADD296F94CA00DE8DC6 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92ADC296F947000DE8DC6 /* OpenSans-SemiBold.ttf */; };
@@ -49,25 +48,25 @@
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = MaharaMobile/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MaharaMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MaharaMobile/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-MaharaMobile-MaharaMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile-MaharaMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		31252C6683BA4899B632B174 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-MaharaMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		3816E60AC96A17C3A68B0525 /* Pods-MaharaMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		4BF06011DB984274A255AB6B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		51C708BBBE58432BB81312FD /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-MaharaMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-MaharaMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		64BF195592459288C2F956E9 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
 		67B529B237F74897A784D996 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		71D1CDBBB41D405A9C4E5065 /* Pods-MaharaMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.release.xcconfig"; sourceTree = "<group>"; };
+		76BB76C1E6761D159372D74A /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		8976AF3C19C941D9A16A50A1 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		9B1FE9BB6BF74DE6873A5065 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		AFA5C5315FD340F99A9A3F2C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		B39E7F73F81CCC2DFB3683B7 /* libPods-MaharaMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA73B7B6F0F3494DA920B65D /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		BB8C2D4FC7AF483E8A08F3ED /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C1606DF2C58D4BA59B25489B /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		D0E9299737CB46D4ABCB6927 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		D30A01D0548B4A9489A00328 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		DCC0F5E14E5A4426B9523C7D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		DE37BD6FB582FBDB34A6A7B7 /* libPods-MaharaMobile-MaharaMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile-MaharaMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56AF4EA2A5227970099CB38 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		E5AF73D52922EBDE00DC1564 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E5D92AAE296F6FA600DE8DC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -93,7 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */,
+				77FD5170A67F4279A0FDEA2C /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E56AF4EB2A5227970099CB38 /* hermes.xcframework in Frameworks */,
-				0C80B921A6F3F58F76C31292 /* libPods-MaharaMobile.a in Frameworks */,
+				159E50A40818D9FE8B96A7C2 /* libPods-MaharaMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -178,8 +176,8 @@
 			children = (
 				E56AF4EA2A5227970099CB38 /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-MaharaMobile.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-MaharaMobile-MaharaMobileTests.a */,
+				B39E7F73F81CCC2DFB3683B7 /* libPods-MaharaMobile.a */,
+				DE37BD6FB582FBDB34A6A7B7 /* libPods-MaharaMobile-MaharaMobileTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -220,10 +218,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-MaharaMobile.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-MaharaMobile.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */,
+				3816E60AC96A17C3A68B0525 /* Pods-MaharaMobile.debug.xcconfig */,
+				71D1CDBBB41D405A9C4E5065 /* Pods-MaharaMobile.release.xcconfig */,
+				64BF195592459288C2F956E9 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */,
+				76BB76C1E6761D159372D74A /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -235,12 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MaharaMobileTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				43BF90A41A1AA1F58F0772BF /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				52454610C2E4A05DF0143042 /* [CP] Embed Pods Frameworks */,
+				45711EEB5C185ED78594973B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -256,14 +254,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MaharaMobile" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				8D4729A68796EF8C19CFE878 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 				E5D92AB0296F8A2700DE8DC6 /* Resources */,
+				ADC5B27DCCFA29B8BA5F4A8C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -356,24 +353,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		43BF90A41A1AA1F58F0772BF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -395,7 +375,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		45711EEB5C185ED78594973B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		52454610C2E4A05DF0143042 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D4729A68796EF8C19CFE878 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -417,55 +431,20 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
+		ADC5B27DCCFA29B8BA5F4A8C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -520,7 +499,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */;
+			baseConfigurationReference = 64BF195592459288C2F956E9 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -548,7 +527,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */;
+			baseConfigurationReference = 76BB76C1E6761D159372D74A /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -574,7 +553,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-MaharaMobile.debug.xcconfig */;
+			baseConfigurationReference = 3816E60AC96A17C3A68B0525 /* Pods-MaharaMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -605,7 +584,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-MaharaMobile.release.xcconfig */;
+			baseConfigurationReference = 71D1CDBBB41D405A9C4E5065 /* Pods-MaharaMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -698,6 +677,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -764,6 +744,7 @@
 					"\"$(inherited)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
