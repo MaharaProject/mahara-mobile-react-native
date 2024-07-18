@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ADD_TOKEN,
   CLEAR_LOGIN_INFO,
-  DEFAULT_BLOG_ID,
+  DEFAULT_BLOG_TITLE,
   DEFAULT_FOLDER_TITLE,
   SET_DEFAULT_BLOG,
   SET_DEFAULT_FOLDER,
@@ -62,7 +62,7 @@ export function setDefaultFolder(folderTitle: string) {
   return { type: SET_DEFAULT_FOLDER, folderTitle };
 }
 
-export function setDefaultBlogId(blogId: number) {
-  AsyncStorage.setItem(DEFAULT_BLOG_ID, JSON.stringify(blogId));
-  return { type: SET_DEFAULT_BLOG, blogId };
+export function setDefaultBlogTitle(blogTitle: string) {
+  AsyncStorage.setItem(DEFAULT_BLOG_TITLE, JSON.stringify(blogTitle));
+  return { type: SET_DEFAULT_BLOG, blogTitle };
 }

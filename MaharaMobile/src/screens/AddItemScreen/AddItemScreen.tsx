@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
+import {
+  Center,
+  KeyboardAvoidingView,
+  ScrollView,
+  VStack,
+  View
+} from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Center, KeyboardAvoidingView, ScrollView, VStack, View } from 'native-base';
 import { LogBox, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import generic from 'assets/styles/generic';
@@ -12,7 +18,7 @@ import UploadForm from 'components/UploadForm/UploadForm';
 import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
 import { UploadItemType, UserBlog, UserFolder, UserTag } from 'models/models';
 import {
-  selectDefaultBlogId,
+  selectDefaultBlogTitle,
   selectDefaultFolderTitle,
   selectToken,
   selectUrl
@@ -35,7 +41,7 @@ type Props = {
   url: string;
   userBlogs: Array<UserBlog>;
   defaultFolderTitle: string;
-  defaultBlogId: number;
+  defaultBlogTitle: string;
 };
 function AddItemScreen(props: Props) {
   const itemType = props.route.params?.itemType ?? 'FILE';
@@ -85,7 +91,7 @@ function AddItemScreen(props: Props) {
             url={props.url}
             navigation={props.navigation}
             defFolderTitle={props.defaultFolderTitle}
-            defaultBlogId={props.defaultBlogId}
+            defaultBlogTitle={props.defaultBlogTitle}
             setDirty={setDirty}
           />
         </VStack>
@@ -107,7 +113,7 @@ const mapStateToProps = (state: RootState) => ({
   uploadJournals: selectAllJEntries(state),
   uploadFiles: selectAllUploadFiles(state),
   defaultFolderTitle: selectDefaultFolderTitle(state),
-  defaultBlogId: selectDefaultBlogId(state)
+  defaultBlogTitle: selectDefaultBlogTitle(state)
 });
 
 export default connect(mapStateToProps)(AddItemScreen);

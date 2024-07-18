@@ -39,6 +39,7 @@ function PendingList(props: Props) {
         //  figure out what to pass in to UploadItem
         if (isPendingMFile(item)) {
           const pendingFile: PendingMFile = item;
+
           title = pendingFile.maharaFormData.name;
           description = pendingFile.maharaFormData.description;
           mimetype = pendingFile.mimetype;

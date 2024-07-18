@@ -1,7 +1,8 @@
 import React from 'react';
+import { ScrollView } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { ScrollView } from 'native-base';
 import { useDispatch } from 'react-redux';
+import generic from 'assets/styles/generic';
 import MenuItem from 'components/MenuItem/MenuItem';
 import menuItemStyles from 'components/MenuItem/MenuItem.style';
 import { signOutAsync } from 'utils/authHelperFunctions';
@@ -53,7 +54,7 @@ function MenuScreen(props: Props) {
     <ScrollView style={menuScreenStyles.view}>
       {menuItems.map((item: MenuItemObject) => (
         <MenuItem
-          style={menuItemStyles.listItem}
+          style={{ ...menuItemStyles.listItem }}
           title={item.name}
           path={item.path}
           key={item.name}

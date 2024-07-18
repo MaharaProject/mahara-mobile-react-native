@@ -60,7 +60,7 @@ export const CLEAR_UPLOAD_J_ENTRIES = 'CLEAR_UPLOAD_J_ENTRIES';
 export const UPDATE_J_ENTRIES_ON_LOGIN = 'UPDATE_J_ENTRIES_ON_LOGIN';
 
 // AsyncStorage keys
-export const DEFAULT_BLOG_ID = 'DEFAULT_BLOG_ID';
+export const DEFAULT_BLOG_TITLE = 'DEFAULT_BLOG_TITLE';
 export const DEFAULT_FOLDER_TITLE = 'DEFAULT_FOLDER_TITLE';
 
 // UI STATE
@@ -72,7 +72,7 @@ export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 export const GUEST_USERNAME = 'Guest';
 export const GUEST_TOKEN = 'GUEST_TOKEN';
 export const GUEST_BLOG: UserBlog = {
-  id: -1,
+  id: '-1',
   title: 'Guest Blog',
   description: '',
   locked: false,
@@ -126,7 +126,7 @@ export const emptyPendingMFile: PendingMFile = {
 
 export const emptyJEntry: JournalEntry = {
   wstoken: '',
-  blogid: -1,
+  blogid: '',
   wsfunction: '',
   title: '',
   body: '',

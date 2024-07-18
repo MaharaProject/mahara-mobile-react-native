@@ -44,13 +44,13 @@ export const newMaharaFile = (
 });
 
 export const newPendingMFile = (
-  itemId = '',
+  itemId: string,
   url: string,
   maharaFormData: MaharaFile,
   mimetype: string,
   type: UploadItemType
 ) => {
-  let id = itemId;
+  let id = itemId ?? '';
   if (!id) {
     id = `F${Math.floor(Math.random() * 1000)}`;
   }
@@ -66,7 +66,7 @@ export const newPendingMFile = (
 // Journal entry creation
 
 export const newJournalEntry = (
-  blogId: number,
+  blogId: string,
   wsToken: string,
   title: string,
   body: string,

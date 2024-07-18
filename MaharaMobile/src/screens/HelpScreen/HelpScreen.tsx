@@ -1,6 +1,6 @@
 import React from 'react';
+import { Divider, HStack, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans } from '@lingui/macro';
-import { Divider, HStack, VStack } from 'native-base';
 import { View } from 'react-native';
 import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';

@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 // Images
 import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  Alert,
+  CloseIcon,
+  HStack,
+  IconButton,
+  Text,
+  VStack,
+  useToast
+} from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
-import { Alert, CloseIcon, HStack, IconButton, Text, VStack, useToast } from 'native-base';
 import { ActivityIndicator, Alert as ReactNativeAlert, View } from 'react-native';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import UploadSVG from 'assets/images/upload';
+import generic from 'assets/styles/generic';
 import textStyles from 'assets/styles/text';
 import styles from 'assets/styles/variables';
 import PendingList from 'components/PendingList/PendingList';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import {
   DisplayItems,
   PendingJEntry,
@@ -100,7 +110,7 @@ function PendingScreen(props: Props) {
       render: ({ id }) => (
         <Alert mx={2} status="error" variant="left-accent">
           <VStack alignItems="center">
-            <HStack space={3} alignItems="center">
+            <HStack space="3" alignItems="center">
               <Alert.Icon />
               <Text w="100%" fontWeight="medium">{t`Upload error`}</Text>
               <IconButton
@@ -146,7 +156,7 @@ function PendingScreen(props: Props) {
     return (
       <View style={pendingScreenStyles.noPending}>
         <UploadSVG />
-        <Text style={pendingScreenStyles.noPendingText}>
+        <Text style={{ ...pendingScreenStyles.noPendingText, ...generic.maharaText }}>
           <Trans>Your upload queue is empty</Trans>
         </Text>
       </View>
@@ -211,6 +221,7 @@ function PendingScreen(props: Props) {
     });
 
     props.uploadJEntries.forEach(async (journalEntry) => {
+      console.log(journalEntry);
       uploadItemToMahara(journalEntry.url, journalEntry.journalEntry)().then(
         (result: UploadResponse) => {
           setLoading(false);
@@ -243,14 +254,14 @@ function PendingScreen(props: Props) {
               <Text fontWeight="light" style={[pendingScreenStyles.urlText, textStyles.center]}>
                 <Trans>Your site: {url}</Trans>
               </Text>
-              <MediumButton
+              <MediumButtonDark
                 text={t`Upload to your site`}
                 onPress={onUploadClick}
                 icon={faCloudUploadAlt}
               />
             </View>
           ) : (
-            <MediumButton
+            <MediumButtonDark
               text={t`Please login`}
               accessibilityHint={t`To upload pending items`}
               icon={faSignInAlt}

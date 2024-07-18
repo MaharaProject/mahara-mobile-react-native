@@ -1,42 +1,42 @@
 import React from 'react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { Button, Text } from 'native-base';
+import { Button, Text } from '@gluestack-ui/themed-native-base';
 import { View } from 'react-native';
+import generic from 'assets/styles/generic';
 import { maharaTheme } from 'utils/theme';
 
 type Props = {
   onPress: () => void;
   text: string;
   accessibilityHint?: string;
-  style?: any;
   icon?: IconDefinition;
   light?: boolean;
 };
 
 function OutlineButton(props: Props) {
-  const buttonColour = maharaTheme.colors.primary[600];
+  // const buttonColour = maharaTheme.colors.primary[600];
+  const buttonColour = '#4b612d';
+
   return (
     <View>
       <Button
-        colorScheme="primary"
+        colorScheme={props.light ? 'dark' : 'primary'}
         rounded="full"
         variant="outline"
-        // marginX={variables.padding.xs}
-        startIcon={
+        style={{ ...generic.maharaText }} // TODO: not working
+        leftIcon={
           props.icon ? (
             <FontAwesomeIcon icon={props.icon} size={20} color={buttonColour} />
           ) : undefined
         }
         light={props.light}
-        _text={props.style}
+        // _text={props.style}
         accessibilityHint={props.accessibilityHint}
         onPress={props.onPress}
+        size="lg"
       >
-        {/* <Icon name={props.icon} /> */}
-        <Text fontWeight={200} color={props.style?.color ?? buttonColour}>
-          {props.text}
-        </Text>
+        {props.text}
       </Button>
     </View>
   );

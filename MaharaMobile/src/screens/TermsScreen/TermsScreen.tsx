@@ -1,12 +1,13 @@
 import React from 'react';
+import { Box, Divider, HStack, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
-import { Box, Divider, HStack, VStack } from 'native-base';
 import { ScrollView } from 'react-native';
 import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import LinkText from 'components/UI/CustomText/LinkText';
 import MediumText from 'components/UI/CustomText/MediumText';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 
 type Props = {
   navigation: { navigate: (arg0: string) => any };
@@ -18,7 +19,7 @@ function TermsScreen(props: Props) {
       <VStack space={3} divider={<Divider />} w="100%">
         <HStack>
           <Box>
-            <SubHeading text={t`Introduction`} />
+            <SubHeadingNoColon text={t`Introduction`} />
             <MediumText>
               <Trans>
                 This document constitutes a binding agreement between the provider of Mahara Mobile
@@ -41,7 +42,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Purpose of Mahara Mobile`} />
+            <SubHeadingNoColon text={t`Purpose of Mahara Mobile`} />
             <MediumText>
               <Trans>
                 Mahara Mobile allows you to upload content from your mobile device into the Mahara
@@ -55,7 +56,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Our obligations`} />
+            <SubHeadingNoColon text={t`Our obligations`} />
             <MediumText>
               <Trans>
                 We provide a secure environment that allows you to upload your content to any Mahara
@@ -67,7 +68,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Your obligations`} />
+            <SubHeadingNoColon text={t`Your obligations`} />
             <MediumText>
               <Trans>
                 You must meet the minimum age requirements of the Mahara site to which you want to
@@ -86,7 +87,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Liability`} />
+            <SubHeadingNoColon text={t`Liability`} />
             <MediumText>
               <Trans>
                 To the maximum extent permitted by law, we will not be liable to you for any direct,
@@ -136,7 +137,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Governing Law`} />
+            <SubHeadingNoColon text={t`Governing Law`} />
             <MediumText>
               <Trans>
                 These Terms and Conditions are governed by the laws of New Zealand (excluding its
@@ -149,7 +150,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Changes to these Terms and Conditions`} />
+            <SubHeadingNoColon text={t`Changes to these Terms and Conditions`} />
             <MediumText>
               <Trans>
                 We may occasionally make adjustments to our Terms and Conditions to reflect changes
@@ -162,7 +163,7 @@ function TermsScreen(props: Props) {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Contact`} />
+            <SubHeadingNoColon text={t`Contact`} />
             <MediumText>
               <Trans>If you have any questions regarding these terms and conditions, please</Trans>
 

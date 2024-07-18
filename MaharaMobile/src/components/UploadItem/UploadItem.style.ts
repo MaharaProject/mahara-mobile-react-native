@@ -15,7 +15,7 @@ const uploadItemStyles = StyleSheet.create({
     alignItems: 'flex-start',
     justifyContent: 'center',
     borderRadius: 3,
-    backgroundColor: styles.colors.lightgrey,
+    backgroundColor: styles.colors.midgrey_1,
     padding: 5
   },
   buttonContainer: {
@@ -36,9 +36,9 @@ const uploadItemStyles = StyleSheet.create({
     overflow: 'hidden'
   },
   icon: {
-    height: '100%',
-    justifyContent: 'space-around',
-    backgroundColor: 'red'
+    height: '90%',
+    justifyContent: 'space-around'
+    // backgroundColor: 'red'
   },
   thumbnail: {
     height: '100%',
@@ -61,8 +61,10 @@ const uploadItemStyles = StyleSheet.create({
     color: styles.colors.green_grid_button
   },
   success: {
-    backgroundColor: maharaTheme.colors.success[200],
-    color: maharaTheme.colors.success[900]
+    // backgroundColor: maharaTheme.colors.success[200],
+    backgroundColor: '#95A47F',
+    // color: maharaTheme.colors.success[800]
+    color: '#33421D'
   }
 });
 

@@ -18,6 +18,12 @@ const generic = StyleSheet.create({
   linearGradient: {
     flex: 1,
     padding: styles.padding.md
+  },
+  maharaText: {
+    fontFamily: 'OpenSans-Regular' // fontFamily: 'OpenSans-Regular'
+  },
+  maharaTextBold: {
+    fontFamily: 'OpenSans-Bold'
   }
 });
 

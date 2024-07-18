@@ -15,6 +15,7 @@ const styles = {
     gradientStartGreen: '#2e391e',
     lightgrey: '#efefef',
     midgrey: '#919191',
+    midgrey_1: '#D8D8D8',
     darkgrey: '#777',
     warnbg: '#e8c4c4',
     warn: '#aa0500',
@@ -51,11 +52,11 @@ const styles = {
     xl: 40
   },
   font: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 18,
-    xl: 20,
+    xs: 14,
+    sm: 16,
+    md: 18,
+    lg: 20,
+    xl: 22,
     xxl: 25
   },
   heights: {

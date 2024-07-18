@@ -1,9 +1,37 @@
-import { extendTheme } from 'native-base';
+import { extendTheme } from '@gluestack-ui/themed-native-base';
 
-export const maharaTheme = extendTheme({
+export const maharaTheme = {
+  fontConfig: {
+    OpenSans: {
+      100: {
+        normal: 'OpenSans-Light',
+        italic: 'OpenSans-LightItalic'
+      },
+      200: {
+        normal: 'OpenSans-Regular',
+        italic: 'OpenSans-Italic'
+      },
+      300: {
+        normal: 'OpenSans-Medium',
+        italic: 'OpenSans-MediumItalic'
+      },
+      400: {
+        normal: 'OpenSans-SemiBold',
+        italic: 'OpenSans-SemiBoldItalic'
+      },
+      500: {
+        normal: 'OpenSans-Bold',
+        italic: 'OpenSans-BoldItalic'
+      },
+      600: {
+        normal: 'OpenSans-ExtraBold',
+        italic: 'OpenSans-ExtraBoldItalic'
+      }
+    }
+  },
   components: {
     Link: {
-      fontFamily: 'OpenSans'
+      fontFamily: 'OpenSans-Regular'
     }
   },
   colors: {
@@ -105,40 +133,14 @@ export const maharaTheme = extendTheme({
       700: '#475631',
       800: '#33421D'
     }
-  },
-  fontConfig: {
-    OpenSans: {
-      100: {
-        normal: 'OpenSans-Light',
-        italic: 'OpenSans-LightItalic'
-      },
-      200: {
-        normal: 'OpenSans-Regular',
-        italic: 'OpenSans-Italic'
-      },
-      300: {
-        normal: 'OpenSans-Medium',
-        italic: 'OpenSans-MediumItalic'
-      },
-      400: {
-        normal: 'OpenSans-SemiBold',
-        italic: 'OpenSans-SemiBoldItalic'
-      },
-      500: {
-        normal: 'OpenSans-Bold',
-        italic: 'OpenSans-BoldItalic'
-      },
-      600: {
-        normal: 'OpenSans-ExtraBold',
-        italic: 'OpenSans-ExtraBoldItalic'
-      }
-    }
-  },
+  }
 
   // Make sure values below matches any of the keys in `fontConfig`
-  fonts: {
-    heading: 'OpenSans',
-    body: 'OpenSans',
-    mono: 'OpenSans'
-  }
-});
+  // fonts: {
+  //   heading: 'OpenSans',
+  //   body: 'OpenSans',
+  //   mono: 'OpenSans'
+  // }
+};
+
+export const maharaThemeBase = extendTheme(maharaTheme);

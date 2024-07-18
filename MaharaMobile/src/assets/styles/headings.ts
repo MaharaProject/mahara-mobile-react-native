@@ -3,22 +3,25 @@ import styles from './variables';
 
 const headingStyles = StyleSheet.create({
   mainHeading: {
-    fontSize: styles.font.lg,
+    // fontSize: styles.font.lg,
     color: styles.colors.light,
     marginBottom: styles.padding.md,
-    marginTop: styles.padding.md
+    marginTop: styles.padding.md,
+    fontFamily: 'OpenSans-Regular'
   },
   subHeading1: {
-    fontSize: styles.font.md,
+    // fontSize: styles.font.lg,
     color: styles.colors.dark,
     marginBottom: styles.padding.sm,
-    marginTop: styles.padding.sm
+    marginTop: styles.padding.sm,
+    fontFamily: 'OpenSans-Regular'
   },
   subHeading2: {
-    fontSize: styles.font.sm,
+    // fontSize: styles.font.sm,
     color: styles.colors.dark,
     marginBottom: styles.padding.sm,
-    marginTop: styles.padding.sm
+    marginTop: styles.padding.sm,
+    fontFamily: 'OpenSans-Regular'
   }
 });
 

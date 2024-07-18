@@ -11,7 +11,7 @@ import {
 } from 'store/actions/actions';
 import {
   addToken,
-  setDefaultBlogId,
+  setDefaultBlogTitle,
   setDefaultFolder,
   setDidTryAL,
   updateProfilePic,
@@ -22,7 +22,7 @@ import { addFileToUploadList } from 'store/actions/uploadFiles';
 import { addJournalEntryToUploadList } from 'store/actions/uploadJEntries';
 import { updateUserBlogs, updateUserFolders } from 'store/actions/userArtefacts';
 import {
-  DEFAULT_BLOG_ID,
+  DEFAULT_BLOG_TITLE,
   DEFAULT_FOLDER_TITLE,
   TAGGED_ITEMS,
   TAGS_IDS,
@@ -131,10 +131,10 @@ function AuthLoadingScreen() {
       });
 
       // TODO ? Object - because blogId is a number TODO
-      await AsyncStorage.getItem(DEFAULT_BLOG_ID).then((result: string | null) => {
+      await AsyncStorage.getItem(DEFAULT_BLOG_TITLE).then((result: string | null) => {
         if (result) {
-          const defaultBlogId = parseJSON(result);
-          dispatch(setDefaultBlogId(defaultBlogId));
+          const defaultBlogTitle = parseJSON(result);
+          dispatch(setDefaultBlogTitle(defaultBlogTitle));
         }
       });
     } catch (error) {

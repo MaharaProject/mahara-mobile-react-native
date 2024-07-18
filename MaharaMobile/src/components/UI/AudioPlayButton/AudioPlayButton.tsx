@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Button } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Button } from 'native-base';
 import variables from 'assets/styles/variables';
 import { maharaTheme } from 'utils/theme';
 
@@ -21,6 +21,7 @@ function AudioPlayButton(props: AudioPlayButtonProps) {
       }
       accessibilityHint={t`play audio`}
       onPress={props.onPress}
+      size="lg"
     />
   );
 }

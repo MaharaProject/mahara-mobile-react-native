@@ -1,6 +1,6 @@
+import { Toast } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Toast } from 'native-base';
 import { Alert } from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Dispatch } from 'redux';
@@ -10,7 +10,7 @@ import { clearUserTags, updateUserTags, updateUserTagsIds } from 'store/actions/
 import {
   addToken,
   clearLoginInfo,
-  setDefaultBlogId,
+  setDefaultBlogTitle,
   setDefaultFolder,
   updateGuestStatus,
   updateProfilePic,
@@ -70,7 +70,7 @@ export const setUpGuest = async (dispatch: Dispatch) => {
   dispatch(updateUserName(GUEST_USERNAME));
   dispatch(updateUserFolders([GUEST_FOLDER]));
   dispatch(updateUserBlogs([GUEST_BLOG]));
-  dispatch(setDefaultBlogId(GUEST_BLOG.id));
+  dispatch(setDefaultBlogTitle(GUEST_BLOG.title));
   dispatch(setDefaultFolder(GUEST_FOLDER.title));
 };
 
@@ -192,7 +192,7 @@ export const login = (
   userFolders: UserFolder[],
   token: string,
   setLoading?: (loading: boolean) => void,
-  updateToken?: (token: string | null) => void,
+  updateToken?: () => void,
   isGuest: boolean
 ) => {
   const serverUrl = `${url}webservice/rest/server.php?alt=json`;
@@ -283,7 +283,7 @@ export const login = (
       if (userData.folders.folders.length !== 0) {
         dispatch(updateUserFolders(userData.folders.folders));
       }
-      dispatch(setDefaultBlogId(userData.blogs.blogs[0].id));
+      dispatch(setDefaultBlogTitle(userData.blogs.blogs[0].title));
       dispatch(setDefaultFolder(userData.folders.folders[0].title));
       // checkValidInitialState(props.userBlogs, props.userFolders)
     });

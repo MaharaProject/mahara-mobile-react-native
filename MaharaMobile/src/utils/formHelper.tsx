@@ -1,6 +1,7 @@
 import React from 'react';
+import { Text } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Text } from 'native-base';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import { UploadItemType, UserBlog, UserFolder } from 'models/models';
 
@@ -24,14 +25,19 @@ export const isValidText = (itemType: UploadItemType, text: string): boolean => 
 
 export function RequiredWarningText(props: { customText?: string }) {
   return (
-    <Text fontWeight={200} style={{ color: styles.colors.warn }}>
+    <Text
+      fontWeight={200}
+      fontSize="md"
+      style={{ color: styles.colors.warn, ...generic.maharaText }}
+    >
       {props.customText ? props.customText : t`This field is required.`}
     </Text>
   );
 }
 
 export function RedAsterisk() {
-  return <Text style={{ color: styles.colors.warn }}>*</Text>;
+  // styles.colors.warn
+  return <Text style={{ color: '#aa0500' }}>*</Text>;
 }
 
 /**

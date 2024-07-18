@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Badge, VStack } from 'native-base';
+import { Badge, Text, VStack } from '@gluestack-ui/themed-native-base';
 import Svg, { Path } from 'react-native-svg';
 
 type Props = {
@@ -10,21 +10,20 @@ type Props = {
 function NavUploadActiveSVG(props: Props) {
   return (
     <VStack>
-      {props.uploadItemsCount > 0 && (
+      {props.uploadItemsCount ? (
         <Badge
           colorScheme="primary"
           rounded="full"
           mb={-4}
           mr={-4}
-          zIndex={1}
-          variant="outline"
+          zIndex={-1}
           alignSelf="flex-end"
-          _text={{
-            fontSize: 12
-          }}
+          fontSize="sm"
         >
-          {props.uploadItemsCount}
+          ...
         </Badge>
+      ) : (
+        ''
       )}
       <Svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 100 100">
         <Path

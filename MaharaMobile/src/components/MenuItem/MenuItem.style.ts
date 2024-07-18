@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 
 const menuItemStyles = StyleSheet.create({
@@ -9,7 +10,8 @@ const menuItemStyles = StyleSheet.create({
   listItemText: {
     marginLeft: styles.padding.sm,
     fontSize: styles.font.md,
-    color: styles.colors.contrast
+    color: styles.colors.contrast,
+    fontFamily: generic.maharaText.fontFamily
   }
 });
 

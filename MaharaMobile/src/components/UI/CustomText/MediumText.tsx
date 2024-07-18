@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text } from 'native-base';
+import { Text } from '@gluestack-ui/themed-native-base';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 
 type Props = {
@@ -21,7 +22,8 @@ function MediumText(props: Props) {
       style={{
         fontSize: styles.font.md,
         flexWrap: 'wrap',
-        ...props.style
+        ...props.style,
+        ...generic.maharaText
       }}
     >
       {props.children != null && props.childrenFirst ? props.children : null}

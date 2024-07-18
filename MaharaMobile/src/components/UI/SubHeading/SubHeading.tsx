@@ -1,20 +1,18 @@
 import React from 'react';
-import { Text } from 'native-base';
+import { Text } from '@gluestack-ui/themed-native-base';
+import generic from 'assets/styles/generic';
 import headingStyles from 'assets/styles/headings';
 import { RedAsterisk } from 'utils/formHelper';
 
 type Props = {
   text: string;
   required?: boolean;
-  style?: any;
-  noColon?: boolean;
 };
 
 function SubHeading(props: Props) {
   return (
-    <Text fontWeight={500} style={[headingStyles.subHeading1, props.style]}>
+    <Text fontSize="lg" style={{ ...generic.maharaTextBold, ...headingStyles.subHeading1 }}>
       {props.text}
-      {props.noColon ? '' : ':'}
       {props.required ? <RedAsterisk /> : null}
     </Text>
   );

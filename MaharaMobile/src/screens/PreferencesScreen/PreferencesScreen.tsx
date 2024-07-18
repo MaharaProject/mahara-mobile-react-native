@@ -1,19 +1,22 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { faSave, faSync } from '@fortawesome/free-solid-svg-icons';
+import { Box, Select, Spacer, Text } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
-import { Box, Select, Text } from 'native-base';
 import { Alert, Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import image from 'assets/images/no_userphoto.png';
 import buttons from 'assets/styles/buttons';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 import { UserBlog, UserFolder } from 'models/models';
-import { setDefaultBlogId, setDefaultFolder } from 'store/actions/loginInfo';
+import { setDefaultBlogTitle, setDefaultFolder } from 'store/actions/loginInfo';
 // import i18n from 'i18n';
 import {
-  selectDefaultBlogId,
+  selectDefaultBlogTitle,
   selectDefaultFolderTitle,
   selectProfileIcon,
   selectToken,
@@ -25,6 +28,7 @@ import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefacts
 import { fetchProfilePic, login } from 'utils/authHelperFunctions';
 import { GUEST_TOKEN } from 'utils/constants';
 import { putDefaultAtTop } from 'utils/formHelper';
+import { maharaTheme } from 'utils/theme';
 import PreferencesScreenStyle from './PreferencesScreen.style';
 
 function PreferencesScreen() {
@@ -36,14 +40,14 @@ function PreferencesScreen() {
   const userName = useSelector((state: RootState) => selectUserName(state));
   const pIcon = useSelector((state: RootState) => selectProfileIcon(state));
   const defaultFolderTitle = useSelector((state: RootState) => selectDefaultFolderTitle(state));
-  const defaultBlogId = useSelector((state: RootState) => selectDefaultBlogId(state));
+  const defaultBlogTitle = useSelector((state: RootState) => selectDefaultBlogTitle(state));
 
   // Component state
   const userFolders = useSelector((state: RootState) => selectUserFolders(state));
-
   const userBlogs = useSelector((state: RootState) => selectUserBlogs(state));
+
   const [selectedFolderTitle, setSelectedFolderTitle] = useState(defaultFolderTitle);
-  const [selectedBlogId, setSelectedBlogId] = useState(defaultBlogId);
+  const [selectedBlogTitle, setSelectedBlogTitle] = useState(defaultBlogTitle);
 
   const getProfilePic = useCallback(async () => {
     if (token !== GUEST_TOKEN) {
@@ -61,52 +65,71 @@ function PreferencesScreen() {
 
     return (
       <View>
-        <SubHeading text={t`Destination folder`} />
-        <Box>
-          <Select
-            height={styles.heights.input}
-            accessibilityLabel={t`Select folder`}
-            selectedValue={selectedFolderTitle}
-            onValueChange={(folder: string) => {
-              setSelectedFolderTitle(folder);
-            }}
-          >
-            {sortedFolders &&
-              sortedFolders.map((f: UserFolder) => {
-                const label =
-                  f.title === defaultFolderTitle ? `${f.title} - ${t`default`}` : f.title;
-                return <Select.Item label={label} value={f.title} key={f.id} />;
-              })}
-          </Select>
-        </Box>
+        {sortedFolders.length === 0 && <SubHeadingNoColon text={t`No folders found`} />}
+        {sortedFolders.length === 1 && (
+          <SubHeadingNoColon text={t`Default folder: ${selectedFolderTitle}`} />
+        )}
+        {sortedFolders.length > 1 && <SubHeadingNoColon text={t`Default folder`} />}
+        {sortedFolders.length > 1 && (
+          <Box>
+            <Select
+              size="lg"
+              color={maharaTheme.colors.dark}
+              accessibilityLabel={t`Select folder`}
+              selectedValue={defaultFolderTitle}
+              onValueChange={(folder: string) => {
+                setSelectedFolderTitle(folder);
+              }}
+            >
+              {sortedFolders &&
+                sortedFolders.map((folder: UserFolder) => {
+                  const label =
+                    folder.title === defaultFolderTitle
+                      ? `${folder.title} - ${t`default`}`
+                      : folder.title;
+                  return <Select.Item label={label} value={folder.title} key={folder.id} />;
+                })}
+            </Select>
+          </Box>
+        )}
       </View>
     );
   };
 
   const defaultBlogPicker = () => {
     // Find matching blog to the default blog
-    const match: UserBlog = userBlogs.find((b) => b.id === defaultBlogId) ?? userBlogs[0];
-    const blogs = putDefaultAtTop(match, userBlogs);
-
+    const blogs = userBlogs ?? [];
+    // const match: UserBlog = userBlogs.find((b) => b.title == defaultBlogTitle);
+    // const blogs = putDefaultAtTop(match, userBlogs);
+    console.log(defaultBlogTitle);
     return (
       <View>
-        <SubHeading text={t`Destination journal`} />
+        {blogs.length === 0 && <SubHeadingNoColon text={t`No journals found`} />}
+        {blogs.length === 1 && <SubHeadingNoColon text={t`Default journal: ${defaultBlogTitle}`} />}
+        {blogs.length > 1 && <SubHeadingNoColon text={t`Default journal`} />}
 
-        <Box style={buttons.default}>
-          <Select
-            height={styles.heights.input}
-            accessibilityLabel={t`Select journal`}
-            selectedValue={selectedBlogId.toString()}
-            onValueChange={(blogId: string) => setSelectedBlogId(+blogId)}
-          >
-            {blogs &&
-              blogs.map((blog: UserBlog) => {
-                const label =
-                  blog.id === defaultBlogId ? `${blog.title} - ${t`default`}` : blog.title;
-                return <Select.Item label={label} value={blog.id.toString()} key={blog.id} />;
-              })}
-          </Select>
-        </Box>
+        {blogs.length > 1 && (
+          <Box style={buttons.default}>
+            <Select
+              size="lg"
+              color={maharaTheme.colors.dark}
+              accessibilityLabel={t`Select journal`}
+              selectedValue={selectedBlogTitle}
+              onValueChange={(title: string) => {
+                setSelectedBlogTitle(title);
+              }}
+            >
+              {blogs &&
+                blogs.map((blog: UserBlog) => {
+                  const label =
+                    blog.title === defaultFolderTitle
+                      ? `${blog.title} - ${t`default`}`
+                      : blog.title;
+                  return <Select.Item label={label} value={blog.title} key={blog.id} />;
+                })}
+            </Select>
+          </Box>
+        )}
       </View>
     );
   };
@@ -115,24 +138,22 @@ function PreferencesScreen() {
       <View style={PreferencesScreenStyle.imageContainer}>
         <Image source={pIcon ? { uri: pIcon } : image} style={PreferencesScreenStyle.image} />
       </View>
-      <Text style={PreferencesScreenStyle.name}>
-        <Trans>Hi</Trans> {userName}
-      </Text>
+      <Text style={{ ...PreferencesScreenStyle.name, ...generic.maharaText }}>{userName}</Text>
     </View>
   );
 
   return (
     <View style={PreferencesScreenStyle.view}>
       {renderProfile()}
-      <SubHeading style={{ fontSize: styles.font.xl }} text={t`Default options`} />
       {defaultFolderPicker()}
       {defaultBlogPicker()}
-      <MediumButton
+      <Spacer />
+      <MediumButtonDark
         text={t`Update preferences`}
         icon={faSave}
         onPress={() => {
-          if (selectedBlogId) {
-            dispatch(setDefaultBlogId(selectedBlogId));
+          if (selectedBlogTitle) {
+            dispatch(setDefaultBlogTitle(selectedBlogTitle));
           }
           if (selectedFolderTitle) {
             dispatch(setDefaultFolder(selectedFolderTitle));
@@ -140,15 +161,12 @@ function PreferencesScreen() {
           Alert.alert(
             t`Updated preferences`,
             `${t`Folder`}: ${selectedFolderTitle || defaultFolderTitle}
-            \n${t`Journal`}: ${
-              userBlogs.find((b: UserBlog) => b.id === selectedBlogId)?.title ||
-              userBlogs.find((b: UserBlog) => b.id === defaultBlogId)?.title
-            }`
+            \n${t`Journal`}:  ${selectedBlogTitle || defaultBlogTitle}`
           );
         }}
       />
       <View style={{ padding: 5 }} />
-      <MediumButton
+      <MediumButtonDark
         text={t`Sync`}
         icon={faSync}
         onPress={() => {

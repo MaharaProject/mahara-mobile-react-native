@@ -27,7 +27,7 @@ type LoginInfoState = {
   localLogin: boolean;
   // default preferences
   defaultFolderTitle: string;
-  defaultBlogId: number;
+  defaultBlogTitle: string;
 };
 
 // Helpers
@@ -42,7 +42,7 @@ const initialState: LoginInfoState = {
   isGuest: false,
   didTryAutoLogin: false,
   profileIcon: '',
-  defaultBlogId: 0,
+  defaultBlogTitle: '',
   defaultFolderTitle: ''
 };
 
@@ -98,7 +98,7 @@ export const loginInfoReducer = (
     case SET_DEFAULT_BLOG:
       return {
         ...state,
-        defaultBlogId: action.blogId
+        defaultBlogTitle: action.blogTitle
       };
     case SET_DEFAULT_FOLDER:
       return {
@@ -119,7 +119,8 @@ export const selectToken = (state: RootState) => state.domainData.loginInfo.toke
 export const selectUserName = (state: RootState) => state.domainData.loginInfo.userName;
 export const selectAllLoginInfo = (state: RootState) => state.domainData.loginInfo;
 export const selectProfileIcon = (state: RootState) => state.domainData.loginInfo.profileIcon;
-export const selectDefaultBlogId = (state: RootState) => state.domainData.loginInfo.defaultBlogId;
+export const selectDefaultBlogTitle = (state: RootState) =>
+  state.domainData.loginInfo.defaultBlogTitle;
 export const selectDefaultFolderTitle = (state: RootState) =>
   state.domainData.loginInfo.defaultFolderTitle;
 export const selectIsGuestStatus = (state: RootState) => state.domainData.loginInfo.isGuest;

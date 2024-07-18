@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
+import { Box, Select, Spacer, Text, VStack, View } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
-import { Box, Select, Text, VStack, View } from 'native-base';
 import { LogBox } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from 'assets/styles/variables';
 import CancelButton from 'components/UI/CancelButton/CancelButton';
 import FormInput from 'components/UI/FormInput/FormInput';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 import {
   File,
   PendingJEntry,
@@ -43,6 +46,7 @@ import {
   setTagString
 } from 'utils/formHelper';
 import { getUploadTypeIntlStrings, isPendingJEntry, isPendingMFile } from 'utils/helperFunctions';
+import { maharaTheme } from 'utils/theme';
 import TagsPicker from './TagsPicker';
 import { BlogPicker } from './UploadFormComponents';
 
@@ -57,7 +61,7 @@ type Props = {
   editItem?: PendingMFile | PendingJEntry;
   navigation: any;
   defFolderTitle: string;
-  defaultBlogId: number;
+  defaultBlogTitle: string;
   setDirty(dirty: boolean): void;
 };
 
@@ -80,15 +84,15 @@ function UploadForm(props: Props) {
 
   // STATE
   const [isDraft, setIsDraft] = useState(false);
-  const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size > 0);
+  const [fileValid, setFileValid] = useState(pickedFile && pickedFile.size && pickedFile.size > 0);
   const [title, setTitle] = useState(''); // title and filename
   const [titleValid, setTitleValid] = useState(props.itemType !== 'J_ENTRY');
   const [description, setDescription] = useState(''); // file description (or image caption) and journal entry
-  const [alttext, setAltText] = useState(''); // file alt text
   const [descValid, setDescValid] = useState(props.itemType !== 'J_ENTRY');
+  const [alttext, setAltText] = useState(''); // file alt text
 
   const [selectedFolder, setSelectedFolder] = useState(props.defFolderTitle);
-  const [selectedBlog, setSelectedBlog] = useState(props.defaultBlogId);
+  const [selectedBlogTitle, setSelectedBlogTitle] = useState(props.defaultBlogTitle);
   const [selectedTagsStrings, setSelectedTagsStrings] = useState<State['selectedTags']>([]);
   const [itemTagsIds, setItemTagsIds] = useState<Array<number>>([]);
   const [newTags, setNewTags] = useState<State['newTags']>([]);
@@ -106,7 +110,7 @@ function UploadForm(props: Props) {
       description ||
       alttext ||
       selectedFolder !== props.defFolderTitle ||
-      selectedBlog !== props.defaultBlogId ||
+      selectedBlogTitle !== props.defaultBlogTitle ||
       selectedTagsStrings?.length
     ) {
       props.setDirty(true);
@@ -118,7 +122,7 @@ function UploadForm(props: Props) {
     alttext,
     pickedFile,
     props,
-    selectedBlog,
+    selectedBlogTitle,
     selectedFolder,
     selectedTagsStrings,
     title
@@ -145,7 +149,7 @@ function UploadForm(props: Props) {
         const { journalEntry } = props.editItem;
         setTitle(journalEntry.title);
         setDescription(journalEntry.body);
-        setSelectedBlog(journalEntry.blogid);
+        setSelectedBlogTitle(journalEntry.title);
         setIsDraft(journalEntry.isdraft);
         setTitleValid(true);
         setDescValid(true);
@@ -160,7 +164,7 @@ function UploadForm(props: Props) {
     }
 
     if (pickedFile) {
-      setFileValid(pickedFile.size > 0);
+      setFileValid(pickedFile.size && pickedFile.size > 0);
     }
   }, [itemType, pickedFile]);
 
@@ -172,16 +176,16 @@ function UploadForm(props: Props) {
   const addJEntryToUpload = (id: string): string => {
     const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
     let pendingJournalEntry: PendingJEntry = emptyPendingJEntry;
+    const matchingBlog: UserBlog = props.userBlogs.find((b) => b.title === selectedBlogTitle);
 
-    const firstBlog = props.userBlogs ? props.userBlogs[0].id : 0;
+    const firstBlogId = props.userBlogs ? props.userBlogs[0].id : '0';
     const jEntry = newJournalEntry(
-      selectedBlog || firstBlog,
+      matchingBlog.id || firstBlogId,
       props.token,
       title,
       description,
       isDraft
     );
-
     pendingJournalEntry = newPendingJEntry(id, journalUrl, jEntry);
 
     // add journal entry to pending list
@@ -283,9 +287,11 @@ function UploadForm(props: Props) {
     }
     return (
       <View>
-        <SubHeading required text={t`File`} />
+        <SubHeadingColon required text={t`File`} />
         {fileValid ? (
-          <Text accessibilityLabel={t`A file has been added.`}>{pickedFile?.name}</Text>
+          <Text fontSize="lg" accessibilityLabel={t`A file has been added.`}>
+            {pickedFile?.name}
+          </Text>
         ) : null}
       </View>
     );
@@ -293,19 +299,19 @@ function UploadForm(props: Props) {
 
   const renderTextInputs = () => (
     <View>
-      <SubHeading
+      <SubHeadingColon
         required={itemType === 'J_ENTRY'}
         text={itemType === 'J_ENTRY' ? t`Title` : t`Name`}
       />
       <FormInput
-        valid={itemType === 'J_ENTRY' && titleValid}
+        valid={itemType === 'J_ENTRY'}
         value={title}
         onChangeText={(text: string) => updateTitle(text)}
       />
-      {itemType === 'J_ENTRY' && <SubHeading required text={t`Entry`} />}
-      {itemType === 'PHOTO' && <SubHeading required text={t`Caption`} />}
+      {itemType === 'J_ENTRY' && <SubHeadingColon text={t`Entry`} />}
+      {itemType === 'PHOTO' && <SubHeadingColon text={t`Caption`} />}
       {itemType === 'FILE' && (
-        <SubHeading
+        <SubHeadingColon
           text={pickedFile && pickedFile.type?.startsWith('image') ? t`Caption` : t`Description`}
         />
       )}
@@ -314,18 +320,19 @@ function UploadForm(props: Props) {
         multiline
         valid={itemType === 'J_ENTRY' && descValid}
         value={description}
-        onChangeText={(desc: string) => updateDesc(desc)}
+        onChangeText={updateDesc}
       />
-      {pickedFile?.type?.startsWith('image') && (
+
+      {/* {pickedFile?.type?.startsWith('image') && (
         <View>
-          <SubHeading text={t`Alt text`} />
+          <SubHeadingColon text={t`Alt text`} />
           <FormInput
             valid
             value={alttext}
             onChangeText={(altText: string) => updateAltText(altText)}
           />
         </View>
-      )}
+      )} */}
     </View>
   );
 
@@ -340,26 +347,34 @@ function UploadForm(props: Props) {
 
     return (
       <View>
-        <SubHeading required text={t`Folder`} />
+        {props.userFolders.length > 1 && <SubHeadingColon required text={t`Folder`} />}
+
+        {props.userFolders.length === 1 && (
+          <SubHeadingNoColon text={t`Folder: ${selectedFolder}`} />
+        )}
         {props.defFolderTitle === undefined && (
           <RequiredWarningText customText={t`Error: You do not have any folders on your site.`} />
         )}
-        <Box>
-          <Select
-            height={styles.heights.input}
-            placeholder={props.defFolderTitle}
-            accessibilityLabel={t`Select folder`}
-            selectedValue={selectedFolder}
-            onValueChange={(folder: string) => setSelectedFolder(folder)}
-          >
-            {folders &&
-              folders.map((f: UserFolder) => {
-                const label =
-                  f.title === props.defFolderTitle ? `${f.title} - ${t`default`}` : f.title;
-                return <Select.Item label={label} value={f.title} key={f.id} />;
-              })}
-          </Select>
-        </Box>
+        {props.userFolders.length > 1 && (
+          <Box>
+            <Select
+              size="lg"
+              height={styles.heights.input}
+              placeholder={props.defFolderTitle}
+              accessibilityLabel={t`Select folder`}
+              selectedValue={selectedFolder}
+              onValueChange={(folder: string) => setSelectedFolder(folder)}
+              color={maharaTheme.colors.dark}
+            >
+              {folders &&
+                folders.map((f: UserFolder) => {
+                  const label =
+                    f.title === props.defFolderTitle ? `${f.title} - ${t`default`}` : f.title;
+                  return <Select.Item label={label} value={f.title} key={f.id} />;
+                })}
+            </Select>
+          </Box>
+        )}
       </View>
     );
   };
@@ -380,7 +395,7 @@ function UploadForm(props: Props) {
 
   const getFormValidation = () => {
     const fileFormIsValid = fileValid && !!selectedFolder;
-    const journalFormIsValid = descValid && titleValid && selectedBlog !== 0;
+    const journalFormIsValid = descValid && titleValid && selectedBlogTitle !== '0';
 
     if (itemType !== 'J_ENTRY') {
       return fileFormIsValid;
@@ -388,19 +403,19 @@ function UploadForm(props: Props) {
     return journalFormIsValid;
   };
 
-  const renderButtons = () => {
+  const renderQueueCancelButtons = () => {
     const validButton = getFormValidation();
     const intlItemType = getUploadTypeIntlStrings(itemType).toLocaleLowerCase();
     return (
-      <VStack space={2} alignItems="stretch">
-        <MediumButton
-          style={{ paddingBottom: 10 }}
+      <VStack space="xl" alignItems="stretch">
+        <Box style={{ paddingTop: 10 }} />
+        <MediumButtonDark
           onPress={handleForm}
           invalid={!validButton}
           icon={faClock}
           text={props.editItem ? t`Confirm edits to ${intlItemType}` : t`Queue to upload`}
         />
-
+        <Box />
         <CancelButton
           onPress={() => {
             props.navigation.dispatch(CommonActions.goBack());
@@ -416,12 +431,12 @@ function UploadForm(props: Props) {
         <View>
           <BlogPicker
             userBlogs={props.userBlogs}
-            setSelectedBlog={setSelectedBlog}
-            selectedBlog={selectedBlog}
+            setSelectedBlogTitle={setSelectedBlogTitle}
+            selectedBlogTitle={selectedBlogTitle}
             isDraft={isDraft}
             checkUserBlogs={checkUserBlogs}
             setIsDraft={setIsDraft}
-            defaultBlogId={props.defaultBlogId}
+            defaultBlogTitle={props.defaultBlogTitle}
           />
         </View>
       );
@@ -438,8 +453,7 @@ function UploadForm(props: Props) {
       {renderTextInputs()}
       {renderFolderPicker()}
       {renderJournalPickerSwitch()}
-      {renderTagsPicker()}
-      {renderButtons()}
+      {renderQueueCancelButtons()}
     </View>
   );
 }

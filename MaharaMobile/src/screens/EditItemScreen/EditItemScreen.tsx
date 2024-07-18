@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { KeyboardAvoidingView, ScrollView, VStack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { KeyboardAvoidingView, ScrollView, VStack } from 'native-base';
 import { connect } from 'react-redux';
 import generic from 'assets/styles/generic';
 import AddAudio from 'components/AddAudio/AddAudio';
@@ -9,7 +9,7 @@ import UploadForm from 'components/UploadForm/UploadForm';
 import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
 import { PendingMFile, UserBlog, UserFolder, UserTag } from 'models/models';
 import {
-  selectDefaultBlogId,
+  selectDefaultBlogTitle,
   selectDefaultFolderTitle,
   selectToken,
   selectUrl
@@ -32,7 +32,7 @@ type Props = {
   url: string;
   userBlogs: Array<UserBlog>;
   defaultFolderTitle: string;
-  defaultBlogId: number;
+  defaultBlogTitle: string;
 };
 
 function EditItemScreen(props: Props) {
@@ -93,7 +93,7 @@ function EditItemScreen(props: Props) {
             editItem={itemToEdit}
             navigation={props.navigation}
             defFolderTitle={props.defaultFolderTitle}
-            defaultBlogId={props.defaultBlogId}
+            defaultBlogTitle={props.defaultBlogTitle}
             setDirty={setDirty}
           />
         </VStack>
@@ -115,7 +115,7 @@ const mapStateToProps = (state: RootState) => ({
   uploadJournals: selectAllJEntries(state),
   uploadFiles: selectAllUploadFiles(state),
   defaultFolderTitle: selectDefaultFolderTitle(state),
-  defaultBlogId: selectDefaultBlogId(state)
+  defaultBlogTitle: selectDefaultBlogTitle(state)
 });
 
 export default connect(mapStateToProps)(EditItemScreen);

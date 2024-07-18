@@ -1,8 +1,9 @@
 {
-  "extends": "@tsconfig/react-native/tsconfig.json" /* Recommended React Native TSConfig base */,
+  "extends": "@react-native/typescript-config/tsconfig.json" /* Recommended React Native TSConfig base */,
   "compilerOptions": {
     "skipLibCheck": true,
     "baseUrl": "src",
+    "jsx": "react",
     "paths": {
       "test-utils": ["../.test/test-utils"]
     }

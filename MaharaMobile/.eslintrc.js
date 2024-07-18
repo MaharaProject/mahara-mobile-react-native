@@ -29,9 +29,10 @@ module.exports = {
               '@typescript-eslint/explicit-function-return-type': 'off',
               '@typescript-eslint/camelcase': 0,
               '@typescript-eslint/no-unused-vars': 1,
-              '@typescript-eslint/no-empty-function': 'warn'
+              '@typescript-eslint/no-empty-function': 'warn',
+              'default-param-last': 'warn'
             }
-        }, 
+        },
         {
           'files': [
             '.eslintrc.{js,cjs}',

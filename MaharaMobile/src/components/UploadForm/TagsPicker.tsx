@@ -1,9 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import {
+  Box,
+  CheckIcon,
+  DeleteIcon,
+  IconButton,
+  Input,
+  Select,
+  Text,
+  View
+} from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Box, CheckIcon, DeleteIcon, IconButton, Input, Select, Text, View } from 'native-base';
 import { TouchableOpacity } from 'react-native';
 import buttons from 'assets/styles/buttons';
 import forms from 'assets/styles/forms';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
 import { UserTag } from 'models/models';
@@ -147,6 +157,7 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
         {showTagInput && (
           <View style={uploadFormStyles.tagsContainer}>
             <Input
+              style={{ ...generic.maharaText }}
               placeholder={t`New tag...`}
               onChangeText={(text: string) => setNewTagText(text)}
               InputRightElement={[

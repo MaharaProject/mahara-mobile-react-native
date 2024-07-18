@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { VStack } from 'native-base';
+import { VStack } from '@gluestack-ui/themed-native-base';
 import { View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 

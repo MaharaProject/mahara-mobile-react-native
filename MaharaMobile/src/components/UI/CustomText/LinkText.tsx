@@ -1,12 +1,12 @@
 import React from 'react';
-import { Text } from 'native-base';
+import { Text } from '@gluestack-ui/themed-native-base';
 import { Linking, StyleSheet } from 'react-native';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 
 type Props = {
   text: string;
   noEndSpace?: boolean;
-  style?: any;
   url?: string;
   onPress?: any;
   noStartSpace?: boolean;
@@ -25,7 +25,7 @@ function LinkText(props: Props) {
     <Text>
       {props.noStartSpace ? '' : ' '}
       <Text
-        style={[LinkTextStyles.links, props.style]}
+        style={{ ...LinkTextStyles.links, ...generic.maharaText }}
         onPress={props.url ? () => Linking.openURL(props.url ?? 'mahara.org') : props.onPress}
       >
         {props.text}

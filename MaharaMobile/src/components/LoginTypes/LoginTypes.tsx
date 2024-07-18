@@ -1,10 +1,13 @@
 import React from 'react';
 import { faKey, faSignInAlt, faTags } from '@fortawesome/free-solid-svg-icons';
+import { Stack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Stack } from 'native-base';
 import { View } from 'react-native';
 import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
+import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import SubHeading from '../UI/SubHeading/SubHeading';
 
@@ -32,27 +35,26 @@ function LoginTypes(props: Props) {
       }}
     >
       <Stack direction="column" mb="2.5" mt="1.5" space={3}>
-        <SubHeading
-          noColon
+        <SubHeadingNoColon
           text={t`Select login type`}
           style={{ color: styles.colors.light, textAlign: 'center' }}
         />
         {props.ssoLogin && (
-          <MediumButton
+          <MediumButtonDark
             text={t`Single sign-on`}
             icon={faKey}
             onPress={() => props.goToLoginType('sso')}
           />
         )}
         {props.localLogin && (
-          <MediumButton
+          <MediumButtonDark
             text={t`Local`}
             icon={faSignInAlt}
             onPress={() => props.goToLoginType('basic')}
           />
         )}
         {props.tokenLogin && (
-          <MediumButton
+          <MediumButtonDark
             text={t`Access token`}
             icon={faTags}
             onPress={() => props.goToLoginType('token')}

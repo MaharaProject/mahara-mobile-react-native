@@ -38,7 +38,7 @@ export type PendingMFile = {
 // Journal entry creation and for uploading
 
 export type JournalEntry = {
-  blogid: number;
+  blogid: string;
   wsfunction: string;
   wstoken: string;
   title: string;
@@ -50,6 +50,24 @@ export type PendingJEntry = {
   id: string;
   url: string;
   journalEntry: JournalEntry;
+};
+
+export type UserTag = {
+  id: number;
+  tag: string;
+};
+
+export type UserFolder = {
+  id: string;
+  title: string;
+};
+
+export type UserBlog = {
+  description: string;
+  id: string;
+  locked: boolean;
+  numBlogPosts: number;
+  title: string;
 };
 
 export type Tags = Array<UserTag>;
@@ -64,26 +82,8 @@ export type User = {
   userBlogs: Blogs;
 };
 
-export type UserFolder = {
-  id: number;
-  title: string;
-};
-
-export type UserTag = {
-  id: number;
-  tag: string;
-};
-
-export type UserBlog = {
-  description: string;
-  id: number;
-  locked: boolean;
-  numBlogPosts: number;
-  title: string;
-};
-
 export type UserBlogJSON = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   locked: boolean;

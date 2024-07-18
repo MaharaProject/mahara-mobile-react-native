@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 
 const gridButtonStyles = StyleSheet.create({
@@ -12,7 +13,8 @@ const gridButtonStyles = StyleSheet.create({
     fontSize: styles.font.md,
     color: styles.colors.light,
     marginBottom: styles.padding.md,
-    marginHorizontal: styles.padding.md
+    marginHorizontal: styles.padding.md,
+    fontFamily: generic.maharaText.fontFamily
   },
   imageWrapper: {
     height: '35%',

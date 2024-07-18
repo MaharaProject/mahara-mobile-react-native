@@ -16,7 +16,7 @@ it('renders correctly', () => {
       }
     },
     defFolderTitle: '',
-    defaultBlogId: 0,
+    defaultBlogTitle: '',
     userFolders: [],
     userBlogs: []
   };

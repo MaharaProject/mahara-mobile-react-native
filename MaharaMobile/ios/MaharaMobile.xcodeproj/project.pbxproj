@@ -3,29 +3,46 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* MaharaMobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* MaharaMobileTests.m */; };
+		021D593583724F88B3D5B128 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 364A4348F78748FD90BA80B6 /* OpenSans-BoldItalic.ttf */; };
+		08511F78A2434F679703D283 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35014FC7B44B4C33A3A8389B /* Ionicons.ttf */; };
+		1346B3D28BC6481A9D43FB37 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 37895B83A2C94FED9234D444 /* FontAwesome5_Brands.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		159E50A40818D9FE8B96A7C2 /* libPods-MaharaMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B39E7F73F81CCC2DFB3683B7 /* libPods-MaharaMobile.a */; };
-		77FD5170A67F4279A0FDEA2C /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DE37BD6FB582FBDB34A6A7B7 /* libPods-MaharaMobile-MaharaMobileTests.a */; };
+		180390FC3BAA452B8AE0F790 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FBCB9810178F4F6798C2B232 /* OpenSans-SemiBold.ttf */; };
+		2787CE05ADA3430E93BA2A5D /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EBBE8A15870642BC9282AD3A /* Zocial.ttf */; };
+		2CF05F7DC1354C64BC21655F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 328FBEFB15DE4F21A5448C34 /* SimpleLineIcons.ttf */; };
+		3410530B57144A2F83BA5B67 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 28F5644ACA174673907EBAEC /* Feather.ttf */; };
+		37C9932773C44C3785FEEB4D /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2DD256098AD4FCFB0B4A37F /* OpenSans-Bold.ttf */; };
+		4C48790943AC48A6BDBAB0B3 /* OpenSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D6016C8704B81914D253B /* OpenSans-MediumItalic.ttf */; };
+		51D880020FD6480884265C4D /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B13AF9DB995F4C598674E857 /* OpenSans-SemiBoldItalic.ttf */; };
+		5397915B0E26424E472D2E95 /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A503D5E3E2BBFD723E22C0 /* libPods-MaharaMobile-MaharaMobileTests.a */; };
+		56FADE549516424BB784A99D /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BAC6A098F83341AEB8D5706C /* OpenSans-ExtraBoldItalic.ttf */; };
+		6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */; };
+		6C7110E84C97497680E70C5F /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3AA94E1FC8634EB4A2A479DC /* OpenSans-Light.ttf */; };
+		7F6DE38397AB45A1BA35515F /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C2DE8B204B049DB912350D4 /* MaterialCommunityIcons.ttf */; };
+		87A539E1E5CE456299D73BB1 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E2C120EAA984C12BF8969E2 /* OpenSans-Regular.ttf */; };
+		8DC1565CD1ED4268BE46A7EC /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27BF2509563D451CBBCDFD79 /* OpenSans-LightItalic.ttf */; };
+		8E3FB52CB5E442979CE6C221 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9CCAEFEA48AD45648BD1D378 /* AntDesign.ttf */; };
+		98135D746210466297DA04B6 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5B4299AEC2AF4286ACF98357 /* OpenSans-ExtraBold.ttf */; };
+		99D6EA203ED84DEBB49756CC /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43C29AA630AD4EEBAF48314A /* FontAwesome5_Solid.ttf */; };
+		A3021896EDE74AB3B0FCFFA9 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48AABEF3907D48FDB081B17E /* Fontisto.ttf */; };
+		C003C140F79F497BAA44FC0D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DDADBDFE35FC49609EBF4A77 /* FontAwesome.ttf */; };
+		C09F7B81E1194314ABF96878 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7462BB8D4DB64C96B7302227 /* OpenSans-Italic.ttf */; };
+		C1968742F2E64B82AFCFB57A /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79D597EE8CF44F7996101000 /* FontAwesome5_Regular.ttf */; };
+		C93C86395A304707A8EF148C /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E707529DD5084765B4CCA2E3 /* Octicons.ttf */; };
+		D54792FA0EA7427786616ED2 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5D766EC57F542CBB9DE7202 /* OpenSans-Medium.ttf */; };
+		DC909BC5D8A8D8C7113FE0A9 /* libPods-MaharaMobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F2FA2414EB595CC62EE498 /* libPods-MaharaMobile.a */; };
+		E3788F9245764F24B2AE84E8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9666FE5C621A4E85A0660147 /* Entypo.ttf */; };
 		E5D92AAF296F6FA600DE8DC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AAE296F6FA600DE8DC6 /* Images.xcassets */; };
 		E5D92AB1296F8A3200DE8DC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AAE296F6FA600DE8DC6 /* Images.xcassets */; };
-		E5D92ADD296F94CA00DE8DC6 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92ADC296F947000DE8DC6 /* OpenSans-SemiBold.ttf */; };
-		E5D92AE9296F9AE700DE8DC6 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92ADE296F9AE600DE8DC6 /* OpenSans-ExtraBold.ttf */; };
-		E5D92AEA296F9AE700DE8DC6 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92ADF296F9AE600DE8DC6 /* OpenSans-Medium.ttf */; };
-		E5D92AEB296F9AE700DE8DC6 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE0296F9AE600DE8DC6 /* OpenSans-Italic.ttf */; };
-		E5D92AEC296F9AE700DE8DC6 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE1296F9AE600DE8DC6 /* OpenSans-BoldItalic.ttf */; };
-		E5D92AED296F9AE700DE8DC6 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE2296F9AE600DE8DC6 /* OpenSans-Regular.ttf */; };
-		E5D92AEE296F9AE700DE8DC6 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE3296F9AE600DE8DC6 /* OpenSans-SemiBoldItalic.ttf */; };
-		E5D92AEF296F9AE700DE8DC6 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE4296F9AE600DE8DC6 /* OpenSans-Light.ttf */; };
-		E5D92AF0296F9AE700DE8DC6 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE5296F9AE600DE8DC6 /* OpenSans-LightItalic.ttf */; };
-		E5D92AF1296F9AE700DE8DC6 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE6296F9AE600DE8DC6 /* OpenSans-Bold.ttf */; };
-		E5D92AF2296F9AE700DE8DC6 /* OpenSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE7296F9AE600DE8DC6 /* OpenSans-MediumItalic.ttf */; };
-		E5D92AF3296F9AE700DE8DC6 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5D92AE8296F9AE700DE8DC6 /* OpenSans-ExtraBoldItalic.ttf */; };
+		EB602CD1DF014C9894E25AD6 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F098FA2DAFA42FE9EF2F30A /* Foundation.ttf */; };
+		EDC4C88E99A041BAAC8791B9 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E409406827544E186DA900F /* MaterialIcons.ttf */; };
+		F54C773C28264399845DE15F /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5AB74F03147F40B798D96073 /* EvilIcons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,49 +59,65 @@
 		00E356EE1AD99517003FC87E /* MaharaMobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MaharaMobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* MaharaMobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MaharaMobileTests.m; sourceTree = "<group>"; };
-		09E152B86DE84267B8C02803 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		03B279D5E399159AD0514A44 /* Pods-MaharaMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		07E072E407B44E18B5DAF098 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = ../android/app/src/main/assets/fonts/Zocial.ttf; sourceTree = "<group>"; };
+		09A3E801D5A0497EAF82B6D0 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = ../android/app/src/main/assets/fonts/Fontisto.ttf; sourceTree = "<group>"; };
+		0BDDA8E3A0AC4CF7A061A34B /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = ../android/app/src/main/assets/fonts/EvilIcons.ttf; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* MaharaMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaharaMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = MaharaMobile/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = MaharaMobile/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MaharaMobile/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MaharaMobile/main.m; sourceTree = "<group>"; };
-		31252C6683BA4899B632B174 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		3816E60AC96A17C3A68B0525 /* Pods-MaharaMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		4BF06011DB984274A255AB6B /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		51C708BBBE58432BB81312FD /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		64BF195592459288C2F956E9 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
-		67B529B237F74897A784D996 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		71D1CDBBB41D405A9C4E5065 /* Pods-MaharaMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.release.xcconfig"; sourceTree = "<group>"; };
-		76BB76C1E6761D159372D74A /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; sourceTree = "<group>"; };
-		8976AF3C19C941D9A16A50A1 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		9B1FE9BB6BF74DE6873A5065 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		AFA5C5315FD340F99A9A3F2C /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		B39E7F73F81CCC2DFB3683B7 /* libPods-MaharaMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA73B7B6F0F3494DA920B65D /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		BB8C2D4FC7AF483E8A08F3ED /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		C1606DF2C58D4BA59B25489B /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		D0E9299737CB46D4ABCB6927 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		D30A01D0548B4A9489A00328 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		DCC0F5E14E5A4426B9523C7D /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
-		DE37BD6FB582FBDB34A6A7B7 /* libPods-MaharaMobile-MaharaMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile-MaharaMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		141134BC0FBE413EB637DA90 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = ../android/app/src/main/assets/fonts/Octicons.ttf; sourceTree = "<group>"; };
+		18BCE6AD2C97E29A286E93C4 /* Pods-MaharaMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile.release.xcconfig"; sourceTree = "<group>"; };
+		27BF2509563D451CBBCDFD79 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-LightItalic.ttf"; path = "../assets/fonts/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		28F5644ACA174673907EBAEC /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = ../assets/fonts/Feather.ttf; sourceTree = "<group>"; };
+		2A5D6016C8704B81914D253B /* OpenSans-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-MediumItalic.ttf"; path = "../assets/fonts/OpenSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		2C2DE8B204B049DB912350D4 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = ../assets/fonts/MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		2E409406827544E186DA900F /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = ../assets/fonts/MaterialIcons.ttf; sourceTree = "<group>"; };
+		328FBEFB15DE4F21A5448C34 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = ../assets/fonts/SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		35014FC7B44B4C33A3A8389B /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = ../assets/fonts/Ionicons.ttf; sourceTree = "<group>"; };
+		35A503D5E3E2BBFD723E22C0 /* libPods-MaharaMobile-MaharaMobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile-MaharaMobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		364A4348F78748FD90BA80B6 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../assets/fonts/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		37895B83A2C94FED9234D444 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = ../assets/fonts/FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		3AA94E1FC8634EB4A2A479DC /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		3E2C120EAA984C12BF8969E2 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		3F098FA2DAFA42FE9EF2F30A /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = ../assets/fonts/Foundation.ttf; sourceTree = "<group>"; };
+		43C29AA630AD4EEBAF48314A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = ../assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		48AABEF3907D48FDB081B17E /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = ../assets/fonts/Fontisto.ttf; sourceTree = "<group>"; };
+		4B29A8D9EACC4225BE7026AB /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = ../android/app/src/main/assets/fonts/FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		5575B6E481AA3C514D50A3E3 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5AB74F03147F40B798D96073 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = ../assets/fonts/EvilIcons.ttf; sourceTree = "<group>"; };
+		5B4299AEC2AF4286ACF98357 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		603E284C6EDA4372B50DEA46 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = ../android/app/src/main/assets/fonts/MaterialIcons.ttf; sourceTree = "<group>"; };
+		6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = MaharaMobile/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		7462BB8D4DB64C96B7302227 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../assets/fonts/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		74F2FA2414EB595CC62EE498 /* libPods-MaharaMobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MaharaMobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D597EE8CF44F7996101000 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = ../assets/fonts/FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		7A5FBBC55903452FA354D3B8 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../android/app/src/main/assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
+		8B35D59DCA5941F6B96B4FB7 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = ../android/app/src/main/assets/fonts/Entypo.ttf; sourceTree = "<group>"; };
+		9666FE5C621A4E85A0660147 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = ../assets/fonts/Entypo.ttf; sourceTree = "<group>"; };
+		9B82369A15214C849C4C56C9 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = ../android/app/src/main/assets/fonts/AntDesign.ttf; sourceTree = "<group>"; };
+		9CCAEFEA48AD45648BD1D378 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = ../assets/fonts/AntDesign.ttf; sourceTree = "<group>"; };
+		B13AF9DB995F4C598674E857 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBoldItalic.ttf"; path = "../assets/fonts/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		B4B0DBA095DA4F7AB3413B7A /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = ../android/app/src/main/assets/fonts/Ionicons.ttf; sourceTree = "<group>"; };
+		B9A9FC1E9BF74489985B83EA /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = ../android/app/src/main/assets/fonts/Foundation.ttf; sourceTree = "<group>"; };
+		BAC6A098F83341AEB8D5706C /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		BB0AB58103704A9DA9D4B225 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = ../android/app/src/main/assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		C5D766EC57F542CBB9DE7202 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Medium.ttf"; path = "../assets/fonts/OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		D884B6EDD4DA49789AC55CC7 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = ../android/app/src/main/assets/fonts/Feather.ttf; sourceTree = "<group>"; };
+		DDADBDFE35FC49609EBF4A77 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
+		E2DD256098AD4FCFB0B4A37F /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		E56AF4EA2A5227970099CB38 /* hermes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = hermes.xcframework; path = "Pods/hermes-engine/destroot/Library/Frameworks/universal/hermes.xcframework"; sourceTree = "<group>"; };
 		E5AF73D52922EBDE00DC1564 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E5D4C443D8214582A4BD9CCE /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = ../android/app/src/main/assets/fonts/MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
 		E5D92AAE296F6FA600DE8DC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E5D92AB7296F8F3A00DE8DC6 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = ../android/app/src/main/assets/fonts/SimpleLineIcons.ttf; sourceTree = "<group>"; };
-		E5D92ADC296F947000DE8DC6 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiBold.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
-		E5D92ADE296F9AE600DE8DC6 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBold.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
-		E5D92ADF296F9AE600DE8DC6 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Medium.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-Medium.ttf"; sourceTree = "<group>"; };
-		E5D92AE0296F9AE600DE8DC6 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Italic.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
-		E5D92AE1296F9AE600DE8DC6 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-BoldItalic.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
-		E5D92AE2296F9AE600DE8DC6 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
-		E5D92AE3296F9AE600DE8DC6 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-SemiBoldItalic.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
-		E5D92AE4296F9AE600DE8DC6 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Light.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-Light.ttf"; sourceTree = "<group>"; };
-		E5D92AE5296F9AE600DE8DC6 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-LightItalic.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
-		E5D92AE6296F9AE600DE8DC6 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		E5D92AE7296F9AE600DE8DC6 /* OpenSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-MediumItalic.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-MediumItalic.ttf"; sourceTree = "<group>"; };
-		E5D92AE8296F9AE700DE8DC6 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../android/app/src/main/assets/fonts/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		E707529DD5084765B4CCA2E3 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = ../assets/fonts/Octicons.ttf; sourceTree = "<group>"; };
+		E7F9A2BF0981927EDC9F1305 /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; path = "Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests.release.xcconfig"; sourceTree = "<group>"; };
+		EBBE8A15870642BC9282AD3A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = ../assets/fonts/Zocial.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F113C4B7F29B4EA3B3196798 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		F6CD4371A29B49F2A6888FCA /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = ../android/app/src/main/assets/fonts/FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		FBCB9810178F4F6798C2B232 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77FD5170A67F4279A0FDEA2C /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */,
+				5397915B0E26424E472D2E95 /* libPods-MaharaMobile-MaharaMobileTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,7 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				159E50A40818D9FE8B96A7C2 /* libPods-MaharaMobile.a in Frameworks */,
+				DC909BC5D8A8D8C7113FE0A9 /* libPods-MaharaMobile.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,34 +160,49 @@
 		0B3073E8C7AD4E539DDA51BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E5D92AE6296F9AE600DE8DC6 /* OpenSans-Bold.ttf */,
-				E5D92AE1296F9AE600DE8DC6 /* OpenSans-BoldItalic.ttf */,
-				E5D92ADE296F9AE600DE8DC6 /* OpenSans-ExtraBold.ttf */,
-				E5D92AE8296F9AE700DE8DC6 /* OpenSans-ExtraBoldItalic.ttf */,
-				E5D92AE0296F9AE600DE8DC6 /* OpenSans-Italic.ttf */,
-				E5D92AE4296F9AE600DE8DC6 /* OpenSans-Light.ttf */,
-				E5D92AE5296F9AE600DE8DC6 /* OpenSans-LightItalic.ttf */,
-				E5D92ADF296F9AE600DE8DC6 /* OpenSans-Medium.ttf */,
-				E5D92AE7296F9AE600DE8DC6 /* OpenSans-MediumItalic.ttf */,
-				E5D92AE2296F9AE600DE8DC6 /* OpenSans-Regular.ttf */,
-				E5D92AE3296F9AE600DE8DC6 /* OpenSans-SemiBoldItalic.ttf */,
-				E5D92ADC296F947000DE8DC6 /* OpenSans-SemiBold.ttf */,
-				31252C6683BA4899B632B174 /* AntDesign.ttf */,
-				BA73B7B6F0F3494DA920B65D /* Entypo.ttf */,
-				DCC0F5E14E5A4426B9523C7D /* EvilIcons.ttf */,
-				67B529B237F74897A784D996 /* Feather.ttf */,
-				BB8C2D4FC7AF483E8A08F3ED /* FontAwesome.ttf */,
-				51C708BBBE58432BB81312FD /* FontAwesome5_Brands.ttf */,
-				C1606DF2C58D4BA59B25489B /* FontAwesome5_Regular.ttf */,
-				D0E9299737CB46D4ABCB6927 /* FontAwesome5_Solid.ttf */,
-				8976AF3C19C941D9A16A50A1 /* Fontisto.ttf */,
-				4BF06011DB984274A255AB6B /* Foundation.ttf */,
-				AFA5C5315FD340F99A9A3F2C /* Ionicons.ttf */,
-				09E152B86DE84267B8C02803 /* MaterialCommunityIcons.ttf */,
-				9B1FE9BB6BF74DE6873A5065 /* MaterialIcons.ttf */,
-				F113C4B7F29B4EA3B3196798 /* Octicons.ttf */,
-				E5D92AB7296F8F3A00DE8DC6 /* SimpleLineIcons.ttf */,
-				D30A01D0548B4A9489A00328 /* Zocial.ttf */,
+				9B82369A15214C849C4C56C9 /* AntDesign.ttf */,
+				8B35D59DCA5941F6B96B4FB7 /* Entypo.ttf */,
+				0BDDA8E3A0AC4CF7A061A34B /* EvilIcons.ttf */,
+				D884B6EDD4DA49789AC55CC7 /* Feather.ttf */,
+				7A5FBBC55903452FA354D3B8 /* FontAwesome.ttf */,
+				4B29A8D9EACC4225BE7026AB /* FontAwesome5_Brands.ttf */,
+				F6CD4371A29B49F2A6888FCA /* FontAwesome5_Regular.ttf */,
+				BB0AB58103704A9DA9D4B225 /* FontAwesome5_Solid.ttf */,
+				09A3E801D5A0497EAF82B6D0 /* Fontisto.ttf */,
+				B9A9FC1E9BF74489985B83EA /* Foundation.ttf */,
+				B4B0DBA095DA4F7AB3413B7A /* Ionicons.ttf */,
+				E5D4C443D8214582A4BD9CCE /* MaterialCommunityIcons.ttf */,
+				603E284C6EDA4372B50DEA46 /* MaterialIcons.ttf */,
+				141134BC0FBE413EB637DA90 /* Octicons.ttf */,
+				07E072E407B44E18B5DAF098 /* Zocial.ttf */,
+				9CCAEFEA48AD45648BD1D378 /* AntDesign.ttf */,
+				9666FE5C621A4E85A0660147 /* Entypo.ttf */,
+				5AB74F03147F40B798D96073 /* EvilIcons.ttf */,
+				28F5644ACA174673907EBAEC /* Feather.ttf */,
+				DDADBDFE35FC49609EBF4A77 /* FontAwesome.ttf */,
+				37895B83A2C94FED9234D444 /* FontAwesome5_Brands.ttf */,
+				79D597EE8CF44F7996101000 /* FontAwesome5_Regular.ttf */,
+				43C29AA630AD4EEBAF48314A /* FontAwesome5_Solid.ttf */,
+				48AABEF3907D48FDB081B17E /* Fontisto.ttf */,
+				3F098FA2DAFA42FE9EF2F30A /* Foundation.ttf */,
+				35014FC7B44B4C33A3A8389B /* Ionicons.ttf */,
+				2C2DE8B204B049DB912350D4 /* MaterialCommunityIcons.ttf */,
+				2E409406827544E186DA900F /* MaterialIcons.ttf */,
+				E707529DD5084765B4CCA2E3 /* Octicons.ttf */,
+				E2DD256098AD4FCFB0B4A37F /* OpenSans-Bold.ttf */,
+				364A4348F78748FD90BA80B6 /* OpenSans-BoldItalic.ttf */,
+				5B4299AEC2AF4286ACF98357 /* OpenSans-ExtraBold.ttf */,
+				BAC6A098F83341AEB8D5706C /* OpenSans-ExtraBoldItalic.ttf */,
+				7462BB8D4DB64C96B7302227 /* OpenSans-Italic.ttf */,
+				3AA94E1FC8634EB4A2A479DC /* OpenSans-Light.ttf */,
+				27BF2509563D451CBBCDFD79 /* OpenSans-LightItalic.ttf */,
+				C5D766EC57F542CBB9DE7202 /* OpenSans-Medium.ttf */,
+				2A5D6016C8704B81914D253B /* OpenSans-MediumItalic.ttf */,
+				3E2C120EAA984C12BF8969E2 /* OpenSans-Regular.ttf */,
+				FBCB9810178F4F6798C2B232 /* OpenSans-SemiBold.ttf */,
+				B13AF9DB995F4C598674E857 /* OpenSans-SemiBoldItalic.ttf */,
+				328FBEFB15DE4F21A5448C34 /* SimpleLineIcons.ttf */,
+				EBBE8A15870642BC9282AD3A /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -176,8 +224,8 @@
 			children = (
 				E56AF4EA2A5227970099CB38 /* hermes.xcframework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B39E7F73F81CCC2DFB3683B7 /* libPods-MaharaMobile.a */,
-				DE37BD6FB582FBDB34A6A7B7 /* libPods-MaharaMobile-MaharaMobileTests.a */,
+				74F2FA2414EB595CC62EE498 /* libPods-MaharaMobile.a */,
+				35A503D5E3E2BBFD723E22C0 /* libPods-MaharaMobile-MaharaMobileTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -192,6 +240,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				6132EF172BDFF13200BBE14D /* PrivacyInfo.xcprivacy */,
 				E5AF73D52922EBDE00DC1564 /* Launch Screen.storyboard */,
 				13B07FAE1A68108700A75B9A /* MaharaMobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -218,10 +267,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3816E60AC96A17C3A68B0525 /* Pods-MaharaMobile.debug.xcconfig */,
-				71D1CDBBB41D405A9C4E5065 /* Pods-MaharaMobile.release.xcconfig */,
-				64BF195592459288C2F956E9 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */,
-				76BB76C1E6761D159372D74A /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */,
+				03B279D5E399159AD0514A44 /* Pods-MaharaMobile.debug.xcconfig */,
+				18BCE6AD2C97E29A286E93C4 /* Pods-MaharaMobile.release.xcconfig */,
+				5575B6E481AA3C514D50A3E3 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */,
+				E7F9A2BF0981927EDC9F1305 /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -233,12 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "MaharaMobileTests" */;
 			buildPhases = (
-				43BF90A41A1AA1F58F0772BF /* [CP] Check Pods Manifest.lock */,
+				5E7093D2B5ED27A5CFE43F86 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				52454610C2E4A05DF0143042 /* [CP] Embed Pods Frameworks */,
-				45711EEB5C185ED78594973B /* [CP] Copy Pods Resources */,
+				00B55140869FB5F4E4F887C2 /* [CP] Embed Pods Frameworks */,
+				05434E976E64E218952F52A9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,13 +303,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "MaharaMobile" */;
 			buildPhases = (
-				8D4729A68796EF8C19CFE878 /* [CP] Check Pods Manifest.lock */,
-				FD10A7F022414F080027D42C /* Start Packager */,
+				9F698D194A94162326BA172B /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E5D92AB0296F8A2700DE8DC6 /* Resources */,
-				ADC5B27DCCFA29B8BA5F4A8C /* [CP] Embed Pods Frameworks */,
+				8EBE7F0FAE9868169C39C99D /* [CP] Embed Pods Frameworks */,
+				E101A2E0E91902AD1EB6D944 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,7 +338,7 @@
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "MaharaMobile" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 15.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -312,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6132EF182BDFF13200BBE14D /* PrivacyInfo.xcprivacy in Resources */,
 				E5D92AAF296F6FA600DE8DC6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,25 +370,58 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5D92AF1296F9AE700DE8DC6 /* OpenSans-Bold.ttf in Resources */,
-				E5D92AEE296F9AE700DE8DC6 /* OpenSans-SemiBoldItalic.ttf in Resources */,
-				E5D92AEC296F9AE700DE8DC6 /* OpenSans-BoldItalic.ttf in Resources */,
-				E5D92AEA296F9AE700DE8DC6 /* OpenSans-Medium.ttf in Resources */,
-				E5D92AF2296F9AE700DE8DC6 /* OpenSans-MediumItalic.ttf in Resources */,
-				E5D92ADD296F94CA00DE8DC6 /* OpenSans-SemiBold.ttf in Resources */,
-				E5D92AF0296F9AE700DE8DC6 /* OpenSans-LightItalic.ttf in Resources */,
-				E5D92AED296F9AE700DE8DC6 /* OpenSans-Regular.ttf in Resources */,
 				E5D92AB1296F8A3200DE8DC6 /* Images.xcassets in Resources */,
-				E5D92AF3296F9AE700DE8DC6 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				E5D92AEF296F9AE700DE8DC6 /* OpenSans-Light.ttf in Resources */,
-				E5D92AEB296F9AE700DE8DC6 /* OpenSans-Italic.ttf in Resources */,
-				E5D92AE9296F9AE700DE8DC6 /* OpenSans-ExtraBold.ttf in Resources */,
+				8E3FB52CB5E442979CE6C221 /* AntDesign.ttf in Resources */,
+				E3788F9245764F24B2AE84E8 /* Entypo.ttf in Resources */,
+				F54C773C28264399845DE15F /* EvilIcons.ttf in Resources */,
+				3410530B57144A2F83BA5B67 /* Feather.ttf in Resources */,
+				C003C140F79F497BAA44FC0D /* FontAwesome.ttf in Resources */,
+				1346B3D28BC6481A9D43FB37 /* FontAwesome5_Brands.ttf in Resources */,
+				C1968742F2E64B82AFCFB57A /* FontAwesome5_Regular.ttf in Resources */,
+				99D6EA203ED84DEBB49756CC /* FontAwesome5_Solid.ttf in Resources */,
+				A3021896EDE74AB3B0FCFFA9 /* Fontisto.ttf in Resources */,
+				EB602CD1DF014C9894E25AD6 /* Foundation.ttf in Resources */,
+				08511F78A2434F679703D283 /* Ionicons.ttf in Resources */,
+				7F6DE38397AB45A1BA35515F /* MaterialCommunityIcons.ttf in Resources */,
+				EDC4C88E99A041BAAC8791B9 /* MaterialIcons.ttf in Resources */,
+				C93C86395A304707A8EF148C /* Octicons.ttf in Resources */,
+				37C9932773C44C3785FEEB4D /* OpenSans-Bold.ttf in Resources */,
+				021D593583724F88B3D5B128 /* OpenSans-BoldItalic.ttf in Resources */,
+				98135D746210466297DA04B6 /* OpenSans-ExtraBold.ttf in Resources */,
+				56FADE549516424BB784A99D /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				C09F7B81E1194314ABF96878 /* OpenSans-Italic.ttf in Resources */,
+				6C7110E84C97497680E70C5F /* OpenSans-Light.ttf in Resources */,
+				8DC1565CD1ED4268BE46A7EC /* OpenSans-LightItalic.ttf in Resources */,
+				D54792FA0EA7427786616ED2 /* OpenSans-Medium.ttf in Resources */,
+				4C48790943AC48A6BDBAB0B3 /* OpenSans-MediumItalic.ttf in Resources */,
+				87A539E1E5CE456299D73BB1 /* OpenSans-Regular.ttf in Resources */,
+				180390FC3BAA452B8AE0F790 /* OpenSans-SemiBold.ttf in Resources */,
+				51D880020FD6480884265C4D /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				2CF05F7DC1354C64BC21655F /* SimpleLineIcons.ttf in Resources */,
+				2787CE05ADA3430E93BA2A5D /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00B55140869FB5F4E4F887C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -353,7 +436,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		43BF90A41A1AA1F58F0772BF /* [CP] Check Pods Manifest.lock */ = {
+		05434E976E64E218952F52A9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E7093D2B5ED27A5CFE43F86 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,41 +475,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		45711EEB5C185ED78594973B /* [CP] Copy Pods Resources */ = {
+		8EBE7F0FAE9868169C39C99D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		52454610C2E4A05DF0143042 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile-MaharaMobileTests/Pods-MaharaMobile-MaharaMobileTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8D4729A68796EF8C19CFE878 /* [CP] Check Pods Manifest.lock */ = {
+		9F698D194A94162326BA172B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,39 +514,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ADC5B27DCCFA29B8BA5F4A8C /* [CP] Embed Pods Frameworks */ = {
+		E101A2E0E91902AD1EB6D944 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD10A7F022414F080027D42C /* Start Packager */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Start Packager";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MaharaMobile/Pods-MaharaMobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -499,7 +564,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64BF195592459288C2F956E9 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */;
+			baseConfigurationReference = 5575B6E481AA3C514D50A3E3 /* Pods-MaharaMobile-MaharaMobileTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,7 +573,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = MaharaMobileTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -527,14 +592,14 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76BB76C1E6761D159372D74A /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */;
+			baseConfigurationReference = E7F9A2BF0981927EDC9F1305 /* Pods-MaharaMobile-MaharaMobileTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobileTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -553,7 +618,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3816E60AC96A17C3A68B0525 /* Pods-MaharaMobile.debug.xcconfig */;
+			baseConfigurationReference = 03B279D5E399159AD0514A44 /* Pods-MaharaMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -584,7 +649,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71D1CDBBB41D405A9C4E5065 /* Pods-MaharaMobile.release.xcconfig */;
+			baseConfigurationReference = 18BCE6AD2C97E29A286E93C4 /* Pods-MaharaMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -621,7 +686,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = Yes;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -665,7 +730,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -683,9 +748,12 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -696,7 +764,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = Yes;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -733,7 +801,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -750,9 +818,12 @@
 					"-DFOLLY_NO_CONFIG",
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
+					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = "$(inherited)  ";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

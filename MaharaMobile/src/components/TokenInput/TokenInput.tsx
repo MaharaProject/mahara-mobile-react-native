@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { Input, Stack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Input, Stack } from 'native-base';
 import { ActivityIndicator, StyleSheet } from 'react-native';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import LogoView from 'components/LogoView/LogoView';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 // Images
 import { LOG_IN_ICON } from 'utils/constants';
 
@@ -31,8 +34,7 @@ export default function TokenInput(props: Props) {
       {props.isLoading ? <ActivityIndicator size="small" color={styles.colors.light} /> : null}
 
       <Stack direction="column" mb="2.5" mt="1.5" space={3}>
-        <SubHeading
-          noColon
+        <SubHeadingNoColon
           style={{ color: styles.colors.light, textAlign: 'center' }}
           text=" Log in via an access token"
         />
@@ -41,14 +43,14 @@ export default function TokenInput(props: Props) {
           height={styles.heights.input}
           autoCapitalize="none"
           onChangeText={(input) => setToken(input.trim())}
-          style={TokenLoginStyles.input}
+          style={{ ...generic.maharaText, ...TokenLoginStyles.input }}
           variant="filled"
           w={{
             base: '100%',
             md: '25%'
           }}
         />
-        <MediumButton
+        <MediumButtonDark
           text={t`Verify token`}
           icon={LOG_IN_ICON}
           onPress={() => props.onGetToken(token)}

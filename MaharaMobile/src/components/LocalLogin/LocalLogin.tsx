@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { IconButton, Input, Stack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { IconButton, Input, Stack } from 'native-base';
 import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { getManufacturer, getModel } from 'react-native-device-info';
 import uuid from 'react-native-uuid';
+import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import LogoView from 'components/LogoView/LogoView';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 import { onCheckAuthJSON } from 'utils/authHelperFunctions';
 import { LOG_IN_ICON } from 'utils/constants';
 
@@ -70,18 +73,17 @@ export default function LocalLogin(props: Props) {
       {props.isLoading ? <ActivityIndicator size="small" color={styles.colors.light} /> : null}
 
       <Stack direction="column" mb="2.5" mt="1.5" space={3}>
-        <SubHeading
-          noColon
+        <SubHeadingNoColon
           style={{ color: styles.colors.light, textAlign: 'center' }}
           text={t`Log in via username and password`}
         />
         <Stack space={4} w="100%" alignItems="center">
           <Input
-            height={styles.heights.input}
+            fontSize="md"
+            style={{ ...generic.maharaText, ...LocalLoginStyles.input }}
             placeholder={t`Username`}
             autoCapitalize="none"
             onChangeText={(usernameInput) => setUsername(usernameInput)}
-            style={LocalLoginStyles.input}
             variant="filled"
             w={{
               base: '100%',
@@ -89,7 +91,8 @@ export default function LocalLogin(props: Props) {
             }}
           />
           <Input
-            style={LocalLoginStyles.input}
+            fontSize="md"
+            style={{ ...LocalLoginStyles.input, ...generic.maharaText }}
             onChangeText={(passwordInput) => setPassword(passwordInput)}
             variant="filled"
             w={{
@@ -124,7 +127,7 @@ export default function LocalLogin(props: Props) {
           />
         </Stack>
 
-        <MediumButton text={t`Login`} icon={LOG_IN_ICON} onPress={checkLoginForToken} />
+        <MediumButtonDark text={t`Login`} icon={LOG_IN_ICON} onPress={checkLoginForToken} />
       </Stack>
     </LogoView>
   );

@@ -1,10 +1,11 @@
 import React from 'react';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { Button, Text } from 'native-base';
+import { Button, Text } from '@gluestack-ui/themed-native-base';
 import { StyleSheet } from 'react-native';
 import styles from 'assets/styles/variables';
 import { ICON_SIZE } from 'utils/constants';
+import { maharaTheme } from 'utils/theme';
 
 type Props = {
   onPress: () => void;
@@ -12,55 +13,35 @@ type Props = {
   accessibilityHint?: string;
   icon?: IconDefinition;
   invalid?: boolean;
-  dark?: boolean;
-  children?: any;
+  // children?: any;
   colorScheme?: string;
-  fontWeight?: string;
 };
 
 const MediumButtonStyles = StyleSheet.create({
-  dark: {
-    color: styles.colors.light
-  },
   light: {
     borderRadius: 5,
     color: styles.colors.browner
   }
 });
 
-function MediumButton(props: Props) {
+function MediumButton({ icon, accessibilityHint, colorScheme, onPress, invalid, text }: Props) {
   return (
     <Button
       rounded="full"
-      colorScheme={props.colorScheme ? props.colorScheme : 'secondary'}
-      // colorScheme={props.invalid ? 'info' : 'secondary'}
-      // style={[
-      //   props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light,
-      //   props.style,
-      // ]}
+      colorScheme={colorScheme || 'secondary'}
       startIcon={
-        props.icon ? (
-          <FontAwesomeIcon
-            // color={maharaTheme.colors.green}
-            icon={props.icon}
-            size={ICON_SIZE}
-            style={props.dark ? MediumButtonStyles.dark : MediumButtonStyles.light}
-          />
+        icon ? (
+          <FontAwesomeIcon icon={icon} size={ICON_SIZE} style={MediumButtonStyles.light} />
         ) : undefined
       }
       accessibilityRole="button"
-      accessibilityLabel={props.text}
-      accessibilityHint={props.accessibilityHint ? props.accessibilityHint : undefined}
-      isDisabled={props.invalid}
-      onPress={props.onPress}
+      accessibilityLabel={text}
+      accessibilityHint={accessibilityHint || ''}
+      isDisabled={invalid}
+      onPress={onPress}
+      size="lg"
     >
-      <Text
-        color={props.dark ? styles.colors.light : styles.colors.browner}
-        fontWeight={props.fontWeight ? props.fontWeight : '500'}
-      >
-        {props.children}
-        {props.text}
-      </Text>
+      {text}
     </Button>
   );
 }

@@ -1,13 +1,14 @@
 import React, { ReactElement, useEffect } from 'react';
 import * as RNLocalize from 'react-native-localize';
+import { config } from '@gluestack-ui/config';
+import { NativeBaseProvider } from '@gluestack-ui/themed-native-base';
 import { I18nProvider } from '@lingui/react';
-import { NativeBaseProvider } from 'native-base';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import i18n, { changeActiveLanguage } from 'i18n';
 import AppNavigator from 'navigation/AppNavigator';
 import configureStore from 'store/store';
-import { maharaTheme } from 'utils/theme';
+import { maharaTheme, maharaThemeBase } from 'utils/theme';
 
 export function I18nProviderWrapper({ children }: { children: ReactElement }) {
   useEffect(() => {
@@ -25,11 +26,11 @@ export function I18nProviderWrapper({ children }: { children: ReactElement }) {
   return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 }
 
-function App(): JSX.Element {
+function App(): React.JSX.Element {
   const store = configureStore();
 
   return (
-    <NativeBaseProvider theme={maharaTheme}>
+    <NativeBaseProvider theme={maharaThemeBase}>
       <StatusBar backgroundColor={maharaTheme.colors.green} />
       <Provider store={store}>
         <I18nProviderWrapper>

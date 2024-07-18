@@ -24,11 +24,13 @@ const buttons = StyleSheet.create({
   link: {
     fontSize: styles.font.md,
     alignSelf: 'center',
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    fontFamily: 'OpenSans-Regular'
   },
   light: {
     borderColor: styles.colors.light,
-    color: styles.colors.light
+    color: styles.colors.light,
+    fontFamily: 'OpenSans-Regular'
   },
   cancel: {
     // backgroundColor: styles.colors.lightgrey,

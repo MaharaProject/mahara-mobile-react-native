@@ -1,12 +1,13 @@
 import React from 'react';
+import { Box, Divider, HStack, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
-import { Box, Divider, HStack, VStack } from 'native-base';
 import { ScrollView } from 'react-native';
 import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 import LinkText from 'components/UI/CustomText/LinkText';
 import MediumText from 'components/UI/CustomText/MediumText';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 
 function PrivacyScreen() {
   return (
@@ -14,7 +15,7 @@ function PrivacyScreen() {
       <VStack space={3} divider={<Divider />} w="100%">
         <HStack>
           <Box>
-            <SubHeading text={t`Introduction`} />
+            <SubHeadingNoColon text={t`Introduction`} />
             <MediumText>
               <Trans>
                 We are committed to protecting your privacy and providing you with a safe mobile app
@@ -45,7 +46,7 @@ function PrivacyScreen() {
 
         <HStack>
           <Box>
-            <SubHeading text={t`How we use your personal information`} />
+            <SubHeadingNoColon text={t`How we use your personal information`} />
             <MediumText>
               <Trans>
                 Neither the Mahara project nor Catalyst IT have access to any of the data that you
@@ -61,7 +62,7 @@ function PrivacyScreen() {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Storage and security of your personal information`} />
+            <SubHeadingNoColon text={t`Storage and security of your personal information`} />
             <MediumText>
               <Trans>
                 We will take all reasonable steps to ensure that the connection between Mahara
@@ -80,7 +81,7 @@ function PrivacyScreen() {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Deleting your data`} />
+            <SubHeadingNoColon text={t`Deleting your data`} />
             <MediumText>
               <Trans>
                 Once you have uploaded data to your Mahara account, it is no longer stored in the
@@ -97,7 +98,7 @@ function PrivacyScreen() {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Changes to this Privacy Statement`} />
+            <SubHeadingNoColon text={t`Changes to this Privacy Statement`} />
             <MediumText>
               <Trans>
                 We may occasionally make adjustments to our Privacy Statement to reflect changes to
@@ -110,7 +111,7 @@ function PrivacyScreen() {
 
         <HStack>
           <Box>
-            <SubHeading text={t`Contact`} />
+            <SubHeadingNoColon text={t`Contact`} />
             <MediumText>
               <MediumText>
                 <Trans>If you have any questions regarding this Statement, please</Trans>

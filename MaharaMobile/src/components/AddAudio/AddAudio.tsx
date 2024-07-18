@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { faMicrophone, faPause, faPlay, faStop } from '@fortawesome/free-solid-svg-icons';
+import { HStack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { HStack } from 'native-base';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 // import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import variables from 'assets/styles/variables';
 import AudioPlayButton from 'components/UI/AudioPlayButton/AudioPlayButton';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import { File, PlayBackType } from 'models/models';
 import { newFile } from 'models/typeCreators';
@@ -223,10 +224,8 @@ function AddAudio(props: Props) {
       </HStack>
       <View style={styles.recordButton}>
         {recordStatus === 'recording' ? (
-          <MediumButton
-            dark
+          <MediumButtonDark
             colorScheme="warning"
-            style={{ color: variables.colors.light }}
             text={t`Stop`}
             onPress={() => handleRecord()}
             icon={STOP_ICON}

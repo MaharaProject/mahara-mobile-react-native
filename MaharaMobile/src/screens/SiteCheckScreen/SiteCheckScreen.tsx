@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { Trans, t } from '@lingui/macro';
 import {
   Alert,
   CloseIcon,
@@ -9,14 +8,18 @@ import {
   Input,
   InputGroup,
   InputLeftAddon,
+  InputRightAddon,
+  Stack,
   Text,
   VStack,
   View,
   useToast
-} from 'native-base';
+} from '@gluestack-ui/themed-native-base';
+import { Trans, t } from '@lingui/macro';
 import { ActivityIndicator, Platform } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
+import generic from 'assets/styles/generic';
 import headingStyles from 'assets/styles/headings';
 import textStyles from 'assets/styles/text';
 import styles from 'assets/styles/variables';
@@ -24,8 +27,11 @@ import LoginTypes from 'components/LoginTypes/LoginTypes';
 import LogoView from 'components/LogoView/LogoView';
 import LinkButton from 'components/UI/LinkButton/LinkButton';
 import MediumButton from 'components/UI/MediumButton/MediumButton';
+import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
 import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import SubHeading from 'components/UI/SubHeading/SubHeading';
+import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
 import { checkLoginTypes } from 'store/actions/userArtefacts';
 import {
   selectLocalLogin,
@@ -72,6 +78,7 @@ function SiteCheckScreen(props: Props) {
       setIsInputHidden(true);
     }
   }, [props]);
+
   /**
    * Check that the entered text is valid
    * @param url
@@ -137,27 +144,26 @@ function SiteCheckScreen(props: Props) {
 
       {!isInputHidden ? (
         <View style={{ padding: 10 }}>
-          <Text style={[headingStyles.subHeading1, textStyles.textWhite, textStyles.center]}>
+          <Text
+            fontSize="lg"
+            style={[headingStyles.subHeading1, textStyles.textWhite, textStyles.center]}
+          >
             <Trans>What is the address of your Mahara?</Trans>
           </Text>
-          <InputGroup>
-            <InputLeftAddon>https://</InputLeftAddon>
-            <Input
-              type="text"
-              keyboardType={Platform.OS === 'ios' ? 'url' : 'default'}
-              autoCapitalize="none"
-              onChangeText={onUpdateURL}
-              backgroundColor="#FFF"
-              fontSize={styles.font.sm}
-              variant="filled"
-              w={{
-                base: '80%'
-              }}
-              placeholder="yoursite.edu/"
-              defaultValue={controlURL}
-              value={controlURL}
-            />
-          </InputGroup>
+
+          <Input
+            type="text"
+            style={{ ...generic.maharaText }}
+            keyboardType={Platform.OS === 'ios' ? 'url' : 'default'}
+            autoCapitalize="none"
+            onChangeText={onUpdateURL}
+            backgroundColor="#FFF"
+            fontSize="md"
+            variant="filled"
+            placeholder="yoursite.edu/"
+            defaultValue={controlURL}
+            value={controlURL}
+          />
         </View>
       ) : null}
 
@@ -169,10 +175,9 @@ function SiteCheckScreen(props: Props) {
 
       {serverPing && isInputHidden ? (
         <View>
-          <SubHeading
+          <SubHeadingNoColon
             style={{ textAlign: 'center', color: styles.colors.light }}
             text={controlURL}
-            noColon
           />
           <OutlineButton
             light
@@ -188,8 +193,12 @@ function SiteCheckScreen(props: Props) {
       ) : null}
 
       {!isInputHidden ? (
-        <View style={{ marginTop: styles.padding.sm }}>
-          <MediumButton
+        <View
+          style={{
+            marginTop: styles.padding.sm
+          }}
+        >
+          <MediumButtonDark
             text={t`Next`}
             icon={faArrowRight}
             onPress={() => {

@@ -1,6 +1,6 @@
 import React from 'react';
+import { Button, Text } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Button, Text } from 'native-base';
 import buttons from 'assets/styles/buttons';
 
 type Props = {
@@ -10,15 +10,15 @@ type Props = {
 function CancelButton(props: Props) {
   return (
     <Button
-      light
-      full
+      variant="solid"
       rounded="full"
       accessibilityLabel="Cancel"
       onPress={() => (props.onPress ? props.onPress() : null)}
-      colorScheme="info"
-      style={[buttons.md, buttons.cancel]}
+      colorScheme="trueGray"
+      size="lg"
+      style={{ ...buttons.md, ...buttons.cancel }}
     >
-      <Text>{t`Cancel`}</Text>
+      {t`Cancel`}
     </Button>
   );
 }
