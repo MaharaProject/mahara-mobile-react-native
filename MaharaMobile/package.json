@@ -1,6 +1,6 @@
 {
   "name": "maharamobile",
-  "version": "24.6.0",
+  "version": "24.8.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -89,6 +89,7 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-module-resolver": "^5.0.2",
     "check-peer-dependencies": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.19.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
@@ -104,5 +105,10 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
