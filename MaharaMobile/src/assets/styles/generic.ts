@@ -19,11 +19,11 @@ const generic = StyleSheet.create({
     flex: 1,
     padding: styles.padding.md
   },
-  maharaText: {
-    fontFamily: 'OpenSans-Regular' // fontFamily: 'OpenSans-Regular'
+  regularText: {
+    fontFamily: 'OpenSansRegular' // fontFamily: 'OpenSansRegular'
   },
-  maharaTextBold: {
-    fontFamily: 'OpenSansBold'
+  textBold: {
+    fontFamily: 'OpenSansExtraBold'
   }
 });
 

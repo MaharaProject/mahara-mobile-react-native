@@ -14,7 +14,7 @@ function SubHeadingNoColon(props: Props) {
   return (
     <Text
       fontSize="lg"
-      style={{ ...headingStyles.subHeading1, ...props.style, ...generic.maharaTextBold }}
+      style={{ ...headingStyles.subHeading1, ...props.style }}
     >
       {props.text}
       {props.required ? <RedAsterisk /> : null}

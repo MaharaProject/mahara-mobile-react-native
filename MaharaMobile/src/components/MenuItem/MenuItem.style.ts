@@ -11,7 +11,7 @@ const menuItemStyles = StyleSheet.create({
     marginLeft: styles.padding.sm,
     fontSize: styles.font.md,
     color: styles.colors.contrast,
-    fontFamily: generic.maharaText.fontFamily
+    fontFamily: generic.regularText.fontFamily
   }
 });
 

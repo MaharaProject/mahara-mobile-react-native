@@ -45,7 +45,7 @@
 	<string>$(PRODUCT_NAME) would like access to your photo gallery to upload files to your Mahara.</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>OpenSans-MedliumItalic.ttf</string>
+		<string>OpenSansMedliumItalic.ttf</string>
 		<string>AntDesign.ttf</string>
 		<string>Entypo.ttf</string>
 		<string>EvilIcons.ttf</string>
@@ -62,16 +62,16 @@
 		<string>Octicons.ttf</string>
 		<string>OpenSansBold.ttf</string>
 		<string>OpenSansBoldItalic.ttf</string>
-		<string>OpenSans-ExtraBold.ttf</string>
-		<string>OpenSans-ExtraBoldItalic.ttf</string>
-		<string>OpenSans-Italic.ttf</string>
-		<string>OpenSans-Light.ttf</string>
-		<string>OpenSans-LightItalic.ttf</string>
-		<string>OpenSans-Medium.ttf</string>
-		<string>OpenSans-MediumItalic.ttf</string>
-		<string>OpenSans-Regular.ttf</string>
-		<string>OpenSans-SemiBold.ttf</string>
-		<string>OpenSans-SemiBoldItalic.ttf</string>
+		<string>OpenSansExtraBold.ttf</string>
+		<string>OpenSansExtraBoldItalic.ttf</string>
+		<string>OpenSansItalic.ttf</string>
+		<string>OpenSansLight.ttf</string>
+		<string>OpenSansLightItalic.ttf</string>
+		<string>OpenSansMedium.ttf</string>
+		<string>OpenSansMediumItalic.ttf</string>
+		<string>OpenSansRegular.ttf</string>
+		<string>OpenSansSemiBold.ttf</string>
+		<string>OpenSansSemiBoldItalic.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>

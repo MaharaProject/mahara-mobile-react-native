@@ -4,34 +4,34 @@ export const maharaTheme = {
   fontConfig: {
     OpenSans: {
       100: {
-        normal: 'OpenSans-Light',
-        italic: 'OpenSans-LightItalic'
+        normal: 'OpenSansLight',
+        italic: 'OpenSansLightItalic'
       },
       200: {
-        normal: 'OpenSans-Regular',
-        italic: 'OpenSans-Italic'
+        normal: 'OpenSansRegular',
+        italic: 'OpenSansItalic'
       },
       300: {
-        normal: 'OpenSans-Medium',
-        italic: 'OpenSans-MediumItalic'
+        normal: 'OpenSansMedium',
+        italic: 'OpenSansMediumItalic'
       },
       400: {
-        normal: 'OpenSans-SemiBold',
-        italic: 'OpenSans-SemiBoldItalic'
+        normal: 'OpenSansSemiBold',
+        italic: 'OpenSansSemiBoldItalic'
       },
       500: {
         normal: 'OpenSansBold',
         italic: 'OpenSansBoldItalic'
       },
       600: {
-        normal: 'OpenSans-ExtraBold',
-        italic: 'OpenSans-ExtraBoldItalic'
+        normal: 'OpenSansExtraBold',
+        italic: 'OpenSansExtraBoldItalic'
       }
     }
   },
   components: {
     Link: {
-      fontFamily: 'OpenSans-Regular'
+      fontFamily: 'OpenSansRegular'
     }
   },
   colors: {

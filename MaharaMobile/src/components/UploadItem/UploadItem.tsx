@@ -75,7 +75,7 @@ function UploadItem(props: Props) {
       >
         <Thumbnail />
         <View style={uploadItemStyles.textContainer}>
-          <Text style={{ ...generic.maharaText }} isTruncated fontSize="md" fontWeight="light">
+          <Text style={{ ...generic.regularText }} isTruncated fontSize="md" fontWeight="light">
             {displayName}{' '}
           </Text>
         </View>

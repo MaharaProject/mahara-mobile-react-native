@@ -80,7 +80,7 @@ export default function LocalLogin(props: Props) {
         <Stack space={4} w="100%" alignItems="center">
           <Input
             fontSize="md"
-            style={{ ...generic.maharaText, ...LocalLoginStyles.input }}
+            style={{ ...generic.regularText, ...LocalLoginStyles.input }}
             placeholder={t`Username`}
             autoCapitalize="none"
             onChangeText={(usernameInput) => setUsername(usernameInput)}
@@ -92,7 +92,7 @@ export default function LocalLogin(props: Props) {
           />
           <Input
             fontSize="md"
-            style={{ ...LocalLoginStyles.input, ...generic.maharaText }}
+            style={{ ...LocalLoginStyles.input, ...generic.regularText }}
             onChangeText={(passwordInput) => setPassword(passwordInput)}
             variant="filled"
             w={{

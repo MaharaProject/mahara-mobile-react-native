@@ -25,12 +25,12 @@ const buttons = StyleSheet.create({
     fontSize: styles.font.md,
     alignSelf: 'center',
     textDecorationLine: 'underline',
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansRegular'
   },
   light: {
     borderColor: styles.colors.light,
     color: styles.colors.light,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansRegular'
   },
   cancel: {
     // backgroundColor: styles.colors.lightgrey,

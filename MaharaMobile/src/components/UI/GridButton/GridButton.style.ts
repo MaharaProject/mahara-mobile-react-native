@@ -14,7 +14,7 @@ const gridButtonStyles = StyleSheet.create({
     color: styles.colors.light,
     marginBottom: styles.padding.md,
     marginHorizontal: styles.padding.md,
-    fontFamily: generic.maharaText.fontFamily
+    fontFamily: generic.regularText.fontFamily
   },
   imageWrapper: {
     height: '35%',

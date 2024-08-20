@@ -43,7 +43,7 @@ export default function TokenInput(props: Props) {
           height={styles.heights.input}
           autoCapitalize="none"
           onChangeText={(input) => setToken(input.trim())}
-          style={{ ...generic.maharaText, ...TokenLoginStyles.input }}
+          style={{ ...generic.regularText, ...TokenLoginStyles.input }}
           variant="filled"
           w={{
             base: '100%',

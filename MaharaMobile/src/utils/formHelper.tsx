@@ -28,7 +28,7 @@ export function RequiredWarningText(props: { customText?: string }) {
     <Text
       fontWeight={200}
       fontSize="md"
-      style={{ color: styles.colors.warn, ...generic.maharaText }}
+      style={{ color: styles.colors.warn, ...generic.regularText }}
     >
       {props.customText ? props.customText : t`This field is required.`}
     </Text>

@@ -25,7 +25,7 @@ function LinkText(props: Props) {
     <Text>
       {props.noStartSpace ? '' : ' '}
       <Text
-        style={{ ...LinkTextStyles.links, ...generic.maharaText }}
+        style={{ ...LinkTextStyles.links, ...generic.regularText }}
         onPress={props.url ? () => Linking.openURL(props.url ?? 'mahara.org') : props.onPress}
       >
         {props.text}

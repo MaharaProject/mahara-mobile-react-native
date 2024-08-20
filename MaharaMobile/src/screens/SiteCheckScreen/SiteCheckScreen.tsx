@@ -153,7 +153,7 @@ function SiteCheckScreen(props: Props) {
 
           <Input
             type="text"
-            style={{ ...generic.maharaText }}
+            style={{ ...generic.regularText }}
             keyboardType={Platform.OS === 'ios' ? 'url' : 'default'}
             autoCapitalize="none"
             onChangeText={onUpdateURL}

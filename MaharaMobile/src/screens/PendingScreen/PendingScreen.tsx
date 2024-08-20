@@ -156,7 +156,7 @@ function PendingScreen(props: Props) {
     return (
       <View style={pendingScreenStyles.noPending}>
         <UploadSVG />
-        <Text style={{ ...pendingScreenStyles.noPendingText, ...generic.maharaText }}>
+        <Text style={{ ...pendingScreenStyles.noPendingText, ...generic.regularText }}>
           <Trans>Your upload queue is empty</Trans>
         </Text>
       </View>

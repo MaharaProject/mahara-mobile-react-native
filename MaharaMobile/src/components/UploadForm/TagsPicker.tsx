@@ -157,7 +157,7 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
         {showTagInput && (
           <View style={uploadFormStyles.tagsContainer}>
             <Input
-              style={{ ...generic.maharaText }}
+              style={{ ...generic.regularText }}
               placeholder={t`New tag...`}
               onChangeText={(text: string) => setNewTagText(text)}
               InputRightElement={[

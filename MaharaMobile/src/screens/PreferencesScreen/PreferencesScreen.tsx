@@ -138,7 +138,7 @@ function PreferencesScreen() {
       <View style={PreferencesScreenStyle.imageContainer}>
         <Image source={pIcon ? { uri: pIcon } : image} style={PreferencesScreenStyle.image} />
       </View>
-      <Text style={{ ...PreferencesScreenStyle.name, ...generic.maharaText }}>{userName}</Text>
+      <Text style={{ ...PreferencesScreenStyle.name, ...generic.regularText }}>{userName}</Text>
     </View>
   );
 

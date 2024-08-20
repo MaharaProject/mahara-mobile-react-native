@@ -23,7 +23,7 @@ function MediumText(props: Props) {
         fontSize: styles.font.md,
         flexWrap: 'wrap',
         ...props.style,
-        ...generic.maharaText
+        ...generic.regularText
       }}
     >
       {props.children != null && props.childrenFirst ? props.children : null}

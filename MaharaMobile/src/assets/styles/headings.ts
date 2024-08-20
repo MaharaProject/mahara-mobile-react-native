@@ -7,21 +7,21 @@ const headingStyles = StyleSheet.create({
     color: styles.colors.light,
     marginBottom: styles.padding.md,
     marginTop: styles.padding.md,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansRegular'
   },
   subHeading1: {
     // fontSize: styles.font.lg,
     color: styles.colors.dark,
     marginBottom: styles.padding.sm,
     marginTop: styles.padding.sm,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansExtraBold'
   },
   subHeading2: {
     // fontSize: styles.font.sm,
     color: styles.colors.dark,
     marginBottom: styles.padding.sm,
     marginTop: styles.padding.sm,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansRegular'
   }
 });
 

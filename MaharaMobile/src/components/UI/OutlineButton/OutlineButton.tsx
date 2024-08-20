@@ -24,7 +24,7 @@ function OutlineButton(props: Props) {
         colorScheme={props.light ? 'dark' : 'primary'}
         rounded="full"
         variant="outline"
-        style={{ ...generic.maharaText }} // TODO: not working
+        style={{ ...generic.regularText }} // TODO: not working
         leftIcon={
           props.icon ? (
             <FontAwesomeIcon icon={props.icon} size={20} color={buttonColour} />

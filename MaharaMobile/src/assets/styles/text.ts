@@ -5,7 +5,7 @@ import styles from './variables';
 const textStyles = StyleSheet.create({
   textWhite: {
     color: styles.colors.light,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansRegular'
   },
   center: {
     textAlign: 'center'
@@ -14,7 +14,7 @@ const textStyles = StyleSheet.create({
     color: styles.colors.siteCheckErrorTextPink,
     fontSize: styles.font.sm,
     padding: styles.padding.sm,
-    fontFamily: 'OpenSans-Regular'
+    fontFamily: 'OpenSansRegular'
   }
 });
 

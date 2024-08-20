@@ -17,7 +17,7 @@ function MenuItem(props: MenuItemProps) {
       underlayColor="#3E5027"
       style={{
         ...props.style,
-        ...generic.maharaText
+        ...generic.regularText
       }}
     >
       <Text style={menuItemStyles.listItemText}>{props.title}</Text>

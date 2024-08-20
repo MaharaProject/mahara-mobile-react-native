@@ -16,7 +16,7 @@ function FormInput(props: Props) {
       {/* {props.multiline &&
         <TextArea
         size="lg"
-        style={{ ...generic.maharaText }}
+        style={{ ...generic.regularText }}
         onChangeText={props.onChangeText}
         value={props.value}
         />
@@ -27,7 +27,7 @@ function FormInput(props: Props) {
           fontSize="lg"
           value={props.value}
           onChangeText={props.onChangeText}
-          style={{ ...generic.maharaText }}
+          style={{ ...generic.regularText }}
         />
       }
     </Box>

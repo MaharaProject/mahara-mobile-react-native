@@ -11,7 +11,7 @@ type Props = {
 
 function SubHeading(props: Props) {
   return (
-    <Text fontSize="lg" style={{ ...generic.maharaTextBold, ...headingStyles.subHeading1 }}>
+    <Text fontSize="lg" style={{ ...generic.textBold, ...headingStyles.subHeading1 }}>
       {props.text}
       {props.required ? <RedAsterisk /> : null}
     </Text>
