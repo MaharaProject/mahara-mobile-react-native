@@ -628,11 +628,14 @@
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mahara Mobile";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 22.10.3;
+				MARKETING_VERSION = 24.08.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -640,6 +643,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.mahara.mobile.app;
 				PRODUCT_NAME = MaharaMobile;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -660,11 +666,14 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = B6SWKBKRQH;
 				INFOPLIST_FILE = MaharaMobile/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Mahara Mobile";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 22.10.3;
+				MARKETING_VERSION = 24.08.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -673,6 +682,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.mahara.mobile.app;
 				PRODUCT_NAME = MaharaMobile;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";

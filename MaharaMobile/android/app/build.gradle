@@ -98,7 +98,7 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 127
+        versionCode 129
         versionName "24.8.1"
     }
 
