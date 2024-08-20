@@ -1,13 +1,13 @@
 import { faFolder } from '@fortawesome/free-regular-svg-icons';
 import { faArrowRight, faCamera } from '@fortawesome/free-solid-svg-icons';
 import {
-  File,
-  JournalEntry,
-  MaharaFile,
-  PendingJEntry,
-  PendingMFile,
-  UserBlog,
-  UserFolder
+    File,
+    JournalEntry,
+    MaharaFile,
+    PendingJEntry,
+    PendingMFile,
+    UserBlog,
+    UserFolder
 } from 'models/models';
 
 // action types - payloads of information that send data from your application to your store
@@ -72,16 +72,16 @@ export const TOGGLE_LANGUAGE = 'TOGGLE_LANGUAGE';
 export const GUEST_USERNAME = 'Guest';
 export const GUEST_TOKEN = 'GUEST_TOKEN';
 export const GUEST_BLOG: UserBlog = {
-  id: '-1',
-  title: 'Guest Blog',
-  description: '',
-  locked: false,
-  numBlogPosts: -1
+    id: '-1',
+    title: 'Guest Blog',
+    description: '',
+    locked: false,
+    numBlogPosts: -1
 };
 
 export const GUEST_FOLDER: UserFolder = {
-  id: -1,
-  title: 'Guest Images'
+    id: -1,
+    title: 'Guest Images'
 };
 
 // URLS
@@ -109,31 +109,31 @@ export const CAMERA_ICON = faCamera;
 
 export const emptyFile: File = { uri: '', type: '', name: '', size: 0 };
 export const emptyMFile: MaharaFile = {
-  webservice: '',
-  wstoken: '',
-  foldername: '',
-  name: '',
-  description: '',
-  filetoupload: emptyFile
+    webservice: '',
+    wstoken: '',
+    foldername: '',
+    name: '',
+    description: '',
+    filetoupload: emptyFile
 };
 export const emptyPendingMFile: PendingMFile = {
-  id: '',
-  url: '',
-  maharaFormData: emptyMFile,
-  mimetype: '',
-  type: 'FILE'
+    id: '',
+    url: '',
+    maharaFormData: emptyMFile,
+    mimetype: '',
+    type: 'FILE'
 };
 
 export const emptyJEntry: JournalEntry = {
-  wstoken: '',
-  blogid: '',
-  wsfunction: '',
-  title: '',
-  body: '',
-  isdraft: false
+    wstoken: '',
+    blogid: '',
+    wsfunction: '',
+    title: '',
+    body: '',
+    isdraft: false
 };
 export const emptyPendingJEntry: PendingJEntry = {
-  id: '',
-  url: '',
-  journalEntry: emptyJEntry
+    id: '',
+    url: '',
+    journalEntry: emptyJEntry
 };

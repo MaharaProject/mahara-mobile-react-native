@@ -3,5 +3,5 @@ import { render } from 'test-utils';
 import { Spinner } from './Spinner';
 
 it('renders correctly', () => {
-  render(<Spinner />);
+    render(<Spinner />);
 });

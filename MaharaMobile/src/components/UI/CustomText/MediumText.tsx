@@ -4,10 +4,10 @@ import generic from 'assets/styles/generic';
 import styles from 'assets/styles/variables';
 
 type Props = {
-  children?: React.ReactNode;
-  text?: string;
-  childrenFirst?: boolean;
-  style?: any;
+    children?: React.ReactNode;
+    text?: string;
+    childrenFirst?: boolean;
+    style?: any;
 };
 
 /**
@@ -17,20 +17,20 @@ type Props = {
  * @param props
  */
 function MediumText(props: Props) {
-  return (
-    <Text
-      style={{
-        fontSize: styles.font.md,
-        flexWrap: 'wrap',
-        ...props.style,
-        ...generic.regularText
-      }}
-    >
-      {props.children != null && props.childrenFirst ? props.children : null}
-      {!!props.text && props.text}
-      {props.children && !props.childrenFirst ? props.children : null}
-    </Text>
-  );
+    return (
+        <Text
+            style={{
+                fontSize: styles.font.md,
+                flexWrap: 'wrap',
+                ...props.style,
+                ...generic.regularText
+            }}
+        >
+            {props.children != null && props.childrenFirst ? props.children : null}
+            {!!props.text && props.text}
+            {props.children && !props.childrenFirst ? props.children : null}
+        </Text>
+    );
 }
 
 export default MediumText;

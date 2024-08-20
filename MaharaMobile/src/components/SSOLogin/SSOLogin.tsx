@@ -5,52 +5,52 @@ import uuid from 'react-native-uuid';
 import { WebView } from 'react-native-webview';
 
 type Props = {
-  url: string;
-  onGetToken: (token: string) => void;
+    url: string;
+    onGetToken: (token: string) => void;
 };
 
 export default function SSOLogin(props: Props) {
-  let webref = useRef(null);
+    let webref = useRef(null);
 
-  // Params for SSO login to retain authentication
-  const service = 'maharamobile';
-  const component = 'module/mobileapi';
-  const manufacturer = getManufacturer();
-  const model = getModel();
-  const id = uuid.v4();
-  const url =
-    `${props.url}module/mobileapi/tokenform.php` +
-    `?service=${service}&component=${encodeURIComponent(component)}&clientname=${encodeURIComponent(
-      'Mahara Mobile'
-    )}&clientenv=${encodeURIComponent(
-      `${Platform.OS}, ${manufacturer}, ${model}`
-    )}&clientguid=${id}#sso`;
+    // Params for SSO login to retain authentication
+    const service = 'maharamobile';
+    const component = 'module/mobileapi';
+    const manufacturer = getManufacturer();
+    const model = getModel();
+    const id = uuid.v4();
+    const url =
+        `${props.url}module/mobileapi/tokenform.php` +
+        `?service=${service}&component=${encodeURIComponent(
+            component
+        )}&clientname=${encodeURIComponent('Mahara Mobile')}&clientenv=${encodeURIComponent(
+            `${Platform.OS}, ${manufacturer}, ${model}`
+        )}&clientguid=${id}#sso`;
 
-  // Function to watch window until it has obtained maharatoken
-  const GET_TOKEN_JS = `(function() {
+    // Function to watch window until it has obtained maharatoken
+    const GET_TOKEN_JS = `(function() {
     setTimeout(function() {
     window.ReactNativeWebView.postMessage(maharatoken);
     }, 500);
   })();`;
 
-  return (
-    <WebView
-      ref={(ref) => {
-        webref = ref;
-      }}
-      source={{ uri: url }}
-      incognito
-      injectedJavaScript={GET_TOKEN_JS}
-      onMessage={(event) => {
-        // check for token inside event.nativeEvent.data
-        if (!event.data && event.data !== '') {
-          const token = event.nativeEvent.data;
-          if (webref) {
-            webref.stopLoading();
-          }
-          props.onGetToken(token);
-        }
-      }}
-    />
-  );
+    return (
+        <WebView
+            ref={(ref) => {
+                webref = ref;
+            }}
+            source={{ uri: url }}
+            incognito
+            injectedJavaScript={GET_TOKEN_JS}
+            onMessage={(event) => {
+                // check for token inside event.nativeEvent.data
+                if (!event.data && event.data !== '') {
+                    const token = event.nativeEvent.data;
+                    if (webref) {
+                        webref.stopLoading();
+                    }
+                    props.onGetToken(token);
+                }
+            }}
+        />
+    );
 }

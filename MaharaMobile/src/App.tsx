@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import * as RNLocalize from 'react-native-localize';
 import { config } from '@gluestack-ui/config';
-import { NativeBaseProvider } from '@gluestack-ui/themed-native-base';
+import { NativeBaseProvider, useToast } from '@gluestack-ui/themed-native-base';
 import { I18nProvider } from '@lingui/react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
@@ -11,34 +11,36 @@ import configureStore from 'store/store';
 import { maharaTheme, maharaThemeBase } from 'utils/theme';
 
 export function I18nProviderWrapper({ children }: { children: ReactElement }) {
-  useEffect(() => {
-    const FALL_BACK_LANG = 'en';
-    const userLangTags = RNLocalize.getLocales().map((locale) => locale.languageTag);
-    const bestFitLanguageTag = RNLocalize.findBestLanguageTag(userLangTags)?.languageTag;
 
-    const langCode =
-      RNLocalize.getLocales().find((locale) => locale.languageTag === bestFitLanguageTag)
-        ?.languageCode || FALL_BACK_LANG;
+    const toast = useToast();
 
-    changeActiveLanguage(langCode);
-  }, []);
+    useEffect(() => {
+        const FALL_BACK_LANG = 'en';
+        const userLangTags = RNLocalize.getLocales().map((locale) => locale.languageTag);
+        const bestFitLanguageTag = RNLocalize.findBestLanguageTag(userLangTags)?.languageTag;
+        const langCode =
+            RNLocalize.getLocales().find((locale) => locale.languageTag === bestFitLanguageTag)
+                ?.languageCode || FALL_BACK_LANG;
 
-  return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
+        changeActiveLanguage(langCode, toast);
+    }, []);
+
+    return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 }
 
 function App(): React.JSX.Element {
-  const store = configureStore();
+    const store = configureStore();
 
-  return (
-    <NativeBaseProvider theme={maharaThemeBase}>
-      <StatusBar backgroundColor={maharaTheme.colors.green} />
-      <Provider store={store}>
-        <I18nProviderWrapper>
-          <AppNavigator />
-        </I18nProviderWrapper>
-      </Provider>
-    </NativeBaseProvider>
-  );
+    return (
+        <NativeBaseProvider theme={maharaThemeBase}>
+            <StatusBar backgroundColor={maharaTheme.colors.green} />
+            <Provider store={store}>
+                <I18nProviderWrapper>
+                    <AppNavigator />
+                </I18nProviderWrapper>
+            </Provider>
+        </NativeBaseProvider>
+    );
 }
 
 export default App;

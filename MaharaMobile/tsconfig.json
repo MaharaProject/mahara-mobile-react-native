@@ -1,13 +1,13 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json" /* Recommended React Native TSConfig base */,
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "baseUrl": "src",
-    "jsx": "react",
-    "paths": {
-      "test-utils": ["../.test/test-utils"]
-    }
-  },
-  "include": ["src/**/*", ".test/**/*"],
-  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
+    "extends": "@react-native/typescript-config/tsconfig.json" /* Recommended React Native TSConfig base */,
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "baseUrl": "src",
+        "jsx": "react",
+        "paths": {
+            "test-utils": ["../.test/test-utils"]
+        }
+    },
+    "include": ["src/**/*", ".test/**/*"],
+    "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

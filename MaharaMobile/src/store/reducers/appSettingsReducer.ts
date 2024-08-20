@@ -2,24 +2,24 @@ import { SET_LANGUAGE } from 'utils/constants';
 import { RootState } from './rootReducer';
 
 export type AppSettingsState = {
-  language: string;
+    language: string;
 };
 
 const initialState: AppSettingsState = {
-  language: 'en'
+    language: 'en'
 };
 
 export const appSettingsReducer = (state = initialState, action: any): AppSettingsState => {
-  switch (action.type) {
-    case SET_LANGUAGE:
-      return {
-        ...state,
-        language: action.lang
-      };
+    switch (action.type) {
+        case SET_LANGUAGE:
+            return {
+                ...state,
+                language: action.lang
+            };
 
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 };
 
 // Selector

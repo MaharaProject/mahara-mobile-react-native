@@ -4,23 +4,23 @@ import { t } from '@lingui/macro';
 import buttons from 'assets/styles/buttons';
 
 type Props = {
-  onPress: () => void;
+    onPress: () => void;
 };
 
 function CancelButton(props: Props) {
-  return (
-    <Button
-      variant="solid"
-      rounded="full"
-      accessibilityLabel="Cancel"
-      onPress={() => (props.onPress ? props.onPress() : null)}
-      colorScheme="trueGray"
-      size="lg"
-      style={{ ...buttons.md, ...buttons.cancel }}
-    >
-      {t`Cancel`}
-    </Button>
-  );
+    return (
+        <Button
+            variant="solid"
+            rounded="full"
+            accessibilityLabel="Cancel"
+            onPress={() => (props.onPress ? props.onPress() : null)}
+            colorScheme="trueGray"
+            size="lg"
+            style={{ ...buttons.md, ...buttons.cancel }}
+        >
+            {t`Cancel`}
+        </Button>
+    );
 }
 
 export default CancelButton;

@@ -5,25 +5,25 @@ import { render } from 'test-utils';
 import PendingScreen from './PendingScreen';
 
 it('renders correctly', () => {
-  const initialState = {
-    appState: {
-      uploadFiles: {
-        uploadFilesIds: []
-      },
-      uploadJEntries: {
-        uploadJEntriesIds: []
-      }
-    },
-    domainData: {
-      loginInfo: {}
-    }
-  };
+    const initialState = {
+        appState: {
+            uploadFiles: {
+                uploadFilesIds: []
+            },
+            uploadJEntries: {
+                uploadJEntriesIds: []
+            }
+        },
+        domainData: {
+            loginInfo: {}
+        }
+    };
 
-  const mockStore = configureStore();
+    const mockStore = configureStore();
 
-  render(
-    <Provider store={mockStore(initialState)}>
-      <PendingScreen route={() => jest.mock('route', () => {})} />
-    </Provider>
-  );
+    render(
+        <Provider store={mockStore(initialState)}>
+            <PendingScreen route={() => jest.mock('route', () => {})} />
+        </Provider>
+    );
 });
