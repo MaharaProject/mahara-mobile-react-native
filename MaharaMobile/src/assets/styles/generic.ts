@@ -23,7 +23,7 @@ const generic = StyleSheet.create({
     fontFamily: 'OpenSans-Regular' // fontFamily: 'OpenSans-Regular'
   },
   maharaTextBold: {
-    fontFamily: 'OpenSans-Bold'
+    fontFamily: 'OpenSansBold'
   }
 });
 

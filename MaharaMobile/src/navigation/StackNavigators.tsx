@@ -21,7 +21,7 @@ const headerConfigForTabStacks: StackNavigationOptions = {
   headerStyle: { backgroundColor: styles.colors.primary },
   headerTintColor: styles.colors.light,
   headerTitleAlign: 'center',
-  headerTitleStyle: { fontFamily: 'OpenSans-Bold', fontSize: styles.font.md }
+  headerTitleStyle: { fontFamily: 'OpenSansBold', fontSize: styles.font.md }
 };
 
 const AddItems = createStackNavigator();

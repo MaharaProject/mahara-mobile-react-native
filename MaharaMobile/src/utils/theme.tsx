@@ -20,8 +20,8 @@ export const maharaTheme = {
         italic: 'OpenSans-SemiBoldItalic'
       },
       500: {
-        normal: 'OpenSans-Bold',
-        italic: 'OpenSans-BoldItalic'
+        normal: 'OpenSansBold',
+        italic: 'OpenSansBoldItalic'
       },
       600: {
         normal: 'OpenSans-ExtraBold',
