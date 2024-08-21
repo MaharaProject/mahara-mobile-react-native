@@ -11,7 +11,6 @@ import configureStore from 'store/store';
 import { maharaTheme, maharaThemeBase } from 'utils/theme';
 
 export function I18nProviderWrapper({ children }: { children: ReactElement }) {
-
     const toast = useToast();
 
     useEffect(() => {
@@ -23,7 +22,7 @@ export function I18nProviderWrapper({ children }: { children: ReactElement }) {
                 ?.languageCode || FALL_BACK_LANG;
 
         changeActiveLanguage(langCode, toast);
-    }, []);
+    }, [toast]);
 
     return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 }

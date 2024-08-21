@@ -8,7 +8,7 @@ import { RedAsterisk } from 'utils/formHelper';
 type Props = {
     text: string;
     required?: boolean;
-    style?: any;
+    // style?: any;
 };
 
 function SubHeadingNoColon(props: Props) {
