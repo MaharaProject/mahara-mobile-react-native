@@ -261,7 +261,7 @@ msgstr ""
 #~ msgid "Device language '{newActiveLanguage}' is not supported"
 #~ msgstr ""
 
-#: src/i18n.ts:36
+#: src/i18n.ts:32
 msgid "Device language is not supported"
 msgstr ""
 
@@ -308,7 +308,7 @@ msgid "Files have been uploaded to your Mahara successfully!"
 msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:356
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:182
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:184
 msgid "Folder"
 msgstr ""
 
@@ -403,7 +403,7 @@ msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr ""
 
 #: src/components/UploadForm/UploadFormComponents.tsx:57
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:183
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:185
 msgid "Journal"
 msgstr ""
 
@@ -733,7 +733,7 @@ msgstr ""
 msgid "Storage and security of your personal information"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:189
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:191
 msgid "Sync"
 msgstr ""
 
@@ -755,7 +755,7 @@ msgstr ""
 msgid "Terms and conditions"
 msgstr ""
 
-#: src/i18n.ts:37
+#: src/i18n.ts:33
 msgid "The app will display in 'en' instead of '"
 msgstr ""
 
@@ -839,11 +839,11 @@ msgstr ""
 msgid "To upload pending items"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:171
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:173
 msgid "Update preferences"
 msgstr ""
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:181
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:183
 msgid "Updated preferences"
 msgstr ""
 

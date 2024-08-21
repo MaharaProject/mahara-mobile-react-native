@@ -13,6 +13,8 @@ import { maharaTheme, maharaThemeBase } from 'utils/theme';
 export function I18nProviderWrapper({ children }: { children: ReactElement }) {
     const toast = useToast();
 
+    i18n.activate('en');
+
     useEffect(() => {
         const FALL_BACK_LANG = 'en';
         const userLangTags = RNLocalize.getLocales().map((locale) => locale.languageTag);

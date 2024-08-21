@@ -251,7 +251,7 @@ msgstr "설명"
 #~ msgid "Device language '{newActiveLanguage}' is not supported"
 #~ msgstr ""
 
-#: src/i18n.ts:36
+#: src/i18n.ts:32
 msgid "Device language is not supported"
 msgstr ""
 
@@ -298,7 +298,7 @@ msgid "Files have been uploaded to your Mahara successfully!"
 msgstr "파일이 Mahara에 성공적으로 업로드되었습니다!"
 
 #: src/components/UploadForm/UploadForm.tsx:356
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:182
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:184
 msgid "Folder"
 msgstr "볼더"
 
@@ -385,7 +385,7 @@ msgid "Items in the upload queue will not be retrievable once logged out."
 msgstr "로그 아웃 한 후에 업로드 대기열의 항목을 검색 할 수 없습니다."
 
 #: src/components/UploadForm/UploadFormComponents.tsx:57
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:183
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:185
 msgid "Journal"
 msgstr "저널"
 
@@ -686,7 +686,7 @@ msgstr "녹화 중지"
 msgid "Storage and security of your personal information"
 msgstr "개인 정보의 보관 및 보안"
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:189
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:191
 msgid "Sync"
 msgstr ""
 
@@ -708,7 +708,7 @@ msgstr "태그를 제거하려면 탭하세요"
 msgid "Terms and conditions"
 msgstr "이용 약관"
 
-#: src/i18n.ts:37
+#: src/i18n.ts:33
 msgid "The app will display in 'en' instead of '"
 msgstr ""
 
@@ -788,11 +788,11 @@ msgstr "허용되는 최대 범위까지 ..."
 msgid "To upload pending items"
 msgstr "보류중인 항목을 업로드하려면"
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:171
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:173
 msgid "Update preferences"
 msgstr "환경 설정 업데이트"
 
-#: src/screens/PreferencesScreen/PreferencesScreen.tsx:181
+#: src/screens/PreferencesScreen/PreferencesScreen.tsx:183
 msgid "Updated preferences"
 msgstr "환경 설정 업데이트"
 
