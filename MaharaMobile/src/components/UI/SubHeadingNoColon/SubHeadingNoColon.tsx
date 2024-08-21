@@ -13,10 +13,7 @@ type Props = {
 
 function SubHeadingNoColon(props: Props) {
     return (
-        <Text
-            fontSize="lg"
-            style={{ fontFamily: getFontFamily(true, 'bold'), ...props.style }}
-        >
+        <Text fontSize="lg" style={{ fontFamily: getFontFamily(true, 'bold'), ...props.style }}>
             {props.text}
             {props.required ? <RedAsterisk /> : null}
         </Text>

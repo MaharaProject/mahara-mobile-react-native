@@ -163,7 +163,7 @@ function PreferencesScreen() {
 
     return (
         <View style={PreferencesScreenStyle.view}>
-            <VStack space='xl'>
+            <VStack space="xl">
                 {renderProfile()}
                 {defaultFolderPicker()}
                 {defaultBlogPicker()}
