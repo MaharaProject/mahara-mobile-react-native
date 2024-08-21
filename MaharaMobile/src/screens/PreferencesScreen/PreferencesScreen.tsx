@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { faSave, faSync } from '@fortawesome/free-solid-svg-icons';
-import { Box, Select, Spacer, Text } from '@gluestack-ui/themed-native-base';
+import { Box, Select, Spacer, Text, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
 import { Alert, Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
@@ -163,9 +163,11 @@ function PreferencesScreen() {
 
     return (
         <View style={PreferencesScreenStyle.view}>
-            {renderProfile()}
-            {defaultFolderPicker()}
-            {defaultBlogPicker()}
+            <VStack space='xl'>
+                {renderProfile()}
+                {defaultFolderPicker()}
+                {defaultBlogPicker()}
+            </VStack>
             <Spacer />
             <MediumButtonDark
                 text={t`Update preferences`}

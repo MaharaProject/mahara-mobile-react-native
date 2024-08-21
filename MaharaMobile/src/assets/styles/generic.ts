@@ -23,7 +23,7 @@ const generic = StyleSheet.create({
         fontFamily: 'OpenSansRegular' // fontFamily: 'OpenSansRegular'
     },
     textBold: {
-        fontFamily: 'OpenSansExtraBold'
+        fontFamily: 'OpenSansBold'
     }
 });
 

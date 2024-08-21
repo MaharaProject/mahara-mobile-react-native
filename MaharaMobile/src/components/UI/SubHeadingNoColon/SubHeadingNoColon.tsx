@@ -8,15 +8,14 @@ import { RedAsterisk } from 'utils/formHelper';
 type Props = {
     text: string;
     required?: boolean;
-    // style?: any;
+    style?: any;
 };
 
 function SubHeadingNoColon(props: Props) {
     return (
         <Text
             fontSize="lg"
-            style={{ fontFamily: getFontFamily(true, 'bold') }}
-            // style={{ ...headingStyles.subHeading1, ...props.style }}
+            style={{ fontFamily: getFontFamily(true, 'bold'), ...props.style }}
         >
             {props.text}
             {props.required ? <RedAsterisk /> : null}
