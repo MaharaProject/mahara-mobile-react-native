@@ -261,7 +261,7 @@ msgstr "Description"
 #~ msgid "Device language '{newActiveLanguage}' is not supported"
 #~ msgstr ""
 
-#: src/i18n.ts:32
+#: src/i18n.ts:34
 msgid "Device language is not supported"
 msgstr ""
 
@@ -755,7 +755,7 @@ msgstr "Toucher pour retirer le mot clé"
 msgid "Terms and conditions"
 msgstr "Conditions d'utilisation"
 
-#: src/i18n.ts:33
+#: src/i18n.ts:35
 msgid "The app will display in 'en' instead of '"
 msgstr ""
 
