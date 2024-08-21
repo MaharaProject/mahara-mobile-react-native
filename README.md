@@ -37,6 +37,14 @@ Source files are in /src
 
 /utils -- reusable helpers
 
+## Developer notes
+
+### Internationalisation with [linguiJS](https://lingui.dev)
+
+If an error comes on loading the app relating to casting, ensure the device language is set to English. Some errors come from when the device language is not set to English.
+
+`npm run extract && npm run compile` is required every time a file with translatable text is updated so ensure that the string key from the messages.js files do not show up on the app, but instead the proper translation
+
 ## Copyright notice
 
 Copyright (C) 2019-2021 Catalyst IT and others; see:
