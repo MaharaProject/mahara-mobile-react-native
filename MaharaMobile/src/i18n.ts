@@ -25,12 +25,10 @@ function displayLanguageToast(toast: any, title: string, description: string) {
 
 export const changeActiveLanguage = (newActiveLanguage: string, toast: any) => {
     const supportedLangsKeys = Object.keys(supportedLanguages);
-
-    if (newActiveLanguage in supportedLangsKeys) {
+    if (supportedLangsKeys.includes(newActiveLanguage)) {
         i18n.activate(newActiveLanguage);
     } else {
         i18n.activate('en');
-
         const title = t`Device language is not supported`;
         const description = `${t`The app will display in 'en' instead of '` + newActiveLanguage}'`;
         displayLanguageToast(toast, title, description);
