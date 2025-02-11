@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/screens/AboutScreen/AboutScreen.tsx:17
 #~ msgid "\"Mahara Project."
-#~ msgstr ""
+#~ msgstr "\"Проект Махара."
 
 #: src/screens/AboutScreen/AboutScreen.tsx:10
 #: src/screens/HelpScreen/HelpScreen.tsx:9
@@ -26,59 +26,59 @@ msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:161
 msgid "A file has been added."
-msgstr ""
+msgstr "Файл добавлен."
 
 #: src/components/UploadForm/UploadForm.tsx:203
 #~ msgid "A file is required."
-#~ msgstr ""
+#~ msgstr "Загрузите файл."
 
 #: src/navigation/StackNavigators.tsx:30
 #: src/screens/MenuScreen/MenuScreen.tsx:15
 msgid "About"
-msgstr ""
+msgstr "Информация"
 
 #: src/screens/AboutScreen/AboutScreen.tsx:56
 #~ msgid "About Mahara Mobile"
-#~ msgstr ""
+#~ msgstr "О Махара Мобайл"
 
 #: src/components/AddAudio/AddAudio.tsx:45
 #: src/components/AddAudio/AddAudio.tsx:60
 #: src/components/AddAudio/AddAudio.tsx:45
 #: src/components/AddAudio/AddAudio.tsx:60
 msgid "Access permission"
-msgstr ""
+msgstr "Права доступа"
 
 #: src/components/LoginTypes/LoginTypes.tsx:24
 msgid "Access token"
-msgstr ""
+msgstr "Маркер доступа"
 
 #: src/screens/AddItemScreen/AddItemScreen.tsx:56
 msgid "Add"
-msgstr ""
+msgstr "Добавить"
 
 #: src/navigation/StackNavigators.tsx:27
 msgid "Add an item"
-msgstr ""
+msgstr "Добавить элемент"
 
 #: src/navigation/StackNavigators.tsx:25
 msgid "Add item"
-msgstr ""
+msgstr "Добавить элемент"
 
 #: src/components/UploadForm/TagsPicker.tsx:119
 msgid "Add new tag +"
-msgstr ""
+msgstr "Добавить новый тег +"
 
 #: src/screens/AddItemScreen/AddItemScreen.tsx:53
 #~ msgid "Add {0}"
-#~ msgstr ""
+#~ msgstr "Добавить {0}"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:49
 msgid "Added to upload queue successfully!"
-msgstr ""
+msgstr "Успешно добавлено в очередь для загрузки!"
 
 #: src/components/LoginTypes/LoginTypes.tsx:76
 #~ msgid "Address of your Mahara site"
-#~ msgstr ""
+#~ msgstr "Адрес вашего Махара сайта"
 
 #: src/screens/TermsScreen/TermsScreen.tsx:51
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
@@ -91,46 +91,46 @@ msgstr ""
 #: src/components/AddAudio/AddAudio.tsx:62
 #: src/components/AddAudio/AddAudio.tsx:77
 msgid "Allow"
-msgstr ""
+msgstr "Разрешить"
 
 #: src/components/AddAudio/AddAudio.tsx:46
 #: src/components/AddAudio/AddAudio.tsx:46
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
-msgstr ""
+msgstr "Разрешить Махара Мобайл доступ к фотографиям, данным, и файлам на вашем устройстве?"
 
 #: src/components/TakePhoto/TakePhoto.tsx:46
 #: src/components/TakePhoto/TakePhoto.tsx:46
 #~ msgid "Allow Mahara Mobile to access the camera?"
-#~ msgstr ""
+#~ msgstr "Разрешить Махара Мобайл доступ к камере?"
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
-msgstr ""
+msgstr "Разрешить Махара Мобайл читать фотографии, данные, и файлы на вашем устройстве?"
 
 #: src/components/AddAudio/AddAudio.tsx:76
 #: src/components/AddAudio/AddAudio.tsx:76
 msgid "Allow your microphone to record audio and save the files?"
-msgstr ""
+msgstr "Разрешить микрофону записывать звук и сохранять файлы?"
 
 #: src/screens/VersionScreen/VersionScreen.tsx:23
 #~ msgid "App Version"
-#~ msgstr ""
+#~ msgstr "Версия Приложения"
 
 #: src/screens/MenuScreen/MenuScreen.tsx:16
 msgid "App version"
-msgstr ""
+msgstr "Версия Приложения"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:56
 #: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
-msgstr ""
+msgstr "Вы уверены?"
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:19
 #: src/utils/helperFunctions.ts:96
 msgid "Audio"
-msgstr ""
+msgstr "Звук"
 
 #: src/screens/LegalScreen/LegalScreen.tsx:27
 #~ msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app whereas single sign-on takes you to your Mahara site."
