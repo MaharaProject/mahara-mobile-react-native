@@ -1,16 +1,18 @@
 import { Button, useToast } from '@gluestack-ui/themed-native-base';
 import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
-import { en, fr, ko } from 'make-plural';
+import { en, es, fr, ko, ru } from 'make-plural';
 import { Alert } from 'react-native';
 import catalogEn from '../locales/en/messages';
+import catalogEs from '../locales/es/messages';
 import catalogFr from '../locales/fr/messages';
 import catalogKo from '../locales/ko/messages';
 
 export const supportedLanguages = {
     en: catalogEn.messages,
     fr: catalogFr.messages,
-    ko: catalogKo.messages
+    ko: catalogKo.messages,
+    es: catalogEs.messages
 };
 i18n.load(supportedLanguages);
 
