@@ -15,47 +15,47 @@ msgstr ""
 
 #: src/components/UploadForm/UploadForm.tsx:161
 msgid "A file has been added."
-msgstr ""
+msgstr "el archivo se ha añadido"
 
 #: src/navigation/StackNavigators.tsx:30
 #: src/screens/MenuScreen/MenuScreen.tsx:15
 msgid "About"
-msgstr ""
+msgstr "Acerca de"
 
 #: src/components/AddAudio/AddAudio.tsx:45
 #: src/components/AddAudio/AddAudio.tsx:60
 #: src/components/AddAudio/AddAudio.tsx:45
 #: src/components/AddAudio/AddAudio.tsx:60
 msgid "Access permission"
-msgstr ""
+msgstr "Permiso de acceso"
 
 #: src/components/LoginTypes/LoginTypes.tsx:24
 msgid "Access token"
-msgstr ""
+msgstr "Token de acceso"
 
 #: src/screens/AddItemScreen/AddItemScreen.tsx:56
 msgid "Add"
-msgstr ""
+msgstr "Agregar"
 
 #: src/navigation/StackNavigators.tsx:27
 msgid "Add an item"
-msgstr ""
+msgstr "agregar un elemento"
 
 #: src/navigation/StackNavigators.tsx:25
 msgid "Add item"
-msgstr ""
+msgstr "agregar elemento"
 
 #: src/components/UploadForm/TagsPicker.tsx:119
 msgid "Add new tag +"
-msgstr ""
+msgstr "Agregar nueva etiqueta +"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:49
 msgid "Added to upload queue successfully!"
-msgstr ""
+msgstr "¡Agregado a la cola de carga con éxito!"
 
 #: src/screens/TermsScreen/TermsScreen.tsx:51
 msgid "All files and content you upload to a Mahara site are subject to copyright law. You are responsible for ensuring you have appropriate permission to reproduce and publish any work that is not your own."
-msgstr ""
+msgstr "Todos los archivos y el contenido que suba a un sitio de Mahara están sujetos a la ley de derechos de autor. Usted es responsable de asegurarse de tener el permiso adecuado para reproducir y publicar cualquier trabajo que no sea el suyo."
 
 #: src/components/AddAudio/AddAudio.tsx:47
 #: src/components/AddAudio/AddAudio.tsx:62
@@ -64,61 +64,61 @@ msgstr ""
 #: src/components/AddAudio/AddAudio.tsx:62
 #: src/components/AddAudio/AddAudio.tsx:77
 msgid "Allow"
-msgstr ""
+msgstr "Acceso" 
 
 #: src/components/AddAudio/AddAudio.tsx:46
 #: src/components/AddAudio/AddAudio.tsx:46
 msgid "Allow Mahara Mobile to access photos, media, and files on your device?"
-msgstr ""
+msgstr "¿Permitir que Mahara Mobile acceda a fotos, medios y archivos en su dispositivo?"
 
 #: src/components/TakePhoto/TakePhoto.tsx:46
 #: src/components/TakePhoto/TakePhoto.tsx:46
 #~ msgid "Allow Mahara Mobile to access the camera?"
-#~ msgstr ""
+#~ msgstr "¿Permitir que Mahara Mobile acceda a la cámara?"
 
 #: src/components/AddAudio/AddAudio.tsx:61
 #: src/components/AddAudio/AddAudio.tsx:61
 msgid "Allow Mahara Mobile to read photos, media, and files on your device?"
-msgstr ""
+msgstr "¿Permitir que Mahara Mobile lea fotos, medios y archivos en su dispositivo?"
 
 #: src/components/AddAudio/AddAudio.tsx:76
 #: src/components/AddAudio/AddAudio.tsx:76
 msgid "Allow your microphone to record audio and save the files?"
-msgstr ""
+msgstr "¿Permitir que su micrófono grabe audio y guarde los archivos?"
 
 #: src/screens/MenuScreen/MenuScreen.tsx:16
 msgid "App version"
-msgstr ""
+msgstr "Versión de la aplicación"
 
 #: src/screens/PendingScreen/PendingScreen.tsx:56
 #: src/utils/addEditHelperFunctions.tsx:82
 #: src/utils/authHelperFunctions.ts:106
 msgid "Are you sure?"
-msgstr ""
+msgstr "¿Está usted seguro?"
 
 #: src/components/SelectMediaType/SelectMediaType.tsx:19
 #: src/utils/helperFunctions.ts:96
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 #: src/screens/PrivacyScreen/PrivacyScreen.tsx:20
 msgid "By using the full potential of the application, you will need to log into the Mahara site that you are using for your portfolio work. The login form for internal Mahara or LDAP accounts sits in the mobile app, whereas single sign-on takes you to your Mahara site. You may also generate an access token manually on your Mahara site if that feature is enabled."
-msgstr ""
+msgstr "Utilizar todo el potencial de la aplicación, tendrá que iniciar sesión en el sitio de Mahara que está utilizando para su trabajo de cartera. El formulario de inicio de sesión para las cuentas internas de Mahara o LDAP se encuentra en la aplicación móvil, mientras que el inicio de sesión único lo lleva a su sitio de Mahara. También puede generar un token de acceso manualmente en su sitio Mahara si esa característica está habilitada."
 
 #: src/utils/addEditHelperFunctions.tsx:14
 msgid "Camera closed."
-msgstr ""
+msgstr "Camara cerrada"
 
 #: src/components/TakePhoto/TakePhoto.tsx:45
 #: src/components/TakePhoto/TakePhoto.tsx:45
 #~ msgid "Camera persmission"
-#~ msgstr ""
+#~ msgstr "Permisos de cámara"
 
 #: src/components/UI/CancelButton/CancelButton.tsx:12
 #: src/screens/PendingScreen/PendingScreen.tsx:58
 #: src/utils/addEditHelperFunctions.tsx:84
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/screens/TermsScreen/TermsScreen.tsx:109
 msgid "Changes to these Terms and Conditions"
@@ -147,7 +147,7 @@ msgstr ""
 
 #: src/screens/PendingScreen/PendingScreen.tsx:63
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: src/screens/PrivacyScreen/PrivacyScreen.tsx:68
 msgid "Deleting your data"
