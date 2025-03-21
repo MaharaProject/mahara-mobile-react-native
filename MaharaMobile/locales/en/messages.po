@@ -261,7 +261,7 @@ msgstr ""
 #~ msgid "Device language '{newActiveLanguage}' is not supported"
 #~ msgstr ""
 
-#: src/i18n.ts:34
+#: src/i18n.ts:36
 msgid "Device language is not supported"
 msgstr ""
 
@@ -755,7 +755,7 @@ msgstr ""
 msgid "Terms and conditions"
 msgstr ""
 
-#: src/i18n.ts:35
+#: src/i18n.ts:37
 msgid "The app will display in 'en' instead of '"
 msgstr ""
 

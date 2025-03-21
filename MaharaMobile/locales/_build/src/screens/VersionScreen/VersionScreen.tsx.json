@@ -1,0 +1,10 @@
+{
+  "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}.": {
+    "origin": [
+      [
+        "src/screens/VersionScreen/VersionScreen.tsx",
+        15
+      ]
+    ]
+  }
+}

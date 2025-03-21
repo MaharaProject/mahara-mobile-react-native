@@ -7,11 +7,13 @@ import catalogEn from '../locales/en/messages';
 import catalogEs from '../locales/es/messages';
 import catalogFr from '../locales/fr/messages';
 import catalogKo from '../locales/ko/messages';
+import catalogRu from '../locales/ru/messages';
 
 export const supportedLanguages = {
     en: catalogEn.messages,
     fr: catalogFr.messages,
     ko: catalogKo.messages,
+    ru: catalogRu.messages,
     es: catalogEs.messages
 };
 i18n.load(supportedLanguages);
