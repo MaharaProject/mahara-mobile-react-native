@@ -14,7 +14,7 @@ msgstr ""
 #: src/screens/AboutScreen/AboutScreen.tsx:10
 #: src/screens/HelpScreen/HelpScreen.tsx:9
 #~ msgid "..."
-#~ msgstr ""
+#~ msgstr "⚡translation here⚡"
 
 #: src/screens/AboutScreen/AboutScreen.tsx:17
 #~ msgid "\"Mahara Project."
