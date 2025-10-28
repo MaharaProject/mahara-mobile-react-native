@@ -82,9 +82,10 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
 };
 
 export const pickDocument = async (onSetPickedFile: any) => {
-    const DocumentPicker = (await import('react-native-document-picker')).default;
+    const DocumentPicker = (await import('@react-native-documents/picker')).default;
     try {
-        DocumentPicker.pickSingle({
+        // can have a keepLocalCopy attribute
+        DocumentPicker.pick({
             type: [DocumentPicker.types.allFiles]
         }).then((res) => onSetPickedFile(newFile(res.uri, res.type, res.name, res.size)));
     } catch (err) {
