@@ -83,25 +83,29 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
 };
 
 export const pickDocument = async (onSetPickedFile: any) => {
-     try {
-    let result = await DocumentPicker.pick({
+  try {
+    const result = await DocumentPicker.pick({
       mode: 'open',
       allowMultiSelection: false,
     });
 
-    // The new API returns a result object with a 'files' array
-    if (result.files && result.files.length > 0) {
-      const file = result.files[0];
-      onSetPickedFile(newFile(file.uri, file.mimeType, file.name, file.size));
+    console.log('DocumentPicker result:', result);
+
+    // Handle both v10.0 and v10.1 response formats
+    const file = result.files?.[0] || result[0];
+
+    if (file) {
+      const mimeType = file.mimeType || file.type;
+      onSetPickedFile(newFile(file.uri, mimeType, file.name, file.size));
     }
   } catch (err: any) {
-    // Check if user cancelled
-    if (err.code === 'DOCUMENT_PICKER_CANCELED') {
+    console.error('Document picker error:', err);
+
+    if (err.code === 'DOCUMENT_PICKER_CANCELED' || err.message?.includes('cancel')) {
       Alert.alert(`Invalid file`, `Please select a file.`, [
         { text: `Okay`, style: 'destructive' }
       ]);
     } else {
-      console.error('Document picker error:', err);
       Alert.alert('Error', `Failed to pick document: ${err.message || 'Unknown error'}`);
     }
   }
