@@ -10,6 +10,7 @@ import {
 import { File } from 'models/models';
 import { newFile } from 'models/typeCreators';
 import styles from 'screens/AddItemScreen/AddItemScreen.style';
+import DocumentPicker from '@react-native-documents/picker';
 
 const setSelectedImageCallback = (
     response: ImagePickerResponse,
@@ -82,21 +83,28 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
 };
 
 export const pickDocument = async (onSetPickedFile: any) => {
-    const DocumentPicker = (await import('@react-native-documents/picker')).default;
-    try {
-        // can have a keepLocalCopy attribute
-        DocumentPicker.pick({
-            type: [DocumentPicker.types.allFiles]
-        }).then((res) => onSetPickedFile(newFile(res.uri, res.type, res.name, res.size)));
-    } catch (err) {
-        if (DocumentPicker.isCancel(err)) {
-            Alert.alert(t`Invalid file`, t`Please select a file.`, [
-                { text: t`Okay`, style: 'destructive' }
-            ]);
-        } else {
-            Alert.alert(JSON.stringify(err));
-        }
+     try {
+    let result = await DocumentPicker.pick({
+      mode: 'open',
+      allowMultiSelection: false,
+    });
+
+    // The new API returns a result object with a 'files' array
+    if (result.files && result.files.length > 0) {
+      const file = result.files[0];
+      onSetPickedFile(newFile(file.uri, file.mimeType, file.name, file.size));
     }
+  } catch (err: any) {
+    // Check if user cancelled
+    if (err.code === 'DOCUMENT_PICKER_CANCELED') {
+      Alert.alert(`Invalid file`, `Please select a file.`, [
+        { text: `Okay`, style: 'destructive' }
+      ]);
+    } else {
+      console.error('Document picker error:', err);
+      Alert.alert('Error', `Failed to pick document: ${err.message || 'Unknown error'}`);
+    }
+  }
 };
 
 export const renderImagePreview = (uri: string) => (
