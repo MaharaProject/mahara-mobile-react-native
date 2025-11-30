@@ -9,12 +9,10 @@ import MediumText from 'components/UI/CustomText/MediumText';
 function VersionScreen() {
     const version = DeviceInfo.getVersion();
 
-    const android = '13';
-    const ios = '14';
     return (
         <ScrollView style={{ ...generic.wrap, paddingLeft: styles.padding.md }}>
             <MediumText
-                text={t`This version of Mahara Mobile is ${version}. It supports up to Android ${android} and iOS ${ios}.`}
+                text={t`This version of Mahara Mobile is ${version}. It the latest two versions of Android and iOS.`}
             />
         </ScrollView>
     );

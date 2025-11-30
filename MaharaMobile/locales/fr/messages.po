@@ -812,8 +812,16 @@ msgstr "Ce n'est pas un site Mahara. Entrez une autre URL."
 #~ msgstr "Cette version de Mahara Mobile est {version}, fonctionnant jusqu'à Android {android} et iOS {ios}."
 
 #: src/screens/VersionScreen/VersionScreen.tsx:17
-msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
-msgstr "Cette version de Mahara Mobile est {version} fonctionnant jusqu'à Android {android} et iOS {ios}."
+#~ msgid "This version of Mahara Mobile is {version}. It supports up to Android {android} and iOS {ios}."
+#~ msgstr "Cette version de Mahara Mobile est {version} fonctionnant jusqu'à Android {android} et iOS {ios}."
+
+#: src/screens/VersionScreen/VersionScreen.tsx:15
+#~ msgid "This version of Mahara Mobile is {version}. It the lastest two versions of Android and iOS."
+#~ msgstr ""
+
+#: src/screens/VersionScreen/VersionScreen.tsx:15
+msgid "This version of Mahara Mobile is {version}. It the latest two versions of Android and iOS."
+msgstr ""
 
 #: src/screens/VersionScreen/VersionScreen.tsx:7
 #~ msgid "This version of Mahara Mobile is 21.04.2"
