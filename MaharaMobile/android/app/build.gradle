@@ -101,8 +101,8 @@ android {
         applicationId "org.mahara.mobile.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 144
-        versionName "25.0.4"
+        versionCode 145
+        versionName "25.0.5"
     }
 
     signingConfigs {
