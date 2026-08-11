@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LoginInfo, UserTag } from 'models/models';
+import { LoginInfo, UserTag } from '../../models/models';
 import {
     ADD_USER_TAGS,
     CLEAR_USER_TAGS,
@@ -11,7 +11,7 @@ import {
     UPDATE_TAGS_IDS,
     UPDATE_USER_TAGS,
     USER_TAGS
-} from 'utils/constants';
+} from '../../utils/constants';
 
 // action creators - functions that create actions
 

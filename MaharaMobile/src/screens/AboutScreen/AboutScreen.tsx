@@ -2,10 +2,10 @@ import React from 'react';
 import { Divider, HStack, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans } from '@lingui/macro';
 import { ScrollView } from 'react-native';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import LinkText from 'components/UI/CustomText/LinkText';
-import MediumText from 'components/UI/CustomText/MediumText';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
+import LinkText from '../../components/UI/CustomText/LinkText';
+import MediumText from '../../components/UI/CustomText/MediumText';
 
 function AboutScreen() {
     return (

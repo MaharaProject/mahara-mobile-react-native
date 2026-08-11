@@ -5,14 +5,7 @@ import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
 import { LogBox } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from 'assets/styles/variables';
-import CancelButton from 'components/UI/CancelButton/CancelButton';
-import FormInput from 'components/UI/FormInput/FormInput';
-import MediumButton from 'components/UI/MediumButton/MediumButton';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
-import SubHeading from 'components/UI/SubHeading/SubHeading';
-import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
+import styles from '../../assets/styles/variables';
 import {
     File,
     PendingJEntry,
@@ -21,34 +14,47 @@ import {
     UserBlog,
     UserFolder,
     UserTag
-} from 'models/models';
+} from '../../models/models';
 import {
     newJournalEntry,
     newMaharaFile,
     newPendingJEntry,
     newPendingMFile
-} from 'models/typeCreators';
+} from '../../models/typeCreators';
 import {
     addUserTags,
     saveTaggedItemsToAsync,
     updateItemTags as updateItemTagsIds
-} from 'store/actions/actions';
-import { addFileToUploadList } from 'store/actions/uploadFiles';
-import { addJournalEntryToUploadList } from 'store/actions/uploadJEntries';
-import { RootState } from 'store/reducers/rootReducer';
-import { getItemTags } from 'store/reducers/userTagsReducer';
-import { emptyPendingJEntry, emptyPendingMFile } from 'utils/constants';
+} from '../../store/actions/actions';
+import { addFileToUploadList } from '../../store/actions/uploadFiles';
+import { addJournalEntryToUploadList } from '../../store/actions/uploadJEntries';
+import { RootState } from '../../store/reducers/rootReducer';
+import { getItemTags } from '../../store/reducers/userTagsReducer';
+import { emptyPendingJEntry, emptyPendingMFile } from '../../utils/constants';
 import {
     RequiredWarningText,
     isValidText,
     putDefaultAtTop,
     removeExtension,
     setTagString
-} from 'utils/formHelper';
-import { getUploadTypeIntlStrings, isPendingJEntry, isPendingMFile } from 'utils/helperFunctions';
-import { maharaTheme } from 'utils/theme';
+} from '../../utils/formHelper';
+import {
+    getUploadTypeIntlStrings,
+    isPendingJEntry,
+    isPendingMFile
+} from '../../utils/helperFunctions';
+import { maharaTheme } from '../../utils/theme';
+import CancelButton from '../UI/CancelButton/CancelButton';
+import FormInput from '../UI/FormInput/FormInput';
+import MediumButton from '../UI/MediumButton/MediumButton';
+import MediumButtonDark from '../UI/MediumButtonDark/MediumButtonDark';
+import SubHeading from '../UI/SubHeading/SubHeading';
+import SubHeadingColon from '../UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from '../UI/SubHeadingNoColon/SubHeadingNoColon';
 import TagsPicker from './TagsPicker';
 import { BlogPicker } from './UploadFormComponents';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type Props = {
     pickedFile?: File;

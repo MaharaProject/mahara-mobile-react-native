@@ -9,6 +9,8 @@ import catalogFr from '../locales/fr/messages';
 import catalogKo from '../locales/ko/messages';
 import catalogRu from '../locales/ru/messages';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export const supportedLanguages = {
     en: catalogEn.messages,
     fr: catalogFr.messages,

@@ -2,16 +2,18 @@ import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Action } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
-import { LoginInfo, UserBlog, UserFolder } from 'models/models';
-import RequestError from 'utils/RequestError';
+import { LoginInfo, UserBlog, UserFolder } from '../../models/models';
+import RequestError from '../../utils/RequestError';
 import {
     CLEAR_USER_BLOGS,
     CLEAR_USER_FOLDERS,
     UPDATE_USER_BLOGS,
     UPDATE_USER_FOLDERS
-} from 'utils/constants';
+} from '../../utils/constants';
 import { updateLoginTypes } from './actions';
 import { updateUrl } from './loginInfo';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export function updateUserBlogs(blogs: Array<UserBlog>) {
     AsyncStorage.setItem('userBlogs', JSON.stringify(blogs));

@@ -3,7 +3,7 @@ const { resolve } = require('path');
 module.exports = {
     rootDir: resolve(__dirname, '../'),
     testTimeout: 7500,
-    preset: 'react-native',
+    preset: '@react-native/jest-preset',
     setupFiles: ['<rootDir>/node_modules/react-native-gesture-handler/jestSetup.js'],
     setupFilesAfterEnv: ['<rootDir>/.test/jest-setup.js'],
     transform: {

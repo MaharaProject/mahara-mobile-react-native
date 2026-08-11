@@ -1,13 +1,13 @@
 import React from 'react';
 import { t } from '@lingui/macro';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import NavAddSVG from 'assets/images/nav-add';
-import NavAddActiveSVG from 'assets/images/nav-add-active';
-import NavMenuSVG from 'assets/images/nav-menu';
-import NavMenuActiveSVG from 'assets/images/nav-menu-active';
-import NavUploadSVG from 'assets/images/nav-upload';
-import NavUploadActiveSVG from 'assets/images/nav-upload-active';
-import styles from 'assets/styles/variables';
+import NavAddSVG from '../assets/images/nav-add';
+import NavAddActiveSVG from '../assets/images/nav-add-active';
+import NavMenuSVG from '../assets/images/nav-menu';
+import NavMenuActiveSVG from '../assets/images/nav-menu-active';
+import NavUploadSVG from '../assets/images/nav-upload';
+import NavUploadActiveSVG from '../assets/images/nav-upload-active';
+import styles from '../assets/styles/variables';
 import { CreateNavigator, MenuNavigator, PendingItemsNavigator } from './StackNavigators';
 
 const tabOptions = {

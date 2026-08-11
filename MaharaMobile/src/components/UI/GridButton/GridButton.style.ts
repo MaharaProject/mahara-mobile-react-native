@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
+import generic from '../../../assets/styles/generic';
+import styles from '../../../assets/styles/variables';
 
 const gridButtonStyles = StyleSheet.create({
     button: {

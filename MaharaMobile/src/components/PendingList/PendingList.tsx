@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import styles from 'assets/styles/variables';
-import UploadItem from 'components/UploadItem/UploadItem';
-import { DisplayItems, PendingJEntry, PendingMFile } from 'models/models';
-import { isPendingJEntry, isPendingMFile } from 'utils/helperFunctions';
+import styles from '../../assets/styles/variables';
+import { DisplayItems, PendingJEntry, PendingMFile } from '../../models/models';
+import { isPendingJEntry, isPendingMFile } from '../../utils/helperFunctions';
+import UploadItem from '../UploadItem/UploadItem';
 
 type Props = {
     dataList: DisplayItems;

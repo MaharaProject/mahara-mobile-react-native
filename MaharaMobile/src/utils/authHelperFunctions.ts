@@ -1,12 +1,15 @@
+// Disable all any errors for this file.
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Toast } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Dispatch } from 'redux';
-import { UserBlog, UserBlogJSON, UserFolder, UserTag } from 'models/models';
-import { newUserTag } from 'models/typeCreators';
-import { clearUserTags, updateUserTags, updateUserTagsIds } from 'store/actions/actions';
+import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
+import { newUserTag } from '../models/typeCreators';
+import { clearUserTags, updateUserTags, updateUserTagsIds } from '../store/actions/actions';
 import {
     addToken,
     clearLoginInfo,
@@ -15,15 +18,15 @@ import {
     updateGuestStatus,
     updateProfilePic,
     updateUserName
-} from 'store/actions/loginInfo';
-import { clearUploadFiles, updateUploadFilesOnLogin } from 'store/actions/uploadFiles';
-import { clearUploadJEntires, updateJEntriesOnLogin } from 'store/actions/uploadJEntries';
+} from '../store/actions/loginInfo';
+import { clearUploadFiles, updateUploadFilesOnLogin } from '../store/actions/uploadFiles';
+import { clearUploadJEntires, updateJEntriesOnLogin } from '../store/actions/uploadJEntries';
 import {
     clearUserBlogs,
     clearUserFolders,
     updateUserBlogs,
     updateUserFolders
-} from 'store/actions/userArtefacts';
+} from '../store/actions/userArtefacts';
 import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
 import { userBlogJSONtoUserBlog } from './helperFunctions';
 
@@ -74,7 +77,6 @@ export const setUpGuest = async (dispatch: Dispatch) => {
     dispatch(setDefaultFolder(GUEST_FOLDER.title));
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const arrayToObject = (array: Array<any>) => {
     const arrayCopy = [...array];
     return arrayCopy.reduce((obj, item) => {

@@ -11,14 +11,14 @@ import {
 } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { TouchableOpacity } from 'react-native';
-import buttons from 'assets/styles/buttons';
-import forms from 'assets/styles/forms';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import SubHeading from 'components/UI/SubHeading/SubHeading';
-import { UserTag } from 'models/models';
-import { newUserTag } from 'models/typeCreators';
-import { findUserTagByString } from 'utils/helperFunctions';
+import buttons from '../../assets/styles/buttons';
+import forms from '../../assets/styles/forms';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
+import { UserTag } from '../../models/models';
+import { newUserTag } from '../../models/typeCreators';
+import { findUserTagByString } from '../../utils/helperFunctions';
+import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
 
 type Props = {

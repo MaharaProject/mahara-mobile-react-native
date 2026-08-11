@@ -1,7 +1,7 @@
 import React from 'react';
 import { Center, Text } from '@gluestack-ui/themed-native-base';
 import { TouchableOpacity, View } from 'react-native';
-import buttons from 'assets/styles/buttons';
+import buttons from '../../../assets/styles/buttons';
 import gridButtonStyles from './GridButton.style';
 
 type Props = {

@@ -14,34 +14,45 @@ import { Trans, t } from '@lingui/macro';
 import { ActivityIndicator, Alert as ReactNativeAlert, View } from 'react-native';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import UploadSVG from 'assets/images/upload';
-import generic from 'assets/styles/generic';
-import textStyles from 'assets/styles/text';
-import styles from 'assets/styles/variables';
-import PendingList from 'components/PendingList/PendingList';
-import MediumButton from 'components/UI/MediumButton/MediumButton';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
+import UploadSVG from '../../assets/images/upload';
+import generic from '../../assets/styles/generic';
+import textStyles from '../../assets/styles/text';
+import styles from '../../assets/styles/variables';
+import PendingList from '../../components/PendingList/PendingList';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import MediumButtonDark from '../../components/UI/MediumButtonDark/MediumButtonDark';
 import {
     DisplayItems,
     PendingJEntry,
     PendingMFile,
     UploadItemType,
     UploadResponse
-} from 'models/models';
+} from '../../models/models';
 // components
-import { saveTaggedItemsToAsync, updateItemTags as updateItemTagsIds } from 'store/actions/actions';
-import { addToken } from 'store/actions/loginInfo';
-import { removeUploadFile } from 'store/actions/uploadFiles';
-import { removeUploadJEntry } from 'store/actions/uploadJEntries';
-import { selectUrl, selectUserName } from 'store/reducers/loginInfoReducer';
-import { RootState } from 'store/reducers/rootReducer';
-import { selectAllUploadFiles, selectAllUploadFilesIds } from 'store/reducers/uploadFilesReducer';
-import { selectAllJEntries, selectAllJEntriesIds } from 'store/reducers/uploadJEntriesReducer';
-import { GUEST_USERNAME } from 'utils/constants';
-import { uploadItemToMahara } from 'utils/helperFunctions';
-import { maharaTheme } from 'utils/theme';
+import {
+    saveTaggedItemsToAsync,
+    updateItemTags as updateItemTagsIds
+} from '../../store/actions/actions';
+import { addToken } from '../../store/actions/loginInfo';
+import { removeUploadFile } from '../../store/actions/uploadFiles';
+import { removeUploadJEntry } from '../../store/actions/uploadJEntries';
+import { selectUrl, selectUserName } from '../../store/reducers/loginInfoReducer';
+import { RootState } from '../../store/reducers/rootReducer';
+import {
+    selectAllUploadFiles,
+    selectAllUploadFilesIds
+} from '../../store/reducers/uploadFilesReducer';
+import {
+    selectAllJEntries,
+    selectAllJEntriesIds
+} from '../../store/reducers/uploadJEntriesReducer';
+import { GUEST_USERNAME } from '../../utils/constants';
+import { uploadItemToMahara } from '../../utils/helperFunctions';
+import { maharaTheme } from '../../utils/theme';
 // Styles
 import pendingScreenStyles from './PendingScreen.style';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type Props = {
     uploadFiles: Array<PendingMFile>;

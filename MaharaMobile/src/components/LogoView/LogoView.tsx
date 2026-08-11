@@ -1,9 +1,10 @@
 import React from 'react';
 import { Center, Flex, ScrollView } from '@gluestack-ui/themed-native-base';
-import LogoSvg from 'assets/images/Logo-big';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
+import LogoSvg from '../../assets/images/Logo-big';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type Props = {
     children: any;
 };

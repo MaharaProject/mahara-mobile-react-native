@@ -1,0 +1,9 @@
+export default {
+    locales: ['en', 'ko', 'fr', 'ru', 'es'],
+    catalogs: [
+        {
+            path: 'locales/{locale}/messages',
+            include: ['src']
+        }
+    ]
+};

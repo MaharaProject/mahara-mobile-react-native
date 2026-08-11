@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Text } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import buttons from 'assets/styles/buttons';
+import buttons from '../../../assets/styles/buttons';
 
 type Props = {
     onPress: () => void;

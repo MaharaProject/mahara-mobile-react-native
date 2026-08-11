@@ -5,13 +5,13 @@ import { t } from '@lingui/macro';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 // import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import ReactNativeBlobUtil from 'react-native-blob-util';
-import variables from 'assets/styles/variables';
-import AudioPlayButton from 'components/UI/AudioPlayButton/AudioPlayButton';
-import MediumButton from 'components/UI/MediumButton/MediumButton';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
-import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
 import { File, PlayBackType } from 'models/models';
-import { newFile } from 'models/typeCreators';
+import variables from '../../assets/styles/variables';
+import { newFile } from '../../models/typeCreators';
+import AudioPlayButton from '../UI/AudioPlayButton/AudioPlayButton';
+import MediumButton from '../UI/MediumButton/MediumButton';
+import MediumButtonDark from '../UI/MediumButtonDark/MediumButtonDark';
+import OutlineButton from '../UI/OutlineButton/OutlineButton';
 import styles from './AddAudio.style';
 
 type Props = {

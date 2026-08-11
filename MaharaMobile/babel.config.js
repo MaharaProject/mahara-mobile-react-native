@@ -1,5 +1,8 @@
 module.exports = {
-    presets: ['module:@react-native/babel-preset', '@babel/preset-typescript'],
+    presets: [
+      'module:@react-native/babel-preset',
+      '@babel/preset-typescript',
+    ],
     plugins: [
         'macros',
         [
@@ -8,6 +11,7 @@ module.exports = {
                 root: ['./src'],
                 extensions: ['.ios.js', '.android.js', '.js', '.ts', '.tsx', '.json']
             }
-        ]
+        ],
+        '@babel/plugin-transform-class-static-block',
     ]
 };

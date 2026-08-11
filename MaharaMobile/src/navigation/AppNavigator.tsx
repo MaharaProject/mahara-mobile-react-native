@@ -1,8 +1,8 @@
 import React from 'react';
 import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import AuthLoadingScreen from 'screens/AuthLoadingScreen/AuthLoadingScreen';
-import { RootState } from 'store/reducers/rootReducer';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen/AuthLoadingScreen';
+import { RootState } from '../store/reducers/rootReducer';
 import BottomNavigation from './BottomNavigation';
 import { AuthNavigator } from './StackNavigators';
 

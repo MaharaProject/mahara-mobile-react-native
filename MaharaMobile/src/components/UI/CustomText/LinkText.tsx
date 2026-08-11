@@ -1,13 +1,16 @@
 import React from 'react';
 import { Text } from '@gluestack-ui/themed-native-base';
 import { Linking, StyleSheet } from 'react-native';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
+import generic from '../../../assets/styles/generic';
+import styles from '../../../assets/styles/variables';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type Props = {
     text: string;
     noEndSpace?: boolean;
     url?: string;
+    onPress?: any;
     onPress?: any;
     noStartSpace?: boolean;
 };

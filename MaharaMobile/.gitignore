@@ -95,3 +95,6 @@ locales/_build/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+# React native v19.x
+.kotlin/

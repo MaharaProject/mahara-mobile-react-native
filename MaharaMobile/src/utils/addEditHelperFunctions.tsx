@@ -7,9 +7,9 @@ import {
     launchCamera,
     launchImageLibrary // for ios?
 } from 'react-native-image-picker';
-import { File } from 'models/models';
-import { newFile } from 'models/typeCreators';
-import styles from 'screens/AddItemScreen/AddItemScreen.style';
+import { File } from '../models/models';
+import { newFile } from '../models/typeCreators';
+import styles from '../screens/AddItemScreen/AddItemScreen.style';
 
 const setSelectedImageCallback = (
     response: ImagePickerResponse,
@@ -81,14 +81,18 @@ export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
     }
 };
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const pickDocument = async (onSetPickedFile: any) => {
-    const DocumentPicker = (await import('react-native-document-picker')).default;
+    const DocumentPicker = await import('@react-native-documents/picker');
     try {
-        DocumentPicker.pickSingle({
+        DocumentPicker.pick({
             type: [DocumentPicker.types.allFiles]
-        }).then((res) => onSetPickedFile(newFile(res.uri, res.type, res.name, res.size)));
+        }).then(([res]) => onSetPickedFile(newFile(res.uri, res.type, res.name, res.size)));
     } catch (err) {
-        if (DocumentPicker.isCancel(err)) {
+        if (
+            DocumentPicker.isErrorWithCode(err) &&
+            err.code === DocumentPicker.errorCodes.OPERATION_CANCELED
+        ) {
             Alert.alert(t`Invalid file`, t`Please select a file.`, [
                 { text: t`Okay`, style: 'destructive' }
             ]);

@@ -2,12 +2,12 @@ import React from 'react';
 import { Box, Divider, HStack, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
 import { ScrollView } from 'react-native';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import LinkText from 'components/UI/CustomText/LinkText';
-import MediumText from 'components/UI/CustomText/MediumText';
-import SubHeading from 'components/UI/SubHeading/SubHeading';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
+import LinkText from '../../components/UI/CustomText/LinkText';
+import MediumText from '../../components/UI/CustomText/MediumText';
+import SubHeading from '../../components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from '../../components/UI/SubHeadingNoColon/SubHeadingNoColon';
 
 function PrivacyScreen() {
     return (

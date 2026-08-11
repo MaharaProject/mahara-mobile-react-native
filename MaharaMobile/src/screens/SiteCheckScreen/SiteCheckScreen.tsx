@@ -19,30 +19,32 @@ import { Trans, t } from '@lingui/macro';
 import { ActivityIndicator, Platform } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import generic from 'assets/styles/generic';
-import headingStyles from 'assets/styles/headings';
-import textStyles from 'assets/styles/text';
-import styles from 'assets/styles/variables';
-import LoginTypes from 'components/LoginTypes/LoginTypes';
-import LogoView from 'components/LogoView/LogoView';
-import LinkButton from 'components/UI/LinkButton/LinkButton';
-import MediumButton from 'components/UI/MediumButton/MediumButton';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
-import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
-import SubHeading from 'components/UI/SubHeading/SubHeading';
-import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
-import { checkLoginTypes } from 'store/actions/userArtefacts';
+import generic from '../../assets/styles/generic';
+import headingStyles from '../../assets/styles/headings';
+import textStyles from '../../assets/styles/text';
+import styles from '../../assets/styles/variables';
+import LoginTypes from '../../components/LoginTypes/LoginTypes';
+import LogoView from '../../components/LogoView/LogoView';
+import LinkButton from '../../components/UI/LinkButton/LinkButton';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import MediumButtonDark from '../../components/UI/MediumButtonDark/MediumButtonDark';
+import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
+import SubHeading from '../../components/UI/SubHeading/SubHeading';
+import SubHeadingColon from '../../components/UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from '../../components/UI/SubHeadingNoColon/SubHeadingNoColon';
+import { checkLoginTypes } from '../../store/actions/userArtefacts';
 import {
     selectLocalLogin,
     selectSsoLogin,
     selectTokenLogin,
     selectUrl
-} from 'store/reducers/loginInfoReducer';
-import { RootState } from 'store/reducers/rootReducer';
-import { setUpGuest } from 'utils/authHelperFunctions';
-import { getErrorMessage } from 'utils/error';
-import { addHttpTrims } from 'utils/helperFunctions';
+} from '../../store/reducers/loginInfoReducer';
+import { RootState } from '../../store/reducers/rootReducer';
+import { setUpGuest } from '../../utils/authHelperFunctions';
+import { getErrorMessage } from '../../utils/error';
+import { addHttpTrims } from '../../utils/helperFunctions';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type Props = {
     dispatch: Dispatch;

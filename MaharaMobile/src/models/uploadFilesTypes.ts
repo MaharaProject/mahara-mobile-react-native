@@ -1,4 +1,4 @@
-import { PendingMFile, UserFolder } from 'models/models';
+import { PendingMFile, UserFolder } from './models';
 
 export type UploadFilesActions = {
     type: string;

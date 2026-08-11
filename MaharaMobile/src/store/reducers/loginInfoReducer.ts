@@ -1,4 +1,4 @@
-import { LoginInfoActions } from 'models/loginInfoTypes';
+import { LoginInfoActions } from '../../models/loginInfoTypes';
 import {
     ADD_TOKEN,
     CLEAR_LOGIN_INFO,
@@ -11,7 +11,7 @@ import {
     UPDATE_SERVER_URL,
     UPDATE_URL,
     UPDATE_USERNAME
-} from 'utils/constants';
+} from '../../utils/constants';
 import { RootState } from './rootReducer';
 
 type LoginInfoState = {

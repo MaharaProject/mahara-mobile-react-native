@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text } from '@gluestack-ui/themed-native-base';
 import { TouchableHighlight } from 'react-native';
-import generic from 'assets/styles/generic';
+import generic from '../../assets/styles/generic';
 import menuItemStyles from './MenuItem.style';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type MenuItemProps = {
     title: string;
     path: () => void;

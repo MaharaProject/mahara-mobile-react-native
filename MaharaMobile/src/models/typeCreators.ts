@@ -1,3 +1,4 @@
+import { WS_FUNCTION_UPLOAD_BLOGPOST } from '../utils/constants';
 import {
     File,
     JournalEntry,
@@ -8,8 +9,7 @@ import {
     UserBlog,
     UserFolder,
     UserTag
-} from 'models/models';
-import { WS_FUNCTION_UPLOAD_BLOGPOST } from 'utils/constants';
+} from './models';
 
 // Mahara file creation
 

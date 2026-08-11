@@ -2,12 +2,14 @@ import React from 'react';
 import { Box, HStack, Select, Switch } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { Platform, View } from 'react-native';
-import styles from 'assets/styles/variables';
-import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
-import { UserBlog } from 'models/models';
-import { RequiredWarningText, putDefaultAtTop } from 'utils/formHelper';
-import { maharaTheme } from 'utils/theme';
+import styles from '../../assets/styles/variables';
+import { UserBlog } from '../../models/models';
+import { RequiredWarningText, putDefaultAtTop } from '../../utils/formHelper';
+import { maharaTheme } from '../../utils/theme';
+import SubHeadingColon from '../UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from '../UI/SubHeadingNoColon/SubHeadingNoColon';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type Props = {
     isDraft: boolean;

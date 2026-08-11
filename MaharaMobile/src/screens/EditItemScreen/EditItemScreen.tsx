@@ -2,26 +2,28 @@ import React, { useState } from 'react';
 import { KeyboardAvoidingView, ScrollView, VStack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { connect } from 'react-redux';
-import generic from 'assets/styles/generic';
-import AddAudio from 'components/AddAudio/AddAudio';
-import OutlineButton from 'components/UI/OutlineButton/OutlineButton';
-import UploadForm from 'components/UploadForm/UploadForm';
-import { useChangeNavigationWarning } from 'hooks/useChangeNavigationWarning';
-import { PendingMFile, UserBlog, UserFolder, UserTag } from 'models/models';
+import generic from '../../assets/styles/generic';
+import AddAudio from '../../components/AddAudio/AddAudio';
+import OutlineButton from '../../components/UI/OutlineButton/OutlineButton';
+import UploadForm from '../../components/UploadForm/UploadForm';
+import { useChangeNavigationWarning } from '../../hooks/useChangeNavigationWarning';
+import { PendingMFile, UserBlog, UserFolder, UserTag } from '../../models/models';
 import {
     selectDefaultBlogTitle,
     selectDefaultFolderTitle,
     selectToken,
     selectUrl
-} from 'store/reducers/loginInfoReducer';
-import { RootState } from 'store/reducers/rootReducer';
-import { selectAllUploadFiles } from 'store/reducers/uploadFilesReducer';
-import { selectAllJEntries } from 'store/reducers/uploadJEntriesReducer';
-import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
-import { getUserTags } from 'store/reducers/userTagsReducer';
-import { pickDocument, renderImagePreview, takePhoto } from 'utils/addEditHelperFunctions';
-import { CAMERA_ICON, FOLDER_ICON, emptyFile } from 'utils/constants';
-import { getUploadTypeIntlStrings } from 'utils/helperFunctions';
+} from '../../store/reducers/loginInfoReducer';
+import { RootState } from '../../store/reducers/rootReducer';
+import { selectAllUploadFiles } from '../../store/reducers/uploadFilesReducer';
+import { selectAllJEntries } from '../../store/reducers/uploadJEntriesReducer';
+import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
+import { getUserTags } from '../../store/reducers/userTagsReducer';
+import { pickDocument, renderImagePreview, takePhoto } from '../../utils/addEditHelperFunctions';
+import { CAMERA_ICON, FOLDER_ICON, emptyFile } from '../../utils/constants';
+import { getUploadTypeIntlStrings } from '../../utils/helperFunctions';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type Props = {
     userFolders: Array<UserFolder>;

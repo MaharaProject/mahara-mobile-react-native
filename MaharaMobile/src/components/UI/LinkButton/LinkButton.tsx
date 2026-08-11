@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '@gluestack-ui/themed-native-base';
 import { TouchableOpacity } from 'react-native';
-import buttons from 'assets/styles/buttons';
+import buttons from '../../../assets/styles/buttons';
 import linkButtonStyles from './LinkButton.style';
 
 type Props = {

@@ -1,4 +1,4 @@
-image: node:18 # :version if needed
+image: node:24 # :version if needed
 
 stages:
   - build

@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 *.hprof
+android/app/.cxx
 android/app/*.jks
 android/*.jks
 android/gradle/wrapper
@@ -79,4 +80,5 @@ locales/**/*
 # IDEs VS Code
 .vscode/*
 
+babel.config.js
 .eslintrc.js

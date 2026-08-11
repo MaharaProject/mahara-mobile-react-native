@@ -2,11 +2,13 @@ import React from 'react';
 import { ScrollView } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { useDispatch } from 'react-redux';
-import generic from 'assets/styles/generic';
-import MenuItem from 'components/MenuItem/MenuItem';
-import menuItemStyles from 'components/MenuItem/MenuItem.style';
-import { signOutAsync } from 'utils/authHelperFunctions';
+import generic from '../../assets/styles/generic';
+import MenuItem from '../../components/MenuItem/MenuItem';
+import menuItemStyles from '../../components/MenuItem/MenuItem.style';
+import { signOutAsync } from '../../utils/authHelperFunctions';
 import menuScreenStyles from './MenuScreen.style';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 type MenuItemObject = {
     name: string;

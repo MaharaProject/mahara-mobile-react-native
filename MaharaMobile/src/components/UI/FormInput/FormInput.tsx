@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Input, TextArea } from '@gluestack-ui/themed-native-base';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
+import generic from '../../../assets/styles/generic';
+import styles from '../../../assets/styles/variables';
 
 type Props = {
     valid: boolean;

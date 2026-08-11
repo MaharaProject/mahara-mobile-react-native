@@ -11,7 +11,7 @@ import {
     UPDATE_PROFILE_ICON,
     UPDATE_URL,
     UPDATE_USERNAME
-} from 'utils/constants';
+} from '../../utils/constants';
 
 // loginInfoReducer
 /**

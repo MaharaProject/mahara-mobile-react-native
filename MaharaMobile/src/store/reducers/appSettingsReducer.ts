@@ -1,5 +1,7 @@
-import { SET_LANGUAGE } from 'utils/constants';
+import { SET_LANGUAGE } from '../../utils/constants';
 import { RootState } from './rootReducer';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type AppSettingsState = {
     language: string;

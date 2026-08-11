@@ -3,8 +3,8 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from '@gluestack-ui/themed-native-base';
 import { View } from 'react-native';
-import generic from 'assets/styles/generic';
-import { maharaTheme } from 'utils/theme';
+import generic from '../../../assets/styles/generic';
+import { maharaTheme } from '../../../utils/theme';
 
 type Props = {
     onPress: () => void;

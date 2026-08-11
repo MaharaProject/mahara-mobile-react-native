@@ -6,10 +6,10 @@ import { t } from '@lingui/macro';
 import { I18nProvider } from '@lingui/react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
-import i18n, { changeActiveLanguage, supportedLanguages } from 'i18n';
-import AppNavigator from 'navigation/AppNavigator';
-import configureStore from 'store/store';
-import { maharaTheme, maharaThemeBase } from 'utils/theme';
+import i18n, { changeActiveLanguage, supportedLanguages } from './i18n';
+import AppNavigator from './navigation/AppNavigator';
+import configureStore from './store/store';
+import { maharaTheme, maharaThemeBase } from './utils/theme';
 
 i18n.activate('en');
 
@@ -24,7 +24,7 @@ export function I18nProviderWrapper({ children }: { children: ReactElement }) {
 
     useEffect(() => {
         changeActiveLanguage(langCode, toast);
-    }, [bestFitLanguageTag]);
+    }, [bestFitLanguageTag, langCode, toast]);
 
     return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 }

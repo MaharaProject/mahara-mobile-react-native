@@ -3,13 +3,13 @@ import { faCheckCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Box, Text } from '@gluestack-ui/themed-native-base';
 import { Image, ImageSourcePropType, TouchableOpacity, View } from 'react-native';
-import AddJournalEntrySvg from 'assets/images/AddJournalEntry';
-import PickFileSvg from 'assets/images/PickFile';
-import RecordAudioSvg from 'assets/images/RecordAudio';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import Card from 'components/UI/Card/Card';
-import gridButtonStyles from 'components/UI/GridButton/GridButton.style';
+import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
+import PickFileSvg from '../../assets/images/PickFile';
+import RecordAudioSvg from '../../assets/images/RecordAudio';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
+import Card from '../UI/Card/Card';
+import gridButtonStyles from '../UI/GridButton/GridButton.style';
 import uploadItemStyles from './UploadItem.style';
 
 type Props = {

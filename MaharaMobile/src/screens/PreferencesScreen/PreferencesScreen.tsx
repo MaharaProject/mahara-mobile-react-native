@@ -4,16 +4,16 @@ import { Box, Select, Spacer, Text, VStack } from '@gluestack-ui/themed-native-b
 import { Trans, t } from '@lingui/macro';
 import { Alert, Image, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import image from 'assets/images/no_userphoto.png';
-import buttons from 'assets/styles/buttons';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import MediumButton from 'components/UI/MediumButton/MediumButton';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
-import SubHeading from 'components/UI/SubHeading/SubHeading';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
-import { UserBlog, UserFolder } from 'models/models';
-import { setDefaultBlogTitle, setDefaultFolder } from 'store/actions/loginInfo';
+import image from '../../assets/images/no_userphoto.png';
+import buttons from '../../assets/styles/buttons';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
+import MediumButton from '../../components/UI/MediumButton/MediumButton';
+import MediumButtonDark from '../../components/UI/MediumButtonDark/MediumButtonDark';
+import SubHeading from '../../components/UI/SubHeading/SubHeading';
+import SubHeadingNoColon from '../../components/UI/SubHeadingNoColon/SubHeadingNoColon';
+import { UserBlog, UserFolder } from '../../models/models';
+import { setDefaultBlogTitle, setDefaultFolder } from '../../store/actions/loginInfo';
 // import i18n from 'i18n';
 import {
     selectDefaultBlogTitle,
@@ -22,13 +22,13 @@ import {
     selectToken,
     selectUrl,
     selectUserName
-} from 'store/reducers/loginInfoReducer';
-import { RootState } from 'store/reducers/rootReducer';
-import { selectUserBlogs, selectUserFolders } from 'store/reducers/userArtefactsReducer';
-import { fetchProfilePic, login } from 'utils/authHelperFunctions';
-import { GUEST_TOKEN } from 'utils/constants';
-import { putDefaultAtTop } from 'utils/formHelper';
-import { maharaTheme } from 'utils/theme';
+} from '../../store/reducers/loginInfoReducer';
+import { RootState } from '../../store/reducers/rootReducer';
+import { selectUserBlogs, selectUserFolders } from '../../store/reducers/userArtefactsReducer';
+import { fetchProfilePic, login } from '../../utils/authHelperFunctions';
+import { GUEST_TOKEN } from '../../utils/constants';
+import { putDefaultAtTop } from '../../utils/formHelper';
+import { maharaTheme } from '../../utils/theme';
 import PreferencesScreenStyle from './PreferencesScreen.style';
 
 function PreferencesScreen() {

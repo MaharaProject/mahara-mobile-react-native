@@ -3,13 +3,13 @@ import { faKey, faSignInAlt, faTags } from '@fortawesome/free-solid-svg-icons';
 import { Stack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { View } from 'react-native';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
-import SubHeadingColon from 'components/UI/SubHeadingColon/SubHeadingColon';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
 import MediumButton from '../UI/MediumButton/MediumButton';
+import MediumButtonDark from '../UI/MediumButtonDark/MediumButtonDark';
 import SubHeading from '../UI/SubHeading/SubHeading';
+import SubHeadingColon from '../UI/SubHeadingColon/SubHeadingColon';
+import SubHeadingNoColon from '../UI/SubHeadingNoColon/SubHeadingNoColon';
 
 type Props = {
     goToLoginType: (type: string) => void;

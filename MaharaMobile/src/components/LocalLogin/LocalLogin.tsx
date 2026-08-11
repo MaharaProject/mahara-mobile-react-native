@@ -6,15 +6,15 @@ import { t } from '@lingui/macro';
 import { ActivityIndicator, Platform, StyleSheet } from 'react-native';
 import { getManufacturer, getModel } from 'react-native-device-info';
 import uuid from 'react-native-uuid';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import LogoView from 'components/LogoView/LogoView';
-import MediumButton from 'components/UI/MediumButton/MediumButton';
-import MediumButtonDark from 'components/UI/MediumButtonDark/MediumButtonDark';
-import SubHeading from 'components/UI/SubHeading/SubHeading';
-import SubHeadingNoColon from 'components/UI/SubHeadingNoColon/SubHeadingNoColon';
-import { onCheckAuthJSON } from 'utils/authHelperFunctions';
-import { LOG_IN_ICON } from 'utils/constants';
+import generic from '../../assets/styles/generic';
+import styles from '../../assets/styles/variables';
+import { onCheckAuthJSON } from '../../utils/authHelperFunctions';
+import { LOG_IN_ICON } from '../../utils/constants';
+import LogoView from '../LogoView/LogoView';
+import MediumButton from '../UI/MediumButton/MediumButton';
+import MediumButtonDark from '../UI/MediumButtonDark/MediumButtonDark';
+import SubHeading from '../UI/SubHeading/SubHeading';
+import SubHeadingNoColon from '../UI/SubHeadingNoColon/SubHeadingNoColon';
 
 type Props = {
     url: string;

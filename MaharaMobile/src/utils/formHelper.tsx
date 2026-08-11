@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import generic from 'assets/styles/generic';
-import styles from 'assets/styles/variables';
-import { UploadItemType, UserBlog, UserFolder } from 'models/models';
+import generic from '../assets/styles/generic';
+import styles from '../assets/styles/variables';
+import { UploadItemType, UserBlog, UserFolder } from '../models/models';
 
 export const setTagString = (tags: Array<string>) => {
     const tagsArray = tags.map((tag: string, index: number) => `${tag}&tags[${index + 1}]=`);

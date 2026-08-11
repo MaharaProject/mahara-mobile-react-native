@@ -3,8 +3,8 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Button, Text } from '@gluestack-ui/themed-native-base';
 import { StyleSheet } from 'react-native';
-import styles from 'assets/styles/variables';
-import { ICON_SIZE } from 'utils/constants';
+import styles from '../../../assets/styles/variables';
+import { ICON_SIZE } from '../../../utils/constants';
 
 type Props = {
     onPress: () => void;
