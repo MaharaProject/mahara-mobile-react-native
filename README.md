@@ -47,7 +47,7 @@ If an error comes on loading the app relating to casting, ensure the device lang
 
 ## Copyright notice
 
-Copyright (C) 2019-2021 Catalyst IT and others; see:
+Copyright (C) 2019-2026 Catalyst IT and others; see:
 <https://wiki.mahara.org/wiki/Contributors>
 
 This program is free software: you can redistribute it and/or modify
