@@ -38,7 +38,7 @@ const styles = {
         navBarGreen: '#9eb47a',
         gradientEndGreen: '#889f65',
         navActiveGreenTint: '#576c36',
-        siteCheckErrorTextPink: '#9b7968',
+        siteCheckErrorTextPink: '#aa0500',
         recordingStopButtonRed: '#7c242b',
         uploadButtonTan: '#b9a34b'
     },

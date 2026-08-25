@@ -1,4 +1,3 @@
-import { Button, useToast } from '@gluestack-ui/themed-native-base';
 import { i18n } from '@lingui/core';
 import { t } from '@lingui/macro';
 import { en, es, fr, ko, ru } from 'make-plural';
@@ -21,15 +20,13 @@ export const supportedLanguages = {
 i18n.load(supportedLanguages);
 
 /**
- * Display a toast on the screen to inform the user that their device language is not supported
- *
- * @param toast a toast object from Gluestack
+ * Display an alert to inform the user that their device language is not supported
  */
-function displayLanguageToast(toast: any, title: string, description: string) {
-    toast.show({ placement: 'top', title, description });
+function displayLanguageAlert(title: string, description: string) {
+    Alert.alert(title, description, [{ text: t`OK`, onPress: () => {} }]);
 }
 
-export const changeActiveLanguage = (newActiveLanguage: string, toast: any) => {
+export const changeActiveLanguage = (newActiveLanguage: string) => {
     const supportedLangsKeys = Object.keys(supportedLanguages);
     if (supportedLangsKeys.includes(newActiveLanguage)) {
         i18n.activate(newActiveLanguage);
@@ -37,7 +34,7 @@ export const changeActiveLanguage = (newActiveLanguage: string, toast: any) => {
         i18n.activate('en');
         const title = t`Device language is not supported`;
         const description = `${t`The app will display in 'en' instead of '` + newActiveLanguage}'`;
-        displayLanguageToast(toast, title, description);
+        displayLanguageAlert(title, description);
     }
 };
 

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, HStack, Select, Switch } from '@gluestack-ui/themed-native-base';
+import { Box, HStack, Switch } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import styles from '../../assets/styles/variables';
 import { UserBlog } from '../../models/models';
 import { RequiredWarningText, putDefaultAtTop } from '../../utils/formHelper';
-import { maharaTheme } from '../../utils/theme';
+import Dropdown from '../UI/Dropdown/Dropdown';
 import SubHeadingColon from '../UI/SubHeadingColon/SubHeadingColon';
 import SubHeadingNoColon from '../UI/SubHeadingNoColon/SubHeadingNoColon';
 
@@ -23,7 +23,7 @@ function JournalDraftSwitch(props: Props) {
                 <SubHeadingColon text={t`Draft journal entry`} />
                 <Switch
                     trackColor={{ false: styles.colors.darkgrey, true: styles.colors.navBarGreen }}
-                    thumbColor={false ? '' : styles.colors.primary}
+                    thumbColor={props.isDraft ? styles.colors.primary : ''}
                     value={props.isDraft}
                     onValueChange={() => props.setIsDraft(!props.isDraft)}
                 />
@@ -63,28 +63,18 @@ export function BlogPicker(props: {
                 />
             )}
             {blogs.length > 1 && (
-                <Box>
-                    <Select
-                        height={styles.heights.input}
-                        size="lg"
-                        placeholder={t`Please select a journal`}
-                        accessibilityLabel={t`Select a journal`}
-                        selectedValue={props.selectedBlogTitle}
-                        color={maharaTheme.colors.dark}
-                        onValueChange={(title: string) => props.setSelectedBlogTitle(title)}
-                    >
-                        {blogs &&
-                            blogs.map((blog: UserBlog) => {
-                                const label =
-                                    blog.title === props.defaultBlogTitle
-                                        ? `${blog.title} - default`
-                                        : blog.title;
-                                return (
-                                    <Select.Item label={label} value={blog.title} key={blog.id} />
-                                );
-                            })}
-                    </Select>
-                </Box>
+                <Dropdown
+                    options={blogs.map((blog: UserBlog) => ({
+                        label:
+                            blog.title === props.defaultBlogTitle
+                                ? `${blog.title} - default`
+                                : blog.title,
+                        value: blog.title
+                    }))}
+                    selectedValue={props.selectedBlogTitle}
+                    onSelect={(title: string) => props.setSelectedBlogTitle(title)}
+                    accessibilityLabel={t`Select a journal`}
+                />
             )}
         </View>
     );

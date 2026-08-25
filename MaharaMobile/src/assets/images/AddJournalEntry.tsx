@@ -6,7 +6,7 @@ import Svg, { Path } from 'react-native-svg';
 function AddJournalEntrySvg() {
     return (
         <View>
-            <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 288">
+            <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 270 288" width={72} height={72}>
                 <Path
                     id="add-journal-entry.svg"
                     fill="#fff"

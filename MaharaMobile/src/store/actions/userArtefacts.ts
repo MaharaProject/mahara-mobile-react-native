@@ -74,10 +74,18 @@ export function checkLoginTypes(url: string) {
             dispatch(updateLoginTypes(result));
             dispatch(updateUrl(url));
         } catch (error: any) {
+            // TypeError = network failure, SyntaxError = server returned HTML instead of JSON
+            if (error.previousError?.name === 'SyntaxError') {
+                throw new Error(t`This does not appear to be a Mahara site. Please check the URL.`);
+            }
+            if (error.previousError?.name === 'TypeError' || !error.code) {
+                throw new Error(
+                    t`Network error. Please check your internet connection or the URL and try again.`
+                );
+            }
             if (error.code >= 400 && error.code < 600) {
                 throw new Error(t`Invalid Mahara site. Please re-enter URL.`);
             }
-
             throw error;
         }
     };

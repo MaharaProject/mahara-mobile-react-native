@@ -5,7 +5,6 @@ import {
     DeleteIcon,
     IconButton,
     Input,
-    Select,
     Text,
     View
 } from '@gluestack-ui/themed-native-base';
@@ -18,6 +17,7 @@ import styles from '../../assets/styles/variables';
 import { UserTag } from '../../models/models';
 import { newUserTag } from '../../models/typeCreators';
 import { findUserTagByString } from '../../utils/helperFunctions';
+import Dropdown from '../UI/Dropdown/Dropdown';
 import SubHeading from '../UI/SubHeading/SubHeading';
 import uploadFormStyles from './UploadForm.style';
 
@@ -188,31 +188,24 @@ function TagsPicker({ onSetItemUploadTagsString, onUpdateItemTagsIds, ...props }
             </View>
             {/* Display drop down of existing tags */}
             <Box style={[buttons.default]}>
-                <Select
-                    height={styles.heights.input}
-                    mode="dropdown"
-                    iosHeader="Select tags"
-                    placeholder={t`Select tags`}
+                <Dropdown
+                    options={[
+                        { label: t`Select tags...`, value: '' },
+                        { label: t`Add new tag +`, value: 'Add new tag +' },
+                        ...props.userTags
+                            .filter(
+                                (tag) =>
+                                    !selectedTags.find((selectedTag) => selectedTag.id === tag.id)
+                            )
+                            .map((value) => ({
+                                label: value.tag,
+                                value: value.tag
+                            }))
+                    ]}
+                    selectedValue={selectedDropdownTag?.tag ?? ''}
+                    onSelect={(itemValue: string) => selectTagHandler(itemValue)}
                     accessibilityLabel={t`Select tags`}
-                    selectedValue={selectedDropdownTag}
-                    onValueChange={(itemValue: string) => selectTagHandler(itemValue)}
-                >
-                    <Select.Item
-                        label={t`Select tags...`}
-                        value=""
-                        color={styles.colors.darkgrey}
-                        isDisabled
-                    />
-                    <Select.Item label={t`Add new tag +`} value="Add new tag +" />
-
-                    {props.userTags
-                        .filter(
-                            (tag) => !selectedTags.find((selectedTag) => selectedTag.id === tag.id)
-                        )
-                        .map((value) => (
-                            <Select.Item label={value.tag} value={value.tag} key={value.id} />
-                        ))}
-                </Select>
+                />
             </Box>
         </View>
     );

@@ -4,7 +4,6 @@ import { HStack } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { PermissionsAndroid, Platform, Text, View } from 'react-native';
 // import AudioRecorderPlayer from 'react-native-audio-recorder-player';
-import ReactNativeBlobUtil from 'react-native-blob-util';
 import { File, PlayBackType } from 'models/models';
 import variables from '../../assets/styles/variables';
 import { newFile } from '../../models/typeCreators';

@@ -17,12 +17,14 @@ export const newFile = (
     uri: string | null | undefined,
     mimetype: string | null | undefined,
     name: string | null | undefined,
-    size: number | null | undefined
+    size: number | null | undefined,
+    base64?: string
 ): File => ({
     uri,
     type: mimetype,
     name,
-    size
+    size,
+    base64
 });
 
 export const newMaharaFile = (

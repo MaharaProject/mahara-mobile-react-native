@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import generic from './generic';
 import styles from './variables';
 
 const textStyles = StyleSheet.create({
@@ -11,8 +10,9 @@ const textStyles = StyleSheet.create({
         textAlign: 'center'
     },
     errorText: {
-        color: styles.colors.siteCheckErrorTextPink,
-        fontSize: styles.font.sm,
+        color: '#fff',
+        fontSize: styles.font.md,
+        fontWeight: '700',
         padding: styles.padding.sm,
         fontFamily: 'OpenSansRegular'
     }

@@ -1,6 +1,6 @@
 {
     "name": "maharamobile",
-    "version": "25.1.0",
+    "version": "25.1.5",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
@@ -125,5 +125,8 @@
             "path": "./node_modules/cz-conventional-changelog"
         }
     },
-    "overrides": {}
+    "overrides": {
+        "react": "$react",
+        "react-dom": "$react"
+    }
 }

@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 // Images
 import { faCloudUploadAlt, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
-import {
-    Alert,
-    CloseIcon,
-    HStack,
-    IconButton,
-    Text,
-    VStack,
-    useToast
-} from '@gluestack-ui/themed-native-base';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Text, VStack } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
 import { ActivityIndicator, Alert as ReactNativeAlert, View } from 'react-native';
 import { connect, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
-import UploadSVG from '../../assets/images/upload';
 import generic from '../../assets/styles/generic';
 import textStyles from '../../assets/styles/text';
 import styles from '../../assets/styles/variables';
@@ -72,8 +64,6 @@ function PendingScreen(props: Props) {
     const [uploadedItemsIds, setUploadedItemsIds] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
 
-    const toast = useToast();
-
     const url = useSelector((state: RootState) => selectUrl(state));
 
     //  This is no longer shown as we don't navigate to the pending screen upon adding an item
@@ -117,25 +107,7 @@ function PendingScreen(props: Props) {
     };
 
     const onUploadError = (itemId: string, errorMessage: string) => {
-        toast.show({
-            render: ({ id }) => (
-                <Alert mx={2} status="error" variant="left-accent">
-                    <VStack alignItems="center">
-                        <HStack space="3" alignItems="center">
-                            <Alert.Icon />
-                            <Text w="100%" fontWeight="medium">{t`Upload error`}</Text>
-                            <IconButton
-                                icon={<CloseIcon size="4" />}
-                                onPress={() => toast.close(id)}
-                                colorScheme="red"
-                                ml="auto"
-                            />
-                        </HStack>
-                        <Text>{errorMessage}</Text>
-                    </VStack>
-                </Alert>
-            )
-        });
+        ReactNativeAlert.alert(t`Upload error`, errorMessage, [{ text: t`OK`, onPress: () => {} }]);
     };
 
     /**
@@ -166,7 +138,7 @@ function PendingScreen(props: Props) {
         }
         return (
             <View style={pendingScreenStyles.noPending}>
-                <UploadSVG />
+                <FontAwesomeIcon icon={faCloudUploadAlt} size={72} color="#919191" />
                 <Text style={{ ...pendingScreenStyles.noPendingText, ...generic.regularText }}>
                     <Trans>Your upload queue is empty</Trans>
                 </Text>
@@ -185,36 +157,10 @@ function PendingScreen(props: Props) {
             setUploadedItemsIds((state) => state.filter((item) => item !== itemId));
         }, 1000);
 
-        toast.show({
-            render: ({ id }) => (
-                <Alert
-                    mx={2}
-                    status="success"
-                    backgroundColor={maharaTheme.colors.success[10]}
-                    variant="left-accent"
-                >
-                    <VStack alignItems="center">
-                        <HStack space={3} alignItems="center">
-                            <Alert.Icon />
-                            <Text
-                                w="100%"
-                                color={maharaTheme.colors.success[900]}
-                                fontWeight="medium"
-                            >{t`Upload success`}</Text>
-                            <IconButton
-                                icon={<CloseIcon size="4" />}
-                                onPress={() => toast.close(id)}
-                                color={maharaTheme.colors.successIcon}
-                                ml="auto"
-                            />
-                        </HStack>
-                        <Text
-                            color={maharaTheme.colors.success[900]}
-                        >{t`Files have been uploaded to your Mahara successfully!`}</Text>
-                    </VStack>
-                </Alert>
-            )
-        });
+        ReactNativeAlert.alert(
+            t`Upload success`,
+            t`Files have been uploaded to your Mahara successfully!`
+        );
     };
 
     const onUploadClick = () => {
@@ -224,7 +170,8 @@ function PendingScreen(props: Props) {
                 setLoading(false);
                 // an error either returns result = undefined, or result = { error: true }
                 if (result === undefined || result === null || result.error) {
-                    onUploadError(file.id, result.error_message);
+                    const message = result?.error_message ?? 'Upload failed';
+                    onUploadError(file.id, message);
                 } else {
                     onSuccessfulUpload(file.id);
                 }
@@ -237,7 +184,8 @@ function PendingScreen(props: Props) {
                 (result: UploadResponse) => {
                     setLoading(false);
                     if (result === undefined || result === null || result.error) {
-                        onUploadError(journalEntry.id, result.error_message);
+                        const message = result?.error_message ?? 'Upload failed';
+                        onUploadError(journalEntry.id, message);
                     } else {
                         onSuccessfulUpload(journalEntry.id);
                     }

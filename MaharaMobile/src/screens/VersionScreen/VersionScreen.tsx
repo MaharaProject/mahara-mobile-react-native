@@ -12,7 +12,7 @@ function VersionScreen() {
     return (
         <ScrollView style={{ ...generic.wrap, paddingLeft: styles.padding.md }}>
             <MediumText
-                text={t`This version of Mahara Mobile is ${version}. It the latest two versions of Android and iOS.`}
+                text={t`This version of Mahara Mobile is ${version}. It supports the two most recent versions of Android and iOS.`}
             />
         </ScrollView>
     );

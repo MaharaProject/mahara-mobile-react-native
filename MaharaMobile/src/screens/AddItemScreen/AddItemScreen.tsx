@@ -54,11 +54,8 @@ function AddItemScreen(props: Props) {
     useChangeNavigationWarning(isDirty);
 
     return (
-        <KeyboardAvoidingView
-            // keyboardVerticalOffset={10}
-            behavior={Platform.OS === 'ios' ? 'position' : 'height'}
-        >
-            <ScrollView>
+        <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
+            <ScrollView keyboardShouldPersistTaps="handled" keyboardDismissMode="on-drag">
                 <VStack space="xs" style={generic.wrap}>
                     {/* select a file button */}
                     {pickedFile.name &&

@@ -12,7 +12,7 @@ const uploadItemStyles = StyleSheet.create({
         flexDirection: 'row',
         width: '100%',
         height: '88%',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 3,
         backgroundColor: styles.colors.midgrey_1,
@@ -33,16 +33,22 @@ const uploadItemStyles = StyleSheet.create({
     },
     imageContainer: {
         width: '20%',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     icon: {
-        height: '90%',
-        justifyContent: 'space-around'
+        height: '100%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
         // backgroundColor: 'red'
     },
     thumbnail: {
-        height: '100%',
-        width: '100%'
+        height: 40,
+        width: 40,
+        borderRadius: 999,
+        overflow: 'hidden'
     },
     button: {
         justifyContent: 'center'

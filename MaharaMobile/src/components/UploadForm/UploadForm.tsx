@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faClock } from '@fortawesome/free-solid-svg-icons';
-import { Box, Select, Spacer, Text, VStack, View } from '@gluestack-ui/themed-native-base';
+import { Box, Spacer, Text, VStack, View } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { CommonActions, StackActions, useNavigation } from '@react-navigation/native';
 import { LogBox } from 'react-native';
@@ -45,6 +45,7 @@ import {
 } from '../../utils/helperFunctions';
 import { maharaTheme } from '../../utils/theme';
 import CancelButton from '../UI/CancelButton/CancelButton';
+import Dropdown from '../UI/Dropdown/Dropdown';
 import FormInput from '../UI/FormInput/FormInput';
 import MediumButton from '../UI/MediumButton/MediumButton';
 import MediumButtonDark from '../UI/MediumButtonDark/MediumButtonDark';
@@ -84,7 +85,7 @@ function UploadForm(props: Props) {
     );
 
     const dispatch = useDispatch();
-    const checkUserBlogs = props.userBlogs ? props.userBlogs.length > 0 : null;
+    const checkUserBlogs = props.userBlogs?.length > 0;
     const { itemType } = props;
     const { pickedFile } = props;
 
@@ -184,11 +185,11 @@ function UploadForm(props: Props) {
     const addJEntryToUpload = (id: string): string => {
         const journalUrl = `${props.url}webservice/rest/server.php?alt=json`;
         let pendingJournalEntry: PendingJEntry = emptyPendingJEntry;
-        const matchingBlog: UserBlog = props.userBlogs.find((b) => b.title === selectedBlogTitle);
+        const matchingBlog = props.userBlogs?.find((b) => b.title === selectedBlogTitle);
 
-        const firstBlogId = props.userBlogs ? props.userBlogs[0].id : '0';
+        const firstBlogId = props.userBlogs?.[0]?.id ?? '0';
         const jEntry = newJournalEntry(
-            matchingBlog.id || firstBlogId,
+            matchingBlog?.id || firstBlogId,
             props.token,
             title,
             description,
@@ -370,26 +371,18 @@ function UploadForm(props: Props) {
                     />
                 )}
                 {props.userFolders.length > 1 && (
-                    <Box>
-                        <Select
-                            size="lg"
-                            height={styles.heights.input}
-                            placeholder={props.defFolderTitle}
-                            accessibilityLabel={t`Select folder`}
-                            selectedValue={selectedFolder}
-                            onValueChange={(folder: string) => setSelectedFolder(folder)}
-                            color={maharaTheme.colors.dark}
-                        >
-                            {folders &&
-                                folders.map((f: UserFolder) => {
-                                    const label =
-                                        f.title === props.defFolderTitle
-                                            ? `${f.title} - ${t`default`}`
-                                            : f.title;
-                                    return <Select.Item label={label} value={f.title} key={f.id} />;
-                                })}
-                        </Select>
-                    </Box>
+                    <Dropdown
+                        options={folders.map((f: UserFolder) => ({
+                            label:
+                                f.title === props.defFolderTitle
+                                    ? `${f.title} - ${t`default`}`
+                                    : f.title,
+                            value: f.title
+                        }))}
+                        selectedValue={selectedFolder}
+                        onSelect={(folder: string) => setSelectedFolder(folder)}
+                        accessibilityLabel={t`Select folder`}
+                    />
                 )}
             </View>
         );

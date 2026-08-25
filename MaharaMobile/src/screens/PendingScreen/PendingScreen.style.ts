@@ -24,7 +24,9 @@ export default StyleSheet.create({
     },
     noPending: {
         justifyContent: 'center',
-        height: '100%'
+        alignItems: 'center',
+        height: '100%',
+        flexDirection: 'column'
     },
     noPendingText: {
         textAlign: 'center',

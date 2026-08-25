@@ -1,11 +1,9 @@
 // Disable all any errors for this file.
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Toast } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
-import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Dispatch } from 'redux';
 import { UserBlog, UserBlogJSON, UserFolder, UserTag } from '../models/models';
 import { newUserTag } from '../models/typeCreators';
@@ -30,6 +28,18 @@ import {
 import { GUEST_BLOG, GUEST_FOLDER, GUEST_TOKEN, GUEST_USERNAME } from './constants';
 import { userBlogJSONtoUserBlog } from './helperFunctions';
 
+async function blobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const result = reader.result as string;
+            resolve(result.split(',')[1]);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+    });
+}
+
 /**
  * Attempt to fetch user info based on given token
 
@@ -40,11 +50,7 @@ import { userBlogJSONtoUserBlog } from './helperFunctions';
  */
 export async function fetchUserWithToken(serverUrl: string, requestOptions: RequestInit) {
     const response = await fetch(serverUrl, requestOptions);
-    const json = await response.json().catch((e) => {
-        console.warn(
-            `Expected ERROR:  because we have been auto logged out and cannot retrieve any data${e}`
-        );
-    });
+    const json = await response.json().catch(() => null);
     if (json != null) {
         // if json.error is true, meaning failed to log in, we don't reject the promise
         // and instead use the information inside i.e. the Mahara error message inside
@@ -108,22 +114,31 @@ export const fetchProfilePic = async (dispatch: Dispatch, token: string, url: st
     const wstoken = token;
     const serverUrl = `${url}module/mobileapi/download.php?wsfunction=${api}&wstoken=${wstoken}`;
 
-    let profilePic = '';
+    // Try to load cached profile pic first
+    try {
+        const cachedPic = await AsyncStorage.getItem('profilePic');
+        if (cachedPic) {
+            dispatch(updateProfilePic(cachedPic));
+        }
+    } catch {
+        // ignore cache errors
+    }
 
-    ReactNativeBlobUtil.config({
-        fileCache: true
-    })
-        .fetch('GET', serverUrl)
-        .then((res) => {
-            profilePic = `file://${res.path()}`;
+    try {
+        const response = await fetch(serverUrl);
+        if (response.ok) {
+            const blob = await response.blob();
+            const uri = `data:image/png;base64,${await blobToBase64(blob)}`;
+            // Cache it for offline use
+            await AsyncStorage.setItem('profilePic', uri);
+            dispatch(updateProfilePic(uri));
+            return uri;
+        }
+    } catch {
+        // ignore fetch errors
+    }
 
-            dispatch(updateProfilePic(profilePic));
-        })
-        .catch((e) => {
-            Toast.show({ title: e.error_message });
-        });
-
-    return profilePic;
+    return '';
 };
 
 export const signOutAsync = async (dispatch: Dispatch) => {
@@ -177,11 +192,9 @@ export const onCheckAuthJSON = (
 ) => {
     if (json) {
         if (json.error) {
-            console.warn('Failed to log in: ', json.error);
             failCallback();
         }
         if (json.token != null) {
-            console.warn('success! token received: ', json.token);
             successCallback();
         }
     }
@@ -193,7 +206,9 @@ export const login = (
     userBlogs: UserBlog[],
     userFolders: UserFolder[],
     token: string,
+    // eslint-disable-next-line @typescript-eslint/default-param-last
     setLoading?: (loading: boolean) => void,
+    // eslint-disable-next-line @typescript-eslint/default-param-last
     updateToken?: () => void,
     isGuest: boolean
 ) => {
@@ -223,7 +238,6 @@ export const login = (
     const onGuestToUser = async () => {
         dispatch(updateGuestStatus(false));
         updatePendingItemsOnGuestToUser(dispatch, userBlogs, userFolders, token, url);
-        console.log('updatedGuestDetailsToProvidedUser');
     };
 
     let userData: any = null;
@@ -232,7 +246,6 @@ export const login = (
     }
     fetchUserWithToken(serverUrl, requestOptions)
         .then((json) => {
-            console.log(json.token);
             onCheckAuthJSON(
                 json,
                 () => {
@@ -254,10 +267,9 @@ export const login = (
                 onGuestToUser();
             }
         })
-        .catch((e) => {
+        .catch(() => {
             // We expect the error when use has been logged out, but dispatch continues because
             // if we catch too early, not all the items won't dispatch ^
-            console.warn(`Error on fetchUserTokenLogin :) ${e}`);
             // other failures e.g. failed to login are not caught because we want to use the
             // information at onCheckAuthJSON()
         })
@@ -287,8 +299,17 @@ export const login = (
             if (userData.folders.folders.length !== 0) {
                 dispatch(updateUserFolders(userData.folders.folders));
             }
-            dispatch(setDefaultBlogTitle(userData.blogs.blogs[0].title));
-            dispatch(setDefaultFolder(userData.folders.folders[0].title));
+            // Only set defaults if user hasn't set a preference yet
+            AsyncStorage.getItem('DEFAULT_FOLDER_TITLE').then((savedFolder) => {
+                if (!savedFolder && userData.folders.folders.length > 0) {
+                    dispatch(setDefaultFolder(userData.folders.folders[0].title));
+                }
+            });
+            AsyncStorage.getItem('DEFAULT_BLOG_TITLE').then((savedBlog) => {
+                if (!savedBlog && userData.blogs.blogs.length > 0) {
+                    dispatch(setDefaultBlogTitle(userData.blogs.blogs[0].title));
+                }
+            });
             // checkValidInitialState(props.userBlogs, props.userFolders)
         });
 };

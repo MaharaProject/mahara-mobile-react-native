@@ -44,7 +44,8 @@ const setSelectedImageCallback = (
 
 export const takePhoto = (setPickedFile: Dispatch<SetStateAction<File>>) => {
     const options: ImageLibraryOptions = {
-        mediaType: 'photo'
+        mediaType: 'photo',
+        saveToPhotos: false // Save to app temp dir, not DCIM (avoids Android scoped storage permission issues)
     };
 
     /**
@@ -102,8 +103,21 @@ export const pickDocument = async (onSetPickedFile: any) => {
     }
 };
 
-export const renderImagePreview = (uri: string) => (
-    <View style={styles.imageWrap}>
-        <Image source={{ uri }} style={styles.image} accessibilityLabel={t`image preview`} />
-    </View>
-);
+function ImagePreview({ uri }: { uri: string }) {
+    return (
+        <View style={styles.imageWrap}>
+            <Image
+                key={uri}
+                source={{ uri }}
+                style={styles.image}
+                resizeMode="cover"
+                accessibilityLabel={t`image preview`}
+            />
+        </View>
+    );
+}
+
+export const renderImagePreview = (uri: string) => {
+    if (!uri) return null;
+    return <ImagePreview key={uri} uri={uri} />;
+};

@@ -9,6 +9,15 @@ export default StyleSheet.create({
     },
     imageWrap: {
         width: '100%',
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    imagePlaceholder: {
+        width: '100%',
+        height: 200,
+        marginBottom: styles.padding.md,
+        backgroundColor: '#f0f0f0',
         justifyContent: 'center',
         alignItems: 'center'
     },

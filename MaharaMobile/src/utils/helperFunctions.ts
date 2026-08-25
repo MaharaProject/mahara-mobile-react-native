@@ -59,7 +59,17 @@ export function buildObject(item: object) {
         sendFormData.append('title', item.name);
         sendFormData.append('description', item.description);
         sendFormData.append('alttext', item.alttext);
-        sendFormData.append('filetoupload', item.filetoupload as unknown as Blob);
+
+        const fileObj = item.filetoupload;
+        // Append file to FormData - React Native expects {uri, type, name} object
+        const fileData = {
+            uri: fileObj.uri,
+            type: fileObj.type || 'application/octet-stream',
+            name: fileObj.name || 'upload'
+        };
+
+        sendFormData.append('filetoupload', fileData as FormData.AppendFields);
+
         return {
             method: 'POST',
             body: sendFormData

@@ -1,15 +1,19 @@
 import React, { useCallback } from 'react';
-import { faCheckCircle, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+    faBookOpen,
+    faCheckCircle,
+    faEdit,
+    faFile,
+    faImage,
+    faMusic,
+    faTrashAlt
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { Box, Text } from '@gluestack-ui/themed-native-base';
 import { Image, ImageSourcePropType, TouchableOpacity, View } from 'react-native';
-import AddJournalEntrySvg from '../../assets/images/AddJournalEntry';
-import PickFileSvg from '../../assets/images/PickFile';
-import RecordAudioSvg from '../../assets/images/RecordAudio';
 import generic from '../../assets/styles/generic';
 import styles from '../../assets/styles/variables';
 import Card from '../UI/Card/Card';
-import gridButtonStyles from '../UI/GridButton/GridButton.style';
 import uploadItemStyles from './UploadItem.style';
 
 type Props = {
@@ -19,6 +23,7 @@ type Props = {
     onRemove: () => void;
     onEdit: () => void;
     successfullyUploadedItem: boolean;
+    image?: ImageSourcePropType;
 };
 
 function UploadItem(props: Props) {
@@ -26,44 +31,34 @@ function UploadItem(props: Props) {
     const displayName: string = title;
 
     const Thumbnail = useCallback(() => {
-        let thumbnailStyles;
-        let type = 'file';
+        const isImage = props.mimetype.includes('image');
+        const isAudio = props.mimetype.includes('audio');
+        const isJournal = props.mimetype.includes('journalEntry');
 
-        if (props.mimetype.includes('audio')) {
-            // thumbnailStyles = gridButtonStyles.audio;
-            type = 'audio';
+        if (isImage && props.image && 'uri' in props.image && props.image.uri) {
+            return (
+                <View style={uploadItemStyles.imageContainer}>
+                    <Image
+                        source={props.image as ImageSourcePropType}
+                        style={uploadItemStyles.thumbnail}
+                    />
+                </View>
+            );
         }
-        if (props.mimetype.includes('journalEntry')) {
-            // thumbnailStyles = gridButtonStyles.journalEntry;
-            type = 'journalEntry';
-        }
-        if (props.mimetype.includes('application')) {
-            // thumbnailStyles = gridButtonStyles.application;
-            type = 'file';
-        }
-
-        // not an image
-        // if (props.mimetype.includes('image'))
-        // {
-        //   return (
-        //     <View style={[uploadItemStyles.imageContainer]}>
-        //       <Image source={props.image} style={uploadItemStyles.thumbnail} />
-        //     </View>
-        //   );
-        // } else
-        // {
 
         return (
             <View style={uploadItemStyles.imageContainer}>
-                <Box style={[uploadItemStyles.icon, thumbnailStyles]}>
-                    {type === 'audio' ? <RecordAudioSvg /> : null}
-                    {type === 'file' ? <PickFileSvg /> : null}
-                    {type === 'journalEntry' ? <AddJournalEntrySvg /> : null}
+                <Box style={uploadItemStyles.icon}>
+                    {isImage && <FontAwesomeIcon icon={faImage} size={32} color="#919191" />}
+                    {isAudio && <FontAwesomeIcon icon={faMusic} size={32} color="#919191" />}
+                    {isJournal && <FontAwesomeIcon icon={faBookOpen} size={32} color="#919191" />}
+                    {!isImage && !isAudio && !isJournal && (
+                        <FontAwesomeIcon icon={faFile} size={32} color="#919191" />
+                    )}
                 </Box>
             </View>
         );
-        // }
-    }, [props.mimetype]);
+    }, [props.mimetype, props.image]);
 
     return (
         <View style={uploadItemStyles.uploadItem}>

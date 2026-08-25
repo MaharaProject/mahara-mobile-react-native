@@ -6,7 +6,7 @@ import Svg, { Path } from 'react-native-svg';
 function PickFileSvg() {
     return (
         <View>
-            <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 255">
+            <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 255" width={72} height={72}>
                 <Path
                     id="pick-file.svg"
                     fill="#fff"

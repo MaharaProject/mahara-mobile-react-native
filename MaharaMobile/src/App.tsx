@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect } from 'react';
 import * as RNLocalize from 'react-native-localize';
 import { config } from '@gluestack-ui/config';
-import { NativeBaseProvider, useToast } from '@gluestack-ui/themed-native-base';
+import { NativeBaseProvider } from '@gluestack-ui/themed-native-base';
 import { t } from '@lingui/macro';
 import { I18nProvider } from '@lingui/react';
 import { StatusBar } from 'react-native';
@@ -14,7 +14,6 @@ import { maharaTheme, maharaThemeBase } from './utils/theme';
 i18n.activate('en');
 
 export function I18nProviderWrapper({ children }: { children: ReactElement }) {
-    const toast = useToast();
     const FALL_BACK_LANG = 'en';
     const userLangTags = RNLocalize.getLocales().map((locale) => locale.languageTag);
     const bestFitLanguageTag = RNLocalize.findBestLanguageTag(userLangTags)?.languageTag;
@@ -23,8 +22,8 @@ export function I18nProviderWrapper({ children }: { children: ReactElement }) {
             ?.languageCode || FALL_BACK_LANG;
 
     useEffect(() => {
-        changeActiveLanguage(langCode, toast);
-    }, [bestFitLanguageTag, langCode, toast]);
+        changeActiveLanguage(langCode);
+    }, [bestFitLanguageTag, langCode]);
 
     return <I18nProvider i18n={i18n}>{children}</I18nProvider>;
 }

@@ -1,31 +1,29 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { Badge, Text, VStack } from '@gluestack-ui/themed-native-base';
+import { StyleSheet, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
+
+const styles = StyleSheet.create({
+    dot: {
+        position: 'absolute',
+        top: -4,
+        right: 4,
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#d4e04a'
+    }
+});
 
 type Props = {
     uploadItemsCount?: number;
 };
 
 function NavUploadSVG(props: Props) {
-    const queueEmpty = props.uploadItemsCount?.toPrecision();
     return (
-        <VStack>
-            {!queueEmpty && (
-                <Badge
-                    colorScheme="primary"
-                    rounded="full"
-                    mb={-4}
-                    mr={-4}
-                    zIndex={-1}
-                    alignSelf="flex-end"
-                    fontSize="sm"
-                >
-                    <Text>➕</Text>
-                </Badge>
-            )}
-
-            <Svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 100 100">
+        <View style={{ position: 'relative' }}>
+            {props.uploadItemsCount ? <View style={styles.dot} /> : null}
+            <Svg xmlns="http://www.w3.org/2000/svg" width="60" height="30" viewBox="0 0 200 100">
                 <Path
                     id="nav-upload.svg"
                     fill="#566d31"
@@ -33,7 +31,7 @@ function NavUploadSVG(props: Props) {
                     transform="translate(-4071 -3858)"
                 />
             </Svg>
-        </VStack>
+        </View>
     );
 }
 

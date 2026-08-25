@@ -7,6 +7,7 @@ const gridButtonStyles = StyleSheet.create({
         margin: styles.padding.xs,
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 25
     },
     buttonText: {
@@ -14,12 +15,16 @@ const gridButtonStyles = StyleSheet.create({
         color: styles.colors.light,
         marginBottom: styles.padding.md,
         marginHorizontal: styles.padding.md,
-        fontFamily: generic.regularText.fontFamily
+        fontFamily: generic.regularText.fontFamily,
+        textAlign: 'center'
     },
     imageWrapper: {
-        height: '35%',
+        height: 96,
+        width: 96,
         marginTop: styles.padding.lg,
-        marginBottom: styles.padding.lg
+        marginBottom: styles.padding.lg,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     green: {
         backgroundColor: styles.colors.green_grid_button

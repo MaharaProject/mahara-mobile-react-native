@@ -6,7 +6,7 @@ import Svg, { Path } from 'react-native-svg';
 function TakePhotoSvg() {
     return (
         <View>
-            <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 285">
+            <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 252 285" width={72} height={72}>
                 <Path
                     id="take-photo.svg"
                     fill="#fff"

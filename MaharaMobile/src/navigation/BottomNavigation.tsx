@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { t } from '@lingui/macro';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ImageProps } from 'react-native';
 import NavAddSVG from '../assets/images/nav-add';
 import NavAddActiveSVG from '../assets/images/nav-add-active';
 import NavMenuSVG from '../assets/images/nav-menu';
@@ -14,7 +15,7 @@ const tabOptions = {
     tabBarHideOnKeyboard: true,
     tabBarActiveTintColor: styles.colors.navActiveGreenTint,
     tabBarInactiveTintColor: styles.colors.quaternary,
-    tabBarStyle: { backgroundColor: styles.colors.navBarGreen },
+    tabBarStyle: { backgroundColor: styles.colors.navBarGreen, paddingTop: 10 },
     tabBarShowLabel: false
 };
 
@@ -24,7 +25,38 @@ type Props = {
     uploadItemsCount?: number;
 };
 
+function UploadIcon({
+    focused,
+    uploadItemsCount
+}: {
+    focused: boolean;
+    uploadItemsCount?: number;
+}) {
+    return focused ? (
+        <NavUploadActiveSVG uploadItemsCount={uploadItemsCount} />
+    ) : (
+        <NavUploadSVG uploadItemsCount={uploadItemsCount} />
+    );
+}
+
+function CreateIcon({ focused }: { focused: boolean }) {
+    return focused ? <NavAddActiveSVG /> : <NavAddSVG />;
+}
+
+function MenuIcon({ focused }: { focused: boolean }) {
+    return focused ? <NavMenuActiveSVG /> : <NavMenuSVG />;
+}
+
 function BottomNavigation(props: Props) {
+    const uploadIcon = useCallback(
+        (p: ImageProps) => (
+            <UploadIcon focused={p.focused} uploadItemsCount={props.uploadItemsCount} />
+        ),
+        [props.uploadItemsCount]
+    );
+    const createIcon = useCallback((p: ImageProps) => <CreateIcon focused={p.focused} />, []);
+    const menuIcon = useCallback((p: ImageProps) => <MenuIcon focused={p.focused} />, []);
+
     return (
         <BottomTab.Navigator initialRouteName="Create tab">
             <BottomTab.Screen
@@ -34,12 +66,7 @@ function BottomNavigation(props: Props) {
                     ...tabOptions,
                     tabBarLabel: t`Upload queue`,
                     headerShown: false,
-                    tabBarIcon: ({ focused }) =>
-                        focused ? (
-                            <NavUploadActiveSVG uploadItemsCount={props.uploadItemsCount} />
-                        ) : (
-                            <NavUploadSVG uploadItemsCount={props.uploadItemsCount} />
-                        ),
+                    tabBarIcon: uploadIcon,
                     tabBarAccessibilityLabel: t`Upload queue page`
                 }}
             />
@@ -49,8 +76,7 @@ function BottomNavigation(props: Props) {
                 options={{
                     ...tabOptions,
                     headerShown: false,
-                    tabBarLabel: t`Create`,
-                    tabBarIcon: ({ focused }) => (focused ? <NavAddActiveSVG /> : <NavAddSVG />),
+                    tabBarIcon: createIcon,
                     tabBarAccessibilityLabel: t`Add an item`
                 }}
             />
@@ -60,7 +86,7 @@ function BottomNavigation(props: Props) {
                 options={{
                     ...tabOptions,
                     headerShown: false,
-                    tabBarIcon: ({ focused }) => (focused ? <NavMenuActiveSVG /> : <NavMenuSVG />),
+                    tabBarIcon: menuIcon,
                     tabBarAccessibilityLabel: t`Menu`
                 }}
             />

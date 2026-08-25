@@ -6,7 +6,7 @@ import Svg, { Path } from 'react-native-svg';
 function UploadSVG() {
     return (
         <View>
-            <Svg xmlns="http://www.w3.org/2000/svg" width="100%" height="160" viewBox="0 0 396 282">
+            <Svg xmlns="http://www.w3.org/2000/svg" width={120} height={120} viewBox="0 0 396 282">
                 <Path
                     id="upload-big.svg"
                     class="cls-1"

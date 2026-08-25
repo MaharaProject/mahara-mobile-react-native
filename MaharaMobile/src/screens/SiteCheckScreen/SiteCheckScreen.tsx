@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import {
-    Alert,
-    CloseIcon,
-    HStack,
-    IconButton,
     Input,
     InputGroup,
     InputLeftAddon,
@@ -12,11 +8,10 @@ import {
     Stack,
     Text,
     VStack,
-    View,
-    useToast
+    View
 } from '@gluestack-ui/themed-native-base';
 import { Trans, t } from '@lingui/macro';
-import { ActivityIndicator, Platform } from 'react-native';
+import { ActivityIndicator, Platform, Alert as RNAlert } from 'react-native';
 import { connect, useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import generic from '../../assets/styles/generic';
@@ -60,8 +55,6 @@ type Props = {
  * is a Mahara site with webservices connected.
  */
 function SiteCheckScreen(props: Props) {
-    const toast = useToast();
-
     const [serverPing, setServerPing] = useState(false);
     const [isInputHidden, setIsInputHidden] = useState(false);
     const [enterURLWarning, setEnterURLWarning] = useState(false);
@@ -108,25 +101,7 @@ function SiteCheckScreen(props: Props) {
             await checkLoginTypes(serverUrl)(dispatch);
         } catch (error) {
             const message = getErrorMessage(error);
-            toast.show({
-                render: ({ id }) => (
-                    <Alert mx={2} status="error" variant="left-accent">
-                        <VStack>
-                            <HStack space={3} alignItems="center">
-                                <Alert.Icon />
-                                <Text w="100%" fontWeight="medium">{t`Connection error`}</Text>
-                                <IconButton
-                                    icon={<CloseIcon size="4" />}
-                                    onPress={() => toast.close(id)}
-                                    colorScheme="red"
-                                    ml="auto"
-                                />
-                            </HStack>
-                            <Text>{message}</Text>
-                        </VStack>
-                    </Alert>
-                )
-            });
+            RNAlert.alert(t`Connection error`, message, [{ text: t`OK`, onPress: () => {} }]);
         } finally {
             setLoading(false);
         }
@@ -170,27 +145,47 @@ function SiteCheckScreen(props: Props) {
             ) : null}
 
             {enterURLWarning ? (
-                <Text style={textStyles.errorText}>
-                    <Trans>Please enter a URL.</Trans>
-                </Text>
+                <View style={{ padding: 10 }}>
+                    <View
+                        style={{
+                            backgroundColor: '#fff3f3',
+                            borderRadius: 4,
+                            padding: 6,
+                            marginTop: 4
+                        }}
+                    >
+                        <Text
+                            style={{
+                                color: '#cc0000',
+                                fontSize: styles.font.sm,
+                                fontWeight: '700',
+                                fontFamily: 'OpenSansRegular'
+                            }}
+                        >
+                            <Trans>Please enter a URL.</Trans>
+                        </Text>
+                    </View>
+                </View>
             ) : null}
 
             {serverPing && isInputHidden ? (
-                <View>
+                <View style={{ marginTop: 16 }}>
                     <SubHeadingNoColon
                         style={{ textAlign: 'center', color: styles.colors.light }}
                         text={controlURL}
                     />
-                    <OutlineButton
-                        light
-                        text={t`Enter a different URL`}
-                        style={{ color: styles.colors.light }}
-                        onPress={() => {
-                            setServerPing(false);
-                            setIsInputHidden(false);
-                            setLoading(false);
-                        }}
-                    />
+                    <View style={{ marginTop: 16 }}>
+                        <OutlineButton
+                            light
+                            text={t`Enter a different URL`}
+                            style={{ color: styles.colors.light }}
+                            onPress={() => {
+                                setServerPing(false);
+                                setIsInputHidden(false);
+                                setLoading(false);
+                            }}
+                        />
+                    </View>
                 </View>
             ) : null}
 
@@ -217,12 +212,14 @@ function SiteCheckScreen(props: Props) {
             ) : null}
 
             {serverPing && (
-                <LoginTypes
-                    goToLoginType={goToLoginType}
-                    localLogin={props.localLogin}
-                    ssoLogin={props.ssoLogin}
-                    tokenLogin={props.tokenLogin}
-                />
+                <View style={{ marginTop: 24 }}>
+                    <LoginTypes
+                        goToLoginType={goToLoginType}
+                        localLogin={props.localLogin}
+                        ssoLogin={props.ssoLogin}
+                        tokenLogin={props.tokenLogin}
+                    />
+                </View>
             )}
 
             <View style={{ flexGrow: 1, justifyContent: 'flex-end' }}>

@@ -15,6 +15,7 @@ export type File = {
     name: string | null | undefined;
     type: string | null | undefined;
     size: number | null | undefined; // Not used in upload
+    base64?: string | null | undefined; // Base64 encoded data for uploads (Android content:// URI workaround)
 };
 
 export type MaharaFile = {
